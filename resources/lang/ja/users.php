@@ -128,8 +128,8 @@ CAPTCHA認証を成功させてから再試行してください。
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'アクティブ',
+            'ended' => '終了済み',
         ],
     ],
 
@@ -170,10 +170,10 @@ CAPTCHA認証を成功させてから再試行してください。
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
+                '_' => '著作権侵害については、 :policy に従い、DMCA申請を通じて :mail までご報告ください。',
                 'policy' => 'osu!の著作権ポリシー',
             ],
-            'message_2' => '',
+            'message_2' => 'これは、オーディオトラック、ビジュアルコンテンツ、または譜面データが適切な許可なく使用されている場合に適用されます。',
         ],
 
         'options' => [
@@ -301,10 +301,10 @@ CAPTCHA認証を成功させてから再試行してください。
                     'title' => 'ノミネートしたRankedビートマップ',
                 ],
                 'pending' => [
-                    'title' => 'Pendingビートマップ',
+                    'title' => 'Pendingのビートマップ',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Approvedのビートマップ',
+                    'title' => 'Rankedされたビートマップ',
                 ],
             ],
             'discussions' => [
@@ -402,6 +402,9 @@ CAPTCHA認証を成功させてから再試行してください。
                 'title_longer' => '最近の投稿',
                 'show_more' => '他の投稿を見る',
             ],
+            'quickplay' => [
+                'title' => 'クイックプレイ',
+            ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
             ],
@@ -470,6 +473,11 @@ CAPTCHA認証を成功させてから再試行してください。
             'twitter' => '',
             'website' => 'ウェブサイト',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'ユーザー名を変更した可能性があります。',
             'reason_2' => 'セキュリティの問題や不正利用の可能性によりアカウントが一時的に利用できなくなる可能性があります。',
@@ -520,8 +528,8 @@ CAPTCHA認証を成功させてから再試行してください。
             // modding stats
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
             'loved_beatmapset_count' => 'Lovedされたビートマップ',
-            'pending_beatmapset_count' => 'Pendingビートマップ',
-            'ranked_beatmapset_count' => 'Ranked & Approvedのビートマップ',
+            'pending_beatmapset_count' => 'Pendingのビートマップ',
+            'ranked_beatmapset_count' => 'Rankedされたビートマップ',
         ],
     ],
 

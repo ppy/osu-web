@@ -53,6 +53,7 @@ return [
             'discussion' => 'perbincangan peta rentak',
             'index' => 'senarai peta rentak',
             'show' => 'maklumat peta rentak',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'log perubahan',
@@ -64,11 +65,14 @@ return [
             '_' => 'komen',
         ],
         'contest_entries_controller' => [
-            'judge_results' => 'hasil pengadilan peraduan',
+            'judge_results' => 'hasil penilaian peraduan',
         ],
         'contests_controller' => [
             '_' => 'peraduan',
-            'judge' => 'pengadilan peraduan',
+            'judge' => 'penilaian peraduan',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'kumpulan',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'pratata kulit profil',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'maklumat pemain',

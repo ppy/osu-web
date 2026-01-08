@@ -77,16 +77,16 @@ return [
                 '_' => 'Stav Beatmapy se změnil',
                 'beatmapset_disqualify' => '":title" byla diskvalifikována',
                 'beatmapset_disqualify_compact' => 'Beatmapa byla diskvalifikována',
-                'beatmapset_love' => '":title" byla povýšena do milované kategorie',
-                'beatmapset_love_compact' => 'Beatmapa byla povýšena do milované kategorie',
+                'beatmapset_love' => '":title" byla povýšena na oblíbenou komunitou',
+                'beatmapset_love_compact' => 'Beatmapa byla povýšena na oblíbenou komunitou',
                 'beatmapset_nominate' => '":title" byla nominována',
                 'beatmapset_nominate_compact' => 'Beatmapa byla nominována',
                 'beatmapset_qualify' => '":title" získala dostatek nominací a vstoupila do fronty hodnocení',
                 'beatmapset_qualify_compact' => 'Beatmapa zadána do fronty hodnocení',
                 'beatmapset_rank' => '":title" byla hodnocena',
                 'beatmapset_rank_compact' => 'Beatmapa byla hodnocena',
-                'beatmapset_remove_from_loved' => '":title" byla odstraněna z milované kategorie',
-                'beatmapset_remove_from_loved_compact' => 'Beatmapa byla odstraněna z milované kategorie',
+                'beatmapset_remove_from_loved' => '":title" byla odebrána z oblíbených komunitou',
+                'beatmapset_remove_from_loved_compact' => 'Beatmapa byla odebrána z oblíbených komunitou',
                 'beatmapset_reset_nominations' => 'Nominace ":title" byla obnovena',
                 'beatmapset_reset_nominations_compact' => 'Nominace byla obnovena',
             ],
@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username odpověděl ":content" na ":title"',
                 'comment_reply_compact' => ':username odpověděl ":content"',
             ],
+
+            'news_post' => [
+                '_' => 'Novinky (:series)',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
+            ],
         ],
 
         'forum_topic' => [
@@ -230,11 +237,11 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" byla diskvalifikována',
-                'beatmapset_love' => '":title" byla povýšena na milované',
+                'beatmapset_love' => '":title" byla povýšena na oblíbenou komunitou',
                 'beatmapset_nominate' => '":title" byla nominována',
                 'beatmapset_qualify' => '":title" získala dostatek nominací a vstoupila do fronty hodnocení',
                 'beatmapset_rank' => '":title" byla hodnocena',
-                'beatmapset_remove_from_loved' => '":title" byla odebrána z milovaných',
+                'beatmapset_remove_from_loved' => '":title" byla odebrána z oblíbených komunitou',
                 'beatmapset_reset_nominations' => 'Nominace ":title" byla obnovena',
             ],
 
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Novinky ":title" mají nové komentáře',
+            ],
+
+            'news_post' => [
+                'news_post_new' => 'Novinky (:series): ":title"',
             ],
         ],
 

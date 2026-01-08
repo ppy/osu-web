@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => '',
-                    'cover_presets' => '',
+                    'header' => 'Korisnik',
+                    'cover_presets' => 'Preseti pozadine profila',
                 ],
             ],
         ],

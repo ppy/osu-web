@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Nylige Innlegg',
                 'show_more' => 'se flere innlegg',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nylige',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Nettside',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'De kan ha endret brukernavnet sitt.',
             'reason_2' => 'Kontoen kan være midlertidig utilgjengelig på grunn av sikkerhetsproblemer eller misbruk.',

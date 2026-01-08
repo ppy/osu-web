@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* tidak dibenarkan dengan Kelayakan Pelanggan',
+        'all_scope_no_mix' => '* tidak sah dengan lingkungan lain',
+        'client_missing_owner' => 'Pelanggan tiada pemilik.',
+        'client_unauthorized' => 'Pelanggan tak berizin.',
+        'delegate_bot_only' => 'Perwakilan dengan Kelayakan Pelanggan hanya tersedia untuk bot sembang.',
+        'client_credentials_only' => '',
+        'delegate_invalid_combination' => 'Perwakilan tidak disokong untuk gabungan lingkungan ini.',
+        'delegate_required' => 'lingkungan wakil diperlukan.',
+        'empty' => 'Token tanpa lingkungan tidak sah.',
+        'bot_only' => 'Lingkungan ini hanya tersedia untuk bot sembang atau pelanggan anda sendiri.',
     ],
 ];

@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Avaliação dispersada',
             'nominations' => 'Nomeações',
             'playcount' => 'Número de partidas',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

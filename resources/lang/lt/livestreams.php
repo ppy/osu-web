@@ -11,7 +11,7 @@ return [
 
     'top-headers' => [
         'headline' => 'Tiesioginės Transliacijos',
-        'description' => 'Priklausomai nuo katalogų išdėstymo, duomenys iš twitch.tv gaunami kas pekias minutes. Kai tik užsinorėja galite pradėti transliuoti ir įtraukti savę į sąrašą! Daugiau informacijos kaip pradėti rasite :link.',
+        'description' => 'Priklausomai nuo katalogų išdėstymo, duomenys iš twitch.tv gaunami kas penkias minutes. Kai tik užsinorėje galite pradėti transliuoti ir įtraukti savę į sąrašą! Daugiau informacijos kaip pradėti rasite :link.',
 
         'link' => 'wiki puslapį apie tiesoginį transliavimą',
     ],

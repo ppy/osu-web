@@ -33,25 +33,50 @@ return [
         'used' => 'Digunakan',
     ],
 
+    'matchmaking' => [
+        'plays' => 'Jumlah Permainan',
+        'points' => 'Poin',
+        'provisional' => 'Jumlah permainan belum mencukupi untuk menentukan rating secara akurat',
+        'rating' => 'Rating',
+        'wins' => 'Menang',
+    ],
+
+    'multiplayer' => [
+        'room_name' => 'Nama Ruangan',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Pengguna ini memiliki riwayat peringkat terkini yang kurang dari 30 hari.',
     ],
 
-    'type' => [
+    'top_plays' => [
+        'empty' => 'Data sedang diproses...',
+        'last_updated' => 'Terakhir diperbarui',
+    ],
+
+    'playlists' => [
         'charts' => 'spotlight (versi lawas)',
+        'featured' => 'sorotan',
+        'season_room' => 'ruangan musim',
+        'seasons' => 'musim',
+    ],
+
+    'type' => [
         'country' => 'negara',
         'daily_challenge' => 'tantangan harian',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'seasons' => 'musim',
+        'matchmaking' => 'permainan kilat',
+        'playlists' => 'playlist',
         'team' => 'tim',
+        'top_plays' => 'permainan terbaik',
     ],
 
     'seasons' => [
         'empty' => 'Musim ini belum memiliki ruangan.',
         'ongoing' => 'Musim ini sedang berlangsung (ke depannya, akan terdapat lebih banyak playlist untuk dimainkan)',
         'room_count' => 'Jumlah playlist',
+        'summary' => 'Lihat Ringkasan Musim',
         'url' => 'Menampilkan informasi lebih lanjut seputar musim yang dipilih.',
         'validation' => [
             'not_enough_factors' => 'faktor skor yang ada tidak cukup untuk perhitungan yang layak',

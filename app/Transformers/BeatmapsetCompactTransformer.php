@@ -18,6 +18,7 @@ use Ds\Set;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use League\Fractal;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Primitive;
 
 class BeatmapsetCompactTransformer extends TransformerAbstract
 {
@@ -42,6 +43,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'related_users',
         'related_tags',
         'user',
+        'version_count',
     ];
 
     // TODO: switch to enum after php 8.1
@@ -57,6 +59,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function transform(Beatmapset $beatmapset)
     {
         return [
+            'anime_cover' => $beatmapset->anime_cover,
             'artist' => $beatmapset->artist,
             'artist_unicode' => $beatmapset->artist_unicode,
             'covers' => $beatmapset->allCoverURLs(),
@@ -317,6 +320,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         }
 
         return $this->primitive($json);
+    }
+
+    public function includeVersionCount(Beatmapset $beatmapset): Primitive
+    {
+        return $this->primitive($beatmapset->versions()->count());
     }
 
     private function beatmaps(Beatmapset $beatmapset, ?Fractal\ParamBag $params = null): EloquentCollection

@@ -33,25 +33,50 @@ return [
         'used' => 'Потрошен',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Овај корисник има мање од 30 дана недавне историје рангирања.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'колекције',
         'country' => 'држава',
         'daily_challenge' => 'дневни изазов',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'мултиплејер',
-        'seasons' => 'сезоне',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'тим',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'У овој сезони још нема соба.',
         'ongoing' => 'Ова сезона је још увек у току (биће додато још плејлиста).',
         'room_count' => 'Број плејлиста',
+        'summary' => '',
         'url' => 'Прикажи више информација о тој сезони.',
         'validation' => [
             'not_enough_factors' => 'нема довољно резултатних фактора за правилно израчунавање',

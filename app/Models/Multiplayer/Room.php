@@ -35,12 +35,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $deleted_at
+ * @property string|null $description
  * @property \Carbon\Carbon $ends_at
  * @property User $host
  * @property int $id
  * @property int|null $max_attempts
  * @property string $name
  * @property int $participant_count
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property-read Season $season
@@ -61,6 +63,7 @@ class Room extends Model
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
         'created' => [
+            ['column' => 'pinned', 'order' => 'DESC', 'type' => 'bool'],
             ['column' => 'id', 'order' => 'DESC', 'type' => 'int'],
         ],
     ];
@@ -70,12 +73,15 @@ class Room extends Model
     const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
-        'realtime' => self::REALTIME_TYPES,
+        'realtime' => self::REALTIME_STANDARD_TYPES,
+        'quickplay' => [self::MATCHMAKING_TYPE],
     ];
 
     const PLAYLIST_TYPE = 'playlists';
+    const MATCHMAKING_TYPE = 'matchmaking';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
-    const REALTIME_TYPES = ['head_to_head', 'team_versus'];
+    const REALTIME_STANDARD_TYPES = ['head_to_head', 'team_versus'];
+    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, self::MATCHMAKING_TYPE];
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
@@ -91,6 +97,7 @@ class Room extends Model
         'auto_skip' => 'boolean',
         'ends_at' => 'datetime',
         'password' => PresentString::class,
+        'pinned' => 'boolean',
         'starts_at' => 'datetime',
     ];
     protected array $macros = [
@@ -247,12 +254,11 @@ class Room extends Model
         return $this->belongsTo(PlaylistItem::class, 'current_playlist_item_id');
     }
 
-    public function macroDailyChallengeFor(): \Closure
+    public function macroDailyChallengeFor(Builder $query, CarbonImmutable $date): ?static
     {
-        return fn (Builder $query, CarbonImmutable $date): ?static
-            => static::dailyChallenges()
-                ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
-                ->last();
+        return static::dailyChallenges()
+            ->whereBetween('starts_at', [$date->startOfDay(), $date->endOfDay()])
+            ->last();
     }
 
     public function host()
@@ -313,7 +319,7 @@ class Room extends Model
 
     public function scopeFeatured(Builder $query): Builder
     {
-        return $query->whereIn('category', ['featured_artist', 'spotlight']);
+        return $query->whereIn('category', ['featured_artist']);
     }
 
     public function scopeHasParticipated($query, ?User $user)
@@ -358,6 +364,13 @@ class Room extends Model
                 LIMIT {$limit}
             ) recent_participants
         ", 'recent_participant_ids');
+    }
+
+    public function getNameAttribute(?string $value): ?string
+    {
+        return $this->isMatchmaking() && $value === 'Unnamed room'
+            ? 'Quick Play Match'
+            : $value;
     }
 
     public function assertCorrectPassword(?string $password): void
@@ -428,6 +441,11 @@ class Room extends Model
         return $this->ends_at !== null && Carbon::now()->gte($this->ends_at);
     }
 
+    public function isFeatured(): bool
+    {
+        return $this->category === 'featured_artist';
+    }
+
     public function isRealtime()
     {
         static $realtimeTypes;
@@ -435,6 +453,11 @@ class Room extends Model
         $realtimeTypes ??= new Set(static::REALTIME_TYPES);
 
         return $realtimeTypes->contains($this->type);
+    }
+
+    public function isMatchmaking()
+    {
+        return $this->type === static::MATCHMAKING_TYPE;
     }
 
     public function isScoreSubmissionStillAllowed()
@@ -676,12 +699,17 @@ class Room extends Model
 
         $playlistItemsCount = count($playlistItems);
 
-        if ($this->isRealtime() && $playlistItemsCount !== 1) {
-            throw new InvariantException('realtime room must have exactly one playlist item');
-        }
-
         if ($playlistItemsCount < 1) {
             throw new InvariantException('room must have at least one playlist item');
+        }
+
+        if ($this->isMatchmaking()) {
+            $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
+            foreach ($playlistItems as $item) {
+                $item->owner_id = $banchoBotId;
+            }
+        } elseif ($this->isRealtime() && $playlistItemsCount !== 1) {
+            throw new InvariantException('realtime room must have exactly one playlist item');
         }
 
         if (mb_strlen($this->name) > 100) {
@@ -770,9 +798,18 @@ class Room extends Model
 
     private function assertHostRoomAllowance()
     {
+        $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
+
+        if ($this->host->getKey() === $banchoBotId) {
+            // BanchoBot can always create rooms.
+            return;
+        }
+
         $query = static::active()->startedBy($this->host);
 
-        if ($this->isRealtime()) {
+        if ($this->isMatchmaking()) {
+            throw new InvariantException('matchmaking rooms cannot be created');
+        } else if ($this->isRealtime()) {
             $query->whereIn('type', static::REALTIME_TYPES);
             $max = 1;
         } else {

@@ -130,7 +130,7 @@ return [
                 'team' => [
                     'channel_team' => ':username 説 ":title"',
                     'channel_team_compact' => ':username 説 ":title"',
-                    'channel_team_group' => ':username 説 ":title"',
+                    'channel_team_group' => ':username 說「:title」',
                 ],
             ],
         ],
@@ -158,6 +158,13 @@ return [
                 'comment_new_compact' => ':username 評論了 「:content」',
                 'comment_reply' => ':username 在「:title」中回覆了「:content」',
                 'comment_reply_compact' => ':username 回覆了「:content」',
+            ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
             ],
         ],
 
@@ -245,13 +252,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '「:name」裡有新的公告',
+                'channel_announcement' => '「:name」有新公告',
             ],
             'channel' => [
                 'channel_message' => '你已收到來自 :username 的訊息',
             ],
             'channel_team' => [
-                'channel_team' => '有一個來自隊伍 「:name」的訊息',
+                'channel_team' => '戰隊「:name」有新訊息',
             ],
         ],
 
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '新聞【:title】中有新的留言',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

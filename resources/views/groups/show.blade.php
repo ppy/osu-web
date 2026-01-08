@@ -5,7 +5,7 @@
 @extends('master', ['titlePrepend' => $groupJson['name']])
 
 @section('content')
-    <div class="js-react--groups-show"></div>
+    <div class="js-react" data-react="groups-show"></div>
 @endsection
 
 @section("script")

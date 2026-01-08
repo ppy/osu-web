@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'receive notifications for new problems on qualified beatmaps of the following modes',
         'beatmapset_disqualify' => 'receive notifications for when beatmaps of the following modes are disqualified',
         'comment_reply' => 'receive notifications for replies to your comments',
+        'news_post' => 'receive notifications for news posts',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create or replied to',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
             'mapping' => 'beatmap mapper',
+            'news_post' => 'news posts',
             'push' => 'push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'block private messages from people not on your friends list',
         'hide_online' => 'hide your online presence',
+        'hide_online_info' => 'this maps to the "appear offline" mode in osu!lazer',
         'title' => 'Privacy',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'update',
+    ],
+
+    'user_totp' => [
+        'title' => 'Authenticator App',
+        'usage_note' => 'Use authenticator app instead of email for verification. Email verification will still be available as a fallback.',
+
+        'button' => [
+            'remove' => 'Remove',
+            'setup' => 'Add Authenticator App',
+        ],
+        'status' => [
+            'label' => 'status',
+            'not_set' => 'Not configured',
+            'set' => 'Configured',
+        ],
     ],
 
     'verification_completed' => [

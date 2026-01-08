@@ -204,7 +204,7 @@ class UsersController extends Controller
 
         $request = \Request::instance();
 
-        if (!starts_with($request->header('User-Agent'), $GLOBALS['cfg']['osu']['client']['user_agent'])) {
+        if (!starts_with($request->header('User-Agent') ?? '', $GLOBALS['cfg']['osu']['client']['user_agent'])) {
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
@@ -579,6 +579,7 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'session_verification_method',
                 'session_verified',
                 ...$this->showUserIncludes(),
                 ...array_map(
@@ -662,7 +663,7 @@ class UsersController extends Controller
         if (is_api_request()) {
             return $userArray;
         } else {
-            $achievements = json_collection(app('medals')->all(), 'Achievement');
+            $achievements = app('medals')->json();
             $currentUser = \Auth::user();
             if ($currentUser !== null && $currentUser->getKey() === $user->getKey()) {
                 $userCoverPresets = app('user-cover-presets')->json();
@@ -923,6 +924,7 @@ class UsersController extends Controller
             'account_history',
             'current_season_stats',
             'daily_challenge_user_stats',
+            'matchmaking_stats.pool',
             'page',
             'pending_beatmapset_count',
             'rank_highest',

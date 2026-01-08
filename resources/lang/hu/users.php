@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Legutóbbi bejegyzések',
                 'show_more' => 'láss további bejegyzéseket',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Honlap',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Talán megváltoztatta a felhasználónevét.',
             'reason_2' => 'Ez a fiók jelenleg nem elérhető biztonsági vagy visszaélési okokból.',

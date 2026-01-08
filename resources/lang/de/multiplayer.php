@@ -5,9 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Momentan nicht in laufenden osu!(lazer) :type_group-Spielen!',
+        'ended' => 'Noch nicht in abgeschlossenen osu!(lazer) :type_group-Spielen!',
         'playlists' => 'playlist',
+        'quickplay' => 'Quick Play',
         'realtime' => 'Mehrspieler',
     ],
 

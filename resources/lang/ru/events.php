@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> получил(а) медаль "<strong>:achievement</strong>"!',
+    'achievement' => ':user получил(а) медаль ":achievement"!',
     'beatmap_playcount' => ':beatmap была сыграна :count раз!',
-    'beatmapset_approve' => ':beatmapset от <strong>:user</strong> стала :approval!',
+    'beatmapset_approve' => ':beatmapset от :user стала :approval!',
     'beatmapset_delete' => ':beatmapset была удалена.',
-    'beatmapset_revive' => '<strong>:user</strong> воскресил(а) карту :beatmapset.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> обновил(а) карту "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал(а) карту ":beatmapset"',
+    'beatmapset_revive' => ':user воскресил(а) карту :beatmapset.',
+    'beatmapset_update' => ':user обновил(а) карту ":beatmapset"',
+    'beatmapset_upload' => ':user опубликовал(а) карту ":beatmapset"',
     'empty' => "Этот пользователь за последнее время не сделал ничего интересного!",
     'rank' => ':user занял(а) :rank на карте :beatmap (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> потерял(а) первенство на карте <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> снова поддержал(а) osu! — спасибо за щедрость!',
-    'user_support_first' => '<strong>:user</strong> поддержал(а) osu! — спасибо за щедрость!',
-    'user_support_gift' => '<strong>:user</strong> получил(а) тег osu!supporter в подарок!',
-    'username_change' => '<strong>:previousUsername</strong> сменил(а) ник на <strong><em>:user</em></strong>!',
+    'rank_lost' => ':user потерял(а) первенство на карте :beatmap (:mode)',
+    'user_support_again' => ':user снова поддержал(а) osu! — благодарим вас за щедрость!',
+    'user_support_first' => ':user поддержал(а) osu! — благодарим вас за щедрость!',
+    'user_support_gift' => ':user получил(а) тег osu!supporter в подарок!',
+    'username_change' => ':previousUsername сменил(а) ник на :user!',
 
     'beatmapset_status' => [
         'approved' => 'одобренной',

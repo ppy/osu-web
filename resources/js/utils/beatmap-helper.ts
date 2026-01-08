@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import Ruleset, { rulesets } from 'interfaces/ruleset';
+import Ruleset, { rulesetIdToName, rulesets } from 'interfaces/ruleset';
 import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
@@ -41,7 +41,7 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
   if (params.items != null) {
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.mode ?? rulesets[0]);
+    const targetDiff = userRecommendedDifficulty(params.mode ?? rulesetIdToName[0]);
 
     for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);

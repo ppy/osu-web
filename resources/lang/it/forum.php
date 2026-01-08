@@ -86,7 +86,7 @@ return [
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
         'new_topic' => 'Nuovo topic',
-        'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
+        'new_topic_login' => 'Accedi per postare un nuovo topic',
         'post_reply' => 'Posta',
         'reply_box_placeholder' => 'Scrivi qui per rispondere',
         'reply_title_prefix' => 'Re',
@@ -327,7 +327,7 @@ return [
         ],
 
         'moderate_move' => [
-            'title' => 'Muovi in un altro forum',
+            'title' => 'Sposta in un altro forum',
         ],
 
         'moderate_pin' => [

@@ -81,7 +81,7 @@ return [
 
         'reasons' => [
             'compromised' => 'Il tuo account sembra essere stato compromesso. Potrebbe essere disattivato temporaneamente mentre la sua identità viene confermata.',
-            'opening' => 'Ci sono una serie di motivi che possono causare la disabilitazione del tuo account:',
+            'opening' => 'Ci sono una serie di motivi che possono causare la disattivazione del tuo account:',
 
             'tos' => [
                 '_' => 'Hai violato una o più delle nostre :community_rules, oppure uno o più :tos.',
@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'In corso',
+            'ended' => 'Terminate',
         ],
     ],
 
@@ -289,7 +289,7 @@ return [
                     'title' => 'Beatmap Abbandonate',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap Partecipazione Ospite',
+                    'title' => 'Beatmap Ospitate',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Amate',
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Post Recenti',
                 'show_more' => 'guarda più post',
             ],
+            'quickplay' => [
+                'title' => 'Sessioni di Quick Play',
+            ],
             'recent_activity' => [
                 'title' => 'Recenti',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Sito',
         ],
+
+        'matchmaking' => [
+            'title' => 'Quick Play',
+        ],
+
         'not_found' => [
             'reason_1' => 'Potrebbero aver cambiato il loro nome utente.',
             'reason_2' => 'L\'account potrebbe essere temporaneamente non disponibile a causa di problemi di sicurezza o abuso.',

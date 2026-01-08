@@ -2,10 +2,19 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('rankings.index', ['hasPager' => false])
+@extends('rankings.index', [
+    'hasPager' => false,
+    'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings', [
+        ...$params,
+        'list' => null,
+        'mode' => $r,
+        'type' => 'charts',
+    ]),
+])
 
 @section('ranking-header')
     <div class="osu-page osu-page--ranking-info">
+        @include('rankings._playlist_selector')
         @include('objects._basic_select_options', compact('selectOptions'))
 
         <div class="grid-items grid-items--ranking-info-bar">

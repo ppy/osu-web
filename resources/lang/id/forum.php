@@ -140,7 +140,7 @@ return [
             ],
 
             'data' => [
-                'add_tag' => 'tag ":tag" disematkan',
+                'add_tag' => 'tag ":tag" ditambahkan',
                 'announcement' => 'topik disematkan dan ditandai sebagai pengumuman',
                 'edit_topic' => 'menjadi :title',
                 'fork' => 'dari :topic',
@@ -256,43 +256,43 @@ return [
         'issue_tag_added' => [
             'to_0' => 'Hapus tag "added"',
             'to_0_done' => 'Tag "added" dihapus',
-            'to_1' => 'Sematkan tag "added"',
-            'to_1_done' => 'Tag "added" disematkan',
+            'to_1' => 'Tambah tag "added"',
+            'to_1_done' => 'Tag "added" ditambahkan',
         ],
 
         'issue_tag_assigned' => [
             'to_0' => 'Hapus tag "assigned"',
             'to_0_done' => 'Tag "assigned" dihapus',
-            'to_1' => 'Sematkan tag "assigned"',
-            'to_1_done' => 'Tag "assigned" disematkan',
+            'to_1' => 'Tambah tag "assigned"',
+            'to_1_done' => 'Tag "assigned" ditambahkan',
         ],
 
         'issue_tag_confirmed' => [
             'to_0' => 'Hapus tag "confirmed"',
             'to_0_done' => 'Tag "confirmed" dihapus',
-            'to_1' => 'Sematkan tag "confirmed"',
-            'to_1_done' => 'Tag "confirmed" disematkan',
+            'to_1' => 'Tambah tag "confirmed"',
+            'to_1_done' => 'Tag "confirmed" ditambahkan',
         ],
 
         'issue_tag_duplicate' => [
             'to_0' => 'Hapus tag "duplicate"',
             'to_0_done' => 'Tag "duplilcate" dihapus',
-            'to_1' => 'Sematkan tag "duplicate"',
-            'to_1_done' => 'Tag "duplicate" disematkan',
+            'to_1' => 'Tambah tag "duplicate"',
+            'to_1_done' => 'Tag "duplicate" ditambahkan',
         ],
 
         'issue_tag_invalid' => [
             'to_0' => 'Hapus tag "invalid"',
             'to_0_done' => 'Tag "invalid" dihapus',
-            'to_1' => 'Sematkan tag "invalid"',
-            'to_1_done' => 'Tag "invalid" disematkan',
+            'to_1' => 'Tambah tag "invalid"',
+            'to_1_done' => 'Tag "invalid" ditambahkan',
         ],
 
         'issue_tag_resolved' => [
             'to_0' => 'Hapus tag "resolved"',
             'to_0_done' => 'Tag "resolved" dihapus',
-            'to_1' => 'Sematkan tag "resolved"',
-            'to_1_done' => 'Tag "resolved" disematkan',
+            'to_1' => 'Tambah tag "resolved"',
+            'to_1_done' => 'Tag "resolved" ditambahkan',
         ],
 
         'issue_tag_osulazer' => [
@@ -336,7 +336,7 @@ return [
             'to_0_done' => 'Sematan topik dilepas',
             'to_1' => 'Sematkan topik',
             'to_1_confirm' => 'Sematkan topik?',
-            'to_1_done' => 'Topik telah disematkan',
+            'to_1_done' => 'Topik disematkan',
             'to_2' => 'Sematkan topik dan tandai sebagai pengumuman',
             'to_2_confirm' => 'Sematkan topik dan tandai sebagai pengumuman?',
             'to_2_done' => 'Topik disematkan dan ditandai sebagai pengumuman',

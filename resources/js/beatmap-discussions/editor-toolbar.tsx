@@ -34,7 +34,9 @@ export class EditorToolbar extends React.Component {
     }
 
     const domSelection = window.getSelection();
-    return domSelection?.getRangeAt(0);
+    return domSelection != null && domSelection.rangeCount > 0
+      ? domSelection.getRangeAt(0)
+      : null;
   }
 
   get visible() {
@@ -43,12 +45,13 @@ export class EditorToolbar extends React.Component {
 
   componentDidMount() {
     $(window).on(`scroll.${this.eventId}`, this.throttledUpdate);
-    this.updatePosition();
+    this.throttledUpdate();
+    this.throttledUpdate.flush();
   }
 
   // updates cascade from our parent (slate editor), i.e. `componentDidUpdate` gets called on editor changes (typing/selection changes/etc)
   componentDidUpdate() {
-    this.updatePosition();
+    this.throttledUpdate();
   }
 
   componentWillUnmount() {

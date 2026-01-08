@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'Al client li falta el propietari.',
         'client_unauthorized' => 'El client no està autoritzat.',
         'delegate_bot_only' => 'La delegació amb credencials de client només és disponible per a bots del xat.',
-        'delegate_client_credentials_only' => 'l\'àmbit delegat només és vàlid per a testimonis de client_credentials.',
+        'client_credentials_only' => 'Aquest àmbit delegat només és vàlid per a testimonis de client_credentials.',
         'delegate_invalid_combination' => 'La delegació no suporta aquesta combinació d\'àmbits.',
         'delegate_required' => 'es requereix un àmbit delegat.',
         'empty' => 'Els testimonis sense àmbit no són vàlids.',

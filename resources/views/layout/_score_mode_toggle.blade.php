@@ -25,7 +25,8 @@
 
 @if (!$legacyScoreMode)
     <div
-        class="js-react--scoring-mode-toggle u-contents"
+        class="js-react u-contents"
         data-class="{{ $class }}"
+        data-react="scoring-mode-toggle"
     ></div>
 @endif

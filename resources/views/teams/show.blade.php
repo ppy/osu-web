@@ -138,11 +138,12 @@
                     </form>
                 @endif
                 <div
-                    class="js-react--team-extra-menu u-contents"
+                    class="js-react u-contents"
                     data-props="{{ json_encode([
                         'leaderUsername' => $leader['username'],
                         'teamId' => $team->getKey(),
                     ]) }}"
+                    data-react="team-extra-menu"
                 >
                     <div class="btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail">
                         <button class="popup-menu" type="button">
@@ -280,7 +281,8 @@
                             {{ osu_trans('teams.show.members.owner') }}
                         </div>
                         <div
-                            class="js-react--user-card u-contents"
+                            class="js-react u-contents"
+                            data-react="user-card"
                             data-user="{{ json_encode($leader) }}"
                         ></div>
                     </div>
@@ -296,7 +298,8 @@
                         </div>
                         @foreach ($members as $memberJson)
                             <div
-                                class="js-react--user-card u-contents"
+                                class="js-react u-contents"
+                                data-react="user-card"
                                 data-user="{{ json_encode($memberJson) }}"
                             ></div>
                         @endforeach

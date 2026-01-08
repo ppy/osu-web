@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'read' => 'Číst',
+        'read' => 'Přečtené',
         'unread' => 'Nepřečtené',
     ],
 ];

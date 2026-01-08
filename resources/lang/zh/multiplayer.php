@@ -5,9 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => '目前不在任何正在进行中的 osu!(lazer) :type_group 游戏内！',
+        'ended' => '不在任何已结束的 osu!(lazer) :type_group 游戏内！',
         'playlists' => '歌单',
+        'quickplay' => '匹配模式',
         'realtime' => '多人',
     ],
 

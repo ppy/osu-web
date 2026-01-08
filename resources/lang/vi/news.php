@@ -18,6 +18,25 @@ return [
         ],
     ],
 
+    'series' => [
+        'beatmap_spotlights' => 'Beatmap nổi bật',
+        'community_contests' => 'cuộc thi cộng đồng',
+        'community_tournaments' => 'giải đấu cộng đồng',
+        'fanart_contests' => 'cuộc thi nghệ thuật',
+        'featured_artists' => 'Thông báo của các nghệ sĩ nổi bật',
+        'game_updates' => 'Cập nhập client và website',
+        'mappers_guild' => '',
+        'monthly_beatmapping_contest' => 'Cuộc thi làm beatmap hàng tháng',
+        'merch_runs' => 'Hàng hóa osu!',
+        'miscellaneous' => 'Thông báo chung',
+        'official_contests' => 'cuộc thi chính thức',
+        'offline_events' => 'Sự kiện trực tiếp',
+        'online_events' => 'Sự kiện trực tuyến',
+        'project_loved' => 'Dự án yêu thích',
+        'ranking_system_updates' => 'Cập nhập hệ thống phân hạng',
+        'world_cups' => 'osu! World Cups',
+    ],
+
     'show' => [
         'by' => 'bởi :user',
 

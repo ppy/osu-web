@@ -9,10 +9,10 @@ namespace App\Libraries\Session;
 
 use App\Events\UserSessionEvent;
 use App\Interfaces\SessionVerificationInterface;
+use DeviceDetector\DeviceDetector;
 use Illuminate\Redis\Connections\PhpRedisConnection;
 use Illuminate\Session\Store as BaseStore;
 use Illuminate\Support\Arr;
-use Jenssegers\Agent\Agent;
 
 class Store extends BaseStore implements SessionVerificationInterface
 {
@@ -111,7 +111,7 @@ class Store extends BaseStore implements SessionVerificationInterface
         }
 
         $sessionMeta = [];
-        $agent = new Agent();
+        $deviceDetector = new DeviceDetector();
         $expiredIds = [];
         foreach ($sessions as $id => $session) {
             if ($session === null) {
@@ -124,14 +124,15 @@ class Store extends BaseStore implements SessionVerificationInterface
             }
 
             $meta = $session['meta'];
-            $agent->setUserAgent($meta['agent']);
+
+            $deviceDetector->setUserAgent($meta['agent'] ?? '');
+            $deviceDetector->parse();
 
             $sessionMeta[$id] = [
                 ...$meta,
-                'mobile' => $agent->isMobile() || $agent->isTablet(),
-                'device' => $agent->device(),
-                'platform' => $agent->platform(),
-                'browser' => $agent->browser(),
+                'mobile' => $deviceDetector->isMobile() || $deviceDetector->isTablet(),
+                'platform' => $deviceDetector->getOs('family'),
+                'browser' => $deviceDetector->getClient('name'),
                 'verified' => (bool) ($session['verified'] ?? false),
             ];
         }
@@ -172,6 +173,11 @@ class Store extends BaseStore implements SessionVerificationInterface
     public function getKeyForEvent(): string
     {
         return self::keyForEvent($this->getId());
+    }
+
+    public function getVerificationMethod(): ?string
+    {
+        return $this->attributes['verification_method'] ?? null;
     }
 
     /**
@@ -238,6 +244,12 @@ class Store extends BaseStore implements SessionVerificationInterface
         if ($userId !== null) {
             self::redis()->sadd(self::listKey($userId), $this->getId());
         }
+    }
+
+    public function setVerificationMethod(string $method): void
+    {
+        $this->attributes['verification_method'] = $method;
+        $this->save();
     }
 
     public function userId(): ?int

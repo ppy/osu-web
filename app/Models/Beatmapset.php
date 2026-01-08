@@ -39,11 +39,13 @@ use DB;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
 /**
  * @property bool $active
+ * @property bool $anime_cover
  * @property \Illuminate\Database\Eloquent\Collection $allBeatmaps Beatmap
  * @property int $approved
  * @property \Carbon\Carbon|null $approved_date
@@ -107,6 +109,7 @@ use Illuminate\Database\QueryException;
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapsetVersion> $versions
  * @property int $versions_available
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
@@ -117,6 +120,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     const CASTS = [
         'active' => 'boolean',
+        'anime_cover' => 'boolean',
         'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
         'cover_updated_at' => 'datetime',
@@ -479,6 +483,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
+    public function removeCover($targetFilename): void
+    {
+        \Storage::delete($this->coverPath().$targetFilename);
+    }
+
     public function removeCovers()
     {
         try {
@@ -572,7 +581,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                     return false;
                 }
                 throw $e;
+            } finally {
+                $this->removeCover('raw.jpg');
             }
+
             $this->storeCover('fullsize.jpg', get_stream_filename($optimized));
 
             // use thumbnailer to generate (and then upload) all our variants
@@ -762,7 +774,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             // and any of the current nominators were not part of the most recent disqualified nominations.
             $disqualifyEvent = $this->events()->disqualifications()->last();
             if ($disqualifyEvent !== null) {
-                $previousNominators = new Set($disqualifyEvent->comment['nominator_ids']);
+                $previousNominators = new Set($disqualifyEvent->comment['nominator_ids'] ?? []);
                 $currentNominators = new Set($this->beatmapsetNominations()->current()->pluck('user_id'));
                 // Uses xor to make problems during testing stand out, like the number of nominations in the test being wrong.
                 if (!$currentNominators->xor($previousNominators)->isEmpty()) {
@@ -786,9 +798,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function nominate(User $user, array $playmodes = [])
+    public function nominate(User $user, array $rulesets = [])
     {
-        (new NominateBeatmapset($this, $user, $playmodes))->handle();
+        (new NominateBeatmapset($this, $user, $rulesets))->handle();
     }
 
     public function love(User $user, ?array $beatmapIds = null)
@@ -904,16 +916,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relationships
-    |--------------------------------------------------------------------------
-    |
-    | One set has many beatmaps, which in turn have many mods
-    | One set has a single creator.
-    |
-    */
-
     public function allBeatmaps()
     {
         return $this->hasMany(Beatmap::class)->withTrashed();
@@ -947,6 +949,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function language()
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function versions(): HasMany
+    {
+        return $this->hasMany(BeatmapsetVersion::class);
     }
 
     public function getAttribute($key)
@@ -1007,6 +1014,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'thread_icon_date_json' => $this->getJsonTimeFast($key),
 
             'active',
+            'anime_cover',
             'comment_locked',
             'discussion_locked',
             'download_disabled',
@@ -1041,6 +1049,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'track',
             'user',
             'userRatings',
+            'versions',
             'watches' => $this->getRelationValue($key),
         };
     }
@@ -1234,7 +1243,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         });
     }
 
-    public function nominationsByType()
+    public function nominationsByType(): array
     {
         $nominations = $this->beatmapsetNominations()
             ->current()
@@ -1249,8 +1258,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         foreach ($nominations as $nomination) {
             $userNominationModes = $nomination->user->nominationModes();
             // no permission
-            if ($userNominationModes === null) {
-                continue;
+            if (empty($userNominationModes)) {
+                // use old nomination level if it was saved.
+                $userNominationModes = $nomination->getNominationLevel();
+                if (empty($userNominationModes)) {
+                    continue;
+                }
             }
 
             // legacy nomination, only check group
@@ -1318,6 +1331,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'nominations',
                 'related_users',
                 'related_users.groups',
+                'version_count',
             ]
         );
     }

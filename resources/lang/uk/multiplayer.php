@@ -5,10 +5,11 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
-        'playlists' => 'плейлістах',
-        'realtime' => 'мультиплеєрі',
+        'active' => 'Наразі немає жодної незавершеної гри osu!(lazer) :type_group!',
+        'ended' => 'Ще не в жодній завершеній грі osu!(lazer) :type_group!',
+        'playlists' => 'плейліст',
+        'quickplay' => 'швидка гра',
+        'realtime' => 'мультиплеєр',
     ],
 
     'room' => [

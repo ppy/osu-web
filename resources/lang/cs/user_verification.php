@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Zadej prosím kód z tvojí ověřovací aplikace.',
+
+        'info' => [
+            'logout' => [
+                '_' => 'Můžeš se také :link.',
+                'link' => 'odhlásit',
+            ],
+            'mail_fallback' => [
+                '_' => 'Pokud nemáš přístup ke své aplikaci, :link.',
+                'link' => 'můžeš se místo toho ověřit pomocí emailu',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Ověřovací kód vypršel, byl zaslán nový ověřovací email.',
         'incorrect_key' => 'Nesprávný ověřovací kód.',
         'retries_exceeded' => 'Nesprávný ověřovací kód. Limit pokusů dosažen, byl zaslán nový ověřovací email.',
         'reissued' => 'Ověřovací kód znovu vygenerován, byl zaslán nový ověřovací email.',
+        'totp_used_key' => 'Ověřovací kód byl již použit. Počkej prosím a použij nový.',
+        'totp_gone' => 'Ověřovací token byl odebrán, přepnuto na ověřování emailem. Ověřovací email byl odeslán.',
         'unknown' => 'Vyskytl se neznámý problém, byl zaslán nový ověřovací email.',
     ],
 ];

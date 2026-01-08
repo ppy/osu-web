@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => 'Không có kết quả cho chế độ :modes',
         'more' => 'Thêm :mode Kết quả Tìm kiếm',
         'title' => ':mode Kết quả tìm kiếm',
+
+        'no_results' => [
+            '_' => 'Không có kết quả cho chế độ :mode',
+
+            'artist_track' => 'Nhạc của nghệ sĩ tiêu biểu',
+            'beatmapset' => 'Beatmaps',
+            'forum_post' => 'Diễn đàn ',
+            'other' => 'Khác',
+            'team' => 'Đội',
+            'user' => 'Người Chơi',
+            'wiki_page' => 'Từ điển',
+        ],
     ],
 ];

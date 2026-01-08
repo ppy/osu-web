@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'примајте обавештења за нове проблеме на квалификованим мапама следећих модова',
         'beatmapset_disqualify' => 'примајте обавештења када мапе од следећих модова су дисквалификоване',
         'comment_reply' => 'примајте обавештења за одговоре на ваше коментаре',
+        'news_post' => '',
         'title' => 'Обавештења',
         'topic_auto_subscribe' => 'аутоматски укључите обавештења за теме које сте направили на форуму',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'одговор на тему',
             'mail' => 'пошта',
             'mapping' => 'креатор мапе',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'блокирајте приватне поруке од корисника који нису на вашој листи пријатеља',
         'hide_online' => 'сакријте свој онлајн статус',
+        'hide_online_info' => '',
         'title' => 'Приватност',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'ажурирај',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

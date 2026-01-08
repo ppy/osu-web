@@ -53,6 +53,7 @@ return [
             'discussion' => 'rytmikartan keskustelu',
             'index' => 'rytmikarttojen listaus',
             'show' => 'rytmikartan tiedot',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'muutosloki',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'kilpailut',
             'judge' => 'kilpailun tuomarointi',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'ryhmät',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'käyttäjän kansikuvan esiasetukset',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'pelaajan tiedot',

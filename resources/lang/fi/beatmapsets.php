@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Näytä täysikokoinen kansikuva',
-            'page' => '',
+            'page' => 'Näytä järjestelmävalvojan sivu',
         ],
 
         'deleted_banner' => [
@@ -83,7 +83,7 @@ return [
             'favourite_login' => 'kirjaudu sisään, niin voit lisätä tämän rytmikartan suosikkeihin',
             'logged-out' => 'sinun täytyy kirjautua sisään ennen rytmikarttojen lataamista!',
             'mapped_by' => 'kartoittanut: :mapper',
-            'mapped_by_guest' => 'vieraileva vaikeustaso, kartoittanut: :mapper',
+            'mapped_by_guest' => 'vieraileva vaikeustaso kartoittajalta :mapper',
             'unfavourite' => 'poista tämä rytmikartta suosikeista',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 
@@ -141,7 +141,7 @@ return [
             'description' => 'Kuvaus',
             'genre' => 'Genre',
             'language' => 'Kieli',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Kartoittajatunnisteet',
             'no_scores' => 'Dataa lasketaan...',
             'nominators' => 'Ehdollepanijat',
             'nsfw' => 'Sopimaton sisältö',
@@ -150,7 +150,7 @@ return [
             'source' => 'Lähde',
             'storyboard' => 'Tämä rytmikartta sisältää taustaesityksen',
             'success-rate' => 'Läpäisyprosentti',
-            'user_tags' => '',
+            'user_tags' => 'Käyttäjätunnisteet',
             'video' => 'Tämä rytmikartta sisältää videon',
         ],
 
@@ -173,7 +173,7 @@ return [
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
             'supporter-only' => 'Sinun täytyy olla osu!n tukija nähdäksesi kaveri-, maa- ja muunnelmakohtaiset sijoitukset!',
-            'team' => '',
+            'team' => 'Tiimin Sijoitukset',
             'title' => 'Tulokset',
 
             'headers' => [
@@ -195,7 +195,7 @@ return [
                 'friend' => 'Kukaan kavereistasi ei vielä ole saanut tulosta tässä kartassa!',
                 'global' => 'Tuloksia ei ole. Voisit hankkia niitä.',
                 'loading' => 'Ladataan tuloksia...',
-                'team' => '',
+                'team' => 'Tiimistäsi kukaan ei ole vielä asettanut tulosta tähän karttaan!',
                 'unranked' => 'Rankkaamaton rytmikartta.',
             ],
             'score' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Arvioiden jakauma',
             'nominations' => 'Ehdollepanot',
             'playcount' => 'Pelikertojen määrä',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

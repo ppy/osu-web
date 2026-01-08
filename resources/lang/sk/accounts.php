@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
         'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované z týchto módov',
         'comment_reply' => 'prijímať upozornenia pre odpovede na vaše komentáre',
+        'news_post' => '',
         'title' => 'Oznámenia',
         'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové témy fóra, ktoré vytvoríte',
 
@@ -94,6 +95,7 @@ return [
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
             'mapping' => 'tvorca beatmapy',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -128,6 +130,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokovať súkromné správy od osôb mimo vášho zoznamu priateľov',
         'hide_online' => 'skryť online status',
+        'hide_online_info' => '',
         'title' => 'Súkromie',
     ],
 
@@ -146,6 +149,21 @@ return [
 
     'update_password' => [
         'update' => 'aktualizovať',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

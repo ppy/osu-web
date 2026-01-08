@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Styl dowolny',
 
         'scoring-type' => [
             'score' => 'Najwyższy wynik',

@@ -76,6 +76,7 @@ return [
         'minutes' => ':count minúta|:count minúty',
         'months' => ':count mesiac|:count mesiace',
         'notifications' => ':count_delimited oznámení',
+        'player' => '',
         'plus_others' => '+ :count_delimited ďalší!|+ :count_delimited ďalší!|+ :count_delimited ďalších!',
         'post' => ':count_delimited príspevok|:count_delimited príspevky|:count_delimited príspevkov',
         'second_short_unit' => 'sek',

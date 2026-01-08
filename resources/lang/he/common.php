@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited דקה|:count_delimited דקות',
         'months' => ':count_delimited חודש|:count_delimited חודשים',
         'notifications' => ':count_delimited התראה :count_delimited התראות',
+        'player' => '',
         'plus_others' => '+ :count_delimited אחר!|+:count_delimited אחרים!',
         'post' => ':count_delimited פוסט :count_delimited פוסטים',
         'second_short_unit' => 'שניה|שניות',

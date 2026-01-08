@@ -4,6 +4,8 @@
 import Ruleset from './ruleset';
 
 export default interface AchievementJson {
+  achieved_count: number;
+  achieved_percent: number | null;
   description: string;
   grouping: string;
   icon_url: string;

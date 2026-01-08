@@ -8,6 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'oynama listesi',
+        'quickplay' => '',
         'realtime' => 'çok oyunculu',
     ],
 
@@ -17,7 +18,7 @@ return [
         'map_count' => ':count_delimited map|:count_delimited map',
         'player_count' => ':count_delimited oyuncu|:count_delimited oyuncu',
         'time_left' => 'kalan süre: :time',
-        'view_history' => '',
+        'view_history' => 'Geçmişi Görüntüle',
         'view_summary' => 'Özeti Göster',
 
         'errors' => [

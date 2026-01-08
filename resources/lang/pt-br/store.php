@@ -102,12 +102,12 @@ return [
     ],
 
     'order' => [
-        'cancel' => 'Cancelar Ordem',
+        'cancel' => 'Cancelar Pedido',
         'cancel_confirm' => 'Este pedido será cancelado e o pagamento dele não será aceito. O provedor de pagamento pode não reembolsar imediatamente. Você tem certeza?',
         'cancel_not_allowed' => 'O pedido não pode ser cancelado no momento.',
         'invoice' => 'Ver Fatura',
         'no_orders' => 'Sem pedidos para ver.',
-        'paid_on' => 'Ordem colocara :date',
+        'paid_on' => 'Pedido realizado :date',
         'resume' => 'Continuar Compra',
         'shipping_and_handling' => 'Envio e Manuseio',
         'shopify_expired' => 'O link de verificação deste pedido expirou.',
@@ -119,8 +119,8 @@ return [
             'payment_terms' => 'Condições de pagamento',
             'salesperson' => 'Vendedor(a)',
             'shipping_method' => 'Método de Envio',
-            'shipping_terms' => 'Termos de envio',
-            'title' => 'Detalhes do pedido',
+            'shipping_terms' => 'Termos de Envio',
+            'title' => 'Detalhes do Pedido',
         ],
 
         'item' => [
@@ -138,7 +138,7 @@ return [
         'not_modifiable_exception' => [
             'cancelled' => 'Você não pode mudar seu pedido, pois ele foi cancelado.',
             'checkout' => 'Você não pode modificar seu pedido enquanto está sendo processado.', // checkout and processing should have the same message.
-            'default' => 'A ordem não é modificável',
+            'default' => 'O pedido não é modificável',
             'delivered' => 'Você não pode modificar seu pedido, pois ele já foi entregue.',
             'paid' => 'Você não pode modificar seu pedido, pois ele já foi pago.',
             'processing' => 'Você não pode modificar seu pedido enquanto está sendo processado.',
@@ -195,8 +195,8 @@ return [
     'username_change' => [
         'check' => 'Insira um nome de usuário para verificar a disponibilidade!',
         'checking' => 'Checando disponibilidade de :username...',
-        'placeholder' => 'Nome de usuário solicitado',
-        'label' => 'Novo nome de usuário',
+        'placeholder' => 'Nome de usuário desejado',
+        'label' => 'Novo Nome de Usuário',
         'current' => 'Seu nome de usuário atual é ":username".',
 
         'require_login' => [

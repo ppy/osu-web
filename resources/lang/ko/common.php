@@ -10,7 +10,7 @@ return [
 
     'array_and' => [
         'words_connector' => ', ',
-        'two_words_connector' => ' 와(과) ',
+        'two_words_connector' => ' 그리고 ',
         'last_word_connector' => ', 그리고 ',
     ],
 
@@ -76,6 +76,7 @@ return [
         'minutes' => ':count분',
         'months' => ':count달',
         'notifications' => '알림 :count_delimited개',
+        'player' => ':count_delimited명의 플레이어',
         'plus_others' => '+ :count_delimited 기타!',
         'post' => ':count_delimited개의 게시글',
         'second_short_unit' => '초',
@@ -144,8 +145,8 @@ return [
         'hh' => '%d시간',
         'm' => '%d분',
         'mm' => '%d분',
-        'month' => '%d달',
-        'months' => '%d달',
+        'month' => '%d개월',
+        'months' => '%d개월',
         'past' => '',
         's' => '%d초',
         'y' => '%d년',

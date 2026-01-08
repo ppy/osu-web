@@ -18,13 +18,12 @@ use League\Fractal\Resource\Item;
 
 class ScoreTransformer extends TransformerAbstract
 {
-    const MULTIPLAYER_BASE_INCLUDES = ['user.country', 'user.cover'];
+    const MULTIPLAYER_BASE_INCLUDES = ['user.country', 'user.cover', 'user.team'];
     // warning: the preload is actually for PlaylistItemUserHighScore, not for Score
     const MULTIPLAYER_BASE_PRELOAD = [
         'scoreLink.playlistItem',
         'scoreLink.score',
-        'scoreLink.score.processHistory',
-        'scoreLink.user.country',
+        'scoreLink.user.team',
     ];
 
     // TODO: user include is deprecated.
@@ -32,7 +31,6 @@ class ScoreTransformer extends TransformerAbstract
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',
         'beatmap.beatmapset',
-        'processHistory',
         // it's for user profile so the user is already available
         // 'user',
     ];

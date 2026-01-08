@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Vezi imaginea de copertă întreagă',
-            'page' => '',
+            'page' => 'Vizualizează pagina de administrator',
         ],
 
         'deleted_banner' => [
@@ -225,6 +225,8 @@ Viață',
             'rating-spread' => 'Grafic Rating-uri',
             'nominations' => 'Nominalizări',
             'playcount' => 'Număr încercări',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

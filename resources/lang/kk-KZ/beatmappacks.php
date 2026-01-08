@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => ':author жасаған',
         'download' => 'Жүктеп алу',
         'item' => [
             'cleared' => 'өтілді',

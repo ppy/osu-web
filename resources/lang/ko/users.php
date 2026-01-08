@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => '진행 중',
+            'ended' => '종료됨',
         ],
     ],
 
@@ -219,7 +219,7 @@ return [
 ',
             'daily_streak_current' => '현재 연속 진행일',
             'playcount' => '참여 일수',
-            'title' => '일일미션',
+            'title' => '일일 도전',
             'top_10p_placements' => '상위 10%',
             'top_50p_placements' => '상위 50%',
             'weekly' => '연속 진행주',
@@ -380,7 +380,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '유저가 비트맵 제작 과정에 얼마나 기여했는지에 기반합니다. 더 많은 정보를 얻고싶으시다면 :link를 참고해주세요.',
+                    '_' => '유저가 비트맵 제작 과정에 얼마나 기여했는지에 기반합니다. 더 많은 정보는 :link에서 확인해 보세요.',
                     'link' => '이 페이지',
                 ],
             ],
@@ -399,6 +399,9 @@ return [
                 'title' => '게시글',
                 'title_longer' => '최근 게시글',
                 'show_more' => '글 더 보기',
+            ],
+            'quickplay' => [
+                'title' => '빠른 대전 경기',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
@@ -468,6 +471,11 @@ return [
             'twitter' => '',
             'website' => '웹사이트',
         ],
+
+        'matchmaking' => [
+            'title' => '빠른 대전',
+        ],
+
         'not_found' => [
             'reason_1' => '유저 이름이 변경되었을 가능성이 있습니다.',
             'reason_2' => '보안 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',

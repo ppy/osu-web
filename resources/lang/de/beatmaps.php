@@ -220,7 +220,7 @@ return [
         'unresolved_issues' => 'Es existieren noch Vorschläge/Probleme, die gelöst werden müssen.',
 
         'rank_estimate' => [
-            '_' => 'Diese Map wird voraussichtlich am :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
+            '_' => 'Diese Beatmap wird voraussichtlich :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
             'unresolved_problems' => 'Diese Beatmap verbleibt im Qualified-Abschnitt, bis :problems behoben wurden.',
             'problems' => 'diese Probleme',
             'on' => 'am :date',

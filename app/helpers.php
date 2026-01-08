@@ -10,6 +10,7 @@ use App\Http\Controllers\RankingController;
 use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use App\Models\UserSummary;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
@@ -20,14 +21,10 @@ use Sentry\State\Scope;
 
 function api_version(): int
 {
-    $request = request();
-    $version = $request->attributes->get('api_version');
-    if ($version === null) {
-        $version = get_int($request->header('x-api-version')) ?? 0;
-        $request->attributes->set('api_version', $version);
-    }
-
-    return $version;
+    return request_attribute_remember(
+        'api_version',
+        fn (HttpRequest $request): int => get_int($request->header('x-api-version')) ?? 0,
+    );
 }
 
 function array_reject_null(iterable $array): array
@@ -483,6 +480,16 @@ function prefix_strings(string $prefix, array $strings): array
     return $ret;
 }
 
+function qr_svg(string $text): string
+{
+    return new BaconQrCode\Writer(
+        new BaconQrCode\Renderer\ImageRenderer(
+            new BaconQrCode\Renderer\RendererStyle\RendererStyle(400),
+            new BaconQrCode\Renderer\Image\SvgImageBackEnd()
+        ),
+    )->writeString($text);
+}
+
 function trim_unicode(?string $value)
 {
     return preg_replace('/(^\s+|\s+$)/u', '', $value);
@@ -707,6 +714,23 @@ function replace_tags_with_spaces($body)
     return preg_replace('#<[^>]+>#', ' ', $body);
 }
 
+function request_attribute_remember(string $key, callable $callback): mixed
+{
+    $request = Request::instance();
+    $attributes = $request->attributes;
+
+    $hasValue = $attributes->has($key);
+
+    if ($hasValue) {
+        $value = $attributes->get($key);
+    } else {
+        $value = $callback($request);
+        $attributes->set($key, $value);
+    }
+
+    return $value;
+}
+
 function request_country($request = null)
 {
     return $request === null
@@ -928,6 +952,8 @@ function page_title()
         'main.store_controller._' => 'store._',
         'multiplayer.rooms_controller._' => 'main.ranking_controller._',
         'ranking.daily_challenge_controller._' => 'main.ranking_controller._',
+        'ranking.matchmaking_controller._' => 'main.ranking_controller._',
+        'ranking.top_plays_controller._' => 'main.ranking_controller._',
         default => $controllerKey,
     };
     $namespaceKey = "{$currentRoute['namespace']}._";
@@ -1052,6 +1078,7 @@ function issue_icon($issue)
 {
     $fa = match ($issue) {
         'added' => 'fas fa-cogs',
+        'archived' => 'fas fa-archive',
         'assigned' => 'fas fa-user',
         'confirmed' => 'fas fa-exclamation-triangle',
         'duplicate' => 'fas fa-copy',
@@ -1416,6 +1443,16 @@ function json_collection($model, $transformer, $includes = null)
 function json_item($model, $transformer, $includes = null)
 {
     return json_collection([$model], $transformer, $includes)[0] ?? null;
+}
+
+function json_options(mixed $current, iterable $items, ?callable $transformer = null): array
+{
+    $transformer ??= new App\Transformers\SelectOptionTransformer();
+
+    return [
+        'currentItem' => $current === null ? null : json_item($current, $transformer),
+        'items' => json_collection($items, $transformer),
+    ];
 }
 
 function fast_imagesize($url, ?string $logErrorId = null)
@@ -1966,4 +2003,13 @@ function unmix(string $resource): HtmlString
 function migration(string $name): Migration
 {
     return require database_path("migrations/{$name}.php");
+}
+
+function has_viewed_wrapped(): bool
+{
+    return request_attribute_remember('wrapped', function () {
+        $user = Auth::user();
+
+        return $user->user_regdate->year <= UserSummary::DEFAULT_YEAR && UserSummary::hasViewed($user->getKey());
+    });
 }

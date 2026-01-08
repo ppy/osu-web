@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Activ',
+            'ended' => 'Încheiat',
         ],
     ],
 
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Postări recente',
                 'show_more' => 'vedeți mai multe postări',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Site web',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'S-ar putea să-și fi schimbat numele de utilizator.',
             'reason_2' => 'Contul tău poate fi indisponibil momentan din cauza problemelor legate de securitate sau abuz.',

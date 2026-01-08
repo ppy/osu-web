@@ -35,25 +35,50 @@ return [
         'used' => '',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'istaknuto',
         'country' => 'države',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => '',
-        'multiplayer' => 'multiplayer',
-        'seasons' => '',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '',
         'ongoing' => '',
         'room_count' => '',
+        'summary' => '',
         'url' => '',
         'validation' => [
             'not_enough_factors' => '',

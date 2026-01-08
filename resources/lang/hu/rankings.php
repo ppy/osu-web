@@ -33,25 +33,50 @@ return [
         'used' => 'Elköltve',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Ennek a felhasználónak kevesebb, mint 30 napos rangsorolási előzménye van.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'Reflektorfény',
         'country' => 'Ország',
         'daily_challenge' => 'napi kihívás',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'többjátékos',
-        'seasons' => 'szezonok',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'csapat',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Ebben a szezonban még nincsenek szobák.',
         'ongoing' => 'Ez a szezon még folyamatban van (lesznek még játéklisták).',
         'room_count' => 'Játéklista száma',
+        'summary' => '',
         'url' => 'További információk megjelenítése az adott szezonról.',
         'validation' => [
             'not_enough_factors' => '',

@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Seneste Opslag',
                 'show_more' => 'se flere opslag',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Seneste',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Hjemmeside',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'De kan have ændret deres brugernavn.',
             'reason_2' => 'Kontoen kan være midlertidigt utilgængelig pga. sikkerhedsproblemer eller misbrug.',

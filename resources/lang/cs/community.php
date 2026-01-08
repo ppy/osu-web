@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Nahraj více',
-                'description' => 'Další nevyřízené beatmapové sloty (za každou hodnocenou beatmapu), max 10.',
+                'description' => 'Další sloty pro čekající beatmapy (za každou hodnocenou beatmapu) až do maximálně 10.',
             ],
 
             'early_access' => [
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Přizpůsobení',
-                'description' => "Vyčnívejte nahráním vlastního obrázku záhlaví nebo vytvořením plně přizpůsobitelné 'me!' sekce na svém uživatelském profilu.",
+                'description' => "Vyčnívej nahráním vlastního obrázku záhlaví, vytvořením plně přizpůsobitelné 'já!' sekce nebo i změnou barvy na libovolnou, která se ti líbí, v rámci svého uživatelského profilu.",
             ],
 
             'beatmap_filters' => [

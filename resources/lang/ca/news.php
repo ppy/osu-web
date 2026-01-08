@@ -18,6 +18,25 @@ return [
         ],
     ],
 
+    'series' => [
+        'beatmap_spotlights' => 'Mapes destacats',
+        'community_contests' => 'tornejos de la comunitat',
+        'community_tournaments' => 'torneigs comunitaris',
+        'fanart_contests' => 'concursos artístics',
+        'featured_artists' => 'Anuncis d\'artistes destacats',
+        'game_updates' => 'actualitzacions del client i del lloc web',
+        'mappers_guild' => 'Mappers\' Guild',
+        'monthly_beatmapping_contest' => 'Torneig mensual de mapejadors',
+        'merch_runs' => 'marxandatge d\'osu!',
+        'miscellaneous' => 'altres anuncis',
+        'official_contests' => 'tornejos oficials',
+        'offline_events' => 'esdeveniments sense connexió',
+        'online_events' => 'esdeveniments en línia',
+        'project_loved' => 'Projecte estimat',
+        'ranking_system_updates' => 'actualitzacions del sistema de classificacions',
+        'world_cups' => 'Copes del món d\'osu!',
+    ],
+
     'show' => [
         'by' => 'per :user',
 

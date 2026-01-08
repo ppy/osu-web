@@ -135,9 +135,19 @@ class UserFactory extends Factory
                         app('groups')->resetMemoized();
                     }
 
-                    $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);
+                    $user->findUserGroup($group)->update(['playmodes' => $playmodes]);
                 }
             });
+    }
+
+    public function withGroups(array $groupIdentifiers, ?array $playmodes = null)
+    {
+        $factory = $this;
+        foreach ($groupIdentifiers as $groupIdentifier) {
+            $factory = $factory->withGroup($groupIdentifier, $playmodes);
+        }
+
+        return $factory;
     }
 
     public function withNote()

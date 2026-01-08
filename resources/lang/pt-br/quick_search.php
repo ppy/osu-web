@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => 'Sem resultados para :modes',
         'more' => 'Mais Resultados de Pesquisa de :mode',
         'title' => 'Resultados de Pesquisa de :mode',
+
+        'no_results' => [
+            '_' => 'Nenhum resultado para :mode',
+
+            'artist_track' => 'Faixas de Artistas em Destaque',
+            'beatmapset' => 'Beatmaps',
+            'forum_post' => 'Fóruns',
+            'other' => 'Outros',
+            'team' => 'Times',
+            'user' => 'Jogadores',
+            'wiki_page' => 'Wiki',
+        ],
     ],
 ];

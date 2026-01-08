@@ -82,6 +82,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'tumanggap ng mga notipikasyon sa mga bagong problema sa mga kwalipikadong beatmap sa mga sumusunod na mode',
         'beatmapset_disqualify' => 'tumanggap ng mga notipikasyon kung kailan ang mga beatmap sa mga sumusunod na mode ay na diskwalipika',
         'comment_reply' => 'tumanggap ng mga notipikasyon para sa mga tugon sa iyong mga komento',
+        'news_post' => '',
         'title' => 'Mga notipikasyon',
         'topic_auto_subscribe' => 'awtomatikong paganahin ang mga notipikasyon sa nilikha mong mga bagong paksa sa forum',
 
@@ -95,6 +96,7 @@ return [
             'forum_topic_reply' => 'tugon sa paksa',
             'mail' => 'koreo',
             'mapping' => 'mapper ng beatmap',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -129,6 +131,7 @@ return [
     'privacy' => [
         'friends_only' => 'i-block ang mga pribadong mensahe mula sa mga taong hindi nasa iyong listahan ng mga kaibigan',
         'hide_online' => 'itago ang iyong presensya online',
+        'hide_online_info' => '',
         'title' => 'Privacy',
     ],
 
@@ -147,6 +150,21 @@ return [
 
     'update_password' => [
         'update' => 'i-update',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

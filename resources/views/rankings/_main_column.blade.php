@@ -23,7 +23,7 @@
                 'country' => $object->acronym,
             ])
         </span>
-        <span class="ranking-page-table-main__link-text">
+        <span class="u-ellipsis-overflow">
             {{ $object->name }}
         </span>
     </a>
@@ -39,7 +39,7 @@
         <span class="ranking-page-table-main__flag">
             @include('objects._flag_team', ['team' => $object])
         </span>
-        <span class="ranking-page-table-main__link-text">
+        <span class="u-ellipsis-overflow">
             {{ $object->name }}
         </span>
     </a>
@@ -89,7 +89,7 @@
                     ></span>
                 </span>
             @endif
-            <span class="ranking-page-table-main__link-text">
+            <span class="u-ellipsis-overflow" data-ellipsis-tooltip="0">
                 {{ $object->username }}
             </span>
         </a>

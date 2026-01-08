@@ -7,7 +7,7 @@
   @section-width: 250px;
   @label-width: 160px;
   @input-width: 250px;
-  @input-width-wide: 400px;
+  @input-width-wide: 100%;
 
   text-transform: none;
   padding: 10px 0;
@@ -69,11 +69,16 @@
 
     @media @desktop {
       position: relative;
+      flex-wrap: nowrap;
     }
 
     &--grid {
       display: flex;
       justify-content: center;
+    }
+
+    &--no-wrap {
+      flex-wrap: nowrap;
     }
   }
 
@@ -86,7 +91,6 @@
 
     &--grid {
       margin-bottom: 0;
-      width: auto;
       order: 0;
     }
 
@@ -97,10 +101,16 @@
     }
   }
 
+  &__checkbox-label-info {
+    margin-top: 5px;
+    font-weight: normal;
+    display: block;
+  }
+
   &__checkbox-status {
     pointer-events: none;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     width: max-content;
 
     @media @desktop {
@@ -117,6 +127,11 @@
 
     @media @desktop {
       position: relative;
+    }
+
+    &--grid {
+      display: grid;
+      grid-template-columns: auto auto;
     }
 
     &--vertical {
@@ -243,7 +258,6 @@
   &__misc-info {
     max-width: @input-width;
     display: block;
-    margin-right: 10px;
 
     &--signature-preview {
       max-height: @forum-signature-height;

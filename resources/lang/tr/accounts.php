@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
         'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
+        'news_post' => '',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
             'mapping' => 'beatmap mapper',
+            'news_post' => '',
             'push' => 'anlık',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'arkadaş listende olmayan kişilerden gelen mesajları engelle',
         'hide_online' => 'çevrimiçi durumunu gizle',
+        'hide_online_info' => 'bu osu!lazer\'de "çevrimdışı olarak görün" modunu atayacak',
         'title' => 'Gizlilik',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'güncelle',
+    ],
+
+    'user_totp' => [
+        'title' => 'Doğrulayıcı uygulama',
+        'usage_note' => 'Doğrulama için e-posta yerine doğrulayıcı uygulama kullan. E-posta doğrulaması yedek olarak hala mevcut olacak.',
+
+        'button' => [
+            'remove' => 'Kaldır',
+            'setup' => 'Doğrulayıcı uygulama ekle',
+        ],
+        'status' => [
+            'label' => 'durum',
+            'not_set' => 'Yapılandırılmamış',
+            'set' => 'Yapılandırılmış',
+        ],
     ],
 
     'verification_completed' => [

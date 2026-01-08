@@ -40,7 +40,7 @@ return [
             'all' => 'Все форумы',
             'link' => 'Искать на форуме',
             'login_required' => 'Войдите в аккаунт для поиска по форуму',
-            'more_simple' => 'Посмотреть другие результаты поиска на форуме',
+            'more_simple' => 'Посмотреть все результаты поиска на форуме',
             'title' => 'Форумы',
 
             'label' => [
@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Скачать osu!',
-        'action_lazer' => 'Скачать osu!(lazer)',
-        'action_lazer_description' => 'следующее глобальное обновление osu!',
-        'action_lazer_info' => 'статья с подробной информацией',
-        'action_lazer_title' => 'попробовать osu!(lazer)',
-        'action_title' => 'скачать osu!',
+        'action_lazer_info' => 'узнайте больше о новой версии здесь',
+        'download' => 'Скачать',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'зеркало',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version или новее',
         'other_os' => 'другие платформы',
         'quick_start_guide' => 'краткая инструкция',
-        'tagline' => "давайте<br>начнём!",
+        'stable_text' => 'если ищете устаревшую версию игры',
+        'tagline_1' => 'давайте начнём',
+        'tagline_2' => 'играть!',
         'video-guide' => 'видеоинструкция',
 
         'help' => [

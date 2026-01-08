@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Što kažeš na to da sada zaigraš malo osu! umjesto toga?',
+    'play_more' => 'Što kažeš na to da zaigraš malo osu! umjesto toga?',
     'require_login' => 'Molimo da se prijaviš kako bi nastavio/la.',
     'require_verification' => 'Molimo potvrdi da nastaviš.',
     'restricted' => "Ne možeš to raditi dok si ograničen/a.",
@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Moraš postaviti rezultat na beatmapi kako bi dodao oznaku.',
         ],
     ],
 
@@ -71,7 +71,7 @@ return [
         'friends_only' => 'Korisnik blokira poruke od ljudi koji nisu na njegovoj/njezinoj listi prijatelja.',
         'moderated' => 'Ovaj kanal je trenutno nadziran.',
         'no_access' => 'Nemaš pristup tom kanalu.',
-        'no_announce' => '',
+        'no_announce' => 'Nemaš dopuštenje da objaviš najavu.',
         'receive_friends_only' => 'Korisnik možda neće moći odgovoriti zato što samo prihvaćaš poruke od ljudi koji su na tvojoj listi prijatelja.',
         'restricted' => 'Ne možeš slati poruke dok si utišan, ograničen ili izbačen/a.',
         'silenced' => 'Ne možeš slati poruke dok si utišan, ograničen ili izbačen/a.',
@@ -87,7 +87,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Suđenje za ovaj natječaj nije aktivno.',
         'voting_over' => 'Ne možeš promijeniti svoj glas nakon završetka razdoblja glasanja za ovo natjecanje.',
 
         'entry' => [
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Ne možeš urediti izbrisanu objavu.',
                 'locked' => 'Ova objava je zaključena od uređivanja.',
                 'no_forum_access' => 'Potreban je pristup zatraženom forumu.',
-                'no_permission' => '',
+                'no_permission' => 'Nemaš dopuštenje za uređivanje.',
                 'not_owner' => 'Samo autor može urediti objavu.',
                 'topic_locked' => 'Ne možeš urediti objavu zaključane teme.',
             ],
@@ -179,14 +179,14 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Samo vlasnik sobe može zatvoriti sobu.',
         ],
     ],
 
     'score' => [
         'pin' => [
-            'disabled_type' => "",
-            'failed' => "",
+            'disabled_type' => "Nije moguće prikačiti ovakav tip rezultata",
+            'failed' => "Nije moguće prikačiti neprolazni rezultat.",
             'not_owner' => 'Samo vlasnik rezultata može prikvačiti rezultat.',
             'too_many' => 'Prikvačeno previše rezultata.',
         ],
@@ -195,19 +195,19 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "",
-                'already_other_member' => "",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'already_member' => "Već si dio tima.",
+                'already_other_member' => "Već si dio drugog tima.",
+                'currently_applying' => 'Imaš neriješen zahtjev za pridruživanje timu.',
+                'team_closed' => 'Tim trenutačno ne prihvaća zahtjev za pridruživanje.',
+                'team_full' => "Tim je pun i ne može prihvatiti više članova.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Vođa tima ne može napustiti tim.",
+            'not_member' => 'Nije član tima.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!supporter oznaka je potrebna za stvaranje tima.',
         ],
     ],
 
@@ -220,7 +220,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'email adresa je zaključana',
         ],
     ],
 ];

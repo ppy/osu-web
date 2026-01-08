@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @if (Auth::check())
-    <div class="js-react--ranking-user-filter u-contents">
+    <div class="js-react u-contents" data-react="ranking-user-filter">
         <div class="ranking-filter">
             <div class="ranking-filter__title">
                 {{ osu_trans('rankings.filter.title') }}

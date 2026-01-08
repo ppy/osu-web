@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Перегляд зображення повнорозмірної обкладинки',
-            'page' => '',
+            'page' => 'Переглянути сторінку адміністратора',
         ],
 
         'deleted_banner' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Шкала рейтингу',
             'nominations' => 'Номінації',
             'playcount' => 'Кількість ігор',
+            'favourites' => 'Вподобані',
+            'no_favourites' => 'Поки немає вподобаних',
         ],
 
         'status' => [

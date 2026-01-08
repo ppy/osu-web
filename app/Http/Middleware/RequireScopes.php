@@ -68,13 +68,10 @@ class RequireScopes
      */
     private function requestHasScopedMiddleware(Request $request): bool
     {
-        $value = $request->attributes->get('requestHasScopedMiddleware');
-        if ($value === null) {
-            $value = $this->containsScoped($request);
-            $request->attributes->set('requestHasScopedMiddleware', $value);
-        }
-
-        return $value;
+        return request_attribute_remember(
+            'requestHasScopedMiddleware',
+            fn (): bool => $this->containsScoped($request),
+        );
     }
 
     private function containsScoped(Request $request)

@@ -12,6 +12,7 @@ use App\Libraries\Search\AllSearch;
 use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
+use App\Models\Build;
 use App\Models\Forum\Post;
 use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
@@ -19,7 +20,7 @@ use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
 use Auth;
 use Carbon\CarbonImmutable;
-use Jenssegers\Agent\Agent;
+use DeviceDetector\DeviceDetector;
 use Request;
 
 /**
@@ -64,28 +65,52 @@ class HomeController extends Controller
             'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
             'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
             'linux_x64' => 'Linux (x64)',
-            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 10.15']).' (Apple Silicon)',
-            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
+            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 12']).' (Apple Silicon)',
+            'macos_intel' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 12']).' (Intel)',
+            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 10']).' (x64)',
         ];
 
-        $agent = new Agent(Request::server());
+        $platform = get_string(request('platform'));
+        if (!array_key_exists($platform, $lazerPlatformNames)) {
+            $deviceDetector = new DeviceDetector(\Request::header('User-Agent') ?? '');
+            $deviceDetector->parse();
+            $family = $deviceDetector->getOs('family');
 
-        $platform = match (true) {
-            // Try matching most likely platform first
-            $agent->is('Windows') => 'windows_x64',
-            // iPadOS detection apparently doesn't work on newer version
-            // and detected as macOS instead.
-            ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
-            // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
-            $agent->is('OS X') => 'macos_as',
-            $agent->isAndroidOS() => 'android',
-            $agent->is('Linux') => 'linux_x64',
-            default => 'windows_x64',
-        };
+            $platform = match ($family) {
+                // Try matching most likely platform first
+                'Windows' => 'windows_x64',
+                // current iPadOS declares itself as a desktop browser.
+                'iOS' => 'ios',
+                // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
+                'Mac' => 'macos_as',
+                'Android' => 'android',
+                'GNU/Linux' => 'linux_x64',
+                default => 'windows_x64',
+            };
+        }
+
+        $version = Build::where(['stream_id' => $GLOBALS['cfg']['osu']['client']['download_stream'], 'test_build' => false])
+            ->orderBy('build_id', 'desc')
+            ->first()
+            ?->version;
+
+        $items = [];
+        foreach ($lazerPlatformNames as $key => $value) {
+            $items[] = ['id' => $key, 'text' => $value];
+        }
+
+        $selectOptions = [
+            'currentItem' => ['id' => $platform, 'text' => osu_trans('home.download.other_os')],
+            'items' => $items,
+            'modifiers' => 'download',
+            'type' => 'download',
+        ];
 
         return ext_view('home.download', [
             'lazerUrl' => osu_url("lazer_dl.{$platform}"),
             'lazerPlatformName' => $lazerPlatformNames[$platform],
+            'selectOptions' => $selectOptions,
+            'version' => $version,
         ]);
     }
 

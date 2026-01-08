@@ -143,6 +143,43 @@
     --hover-bg: hsl(var(--hsl-red-2));
   }
 
+  &--download {
+    --bg:
+      var(--cookie) right 15% center no-repeat,
+      linear-gradient(var(--overlay-colour), var(--overlay-colour)) padding-box,
+      linear-gradient(
+          to bottom,
+          var(--overlay-colour),
+          hsla(var(--bg-colour), 0.8),
+          hsla(var(--bg-colour), 0.9)
+        )
+        border-box;
+
+    --hover-bg:
+      var(--cookie) right 15% center no-repeat,
+      linear-gradient(hsla(var(--bg-colour), 0.5), hsla(var(--bg-colour), 0.5))
+        padding-box,
+      linear-gradient(
+          to bottom,
+          hsla(var(--bg-colour), 0.5),
+          hsla(var(--bg-colour), 0.8),
+          hsla(var(--bg-colour), 0.9)
+        )
+        border-box;
+
+    --bg-colour: var(--hsl-pink-1);
+    --cookie: url("~@images/backgrounds/cookie_v3.svg");
+    --overlay-colour: rgba(0, 0, 0, 0.75);
+
+    .default-text-shadow();
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    padding: $border-radius;
+    width: 100%;
+  }
+
   &--download-landing {
     .default-box-shadow();
     .default-text-shadow();
@@ -150,28 +187,10 @@
     padding: 10px 5px;
   }
 
-  &--download {
-    .default-box-shadow();
-    .default-border-radius();
-    .center-content();
-    transition: background-position 120ms;
-
-    flex: none;
-    min-width: 240px;
-    padding: 10px;
-    margin-bottom: 5px;
-    line-height: 1;
-    gap: 5px;
-
-    flex-direction: column;
-    --bg-colour: hsl(var(--hsl-blue-3));
-    --bg: var(--bg-colour) center/150% url("~@images/backgrounds/button.svg");
-    --hover-bg: var(--bg-colour) calc(50% - 20px) 50%/150%
-      url("~@images/backgrounds/button.svg");
-  }
-
-  &--download-lazer {
-    --bg-colour: hsl(var(--hsl-purple-3));
+  &--download-stable {
+    --bg-colour: var(--hsl-orange-1);
+    --cookie: url("~@images/backgrounds/cookie_v2.svg");
+    --overlay-colour: hsla(var(--hsl-b5), 0.75);
   }
 
   &--fileupload {
@@ -271,6 +290,7 @@
   &--password-reset {
     padding: 10px;
     text-align: center;
+    border-radius: 10000px;
   }
 
   &--pink {
@@ -426,6 +446,12 @@
       font-size: 120%;
     }
 
+    .@{top}--download & {
+      display: flex;
+      margin: 0;
+      font-size: 24px;
+    }
+
     .@{top}--download-landing & {
       .circle(40px);
       .center-content();
@@ -469,6 +495,11 @@
     .@{top}--beatmap-discussion-reply-open & {
       margin-right: 20px;
     }
+
+    .@{top}--download & {
+      margin: 0; // all in the top-level padding
+      gap: 10px;
+    }
   }
 
   &__loading-spinner {
@@ -482,20 +513,17 @@
   }
 
   &__text-top {
-    .@{top}--download & {
-      .default-text-shadow();
+    &--download {
       font-size: @font-size--large;
       font-weight: 700;
-      margin: 0;
     }
   }
 
   &__text-bottom {
     font-size: @font-size--small;
 
-    .@{top}--download & {
-      .default-text-shadow();
-      font-size: @font-size--normal;
+    &--download {
+      font-weight: 300;
     }
   }
 

@@ -7,7 +7,7 @@
 ])
 
 @section("content")
-    <div class="js-react--chat u-contents"></div>
+    <div class="js-react u-contents" data-react="chat"></div>
 @endsection
 
 @section("script")

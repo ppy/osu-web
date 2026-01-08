@@ -76,6 +76,7 @@ return [
         'minutes' => ':count хвіліна|:count хвіліны |:count хвілін',
         'months' => ':count месяц|:count месяцаў',
         'notifications' => ':count_delimited апавяшчэнне|:count_delimited апавяшчэнняў',
+        'player' => '',
         'plus_others' => '+ :count_delimited іншый|+ :count_delimited іншыя!',
         'post' => ':count_delimited пост|:count_delimited пастоў',
         'second_short_unit' => 'сек',
@@ -94,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'мес',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'г',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

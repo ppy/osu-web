@@ -33,25 +33,50 @@ return [
         'used' => 'Ausgegeben',
     ],
 
+    'matchmaking' => [
+        'plays' => 'Spiele',
+        'points' => 'Punkte',
+        'provisional' => 'Zur genauen Ermittlung einer Wertung wurden noch nicht genug Runden absolviert',
+        'rating' => 'Wertung',
+        'wins' => 'Siege',
+    ],
+
+    'multiplayer' => [
+        'room_name' => 'Raumname',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Der kürzliche Ranking-Verlauf dieses Benutzers ist kleiner als 30 Tage.',
     ],
 
-    'type' => [
+    'top_plays' => [
+        'empty' => 'Die Daten werden noch verarbeitet...',
+        'last_updated' => 'Zuletzt aktualisiert',
+    ],
+
+    'playlists' => [
         'charts' => 'Spotlights (alt)',
+        'featured' => 'Empfohlen',
+        'season_room' => 'Season-Raum',
+        'seasons' => 'Seasons',
+    ],
+
+    'type' => [
         'country' => 'Länder',
         'daily_challenge' => 'Tägliche Herausforderung',
         'global' => 'Global',
         'kudosu' => 'Kudosu',
-        'multiplayer' => 'Mehrspieler',
-        'seasons' => 'Seasons',
+        'matchmaking' => 'Quick Play',
+        'playlists' => 'Playlists',
         'team' => 'Teams',
+        'top_plays' => 'Top-Spiele',
     ],
 
     'seasons' => [
         'empty' => 'Es existieren noch keine Räume in dieser Season.',
         'ongoing' => 'Diese Season ist noch im Gange (es werden weitere Playlists hinzugefügt).',
         'room_count' => 'Anzahl der Playlists',
+        'summary' => 'Seasonübersicht anzeigen',
         'url' => 'Weitere Informationen zu dieser Season anzeigen.',
         'validation' => [
             'not_enough_factors' => 'Es gibt nicht genügend Score-Faktoren für eine korrekte Berechnung',
@@ -60,7 +85,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Enddatum',
-        'map_count' => 'Map-Anzahl',
+        'map_count' => 'Beatmap-Anzahl',
         'participants' => 'Teilnehmer',
         'start_date' => 'Startdatum',
     ],

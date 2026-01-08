@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Ativo',
+            'ended' => 'Encerrado',
         ],
     ],
 
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Publicações Recentes',
                 'show_more' => 'ver mais publicações',
             ],
+            'quickplay' => [
+                'title' => 'Partidas Rápidas',
+            ],
             'recent_activity' => [
                 'title' => 'Recente',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'title' => 'Jogo Rápido',
+        ],
+
         'not_found' => [
             'reason_1' => 'Talvez o usuário tenha mudado seu nome.',
             'reason_2' => 'A conta pode estar temporariamente indisponível devido a problemas de abuso ou de segurança.',

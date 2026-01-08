@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Crear i editar temes i publicacions del fòrum en nom seu.',
+            'write_manage' => 'Gestiona els temes i publicacions del fòrum en nom seu.',
         ],
 
         'friends' => [

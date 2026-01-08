@@ -127,6 +127,7 @@ use Request;
  * @property-read UserStatistics\Osu|null $statisticsOsu
  * @property-read UserStatistics\Taiko|null $statisticsTaiko
  * @property-read Collection<Store\Address> $storeAddresses
+ * @property ?int $support_length
  * @property-read Collection<UserDonation> $supporterTagPurchases
  * @property-read Collection<UserDonation> $supporterTags
  * @property-read Team|null $team
@@ -481,10 +482,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $playCount = $this->playCount();
 
-        $allGroupIds = array_merge([$this->group_id], $this->groupIds()['active']);
-        $allowedGroupIds = array_map(function ($groupIdentifier) {
-            return app('groups')->byIdentifier($groupIdentifier)->getKey();
-        }, $GLOBALS['cfg']['osu']['user']['allowed_rename_groups']);
+        $allGroupIds = [$this->group_id, ...$this->groupIds()];
+        $groups = app('groups');
+        $allowedGroupIds = array_map(
+            fn ($identifier) => $groups->byIdentifier($identifier)->getKey(),
+            $GLOBALS['cfg']['osu']['user']['allowed_rename_groups'],
+        );
 
         // only users which groups are all in the whitelist can be renamed
         if (count(array_diff($allGroupIds, $allowedGroupIds)) > 0) {
@@ -604,7 +607,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             throw new InvariantException('Invalid playmodes: '.implode(', ', $invalidPlaymodes));
         }
 
-        $activeUserGroup = $this->findUserGroup($group, true);
+        $activeUserGroup = $this->findUserGroup($group);
 
         if ($activeUserGroup === null) {
             $userGroup = $this
@@ -649,16 +652,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function removeFromGroup(Group $group, ?self $actor = null): void
     {
-        $userGroup = $this->findUserGroup($group, false);
+        $userGroup = $this->findUserGroup($group);
 
         if ($userGroup === null) {
             return;
         }
 
         $this->getConnection()->transaction(function () use ($actor, $group, $userGroup) {
-            if (!$userGroup->user_pending) {
-                UserGroupEvent::logUserRemove($actor, $this, $group);
-            }
+            UserGroupEvent::logUserRemove($actor, $this, $group);
 
             $userGroup->delete();
 
@@ -674,7 +675,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function setDefaultGroup(Group $group, ?self $actor = null): void
     {
         $this->getConnection()->transaction(function () use ($actor, $group) {
-            if ($this->findUserGroup($group, true) === null) {
+            if ($this->findUserGroup($group) === null) {
                 $this->addToGroup($group, null, $actor);
             }
 
@@ -807,6 +808,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'osu_playmode',
             'osu_testversion',
             'remember_token',
+            'support_length',
             'user_actkey',
             'user_allow_massemail',
             'user_allow_viewemail',
@@ -982,6 +984,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'userNotifications',
             'userPage',
             'userProfileCustomization',
+            'userTotpKey',
             'usernameChangeHistory',
             'usernameChangeHistoryPublic' => $this->getRelationValue($key),
         };
@@ -1006,7 +1009,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return $isGroup;
         }
 
-        $groupModes = $this->findUserGroup($group, true)->actualRulesets();
+        $groupModes = $this->findUserGroup($group)->actualRulesets();
 
         return in_array($playmode, $groupModes ?? [], true);
     }
@@ -1023,7 +1026,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isChatAnnouncer()
     {
-        return $this->findUserGroup(app('groups')->byIdentifier('announce'), true) !== null;
+        $token = $this->token();
+        return $token !== null && !$token->delegatesOwner() && !$token->isOwnToken()
+            ? false
+            : $this->findUserGroup(app('groups')->byIdentifier('announce')) !== null;
     }
 
     public function isGMT()
@@ -1039,6 +1045,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function isFullBN(?string $mode = null)
     {
         return $this->inGroupWithPlaymode('bng', $mode);
+    }
+
+    /**
+     * Check if the User is explicitly assigned Forum permissions via moderator_groups.
+     *
+     * Permission set directly though moderator_groups are available through OAuth with the group_permissions scope.
+     */
+    public function isForumModerator(Forum\Forum $forum): bool
+    {
+        $token = $this->token();
+
+        return ($token === null || $token->delegatesOwner() && $token->can('group_permissions'))
+            && $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds(), $forum->moderator_groups));
     }
 
     public function isLimitedBN(?string $mode = null)
@@ -1168,35 +1187,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $groups->byId($this->group_id) ?? $groups->byIdentifier('default');
     }
 
-    public function groupIds()
+    public function groupIds(): array
     {
-        return $this->memoize(__FUNCTION__, function () {
-            $ret = [
-                'active' => [],
-                'pending' => [],
-            ];
-
-            foreach ($this->userGroups as $userGroup) {
-                $key = $userGroup->user_pending ? 'pending' : 'active';
-                $ret[$key][] = $userGroup->group_id;
-            }
-
-            return $ret;
-        });
+        return $this->memoize(__FUNCTION__, fn () => array_keys($this->userGroupByGroupId()));
     }
 
-
-    public function findUserGroup($group, bool $activeOnly): ?UserGroup
+    public function findUserGroup($group): ?UserGroup
     {
-        $byGroupId = $this->memoize(__FUNCTION__.':byGroupId', fn () => $this->userGroups->keyBy('group_id'));
-
-        $userGroup = $byGroupId->get($group->getKey());
-
-        if ($userGroup === null || ($activeOnly && $userGroup->user_pending)) {
-            return null;
-        }
-
-        return $userGroup;
+        return $this->userGroupByGroupId()[$group->getKey()] ?? null;
     }
 
     /**
@@ -1210,7 +1208,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      */
     public function isGroup($group)
     {
-        return $this->findUserGroup($group, true) !== null && $this->token() === null;
+        return $this->findUserGroup($group) !== null && $this->token() === null;
     }
 
     public function badges()
@@ -1231,6 +1229,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class);
+    }
+
+    public function matchmakingStats()
+    {
+        return $this->hasMany(MatchmakingUserStats::class);
     }
 
     public function notificationOptions()
@@ -1524,6 +1527,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasOne(UserProfileCustomization::class);
     }
 
+    public function userTotpKey()
+    {
+        return $this->hasOne(UserTotpKey::class);
+    }
+
     public function accountHistories()
     {
         return $this->hasMany(UserAccountHistory::class);
@@ -1779,31 +1787,31 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function nominationModes()
+    public function nominationModes(): ?array
     {
         return $this->memoize(__FUNCTION__, function () {
             if (!$this->isNAT() && !$this->isBNG()) {
-                return;
+                return null;
             }
 
             $modes = [];
 
             if ($this->isLimitedBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'), true)->actualRulesets();
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng_limited'))->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'limited';
                 }
             }
 
             if ($this->isFullBN()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'), true)->actualRulesets();
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('bng'))->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
             }
 
             if ($this->isNAT()) {
-                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'), true)->actualRulesets();
+                $playmodes = $this->findUserGroup(app('groups')->byIdentifier('nat'))->actualRulesets();
                 foreach ($playmodes as $playmode) {
                     $modes[$playmode] = 'full';
                 }
@@ -1939,21 +1947,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->fresh();
     }
 
-    public function supportLength()
+    public function refreshSupportLength(): int
     {
-        return $this->memoize(__FUNCTION__, function () {
-            $supportLength = 0;
+        $supportLength = 0;
 
-            foreach ($this->supporterTagPurchases as $support) {
-                if ($support->cancel === true) {
-                    $supportLength -= $support->length;
-                } else {
-                    $supportLength += $support->length;
-                }
+        foreach ($this->supporterTagPurchases as $support) {
+            if ($support->cancel === true) {
+                $supportLength -= $support->length;
+            } else {
+                $supportLength += $support->length;
             }
+        }
 
-            return $supportLength;
-        });
+        $this->update(['support_length' => $supportLength]);
+
+        return $supportLength;
     }
 
     public function supportLevel()
@@ -1962,7 +1970,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return 0;
         }
 
-        $length = $this->supportLength();
+        $length = $this->support_length;
+        $length ??= $this->refreshSupportLength();
 
         if ($length < 12) {
             return 1;
@@ -2527,5 +2536,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 ? $value
                 : "https://{$value}"
             );
+    }
+
+    private function userGroupByGroupId(): array
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $ret = [];
+            foreach ($this->userGroups->all() as $userGroup) {
+                $ret[$userGroup->group_id] = $userGroup;
+            }
+
+            return $ret;
+        });
     }
 }

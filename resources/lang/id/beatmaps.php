@@ -24,7 +24,7 @@ return [
         'deny_kudosu' => 'tolak kudosu',
         'edit' => 'sunting',
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
-        'guest' => 'Guest difficulty oleh :user',
+        'guest' => 'Tingkat kesulitan tamu oleh :user',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Diskusi pada beatmap ini telah ditutup.',
@@ -244,7 +244,7 @@ return [
         'search' => [
             'prompt' => 'ketik kata kunci pencarian...',
             'login_required' => 'Silakan masuk untuk mencari.',
-            'options' => 'Pilihan Pencarian Lebih Lanjut',
+            'options' => 'Opsi Pencarian Lainnya',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan tag osu!supporter yang aktif',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '… enggak, tidak ada yang ditemukan.',

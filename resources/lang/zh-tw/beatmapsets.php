@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => '檢視完整封面圖片',
-            'page' => '',
+            'page' => '檢視管理頁面',
         ],
 
         'deleted_banner' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => '評分狀況',
             'nominations' => '提名',
             'playcount' => '遊玩次數',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

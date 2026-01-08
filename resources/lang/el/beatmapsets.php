@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Εύρος Βαθμολογίας',
             'nominations' => 'Υποψηφιότητες',
             'playcount' => 'Φορές που παίχτηκε',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

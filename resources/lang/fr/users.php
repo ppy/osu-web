@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'En cours',
+            'ended' => 'Terminées',
         ],
     ],
 
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Posts récents',
                 'show_more' => 'voir plus de posts',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Activité récente',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Site Internet',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Il a peut-être changé de nom d\'utilisateur.',
             'reason_2' => 'Ce compte est peut-être temporairement indisponible pour des raisons de sécurité ou d\'abus.',

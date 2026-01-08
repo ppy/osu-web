@@ -78,7 +78,7 @@ export interface CurrentUserAttributes {
   remaining_hype: number;
 }
 
-interface BeatmapsetJsonAvailableIncludes {
+export interface BeatmapsetJsonAvailableIncludes {
   availability: Availability;
   beatmaps: BeatmapJson[];
   converts: BeatmapExtendedJson[];
@@ -97,6 +97,7 @@ interface BeatmapsetJsonAvailableIncludes {
   related_tags: TagJson[];
   related_users: UserJson[];
   user: UserJson | UserJsonDeleted;
+  version_count: number;
 }
 
 interface HypeData {
@@ -105,6 +106,7 @@ interface HypeData {
 }
 
 interface BeatmapsetJsonDefaultAttributes {
+  anime_cover: boolean;
   artist: string;
   artist_unicode: string;
   covers: BeatmapsetCovers;
@@ -131,6 +133,7 @@ export default BeatmapsetJson;
 
 export function deletedBeatmapset(): BeatmapsetJson {
   return {
+    anime_cover: false,
     artist: '',
     artist_unicode: '',
     covers: {

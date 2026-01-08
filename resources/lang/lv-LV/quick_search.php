@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => 'Nav rezultātu priekš :modes',
         'more' => 'Vairāk :mode meklēšanas rezultātu',
         'title' => ':mode meklēšanas rezultāti',
+
+        'no_results' => [
+            '_' => 'No results for :mode',
+
+            'artist_track' => 'Izlases mākslinieku celiņi',
+            'beatmapset' => 'Beatmapes',
+            'forum_post' => 'Forumi',
+            'other' => 'Citi',
+            'team' => 'Komandas',
+            'user' => 'Spēlētāji',
+            'wiki_page' => 'Wiki',
+        ],
     ],
 ];

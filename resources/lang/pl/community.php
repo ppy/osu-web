@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personalizacja',
-                'description' => "Wyróżnij się z tłumu dzięki niestandardowemu obrazowi tła lub tworząc w pełni dowolną stronę „O mnie” ze swojego profilu użytkownika.",
+                'description' => "Wyróżnij się z tłumu dzięki niestandardowemu obrazowi tła czy kolorowi profilu, lub tworząc w pełni dowolną stronę „O mnie” ze swojego profilu użytkownika.",
             ],
 
             'beatmap_filters' => [
@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Dziękujemy za ciągłe wsparcie! Przeznaczyłeś(-aś) łącznie :dollars na status donatora osu! przez okres :duration.',
             'not_yet' => "Nie masz jeszcze statusu donatora osu! :(",
             'valid_until' => 'Twój status donatora przestanie być aktywny :date!',
             'was_valid_until' => 'Twój status donatora przestał być aktywny :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Z całego wsparcia :dollars zostało przeznaczone na status donatora dla :users przez łączny okres :duration. Dziękujemy za szczodrość!',
+                'users' => ':count_delimited innego użytkownika|:count_delimited innych użytkowników|:count_delimited innych użytkowników',
             ],
         ],
     ],

@@ -7,6 +7,7 @@ namespace App\Transformers;
 
 use App\Libraries\MorphMap;
 use App\Libraries\Search\ScoreSearchParams;
+use App\Libraries\SessionVerification;
 use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Season;
@@ -67,6 +68,7 @@ class UserCompactTransformer extends TransformerAbstract
         'follow_user_mapping',
         'follower_count',
         'friends',
+        'global_rank',
         'graveyard_beatmapset_count',
         'groups',
         'guest_beatmapset_count',
@@ -82,6 +84,7 @@ class UserCompactTransformer extends TransformerAbstract
         'kudosu',
         'loved_beatmapset_count',
         'mapping_follower_count',
+        'matchmaking_stats',
         'monthly_playcounts',
         'nominated_beatmapset_count',
         'page',
@@ -94,6 +97,7 @@ class UserCompactTransformer extends TransformerAbstract
         'scores_first_count',
         'scores_pinned_count',
         'scores_recent_count',
+        'session_verification_method',
         'session_verified',
         'statistics',
         'statistics_rulesets',
@@ -125,7 +129,6 @@ class UserCompactTransformer extends TransformerAbstract
         return [
             ...static::CARD_INCLUDES_PRELOAD,
             User::statisticsRelationName($rulesetName),
-            'supporterTagPurchases',
         ];
     }
 
@@ -278,6 +281,14 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
+    public function includeGlobalRank(User $user)
+    {
+        return $this->primitive([
+            'rank' => $user->statistics($this->mode)?->globalRank(),
+            'ruleset_id' => Beatmap::MODES[$this->mode],
+        ]);
+    }
+
     public function includeGraveyardBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('graveyard'));
@@ -354,6 +365,18 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeMappingFollowerCount(User $user)
     {
         return $this->primitive($user->mappingFollowerCount());
+    }
+
+    public function includeMatchmakingStats(User $user): ResourceInterface
+    {
+        $allStats = $user
+            ->matchmakingStats()
+            ->whereRulesetId(Beatmap::MODES[$this->mode])
+            ->withRank()
+            ->with('pool')
+            ->get();
+
+        return $this->collection($allStats, new MatchmakingUserStatsTransformer());
     }
 
     public function includeMonthlyPlaycounts(User $user)
@@ -454,6 +477,15 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->token()?->isVerified() ?? false);
     }
 
+    public function includeSessionVerificationMethod(User $user)
+    {
+        $session = $user->token();
+
+        return $this->primitive($session === null || $session->isVerified()
+            ? null
+            : (new SessionVerification\State($session, $user))->getMethod());
+    }
+
     public function includeStatistics(User $user)
     {
         $stats = $user->statistics($this->mode);
@@ -500,6 +532,7 @@ class UserCompactTransformer extends TransformerAbstract
             'audio_volume',
             'beatmapset_card_size',
             'beatmapset_download',
+            'beatmapset_show_anime_cover',
             'beatmapset_show_nsfw',
             'beatmapset_title_show_original',
             'comments_show_deleted',

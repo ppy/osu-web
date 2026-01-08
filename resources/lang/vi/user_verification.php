@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Vui lòng nhập mã từ ứng dụng xác thực của bạn',
+
+        'info' => [
+            'logout' => [
+                '_' => 'Bạn cũng có thể :link',
+                'link' => 'đăng xuất',
+            ],
+            'mail_fallback' => [
+                '_' => 'Nếu bạn không thể truy cập ứng dụng của bạn, :link',
+                'link' => 'thay vào đó bạn có thể xác thực bằng email ',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Mã xác thực này đã hết hạn, email xác thực mới đã được gửi.',
         'incorrect_key' => 'Mã xác thực không chính xác.',
         'retries_exceeded' => 'Mã xác thực không chính xác. Vượt quá giới hạn lần thử lại, email xác thực mới đã được gửi.',
         'reissued' => 'Mã xác thực đã được làm mới, email xác thực mới đã được gửi.',
+        'totp_used_key' => 'Mã xác thực đã được sử dụng. Vui lòng đợi và sử dụng mã mới',
+        'totp_gone' => 'Mã xác thực đã bị xóa, chuyển sang xác thực email. Email xác thực đã được gửi',
         'unknown' => 'Một lỗi không xác định đã xảy ra, email xác thực mới đã được gửi.',
     ],
 ];

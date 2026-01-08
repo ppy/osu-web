@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Verifikacijska koda je potekla, poslano je bilo novo e-poštno sporočilo z verifikacijsko kodo.',
         'incorrect_key' => 'Napačna verifikacijska koda.',
         'retries_exceeded' => 'Napačna verifikacijska koda. Omejitev ponovnih poskusov je bila presežena, poslano je bilo novo e-poštno sporočilo z verifikacijsko kodo.',
         'reissued' => 'Verifikacijska koda je bila ponovno izdana, poslano je bilo novo e-poštno sporočilo z verifikacijsko kodo.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Zgodila se je neznana napaka, poslano je bilo novo e-poštno sporočilo z verifikacijsko kodo.',
     ],
 ];

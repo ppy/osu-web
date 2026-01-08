@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Wprowadź kod z aplikacji uwierzytelniającej.',
+
+        'info' => [
+            'logout' => [
+                '_' => 'Możesz również :link.',
+                'link' => 'wyloguj się',
+            ],
+            'mail_fallback' => [
+                '_' => 'Jeżeli nie możesz uzyskać dostępu do aplikacji, :link.',
+                'link' => 'zamiast tego możesz się zweryfikować używając e-maila ',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Ten kod wygasł. Wysłano nowy kod weryfikacyjny.',
         'incorrect_key' => 'Wprowadzono nieprawidłowy kod weryfikacyjny.',
         'retries_exceeded' => 'Wprowadzono nieprawidłowy kod weryfikacyjny. Liczba prób została przekroczona, w związku z czym wysłaliśmy nowy kod weryfikacyjny.',
         'reissued' => 'Wygenerowano nowy kod weryfikacyjny. Sprawdź swoją skrzynkę odbiorczą.',
+        'totp_used_key' => 'Kod weryfikacyjny został już użyty. Proszę poczekać i użyć nowego.',
+        'totp_gone' => 'Token uwierzytelniania został usunięty, zmieniam na weryfikację e-mailem. E-mail weryfikacyjny został wysłany.',
         'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy kod weryfikacyjny.',
     ],
 ];

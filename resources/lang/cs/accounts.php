@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map u následujících módů',
         'beatmapset_disqualify' => 'dostávat notifikace kdy mapy následujících módů jsou diskvalifikované',
         'comment_reply' => 'dostávat notifikace na odpovědi na vaše komentáře',
+        'news_post' => 'dostávat oznámení na články o novinkách',
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'odpověď v tématu',
             'mail' => 'e-mail',
             'mapping' => 'tvůrce beatmapy',
+            'news_post' => 'články o novinkách',
             'push' => 'push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
         'hide_online' => 'skrýt váš online status',
+        'hide_online_info' => 'toto je stejné, jako "neviditelný" režim v osu!lazer',
         'title' => 'Soukromí',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'aktualizovat',
+    ],
+
+    'user_totp' => [
+        'title' => 'Ověřovací aplikace',
+        'usage_note' => 'Použít ověřovací aplikaci namísto emailu k ověření. Ověření emailem bude stále k dispozici jako záloha.',
+
+        'button' => [
+            'remove' => 'Odebrat',
+            'setup' => 'Přidat ověřovací aplikaci',
+        ],
+        'status' => [
+            'label' => 'stav',
+            'not_set' => 'Nenastavena',
+            'set' => 'Nakonfigurována',
+        ],
     ],
 
     'verification_completed' => [

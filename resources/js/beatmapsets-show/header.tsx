@@ -16,7 +16,7 @@ import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { downloadLimited, getArtist, getTitle, makeSearchQueryOption, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatStarRating } from 'utils/html';
 import { trans } from 'utils/lang';
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
 import BeatmapPicker from './beatmap-picker';
@@ -100,7 +100,7 @@ export default class Header extends React.Component<Props> {
         <div className='beatmapset-header__cover'>
           <BeatmapsetCover
             beatmapset={this.controller.beatmapset}
-            forceShowVisual // check already covered by parent component
+            forceShowNsfw // check already covered by parent component
             modifiers='full'
             size='cover'
           />
@@ -231,19 +231,13 @@ export default class Header extends React.Component<Props> {
 
   @action
   private readonly onEnterFavouriteIcon = () => {
-    if (this.filteredFavourites.length < 1) {
-      if (this.favouritePopupDisposer != null) {
-        this.favouritePopupDisposer();
-        $(this.favouriteIconRef.current ?? []).qtip('destroy', true);
-      }
-
-      return;
-    }
-
     this.favouritePopupDisposer ??= createTooltip(
       () => this.favouriteIconRef.current,
       () => ({
         count: this.controller.beatmapset.favourite_count,
+        title: this.controller.beatmapset.favourite_count > 0
+          ? trans('beatmapsets.show.stats.favourites')
+          : trans('beatmapsets.show.stats.no_favourites'),
         users: this.filteredFavourites,
       }),
       'right center',
@@ -306,7 +300,7 @@ export default class Header extends React.Component<Props> {
           <span className='beatmapset-header__diff-extra beatmapset-header__diff-extra--star-difficulty'>
             {trans('beatmapsets.show.stats.stars')}
             {' '}
-            {formatNumber(beatmap.difficulty_rating, 2)}
+            {formatStarRating(beatmap.difficulty_rating)}
           </span>
         )}
       </span>

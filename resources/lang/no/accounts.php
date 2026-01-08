@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Profilbilde',
-            'reset' => '',
+            'reset' => 'nullstill',
             'rules' => 'Vennligst sørg for at profilbildet ditt følger :link<br/>Dette betyr at det må være <strong>passende for alle aldersgrupper</strong>. d.v.s. ingen nakenhet, upassende språk eller innhold.',
             'rules_link' => 'Samfunns regler',
         ],
@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'motta varsler for nye problemer på kvalifiserte beatmaps av følgende moduser',
         'beatmapset_disqualify' => 'få varsler når beatmaperav de følgende moduser er diskvalifisert',
         'comment_reply' => 'motta varsler for svar på dine kommentarer',
+        'news_post' => '',
         'title' => 'Varsler',
         'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'emne svar',
             'mail' => 'e-post',
             'mapping' => 'beatmap mapper',
+            'news_post' => '',
             'push' => 'trykk',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokker private meldinger fra personer som ikke er på vennelisten din',
         'hide_online' => 'skjul påloggingsstatus',
+        'hide_online_info' => '',
         'title' => 'Personvern',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'oppdater',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => 'Bruk app i steden for e-post for totrinnsautentisering. Totrinnsautentisering gjennom e-post vil være tilgjengelig som reserveløsning.',
+
+        'button' => [
+            'remove' => 'Fjern',
+            'setup' => 'Legg til totrinnsautentisering.',
+        ],
+        'status' => [
+            'label' => 'status',
+            'not_set' => 'Ikke konfigurert',
+            'set' => 'Konfigurert',
+        ],
     ],
 
     'verification_completed' => [

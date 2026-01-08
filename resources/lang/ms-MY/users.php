@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Paling diundi naik oleh (3 bulan terakhir)',
+            'title_most' => 'Paling diundi naik oleh (3 bulan terkini)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Paling diundi naik (3 bulan terakhir)',
+            'title_most' => 'Paling diundi naik (3 bulan terkini)',
         ],
     ],
 
@@ -72,7 +72,7 @@ return [
 
     'disabled' => [
         'title' => 'Alamak! Nampaknya akaun anda telah dilumpuhkan.',
-        'warning' => "Sekiranya anda telah melanggar peraturan, sila catat bahawa terdapat tempoh bertenang selama sebulan yang mana kami tidak akan pertimbangkan sebarang permintaan pengampunan. Setelah tempoh ini, anda dipersilakan untuk menghubungi kami jika perlu. Sila catat bahawa jika anda mencipta akaun baru selepas pelumpuhan akaun sebelumnya, <strong>tempoh bertenang sebulan akan dilanjutkan</strong>. Sila catat juga <strong>anda terus melanggar peraturan bagi setiap akaun yang dicipta</strong>. Kami sarankan anda tidak membuat demikian!",
+        'warning' => "Sekiranya anda telah melanggar peraturan, sila catat bahawa terdapat tempoh bertenang selama sebulan yang mana kami tidak akan pertimbangkan sebarang permintaan pengampunan. Setelah tempoh ini, anda dipersilakan untuk menghubungi kami jika perlu. Sila catat bahawa jika anda mencipta akaun baru selepas pelumpuhan akaun sebelumnya, <strong>tempoh bertenang sebulan akan dilanjutkan</strong>. Sila catat juga <strong>anda terus melanggar peraturan untuk setiap akaun yang dicipta</strong>. Kami sarankan anda tidak membuat demikian!",
 
         'if_mistake' => [
             '_' => 'Sekiranya anda berasa ini satu kesilapan, anda dialu-alukan untuk menghubungi kami (melalui :email atau dengan mengklik "?" pada bucu kanan bahagian bawah halaman ini). Sila catat bahawa kami selalu yakin sepenuhnya dengan tindakan kami kerana berpangkalkan data yang sangat kukuh. Kami berhak mengendah permintaan anda sekiranya kami berasa anda secara sengaja tidak jujur.',
@@ -110,7 +110,7 @@ return [
         'failed' => 'Daftar masuk yang salah',
         'forgot' => 'Lupa kata laluan?',
         'info' => 'Sila daftar masuk untuk teruskan',
-        'invalid_captcha' => 'Terlalu banyak percubaan log masuk gagal, sila lengkapkan captcha dan cuba lagi. (Segar semula halaman sekiranya captcha tidak tampak)',
+        'invalid_captcha' => 'Terlalu banyak percubaan log masuk gagal. Sila lengkapkan captcha dan cuba lagi. (Segar semula halaman sekiranya captcha tidak tampak)',
         'locked_ip' => 'Alamat IP anda dikunci. Sila tunggu beberapa minit.',
         'password' => 'Kata Laluan',
         'register' => "Tiada akaun osu!? Cipta satu sekarang",
@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Giat',
+            'ended' => 'Tamat',
         ],
     ],
 
@@ -168,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Sila laporkan pelanggaran hak cipta melalui aduan Akta Hak Cipta Alaf Digital (DMCA) ke :mail sesuai dengan :policy.',
+                'policy' => 'dasar hak cipta osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Hal ini diterapkan sekiranya runut audio, kandungan tampak atau kandungan tahap peta rentak digunakan tanpa izin yang betul.',
         ],
 
         'options' => [
             'cheating' => 'Menipu',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Pelanggaran hak cipta',
             'inappropriate_chat' => 'Perilaku perbualan tidak senonoh',
             'insults' => 'Menghina saya / orang lain',
             'multiple_accounts' => 'Menggunakan lebih daripada satu akaun',
@@ -188,7 +188,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akaun anda telah dihadkan!',
-        'message' => 'Ketika dihadkan, anda tidak boleh berinteraksi dengan pemain lain dan markah anda akan tampak bagi anda sahaja. Hal ini biasanya hasil proses automatik dan akan ditarik balik dalam masa 24 jam. :link',
+        'message' => 'Ketika dihadkan, anda tidak boleh berinteraksi dengan pemain lain dan markah anda akan tampak untuk anda sahaja. Hal ini biasanya hasil proses automatik dan akan ditarik balik dalam masa 24 jam. :link',
         'message_link' => 'Semak halaman ini untuk belajar lebih lanjut.',
     ],
     'show' => [
@@ -198,7 +198,7 @@ return [
         'is_developer' => 'pembangun osu!',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Sertai :date',
-        'lastvisit' => 'Kali terakhir dilihat :date',
+        'lastvisit' => 'Pelihatan terkini :date',
         'lastvisit_online' => 'Kini dalam talian',
         'missingtext' => 'Anda mungkin tersilap taip! (atau pengguna mungkin dilarang)',
         'origin_country' => 'Dari :country',
@@ -234,7 +234,7 @@ return [
             'cover' => [
                 'button' => 'Ubah Kulit Profil',
                 'defaults_info' => 'Pilihan kulit lain akan tersedia kelak',
-                'holdover_remove_confirm' => "Kulit yang dipilih sebelumnya tidak tersedia untuk dipilih lagi. Anda tidak boleh pilih semula selepas mengubah ke kulit lain. Teruskan juga?",
+                'holdover_remove_confirm' => "Kulit yang dipilih sebelumnya tidak tersedia untuk dipilih lagi. Anda tidak boleh pilih semula setelah mengubah ke kulit lain. Teruskan juga?",
                 'title' => 'Kulit',
 
                 'upload' => [
@@ -263,7 +263,7 @@ return [
                 'title' => 'Warna',
 
                 'supporter' => [
-                    '_' => 'Tema warna tersuai tersedia bagi :link sahaja',
+                    '_' => 'Tema warna tersuai tersedia untuk :link sahaja',
                     'link' => 'osu!supporter',
                 ],
             ],
@@ -345,7 +345,7 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Memperoleh :amount dari pemansuhan penolakan kudosu bagi hantaran penyelarasan :post',
+                            'give' => 'Memperoleh :amount dari pemansuhan penolakan kudosu untuk hantaran penyelarasan :post',
                         ],
 
                         'deny_kudosu' => [
@@ -372,9 +372,9 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => ':amount diterima daripada :giver bagi hantaran pada :post',
-                        'reset' => 'Kudosu ditetap semula oleh :giver bagi hantaran :post',
-                        'revoke' => 'Kudosu ditolak oleh :giver bagi hantaran :post',
+                        'give' => ':amount diterima daripada :giver untuk hantaran pada :post',
+                        'reset' => 'Kudosu ditetap semula oleh :giver untuk hantaran :post',
+                        'revoke' => 'Kudosu ditolak oleh :giver untuk hantaran :post',
                     ],
                 ],
 
@@ -398,6 +398,9 @@ return [
                 'title' => 'Hantaran',
                 'title_longer' => 'Hantaran Terkini',
                 'show_more' => 'lihat hantaran lain',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Terkini',
@@ -429,8 +432,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => 'Undian Diberi (3 bulan terakhir)',
-                'received' => 'Undian Diterima (3 bulan terakhir)',
+                'given' => 'Undian Diberi (3 bulan terkini)',
+                'received' => 'Undian Diterima (3 bulan terkini)',
                 'title' => 'Undian',
                 'title_longer' => 'Undian Terkini',
                 'vote_count' => ':count_delimited undian',
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Laman Sesawang',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Dia mungkin telah mengubah nama penggunanya.',
             'reason_2' => 'Akaun ini mungkin tiada sementara ekoran isu keselamatan atau penyalahgunaan.',
@@ -505,7 +513,7 @@ return [
             'hits_per_play' => 'Pukulan Setiap Permainan',
             'level' => 'Level :level',
             'level_progress' => 'kemajuan ke tahap seterusnya',
-            'maximum_combo' => 'Kombo Maksimum',
+            'maximum_combo' => 'Gabungan Maksimum',
             'medals' => 'Pingat',
             'play_count' => 'Jumlah Mainan',
             'play_time' => 'Jumlah Masa Permainan',
@@ -529,12 +537,12 @@ return [
 
     'status' => [
         'all' => 'Semua',
-        'online' => 'Dalam Talian',
+        'online' => 'Dalam talian',
         'offline' => 'Luar Talian',
     ],
     'store' => [
         'from_client' => 'sila mendaftar dari pelanggan mainan!',
-        'from_web' => 'sila selesaikan pendaftaran melalui laman sesawang osu!',
+        'from_web' => 'sila lengkapkan pendaftaran melalui laman sesawang osu!',
         'saved' => 'Pengguna dicipta',
     ],
     'verify' => [

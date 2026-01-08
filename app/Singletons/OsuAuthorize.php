@@ -23,6 +23,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
+use App\Models\Group;
 use App\Models\Language;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
@@ -77,12 +78,10 @@ class OsuAuthorize
             $object === null ? null : [$object->getTable(), $object->getKey()],
         ]);
 
-        $authMap = request()->attributes->get(static::REQUEST_ATTRIBUTE_KEY);
-
-        if ($authMap === null) {
-            $authMap = new Ds\Map();
-            request()->attributes->set(static::REQUEST_ATTRIBUTE_KEY, $authMap);
-        }
+        $authMap = request_attribute_remember(
+            static::REQUEST_ATTRIBUTE_KEY,
+            fn (): Ds\Map => new Ds\Map(),
+        );
 
         $auth = $authMap->get($cacheKey, null);
 
@@ -329,7 +328,8 @@ class OsuAuthorize
                 return 'ok';
             }
 
-            if ($this->doCheckUser($user, 'BeatmapShow', $discussion->beatmap)->can()) {
+            $beatmap = $discussion->beatmap;
+            if ($beatmap !== null && $this->doCheckUser($user, 'BeatmapShow', $beatmap)->can()) {
                 return 'ok';
             }
         }
@@ -1341,11 +1341,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($forum->moderator_groups !== null && !empty(array_intersect($user->groupIds()['active'], $forum->moderator_groups))) {
+        if ($user->isModerator() || $user->isForumModerator($forum)) {
             return 'ok';
         }
 
@@ -1441,8 +1437,9 @@ class OsuAuthorize
             return $prefix.'locked';
         }
 
-        $isFirstPost = $post->getKey() === $post->topic->topic_first_post_id;
-        if (!ForumAuthorize::aclCheck($user, $isFirstPost ? 'f_post' : 'f_reply', $forum)) {
+        // There is a case of allowing users to reply to and edit the starting post but not post to the forum.
+        // Apparently should be no cases of f_post not existing without f_reply permission
+        if (!ForumAuthorize::aclCheck($user, 'f_reply', $forum)) {
             return $prefix.'no_permission';
         }
 
@@ -1744,6 +1741,15 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkGroupShow(?User $user, Group $group): string
+    {
+        if ($group->hasListing() || $user?->isGroup($group)) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     public function checkIsOwnClient(?User $user, Client $client): string
     {
         if ($user === null || $user->getKey() !== $client->user_id) {
@@ -1999,6 +2005,10 @@ class OsuAuthorize
 
     public function checkUserGroupEventShowActor(?User $user, UserGroupEvent $event): string
     {
+        if ($event->group->identifier === 'default') {
+            return $user?->isPrivileged() ? 'ok' : 'unauthorized';
+        }
+
         if ($user?->isGroup($event->group)) {
             return 'ok';
         }

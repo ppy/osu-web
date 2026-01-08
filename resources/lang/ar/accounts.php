@@ -43,7 +43,7 @@ return [
             'title' => 'الملف الشخصي',
 
             'country_change' => [
-                '_' => "يبدو أن دولة حسابك لا تتطابق مع دولة الإقامة. :update_link.",
+                '_' => "كأن دولة حسابك لا تتطابق مع دولة الإقامة. :update_link.",
                 'update_link' => 'التحديث إلى :country',
             ],
 
@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'تلقي إشعارات عن مشاكل جديدة في الخرائط المؤهلة على الأنماط التالية',
         'beatmapset_disqualify' => 'تلقي إشعارات عندما تكون الخرائط للأنماط التالية غير مؤهلة',
         'comment_reply' => 'تلقي إشعارات الردود على تعليقاتك',
+        'news_post' => '',
         'title' => 'الإشعارات',
         'topic_auto_subscribe' => 'تمكين الإشعارات تلقائياً حول مواضيع المنتدى الجديدة التي تنشئها',
 
@@ -88,11 +89,12 @@ return [
             'beatmap_owner_change' => 'صعوبة ضيف',
             'beatmapset:modding' => 'اقتراحات الخريطة',
             'channel_message' => 'الرسائل الخاصة',
-            'channel_team' => '',
+            'channel_team' => 'دردشة الفريق',
             'comment_new' => 'تعليقات جديدة',
             'forum_topic_reply' => 'رد الموضوع',
             'mail' => 'البريد',
             'mapping' => 'مُنشئ خرائط',
+            'news_post' => '',
             'push' => 'دفع',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'حظر الرسائل الخاصة من الأشخاص غير المدرجين في قائمة اصدقائك',
         'hide_online' => 'إخفاء وجودك على الموقع',
+        'hide_online_info' => '',
         'title' => 'الخصوصية',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'تحديث',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

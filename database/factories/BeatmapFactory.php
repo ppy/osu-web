@@ -56,7 +56,7 @@ class BeatmapFactory extends Factory
             'checksum' => md5((string) rand()),
             'version' => fn () => $this->faker->domainWord(),
             'total_length' => rand(30, 200),
-            'hit_length' => fn (array $attr) => $attr['total_length'] - rand(0, 20),
+            'hit_length' => fn (array $attr) => max(0, $attr['total_length'] - rand(0, 20)),
             'countSpinner' => rand(0, 5),
             'countNormal' => rand(100, 2000),
             'bpm' => rand(100, 200),

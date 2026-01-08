@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username ответил ":content" под новостью ":title"',
                 'comment_reply_compact' => ':username ответил ":content"',
             ],
+
+            'news_post' => [
+                '_' => 'Новости (:series)',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
+            ],
         ],
 
         'forum_topic' => [
@@ -207,7 +214,7 @@ return [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Получена медаль ":title"!',
                 'user_achievement_unlock_compact' => 'Получена медаль ":title"!',
-                'user_achievement_unlock_group' => 'Медали получены!',
+                'user_achievement_unlock_group' => 'Получены новые медали!',
             ],
         ],
     ],
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Новые комментарии под новостью ":title"',
+            ],
+
+            'news_post' => [
+                'news_post_new' => 'Новости (:series): ":title"',
             ],
         ],
 

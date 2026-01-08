@@ -1,7 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-export const rulesets = ['osu', 'taiko', 'fruits', 'mania'] as const;
+export const rulesetIdToName = {
+  0: 'osu',
+  1: 'taiko',
+  2: 'fruits',
+  3: 'mania',
+} as const;
+export const rulesets = Object.values(rulesetIdToName);
 
 export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
   if ((rulesets as readonly string[]).includes(maybeRuleset)) {
@@ -9,6 +15,14 @@ export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
   }
 }
 
-type Ruleset = typeof rulesets[number];
+export type RulesetId = keyof typeof rulesetIdToName;
+type Ruleset = typeof rulesetIdToName[RulesetId];
+
+export const rulesetVariantIdToName = {
+  0: '',
+  4: '4k',
+  7: '7k',
+};
+export type RulesetVariantId = keyof typeof rulesetVariantIdToName;
 
 export default Ruleset;

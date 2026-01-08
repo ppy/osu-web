@@ -1,5 +1,7 @@
 <?php
 
+$appUrl = env('APP_URL', 'http://localhost');
+
 $s3Default = [
     'bucket' => env('S3_BUCKET'),
     'driver' => 's3',
@@ -14,7 +16,8 @@ $replays = [];
 foreach (['osu', 'taiko', 'fruits', 'mania'] as $mode) {
     $replays["local-legacy-replay-{$mode}"] = [
         'driver' => 'local',
-        'root' => public_path().'/uploads-replay/'.$mode,
+        'root' => public_path("uploads/legacy-replay/{$mode}"),
+        'visibility' => 'public',
     ];
 
     $replays["s3-legacy-replay-{$mode}"] = [
@@ -69,19 +72,35 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => public_path().'/uploads',
-            'base_url' => env('APP_URL', 'http://localhost').'/uploads',
+            'root' => public_path('uploads/default'),
+            'base_url' => "{$appUrl}/uploads/default",
+            'visibility' => 'public',
         ],
 
         'local-avatar' => [
             'driver' => 'local',
-            'root' => public_path().'/uploads-avatar',
-            'base_url' => env('APP_URL', 'http://localhost').'/uploads-avatar',
+            'root' => public_path('uploads/avatar'),
+            'base_url' => "{$appUrl}/uploads/avatar",
+            'visibility' => 'public',
+        ],
+
+        'local-central' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/central'),
+            'base_url' => "{$appUrl}/uploads/central",
+        ],
+
+        'local-screenshot' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/screenshot'),
+            'visibility' => 'private',
         ],
 
         'local-solo-replay' => [
             'driver' => 'local',
-            'root' => public_path().'/uploads-solo-replay/',
+            'root' => public_path('uploads/solo-replay'),
+            'base_url' => "{$appUrl}/uploads/solo-replay",
+            'visibility' => 'public',
         ],
 
         's3' => [
@@ -97,6 +116,18 @@ return [
             'key' => env('S3_AVATAR_KEY'),
             'region' => env('S3_AVATAR_REGION'),
             'secret' => env('S3_AVATAR_SECRET'),
+        ],
+
+        's3-central' => [
+            ...$s3Default,
+            'bucket' => env('S3_CENTRAL_BUCKET_NAME'),
+            'region' => env('S3_CENTRAL_BUCKET_REGION'),
+        ],
+
+        's3-screenshot' => [
+            ...$s3Default,
+            'bucket' => presence(env('S3_SCREENSHOT_BUCKET')) ?? 'screenshots',
+            'visibility' => 'private',
         ],
 
         's3-solo-replay' => [

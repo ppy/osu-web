@@ -61,12 +61,6 @@ class BeatmapsetSearch extends RecordSearch
                     ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                     ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
                     ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
-                    ->should([
-                        'nested' => [
-                            'path' => 'beatmaps',
-                            'query' => QueryHelper::queryString($this->params->queryString, ['beatmaps.top_tags'], 'or', 0.5 / count($terms)),
-                        ],
-                    ])
             );
         }
 
@@ -234,17 +228,34 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addPlayedFilter($query, $nested)
     {
+        if ($this->params->playedFilter === null) {
+            return;
+        }
+
+        $ids = $this->getPlayedBeatmapIds();
+        $chunks = array_chunk($ids, 10000);
+
         if ($this->params->playedFilter === 'played') {
-            $nested->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            if (count($ids) === 0) { // avoids the should empty list matching everything case.
+                return $query->filter(['match_none' => (object) []]);
+            }
+
+            $boolQuery = new BoolQuery();
+            foreach ($chunks as $chunk) {
+                $boolQuery->should(['terms' => ['beatmaps.beatmap_id' => $chunk]]);
+            }
+            $nested->filter($boolQuery);
         } elseif ($this->params->playedFilter === 'unplayed') {
             // The inverse of nested:filter/must is must_not:nested, not nested:must_not
             // https://github.com/elastic/elasticsearch/issues/26264#issuecomment-323668358
-            $query->mustNot([
-                'nested' => [
-                    'path' => 'beatmaps',
-                    'query' => ['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]],
-                ],
-            ]);
+            foreach ($chunks as $chunk) {
+                $query->mustNot([
+                    'nested' => [
+                        'path' => 'beatmaps',
+                        'query' => ['terms' => ['beatmaps.beatmap_id' => $chunk]],
+                    ],
+                ]);
+            }
         }
     }
 
@@ -254,7 +265,17 @@ class BeatmapsetSearch extends RecordSearch
             return;
         }
 
-        $query->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
+        $ids = $this->getPlayedBeatmapIds($this->params->rank);
+        if (count($ids) === 0) { // avoids the should empty list matching everything case.
+            return $query->filter(['match_none' => (object) []]);
+        }
+
+        $chunks = array_chunk($ids, 10000);
+        $boolQuery = new BoolQuery();
+        foreach ($chunks as $chunk) {
+            $boolQuery->should(['terms' => ['beatmaps.beatmap_id' => $chunk]]);
+        }
+        $query->filter($boolQuery);
     }
 
     private function addRecommendedFilter($query)
@@ -362,15 +383,7 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 'mine':
-                if ($this->params->user !== null) {
-                    $maps = $this->params->user->beatmaps()
-                        ->select('beatmapset_id')
-                        ->distinct()
-                        ->pluck('beatmapset_id')
-                        ->all();
-                }
-                $query->must(['ids' => ['values' => $maps ?? []]]);
-                $queryForFilter = $mainQuery;
+                $query->must(['term' => ['beatmaps.user_id' => $this->params->user->getKey()]]);
                 break;
             default: // null, etc
                 $query
@@ -450,7 +463,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         if ($rank === null) {
-            return $query->distinct('beatmap_id')->pluck('beatmap_id');
+            return $query->distinct('beatmap_id')->pluck('beatmap_id')->all();
         }
 
         $topScores = [];

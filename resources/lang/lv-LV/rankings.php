@@ -33,25 +33,50 @@ return [
         'used' => 'Iztērēts',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Šim lietotājam ir mazāk nekā 30 dienas ar neseno novietojuma vēsturi.',
     ],
 
+    'top_plays' => [
+        'empty' => 'Dati tiek aprēķināti...',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'prožektoru gaismā (vecs)',
         'country' => 'valsts',
         'daily_challenge' => 'dienas izaicinājums',
         'global' => 'globāli',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'daudzspēlētāju režīms',
-        'seasons' => 'sezonas',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'komanda',
+        'top_plays' => 'labākie spēles momenti',
     ],
 
     'seasons' => [
         'empty' => 'Šajā sezonā pašlaik vēl nav istabu.',
         'ongoing' => 'Šī sezona vēl notiek (tiks pievienoti vairāk dziesmu saraksti).',
         'room_count' => 'Dziesmu sarakstu skaits',
+        'summary' => 'Skatīt sezonas kopsavilkumu',
         'url' => 'Parādīt vairāk informāciju par to sezonu.',
         'validation' => [
             'not_enough_factors' => 'nav pietiekami daudz punktu faktori, lai veiktu kārtīgas kalkulācijas',

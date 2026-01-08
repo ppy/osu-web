@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Mga Bagong Post',
                 'show_more' => 'higit pang mga post',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Kamakailan',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Maaring nagbago ang kanilang username.',
             'reason_2' => 'Ang account na ito ay hindi maaring makita dahil sa seguridad o abuso na isyu.',

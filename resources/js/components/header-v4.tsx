@@ -5,6 +5,7 @@ import HeaderLink from 'interfaces/header-link';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { parseJson } from 'utils/json';
 import { trans, transExists } from 'utils/lang';
 import { presence } from 'utils/string';
@@ -41,6 +42,9 @@ const pageTitleMap: Record<`${'action' | 'controller' | 'namespace'}Key`, Partia
     'main.artist_tracks_controller._': 'main.artists_controller._',
     'main.store_controller._': 'store._',
     'multiplayer.rooms_controller._': 'main.ranking_controller._',
+    'ranking.daily_challenge_controller._': 'main.ranking_controller._',
+    'ranking.matchmaking_controller._': 'main.ranking_controller._',
+    'ranking.top_plays_controller._': 'main.ranking_controller._',
   },
   namespaceKey: {
     'admin_forum._': 'admin._',
@@ -134,6 +138,11 @@ export default class HeaderV4 extends React.Component<Props> {
             <span className='fake-bold' data-content={link.title}>
               {link.title}
             </span>
+            {link.count != null && (
+              <span className="header-nav-item-count">
+                {formatNumber(link.count)}
+              </span>
+            )}
           </a>
         </li>
       );
@@ -177,6 +186,12 @@ export default class HeaderV4 extends React.Component<Props> {
             {...link.data}
           >
             {link.title}
+            {' '}
+            {link.count != null && (
+              <span className="header-nav-item-count">
+                {formatNumber(link.count)}
+              </span>
+            )}
           </a>
         </li>
       );

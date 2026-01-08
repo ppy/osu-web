@@ -33,25 +33,50 @@ return [
         'used' => 'Зрасходавана',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Гэты карыстальнік пачаў гуляць рэйтынгавыя карты менш за 30 дзён таму.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'па чартам',
         'country' => 'па краінам',
         'daily_challenge' => 'па картах дня',
         'global' => 'глабальны',
         'kudosu' => 'кудосу',
-        'multiplayer' => 'мультыплэер',
-        'seasons' => 'па сезонах',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'па камандах',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'У гэтым сезоне яшчэ няма месц.',
         'ongoing' => 'Гэты сезон яшчэ працягваецца (будуць дададзены яшчэ плэйлісты).',
         'room_count' => 'Колькасць плэйлістоў',
+        'summary' => '',
         'url' => 'Паказаць больш даведак пра гэты сезон.',
         'validation' => [
             'not_enough_factors' => 'не набрана дастаткова крытэрыяў для карэктнага падліку ачкоў',

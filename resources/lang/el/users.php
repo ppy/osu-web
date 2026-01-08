@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Ο λογαριασμός σας δεν έχει χρησιμοποιηθεί εδώ και πολύ καιρό.",
             'inactive_different_country' => "Ο λογαριασμός σας δεν έχει χρησιμοποιηθεί εδώ και πολύ καιρό.",
         ],
     ],
@@ -126,19 +126,19 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Ενεργό',
+            'ended' => 'Τελείωσε',
         ],
     ],
 
     'ogp' => [
-        'modding_description' => '',
-        'modding_description_empty' => '',
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Ο χρήστης δεν έχει κανένα beatmap...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Κατάταξη (:ruleset): :global | :country',
+            'country' => 'Χώρα :rank',
+            'global' => 'Παγκόσμια :rank',
         ],
     ],
 
@@ -169,7 +169,7 @@ return [
         'dmca' => [
             'message_1' => [
                 '_' => '',
-                'policy' => '',
+                'policy' => 'η πολιτική osu! πνευματικών δικαιωμάτων',
             ],
             'message_2' => '',
         ],
@@ -214,9 +214,9 @@ return [
             'to_1' => 'Εμφάνιση εξωφύλλου',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
+            'daily' => 'Καθημερινά σερί',
+            'daily_streak_best' => 'Καλύτερο Καθημερινό Σερί',
+            'daily_streak_current' => 'Τρέχουσα Καθημερινό Σερί',
             'playcount' => '',
             'title' => '',
             'top_10p_placements' => '',
@@ -235,7 +235,7 @@ return [
                 'button' => 'Αλλάξτε το Εξώφυλλο του Προφίλ σας',
                 'defaults_info' => 'Περισσότερα εξώφυλλα θα είναι διαθέσιμα στο μέλλον',
                 'holdover_remove_confirm' => "",
-                'title' => '',
+                'title' => 'Εξώφυλλο',
 
                 'upload' => [
                     'broken_file' => 'Αποτυχία επεξεργασίας εικόνας. Ελέγξτε την εικόνα και προσπαθήστε ξανά.',
@@ -259,12 +259,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Επαναφορά χρώματος στην προεπιλογή; Η ετικέτα υποστηρικτή (osu!supporter tag) θα χρειαστεί για να το αλλάξεις σε άλλο χρώμα.',
+                'title' => 'Χρώμα',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Προσαρμοσμένα θέματα χρωμάτων διαθέσιμα μόνο για :link',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Πρόσφατες Αναρτήσεις',
                 'show_more' => 'δείτε περισσότερες δημοσιεύσεις',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Ιστοσελίδα',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Μπορεί να έχει αλλάξει όνομα χρήστη.',
             'reason_2' => 'Ο λογαριασμός μπορεί να είναι προσωρινά μη διαθέσιμος λόγω προβλημάτων ασφάλειας η κατάχρησης.',
@@ -497,12 +505,12 @@ return [
             'highest' => 'Υψηλότερη κατάταξη: :rank στο :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Κορυφαίο :value',
+            'total_score' => 'Συνολικό σκορ',
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Χτυπήματα Ανά Αναπαραγωγή',
             'level' => 'Επίπεδο :level',
             'level_progress' => 'Πρόοδος για επόμενο επίπεδο',
             'maximum_combo' => 'Μέγιστο Combo',

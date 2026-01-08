@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Завантажити osu!',
-        'action_lazer' => 'Завантажити osu!(lazer)',
-        'action_lazer_description' => 'наступне глобальне оновлення osu!',
         'action_lazer_info' => 'перейдіть на цю сторінку для того що дізнатись більше інформації',
-        'action_lazer_title' => 'спробуйте osu!(lazer)',
-        'action_title' => 'завантажити osu!',
+        'download' => 'Завантажити ',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'дзеркало',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version або новіше',
         'other_os' => 'інші платформи',
         'quick_start_guide' => 'короткий посібник',
-        'tagline' => "ну ж бо<br>розпочнімо!",
+        'stable_text' => 'якщо ви шукаєте старішу версію гри',
+        'tagline_1' => 'давайте ж',
+        'tagline_2' => 'розпочнемо!',
         'video-guide' => 'відео інструкція',
 
         'help' => [
@@ -155,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Відкрити консоль адміністратора',
             ],
         ],
     ],

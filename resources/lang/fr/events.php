@@ -8,7 +8,7 @@ return [
     'beatmap_playcount' => ':beatmap a été jouée :count fois !',
     'beatmapset_approve' => ':beatmapset par <strong>:user</strong> a été :approval !',
     'beatmapset_delete' => ':beatmapset a été supprimée.',
-    'beatmapset_revive' => ':beatmapset a été réveillée de son sommeil éternel par <strong>:user</strong>.',
+    'beatmapset_revive' => ':beatmapset a revécu de son sommeil éternel par <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> a mis à jour la beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> a publié une nouvelle beatmap ":beatmapset"',
     'empty' => "Cet utilisateur n'a rien fait de notable récemment !",

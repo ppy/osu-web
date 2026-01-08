@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => '活躍中',
+            'ended' => '已結束',
         ],
     ],
 
@@ -168,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => '請依照《:policy》的規定，透過 DMCA 聲明向 :mail 檢舉著作權侵權。',
+                'policy' => 'osu! 著作權政策',
             ],
-            'message_2' => '',
+            'message_2' => '本規定適用於未經合法授權使用音訊、視覺內容或圖譜內容的情況。',
         ],
 
         'options' => [
             'cheating' => '違規 / 作弊',
-            'copyright_infringement' => '',
+            'copyright_infringement' => '侵犯版權',
             'inappropriate_chat' => '不適當的聊天行為',
             'insults' => '侮辱我 / 其他人',
             'multiple_accounts' => '使用多個帳號',
@@ -399,6 +399,9 @@ return [
                 'title_longer' => '最新貼文',
                 'show_more' => '顯示更多貼文',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => '最近活動',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => '個人網站',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => '他可能已經更換了使用者名稱。',
             'reason_2' => '該帳號因安全或濫用問題故暫不開放。',
@@ -502,7 +510,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => '準確率',
-            'hits_per_play' => '',
+            'hits_per_play' => '每次遊玩打擊數',
             'level' => '等級 :level',
             'level_progress' => '距離下一級的進度',
             'maximum_combo' => '最大連擊',

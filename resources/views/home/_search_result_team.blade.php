@@ -53,7 +53,7 @@
                 <span class="fal fa-extra-mode-{{ App\Models\Beatmap::modeStr($team->default_ruleset_id) }}"></span>
             </span>
             <div
-                class="js-react--team-extra-menu u-contents u-hover"
+                class="js-react u-contents u-hover" data-react="team-extra-menu"
                 data-props="{{ json_encode([
                     'leaderUsername' => $leader->username,
                     'teamId' => $team->getKey(),

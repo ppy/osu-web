@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Đang hoạt động',
+            'ended' => 'Đã kết thúc',
         ],
     ],
 
@@ -168,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Vui lòng gửi mọi khiếu nại về vi phạm bản quyền bằng cách gửi yêu cầu DMCA đến :mail theo :policy.',
+                'policy' => 'chính sách bản quyền của osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Đây áp dụng cho các trường hợp bài hát, hình ảnh hoặc beatmap bị sử dụng mà không có quyền cho phép.',
         ],
 
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Vi phạm bản quyền',
             'inappropriate_chat' => 'Hành vi trò chuyện không phù hợp',
             'insults' => 'Xúc phạm tôi / những người khác',
             'multiple_accounts' => 'Sử dụng nhiều tài khoản',
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Bài viết gần đây',
                 'show_more' => 'xem bài viết khác',
             ],
+            'quickplay' => [
+                'title' => 'Ván chơi nhanh',
+            ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'title' => 'Chơi nhanh',
+        ],
+
         'not_found' => [
             'reason_1' => 'Có thể họ đã đổi tên tài khoản.',
             'reason_2' => 'Tài khoản của họ có thể tạm thời không khả dụng vì vấn đề an ninh hoặc lạm dụng.',

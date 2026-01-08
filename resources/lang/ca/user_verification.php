@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Escriviu el codi de l\'Authenticator.',
+
+        'info' => [
+            'logout' => [
+                '_' => 'També podeu :link.',
+                'link' => 'tancar la sessió',
+            ],
+            'mail_fallback' => [
+                '_' => 'Si no podeu entrar a l\'aplicació, :link.',
+                'link' => 'podeu fer la verificació amb el correu electrònic',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'El codi de verificació ha caducat, s\'ha enviat un correu electrònic de verificació nou.',
         'incorrect_key' => 'Codi de verificació incorrecte.',
         'retries_exceeded' => 'Codi de verificació incorrecte. S\'ha excedit el límit de reintents, s\'ha enviat un correu electrònic de verificació nou.',
         'reissued' => 'S\'ha reeditat el codi de verificació, s\'ha enviat un nou correu electrònic de verificació.',
+        'totp_used_key' => 'El codi de verificació ja s\'ha fet servir. Espereu un moment i feu-ne servir un de nou.',
+        'totp_gone' => 'El testimoni d\'autenticació s\'ha eliminat. Es canvia a verificació per correu electrònic. S\'ha enviat un correu electrònic.',
         'unknown' => 'S\'ha produït un problema desconegut, s\'ha enviat un correu electrònic de verificació nou.',
     ],
 ];

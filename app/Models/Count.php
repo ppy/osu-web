@@ -25,6 +25,11 @@ class Count extends Model
         return "pp_rank_column_{$ruleset}";
     }
 
+    public static function lastProcessedScoreId(): static
+    {
+        return static::firstOrCreate(['name' => 'last_processed_score_id'], ['count' => 0]);
+    }
+
     public static function totalUsers(): static
     {
         return static::firstOrCreate(['name' => 'usercount'], ['count' => 0]);
@@ -33,5 +38,13 @@ class Count extends Model
     public static function lastMailUserNotificationIdSent(): static
     {
         return static::firstOrCreate(['name' => 'last_mail_user_notification_id_sent'], ['count' => 0]);
+    }
+
+    public static function lastNewsPostPublishedAtNotified(): static
+    {
+        return static::firstOrCreate(
+            ['name' => 'last_news_post_published_at_notified'],
+            ['count' => NewsPost::default()->first()?->published_at->timestamp ?? 0],
+        );
     }
 }

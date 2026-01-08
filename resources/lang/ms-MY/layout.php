@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'maklumat',
             'discussions' => 'perbincangan',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'penyelarasan',
             'playlists' => 'senarai main',
+            'quickplay' => '',
             'realtime' => 'pemain ramai',
             'show' => 'maklumat',
         ],
@@ -109,7 +111,7 @@ return [
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => 'Undang-Undang & Status',
+            '_' => 'Undang-Undang & Taraf',
             'copyright' => 'Hak Cipta (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Kebersendirian',
@@ -158,7 +160,7 @@ return [
             'description' => "Kami diberitahu tentang setiap ralat secara automatik.",
         ],
         '503' => [
-            'error' => 'Tergendala bagi penyelenggaraan!',
+            'error' => 'Tergendala untuk penyelenggaraan!',
             'description' => "Penyelenggaraan biasanya mengambil masa antara 5 saat hingga 10 minit. Sekiranya kami tergendala lebih lama, lihat :link untuk maklumat lanjut.",
             'link' => [
                 'text' => '',
@@ -180,7 +182,7 @@ return [
 
             'error' => [
                 'email' => "Nama pengguna atau alamat e-mel tidak ada",
-                'password' => 'Kata laluan tidak betul',
+                'password' => 'Kata laluan salah',
             ],
         ],
 

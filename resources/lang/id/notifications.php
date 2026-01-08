@@ -40,7 +40,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Guest difficulty',
+                '_' => 'Tingkat kesulitan tamu',
                 'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan ":beatmap" pada beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Kamu telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
             ],
@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username membalas komentar yang kamu tulis pada ":title" dengan ":content"',
                 'comment_reply_compact' => ':username membalas komentarmu dengan ":content"',
             ],
+
+            'news_post' => [
+                '_' => 'Berita (:series)',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
+            ],
         ],
 
         'forum_topic' => [
@@ -215,7 +222,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik guest difficulty pada beatmap ":title"',
+                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan tamu pada beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Terdapat komentar baru pada topik berita ":title"',
+            ],
+
+            'news_post' => [
+                'news_post_new' => 'Berita (:series): ":title"',
             ],
         ],
 

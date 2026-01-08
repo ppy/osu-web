@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Értékelési Szórás',
             'nominations' => 'Nominálások',
             'playcount' => 'Játékszám',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

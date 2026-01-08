@@ -259,6 +259,7 @@ class AccountController extends Controller
             'audio_volume:float',
             'beatmapset_card_size:string',
             'beatmapset_download:string',
+            'beatmapset_show_anime_cover:bool',
             'beatmapset_show_nsfw:bool',
             'beatmapset_title_show_original:bool',
             'comments_show_deleted:bool',
@@ -310,6 +311,14 @@ class AccountController extends Controller
         } else {
             return ModelNotSavedException::makeResponse(null, compact('user'));
         }
+    }
+
+    public function verificationMailFallback()
+    {
+        return SessionVerification\Controller::mailFallback(
+            SessionVerification\State::getCurrent(),
+            SessionVerification\Controller::FALLBACK_MODES['user_initiated'],
+        );
     }
 
     public function verify()

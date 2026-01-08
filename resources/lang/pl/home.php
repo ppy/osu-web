@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Pobierz osu!',
-        'action_lazer' => 'Pobierz osu!(lazer)',
-        'action_lazer_description' => 'nadchodząca nowa wersja osu!',
         'action_lazer_info' => 'sprawdź ten artykuł, aby dowiedzieć się więcej',
-        'action_lazer_title' => 'wypróbuj osu!(lazer)',
-        'action_title' => 'pobierz osu!',
+        'download' => 'Pobierz',
         'for_os' => 'dla systemu :os',
         'macos-fallback' => 'użytkownicy macOS',
         'mirror' => 'serwer lustrzany',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version lub nowszych',
         'other_os' => 'inne platformy',
         'quick_start_guide' => 'krótki przewodnik',
-        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
+        'stable_text' => 'jeżeli szukasz starego klienta gry',
+        'tagline_1' => 'rozpocznij swoją',
+        'tagline_2' => 'przygodę!',
         'video-guide' => 'poradnik',
 
         'help' => [

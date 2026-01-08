@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Create and edit forum topics and posts on your behalf.',
+            'write_manage' => 'Manage forum topics and posts on your behalf.',
         ],
 
         'friends' => [

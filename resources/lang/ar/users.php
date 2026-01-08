@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'المنشورات الحديثة',
                 'show_more' => 'عرض المزيد من المنشورات',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'الأخيرة',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'الموقع',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'لربما غير اسم المستخدم الخاص به.',
             'reason_2' => 'الحساب غير متوفر حالياََ بسبب الأمان او مشاكل اخرى.',

@@ -57,7 +57,7 @@ return [
         'show_more_options' => 'afficher plus d’options',
         'submit' => 'Envoyer',
         'unpin' => 'désépingler',
-        'update' => 'Enregistrer',
+        'update' => 'Mettre à jour',
         'upload_image' => 'mettre en ligne une image',
 
         'watch' => [
@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited minute|:count_delimited minutes',
         'months' => ':count_delimited mois|:count_delimited mois',
         'notifications' => ':count_delimited notification|:count_delimited notifications',
+        'player' => ':count_delimited joueur|:count_delimited joueurs',
         'plus_others' => '+ :count_delimited autre !|+ :count_delimited autres !',
         'post' => ':count_delimited post|:count_delimited posts',
         'second_short_unit' => 'sec|secs',

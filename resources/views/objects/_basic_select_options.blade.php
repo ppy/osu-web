@@ -3,10 +3,11 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div
-    class="js-react--basic-select-options"
+    class="js-react"
     data-basic-select-options="{{ json_encode($selectOptions) }}"
+    data-react="basic-select-options"
 >
-    <div class="select-options">
+    <div class="{{ class_with_modifiers('select-options', $selectOptions['modifiers'] ?? null) }}">
         <div class="select-options__select">
             <span class="select-options__option">
                 <div class="u-ellipsis-overflow">

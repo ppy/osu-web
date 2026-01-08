@@ -10,10 +10,13 @@ namespace App\Models\Solo;
 use App\Enums\Ruleset;
 use App\Enums\ScoreRank;
 use App\Exceptions\InvariantException;
+use App\Libraries\Score\ReplayFile;
 use App\Libraries\Score\ScoringMode;
 use App\Libraries\Score\UserRank;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
+use App\Models\Build;
+use App\Models\Count;
 use App\Models\Model;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
@@ -21,8 +24,8 @@ use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
 use Carbon\CarbonImmutable;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use LaravelRedis;
 
 /**
@@ -139,19 +142,19 @@ class Score extends Model implements Traits\ReportableInterface
         return $params;
     }
 
-    public static function replayFileDiskName(): string
-    {
-        return "{$GLOBALS['cfg']['osu']['score_replays']['storage']}-solo-replay";
-    }
-
-    public static function replayFileStorage(): Filesystem
-    {
-        return \Storage::disk(static::replayFileDiskName());
-    }
-
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
+
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'build_id');
+    }
+
+    public function legacyScore(): MorphTo
+    {
+        return $this->morphTo(__FUNCTION__, 'legacy_score_type', 'legacy_best_id');
     }
 
     public function user()
@@ -268,11 +271,26 @@ class Score extends Model implements Traits\ReportableInterface
             'is_perfect_combo' => $this->isPerfectCombo(),
             'legacy_perfect' => $this->isPerfectLegacyCombo(),
 
+            'legacy_best_id' => $this->getLegacyBestId(),
+            'legacy_score_type' => $this->getLegacyScoreType(),
+
             'beatmap',
+            'build',
+            'legacyScore',
             'performance',
             'processHistory',
             'reportedIn',
             'user' => $this->getRelationValue($key),
+        };
+    }
+
+    #[\Override]
+    public function getAttributeFromArray($key)
+    {
+        return match ($key) {
+            'legacy_best_id',
+            'legacy_score_type' => $this->getAttribute($key),
+            default => parent::getAttributeFromArray($key),
         };
     }
 
@@ -329,11 +347,6 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
-    public function getReplayFile(): ?string
-    {
-        return static::replayFileStorage()->get($this->getKey());
-    }
-
     public function isLegacy(): bool
     {
         return $this->legacy_score_id !== null;
@@ -387,7 +400,10 @@ class Score extends Model implements Traits\ReportableInterface
         return null;
     }
 
-    public function isProcessed(): bool
+    /**
+     * The value is only accurate if the instance was fetched with `forListing` scope
+     */
+    public function isProcessed(): ?bool
     {
         if ($this->legacy_score_id !== null) {
             return true;
@@ -397,16 +413,12 @@ class Score extends Model implements Traits\ReportableInterface
             return $this->attributes['processed_version'] !== null;
         }
 
-        return $this->processHistory !== null;
-    }
+        $lastProcessedScoreId = request_attribute_remember(
+            'last_processed_score_id',
+            fn (): int => Count::lastProcessedScoreId()->count,
+        );
 
-    public function legacyScore(): ?LegacyScore\Best\Model
-    {
-        $id = $this->legacy_score_id;
-
-        return $id === null
-            ? null
-            : LegacyScore\Best\Model::getClass($this->getMode())::find($id);
+        return $this->getKey() <= $lastProcessedScoreId;
     }
 
     public function makeLegacyEntry(): LegacyScore\Model
@@ -502,6 +514,13 @@ class Score extends Model implements Traits\ReportableInterface
         ]));
     }
 
+    public function replayFile(): ?ReplayFile
+    {
+        return !$this->isLegacy() && $this->has_replay
+            ? new ReplayFile($this)
+            : null;
+    }
+
     public function trashed(): bool
     {
         return false;
@@ -538,6 +557,18 @@ class Score extends Model implements Traits\ReportableInterface
             'reason' => 'Cheating',
             'user_id' => $this->user_id,
         ];
+    }
+
+    private function getLegacyBestId(): ?int
+    {
+        $bestId = $this->legacy_score_id;
+
+        return $bestId === null || $bestId === 0 ? null : $bestId;
+    }
+
+    private function getLegacyScoreType(): string
+    {
+        return 'score_best_'.Beatmap::modeStr($this->ruleset_id);
     }
 
     /**

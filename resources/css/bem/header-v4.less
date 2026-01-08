@@ -8,6 +8,10 @@
     display: none;
   }
 
+  &--beatmapset {
+    --header-nav-count-bg: hsl(var(--hsl-b2));
+  }
+
   &__bg {
     margin: auto;
     width: 100%;
@@ -113,7 +117,8 @@
       .at2x-simple("~@images/headers/tournament-v2.jpg");
     }
 
-    .@{_top}--users & {
+    .@{_top}--users &,
+    .@{_top}--team & {
       opacity: 0.25;
       filter: blur(50px);
     }

@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Érvénytelen ellenőrző kód, új visszaigazoló e-mail lett küldve.',
         'incorrect_key' => 'Helytelen hitelesítő kód.',
         'retries_exceeded' => 'Helytelen hitelesítő kód. Újrapróbálkozási korlát túllépve, új ellenőrző e-mail elküldve.',
         'reissued' => 'Ellenőrző kód kiadva, új visszaigazoló e-mail lett küldve.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Ismeretlen hiba történt, új visszaigazoló email küldve.',
     ],
 ];

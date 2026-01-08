@@ -7,7 +7,7 @@
 ])
 
 @section('content')
-    <div class="js-react--changelog-build u-contents"></div>
+    <div class="js-react u-contents" data-react="changelog-build"></div>
 
     <script id="json-build" type="application/json">
         {!! json_encode($buildJson) !!}

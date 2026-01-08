@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Aktywne',
+            'ended' => 'Zakończone',
         ],
     ],
 
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Ostatnie posty',
                 'show_more' => 'zobacz więcej postów',
             ],
+            'quickplay' => [
+                'title' => 'Mecze w trybie szybkiej gry',
+            ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Strona internetowa',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Użytkownik mógł zmienić swoją nazwę.',
             'reason_2' => 'Konto użytkownika mogło zostać zablokowane.',

@@ -15,12 +15,12 @@ return [
             'ok' => 'Liittymiskutsu kielletty.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Pyydetty tiimiin liittymistä.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited jäsen|:count_delimited jäsentä',
     ],
 
     'create' => [
@@ -39,16 +39,16 @@ return [
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Tiimi poistettu.',
     ],
 
     'edit' => [
         'ok' => 'Asetukset tallennettu onnistuneesti.',
-        'title' => '',
+        'title' => 'Tiimin Asetukset',
 
         'description' => [
             'label' => 'Kuvaus',
-            'title' => '',
+            'title' => 'Tiimin Kuvaus',
         ],
 
         'flag' => [
@@ -57,16 +57,16 @@ return [
         ],
 
         'header' => [
-            'label' => '',
+            'label' => 'Otsikon Kuva',
             'title' => 'Aseta Otsikkokuva',
         ],
 
         'settings' => [
-            'application_help' => '',
+            'application_help' => 'Sallitaanko pelaajien hakea tiimiin',
             'default_ruleset_help' => '',
             'flag_help' => 'Enimmäiskoko :width×:height',
             'header_help' => 'Enimmäiskoko :width×:height',
-            'title' => '',
+            'title' => 'Tiimin Asetukset',
 
             'application_state' => [
                 'state_0' => 'Suljettu',
@@ -76,12 +76,12 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'asetukset',
+        'leaderboard' => 'tulostaulukko',
+        'show' => 'info',
 
         'members' => [
-            'index' => '',
+            'index' => 'hallinoi jäseniä',
         ],
     ],
 
@@ -95,71 +95,71 @@ return [
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Hallinoi Jäseniä',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
+                'accept_confirm' => 'Lisätäänkö käyttäjä :user tiimiin?',
+                'created_at' => 'Pyydetty ',
+                'empty' => 'Ei liittymispyyntöjä tällä hetkellä.',
+                'empty_slots' => 'Vapaita paikkoja',
                 'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'reject_confirm' => 'Hylätäänkö liittymispyynto käyttäjältä :user?',
+                'title' => 'Liittymispyynnöt',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
+                'joined_at' => 'Liittymispäivämäärä',
+                'remove' => 'Poista',
                 'remove_confirm' => 'Haluatko poistaa käyttäjän :user joukkueestasi?',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'set_leader' => 'Siirrä tiimin johtajuus',
+                'set_leader_confirm' => 'Siirretäänkö tiimin johtajuus käyttäjälle :user?',
+                'status' => 'Tila',
+                'title' => 'Nykyiset Jäsenet',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Epäaktiivinen',
+                'status_1' => 'Aktiivinen',
             ],
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Käyttäjä :user on nyt tiiminjohtaja.',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Lähti tiimistä ;_;',
     ],
 
     'show' => [
         'bar' => [
             'chat' => 'Tiimikeskustelu',
             'destroy' => 'Hajota joukkue',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'join' => 'Pyydä Liittymistä',
+            'join_cancel' => 'Peruuta Liittyminen',
+            'part' => 'Lähde Tiimistä',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'Muodostettu',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Tiimin Jäsenet',
+            'owner' => 'Tiimin Johtaja',
         ],
 
         'sections' => [
             'about' => 'Tietoa meistä!',
             'info' => 'Info',
-            'members' => '',
+            'members' => 'Jäsenet',
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited paikka jäljellä|:count_delimited paikkaa jäljellä',
             'leader' => 'Joukkuejohtaja',
-            'rank' => '',
+            'rank' => 'Sijoitus',
         ],
     ],
 

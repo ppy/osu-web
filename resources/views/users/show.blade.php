@@ -13,8 +13,9 @@
     @include('users._restricted_banner', compact('user'))
 
     <div
-        class="js-react--profile-page u-contents"
+        class="js-react u-contents"
         data-initial-data="{{ json_encode($initialData) }}"
+        data-react="profile-page"
     ></div>
 @endsection
 

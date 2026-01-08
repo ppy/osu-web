@@ -5,12 +5,12 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
+        'all_scope_no_client_credentials' => '* är inte tillåtet med klientuppgifter',
         'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'delegate_client_credentials_only' => '',
+        'client_missing_owner' => 'Klienten saknar ägare.',
+        'client_unauthorized' => 'Klienten är inte auktoriserad.',
+        'delegate_bot_only' => 'Delegering med klientuppgifter är endast tillgänglig för chattrobotar.',
+        'client_credentials_only' => '',
         'delegate_invalid_combination' => '',
         'delegate_required' => '',
         'empty' => '',

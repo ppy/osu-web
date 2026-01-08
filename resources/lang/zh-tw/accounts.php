@@ -9,7 +9,7 @@ return [
         'username' => '使用者名稱',
 
         'avatar' => [
-            'title' => '編輯頭像',
+            'title' => '頭像',
             'reset' => '重設',
             'rules' => '請確保您的頭貼遵守 :link 的規範。<br/>這表示它必須<strong>適合所有年齡層</strong>，也就是說不能包含裸露、冒犯性或暗示性的內容。',
             'rules_link' => '視覺內容注意事項',
@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '接收以下模式的合格圖譜新問題通知',
         'beatmapset_disqualify' => '在以下模式的圖譜被標記為取消資格時收到通知',
         'comment_reply' => '接收您留言被回覆的通知',
+        'news_post' => '接收新貼文的消息貼文',
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用您建立或回覆的新論壇主題通知',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵件',
             'mapping' => '譜師',
+            'news_post' => '',
             'push' => '推送',
         ],
     ],
@@ -127,12 +129,13 @@ return [
     'privacy' => [
         'friends_only' => '封鎖非好友的私人訊息',
         'hide_online' => '隱藏線上狀態',
+        'hide_online_info' => '這會使你的帳號在 osu!lazer 中處於離線狀態',
         'title' => '隱私權政策',
     ],
 
     'security' => [
         'current_session' => '目前',
-        'end_session' => '終止工作階段',
+        'end_session' => '結束工作階段',
         'end_session_confirmation' => '這將立即結束這個裝置上的工作階段。您確定嗎？',
         'last_active' => '上次使用：',
         'title' => '安全性',
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => '更新',
+    ],
+
+    'user_totp' => [
+        'title' => '驗證應用程式',
+        'usage_note' => '會以驗證應用程式代替電子郵件驗證。 電子郵件驗證仞然會以備用的驗證方式做使用。',
+
+        'button' => [
+            'remove' => '移除',
+            'setup' => '新增驗證應用程式',
+        ],
+        'status' => [
+            'label' => '狀態',
+            'not_set' => '未設定',
+            'set' => '已設定',
+        ],
     ],
 
     'verification_completed' => [

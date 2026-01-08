@@ -19,7 +19,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, filterMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -157,7 +157,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
 
         <TdLink href={this.scoreUrl} modifiers='mods'>
           <div className={`${bn}__mods`}>
-            {filterMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            {displayMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
           </div>
         </TdLink>
 

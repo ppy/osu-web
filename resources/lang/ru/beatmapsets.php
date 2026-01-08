@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Распределение оценок',
             'nominations' => 'Номинации',
             'playcount' => 'Количество игр',
+            'favourites' => 'В избранных у игроков',
+            'no_favourites' => 'Пока нет ни у кого в избранных',
         ],
 
         'status' => [

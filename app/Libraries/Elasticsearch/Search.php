@@ -26,6 +26,9 @@ abstract class Search extends HasSearch implements Queryable
      */
     public ?string $loggingTag;
 
+    // with unit suffix
+    public string $searchTimeout;
+
     protected $aggregations;
     protected $index;
     protected $queryString;
@@ -39,6 +42,7 @@ abstract class Search extends HasSearch implements Queryable
         parent::__construct($params);
 
         $this->index = $index;
+        $this->searchTimeout = $GLOBALS['cfg']['osu']['elasticsearch']['search_timeout'];
     }
 
     public function assertNoError(): void
@@ -91,11 +95,17 @@ abstract class Search extends HasSearch implements Queryable
         return $this->count;
     }
 
+    /**
+     * Sends a query to delete all documents in the index and waits for a refresh.
+     */
     public function deleteAll(): void
     {
+        // Force a refresh to flush pending index writes. Should be fine since this function is only used during testing.
+        $this->client()->indices()->refresh(['index' => $this->index]);
         $this->client()->deleteByQuery([
-            'index' => $this->index,
             'body' => ['query' => ['match_all' => (object) []]],
+            'index' => $this->index,
+            'refresh' => true,
         ]);
     }
 
@@ -203,7 +213,7 @@ abstract class Search extends HasSearch implements Queryable
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
             }, $this->params->sorts),
-            'timeout' => $GLOBALS['cfg']['osu']['elasticsearch']['search_timeout'],
+            'timeout' => $this->searchTimeout,
         ];
 
         if (isset($this->params->searchAfter)) {

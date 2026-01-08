@@ -8,7 +8,7 @@ return [
     'heading' => 'Zaglavlje',
     'help' => 'Pomoc',
     'image' => 'Fotografija',
-    'imagemap' => '',
+    'imagemap' => 'Slika Mapa',
     'italic' => 'Ukošen',
     'link' => 'Poveznica',
     'list' => 'Lista',

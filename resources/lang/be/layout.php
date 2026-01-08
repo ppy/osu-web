@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'інфармацыя',
             'discussions' => 'абмеркаванне',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'модынг',
             'playlists' => 'плэйлісты',
+            'quickplay' => '',
             'realtime' => 'мультыплэер',
             'show' => 'інфармацыя',
         ],
@@ -113,7 +115,7 @@ return [
             'copyright' => 'Аўтарскія правы (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Прыватнасць',
-            'rules' => '',
+            'rules' => 'Правілы',
             'server_status' => 'Стан сервераў',
             'source_code' => 'Зыходны код',
             'terms' => 'Умовы выкарыстання',

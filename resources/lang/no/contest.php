@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'kommentarer',
         'hide_judged' => 'skjul dømmede innslag',
         'nav_title' => 'dommer',
         'no_current_vote' => 'du har ikke stemt enda.',

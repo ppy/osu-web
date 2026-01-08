@@ -11,7 +11,17 @@ class AchievementTransformer extends TransformerAbstract
 {
     public function transform(Achievement $achievement)
     {
+        $rulesetName = $achievement->mode;
+
+        $userCount = app('user-count-by-ruleset')->get(false, $rulesetName);
+        $achievedCount = $achievement->achieved_count;
+        $achievedPercent = $userCount === null
+            ? null
+            : min(1, $achievedCount / max(1, $userCount));
+
         return [
+            'achieved_count' => $achievedCount,
+            'achieved_percent' => $achievedPercent,
             'icon_url' => $achievement->iconUrl(),
             'id' => $achievement->achievement_id,
             'name' => $achievement->name,
@@ -19,7 +29,7 @@ class AchievementTransformer extends TransformerAbstract
             'ordering' => $achievement->ordering,
             'slug' => $achievement->slug,
             'description' => $achievement->description,
-            'mode' => $achievement->mode,
+            'mode' => $rulesetName,
             'instructions' => $achievement->quest_instructions,
         ];
     }

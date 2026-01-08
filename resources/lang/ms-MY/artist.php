@@ -8,7 +8,7 @@ return [
     'title' => 'Artis Sorotan',
 
     'admin' => [
-        'hidden' => 'ARTIS KINI TERSEMBUNYI',
+        'hidden' => 'ARTIS KINI TERSOROK',
     ],
 
     'beatmaps' => [
@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Artis Sorotan ialah para seniman yang bekerjasama dengan kami untuk membawa muzik baharu dan asli ke osu!. Artis-artis ini dan runut-runut terpilih mereka telah dipetik khas oleh kumpulan osu! kerana gempaks dan sesuai untuk pemetaan. Sebahagian Artis Sorotan ini juga telah mencipta runut-runut baru yang eksklusif untuk digunakan dalam osu!.<br><br>Semua runut dalam bahagian ini disediakan selaku fail .osz terpramasa dan telah sah dilesenkan untuk digunakan dalam osu! dan kandungan berkaitan.',
+        'description' => 'Artis Sorotan ialah para seniman yang bekerjasama dengan kami bagi membawa muzik baharu dan asli ke osu!. Artis-artis ini dan runut-runut terpilih mereka telah dipetik khas oleh pasukan osu! kerana gempaks dan sesuai untuk dipeta. Sebahagian Artis Sorotan ini juga telah mencipta runut-runut baru yang eksklusif untuk digunakan dalam osu!.<br><br>Semua runut dalam bahagian ini disediakan selaku fail .osz terpramasa dan telah sah dilesenkan untuk digunakan dalam osu! dan kandungan berkaitan.',
     ],
 
     'links' => [

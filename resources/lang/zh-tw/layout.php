@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => '資訊',
             'discussions' => '討論',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => '摸圖',
             'playlists' => '歌單',
+            'quickplay' => '',
             'realtime' => '多人遊戲',
             'show' => '資訊',
         ],
@@ -113,7 +115,7 @@ return [
             'copyright' => '版權（DMCA）',
             'jp_sctl' => '',
             'privacy' => '隱私政策',
-            'rules' => '',
+            'rules' => '規則',
             'server_status' => '伺服器狀態',
             'source_code' => '原始碼',
             'terms' => '服務條款',

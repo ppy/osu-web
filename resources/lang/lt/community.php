@@ -23,7 +23,7 @@ return [
                 'description' => 'Įnašai naudojami serveriams, kad išlaikyti veikianti tinklalapį, žaidimo tinkle paslaugas, internetinę rezultatų lentas, t. t.',
             ],
             'featured-artists' => [
-                'title' => 'Rekomenduojami Atlikėjai',
+                'title' => 'Ryškieji Atlikėjai',
                 'description' => 'Su jūsų parama, mes galime susisiekti su daugiau šaunių atlikėjų ir licencijuoti daugiau geros muzikos osu! naudojimui!',
                 'link_text' => 'Rodyti dabartinį sąrašą &raquo;',
             ],
@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Ačiū už jūsų tęsiamą rėmimą! Per šį laiką prisidėjote :dollars kas yra verta :duration "Rėmėjo" žymos.',
             'not_yet' => "Jūs dar nesate turėjęs osu!rėmėjo žymos :(",
             'valid_until' => 'Jūsų osu!rėmėjo žyma galioja iki :date!',
             'was_valid_until' => 'Jūsų osu!rėmėjo žyma buvo galiojanti :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Iš jūsų viso prisidėjimo dovanota :dollars kas yra verta :users, tai apima :duration. Tai labai dosnu!',
+                'users' => ':count_delimited žymė kitam vartotojui|:count_delimited žymių kitiems vartotojams',
             ],
         ],
     ],

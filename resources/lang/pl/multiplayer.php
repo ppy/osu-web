@@ -5,9 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Brak aktywnych gier w trybie :type_group!',
+        'ended' => 'Brak zakończonych gier w trybie :type_group!',
         'playlists' => 'asynchronicznym',
+        'quickplay' => 'szybka gra',
         'realtime' => 'wieloosobowym',
     ],
 

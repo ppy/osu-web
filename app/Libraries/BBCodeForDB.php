@@ -129,7 +129,7 @@ class BBCodeForDB
 
     public function parseImage($text)
     {
-        preg_match_all('#\[img\](?<url>.*?)\[/img\]#', $text, $images, PREG_SET_ORDER);
+        preg_match_all('#\[img\](?<url>[^[]+)\[/img\]#', $text, $images, PREG_SET_ORDER);
 
         foreach ($images as $i) {
             $escapedUrl = $this->extraEscapes($i['url']);
@@ -180,7 +180,7 @@ class BBCodeForDB
         // internal url
         $text = preg_replace(
             "#{$spaces[0]}({$internalUrl}/([^\s]+?))(?={$spaces[1]})#",
-            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\3</a><!-- m -->",
+            "\\1<!-- m --><a href=\"\\2\">\\3</a><!-- m -->",
             $text
         );
 

@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    <div class="js-react--beatmapset-page u-contents"></div>
+    <div class="js-react u-contents" data-react="beatmapset-page"></div>
     @if ($currentUser?->isModerator() || $currentUser?->isAdmin())
         <div class="admin-menu">
             <button class="admin-menu__button js-menu" data-menu-target="admin-beatmapset" type="button">
@@ -31,7 +31,7 @@
                         </span>
                     </a>
                 @endif
-                <a class="admin-menu-item" href="{{ $beatmapset->coverURL('raw') }}" target="_blank">
+                <a class="admin-menu-item" href="{{ $beatmapset->coverURL('fullsize') }}" target="_blank">
                     <span class="admin-menu-item__content">
                         <span class="admin-menu-item__label admin-menu-item__label--icon">
                             <span class="fas fa-image"></span>
@@ -56,6 +56,10 @@
 
     <script id="json-comments" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
+    </script>
+
+    <script id="json-config" type="application/json">
+        {!! json_encode($config) !!}
     </script>
 
     <script id="json-genres" type="application/json">

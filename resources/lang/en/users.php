@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Recent Posts',
                 'show_more' => 'see more posts',
             ],
+            'quickplay' => [
+                'title' => 'Quick Play Matches',
+            ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => 'Twitter',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'title' => 'Quick Play',
+        ],
+
         'not_found' => [
             'reason_1' => 'They may have changed their username.',
             'reason_2' => 'The account may be temporarily unavailable due to security or abuse issues.',

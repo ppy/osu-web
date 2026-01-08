@@ -33,25 +33,50 @@ return [
         'used' => 'Folosit',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Acest utilizator are mai puțin de 30 de zile de istoric în clasamente.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'promovări',
         'country' => 'național',
         'daily_challenge' => 'provocare zilnică',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'seasons' => 'sezoane',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'echipă',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Nu există camere încă în acest sezon.',
         'ongoing' => 'Acest sezon este în curs de desfășurare (vor fi adăugate mai multe playlist-uri).',
         'room_count' => 'Număr playlist-uri',
+        'summary' => '',
         'url' => 'Afișează mai multe informații despre acel sezon.',
         'validation' => [
             'not_enough_factors' => 'nu există suficienți factori de evaluare a scorului pentru un calcul corect',

@@ -6,52 +6,52 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '납득하셨나요? :D',
-            'support' => 'osu! 지원하기',
-            'gift' => '아니면 서포터 태그를 다른 플레이어에게 선물할 수도 있습니다.',
+            'title' => '이제 납득했어요! :D',
+            'support' => 'osu! 후원하기',
+            'gift' => '또는 서포터 태그를 다른 플레이어들에게 선물하실 수도 있어요',
             'instructions' => '하트 버튼을 누르면 osu!store로 이동합니다.',
         ],
         'why-support' => [
-            'title' => 'osu!를 지원하면 뭐가 좋은 거죠? 제 돈은 어디로 가나요?',
+            'title' => '왜 osu!에 후원해야 하나요? 그 후원금은 어디에 쓰이나요?',
 
             'team' => [
                 'title' => '개발진 지원',
-                'description' => '소규모 개발진들이 osu!를 개발하고 운영합니다. 여러분의 도움이 이들이 생존... 하는데 도움이 되겠죠.',
+                'description' => '작은 규모의 개발팀이 osu!를 개발하고 운영해요. 여러분의 후원은 이 분들을... 잘 아시겠지만, 살아갈 수 있도록 해준답니다.',
             ],
             'infra' => [
                 'title' => '서버 인프라',
-                'description' => '여러분의 기부금은 웹사이트, 멀티플레이 서비스, 온라인 리더보드 등의 서버를 운영하는 데에 사용됩니다.',
+                'description' => '후원금은 웹사이트와, 멀티플레이어 서비스, 온라인 리더보드 등을 운영하는데 필요한 서버 운영에 사용돼요.',
             ],
             'featured-artists' => [
                 'title' => '공식 아티스트',
-                'description' => '여러분의 지원 덕분에 더 많은 멋진 아티스트들과 협업하고, osu!에서 사용할 수 있는 더욱 다양한 음악의 사용권을 받을 수 있어요!',
+                'description' => '여러분의 후원은, osu!에 사용할 수 있는 양질의 음악을 위해 더 다양한 아티스트와 접촉하고, 라이센스 이용에 대한 협의를 할 수 있도록 해준답니다.',
                 'link_text' => '현재 아티스트 명단 보기 &raquo;',
             ],
             'ads' => [
-                'title' => 'osu!를 자립하게 유지',
-                'description' => '여러분의 기부금이 게임을 독립적이고, 일체의 광고와 외부 스폰서 없이 자립할 수 있도록 돕습니다.',
+                'title' => 'osu!의 독립적인 운영을 유지',
+                'description' => '여러분의 후원은 게임을 독립적이면서도 광고 또는 외부 스폰서로부터 완전히 자유롭게 해줍니다.',
             ],
             'tournaments' => [
                 'title' => '공식 토너먼트',
-                'description' => 'osu! 공식 월드컵 토너먼트의 운영비 (그리고 상금) 를 마련할 수 있도록 돕습니다.',
+                'description' => '공식 osu! 월드컵 토너먼트의 운영 기금 (상금도 포함) 마련을 도울 수 있어요.',
                 'link_text' => '토너먼트 찾아보기 &raquo;',
             ],
             'bounty-program' => [
                 'title' => '오픈 소스 포상금 프로그램',
-                'description' => '시간과 노력을 투자하여 osu!가 더 나은 방향으로 갈 수 있게 도와주시는 커뮤니티 기여자들을 지원합니다.',
+                'description' => 'osu!가 더 나아지도록 시간과 노력을 할애해 주시는 커뮤니티 기여자 여러분을 도울 수 있어요.',
                 'link_text' => '더 알아보기 &raquo;',
             ],
         ],
         'perks' => [
-            'title' => '그래서 제가 받는 혜택은 뭐가 있는데요?',
+            'title' => '좋아요! 제가 받을 수 있는 혜택은 무엇이 있나요?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => '게임 밖에서 비트맵을 찾을 필요 없이, 게임 내에서 비트맵을 쉽고 빠르게 다운로드 받을 수 있습니다.',
+                'description' => '게임을 떠날 필요 없이 손쉽고 빠르게 비트맵을 검색하고 다운로드받아 보세요.',
             ],
 
             'friend_ranking' => [
                 'title' => '친구 순위',
-                'description' => "게임 내와 웹사이트의 비트맵 리더보드로 친구들과의 실력을 비교해보세요.",
+                'description' => "친구들과 비교했을 때 나 자신은 어디에 위치해 있는지 게임 내에서, 웹사이트를 통해서 확인해 보세요.",
             ],
 
             'country_ranking' => [
@@ -61,12 +61,12 @@ return [
 
             'mod_filtering' => [
                 'title' => '모드순 필터링',
-                'description' => 'HDHR을 플레이하는 사람들만 찾고 싶으신가요? 문제없답니다.',
+                'description' => 'HDHR을 플레이하는 분들과만 함께하고 싶으신가요? 물론이죠!',
             ],
 
             'auto_downloads' => [
                 'title' => '자동 다운로드',
-                'description' => '멀티플레이, 관전, 채팅에 올라온 링크를 누를 때 자동으로 비트맵을 다운로드합니다!',
+                'description' => '멀티플레이어 게임, 다른 분의 플레이를 관전할 때, 또는 채팅에서 관련 링크를 클릭하실 때 비트맵이 자동으로 다운로드돼요!',
             ],
 
             'upload_more' => [
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => '커스터마이징',
-                'description' => "여러분의 유저 페이지를 원하는 기호에 맞게 수정할 수 있습니다.",
+                'description' => "여러분의 유저 페이지를 기호에 맞게 수정할 수 있습니다.",
             ],
 
             'beatmap_filters' => [
@@ -140,12 +140,12 @@ return [
         'supporter_status' => [
             'contribution_with_duration' => '지속적인 지원에 감사드려요! 지금까지, 총 :dollars 을 후원해 주셨고, :duration 동안 "서포터" 태그를 유지하셨어요.',
             'not_yet' => "아직 osu! 서포터 태그를 가지신 적이 없으시네요 :(",
-            'valid_until' => '현재 osu! 서포터 태그는 :date까지 유효합니다!',
+            'valid_until' => '현재 osu!supporter 태그는 :date까지 유효해요!',
             'was_valid_until' => '지난 osu! 서포터 태그는 :date까지 유효했습니다.',
 
             'gifted' => [
-                '_' => '회원님의 총 기부 이력을 살펴보니, :users 님에게 총 :dollars 의 가치가 있는 :duration 기간의 태그를 선물하셨네요. 정말 대단하신데요!',
-                'users' => ':count_delimited 명의 회원이 있음|:count_delimited 명의 회원들이 있음',
+                '_' => '회원님의 총 기부 이력을 살펴보니, :users에게 총 :dollars의 가치가 있는 :duration 기간의 태그를 선물하셨네요. 정말 대단하신데요!',
+                'users' => ':count_delimited 명의 회원님|:count_delimited 명의 회원님 분들',
             ],
         ],
     ],

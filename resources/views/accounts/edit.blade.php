@@ -171,6 +171,8 @@
 
         @include('accounts._edit_email')
 
+        @include('accounts._edit_user_totp')
+
         @include('accounts._edit_sessions')
 
         @include('accounts._edit_oauth')

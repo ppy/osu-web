@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'od :author',
         'download' => 'Preuzmi',
         'item' => [
             'cleared' => 'očišćeno',
@@ -32,8 +32,8 @@ return [
     'mode' => [
         'artist' => 'Izvođač/Album',
         'chart' => 'Istaknuto',
-        'featured' => '',
-        'loved' => '',
+        'featured' => 'Istaknuti Izvođač',
+        'loved' => 'Projekt Loved',
         'standard' => 'Standardni',
         'theme' => 'Tema',
         'tournament' => 'Turnir',

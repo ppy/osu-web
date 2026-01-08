@@ -20,6 +20,7 @@ use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -104,6 +105,7 @@ class Topic extends Model implements AfterCommit
 
     const ISSUE_TAGS = [
         'added',
+        'archived',
         'assigned',
         'confirmed',
         'duplicate',
@@ -116,7 +118,7 @@ class Topic extends Model implements AfterCommit
     ];
 
     const MAX_FIELD_LENGTHS = [
-        'topic_title' => 100,
+        'topic_title' => 255, // matching db, there's separate validation for title_normalised
     ];
 
     const VIEW_COUNT_INTERVAL = 86400; // 1 day
@@ -251,6 +253,11 @@ class Topic extends Model implements AfterCommit
         return $this->attributes['poll_length'] / 86400;
     }
 
+    public function getTitleNormalisedAttribute(): string
+    {
+        return $this->titleNormalized();
+    }
+
     public function getTopicFirstPosterColourAttribute($value)
     {
         if (present($value)) {
@@ -302,9 +309,14 @@ class Topic extends Model implements AfterCommit
     {
         $this->validationErrors()->reset();
 
-        if ($this->isDirty('topic_title') && !present($this->topic_title)) {
-            $this->validationErrors()->add('topic_title', 'required');
+        if ($this->isDirty('topic_title')) {
+            if (!present($this->topic_title)) {
+                $this->validationErrors()->add('topic_title', 'required');
+            }
+
+            $this->validateFieldLength(100, 'topic_title', 'title_normalised');
         }
+
 
         $this->validateDbFieldLengths();
 
@@ -313,17 +325,18 @@ class Topic extends Model implements AfterCommit
 
     public function titleNormalized()
     {
+        $title = $this->topic_title ?? '';
+
         if (!$this->isIssue()) {
-            return $this->topic_title;
+            return $title;
         }
 
-        $title = $this->topic_title;
+        static $tags = array_map(
+            fn (string $t): string => "[{$t}]",
+            static::ISSUE_TAGS,
+        );
 
-        foreach (static::ISSUE_TAGS as $tag) {
-            $title = str_replace("[{$tag}]", '', $title);
-        }
-
-        return trim($title);
+        return trim(str_ireplace($tags, '', $title));
     }
 
     public function issueTags()
@@ -342,6 +355,26 @@ class Topic extends Model implements AfterCommit
 
             return $tags;
         });
+    }
+
+    public function scopeArchivable(Builder $query): void
+    {
+        $query->where('topic_type', '<>', static::TYPES['announcement']);
+    }
+
+    public function scopeDoesntHaveTags(Builder $query, array $tags): void
+    {
+        foreach ($tags as $tag) {
+            $query->whereNot('topic_title', 'LIKE', "%[{$tag}]%");
+        }
+    }
+
+    public function scopeHasAnyTags(Builder $query, array $tags): void
+    {
+        foreach (array_values($tags) as $i => $tag) {
+            $fn = $i === 0 ? 'where' : 'orWhere';
+            $query->$fn('topic_title', 'LIKE', "%[{$tag}]%");
+        }
     }
 
     public function scopePinned($query)
@@ -778,7 +811,7 @@ class Topic extends Model implements AfterCommit
         });
     }
 
-    public function setIssueTag($tag)
+    public function setIssueTag($tag, bool $updateType = true)
     {
         $this->topic_type = static::typeInt($tag === 'confirmed' ? 'sticky' : 'normal');
 
@@ -796,7 +829,7 @@ class Topic extends Model implements AfterCommit
         $this->topic_title = preg_replace(
             '/  +/',
             ' ',
-            trim(str_replace("[{$tag}]", '', $this->topic_title))
+            trim(str_ireplace("[{$tag}]", '', $this->topic_title))
         );
 
         $this->saveOrExplode();
@@ -804,7 +837,7 @@ class Topic extends Model implements AfterCommit
 
     public function hasIssueTag($tag)
     {
-        return strpos($this->topic_title, "[{$tag}]") !== false;
+        return stripos($this->topic_title, "[{$tag}]") !== false;
     }
 
     public function afterCommit()

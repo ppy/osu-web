@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => 'Tidak ada hasil pencarian :modes yang ditemukan',
         'more' => 'Muat Lebih Banyak Hasil Pencarian :mode',
         'title' => 'Hasil Pencarian :mode',
+
+        'no_results' => [
+            '_' => 'Tidak ada hasil untuk :mode',
+
+            'artist_track' => 'Lagu Featured Artist',
+            'beatmapset' => 'Beatmap',
+            'forum_post' => 'Forum',
+            'other' => 'Lainnya',
+            'team' => 'Tim',
+            'user' => 'Pemain',
+            'wiki_page' => 'Wiki',
+        ],
     ],
 ];

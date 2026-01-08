@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskusi',
+            'versions' => 'riwayat versi',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'playlist',
+            'quickplay' => 'permainan kilat',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],

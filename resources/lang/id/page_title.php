@@ -53,6 +53,7 @@ return [
             'discussion' => 'diskusi beatmap',
             'index' => 'daftar beatmap',
             'show' => 'info beatmap',
+            'versions' => 'riwayat versi beatmap',
         ],
         'changelog_controller' => [
             '_' => 'riwayat perubahan',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'kontes',
             'judge' => 'penjurian kontes',
+        ],
+        'group_history_controller' => [
+            '_' => 'riwayat grup',
         ],
         'groups_controller' => [
             'show' => 'grup',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'preset sampul pengguna',
+        ],
+        'user_totp_controller' => [
+            '_' => 'aplikasi autentikator',
         ],
         'users_controller' => [
             '_' => 'info pemain',

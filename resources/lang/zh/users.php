@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => '正在进行',
+            'ended' => '已结束',
         ],
     ],
 
@@ -399,6 +399,9 @@ return [
                 'title_longer' => '最近回复',
                 'show_more' => '查看更多回复',
             ],
+            'quickplay' => [
+                'title' => '匹配模式历史',
+            ],
             'recent_activity' => [
                 'title' => '最近活动',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => '网站',
         ],
+
+        'matchmaking' => [
+            'title' => '快速匹配',
+        ],
+
         'not_found' => [
             'reason_1' => '该用户可能已更改用户名。',
             'reason_2' => '该账号由于安全或滥用问题暂时不可用。',

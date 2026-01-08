@@ -172,8 +172,8 @@ return [
             'out_with_alternative' => 'Sayangnya, stok barang ini sedang tidak tersedia. Gunakan menu dropdown untuk memilih varian lain atau periksa kembali nanti!',
         ],
 
-        'add_to_cart' => 'Tambahkan ke Keranjang',
-        'notify' => 'Beri tahu saya ketika telah tersedia!',
+        'add_to_cart' => 'Tambah ke Keranjang',
+        'notify' => 'Beritahukan saya pada saat tersedia!',
         'out_of_stock' => 'Stok habis',
 
         'notification_success' => 'kamu akan menerima notifikasi pada saat kami memiliki stok baru. klik :link untuk membatalkan',

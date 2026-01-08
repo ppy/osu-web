@@ -4,6 +4,7 @@
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapsetJson from './beatmapset-json';
 import Rank from './rank';
+import { RulesetId } from './ruleset';
 import ScoreModJson from './score-mod-json';
 import UserJson from './user-json';
 import WithBeatmapOwners from './with-beatmap-owners';
@@ -79,7 +80,7 @@ type ScoreJsonAttributes = {
   passed: boolean;
   pp: number | null;
   rank: Rank;
-  ruleset_id: number;
+  ruleset_id: RulesetId;
   started_at: string | null;
   statistics: Partial<Record<ScoreStatisticsAttribute, number>>;
   total_score: number;
@@ -116,6 +117,8 @@ export type ScoreJsonForShow = ScoreJson
 };
 
 export type ScoreJsonForUser = ScoreJson & Required<Pick<ScoreJson, 'beatmap' | 'beatmapset'>>;
+
+export type ScoreJsonForTopPlays = ScoreJson & Required<Pick<ScoreJson, 'beatmap' | 'beatmapset' | 'user'>>;
 
 export function isScoreJsonForUser(score: ScoreJson): score is ScoreJsonForUser {
   return score.beatmap != null && score.beatmapset != null;

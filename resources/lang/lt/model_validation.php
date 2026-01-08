@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Šis :attribute naudoja negalimus simbolius.',
+        'used' => 'Pasirinktas :attribute jau naudojamas.',
+        'word_not_allowed' => 'Pasirinktas :attribute negalimas.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Numatytas rėžimas',
+            'is_open' => 'Komandos paraiška',
+            'name' => 'Pavadinimas',
+            'short_name' => 'Trumpas pavadinimas',
+            'url' => 'URL',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Reitinguoti beatmap\'ai negali būti pranešti',
         'not_in_channel' => 'Jūs neesate šiame kanale.',
-        'in_team' => '',
+        'in_team' => 'Jūs esate komandoje.',
         'reason_not_valid' => ':reason negalioja šiam pranešimo tipui.',
         'self' => "Negalite pranešti savęs!",
     ],

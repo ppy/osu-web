@@ -93,6 +93,16 @@
     padding-bottom: $padding-top;
   }
 
+  &--beatmapset {
+    .default();
+    --padding-x: @gutter-beatmapset;
+    padding: 20px var(--padding-x);
+
+    @media @desktop {
+      --padding-x: @gutter-beatmapset-desktop;
+    }
+  }
+
   &--beatmapsets-search-header {
     .default-box-shadow();
   }
@@ -192,6 +202,16 @@
     .default();
   }
 
+  &--group-history-footer {
+    .default();
+    .default-gutter-v2();
+    background-color: hsl(var(--hsl-b4));
+    font-size: @font-size--normal;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: center;
+  }
+
   &--info-bar {
     .default-gutter-v2();
     padding-top: 5px;
@@ -217,6 +237,10 @@
     font-size: @font-size--title-small;
     display: grid;
     gap: 20px;
+  }
+
+  &--ranking-info-extra {
+    padding-top: 0;
   }
 
   &--small {

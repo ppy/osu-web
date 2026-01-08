@@ -14,8 +14,8 @@ return [
         'top_10p' => '前 10% 的分數',
         'top_50p' => '前 50% 的分數',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => '在指定日期還沒有每日挑戰！',
+            'past' => '在指定日期沒有每日挑戰！',
         ],
     ],
 
@@ -33,25 +33,50 @@ return [
         'used' => '已使用',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '這個使用者擁有少於30天的排行紀錄。',
     ],
 
+    'top_plays' => [
+        'empty' => '資料還在計算中……',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => '月賽',
         'country' => '國家',
         'daily_challenge' => '每日挑戰',
         'global' => '全球',
         'kudosu' => 'kudosu',
-        'multiplayer' => '多人遊戲',
-        'seasons' => '季',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '隊伍',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => '目前這個賽季暫無房間。',
         'ongoing' => '這個賽季仍在進行中 (更多歌單即將加入)。',
         'room_count' => '歌單數量',
+        'summary' => '',
         'url' => '顯示這個賽季的更多資訊。',
         'validation' => [
             'not_enough_factors' => '沒有足夠的評分因素以進行正確的計算',

@@ -125,8 +125,8 @@ return [
             'url' => 'Inserisci un URL valido.',
 
             'attributes' => [
-                'name' => 'Nome Applicazione',
-                'redirect' => 'URL di richiamo dell\'applicazione',
+                'name' => 'Nome applicazione',
+                'redirect' => 'URL di callback dell\'applicazione',
             ],
         ],
     ],

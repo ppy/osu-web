@@ -58,7 +58,7 @@ return [
         'form' => [
             'password' => 'contrasenya',
             'password_confirmation' => 'confirmació de contrasenya',
-            'submit' => 'crear compte',
+            'submit' => 'crea compte',
             'user_email' => 'correu electrònic',
             'user_email_confirmation' => 'confirmació per correu electrònic',
             'username' => 'nom d’usuari',
@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Actiu',
+            'ended' => 'Finalitzat',
         ],
     ],
 
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Publicacions recents',
                 'show_more' => 'veure més publicacions',
             ],
+            'quickplay' => [
+                'title' => 'Partides ràpides',
+            ],
             'recent_activity' => [
                 'title' => 'Recent',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Lloc web',
         ],
+
+        'matchmaking' => [
+            'title' => 'Partides ràpides',
+        ],
+
         'not_found' => [
             'reason_1' => 'Potser ha canviat el seu nom d\'usuari.',
             'reason_2' => 'Per motius de seguretat o d\'abús, el compte pot estar no disponible temporalment.',

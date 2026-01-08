@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Senaste Inläggen',
                 'show_more' => 'se fler inlägg',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Senaste',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Hemsida',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'De kan ha ändrat sitt användarnamn.',
             'reason_2' => 'Kontot kan för tillfället vara otillgängligt på grund av säkerhets- eller missbruksproblem.',

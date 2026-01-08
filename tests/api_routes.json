@@ -18,6 +18,23 @@
         ]
     },
     {
+        "uri": "api/v2/session/verify/mail-fallback",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\AccountController@verificationMailFallback",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:any",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\VerifyUser"
+        ],
+        "scopes": [
+            "any"
+        ]
+    },
+    {
         "uri": "api/v2/session/verify/reissue",
         "methods": [
             "POST"
@@ -702,6 +719,50 @@
         ],
         "scopes": [
             "public"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/topics/{topic}/lock",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@lock",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\RequireScopes:forum.write_manage"
+        ],
+        "scopes": [
+            "forum.write_manage"
+        ]
+    },
+    {
+        "uri": "api/v2/forums/topics/{topic}/move",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@move",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/forums/topics/{topic}/pin",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Forum\\TopicsController@pin",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate",
+            "App\\Http\\Middleware\\RequireScopes:forum.write_manage"
+        ],
+        "scopes": [
+            "forum.write_manage"
         ]
     },
     {
@@ -1624,5 +1685,18 @@
             "App\\Http\\Middleware\\RequireScopes"
         ],
         "scopes": []
+    },
+    {
+      "uri": "api/v2/screenshots",
+      "methods": [
+        "POST"
+      ],
+      "controller": "App\\Http\\Controllers\\ScreenshotsController@store",
+      "middlewares": [
+        "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+        "App\\Http\\Middleware\\RequireScopes",
+        "Illuminate\\Auth\\Middleware\\Authenticate"
+      ],
+      "scopes": []
     }
 ]

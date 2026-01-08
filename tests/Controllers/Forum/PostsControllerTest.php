@@ -18,24 +18,43 @@ class PostsControllerTest extends TestCase
 {
     public static function dataProviderForTestUpdate(): array
     {
+        // $first, $newText, $group, $forumGroups, $authorize, $aclGroup, $statusCode
         return [
-            [true, null, 'post', null, [], 422],
-            [true, null, 'reply', null, [], 403],
-            [true, 'new text', 'post', null, [], 200],
-            [true, 'new text', 'reply', null, [], 403],
-            [true, 'new text', null, null, [], 403],
-            [true, 'new text', null, 'loved', [], 403],
-            [true, 'new text', null, 'loved', ['loved'], 200],
-            [true, 'new text', null, 'gmt', [], 200],
+            // default acl post
+            [true, null, null, [], 'post', null, 403],
+            [true, null, null, [], 'reply', null, 422],
+            [true, 'new text', null, [], 'post', null, 403],
+            [true, 'new text', null, [], 'reply', null, 200],
+            [true, 'new text', null, [], null, null, 403],
+            [true, 'new text', 'loved', [], null, null, 403],
+            [true, 'new text', 'loved', ['loved'], null, null, 200],
+            [true, 'new text', 'gmt', [], null, null, 200],
 
-            [false, null, 'post', null, [], 403],
-            [false, null, 'reply', null, [], 422],
-            [false, 'new text', 'post', null, [], 403],
-            [false, 'new text', 'reply', null, [], 200],
-            [false, 'new text', null, null, [], 403],
-            [false, 'new text', null, 'loved', [], 403],
-            [false, 'new text', null, 'loved', ['loved'], 200],
-            [false, 'new text', null, 'gmt', [], 200],
+            // default acl reply
+            [false, null, null, [], 'post', null, 403],
+            [false, null, null, [], 'reply', null, 422],
+            [false, 'new text', null, [], 'post', null, 403],
+            [false, 'new text', null, [], 'reply', null, 200],
+            [false, 'new text', null, [], null, null, 403],
+            [false, 'new text', 'loved', [], null, null, 403],
+            [false, 'new text', 'loved', ['loved'], null, null, 200],
+            [false, 'new text', 'gmt', [], null, null, 200],
+
+            // specific group acl post
+            [true, 'new text', null, [], 'post', 'gmt', 403],
+            [true, 'new text', 'loved', [], 'post', 'loved', 403],
+            [true, 'new text', 'loved', [], 'post', 'gmt', 403],
+            [true, 'new text', null, [], 'reply', 'gmt', 403],
+            [true, 'new text', 'loved', [], 'reply', 'loved', 200],
+            [true, 'new text', 'loved', [], 'reply', 'gmt', 403],
+
+            // specific group acl reply
+            [false, 'new text', null, [], 'post', 'gmt', 403],
+            [false, 'new text', 'loved', [], 'post', 'loved', 403],
+            [false, 'new text', 'loved', [], 'post', 'gmt', 403],
+            [false, 'new text', null, [], 'reply', 'gmt', 403],
+            [false, 'new text', 'loved', [], 'reply', 'loved', 200],
+            [false, 'new text', 'loved', [], 'reply', 'gmt', 403],
         ];
     }
 
@@ -114,14 +133,22 @@ class PostsControllerTest extends TestCase
     }
 
     #[DataProvider('dataProviderForTestUpdate')]
-    public function testUpdate(bool $first, ?string $newText, ?string $authorize, ?string $group, array $forumGroups, int $statusCode): void
-    {
+    public function testUpdate(
+        bool $first,
+        ?string $newText,
+        ?string $group,
+        array $forumGroups,
+        ?string $authorize,
+        ?string $aclGroup,
+        int $statusCode
+    ): void {
         $user = User::factory()->withGroup($group)->create();
-        $topic = Topic::factory()->withPost(['post_text' => 'text'])->for(
-            Forum::factory()->withAuthorize($authorize)->moderatorGroups($forumGroups)
-        )->create([
-            'topic_poster' => $user,
-        ]);
+        $topic = Topic::factory()
+            ->for(Forum::factory()->withAuthorize($authorize, $aclGroup)->moderatorGroups($forumGroups))
+            ->withPost(['post_text' => 'text'])
+            ->create([
+                'topic_poster' => $user,
+            ]);
         $post = $first ? $topic->firstPost : Post::factory()->create([
             'topic_id' => $topic,
             'post_text' => 'text',

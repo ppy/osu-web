@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username ":title" üzerinde ":content" yanıtını verdi',
                 'comment_reply_compact' => ':username ":content" yanıtını verdi',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '":title" haber göndersinde yeni yorumlar mevcut',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

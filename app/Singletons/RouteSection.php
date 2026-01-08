@@ -5,6 +5,8 @@
 
 namespace App\Singletons;
 
+use Illuminate\Http\Request as HttpRequest;
+
 class RouteSection
 {
     const SECTIONS = [
@@ -70,6 +72,9 @@ class RouteSection
             'friends_controller' => [
                 '_' => 'home',
             ],
+            'group_history_controller' => [
+                '_' => 'home',
+            ],
             'groups_controller' => [
                 '_' => 'home',
             ],
@@ -108,6 +113,9 @@ class RouteSection
             ],
             'store_controller' => [
                 '_' => 'store',
+            ],
+            'user_totp_controller' => [
+                '_' => 'home',
             ],
             'users_controller' => [
                 '_' => 'user',
@@ -149,12 +157,9 @@ class RouteSection
             ?? $this->getOriginal();
     }
 
-    public function getOriginal()
+    public function getOriginal(): array
     {
-        $request = \Request::instance();
-        $default = $request->attributes->get('route_section');
-
-        if ($default === null) {
+        return request_attribute_remember('route_section', function (HttpRequest $request): array {
             $currentRoute = $request->route();
             $currentController = $currentRoute?->controller;
 
@@ -174,16 +179,13 @@ class RouteSection
                     ?? static::SECTIONS['_'];
             }
 
-            $default = [
+            return [
                 'action' => $action ?? 'unknown',
                 'controller' => $controller ?? 'unknown',
                 'namespace' => $namespace ?? 'unknown',
                 'section' => $section ?? 'unknown',
             ];
-            $request->attributes->set('route_section', $default);
-        }
-
-        return $default;
+        });
     }
 
     public function setError($statusCode)

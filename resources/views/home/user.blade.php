@@ -7,6 +7,7 @@
 
     $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
     $currentUser = Auth::user();
+    $queryForRecentBeatmapsets = 'ranked>'.json_date(Carbon\Carbon::now()->subDays(30));
 @endphp
 @extends('master')
 
@@ -15,7 +16,7 @@
 
     <div class="osu-page">
         @if (count($menuImages) > 0)
-            <div class="js-react--menu-images u-contents">
+            <div class="js-react u-contents" data-react="menu-images">
                 <div class="menu-images menu-images--placeholder">
                     <div class="menu-images__images">
                         {!! spinner() !!}
@@ -70,31 +71,25 @@
                     @include('home._user_online_status')
                 </div>
                 <div class="user-home__buttons">
-                    <div class="user-home__button">
-                        @include('home._user_giant_button', [
-                            'href' => route('download'),
-                            'label' => osu_trans('home.user.buttons.download'),
-                            'icon' => 'download',
-                        ])
-                    </div>
+                    @include('home._user_giant_button', [
+                        'href' => route('download'),
+                        'label' => osu_trans('home.user.buttons.download'),
+                        'icon' => 'download',
+                    ])
 
-                    <div class="user-home__button">
-                        @include('home._user_giant_button', [
-                            'href' => route('support-the-game'),
-                            'label' => osu_trans('home.user.buttons.support'),
-                            'icon' => 'heart',
-                            'colour' => 'c-pink-darker'
-                        ])
-                    </div>
+                    @include('home._user_giant_button', [
+                        'href' => route('support-the-game'),
+                        'label' => osu_trans('home.user.buttons.support'),
+                        'icon' => 'heart',
+                        'colour' => 'c-pink-darker'
+                    ])
 
-                    <div class="user-home__button">
-                        @include('home._user_giant_button', [
-                            'href' => route('store.products.index'),
-                            'label' => osu_trans('home.user.buttons.store'),
-                            'icon' => 'shopping-cart',
-                            'colour' => 'c-darkorange'
-                        ])
-                    </div>
+                    @include('home._user_giant_button', [
+                        'href' => route('store.products.index'),
+                        'label' => osu_trans('home.user.buttons.store'),
+                        'icon' => 'shopping-cart',
+                        'colour' => 'c-darkorange'
+                    ])
                 </div>
 
                 @if ($dailyChallenge)
@@ -117,6 +112,9 @@
                     @foreach ($newBeatmapsets as $beatmapset)
                         @include('home._user_beatmapset', ['type' => 'new'])
                     @endforeach
+                    <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets]) }}">
+                        {{ osu_trans('common.buttons.see_more') }}
+                    </a>
                 </div>
 
                 <h3 class='user-home__beatmap-list-title'>
@@ -127,6 +125,9 @@
                     @foreach ($popularBeatmapsets as $beatmapset)
                         @include('home._user_beatmapset', ['type' => 'popular'])
                     @endforeach
+                    <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets, 'sort' => 'favourites_desc']) }}">
+                        {{ osu_trans('common.buttons.see_more') }}
+                    </a>
                 </div>
             </div>
         </div>

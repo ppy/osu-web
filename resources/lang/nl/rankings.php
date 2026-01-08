@@ -33,25 +33,50 @@ return [
         'used' => 'Uitgegeven',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'in de schijnwerpers',
         'country' => 'landelijk',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'seasons' => 'seizoenen',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Er zijn nog geen ruimtes in dit seizoen.',
         'ongoing' => 'Dit seizoen is nog steeds gaande (er zullen meer afspeellijsten toegevoegd worden).',
         'room_count' => 'Aantal afspeellijsten',
+        'summary' => '',
         'url' => 'Geef meer informatie weer over dat seizoen.',
         'validation' => [
             'not_enough_factors' => '',
