@@ -166,7 +166,6 @@
       display: grid;
       grid-template-rows: auto auto;
       gap: var(--gap-mid);
-      overflow-x: scroll;
     }
 
     @media @narrow {
@@ -737,12 +736,10 @@
       &::after {
         content: "";
         position: absolute;
-        width: calc(
-          100% + var(--content-left) + var(--gap)
-        ); // extend for extra space on the sides
         height: 4px;
         bottom: 0;
         left: calc(-1 * var(--content-left));
+        right: calc(-1 * var(--content-padding-right));
         background: #ff99c7;
       }
     }
