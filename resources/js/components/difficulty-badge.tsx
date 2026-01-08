@@ -10,8 +10,8 @@ export default function DifficultyBadge(props: { rating: number }) {
     <div
       className='difficulty-badge'
       style={{
-        'color': getDiffTextColour(props.rating),
         '--bg': getDiffColour(props.rating),
+        color: getDiffTextColour(props.rating),
       } as React.CSSProperties}
     >
       <span className='difficulty-badge__icon'>
