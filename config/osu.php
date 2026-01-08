@@ -329,4 +329,7 @@ return [
         'team_performance_user_count' => get_int(env('TEAM_PERFORMANCE_USER_COUNT')) ?? 48,
         'team_performance_weighting_factor' => get_float(env('TEAM_PERFORMANCE_WEIGHTING_FACTOR')) ?? 0.96,
     ],
+    'screenshots' => [
+        'shared_secret' => presence(env('SCREENSHOTS_SHARED_SECRET')) ?? '1234567890abcd',
+    ],
 ];

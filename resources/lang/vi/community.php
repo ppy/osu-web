@@ -138,13 +138,13 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Cảm ơn vì sự hỗ trợ của bạn! Bạn đã đóng góp tổng cộng :dollars, giúp bạn có được supporter tag trong vòng :duration.',
             'not_yet' => "Bạn chưa có supporter tag nào hết :(",
             'valid_until' => 'Supporter tag hiện tại của bạn có giá trị đến :date!',
             'was_valid_until' => 'Supporter tag của bạn đã hết hạn vào :date.',
 
             'gifted' => [
-                '_' => '',
+                '_' => 'Trong tất cả các đóng góp của bạn, bạn đã cho :dollars cho :users trong khoảng :duration. Bạn thật hào phóng!',
                 'users' => '',
             ],
         ],
