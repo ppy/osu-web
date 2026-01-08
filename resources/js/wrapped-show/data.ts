@@ -23,31 +23,28 @@ export interface DailyChallenge {
   top_50p: number;
 }
 
+interface HighScoresSummary {
+  pp_avg: number;
+  pp_best: number;
+  pp_best_score_id: number;
+  score_avg: number;
+  score_best: number;
+  score_best_beatmap_id: number;
+  score_best_score_id: number;
+  score_count: number;
+}
+
 export interface FavouriteArtist {
   artist: {
     id: null | number;
     name: string;
   };
-  scores: {
-    pp_avg: number;
-    pp_best: number;
-    score_avg: number;
-    score_best: number;
-    score_best_beatmap_id: number;
-    score_count: number;
-  };
+  scores: HighScoresSummary;
 }
 
 export interface FavouriteMapper {
   mapper_id: number;
-  scores: {
-    pp_avg: number;
-    pp_best: number;
-    score_avg: number;
-    score_best: number;
-    score_best_beatmap_id: number;
-    score_count: number;
-  };
+  scores: HighScoresSummary;
 }
 
 export interface Mapping {
@@ -63,13 +60,16 @@ export interface Mapping {
 export interface Scores {
   acc: number;
   combo: number;
+  combo_score_id: number;
   playcount: {
     playcount: number;
     pos: number;
     top_percent: number;
   };
   pp: number;
+  pp_score_id: number;
   score: number;
+  score_score_id: number;
 }
 
 interface Summary {

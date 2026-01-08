@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'receber notificações para novos problemas em beatmaps qualificados dos seguintes modos',
         'beatmapset_disqualify' => 'receber notificações quando os beatmaps dos seguintes modos forem desqualificados',
         'comment_reply' => 'receber notificações das respostas aos seus comentários',
-        'news_post' => '',
+        'news_post' => 'receber notificações para novos posts',
         'title' => 'Notificações',
         'topic_auto_subscribe' => 'automaticamente ativar as notificações em tópicos que você criar no fórum',
 
@@ -92,9 +92,9 @@ return [
             'channel_team' => 'mensagens do bate-papo do time',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
-            'mail' => 'Caixa de Entrada',
+            'mail' => 'email',
             'mapping' => 'mapper do beatmap',
-            'news_post' => '',
+            'news_post' => 'novos posts',
             'push' => 'push',
         ],
     ],
@@ -127,7 +127,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Bloquear mensagens de pessoas que não estão na sua lista de amigos',
+        'friends_only' => 'bloquear mensagens de pessoas que não estão na sua lista de amigos',
         'hide_online' => 'esconder sua presença online',
         'hide_online_info' => 'isso corresponde ao modo "aparecer offline" no osu!lazer',
         'title' => 'Privacidade',
@@ -152,7 +152,7 @@ return [
 
     'user_totp' => [
         'title' => 'Autenticador',
-        'usage_note' => 'Use um app de autenticação no lugar de seu email para verificação. A verificação por email estará disponível como uma segunda opção.',
+        'usage_note' => 'Use um app de autenticação no lugar do seu email para verificação. A verificação por email continuará disponível como uma segunda opção.',
 
         'button' => [
             'remove' => 'Remover',

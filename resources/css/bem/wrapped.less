@@ -31,10 +31,11 @@
   --stat-title-size: 20px;
   --stat-value-size: 52px;
 
+  @_value-base-colour: #ffe599;
   --selected-gradient: linear-gradient(
     235.9deg,
     #ffffff 23.33%,
-    #ffe599 67.87%
+    @_value-base-colour 67.87%
   );
 
   --switcher-icon-border: 8px;
@@ -181,6 +182,8 @@
   &__header {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--content-left);
@@ -207,6 +210,33 @@
       flex-direction: column;
       align-items: flex-start;
       display: var(--summary-mobile-pos);
+    }
+  }
+
+  &__header-logo {
+    aspect-ratio: 1;
+    height: calc(var(--user-height) - 2 * var(--avatar-padding));
+    transform: scale(1.1); // removes backgrond padding
+    --bg-opacity: 0;
+
+    &::after {
+      .full-size();
+      content: "";
+      background-image: url("~@images/layout/osu-lazer-logo-white.svg");
+      background-size: contain;
+    }
+
+    &::before {
+      .full-size();
+      content: "";
+      background-image: url("~@images/layout/osu-lazer-logo-triangles.svg");
+      background-size: contain;
+      opacity: var(--bg-opacity);
+      transition: all 100ms ease-in-out;
+    }
+
+    &:hover {
+      --bg-opacity: 1;
     }
   }
 
@@ -268,6 +298,10 @@
       @media @narrow {
         --list-item-selected-width: 140px;
       }
+    }
+
+    &--link {
+      cursor: pointer;
     }
 
     &--selected {
@@ -516,13 +550,33 @@
       @media @narrow-up {
         margin-left: 16px; // match the left padding on stat-title
       }
+
+      .link-hover({
+        color: #fff;
+      });
     }
+  }
+
+  &__stat-value-icon {
+    display: flex;
+    margin-top: 0.4em;
+    font-size: 0.8em;
+    --mod-height: 1em;
+  }
+
+  &__stat-value-link {
+    color: @_value-base-colour;
+
+    .link-hover({
+      color: @_value-base-colour;
+    });
   }
 
   &__text {
     color: #fff;
     font-size: 32px;
     font-weight: bold;
+    overflow-wrap: anywhere;
 
     &--artist {
       font-size: 20px;
@@ -627,7 +681,7 @@
     width: var(--switcher-icon-height);
     height: var(--switcher-icon-height);
     border-radius: var(--switcher-icon-height);
-    // background-color: black;
+    .at2x("~@images/layout/beatmaps/default-bg.png");
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
     filter: brightness(0.5);
 
@@ -652,10 +706,12 @@
       font-size: 0.8em;
     }
 
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
+    &::before {
+      .full-size();
+      content: "";
+      background-image: var(--bg);
+      background-size: cover;
+      background-position: center;
     }
   }
 
@@ -704,21 +760,22 @@
 
   &__logo {
     height: 70px;
+    margin-left: auto;
 
     // needs to be smaller for narrower screens or it might clip into username
     @media @narrow {
       height: 50px;
+      margin-left: 0;
     }
   }
 
   &__user {
-    .link-white();
     background: rgba(0, 0, 0, 0.3);
     height: var(--user-height);
     border-radius: var(--user-height);
     padding: 0 calc(var(--user-height) / 3) 0 var(--avatar-padding);
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
 
     transition: @_transition;
@@ -756,6 +813,7 @@
   }
 
   &__username {
+    .link-white();
     &--summary {
       @media @narrow-up {
         font-size: 32px;
