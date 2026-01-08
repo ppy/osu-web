@@ -68,7 +68,10 @@ class ScreenshotsControllerTest extends TestCase
         ]);
 
         $this->expectCountChange(fn () => $screenshot->fresh()->hits, 0);
-        $this->get($screenshot->url())->assertNotFound();
+        $this->get(route('screenshots.show', [
+            'screenshot' => $screenshot->getKey(),
+            'hash' => 'asdf',
+        ]))->assertNotFound();
         $this->assertEqualsUpToOneSecond($oldDate, $screenshot->fresh()->last_access);
     }
 
