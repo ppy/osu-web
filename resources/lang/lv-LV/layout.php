@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskusija',
-            'versions' => '',
+            'versions' => 'versiju vēsture',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'moderēšana',
             'playlists' => 'dziesmu saraksti',
-            'quickplay' => '',
+            'quickplay' => 'ātrā spēle',
             'realtime' => 'daudzspēlētāju režīms',
             'show' => 'info',
         ],

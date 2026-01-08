@@ -159,6 +159,13 @@ return [
                 'comment_reply' => '":content", tugon ni :username sa ":title"',
                 'comment_reply_compact' => '":content", tugon ni :username',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Ang balitang ":title" ay may mga bagong komento',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

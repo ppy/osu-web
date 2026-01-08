@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'Klien ini tidak memiliki pengguna.',
         'client_unauthorized' => 'Klien ini tidak terizin.',
         'delegate_bot_only' => 'Delegasi dengan Kredensial Klien hanya tersedia bagi bot chat.',
-        'client_credentials_only' => '',
+        'client_credentials_only' => 'Cakupan ini hanya valid untuk token client_credentials.',
         'delegate_invalid_combination' => 'Delegasi untuk kombinasi cakupan ini tidak didukung.',
         'delegate_required' => 'cakupan delegasi dibutuhkan.',
         'empty' => 'Token tanpa cakupan tidak valid.',

@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
-            'sub' => 'il ritmo è solo a un click di distanza',
+            'sub' => 'il ritmo è a distanza di un clic',
         ],
     ],
 
@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'visita questa pagina per maggiori dettagli',
-        'download' => '',
+        'download' => 'Scarica',
         'for_os' => 'per :os',
         'macos-fallback' => 'utenti macOS',
         'mirror' => 'mirror',
@@ -91,13 +91,13 @@ return [
         'os_version_or_later' => ':os_version o superiore',
         'other_os' => 'altre piattaforme',
         'quick_start_guide' => 'guida iniziale',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'se stai cercando la versione precedente',
+        'tagline_1' => 'cominciamo',
+        'tagline_2' => 'subito!',
         'video-guide' => 'video guida',
 
         'help' => [
-            '_' => 'se hai problemi ad avviare il gioco o a registrarti l\'account, :help_forum_link oppure :support_button.',
+            '_' => 'se hai problemi ad avviare il gioco o a registrare un account, :help_forum_link oppure :support_button.',
             'help_forum_link' => 'visita il forum di assistenza',
             'support_button' => 'contatta il supporto',
         ],

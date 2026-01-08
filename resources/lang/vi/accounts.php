@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
         'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
         'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
+        'news_post' => 'Nhận thông báo về bài đăng mới',
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề bạn tạo trong forum',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
             'mapping' => 'người tạo beatmap',
+            'news_post' => 'Bài đăng mới',
             'push' => 'đẩy',
         ],
     ],
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Ứng dụng xác thực',
+        'usage_note' => 'Xác thực bằng ứng dụng xác thực thay cho email. Email vẫn sẽ được sử dụng dự phòng',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Loại bỏ',
+            'setup' => 'Thêm ứng dụng xác thực',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'Trạng thái',
+            'not_set' => 'Chưa được thiết lập',
+            'set' => 'Đã thiết lập',
         ],
     ],
 

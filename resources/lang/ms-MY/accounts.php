@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan masalah baharu pada peta rentak layak untuk mod berikut',
         'beatmapset_disqualify' => 'terima pemberitahuan ketika peta rentak mod berikut tersingkir',
         'comment_reply' => 'terima pemberitahuan untuk balasan pada komen',
+        'news_post' => '',
         'title' => 'Pemberitahuan',
         'topic_auto_subscribe' => 'upayakan pemberitahuan secara automatik pada tajuk forum baharu yang anda cipta atau balas',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'balasan tajuk',
             'mail' => 'e-mel',
             'mapping' => 'pemeta rentak',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

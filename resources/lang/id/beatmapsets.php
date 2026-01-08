@@ -224,8 +224,8 @@ return [
             'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',
             'playcount' => 'Jumlah Dimainkan',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Favorit',
+            'no_favourites' => 'Belum ada favorit',
         ],
 
         'status' => [

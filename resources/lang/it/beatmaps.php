@@ -7,7 +7,7 @@ return [
     'invalid_ruleset' => 'Modalità specificata non valida.',
 
     'change_owner' => [
-        'too_many' => 'Troppi mapper guest.',
+        'too_many' => 'Troppi mapper ospiti.',
     ],
 
     'discussion-votes' => [
@@ -24,16 +24,16 @@ return [
         'deny_kudosu' => 'nega kudosu',
         'edit' => 'modifica',
         'edited' => 'Ultima modifica di :editor :update_time',
-        'guest' => 'Difficoltà guest di :user',
+        'guest' => 'Difficoltà ospite di :user',
         'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
         'message_placeholder_deleted_beatmap' => 'Questa difficoltà è stata eliminata, quindi non può più essere discussa.',
         'message_placeholder_locked' => 'La discussione per questa beatmap è stata disabilitata.',
         'message_placeholder_silenced' => "Non puoi postare una discussione mentre sei silenziato.",
         'message_type_select' => 'Seleziona il tipo di commento',
         'reply_notice' => 'Premi invio per rispondere.',
-        'reply_resolve_notice' => 'Premi Invio per rispondere. Premi ctrl+invio per rispondere e risolvere.',
+        'reply_resolve_notice' => 'Premi invio per rispondere. Premi ctrl+invio per rispondere e risolvere.',
         'reply_placeholder' => 'Scrivi la tua risposta qui',
-        'require-login' => 'Effettua il login per poter postare o rispondere',
+        'require-login' => 'Accedi per postare o rispondere',
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
@@ -314,7 +314,7 @@ return [
         'rock' => 'Rock',
         'pop' => 'Pop',
         'other' => 'Altro',
-        'novelty' => 'Novità',
+        'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elettronica',
         'metal' => 'Metal',

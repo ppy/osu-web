@@ -19,15 +19,15 @@ return [
         'title' => ':mode meklēšanas rezultāti',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'No results for :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Izlases mākslinieku celiņi',
+            'beatmapset' => 'Beatmapes',
+            'forum_post' => 'Forumi',
+            'other' => 'Citi',
+            'team' => 'Komandas',
+            'user' => 'Spēlētāji',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

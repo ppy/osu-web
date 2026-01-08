@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personalizacja',
-                'description' => "Wyróżnij się z tłumu dzięki niestandardowemu obrazowi tła lub tworząc w pełni dowolną stronę „O mnie” ze swojego profilu użytkownika.",
+                'description' => "Wyróżnij się z tłumu dzięki niestandardowemu obrazowi tła czy kolorowi profilu, lub tworząc w pełni dowolną stronę „O mnie” ze swojego profilu użytkownika.",
             ],
 
             'beatmap_filters' => [

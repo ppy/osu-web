@@ -224,8 +224,8 @@ return [
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
             'playcount' => 'Anzahl der Spiele',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Unterstützt von',
+            'no_favourites' => 'Noch keine Unterstützer',
         ],
 
         'status' => [

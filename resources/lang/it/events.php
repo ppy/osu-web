@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> ha sbloccato la medaglia "<strong>:achievement</strong>"!',
+    'achievement' => ':user ha sbloccato la medaglia ":achievement"!',
     'beatmap_playcount' => ':beatmap è stata giocata :count volte!',
-    'beatmapset_approve' => ':beatmapset di <strong>:user</strong> è stata approvata!',
+    'beatmapset_approve' => ':beatmapset di :user è stata :approval!',
     'beatmapset_delete' => ':beatmapset è stata eliminata.',
-    'beatmapset_revive' => ':beatmapset è stata risvegliata dal sonno eterno da <strong>:user</strong>.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> ha aggiornato la beatmap "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> ha caricato una nuova beatmap ":beatmapset"',
+    'beatmapset_revive' => ':beatmapset è stata risvegliata dal sonno eterno da :user.',
+    'beatmapset_update' => ':user ha aggiornato la beatmap ":beatmapset"',
+    'beatmapset_upload' => ':user ha caricato una nuova beatmap ":beatmapset"',
     'empty' => "Questo utente non ha fatto nulla degno di nota recentemente!",
     'rank' => ':user ha raggiunto :rank su :beatmap (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> ha perso il primo posto su <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> ha scelto ancora una volta di sostenere osu! - grazie per la tua generosità!',
-    'user_support_first' => '<strong>:user</strong> ha supportato osu! - grazie per la tua generosità!',
-    'user_support_gift' => '<strong>:user</strong> ha ricevuto in regalo l\'osu!supporter!',
-    'username_change' => '<strong>:previousUsername</strong> ha cambiato il suo nome utente in <strong><em>:user</em></strong>!',
+    'rank_lost' => ':user ha perso il primo posto su :beatmap (:mode)',
+    'user_support_again' => ':user ha scelto ancora una volta di sostenere osu! - grazie per la tua generosità!',
+    'user_support_first' => ':user ha supportato osu! - grazie per la tua generosità!',
+    'user_support_gift' => ':user ha ricevuto un osu!supporter in regalo!',
+    'username_change' => ':previousUsername ha cambiato il suo nome utente in :user!',
 
     'beatmapset_status' => [
         'approved' => 'approvata',

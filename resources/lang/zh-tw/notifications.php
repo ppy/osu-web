@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username 在「:title」中回覆了「:content」',
                 'comment_reply_compact' => ':username 回覆了「:content」',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '新聞【:title】中有新的留言',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

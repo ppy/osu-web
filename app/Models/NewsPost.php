@@ -11,7 +11,9 @@ use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
+use Ds\Set;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property string $commentable_identifier
@@ -37,6 +39,29 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     const DASHBOARD_LIMIT = 8;
     // also for number of large posts in user dashboard
     const LANDING_LIMIT = 4;
+
+    // Ordered according to how they'll display in notification settings.
+    const SERIES = [
+        'game_updates',
+        'ranking_system_updates',
+        'featured_artists',
+        'world_cups',
+        'community_tournaments',
+        'official_contests',
+        'community_contests',
+        'monthly_beatmapping_contest',
+        'fanart_contests',
+        'offline_events',
+        'online_events',
+        'project_loved',
+        'beatmap_spotlights',
+        'mappers_guild',
+        'merch_runs',
+        self::SERIES_NONE,
+    ];
+
+    // const for unset or mismatched series.
+    const SERIES_NONE = 'miscellaneous';
 
     const SORTS = [
         'published_asc' => [
@@ -145,18 +170,18 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         }
     }
 
-    public function scopeDefault($query)
+    public function scopeDefault(Builder $query): void
     {
-        return $query->published()->orderBy('published_at', 'DESC');
+        $query->published()->orderBy('published_at', 'DESC');
     }
 
-    public function scopePublished($query)
+    public function scopePublished(Builder $query): void
     {
-        return $query->whereNotNull('published_at')
+        $query->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now());
     }
 
-    public function scopeYear($query, $year)
+    public function scopeYear(Builder $query, ?int $year): void
     {
         if ($year === null) {
             return;
@@ -172,7 +197,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $end = Carbon::create($year + 1);
 
-        return $query
+        $query
             ->where('published_at', '>=', $start ?? $baseStart)
             ->where('published_at', '<', $end);
     }
@@ -293,6 +318,14 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         return $this->memoize(__FUNCTION__, function () {
             return static::default()->cursorSort('published_desc', $this)->first();
         });
+    }
+
+    public function series(): string
+    {
+        static $allSeries = new Set(static::SERIES);
+
+        $series = snake_case($this->page['header']['series'] ?? static::SERIES_NONE);
+        return $allSeries->contains($series) ? $series : static::SERIES_NONE;
     }
 
     public function sync($force = false)

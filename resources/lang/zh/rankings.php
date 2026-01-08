@@ -28,9 +28,21 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '获得的',
-        'available' => '可用的',
-        'used' => '已用的',
+        'total' => '总计',
+        'available' => '可用',
+        'used' => '已用',
+    ],
+
+    'matchmaking' => [
+        'plays' => '游玩次数',
+        'points' => '点数',
+        'provisional' => '游玩次数过少，无法准确计算等级分',
+        'rating' => '等级分',
+        'wins' => '获胜次数',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '房间名',
     ],
 
     'performance' => [
@@ -38,27 +50,33 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => '数据还在计算中……',
+        'last_updated' => '上次更新于',
+    ],
+
+    'playlists' => [
+        'charts' => '季赛（旧版）',
+        'featured' => '特殊',
+        'season_room' => '季赛房间',
+        'seasons' => '季赛',
     ],
 
     'type' => [
-        'charts' => '季赛（旧版）',
         'country' => '国家/地区',
         'daily_challenge' => '每日挑战',
         'global' => '全球',
         'kudosu' => 'Kudosu',
-        'multiplayer' => '多人游戏',
-        'season_room' => '',
-        'seasons' => '季赛',
+        'matchmaking' => '快速匹配模式',
+        'playlists' => '歌单模式',
         'team' => '战队',
-        'top_plays' => '',
+        'top_plays' => '单图成绩',
     ],
 
     'seasons' => [
         'empty' => '本季赛暂无可用房间。',
         'ongoing' => '当前季赛仍在进行中（将陆续追加更多歌单）。',
         'room_count' => '歌单数量',
-        'summary' => '',
+        'summary' => '查看季赛总结',
         'url' => '显示该季赛更多信息。',
         'validation' => [
             'not_enough_factors' => '当前得分系数不足，无法完成有效计算',

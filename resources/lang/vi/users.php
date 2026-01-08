@@ -400,7 +400,7 @@ return [
                 'show_more' => 'xem bài viết khác',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Ván chơi nhanh',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
@@ -470,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'title' => 'Chơi nhanh',
+        ],
+
         'not_found' => [
             'reason_1' => 'Có thể họ đã đổi tên tài khoản.',
             'reason_2' => 'Tài khoản của họ có thể tạm thời không khả dụng vì vấn đề an ninh hoặc lạm dụng.',

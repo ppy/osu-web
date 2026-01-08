@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
         'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované z týchto módov',
         'comment_reply' => 'prijímať upozornenia pre odpovede na vaše komentáre',
+        'news_post' => '',
         'title' => 'Oznámenia',
         'topic_auto_subscribe' => 'automaticky zapnúť notifikácie pre nové témy fóra, ktoré vytvoríte',
 
@@ -94,6 +95,7 @@ return [
             'forum_topic_reply' => 'odpoveď na tému',
             'mail' => 'pošta',
             'mapping' => 'tvorca beatmapy',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Inserisci il codice dalla tua app di autenticazione.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Puoi anche :link.',
+                'link' => 'uscire',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Se non riesci ad accedere alla tua app, :link.',
+                'link' => 'puoi verificare anche usando l\'email',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Codice di verifica errato.',
         'retries_exceeded' => 'Codice di verifica errato. Raggiunto il limite di tentativi, nuovo codice di verifica inviato.',
         'reissued' => 'Nuovo codice di verifica richiesto, è stata inviata una nuova email di verifica.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'Il codice di verifica è stato già utilizzato. Attendi e utilizzane uno nuovo.',
+        'totp_gone' => 'Il token di autenticazione è stato rimosso, passando alla verifica tramite email. L\'email di verifica è stata inviata.',
         'unknown' => 'È successo un problema sconosciuto, è stata inviata una nuova email di verifica.',
     ],
 ];

@@ -4,36 +4,36 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'none' => '',
-    'view' => '',
+    'none' => 'Nessuno storico di gruppo trovato!',
+    'view' => 'Vedi storico del gruppo',
 
     'event' => [
-        'actor' => '',
+        'actor' => 'per :user',
 
         'message' => [
-            'group_add' => '',
-            'group_remove' => '',
-            'group_rename' => '',
-            'user_add' => '',
-            'user_add_with_playmodes' => '',
-            'user_add_playmodes' => '',
-            'user_remove' => '',
-            'user_remove_playmodes' => '',
-            'user_set_default' => '',
+            'group_add' => ':group creato.',
+            'group_remove' => ':group eliminato.',
+            'group_rename' => ':previous_group rinominato in :group.',
+            'user_add' => ':user aggiunto a :group.',
+            'user_add_with_playmodes' => ':user aggiunto a :group per :rulesets.',
+            'user_add_playmodes' => ':rulesets inserito come associazione di :user in :group.',
+            'user_remove' => ':user rimosso da :group.',
+            'user_remove_playmodes' => ':rulesets rimosso come associazione di :user in :group.',
+            'user_set_default' => 'Gruppo predefinito di :user impostato a :group.',
         ],
     ],
 
     'form' => [
-        'group' => '',
-        'group_all' => '',
-        'max_date' => '',
-        'min_date' => '',
-        'user' => '',
-        'user_prompt' => '',
+        'group' => 'Gruppo',
+        'group_all' => 'Tutti i gruppi',
+        'max_date' => 'Al',
+        'min_date' => 'Dal',
+        'user' => 'Utente',
+        'user_prompt' => 'Nome utente o ID',
     ],
 
     'staff_log' => [
-        '_' => '',
-        'wiki_articles' => '',
+        '_' => 'Le cronologie di gruppo più vecchie possono essere trovate negli :wiki_articles.',
+        'wiki_articles' => 'articoli della wiki sui registri dello staff',
     ],
 ];

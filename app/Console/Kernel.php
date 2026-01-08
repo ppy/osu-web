@@ -26,6 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('archive-forum-topics')
+            ->cron('*/30 * * * *')
+            ->withoutOverlapping(120)
+            ->onOneServer();
+
         $schedule->command('store:cleanup-stale-orders')
             ->daily()
             ->onOneServer();
@@ -61,6 +66,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('oauth:delete-expired-tokens')
             ->cron('14 1 * * *')
+            ->onOneServer();
+
+        $schedule->command('notifications:news-published')
+            ->everyThirtyMinutes()
+            ->withoutOverlapping(120)
             ->onOneServer();
 
         $schedule->command('notifications:send-mail')

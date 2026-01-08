@@ -160,6 +160,13 @@ return [
                 'comment_reply' => ':username ezt válaszolta: ":content" itt: ":title"',
                 'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -265,6 +272,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Új kommentek jelentek meg itt::title',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

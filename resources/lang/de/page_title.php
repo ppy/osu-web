@@ -53,7 +53,7 @@ return [
             'discussion' => 'Beatmap-Diskussion',
             'index' => 'Beatmap-Auflistung',
             'show' => 'beatmap-info',
-            'versions' => '',
+            'versions' => 'Beatmap-Versionshistorie',
         ],
         'changelog_controller' => [
             '_' => 'Änderungsprotokoll',
@@ -72,7 +72,7 @@ return [
             'judge' => 'Wettbewerbsbewertung',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'Gruppenhistorie',
         ],
         'groups_controller' => [
             'show' => 'gruppen',
@@ -125,7 +125,7 @@ return [
             '_' => 'Voreinstellungen für Benutzer-Cover',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'Zwei-Faktor-Authentifizierung',
         ],
         'users_controller' => [
             '_' => 'Spielerinfo',

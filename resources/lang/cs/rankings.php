@@ -33,32 +33,50 @@ return [
         'used' => 'Použito',
     ],
 
+    'matchmaking' => [
+        'plays' => 'Zahrání',
+        'points' => 'Bodů',
+        'provisional' => 'Nedostatek odehraných zápasů pro přesné stanovení hodnocení',
+        'rating' => 'Hodnocení',
+        'wins' => 'Výher',
+    ],
+
+    'multiplayer' => [
+        'room_name' => 'Název místnosti',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Tento uživatel má méně než 30 dní nedávné ranking historie. ',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'Data se vypočítávají...',
+        'last_updated' => 'Naposledy aktualizováno',
+    ],
+
+    'playlists' => [
+        'charts' => 'zvýrazněné (staré)',
+        'featured' => 'výběry',
+        'season_room' => 'sezónní místnost',
+        'seasons' => 'sezóny',
     ],
 
     'type' => [
-        'charts' => 'výběry (staré)',
         'country' => 'stát',
         'daily_challenge' => 'denní výzva',
         'global' => 'svět',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'hra pro více hráčů',
-        'season_room' => '',
-        'seasons' => 'sezóny',
+        'matchmaking' => 'rychlá hra',
+        'playlists' => 'playlisty',
         'team' => 'týmy',
-        'top_plays' => '',
+        'top_plays' => 'nejlepší výkony',
     ],
 
     'seasons' => [
         'empty' => 'V této sezóně nejsou žádné místnosti.',
         'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
         'room_count' => 'Počet playlistů',
-        'summary' => '',
+        'summary' => 'Zobrazit shrnutí sezóny',
         'url' => 'Zobrazit více informací pro tuto sezónu.',
         'validation' => [
             'not_enough_factors' => 'neexistuje dostatek prvků skóre pro řádný výpočet',

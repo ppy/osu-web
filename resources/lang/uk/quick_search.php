@@ -19,15 +19,15 @@ return [
         'title' => 'Результати пошуку по :mode',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Немає результатів для :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Треки Обраних Виконавців',
+            'beatmapset' => 'Бітмапи',
+            'forum_post' => 'Форуми',
+            'other' => 'Інші',
+            'team' => 'Команди',
+            'user' => 'Гравці',
+            'wiki_page' => 'Вiкi',
         ],
     ],
 ];

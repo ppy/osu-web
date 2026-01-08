@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => '아바타',
             'reset' => '초기화',
-            'rules' => '아바타가 :link을 따르고 있는지 확인하세요.<br/>이는 아바타가 <strong>모든 연령에 적합해야 하므로</strong> 과도한 노출, 욕설 혹은 이러한 것을 암시하는 내용이 없어야 한다는 의미입니다.',
+            'rules' => '아바타가 :link을 따르고 있는지 확인하세요.<br/>아바타가 <strong>모든 연령에 적합해야 하기때문에</strong> 과도한 노출, 욕설 혹은 이러한 것을 암시하는 내용이 없어야 한다는 의미에요.',
             'rules_link' => '커뮤니티 규칙',
         ],
 
@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'Qualified 비트맵에 문제가 생길 경우 알림을 수신할 모드',
         'beatmapset_disqualify' => '비트맵이 Disqualified 처리됐을 때 알림을 수신할 모드',
         'comment_reply' => '댓글에 답글이 달리면 알림 받기',
+        'news_post' => '뉴스 게시물 알림 받기',
         'title' => '알림',
         'topic_auto_subscribe' => '생성했거나 답변을 게시한 포럼 주제에 대한 알림을 자동으로 활성화',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => '주제 답글',
             'mail' => '메일',
             'mapping' => '비트맵 제작자',
+            'news_post' => '뉴스 게시물',
             'push' => '푸시 알림',
         ],
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단',
         'hide_online' => '온라인 상태 숨기기',
-        'hide_online_info' => '',
+        'hide_online_info' => '이는 osu!lazer의 “오프라인으로 표시” 모드와 동일합니다.',
         'title' => '개인 정보',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => '인증 앱',
+        'usage_note' => '이메일 대신 인증 앱으로 본인 확인합니다. 이메일 인증은 예비 수단으로 계속 사용할 수 있습니다.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => '제거',
+            'setup' => '인증 앱 추가',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => '상태',
+            'not_set' => '설정 안 됨',
+            'set' => '설정됨',
         ],
     ],
 

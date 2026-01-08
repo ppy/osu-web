@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'cheque esta página para mais informações',
-        'download' => '',
+        'download' => 'Baixar',
         'for_os' => 'para :os',
         'macos-fallback' => 'usuários de macOS',
         'mirror' => 'link alternativo',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version ou mais novo',
         'other_os' => 'outras plataformas',
         'quick_start_guide' => 'guia de início rápido',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'caso você esteja procurando pelo mais antigo',
+        'tagline_1' => 'vamos lá',
+        'tagline_2' => 'começou!',
         'video-guide' => 'guia em vídeo',
 
         'help' => [

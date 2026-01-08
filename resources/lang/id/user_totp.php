@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Selesai',
+        'key' => 'Pindai kode QR ini dengan aplikasi autentikator dan masukkan kode verifikasi yang diterima',
+        'key_copy' => 'Atau klik tautan ini untuk menyalin kunci aplikasi autentikator',
+        'key_link' => 'Gunakan tautan ini apabila kamu sedang berada di ponsel',
+        'password' => 'Untuk mengatur verifikasi aplikasi autentikator, silakan masukkan kata sandi kamu saat ini',
+        'start' => 'Lanjut',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Kamu belum memiliki verifikasi aplikasi autentikator yang terpasang.',
+        'ok' => 'Verifikasi aplikasi autentikator dihapus.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Silakan masukkan kata sandi kamu saat ini untuk menghapus verifikasi aplikasi autentikator.',
+        'start' => 'Hapus',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Kamu telah memiliki verifikasi aplikasi autentikator yang terpasang.',
+        'ok' => 'Verifikasi aplikasi autentikator telah diatur',
+        'restart' => 'Terjadi kesalahan. Silakan mulai ulang proses ini.',
     ],
 ];

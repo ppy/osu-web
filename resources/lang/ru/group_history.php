@@ -4,36 +4,36 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'none' => '',
-    'view' => '',
+    'none' => 'История группы не найдена!',
+    'view' => 'Открыть историю группы',
 
     'event' => [
-        'actor' => '',
+        'actor' => 'пользователем :user',
 
         'message' => [
-            'group_add' => '',
-            'group_remove' => '',
-            'group_rename' => '',
-            'user_add' => '',
-            'user_add_with_playmodes' => '',
-            'user_add_playmodes' => '',
-            'user_remove' => '',
-            'user_remove_playmodes' => '',
-            'user_set_default' => '',
+            'group_add' => 'Группа :group создана.',
+            'group_remove' => 'Группа :group удалена.',
+            'group_rename' => 'Группа :previous_group переименована в :group.',
+            'user_add' => ':user добавлен в :group.',
+            'user_add_with_playmodes' => ':user добавлен в :group по режиму игры :rulesets.',
+            'user_add_playmodes' => 'Участнику :user группы :group назначен режим игры :rulesets.',
+            'user_remove' => ':user исключён из :group.',
+            'user_remove_playmodes' => 'Участнику :user группы :group снят режим игры :rulesets.',
+            'user_set_default' => ':group установлена основной для :user.',
         ],
     ],
 
     'form' => [
-        'group' => '',
-        'group_all' => '',
-        'max_date' => '',
-        'min_date' => '',
-        'user' => '',
-        'user_prompt' => '',
+        'group' => 'Группа',
+        'group_all' => 'Все группы',
+        'max_date' => 'От',
+        'min_date' => 'До',
+        'user' => 'Пользователь',
+        'user_prompt' => 'Никнейм или ID',
     ],
 
     'staff_log' => [
-        '_' => '',
-        'wiki_articles' => '',
+        '_' => 'Более раннюю историю групп можно изучить в :wiki_articles.',
+        'wiki_articles' => 'статье вики об истории команд osu!',
     ],
 ];

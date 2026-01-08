@@ -221,11 +221,11 @@ return [
             'count_sliders' => 'Nombre de sliders',
             'offset' => 'Compensació en línia: :offset',
             'user-rating' => 'Valoració dels usuaris',
-            'rating-spread' => 'Desglossament de valoracions',
+            'rating-spread' => 'Desglossament de classificacions',
             'nominations' => 'Nominacions',
             'playcount' => 'Vegades jugat',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Preferits',
+            'no_favourites' => 'Sense preferits',
         ],
 
         'status' => [

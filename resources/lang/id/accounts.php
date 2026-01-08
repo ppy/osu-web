@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'reset' => 'atur ulang',
-            'rules' => 'Pastikan avatarmu tunduk pada :link yang berlaku.<br/>Hal ini berarti avatar ini harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan, mis. konten yang berketelanjangan, menyinggung, atau sugestif.',
+            'rules' => 'Pastikan avatarmu tunduk pada :link yang berlaku.<br/>Hal ini berarti avatar ini harus <strong>cocok untuk segala usia</strong> tanpa unsur apa pun yang tidak dibenarkan, mis. konten yang berketelanjangan, menyinggung, atau sugestif.',
             'rules_link' => 'Pertimbangan konten visual',
         ],
 
@@ -80,11 +80,12 @@ return [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap Qualified di mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi untuk balasan baru pada komentar yang kamu tulis',
+        'news_post' => 'terima notifikasi untuk postingan berita yang berkaitan dengan',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis bagi topik forum baru yang kamu buat atau balas',
 
         'options' => [
-            '_' => 'kirimkan notifikasi melalui',
+            '_' => 'opsi pengiriman',
             'beatmap_owner_change' => 'tingkat kesulitan tamu',
             'beatmapset:modding' => 'modding',
             'channel_message' => 'pesan pribadi',
@@ -93,13 +94,14 @@ return [
             'forum_topic_reply' => 'balasan topik',
             'mail' => 'email',
             'mapping' => 'mapper',
+            'news_post' => 'postingan berita',
             'push' => 'push (web)',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'klien diizinkan',
-        'own_clients' => 'klien yang dimiliki',
+        'authorized_clients' => 'klien yang terizin',
+        'own_clients' => 'klien yang kamu miliki',
         'title' => 'OAuth',
     ],
 
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
         'hide_online' => 'sembunyikan status onlinemu',
-        'hide_online_info' => '',
+        'hide_online_info' => 'pengaturan ini akan terhubung ke mode "tampil offline" di osu!lazer',
         'title' => 'Privasi',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Apl. Autentikator',
+        'usage_note' => 'Gunakan aplikasi autentikator untuk memverifikasi akun sebagai pengganti verifikasi via email. Verifikasi email akan tetap tersedia sebagai metode cadangan.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Hapus',
+            'setup' => 'Tambah Aplikasi Autentikator',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'status',
+            'not_set' => 'Belum diatur',
+            'set' => 'Telah diatur',
         ],
     ],
 

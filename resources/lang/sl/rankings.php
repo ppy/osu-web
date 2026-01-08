@@ -33,23 +33,41 @@ return [
         'used' => '',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'spotlights',
         'country' => 'država',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => '',
-        'multiplayer' => 'večigralski način',
-        'season_room' => '',
-        'seasons' => 'sezone',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
         'top_plays' => '',
     ],

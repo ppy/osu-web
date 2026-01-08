@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'apskatīt šo lapu priekš vairāk informācijas',
-        'download' => '',
+        'download' => 'Lejupielādēt',
         'for_os' => 'priekš :os',
         'macos-fallback' => 'macOS lietotāji',
         'mirror' => 'instalācija',
@@ -92,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version vai jaunāku ',
         'other_os' => 'citas platformas',
         'quick_start_guide' => 'ātra sākuma pamācība',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'ja meklē vecāko versiju',
+        'tagline_1' => 'sāksim',
+        'tagline_2' => 'darbu!',
         'video-guide' => 'video pamācība',
 
         'help' => [

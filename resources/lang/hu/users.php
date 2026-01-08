@@ -470,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Honlap',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Talán megváltoztatta a felhasználónevét.',
             'reason_2' => 'Ez a fiók jelenleg nem elérhető biztonsági vagy visszaélési okokból.',

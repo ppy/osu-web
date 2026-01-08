@@ -9,7 +9,7 @@ return [
             'title' => 'Mi hai convinto! :D',
             'support' => 'sostieni osu!',
             'gift' => 'o regala il supporter ad altri giocatori',
-            'instructions' => 'clicca il pulsante con il cuore per procedere all\'osu!store',
+            'instructions' => 'clicca il pulsante con il cuore per procedere sul osu!store',
         ],
         'why-support' => [
             'title' => 'Perché dovrei sostenere osu!? Dove vanno a finire i soldi?',
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personalizzazione',
-                'description' => "Puoi spiccare caricando un'immagine personalizzata o creando una sezione 'io!' totalmente personalizzabile nel tuo profilo.",
+                'description' => "Puoi spiccare caricando un'immagine personalizzata, creare una sezione 'io!' totalmente personalizzabile, oppure cambiare colore a tuo piacimento nel profilo utente.",
             ],
 
             'beatmap_filters' => [

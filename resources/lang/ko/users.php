@@ -401,7 +401,7 @@ return [
                 'show_more' => '글 더 보기',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => '빠른 대전 경기',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
@@ -471,6 +471,11 @@ return [
             'twitter' => '',
             'website' => '웹사이트',
         ],
+
+        'matchmaking' => [
+            'title' => '빠른 대전',
+        ],
+
         'not_found' => [
             'reason_1' => '유저 이름이 변경되었을 가능성이 있습니다.',
             'reason_2' => '보안 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',

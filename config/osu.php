@@ -130,8 +130,11 @@ return [
     'forum' => [
         'admin_forum_id' => get_int(env('ADMIN_FORUM_ID')) ?? 28,
         'double_post_allowed_forum_ids' => array_map('intval', explode(' ', env('DOUBLE_POST_ALLOWED_FORUM_IDS', '52 68 84 114'))),
+        'feature_completed_forum_id' => get_int(env('FEATURE_COMPLETED_FORUM_ID')) ?? 30,
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')) ?? 4,
         'feature_topic_small_star_min' => get_int(env('FEATURE_TOPIC_SMALL_STAR_MIN')) ?? 1000,
+        'help_archived_forum_id' => get_int(env('HELP_ARCHIVED_FORUM_ID')) ?? 29,
+        'help_confirmed_forum_id' => get_int(env('HELP_CONFIRMED_FORUM_ID')) ?? 101,
         'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
         'initial_help_forum_ids' => array_map('intval', explode(' ', env('INITIAL_HELP_FORUM_IDS', '5 47 85'))),
         'issue_forum_ids' => array_map('intval', explode(' ', env('ISSUE_FORUM_IDS', '4 5 29 30 101'))),
@@ -198,6 +201,7 @@ return [
         'index_max_id_distance' => get_int(env('SCORE_INDEX_MAX_ID_DISTANCE')) ?? 10_000_000,
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
+        'user_summary_min_id' => get_int(env('SCORES_USER_SUMMARY_MIN_ID')) ?? 4101082566,
     ],
 
     'seasonal' => [
@@ -263,6 +267,7 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
+        'wrapped_enabled' => get_bool(env('USER_WRAPPED_ENABLED')) ?? false,
         'max_follows' => get_int(env('USER_MAX_FOLLOWS')) ?? 5000,
         'max_friends' => get_int(env('USER_MAX_FRIENDS')) ?? 250,
         'max_friends_supporter' => get_int(env('USER_MAX_FRIENDS_SUPPORTER')) ?? 500,
@@ -323,5 +328,8 @@ return [
         'country_performance_weighting_factor' => floatval(env('COUNTRY_PERFORMANCE_WEIGHTING_FACTOR', 0.99)),
         'team_performance_user_count' => get_int(env('TEAM_PERFORMANCE_USER_COUNT')) ?? 48,
         'team_performance_weighting_factor' => get_float(env('TEAM_PERFORMANCE_WEIGHTING_FACTOR')) ?? 0.96,
+    ],
+    'screenshots' => [
+        'shared_secret' => presence(env('SCREENSHOTS_SHARED_SECRET')) ?? '1234567890abcd',
     ],
 ];

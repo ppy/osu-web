@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en mapes qualificats dels següents modes',
         'beatmapset_disqualify' => 'rebre notificacions per quan els mapes dels següents modes siguin desqualificats',
         'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
+        'news_post' => 'rep notificacions de publicacions noves',
         'title' => 'Notificacions',
         'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creis or responguis',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',
             'mapping' => 'edició de mapes',
+            'news_post' => 'publicacions noves',
             'push' => 'emergent',
         ],
     ],
@@ -127,7 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloca els missatges privats de persones que no són a la llista d\'amics',
         'hide_online' => 'amaga la teva presència en línia',
-        'hide_online_info' => '',
+        'hide_online_info' => 'Va relacionat amb el mode «Mostra\'m fora de línia» a l\'osu!lazer.',
         'title' => 'Privadesa',
     ],
 
@@ -149,17 +151,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Aplicació Authenticator',
+        'usage_note' => 'Feu servir l\'aplicació Authenticator en lloc de la verificació per correu. La verificació per correu estarà disponible com a via alternativa.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Trau',
+            'setup' => 'Afegeix l\'aplicació Authenticator',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'estat',
+            'not_set' => 'Sense configurar',
+            'set' => 'Configurat',
         ],
     ],
 

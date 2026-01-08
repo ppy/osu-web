@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'У клієнта відсутній власник.',
         'client_unauthorized' => 'Клієнт не авторизований.',
         'delegate_bot_only' => 'Делегація з облікових даних клієнта доступна лише для чат-ботів.',
-        'client_credentials_only' => '',
+        'client_credentials_only' => 'Ця область (scope) допустима лише для client_credentials токенів.',
         'delegate_invalid_combination' => 'Делегація не підтримується для цієї комбінації областей.',
         'delegate_required' => 'Потрібно делегувати область видимості.',
         'empty' => 'Токени без областей є недійсними.',

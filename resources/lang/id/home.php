@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'kunjungi halaman ini untuk informasi lebih lanjut',
-        'download' => '',
+        'download' => 'Unduh',
         'for_os' => 'untuk :os',
         'macos-fallback' => 'osu! versi macOS',
         'mirror' => 'tautan alternatif',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version atau lebih tinggi',
         'other_os' => 'platform lainnya',
         'quick_start_guide' => 'panduan singkat',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'atau apabila kamu mencari versi osu! yang lebih lawas',
+        'tagline_1' => 'mari persiapkan',
+        'tagline_2' => 'dirimu!',
         'video-guide' => 'panduan video',
 
         'help' => [

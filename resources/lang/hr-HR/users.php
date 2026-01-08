@@ -470,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Web stranica',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Možda je promijenio/la svoje korisničko ime.',
             'reason_2' => 'Račun može biti privremeno nedostupan zbog sigurnosnih problema ili problema sa zlouporabom.',

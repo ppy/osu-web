@@ -53,10 +53,10 @@ return [
             'discussion' => 'discussione beatmap',
             'index' => 'lista beatmap',
             'show' => 'informazioni beatmap',
-            'versions' => '',
+            'versions' => 'cronologia versioni beatmap',
         ],
         'changelog_controller' => [
-            '_' => 'note di rilascio',
+            '_' => 'changelog',
         ],
         'chat_controller' => [
             '_' => 'chat',
@@ -72,7 +72,7 @@ return [
             'judge' => 'valutazione di concorso',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'storico gruppi',
         ],
         'groups_controller' => [
             'show' => 'gruppi',
@@ -125,7 +125,7 @@ return [
             '_' => 'copertine predefinite dall\'utente',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'autenticatore',
         ],
         'users_controller' => [
             '_' => 'dettagli giocatore',
@@ -147,7 +147,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'negozio',
     ],
     'teams' => [
         'members_controller' => [

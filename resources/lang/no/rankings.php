@@ -33,23 +33,41 @@ return [
         'used' => 'Brukt',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Denne brukeren har mindre enn 30 dager av nylig rang historie.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'Rampelyset',
         'country' => 'Land',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'flerspiller',
-        'season_room' => '',
-        'seasons' => 'sesonger',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
         'top_plays' => '',
     ],

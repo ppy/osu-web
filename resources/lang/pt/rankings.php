@@ -34,23 +34,41 @@ return [
         'used' => 'Gasto',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Este utilizador tem menos de 30 dias de histórico de classificações recentes.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'Em destaque',
         'country' => 'País',
         'daily_challenge' => 'desafio diário',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multijogador',
-        'season_room' => '',
-        'seasons' => 'temporadas',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'equipa',
         'top_plays' => '',
     ],

@@ -2,7 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .ranking-page-grid {
+  --item-padding: 6px 6px 6px 20px;
   display: grid;
   gap: 3px 10px;
   grid-template-columns: auto 1fr auto auto auto auto auto auto auto auto;
+
+  &--matchmaking {
+    --item-padding: 6px 20px;
+    grid-template-columns: auto 10fr 1fr 1fr 1fr 1fr;
+  }
 }

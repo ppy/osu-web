@@ -35,10 +35,10 @@ return [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
         'comment_text' => 'Dieser Kommentar ist ausgeblendet.',
         'blocked_count' => 'blockierte Benutzer (:count)',
-        'hide_profile' => 'Profil verbergen',
+        'hide_profile' => 'Profil ausblenden',
         'hide_comment' => 'ausblenden',
         'forum_post_text' => 'Dieser Beitrag wird ausgeblendet.',
-        'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
+        'not_blocked' => 'Dieser Benutzer ist nicht blockiert.',
         'show_profile' => 'Profil anzeigen',
         'show_comment' => 'anzeigen',
         'too_many' => 'Block-Limit erreicht.',
@@ -80,7 +80,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Dein Konto wurde als gefährdet eingestuft. Es kann vorübergehend deaktiviert werden, während seine Identität bestätigt wird.',
+            'compromised' => 'Dein Konto wurde als gefährdet eingestuft. Es kann vorübergehend deaktiviert werden, während die Identität bestätigt wird.',
             'opening' => 'Es gibt eine Reihe von Gründen, die dazu führen können, dass Dein Konto deaktiviert wird:',
 
             'tos' => [
@@ -210,7 +210,7 @@ return [
             'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
         ],
         'cover' => [
-            'to_0' => 'Cover verbergen',
+            'to_0' => 'Cover ausblenden',
             'to_1' => 'Cover anzeigen',
         ],
         'daily_challenge' => [
@@ -400,7 +400,7 @@ return [
                 'show_more' => 'weitere Beiträge anschauen',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => '"Quick Play"-Spiele',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
@@ -470,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Webseite',
         ],
+
+        'matchmaking' => [
+            'title' => 'Quick Play',
+        ],
+
         'not_found' => [
             'reason_1' => 'Der gesuchte Benutzer könnte seinen Namen geändert haben.',
             'reason_2' => 'Der Account ist aus Sicherheitsgründen temporär nicht verfügbar.',

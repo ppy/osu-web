@@ -33,32 +33,50 @@ return [
         'used' => 'Spesi',
     ],
 
+    'matchmaking' => [
+        'plays' => 'Partite',
+        'points' => 'Punti',
+        'provisional' => 'Non ci sono partite sufficienti per una valutazione precisa',
+        'rating' => 'Valutazione',
+        'wins' => 'Vittorie',
+    ],
+
+    'multiplayer' => [
+        'room_name' => 'Nome stanza',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Questo utente ha un recente storico di classifica inferiore a 30 giorni.',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'I dati sono in fase di calcolo...',
+        'last_updated' => 'Ultimo aggiornamento',
+    ],
+
+    'playlists' => [
+        'charts' => 'spotlight (archivio)',
+        'featured' => 'in evidenza',
+        'season_room' => 'stanza della stagione',
+        'seasons' => 'stagioni',
     ],
 
     'type' => [
-        'charts' => 'spotlight (archivio)',
         'country' => 'paese',
         'daily_challenge' => 'sfida giornaliera',
         'global' => 'globale',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multigiocatore',
-        'season_room' => '',
-        'seasons' => 'stagioni',
+        'matchmaking' => 'quick play',
+        'playlists' => 'playlist',
         'team' => 'squadra',
-        'top_plays' => '',
+        'top_plays' => 'migliori partite',
     ],
 
     'seasons' => [
         'empty' => 'Non ci sono ancora partite per questa stagione.',
         'ongoing' => 'Questa stagione è ancora in corso (verranno aggiunte altre playlist).',
         'room_count' => 'Conteggio playlist',
-        'summary' => '',
+        'summary' => 'Vedi Riepilogo Stagione',
         'url' => 'Mostra ulteriori informazioni su quella stagione.',
         'validation' => [
             'not_enough_factors' => 'non ci sono indicatori sufficienti per il calcolo',
@@ -66,10 +84,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => 'Data Fine',
-        'map_count' => 'N° Beatmap',
+        'end_date' => 'Data fine',
+        'map_count' => 'Mappe',
         'participants' => 'Partecipanti',
-        'start_date' => 'Data Inizio',
+        'start_date' => 'Data inizio',
     ],
 
     'stat' => [

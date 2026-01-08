@@ -8,7 +8,7 @@ return [
         'active' => 'Нет игр, проходящих прямо сейчас в :type_group osu!(lazer)!',
         'ended' => 'Пока нет ни одной завершённой игры в :type_group osu!(lazer)!',
         'playlists' => 'плейлистах',
-        'quickplay' => '',
+        'quickplay' => 'быстрой игре',
         'realtime' => 'мультиплеере',
     ],
 

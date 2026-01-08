@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => '更多详情请查阅本页面',
-        'download' => '',
+        'download' => '下载',
         'for_os' => '适用于 :os',
         'macos-fallback' => 'macOS 用户',
         'mirror' => '从镜像服务器下载',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version 或更高版本',
         'other_os' => '其他平台',
         'quick_start_guide' => '快速入门指南',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => '如果你想要旧版本',
+        'tagline_1' => '让我们',
+        'tagline_2' => '开始吧！',
         'video-guide' => '视频教程',
 
         'help' => [

@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'gauti pranešimus dėl naujų problemų kvalifikuotuose beatmap\'uose šiuose režimuose ',
         'beatmapset_disqualify' => 'gauti pranešimus, kai šių režimų beatmap\'ai diskvalifikuojami',
         'comment_reply' => 'gauti pranešimus apie atsakymus ant jūsų komentarų',
+        'news_post' => '',
         'title' => 'Pranešimai',
         'topic_auto_subscribe' => 'automatiškai įjungti pranešimus naujuose forumo temose kurias tu sukūrei',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',
             'mapping' => 'beatmap\'o kūrėjas',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],

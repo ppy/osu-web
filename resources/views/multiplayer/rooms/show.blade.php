@@ -3,9 +3,6 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    use App\Transformers\SelectOptionTransformer;
-
-    $selectOptionTransformer = new SelectOptionTransformer();
     $season = $room->season;
     if ($season !== null) {
         $list = 'seasons';
@@ -53,8 +50,7 @@
         @endif
         @if ($rooms !== null)
             @include('objects._basic_select_options', ['selectOptions' => [
-                'currentItem' => json_item($room, $selectOptionTransformer),
-                'items' => json_collection($rooms, $selectOptionTransformer),
+                ...json_options($room, $rooms),
                 'type' => 'multiplayer',
             ]])
         @endif

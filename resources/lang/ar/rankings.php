@@ -33,23 +33,41 @@ return [
         'used' => 'المُنفق',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'لهذا المستخدم سِجل ترتيب يقل عن 30 يوماً.',
     ],
 
     'top_plays' => [
         'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
-        'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => 'كودوسو',
-        'multiplayer' => 'متعدد اللاعبين',
-        'season_room' => '',
-        'seasons' => 'مواسم',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
         'top_plays' => '',
     ],

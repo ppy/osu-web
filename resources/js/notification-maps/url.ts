@@ -17,8 +17,6 @@ export function urlGroup(item: Notification) {
         return route('beatmapsets.show', { beatmapset: item.objectId });
       case 'build':
         return route('changelog.show', { changelog: item.objectId, key: 'id' });
-      case 'news_post':
-        return route('news.show', { key: 'id', news: item.objectId });
     }
   } else if (item.name === 'user_achievement_unlock') {
     return userAchievementUrl(item);
@@ -33,6 +31,9 @@ export function urlGroup(item: Notification) {
       return route('chat.index', { channel_id: item.objectId });
     case 'forum_topic':
       return route('forum.topics.show', { start: 'unread', topic: item.objectId });
+    case 'news_post':
+      // TODO: change to use slug if available. (And comment if possible?)
+      return route('news.show', { key: 'id', news: item.objectId });
     case 'team':
       return route('teams.show', { team: item.objectId });
   }
@@ -73,6 +74,8 @@ export function urlSingular(item: Notification) {
       return route('comments.show', { comment: item.details.commentId });
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });
+    case 'news_post_new':
+      return route('news.show', { news: item.details.slug });
     case 'team_application_accept':
     case 'team_application_reject':
     case 'team_application_store':

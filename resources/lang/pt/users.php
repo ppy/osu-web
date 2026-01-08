@@ -470,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Sítio web',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'É capaz de ter mudado o nome de utilizador.',
             'reason_2' => 'A conta poderá estar indisponível devido a problemas de segurança ou de abuso.',

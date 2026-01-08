@@ -224,8 +224,8 @@ return [
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
             'playcount' => 'プレイ数',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'お気に入り',
+            'no_favourites' => 'お気に入りはまだありません',
         ],
 
         'status' => [

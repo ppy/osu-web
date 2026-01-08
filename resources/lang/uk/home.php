@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'перейдіть на цю сторінку для того що дізнатись більше інформації',
-        'download' => '',
+        'download' => 'Завантажити ',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'дзеркало',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version або новіше',
         'other_os' => 'інші платформи',
         'quick_start_guide' => 'короткий посібник',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'якщо ви шукаєте старішу версію гри',
+        'tagline_1' => 'давайте ж',
+        'tagline_2' => 'розпочнемо!',
         'video-guide' => 'відео інструкція',
 
         'help' => [
