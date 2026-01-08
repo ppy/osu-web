@@ -44,10 +44,9 @@ class ScreenshotsControllerTest extends TestCase
         $screenshot = Screenshot::factory()->create(['user_id' => $user->getKey()]);
         \Storage::fake('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
 
-        $this->get(route('screenshots.show', [
-            'screenshot' => $screenshot->getKey(),
-            'hash' => Screenshot::urlHash($screenshot->getKey()),
-        ]))->assertOk()->assertHeader('Content-Type', 'image/jpeg');
+        $this->get($screenshot->url())
+            ->assertOk()
+            ->assertHeader('Content-Type', 'image/jpeg');
     }
 
     /**
@@ -58,10 +57,7 @@ class ScreenshotsControllerTest extends TestCase
         $user = User::factory()->create();
         $screenshot = Screenshot::factory()->create(['screenshot_id' => 727, 'user_id' => $user->getKey()]);
 
-        $this->get(route('screenshots.show', [
-            'screenshot' => 727,
-            'hash' => 'asdf',
-        ]))->assertNotFound();
+        $this->get($screenshot->url())->assertNotFound();
 
         $after = $screenshot->refresh();
 
@@ -80,16 +76,16 @@ class ScreenshotsControllerTest extends TestCase
 
         config_set('osu.screenshots.legacy_id_cutoff', $screenshot->getKey() + 1);
 
-        $this->get(route('screenshots.show-legacy', [
-            'screenshot' => $screenshot->getKey(),
-        ]))->assertOk()->assertHeader('Content-Type', 'image/jpeg');
+        $this->get($screenshot->url())
+            ->assertOk()
+            ->assertHeader('Content-Type', 'image/jpeg');
     }
 
     public function testShowLegacyIdAboveCutoff()
     {
         config_set('osu.screenshots.legacy_id_cutoff', 727000);
 
-        $this->get(route('screenshots.show-legacy', [
+        $this->get(route('screenshots.show', [
             'screenshot' => 727001,
         ]))->assertNotFound();
     }
@@ -99,10 +95,7 @@ class ScreenshotsControllerTest extends TestCase
         $screenshot = Screenshot::factory()->create();
         \Storage::fake('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
 
-        $this->get(route('screenshots.show', [
-            'screenshot' => $screenshot->getKey(),
-            'hash' => Screenshot::urlHash($screenshot->getKey()),
-        ]))->assertOk();
+        $this->get($screenshot->url())->assertOk();
 
         $screenshot = $screenshot->refresh();
 

@@ -36,9 +36,22 @@ class Screenshot extends Model
         return $id < $GLOBALS['cfg']['osu']['screenshots']['legacy_id_cutoff'];
     }
 
-    public static function urlHash(int $id): string
+    private static function hashForId(int $id): string
     {
         return substr(md5($id.$GLOBALS['cfg']['osu']['screenshots']['shared_secret']), 0, 4);
+    }
+
+    public static function lookup(int $id, ?string $hash): ?self
+    {
+        if ($hash === null) {
+            if (!self::isLegacyId($id)) {
+                return null;
+            }
+        } else if (self::hashForId($id) !== $hash) {
+            return null;
+        }
+
+        return self::findOrFail($id);
     }
 
     public function store($file): void
@@ -55,8 +68,17 @@ class Screenshot extends Model
     {
         return route('screenshots.show', [
             'screenshot' => $this->getKey(),
-            'hash' => self::urlHash($this->getKey()),
+            'hash' => $this->hash(),
         ]);
+    }
+
+    public function hash(): ?string
+    {
+        if (self::isLegacyId($this->getKey())) {
+            return null;
+        }
+
+        return self::hashForId($this->getKey());
     }
 
     private function storage(): Filesystem

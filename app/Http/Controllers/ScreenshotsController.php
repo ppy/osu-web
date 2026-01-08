@@ -34,30 +34,17 @@ class ScreenshotsController extends Controller
         ]);
     }
 
-    public function show($id, string $hash)
+    public function show($id, ?string $hash = null)
     {
-        abort_if(Screenshot::urlHash(intval($id)) !== $hash, 404);
+        $screenshot = Screenshot::lookup(intval($id), $hash);
+        abort_if($screenshot === null, 404);
 
-        return $this->showBase($id);
-    }
-
-    public function showLegacy(int $id)
-    {
-        abort_if(!Screenshot::isLegacyId(intval($id)), 404);
-
-        return $this->showBase($id);
-    }
-
-    private function showBase($id)
-    {
-        $screenshot = Screenshot::findOrFail($id);
         $screenshot->update([
             'hits' => $screenshot->hits + 1,
             'last_access' => Carbon::now(),
         ]);
 
         $file = $screenshot->fetch();
-
         abort_if(!$file, 404);
 
         return response()->stream(function () use ($file) {
