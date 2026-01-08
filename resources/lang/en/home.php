@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => 'Sign in to search teams',
             'more_simple' => 'See more team search results',
         ],
 
