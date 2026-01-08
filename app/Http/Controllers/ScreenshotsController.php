@@ -39,16 +39,18 @@ class ScreenshotsController extends Controller
         $screenshot = Screenshot::lookup(intval($id), $hash);
         abort_if($screenshot === null, 404);
 
-        $screenshot->update([
-            'hits' => $screenshot->hits + 1,
+        $screenshot->incrementInstance('hits', 1, [
             'last_access' => Carbon::now(),
         ]);
 
         $file = $screenshot->fetch();
-        abort_if(!$file, 404);
+        abort_if($file === null, 404);
 
         return response()->stream(function () use ($file) {
             echo $file;
-        }, 200, ['Content-Type' => 'image/jpeg']);
+        }, 200, [
+            'Content-Type' => 'image/jpeg',
+            'Cache-Control' => 'max-age=31536000, public',
+        ]);
     }
 }
