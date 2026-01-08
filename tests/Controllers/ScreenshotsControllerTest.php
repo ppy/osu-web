@@ -32,8 +32,10 @@ class ScreenshotsControllerTest extends TestCase
 
         $this->assertGreaterThan(0, preg_match('/https?:\/\/.+\/(\d+)\/(.{4})/', $url, $matches));
 
-        \Storage::disk('local-screenshot')->assertExists("{$matches[1]}.jpg");
-        $this->assertEquals(Screenshot::urlHash(intval($matches[1])), $matches[2]);
+        $this->get(route('screenshots.show', [
+            'screenshot' => $matches[1],
+            'hash' => $matches[2],
+        ]))->assertOk();
     }
 
     public function testShow()
