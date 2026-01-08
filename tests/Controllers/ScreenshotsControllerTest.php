@@ -30,7 +30,7 @@ class ScreenshotsControllerTest extends TestCase
 
         $matches = [];
 
-        $this->assertGreaterThan(0, preg_match('/https?:\/\/.+\/(\d+)\/(.{4})/', $url, $matches));
+        $this->assertGreaterThan(0, preg_match('#(\d+)/(.{4})$#', $url, $matches));
 
         $this->get(route('screenshots.show', [
             'screenshot' => $matches[1],
@@ -42,11 +42,15 @@ class ScreenshotsControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $screenshot = Screenshot::factory()->create(['user_id' => $user->getKey()]);
-        \Storage::fake('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
+        $screenshot->store(UploadedFile::fake()->image('ss.jpg'));
+
+        $this->expectCountChange(fn () => $screenshot->fresh()->hits, 1);
 
         $this->get($screenshot->url())
             ->assertOk()
             ->assertHeader('Content-Type', 'image/jpeg');
+
+        $this->assertEqualsUpToOneSecond(Carbon::now(), $screenshot->fresh()->last_access);
     }
 
     /**
@@ -54,16 +58,18 @@ class ScreenshotsControllerTest extends TestCase
      */
     public function testShowInvalidHash()
     {
+        $oldDate = Carbon::now()->subDays(7);
+
         $user = User::factory()->create();
-        $screenshot = Screenshot::factory()->create(['screenshot_id' => 727, 'user_id' => $user->getKey()]);
+        $screenshot = Screenshot::factory()->create([
+            'screenshot_id' => 727,
+            'user_id' => $user->getKey(),
+            'last_access' => $oldDate,
+        ]);
 
+        $this->expectCountChange(fn () => $screenshot->fresh()->hits, 0);
         $this->get($screenshot->url())->assertNotFound();
-
-        $after = $screenshot->refresh();
-
-        // Ensure stats aren't updated after a missed hit
-        self::assertEquals($screenshot->hits, $after->hits);
-        self::assertEquals($screenshot->last_access, $after->last_access);
+        $this->assertEqualsUpToOneSecond($oldDate, $screenshot->fresh()->last_access);
     }
 
     public function testShowLegacy()
@@ -72,13 +78,17 @@ class ScreenshotsControllerTest extends TestCase
 
         $user = User::factory()->create();
         $screenshot = Screenshot::factory()->create(['user_id' => $user->getKey()]);
-        \Storage::disk('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
+        $screenshot->store(UploadedFile::fake()->image('ss.jpg'));
 
         config_set('osu.screenshots.legacy_id_cutoff', $screenshot->getKey() + 1);
+
+        $this->expectCountChange(fn () => $screenshot->fresh()->hits, 1);
 
         $this->get($screenshot->url())
             ->assertOk()
             ->assertHeader('Content-Type', 'image/jpeg');
+
+        $this->assertEqualsUpToOneSecond(Carbon::now(), $screenshot->fresh()->last_access);
     }
 
     public function testShowLegacyIdAboveCutoff()
@@ -88,18 +98,5 @@ class ScreenshotsControllerTest extends TestCase
         $this->get(route('screenshots.show', [
             'screenshot' => 727001,
         ]))->assertNotFound();
-    }
-
-    public function testShowUpdatesStats()
-    {
-        $screenshot = Screenshot::factory()->create();
-        \Storage::fake('local-screenshot')->putFileAs('/', UploadedFile::fake()->image('ss.jpg'), "{$screenshot->getKey()}.jpg");
-
-        $this->get($screenshot->url())->assertOk();
-
-        $screenshot = $screenshot->refresh();
-
-        self::assertEquals(1, $screenshot->hits);
-        self::assertEqualsUpToOneSecond(Carbon::now(), $screenshot->last_access);
     }
 }

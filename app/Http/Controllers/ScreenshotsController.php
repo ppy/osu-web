@@ -39,12 +39,12 @@ class ScreenshotsController extends Controller
         $screenshot = Screenshot::lookup(intval($id), $hash);
         abort_if($screenshot === null, 404);
 
+        $file = $screenshot->fetch();
+        abort_if($file === null, 404);
+
         $screenshot->incrementInstance('hits', 1, [
             'last_access' => Carbon::now(),
         ]);
-
-        $file = $screenshot->fetch();
-        abort_if($file === null, 404);
 
         return response()->stream(function () use ($file) {
             echo $file;
