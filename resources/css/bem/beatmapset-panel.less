@@ -58,7 +58,7 @@
   --play-icon-opacity: 0;
   --play-width: 80px;
   --source-display: flex;
-  --stats-grid-template: "hype nominations favourite-count play-count date" /
+  --stats-grid-template: "hype nominations play-count favourite-count date" /
     auto auto auto auto auto;
   --stats-opacity: 1;
   --transition: all 150ms ease-in-out;
@@ -131,8 +131,8 @@
   &--size-extra {
     @media @desktop {
       --panel-height: @beatmapset-panel-extra-height-desktop;
-      --stats-grid-template: "favourite-count hype date"
-        "play-count nominations ." / auto auto auto;
+      --stats-grid-template: "hype play-count date"
+        "nominations favourite-count ." / auto auto auto;
       --stats-opacity: 1;
       --play-width: 140px;
     }
