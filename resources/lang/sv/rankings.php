@@ -33,25 +33,50 @@ return [
         'used' => 'Spenderat',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Denna spelare har mindre än 30 dagar av nylig rankinghistorik.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'i rampljuset',
         'country' => 'land',
         'daily_challenge' => 'daglig utmaning',
         'global' => 'global ',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'flerspelarläge',
-        'seasons' => 'säsonger',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'lag',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Det finns inga rum i denna säsong ännu.',
         'ongoing' => 'Denna säsong pågår fortfarande (det kommer läggas till fler spellistor).',
         'room_count' => 'Antal spellistor',
+        'summary' => '',
         'url' => 'Visa mer information om den säsongen.',
         'validation' => [
             'not_enough_factors' => 'det finns inte tillräckligt med poängfaktorer för korrekt beräkning',

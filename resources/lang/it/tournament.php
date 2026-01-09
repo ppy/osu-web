@@ -28,7 +28,7 @@ return [
         'info_page' => 'Pagina delle Informazioni',
         'login_to_register' => 'Si prega di :login per visualizzare i dettagli di registrazione!',
         'not_yet_entered' => 'Non sei registrato in questo torneo.',
-        'rank_too_low' => 'Mi spiace, il tuo rank non soddisfa i requisiti di questo torneo!',
+        'rank_too_low' => 'Ci dispiace, il tuo rank non soddisfa i requisiti per questo torneo!',
         'registration_ends' => 'Le iscrizioni chiudono il :date',
 
         'button' => [

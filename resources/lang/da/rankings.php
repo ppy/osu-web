@@ -33,25 +33,50 @@ return [
         'used' => '',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'Baner',
         'country' => 'Land',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => '',
-        'multiplayer' => 'multiplayer',
-        'seasons' => 'sæsoner',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Der er ingen rum i denne sæson endnu.',
         'ongoing' => 'Denne sæson er stadig i gang (der vil være flere playlister tilføjet).',
         'room_count' => 'Playlist-antal',
+        'summary' => '',
         'url' => 'Vis flere oplysninger om den sæson.',
         'validation' => [
             'not_enough_factors' => '',

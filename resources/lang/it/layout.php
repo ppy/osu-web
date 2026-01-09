@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Il ritmo è a distanza di un *click*!  Con Ouendan/EBA, Taiko e modalità di gioco originali con un editor di livelli dotato di ogni funzionalità.',
+        'page_description' => 'osu! - Il ritmo è a distanza di un *clic*!  Con Ouendan/EBA, Taiko e modalità di gioco originali con un editor di livelli dotato di ogni funzionalità.',
     ],
 
     'header' => [
@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'dettagli',
             'discussions' => 'discussione',
+            'versions' => 'cronologia versioni',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'playlist',
+            'quickplay' => 'quick play',
             'realtime' => 'multigiocatore',
             'show' => 'dettagli',
         ],
@@ -96,7 +98,7 @@ return [
         'general' => [
             '_' => 'Generale',
             'home' => 'Home',
-            'changelog-index' => 'Note di rilascio',
+            'changelog-index' => 'Changelog',
             'beatmaps' => 'Lista Beatmap',
             'download' => 'Scarica osu!',
         ],

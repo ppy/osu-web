@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Ustvari in uredi teme in objave na forumu v tvojem imenu.',
+            'write_manage' => '',
         ],
 
         'friends' => [

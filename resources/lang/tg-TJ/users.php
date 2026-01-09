@@ -399,6 +399,9 @@ return [
                 'title_longer' => '',
                 'show_more' => '',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => '',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => '',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => '',
             'reason_2' => '',

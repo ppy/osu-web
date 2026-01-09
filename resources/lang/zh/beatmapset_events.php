@@ -14,7 +14,7 @@ return [
         'discussion_restore' => '管理员恢复了 :discussion。',
         'discussion_unlock' => '已启用谱面的讨论区。',
         'disqualify' => '谱面已下架 (DQ)。原因：:user 提出的 :discussion (:text)。',
-        'disqualify_legacy' => '谱面已下架 (DQ)。原因：:text。',
+        'disqualify_legacy' => '谱面被 :user 下架 (DQ)。原因：:text。',
         'genre_edit' => '流派由 :old 更改为 :new。',
         'issue_reopen' => ':user 要求重审 :discussion_user 提出的问题 :discussion。',
         'issue_resolve' => ':user 已解决 :discussion_user 提出的问题 :discussion。',

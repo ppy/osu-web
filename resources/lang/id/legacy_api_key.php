@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => 'Kunci API lawas Baru',
+    'new' => 'Kunci API Lawas Baru',
     'none' => 'Tidak ada kunci.',
 
     'docs' => [
-        '_' => 'Dokumentasi lebih lanjut seputar API osu! dapat dilihat pada :github.',
+        '_' => 'Dokumentasi lebih lanjut seputar API osu! dapat dilihat di :github.',
         'github' => 'GitHub',
     ],
 

@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Nedavne objave',
                 'show_more' => 'prikaži več objav',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Nedavno',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Spletna stran',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Morda si je spremenil svoje uporabniško ime.',
             'reason_2' => 'Račun je lahko začasno nedostopen zaradi varnostnih težav ali težav z zlorabo.',

@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'prejmi obvestila o novih težavah na kvalificiranih beatmapah pri naslednjih modifikatorjih',
         'beatmapset_disqualify' => 'prejmi obvestila ko so beatmape pri naslednjih modifikatorjih diskvalificirane',
         'comment_reply' => 'prejmi obvestila, ko nekdo odgovori na tvoj komentar',
+        'news_post' => '',
         'title' => 'Obvestila',
         'topic_auto_subscribe' => 'avtomatsko omogoči obvestila o novih temah na forumu v tvoji lasti',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'odgovor na temo',
             'mail' => 'e-pošta',
             'mapping' => 'ustvarjalec beatmap',
+            'news_post' => '',
             'push' => 'potisno',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokiranje zasebnih sporočil ljudi, ki niso na vašem seznamu prijateljev',
         'hide_online' => 'skrij svojo prisotnost',
+        'hide_online_info' => '',
         'title' => 'Zasebnost',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'posodobi',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

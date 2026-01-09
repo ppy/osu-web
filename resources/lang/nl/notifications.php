@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username antwoordde ":content" op ":title"',
                 'comment_reply_compact' => ':username antwoordde ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Nieuws ":title" heeft nieuwe reacties',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited menit|:count_delimited menit',
         'months' => ':count_delimited bulan|:count_delimited bulan',
         'notifications' => ':count_delimited notifikasi|:count_delimited notifikasi',
+        'player' => ':count_delimited pemain|:count_delimited pemain',
         'plus_others' => '+ :count_delimited lainnya!|+ :count_delimited lainnya!',
         'post' => ':count_delimited kiriman|:count_delimited kiriman',
         'second_short_unit' => 'detik|detik',

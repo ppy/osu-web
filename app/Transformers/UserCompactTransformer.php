@@ -68,6 +68,7 @@ class UserCompactTransformer extends TransformerAbstract
         'follow_user_mapping',
         'follower_count',
         'friends',
+        'global_rank',
         'graveyard_beatmapset_count',
         'groups',
         'guest_beatmapset_count',
@@ -83,6 +84,7 @@ class UserCompactTransformer extends TransformerAbstract
         'kudosu',
         'loved_beatmapset_count',
         'mapping_follower_count',
+        'matchmaking_stats',
         'monthly_playcounts',
         'nominated_beatmapset_count',
         'page',
@@ -279,6 +281,14 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
+    public function includeGlobalRank(User $user)
+    {
+        return $this->primitive([
+            'rank' => $user->statistics($this->mode)?->globalRank(),
+            'ruleset_id' => Beatmap::MODES[$this->mode],
+        ]);
+    }
+
     public function includeGraveyardBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('graveyard'));
@@ -355,6 +365,18 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeMappingFollowerCount(User $user)
     {
         return $this->primitive($user->mappingFollowerCount());
+    }
+
+    public function includeMatchmakingStats(User $user): ResourceInterface
+    {
+        $allStats = $user
+            ->matchmakingStats()
+            ->whereRulesetId(Beatmap::MODES[$this->mode])
+            ->withRank()
+            ->with('pool')
+            ->get();
+
+        return $this->collection($allStats, new MatchmakingUserStatsTransformer());
     }
 
     public function includeMonthlyPlaycounts(User $user)

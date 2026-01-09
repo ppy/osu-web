@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Lataa osu!',
-        'action_lazer' => 'Lataa osu!(lazer)',
-        'action_lazer_description' => 'seuraava suuri päivitys osu!un',
         'action_lazer_info' => 'lisätietoja saat täältä',
-        'action_lazer_title' => 'kokeile osu!(lazer)ia',
-        'action_title' => 'lataa osu!',
+        'download' => '',
         'for_os' => 'käyttöjärjestelmälle: :os',
         'macos-fallback' => 'macOS-käyttäjät',
         'mirror' => 'vaihtoehtoinen lataus',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version tai uudempi',
         'other_os' => 'muut alustat',
         'quick_start_guide' => 'pikakäyttöohjeet',
-        'tagline' => "laitetaan sinut<br>liikkeelle!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'video-opas',
 
         'help' => [

@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'انتشار التصنيف',
             'nominations' => 'الترشيحات',
             'playcount' => 'مرات اللعب',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

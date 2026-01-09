@@ -20,7 +20,7 @@ return [
         'channel' => 'pokalbiai',
         'forum_topic' => 'forumas',
         'news_post' => 'naujienos',
-        'team' => '',
+        'team' => 'komanda',
         'user' => 'profilis',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'pokalbiai',
         'forum_topic' => 'forumas',
         'news_post' => 'naujienos',
-        'team' => '',
+        'team' => 'komanda',
         'user' => 'profilis',
     ],
 
@@ -61,7 +61,7 @@ return [
                 'review_count' => [
                     'praises' => ':count_delimited pagyrimas|:count_delimited pagyrimai',
                     'problems' => ':count_delimited problema|:count_delimited problemos',
-                    'suggestions' => '',
+                    'suggestions' => ':count_delimited pasiūlymas|:count_delimited pasiūlymų',
                 ],
             ],
 
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Nauja žinutė komandoje',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username sako ":title"',
+                    'channel_team_compact' => ':username sako ":title"',
+                    'channel_team_group' => ':username sako ":title"',
                 ],
             ],
         ],
@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username atsakė ":content" tarp ":title"',
                 'comment_reply_compact' => ':username atsakė ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -173,17 +180,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Prisijungimo prie komandos paraiška',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "Jus tapote :title komandos nariu",
+                'team_application_accept_compact' => "Jus tapote :title komandos nariu",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Komandos prisijungimo prašymų atnaujinimai',
 
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_reject' => 'Jūsų prašymas prisijungti prie :title komandos buvo atmestas',
+                'team_application_reject_compact' => 'Jūsų prašymas prisijungti prie :title komandos buvo atmestas',
+                'team_application_store' => ':title nori prisijungti prie komandos',
+                'team_application_store_compact' => ':title nori prisijungti prie komandos',
             ],
         ],
 
@@ -245,13 +252,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Naujas skelbimas tarp ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Gavote naują žinutę iš :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Nauja žinutė komandoje ":name"',
             ],
         ],
 
@@ -265,6 +272,10 @@ return [
             'comment' => [
                 'comment_new' => 'Naujienos ":title" turi naujų komentarų',
             ],
+
+            'news_post' => [
+                'news_post_new' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -275,9 +286,9 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
-                'team_application_store' => '',
+                'team_application_accept' => "Jus tapote :title komandos nariu",
+                'team_application_reject' => 'Jūsų prašymas prisijungti prie :title komandos buvo atšauktas',
+                'team_application_store' => ':title nori prisijungti prie komandos',
             ],
         ],
 

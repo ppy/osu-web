@@ -37,13 +37,14 @@
                     </p>
                     <div>
                         <div
-                            class="js-react--click-to-copy u-contents"
+                            class="js-react u-contents"
                             data-props="{{ json_encode([
                                 'label' => osu_trans('user_totp.create.key_copy'),
                                 'showIcon' => true,
                                 'value' => $totp->getSecret(),
                                 'valueAsUrl' => false,
                             ]) }}"
+                            data-react="click-to-copy"
                         ></div>
                     </div>
                 </div>

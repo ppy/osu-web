@@ -31,9 +31,9 @@ return [
 
     'mode' => [
         'artist' => 'Interpret/Album',
-        'chart' => 'V záři reflektorů',
+        'chart' => 'Zvýrazněné',
         'featured' => 'Oficiální umělec',
-        'loved' => 'Projekt Oblíbené',
+        'loved' => 'Projekt oblíbených komunitou',
         'standard' => 'Klasické',
         'theme' => 'Tématické',
         'tournament' => 'Turnaj',

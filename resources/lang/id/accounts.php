@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'reset' => 'atur ulang',
-            'rules' => 'Pastikan avatarmu tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatarmu harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
+            'rules' => 'Pastikan avatarmu tunduk pada :link yang berlaku.<br/>Hal ini berarti avatar ini harus <strong>cocok untuk segala usia</strong> tanpa unsur apa pun yang tidak dibenarkan, mis. konten yang berketelanjangan, menyinggung, atau sugestif.',
             'rules_link' => 'Pertimbangan konten visual',
         ],
 
@@ -72,20 +72,21 @@ return [
         'error' => [
             'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
             'no_contribution' => 'Tidak dapat menautkan akun GitHub yang tidak memiliki kontribusi terhadap proyek osu!',
-            'unverified_email' => 'Silakan verifikasi email utama kamu pada GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
+            'unverified_email' => 'Silakan verifikasi email utama kamu di GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
+        'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap Qualified di mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi untuk balasan baru pada komentar yang kamu tulis',
+        'news_post' => 'terima notifikasi untuk postingan berita yang berkaitan dengan',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis bagi topik forum baru yang kamu buat atau balas',
 
         'options' => [
-            '_' => 'kirimkan notifikasi melalui',
-            'beatmap_owner_change' => 'guest difficulty',
+            '_' => 'opsi pengiriman',
+            'beatmap_owner_change' => 'tingkat kesulitan tamu',
             'beatmapset:modding' => 'modding',
             'channel_message' => 'pesan pribadi',
             'channel_team' => 'pesan percakapan tim',
@@ -93,13 +94,14 @@ return [
             'forum_topic_reply' => 'balasan topik',
             'mail' => 'email',
             'mapping' => 'mapper',
+            'news_post' => 'postingan berita',
             'push' => 'push (web)',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'klien diizinkan',
-        'own_clients' => 'klien yang dimiliki',
+        'authorized_clients' => 'klien yang terizin',
+        'own_clients' => 'klien yang kamu miliki',
         'title' => 'OAuth',
     ],
 
@@ -109,7 +111,7 @@ return [
         'title' => 'Pengaturan',
 
         'beatmapset_download' => [
-            '_' => 'tipe pengunduhan beatmap bawaan',
+            '_' => 'jenis unduhan beatmap bawaan',
             'all' => 'dengan video (apabila tersedia)',
             'direct' => 'buka di osu!direct',
             'no_video' => 'tanpa video',
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
         'hide_online' => 'sembunyikan status onlinemu',
+        'hide_online_info' => 'pengaturan ini akan terhubung ke mode "tampil offline" di osu!lazer',
         'title' => 'Privasi',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'perbarui',
+    ],
+
+    'user_totp' => [
+        'title' => 'Apl. Autentikator',
+        'usage_note' => 'Gunakan aplikasi autentikator untuk memverifikasi akun sebagai pengganti verifikasi via email. Verifikasi email akan tetap tersedia sebagai metode cadangan.',
+
+        'button' => [
+            'remove' => 'Hapus',
+            'setup' => 'Tambah Aplikasi Autentikator',
+        ],
+        'status' => [
+            'label' => 'status',
+            'not_set' => 'Belum diatur',
+            'set' => 'Telah diatur',
+        ],
     ],
 
     'verification_completed' => [

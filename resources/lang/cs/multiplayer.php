@@ -8,6 +8,7 @@ return [
         'active' => 'Není právě v žádných probíhajících osu!(lazer) :type_group hrách!',
         'ended' => 'Zatím není v žádných dokončených osu!(lazer) :type_group hrách!',
         'playlists' => 'playlist',
+        'quickplay' => 'rychlá hra',
         'realtime' => 'multiplayer',
     ],
 

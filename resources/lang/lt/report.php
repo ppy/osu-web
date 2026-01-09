@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Pranešti Žinutę',
+        'title' => 'Pranešti :username\'o žinutę?',
     ],
 
     'scores' => [
@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Pranešti Komandą',
+        'title' => 'Pranešti :username\'o komandą?',
     ],
 
     'user' => [

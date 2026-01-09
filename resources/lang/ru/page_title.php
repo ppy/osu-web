@@ -53,6 +53,7 @@ return [
             'discussion' => 'обсуждение карты',
             'index' => 'библиотека карт',
             'show' => 'информация о карте',
+            'versions' => 'история версий карты',
         ],
         'changelog_controller' => [
             '_' => 'список изменений',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'конкурсы',
             'judge' => 'судейство конкурса',
+        ],
+        'group_history_controller' => [
+            '_' => 'история группы',
         ],
         'groups_controller' => [
             'show' => 'группы',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'пресеты обложек',
+        ],
+        'user_totp_controller' => [
+            '_' => 'приложение для аутентификации',
         ],
         'users_controller' => [
             '_' => 'информация об игроке',

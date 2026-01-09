@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => 'Šis rezultatas pažymėtas ištrynimui ir artimu laiku pradings.',
         'title' => ':username ant :title [:version]',
 
         'beatmap' => [
@@ -25,8 +25,8 @@ return [
 
     'status' => [
         'non_best' => 'Tik jūsų geriausi rezultatai duoda pp',
-        'no_pp' => '',
+        'no_pp' => 'pp nebus suteikiami šiam rezultatui',
         'processing' => 'Šis reultatas dar apskaičiuojamas ir netrukus bus parodytas',
-        'no_rank' => '',
+        'no_rank' => 'Šis rezultatas neturi reitingo nes yra nereitinguotas arba pažymėtas ištrynimui',
     ],
 ];

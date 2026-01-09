@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
         'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
         'comment_reply' => 'otrzymuj powiadomienia o odpowiedziach do twoich komentarzy',
+        'news_post' => '',
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
             'mapping' => 'twórca',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -125,8 +127,9 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'blokuj prywatne wiadomości od osób spoza listy znajomych',
+        'friends_only' => 'blokuj wiadomości prywatne od osób spoza listy znajomych',
         'hide_online' => 'ukryj swoją obecność online',
+        'hide_online_info' => 'jednoznaczne ze statusem „Nie przeszkadzać” w osu!lazer',
         'title' => 'Prywatność',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'zaktualizuj',
+    ],
+
+    'user_totp' => [
+        'title' => 'Aplikacja uwierzytelniająca',
+        'usage_note' => 'Użyj aplikacji uwierzytelniającej zamiast e-mailu, aby się zweryfikować. Weryfikacja przez e-mail będzie nadal dostępna jako opcja zapasowa.',
+
+        'button' => [
+            'remove' => 'Usuń',
+            'setup' => 'Dodaj aplikację uwierzytelniającą',
+        ],
+        'status' => [
+            'label' => 'status',
+            'not_set' => 'Nie skonfigurowano',
+            'set' => 'Skonfigurowano',
+        ],
     ],
 
     'verification_completed' => [

@@ -42,6 +42,9 @@ const pageTitleMap: Record<`${'action' | 'controller' | 'namespace'}Key`, Partia
     'main.artist_tracks_controller._': 'main.artists_controller._',
     'main.store_controller._': 'store._',
     'multiplayer.rooms_controller._': 'main.ranking_controller._',
+    'ranking.daily_challenge_controller._': 'main.ranking_controller._',
+    'ranking.matchmaking_controller._': 'main.ranking_controller._',
+    'ranking.top_plays_controller._': 'main.ranking_controller._',
   },
   namespaceKey: {
     'admin_forum._': 'admin._',

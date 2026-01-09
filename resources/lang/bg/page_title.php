@@ -53,6 +53,7 @@ return [
             'discussion' => 'бийтмап дискусия',
             'index' => 'списък с бийтмапове',
             'show' => 'бийтмап инфо',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'списък с промени',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'конкурси',
             'judge' => 'жури на конкурса',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'групи',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'предстройки на корицата',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'инфо за играч',

@@ -399,6 +399,9 @@ return [
                 'title_longer' => '最新貼文',
                 'show_more' => '顯示更多貼文',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => '最近活動',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => '個人網站',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => '他可能已經更換了使用者名稱。',
             'reason_2' => '該帳號因安全或濫用問題故暫不開放。',

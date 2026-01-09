@@ -83,7 +83,7 @@ return [
             'favourite_login' => 'silakan masuk untuk memfavoritkan beatmap ini',
             'logged-out' => 'kamu harus masuk untuk mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
-            'mapped_by_guest' => 'guest difficulty oleh :mapper',
+            'mapped_by_guest' => 'tingkat kesulitan tamu oleh :mapper',
             'unfavourite' => 'hapus beatmap ini dari daftar favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',
             'playcount' => 'Jumlah Dimainkan',
+            'favourites' => 'Favorit',
+            'no_favourites' => 'Belum ada favorit',
         ],
 
         'status' => [

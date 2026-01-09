@@ -157,7 +157,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => '残り:count_delimited枠|残り:count_delimited枠',
             'leader' => 'チームリーダー',
             'rank' => 'ランキング',
         ],

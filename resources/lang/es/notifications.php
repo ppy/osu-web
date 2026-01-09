@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username respondió «:content» en «:title»',
                 'comment_reply_compact' => ':username respondió «:content»',
             ],
+
+            'news_post' => [
+                '_' => 'Noticia (:series)',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'La noticia «:title» tiene nuevos comentarios',
+            ],
+
+            'news_post' => [
+                'news_post_new' => 'Noticia (:series): «:title»',
             ],
         ],
 

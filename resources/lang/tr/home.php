@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'osu!\'yu indir',
-        'action_lazer' => 'osu!(lazer) indir',
-        'action_lazer_description' => 'osu!\'ya gelecek olan büyük güncelleme',
         'action_lazer_info' => 'daha fazla bilgi için bu sayfaya göz atın',
-        'action_lazer_title' => 'osu!(lazer)\'i dene',
-        'action_title' => 'osu! indir',
+        'download' => '',
         'for_os' => ':os için',
         'macos-fallback' => 'macOS kullanıcıları',
         'mirror' => 'alternatif',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version ve üzeri',
         'other_os' => 'diğer platformlar',
         'quick_start_guide' => 'hızlı başlangıç kılavuzu',
-        'tagline' => "haydi seni<br>oyuna hazırlayalım!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'video kılavuzu',
 
         'help' => [
@@ -142,11 +140,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Günlük Meydan Okuma Haritası',
             'new' => 'Yeni Dereceli Beatmapler',
             'popular' => 'Popüler Beatmapler',
             'by_user' => ':user tarafından',
-            'resets' => '',
+            'resets' => ':ends tarihinde sıfırlanır',
         ],
         'buttons' => [
             'download' => 'osu!\'yu indir',

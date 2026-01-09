@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Vahvistuskoodi erääntyi, uusi vahvistussähköposti lähetetty.',
         'incorrect_key' => 'Virheellinen vahvistuskoodi.',
         'retries_exceeded' => 'Virheellinen vahvistuskoodi. Uudelleenyritysraja ylitetty, uusi vahvistussähköposti lähetetty.',
         'reissued' => 'Vahvistuskoodi uusittu, uusi vahvistussähköposti lähetetty.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Tuntematon virhe tapahtui, uusi vahvistussähköposti lähetetty.',
     ],
 ];

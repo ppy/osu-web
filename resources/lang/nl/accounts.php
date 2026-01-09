@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
         'beatmapset_disqualify' => 'ontvang meldingen voor wanneer beatmaps van de volgende modes zijn gediskwalificeerd',
         'comment_reply' => 'ontvang meldingen voor reacties op uw reacties',
+        'news_post' => '',
         'title' => 'Meldingen',
         'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'topic antwoord',
             'mail' => 'e-mail',
             'mapping' => 'beatmap mapper',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
         'hide_online' => 'verberg je online aanwezigheid',
+        'hide_online_info' => '',
         'title' => 'Privacy',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'bijwerken',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

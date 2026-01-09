@@ -46,7 +46,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Betul nak padam hantaran?',
         'confirm_restore' => 'Betul nak pulihkan hantaran?',
-        'edited' => 'Kali terakhir disunting oleh :user :when, disunting sejumlah :count_delimited kali.',
+        'edited' => 'Suntingan terkini oleh :user :when, disunting sejumlah :count_delimited kali.',
         'posted_at' => 'dihantar :when',
         'posted_by_in' => 'dihantar oleh :username di :forum',
 
@@ -70,7 +70,7 @@ return [
     ],
 
     'search' => [
-        'go_to_post' => 'Pergi ke hantaran',
+        'go_to_post' => 'Ke hantaran',
         'post_number_input' => 'masukkan angka hantaran',
         'total_posts' => ':posts_count jumlah hantaran',
     ],
@@ -84,7 +84,7 @@ return [
         'has_replied' => 'Anda telah membalas tajuk ini',
         'in_forum' => 'pada :forum',
         'latest_post' => ':when oleh :user',
-        'latest_reply_by' => 'balasan terakhir oleh :user',
+        'latest_reply_by' => 'balasan terkini oleh :user',
         'new_topic' => 'Tajuk baharu',
         'new_topic_login' => 'Daftar masuk untuk hantar tajuk baru',
         'post_reply' => 'Hantar',
@@ -124,7 +124,7 @@ return [
         'jump' => [
             'enter' => 'klik untuk memasukkan angka hantaran tertentu',
             'first' => 'ke hantaran pertama',
-            'last' => 'ke hantaran terakhir',
+            'last' => 'ke hantaran terkini',
             'next' => 'langkau 10 hantaran seterusnya',
             'previous' => 'mandir 10 hantaran',
         ],
@@ -213,7 +213,7 @@ return [
         'actions' => [
             'login_reply' => 'Daftar Masuk untuk Membalas',
             'reply' => 'Balas',
-            'reply_with_quote' => 'Petik hantaran bagi balasan',
+            'reply_with_quote' => 'Petik hantaran untuk balasan',
             'search' => 'Cari',
         ],
 
@@ -234,7 +234,7 @@ return [
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Kosongkan untuk tinjauan tanpa tamat',
                 'max_options' => 'Pilihan setiap pengguna',
-                'max_options_info' => 'Ini jumlah pilihan bagi setiap pengguna ketika mengundi.',
+                'max_options_info' => 'Ini jumlah pilihan untuk setiap pengguna ketika mengundi.',
                 'options' => 'Tetapan',
                 'options_info' => 'Letakkan setiap pilihan pada baris baru. Anda boleh masukkan hingga 10 pilihan.',
                 'title' => 'Soalan',
@@ -383,7 +383,7 @@ return [
                 'detail' => [
                     'end_time' => 'Akhir tinjauan pada :time',
                     'ended' => 'Akhir tinjauan pada :time',
-                    'results_hidden' => 'Hasil akan ditunjukkan pada akhir tinjauan.',
+                    'results_hidden' => 'Hasil akan ditunjukkan setelah tinjauan tamat.',
                     'total' => 'Jumlah undian: :count',
                 ],
             ],

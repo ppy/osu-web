@@ -33,25 +33,50 @@ return [
         'used' => 'Витрачено',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Цей користувач має менше 30 днів недавньої історії рейтингу.',
     ],
 
+    'top_plays' => [
+        'empty' => 'Дані підраховуються...',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'чарти',
         'country' => 'країни',
         'daily_challenge' => 'щоденний виклик',
         'global' => 'глобальний',
         'kudosu' => 'кудосу',
-        'multiplayer' => 'мультиплеєр',
-        'seasons' => 'сезонні',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'команда',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'У цьому сезоні зараз немає кімнат.',
         'ongoing' => 'Цей сезон все ще триває (буде додано більше плейлистів).',
         'room_count' => 'Кількість плейлистів',
+        'summary' => 'Переглянути звіт по сезону',
         'url' => 'Показувати більше інформації про цей сезон.',
         'validation' => [
             'not_enough_factors' => 'недостатньо факторів для належного підрахунку результатів',

@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmap beszélgetések',
             'index' => 'beatmap lista',
             'show' => 'beatmap információk',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'változási napló',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'versenyek',
             'judge' => 'verseny zsűrizése',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'csoportok',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'felhasználó borító minták',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'játékos információi',

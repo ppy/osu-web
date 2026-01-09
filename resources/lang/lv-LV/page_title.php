@@ -53,6 +53,7 @@ return [
             'discussion' => 'ritma-mapes diskusija',
             'index' => 'ritma-mapju saraksts',
             'show' => 'ritma-mapes info',
+            'versions' => 'beatmapes versiju vēsture',
         ],
         'changelog_controller' => [
             '_' => 'izmaiņu pieraksts',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'konkurs',
             'judge' => 'konkursa tiesāšana',
+        ],
+        'group_history_controller' => [
+            '_' => 'grupas vēsture',
         ],
         'groups_controller' => [
             'show' => 'grupas',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'lietotāja standarta pārklājums',
+        ],
+        'user_totp_controller' => [
+            '_' => 'autentifikatora lietotne',
         ],
         'users_controller' => [
             '_' => 'spēlētāja info',

@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Sizin adınıza forum konuları ve gönderileri oluşturabilir ve düzenleyebilir.',
+            'write_manage' => '',
         ],
 
         'friends' => [

@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
         'beatmapset_disqualify' => '次のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
         'comment_reply' => 'コメントへの返信の通知を受け取る',
+        'news_post' => '',
         'title' => '通知',
         'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',
             'mapping' => 'ビートマップマッパー',
+            'news_post' => '',
             'push' => 'プッシュ通知',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
         'hide_online' => 'オンライン状態を隠す',
+        'hide_online_info' => 'これはosu!lazerの「オフラインで表示する」にマップされます',
         'title' => 'プライバシー',
     ],
 
@@ -145,6 +148,22 @@ return [
 
     'update_password' => [
         'update' => '更新',
+    ],
+
+    'user_totp' => [
+        'title' => '認証アプリ',
+        'usage_note' => '認証には、メールの代わりに認証アプリを使用してください。
+メール認証は引き続き、代替手段として利用可能です。',
+
+        'button' => [
+            'remove' => '削除',
+            'setup' => '認証アプリを追加',
+        ],
+        'status' => [
+            'label' => 'ステータス',
+            'not_set' => '設定されていません',
+            'set' => '設定済み',
+        ],
     ],
 
     'verification_completed' => [

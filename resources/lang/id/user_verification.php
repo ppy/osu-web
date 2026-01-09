@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Silakan masukkan kode yang diterima dari aplikasi autentikator yang kamu gunakan.',
+
+        'info' => [
+            'logout' => [
+                '_' => 'Kamu juga dapat :link.',
+                'link' => 'keluar dari akun',
+            ],
+            'mail_fallback' => [
+                '_' => 'Apabila kamu tidak dapat mengakses aplikasimu, :link.',
+                'link' => 'kamu dapat memverifikasi akun kamu melalui email sebagai gantinya',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Kode verifikasi telah kedaluwarsa, email verifikasi baru telah dikirim.',
         'incorrect_key' => 'Kode verifikasi salah.',
         'retries_exceeded' => 'Kode verifikasi salah. Batas percobaan terlampaui, email verifikasi baru telah dikirim.',
         'reissued' => 'Kode verifikasi diperbarui, email verifikasi baru telah dikirim.',
+        'totp_used_key' => 'Kode verifikasi telah digunakan. Silakan tunggu dan gunakan kode verifikasi yang baru.',
+        'totp_gone' => 'Token autentikasi telah dihapus. Beralih ke email verifikasi. Email verifikasi telah dikirim.',
         'unknown' => 'Terjadi masalah yang tidak diketahui, email verifikasi baru telah dikirim.',
     ],
 ];

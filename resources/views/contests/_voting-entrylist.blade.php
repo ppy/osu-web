@@ -3,9 +3,9 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @if ($contest->hasThumbnails())
-    <div class="js-react--contestArtList" data-src="contest-{{$contest->id}}"></div>
+    <div class="js-react" data-react="contestArtList" data-src="contest-{{$contest->id}}"></div>
 @else
-    <div class="js-react--contestList" data-src="contest-{{$contest->id}}"></div>
+    <div class="js-react" data-react="contestList" data-src="contest-{{$contest->id}}"></div>
 @endif
 <script id="contest-{{$contest->id}}" type="application/json">
     {!! $contest->defaultJson(Auth::user()) !!}

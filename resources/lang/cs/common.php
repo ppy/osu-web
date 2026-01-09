@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
         'months' => ':count_delimited měsíc|:count_delimited měsíce|:count_delimited měsíců',
         'notifications' => ':count_delimited oznámení',
+        'player' => ':count_delimited hráč|:count_delimited hráči|:count_delimited hráčů',
         'plus_others' => '+ :count_delimited další!|+ :count_delimited další!|+ :count_delimited dalších!',
         'post' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
         'second_short_unit' => 'sek',

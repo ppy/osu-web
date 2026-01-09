@@ -5,7 +5,7 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Saja nak beritahu, ada pengemaskinian baharu pada peta rentak ":title" sejak lawatan terakhirmu.',
+        'new' => 'Saja nak beritahu, ada pengemaskinian baharu pada peta rentak ":title" sejak lawatan terkinimu.',
         'subject' => 'Pengemaskinian baharu untuk peta rentak ":title"',
         'unwatch' => 'Sekiranya anda tidak ingin mengikut peta rentak ini lagi, anda boleh klik pautan "Nyahikut" pada halaman di atas atau dari halaman senarai ikutan penyelarasan:',
         'visit' => 'Lawati halaman perbincangan di sini:',
@@ -39,8 +39,8 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => 'Saja nak beritahu, ada balasan baru pada ":title" sejak lawatan terakhirmu.',
-        'subject' => '[osu!] Balasan baru bagi tajuk ":title"',
+        'new' => 'Saja nak beritahu, ada balasan baru pada ":title" sejak lawatan terkinimu.',
+        'subject' => '[osu!] Balasan baru untuk tajuk ":title"',
         'unwatch' => 'Sekiranya anda tidak ingin mengikut tajuk ini lagi, anda boleh klik pautan "Nyahikut tajuk" pada bahagian bawah tajuk di atas atau dari halaman pengurusan tajuk ikutan:',
         'visit' => 'Lompat terus ke balasan terkini menggunakan pautan berikut:',
     ],

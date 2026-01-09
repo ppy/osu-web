@@ -39,7 +39,7 @@ return [
         'forum_post' => [
             'all' => '모든 포럼',
             'link' => '포럼 검색하기',
-            'login_required' => '포럼을 검색하기 위해서 로그인',
+            'login_required' => '포럼을 검색하려면 로그인해 주세요',
             'more_simple' => '포럼 검색 결과 더 보기',
             'title' => '포럼',
 
@@ -67,7 +67,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '유저를 검색하기 위해서 로그인',
+            'login_required' => '사용자를 검색하려면 로그인해 주세요',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'osu! 다운로드',
-        'action_lazer' => 'osu!(lazer) 다운로드',
-        'action_lazer_description' => 'osu!의 다음 메이저 업데이트',
         'action_lazer_info' => '이 페이지에서 자세한 정보를 확인해보세요.',
-        'action_lazer_title' => 'osu!(lazer) 체험하기',
-        'action_title' => 'osu! 다운로드',
+        'download' => '다운로드',
         'for_os' => ':os 전용',
         'macos-fallback' => 'macOS 유저',
         'mirror' => '미러',
@@ -95,11 +91,13 @@ return [
         'os_version_or_later' => ':os_version 이상',
         'other_os' => '다른 플랫폼',
         'quick_start_guide' => '빠른 시작 안내',
-        'tagline' => "시작해 보세요!",
+        'stable_text' => '이전 버전을 찾으신다면',
+        'tagline_1' => '우리 한 번',
+        'tagline_2' => '시작해볼까요!',
         'video-guide' => '영상 가이드',
 
         'help' => [
-            '_' => '만약 게임 시작이나 계정 등록에 문제가 발생했다면, :help_forum_link 하거나 :support_button 해 주세요.',
+            '_' => '만약 게임 시작이나 계정 등록에 문제가 발생했다면, :help_forum_link하거나 :support_button해 주세요.',
             'help_forum_link' => '도움말 포럼을 확인',
             'support_button' => '지원 팀에 연락',
         ],
@@ -115,7 +113,7 @@ return [
                 'description' => '로그인을 하시거나 새로운 계정을 생성하시려면 게임 시작 시 나타나는 절차를 따라주세요.',
             ],
             'download' => [
-                'title' => '게임 다운로드!',
+                'title' => '게임 설치하기',
                 'description' => '위의 버튼을 클릭해서 프로그램을 다운로드받고, 실행해 보세요!',
             ],
             'beatmaps' => [

@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Ši žymė negalima šiam beatmap\'ui.',
     ],
 ];

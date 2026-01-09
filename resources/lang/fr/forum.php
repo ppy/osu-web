@@ -76,8 +76,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Voulez-vous vraiment supprimer ce sujet ?',
-        'confirm_restore' => 'Voulez-vous vraiment restaurer ce sujet ?',
+        'confirm_destroy' => 'Voulez-vous vraiment supprimer cette discussion ?',
+        'confirm_restore' => 'Voulez-vous vraiment restaurer cette discussion ?',
         'deleted' => 'sujet supprimé',
         'go_to_latest' => 'voir le dernier post',
         'go_to_unread' => 'voir le premier message non lu',

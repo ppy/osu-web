@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => '',
+
+        'info' => [
+            'logout' => [
+                '_' => '',
+                'link' => '',
+            ],
+            'mail_fallback' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Kod pengesahan luput, e-mel pengesahan baharu dikirim.',
-        'incorrect_key' => 'Kod pengesahan tidak betul.',
+        'incorrect_key' => 'Kod pengesahan salah.',
         'retries_exceeded' => 'Kod pengesahan tidak betul. Cubaan lagi melebihi had, e-mel pengesahan baharu dihantar.',
         'reissued' => 'Kod pengesahan diterbitkan semula, e-mel pengesahan baharu dihantar.',
+        'totp_used_key' => '',
+        'totp_gone' => '',
         'unknown' => 'Masalah tidak diketahui berlaku, e-mel pengesahan baharu dihantar.',
     ],
 ];

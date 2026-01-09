@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Viimeaikaiset julkaisut',
                 'show_more' => 'katso lisää julkaisuja',
             ],
+            'quickplay' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Verkkosivu',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Hän on saattanut vaihtaa käyttäjänimensä.',
             'reason_2' => 'Käyttäjätunnus voi olla tilapäisesti poissa käytöstä turvallisuussyistä tai väärinkäytön seurauksena.',

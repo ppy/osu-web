@@ -7,7 +7,7 @@ return [
     'error' => [
         'chat' => [
             'empty' => 'Nije moguće poslati praznu poruku.',
-            'limit_exceeded' => 'Prebrzo šaljete poruke, molim vas sačekajte trenutak prije nego što pokušate ponovo.',
+            'limit_exceeded' => 'Prebrzo šalješ poruke, molimo te pričekaj trenutak prije nego što pokušaš ponovo.',
             'too_long' => 'Poruka koju pokušavaš poslati je preduga.',
         ],
     ],
@@ -17,13 +17,14 @@ return [
         'identify' => 'Tebe identificirati i očitati tvoj javni profil.',
 
         'chat' => [
-            'read' => '',
+            'read' => 'Čitati poruke u tvoje ime.',
             'write' => 'Slati poruke u tvoje ime.',
-            'write_manage' => '',
+            'write_manage' => 'Spojiti se i napustiti kanale u tvoje ime.',
         ],
 
         'forum' => [
             'write' => 'Forum teme i objave u tvoje ime kreirati i urediti.',
+            'write_manage' => '',
         ],
 
         'friends' => [

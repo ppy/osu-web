@@ -138,13 +138,13 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Tack för ditt pågående stöd! Hittills har du bidragit med totalt :dollars, vilket ger dig taggen "Supporter" i :duration.',
             'not_yet' => "Du har inte en supporter-tag än :(",
             'valid_until' => 'Din nuvarande supporter-tag är giltig tills :date!',
             'was_valid_until' => 'Din supporter-tag var giltig till :date.',
 
             'gifted' => [
-                '_' => '',
+                '_' => 'Av dina totala bidrag har du gett :dollars taggar till :users som täcker :duration. Det är otroligt generöst!',
                 'users' => '',
             ],
         ],

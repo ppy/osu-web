@@ -33,25 +33,50 @@ return [
         'used' => 'Nagastos',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => '',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'Mga Spotlight',
         'country' => 'bansa',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'seasons' => 'mga panahon',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Wala pang mga kwarto sa season na ito.',
         'ongoing' => 'Ang season na ito ay nagpapatuloy pa rin (magkakaroon pa ng mga playlist na idaragdag).',
         'room_count' => 'Bilang ng playlist',
+        'summary' => '',
         'url' => 'Magpakita ng higit pang mga impormasyon sa season na iyon.',
         'validation' => [
             'not_enough_factors' => '',

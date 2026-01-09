@@ -33,25 +33,50 @@ return [
         'used' => 'Wykorzystane',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Ten użytkownik jest pozycjonowany w rankingu globalnym przez okres krótszy niż 30 dni.',
     ],
 
+    'top_plays' => [
+        'empty' => 'Dane są nadal ładowane...',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'wyróżnionych',
         'country' => 'krajowy',
         'daily_challenge' => 'wyzwanie dnia',
         'global' => 'globalny',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'wieloosobowy',
-        'seasons' => 'sezony',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'zespołów',
+        'top_plays' => 'najlepsze wyniki',
     ],
 
     'seasons' => [
         'empty' => 'Brak gier w tym sezonie.',
         'ongoing' => 'Ten sezon nadal trwa - wkrótce zostanie dodanych więcej gier.',
         'room_count' => 'Liczba gier',
+        'summary' => 'Zobacz Podsumowanie Sezonu',
         'url' => 'Dowiedz się więcej o tym sezonie.',
         'validation' => [
             'not_enough_factors' => 'brak wystarczającej liczby parametrów do przeprowadzenia obliczeń',

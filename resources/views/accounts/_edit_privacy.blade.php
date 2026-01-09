@@ -45,6 +45,9 @@
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.privacy.hide_online') }}
+                        <span class="account-edit-entry__checkbox-label-info">
+                            {{ osu_trans('accounts.privacy.hide_online_info') }}
+                        </span>
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -65,7 +68,7 @@
                             @foreach ($blocks as $block)
                                 <div class="block-list-item">
                                     <a class="block-list-item__link" href='{{route('users.show', $block->user_id)}}'>{{ $block->username }}</a>
-                                    <div class="js-react--blockButton" data-target="{{$block->user_id}}"></div>
+                                    <div class="js-react" data-react="blockButton" data-target="{{$block->user_id}}"></div>
                                 </div>
                             @endforeach
                         </div>

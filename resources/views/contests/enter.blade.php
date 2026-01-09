@@ -16,12 +16,12 @@
         @if (!$contestMeta->isSubmissionOpen())
           @if ($contestMeta->entry_starts_at !== null && $contestMeta->entry_starts_at->isPast())
             <div class='contest__voting-notice'>{{osu_trans('authorization.contest.entry.over')}}</div>
-            <div class='js-react--userContestEntry'></div>
+            <div class='js-react' data-react='userContestEntry'></div>
           @else
             <div class='contest__voting-notice contest__voting-notice--padding'>{{osu_trans('contest.entry.preparation')}}</div>
           @endif
         @else
-          <div class='js-react--userContestEntry'></div>
+          <div class='js-react' data-react='userContestEntry'></div>
         @endif
       @endif
     @endif

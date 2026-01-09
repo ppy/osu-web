@@ -159,6 +159,13 @@ return [
                 'comment_reply' => ':username адказаў ":content" ў ":title"',
                 'comment_reply_compact' => ':username адказаў ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -264,6 +271,10 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Навіны ":title" маюць новыя каментарыі',
+            ],
+
+            'news_post' => [
+                'news_post_new' => '',
             ],
         ],
 

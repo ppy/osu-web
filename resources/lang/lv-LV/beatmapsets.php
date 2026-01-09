@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Vērtējumu Diapazons',
             'nominations' => 'Nominācijas',
             'playcount' => 'Reizes spēlēts',
+            'favourites' => 'Iecienītās',
+            'no_favourites' => 'Vēl nav iecienīto',
         ],
 
         'status' => [

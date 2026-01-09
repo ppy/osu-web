@@ -8,6 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'popis za reprodukciju',
+        'quickplay' => '',
         'realtime' => 'multiplayer',
     ],
 

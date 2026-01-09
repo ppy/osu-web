@@ -7,7 +7,7 @@ return [
     'deleted' => '[ištrintas vartotojas]',
 
     'beatmapset_activities' => [
-        'title' => ":user Taisymų istorija",
+        'title' => ":user Taisymų Istorija",
         'title_compact' => 'Taisymai',
 
         'discussions' => [
@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Aktyvus',
+            'ended' => 'Baigėsi',
         ],
     ],
 
@@ -168,16 +168,16 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Prašome pranešti apie autorinių teisių pažeidimus su DMCA skundu į :mail kaip numatyta :policy.',
+                'policy' => 'osu! autorinių teisių politikoje',
             ],
-            'message_2' => '',
+            'message_2' => 'Taikoma atvejams kai garso takeliai, vizualus turinys arba beatmap\'o lygio turinys naudojamas be tinkamo leidimo.',
         ],
 
         'options' => [
             'cheating' => 'Sukčiavimas',
-            'copyright_infringement' => '',
-            'inappropriate_chat' => '',
+            'copyright_infringement' => 'Autorinių teisių pažeidimas',
+            'inappropriate_chat' => 'Netinkamas elgesys pokalbiuose',
             'insults' => 'Įžeidinėja manę / kitus',
             'multiple_accounts' => 'Naudoja kelias paskyras',
             'nonsense' => 'Nesąmonės',
@@ -234,8 +234,8 @@ return [
             'cover' => [
                 'button' => 'Keisti profilio viršelį',
                 'defaults_info' => 'Daugiau viršelio pasirinkimų pridėsime ateityje',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "Prieš tai naudotas viršelis nebėra prieinamas pasirinkimui. Nebegalite pasirinkti jo po pakeitimo į kitą viršelį. Tęsti?",
+                'title' => 'Viršelis',
 
                 'upload' => [
                     'broken_file' => 'Nepavyko apdoroti paveiksliuko. Patikrink įkeltą paveiksliuką ir mėgink dar kart.',
@@ -259,7 +259,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => 'Grąžinti numatytąją spalva? Rėmėjo žyma yra reikalinga, kad pakeisti į kitą spalvą.',
                 'title' => 'Spalva',
 
                 'supporter' => [
@@ -295,7 +295,7 @@ return [
                     'title' => 'Mylimi Beatmap\'ai',
                 ],
                 'nominated' => [
-                    'title' => 'Nominuoti Reitinguoti Beatmap\'ai',
+                    'title' => 'Nominuoti Reitingavimui Beatmap\'ai',
                 ],
                 'pending' => [
                     'title' => 'Laukiantis Beatmap\'ai',
@@ -349,7 +349,7 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Atmesta :amount už taisymų įraša :post',
+                            'reset' => 'Atmesta :amount už taisymų įrašą :post',
                         ],
 
                         'delete' => [
@@ -398,6 +398,9 @@ return [
                 'title' => 'Įrašai',
                 'title_longer' => 'Paskutiniai Įrašai',
                 'show_more' => 'rodyti daugiau įrašų',
+            ],
+            'quickplay' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Paskutinės',
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Tinklalapis',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Vartotojas greičiausiai pasikeitė savo vartotojo vardą.',
             'reason_2' => 'Vartotojas gali būti laikinai nepasiekiamas dėl saugumo arba piktnaudžiavimo.',

@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '',
         'beatmapset_disqualify' => '',
         'comment_reply' => '',
+        'news_post' => '',
         'title' => '',
         'topic_auto_subscribe' => '',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => '',
             'mail' => '',
             'mapping' => '',
+            'news_post' => '',
             'push' => '',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => '',
         'hide_online' => '',
+        'hide_online_info' => '',
         'title' => '',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => '',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

@@ -24,7 +24,7 @@ return [
         'kudosu_lost' => 'Diskuze :discussion uživatele :user ztratila hlasy a získaná kudosu byla odebrána.',
         'kudosu_recalculate' => 'Diskusi :discussion byly získané kudosu přepočteny.',
         'language_edit' => 'Jazyk změněn z :old na :new.',
-        'love' => 'Tuto mapu miluje :user.',
+        'love' => 'Zařazena k oblíbeným komunitou uživatelem :user.',
         'nominate' => 'Nominováno uživatelem :user.',
         'nominate_modes' => 'Nominováno uživatelem :user (:modes).',
         'nomination_reset' => 'Nový problém :discussion (:text) způsobil resetování nominace.',
@@ -32,8 +32,8 @@ return [
         'nomination_reset_received_profile' => 'Nominace byla resetována uživatelem :user (:text)',
         'offset_edit' => 'Online offset změněn z :old na :new.',
         'qualify' => 'Tato beatmapa získala požadované množství nominací a byla kvalifikována.',
-        'rank' => 'Hodnocené.',
-        'remove_from_loved' => 'Odstraněno z Loved uživatelem :user. (:text)',
+        'rank' => 'Hodnoceno.',
+        'remove_from_loved' => 'Odebráno z oblíbených komunitou uživatelem :user. (:text)',
         'tags_edit' => 'Označení se změnily z ":old" na ":new".',
 
         'nsfw_toggle' => [
@@ -81,7 +81,7 @@ return [
         'nsfw_toggle' => 'Explicitní označení',
         'offset_edit' => 'Offset úprava',
         'qualify' => 'Kvalifikace',
-        'rank' => 'Schválené',
-        'remove_from_loved' => 'Odstranění z Loved',
+        'rank' => 'Hodnocení',
+        'remove_from_loved' => 'Odebrání z oblíbených komunitou',
     ],
 ];

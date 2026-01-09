@@ -8,7 +8,7 @@ return [
         'home' => 'Ke papan pemuka',
         'logout' => 'Log keluar',
         'text' => 'Anda kini boleh menutup tetingkap/tab ini',
-        'title' => 'pengesahan pelanggan osu! selesai',
+        'title' => 'pengesahan pelanggan osu! lengkap',
     ],
 
     'create' => [

@@ -1,0 +1,21 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.matchmaking-popup {
+  background: hsl(var(--hsl-b4));
+  border-radius: @border-radius--extra;
+  font-size: @font-size--normal;
+
+  padding: 15px;
+  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto auto;
+
+  &__row {
+    display: contents;
+  }
+
+  &__value {
+    color: hsl(var(--hsl-c2));
+  }
+}

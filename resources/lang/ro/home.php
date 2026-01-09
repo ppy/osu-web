@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Descarcă osu!',
-        'action_lazer' => 'Descarcă osu!(lazer)',
-        'action_lazer_description' => 'următoarea actualizare majoră pentru osu!',
         'action_lazer_info' => 'verificați această pagină pentru mai multe informații',
-        'action_lazer_title' => 'încearcă osu!(lazer)',
-        'action_title' => 'descarcă osu!',
+        'download' => '',
         'for_os' => 'pentru :os',
         'macos-fallback' => 'utilizatori macOS',
         'mirror' => 'sursă alternativă',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version sau mai nou',
         'other_os' => 'alte platforme',
         'quick_start_guide' => 'ghid de pornire rapidă',
-        'tagline' => "să<br>începem!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'ghid video',
 
         'help' => [
@@ -155,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Deschide consola de administrator',
             ],
         ],
     ],

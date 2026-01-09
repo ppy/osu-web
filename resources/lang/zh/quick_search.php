@@ -15,8 +15,19 @@ return [
     ],
 
     'result' => [
-        'empty_for' => '未找到 :modes 的相关结果',
         'more' => '查看更多 :mode 搜索结果',
         'title' => ':mode 搜索结果',
+
+        'no_results' => [
+            '_' => '未找到 :mode 的相关结果',
+
+            'artist_track' => '精选艺术家曲目',
+            'beatmapset' => '谱面',
+            'forum_post' => '论坛',
+            'other' => '其他',
+            'team' => '战队',
+            'user' => '玩家',
+            'wiki_page' => '百科',
+        ],
     ],
 ];

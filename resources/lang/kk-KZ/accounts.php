@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'келесі режимдердің білікті карталарындағы жаңа мәселелерге байланысты хабарландырулар алу',
         'beatmapset_disqualify' => 'келесі режимдердің карталары дисквалификацияланған жағдайда хабарландырулар алу',
         'comment_reply' => 'пікірлеріңіздің жауаптары туралы хабарландырулар алу',
+        'news_post' => '',
         'title' => 'Хабарландырулар',
         'topic_auto_subscribe' => 'сіз құрған жаңа форум тақырыптарының хабарландыруларын автоматты түрде қосу',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'тақырып жауабы',
             'mail' => 'email',
             'mapping' => 'карта маппері',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'достардан келмеген жеке хабарламаларды бұғаттау',
         'hide_online' => 'желіде екеніңізді жасыру',
+        'hide_online_info' => '',
         'title' => 'Құпиялық',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'жаңарту',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

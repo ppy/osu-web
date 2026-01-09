@@ -32,7 +32,7 @@ return [
             'verify_link' => 'paskyros patvirtinimas',
         ],
         'artists_controller' => [
-            '_' => 'rekomenduojami atlikėjai',
+            '_' => 'ryškieji atlikėjai',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap\'o diskusijos Įrašai',
@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmap\'o diskusija',
             'index' => 'beatmap\'ų sąrašas',
             'show' => 'beatmap\'o info',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'pakeitimų sąrašas',
@@ -64,11 +65,14 @@ return [
             '_' => 'komentarai',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'konkurso teisėjavimo rezultatai',
         ],
         'contests_controller' => [
             '_' => 'konkursai',
-            'judge' => '',
+            'judge' => 'konkurso teisėjavimas',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'grupės',
@@ -81,7 +85,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'mačai',
         ],
         'legal_controller' => [
             '_' => 'informacija',
@@ -108,16 +112,19 @@ return [
             '_' => 'reitingai',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'komandos',
+            'create' => 'sukurti komandą',
+            'edit' => 'komandos nustatymai',
+            'leaderboard' => 'komandos rezultatų lenta',
+            'show' => 'komandos info',
         ],
         'tournaments_controller' => [
             '_' => 'turnyrai',
         ],
         'user_cover_presets_controller' => [
+            '_' => 'vartotojo viršelių ruošiniai',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [
@@ -131,7 +138,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'kambario istorija',
         ],
     ],
     'passport' => [
@@ -144,7 +151,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'komandos nariai',
         ],
     ],
     'users' => [

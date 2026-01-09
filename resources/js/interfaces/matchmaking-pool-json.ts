@@ -1,0 +1,12 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+import { RulesetId, RulesetVariantId } from './ruleset';
+
+export default interface MatchmakingPoolJson {
+  active: boolean;
+  id: number;
+  name: string;
+  ruleset_id: RulesetId;
+  variant_id: RulesetVariantId;
+}

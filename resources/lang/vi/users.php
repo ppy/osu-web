@@ -126,7 +126,7 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
+            'active' => 'Đang hoạt động',
             'ended' => 'Đã kết thúc',
         ],
     ],
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Bài viết gần đây',
                 'show_more' => 'xem bài viết khác',
             ],
+            'quickplay' => [
+                'title' => 'Ván chơi nhanh',
+            ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'title' => 'Chơi nhanh',
+        ],
+
         'not_found' => [
             'reason_1' => 'Có thể họ đã đổi tên tài khoản.',
             'reason_2' => 'Tài khoản của họ có thể tạm thời không khả dụng vì vấn đề an ninh hoặc lạm dụng.',

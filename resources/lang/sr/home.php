@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Преузмите osu!',
-        'action_lazer' => 'Преузмите osu!(lazer)',
-        'action_lazer_description' => 'следеће глобално ажурирање osu!',
         'action_lazer_info' => 'погледај ову страницу за више информација',
-        'action_lazer_title' => 'пробајте osu!(lazer)',
-        'action_title' => 'преузмите osu!',
+        'download' => '',
         'for_os' => 'за :os',
         'macos-fallback' => 'macOS корисници',
         'mirror' => 'алтернативни линк',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version или слично',
         'other_os' => 'друге платформе',
         'quick_start_guide' => 'водич за брзи почетак',
-        'tagline' => "Почнимо!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'видео водич',
 
         'help' => [

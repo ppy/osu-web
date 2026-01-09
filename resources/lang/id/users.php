@@ -289,7 +289,7 @@ return [
                     'title' => 'Beatmap Graveyard',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap dengan Kontribusi Guest Difficulty',
+                    'title' => 'Beatmap dengan Kontribusi Tingkat Kesulitan',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Loved',
@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Postingan Terkini',
                 'show_more' => 'lihat lebih banyak postingan',
             ],
+            'quickplay' => [
+                'title' => 'Pertandingan Permainan Kilat',
+            ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Website',
         ],
+
+        'matchmaking' => [
+            'title' => 'Permainan Kilat',
+        ],
+
         'not_found' => [
             'reason_1' => 'Pengguna ini telah mengubah nama penggunanya.',
             'reason_2' => 'Pengguna ini telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',

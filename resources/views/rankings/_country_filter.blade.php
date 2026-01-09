@@ -3,14 +3,10 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    use App\Models\Country;
-    use App\Transformers\SelectOptionTransformer;
-
-    $transformer = new SelectOptionTransformer();
     $country = $countryStats?->country;
 @endphp
 
-<div class="js-react--ranking-country-filter u-contents">
+<div class="js-react u-contents" data-react="ranking-country-filter">
     <div class="ranking-filter ranking-filter--full">
         <div class="ranking-filter__title">
             {{ osu_trans('rankings.countries.title') }}
@@ -24,11 +20,8 @@
 </div>
 
 <script id="json-country-filter" type="application/json">
-    {!! json_encode([
-        'current' => $country === null ? null : json_item($country, $transformer),
-        'items' => json_collection(
-            Country::whereHasRuleset($params['mode'])->get(),
-            $transformer,
-        ),
-    ]) !!}
+    {!! json_encode(json_options(
+        $country,
+        App\Models\Country::whereHasRuleset($params['mode'])->get(),
+    )) !!}
 </script>

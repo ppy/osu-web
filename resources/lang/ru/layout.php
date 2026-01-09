@@ -14,7 +14,7 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'набор карт',
+            'beatmapset' => 'карта',
             'beatmapset_covers' => 'обложки карт',
             'contest' => 'конкурс',
             'contests' => 'конкурсы',
@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'главная',
             'discussions' => 'обсуждение',
+            'versions' => 'история версий',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'моддинг',
             'playlists' => 'плейлисты',
+            'quickplay' => 'быстрая игра',
             'realtime' => 'мультиплеер',
             'show' => 'главная',
         ],

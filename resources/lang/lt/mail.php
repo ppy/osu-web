@@ -21,9 +21,9 @@ return [
     'donation_thanks' => [
         'benefit_more' => 'Daugiau naujų rėmėjo privalumų atsiras laikui bėgant!',
         'feedback' => "Jei turite kokių klausimų ar atsiliepimų, galite atsakyti į šį laišką. Atrašysiu artimiausiu galimu metu!",
-        'keep_free' => 'Dėka tokių žmonių kaip jūs osu! gali palaikyti žaidimo ir bendruomenės sklandų veikymą be reklamų ir priverstinių mokėjimų.',
+        'keep_free' => 'Dėka tokių žmonių kaip jūs osu! gali palaikyti žaidimo ir bendruomenės sklandų veikimą be reklamų ir priverstinių mokėjimų.',
         'keep_running' => 'Jūsų parama palaiko osu! veikimą apie :minutes! Gal neatrodo daug bet viskas susideda :).',
-        'subject' => 'Ačiū, osu! <3s tavę',
+        'subject' => 'Ačiū, osu! <3 tave',
         'translation' => 'Bendruomenės pateiktas vertimas informaciniais tikslais:',
 
         'benefit' => [

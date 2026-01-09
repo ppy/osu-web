@@ -53,6 +53,7 @@ return [
             'discussion' => 'beatmapdiskussioner',
             'index' => 'beatmaplistning',
             'show' => 'beatmapinfo',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'ändringslogg',
@@ -69,6 +70,9 @@ return [
         'contests_controller' => [
             '_' => 'tävlingar',
             'judge' => 'tävlingsbedömning',
+        ],
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -119,6 +123,9 @@ return [
         ],
         'user_cover_presets_controller' => [
             '_' => 'användarens omslagsförinställningar',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
         ],
         'users_controller' => [
             '_' => 'spelarinformation',

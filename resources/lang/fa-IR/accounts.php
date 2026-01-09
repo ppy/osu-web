@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیت مپ های واجد شرایط در نوع های زیر',
         'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیت مپ های نوع زیر، رد صلاحیت میشوند',
         'comment_reply' => 'دریافت اعلانات برای پاسخ ها به کامنت شما',
+        'news_post' => '',
         'title' => 'علامت',
         'topic_auto_subscribe' => 'فعالسازی خودکار اعلانات برای موضوعات جدید انجمن که شما میسازید',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'پاسخ موضوع',
             'mail' => 'ایمیل',
             'mapping' => 'سازنده بیت مپ',
+            'news_post' => '',
             'push' => 'اعلان push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'مسدود کردن پیام های خصوصی از کسانی که در لیست دوستان شما نیستند',
         'hide_online' => 'مخفی کردن وضعیت آنلاین شما',
+        'hide_online_info' => '',
         'title' => 'حریم خصوصی',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'بروزرسانی',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

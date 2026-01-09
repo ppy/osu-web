@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Kapak resmini tam boyutlu görüntüle',
-            'page' => '',
+            'page' => 'Yönetici sayfasını görüntüle',
         ],
 
         'deleted_banner' => [
@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',
             'playcount' => 'Oynama sayısı',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

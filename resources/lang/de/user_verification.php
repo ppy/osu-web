@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Bitte gib die PIN aus deiner Authentifizierungs-App ein.',
+
+        'info' => [
+            'logout' => [
+                '_' => 'Du kannst dich auch :link.',
+                'link' => 'ausloggen',
+            ],
+            'mail_fallback' => [
+                '_' => 'Wenn du keinen Zugriff auf deine App hast, :link.',
+                'link' => 'kannst du dich auch per E-Mail authentifizieren',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Der Bestätigungscode ist abgelaufen, eine neue E-Mail wurde gesendet.',
         'incorrect_key' => 'Inkorrekter Bestätigungscode.',
         'retries_exceeded' => 'Inkorrekter Bestätigungscode. Wiederholungslimit wurde überschritten, eine neue E-Mail wurde gesendet.',
         'reissued' => 'Neuer Bestätigungscode wurde angefordert, eine neue E-Mail wurde gesendet.',
+        'totp_used_key' => 'Die PIN wurde bereits verwendet. Bitte warte und verwende eine neue.',
+        'totp_gone' => 'Die Zwei-Faktor-Authentifizierung wurde deaktiviert. Es wird auf die Authentifizierung per E-Mail gewechselt. Eine E-Mail mit einem PIN wurde bereits versendet.',
         'unknown' => 'Ein unbekannter Fehler ist aufgetreten, eine neue E-Mail wurde gesendet.',
     ],
 ];

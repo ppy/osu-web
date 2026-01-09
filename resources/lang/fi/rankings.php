@@ -33,25 +33,50 @@ return [
         'used' => 'Käytetty',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Tällä käyttäjällä on alle 30 päivää viimeaikaista rankkaushistoriaa.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'kohdevalot (vanha)',
         'country' => 'maat',
         'daily_challenge' => 'päivittäinen haaste',
         'global' => '',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'moninpelit',
-        'seasons' => 'kaudet',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Tällä kaudella ei ole vielä huoneita.',
         'ongoing' => 'Tämä kausi on edelleen käynnissä (lisää soittolistoja tullaan lisäämään).',
         'room_count' => 'Soittolistojen määrä',
+        'summary' => '',
         'url' => 'Lisätietoja tästä kaudesta.',
         'validation' => [
             'not_enough_factors' => '',

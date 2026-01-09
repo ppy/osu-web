@@ -40,7 +40,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Difficoltà guest',
+                '_' => 'Difficoltà ospite',
                 'beatmap_owner_change' => 'Sei diventato il proprietario della difficoltà ":beatmap" nella beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Sei diventato il proprietario della difficoltà ":beatmap"',
             ],
@@ -136,7 +136,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Note di rilascio',
+            '_' => 'Changelog',
 
             'comment' => [
                 '_' => 'Nuovo commento',
@@ -158,6 +158,13 @@ return [
                 'comment_new_compact' => ':username ha commentato ":content"',
                 'comment_reply' => ':username ha risposto ":content" su ":title"',
                 'comment_reply_compact' => ':username ha risposto ":content"',
+            ],
+
+            'news_post' => [
+                '_' => 'Notizie (:series)',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -257,13 +264,17 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'La nota di rilascio ":title" ha nuovi commenti',
+                'comment_new' => 'Il changelog ":title" ha nuovi commenti',
             ],
         ],
 
         'news_post' => [
             'comment' => [
                 'comment_new' => 'La notizia ":title" ha nuovi commenti',
+            ],
+
+            'news_post' => [
+                'news_post_new' => 'Notizie (:series): ":title"',
             ],
         ],
 

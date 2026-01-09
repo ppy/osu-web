@@ -224,6 +224,8 @@ return [
             'rating-spread' => 'Arvioiden jakauma',
             'nominations' => 'Ehdollepanot',
             'playcount' => 'Pelikertojen määrä',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [

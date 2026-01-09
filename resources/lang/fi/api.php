@@ -24,6 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Luoda ja muokata foorumin aiheita ja viestejä sinun nimissäsi.',
+            'write_manage' => '',
         ],
 
         'friends' => [

@@ -28,6 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskusija',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -52,6 +53,7 @@ return [
         'users' => [
             'modding' => 'taisymai',
             'playlists' => 'grojaraščiai',
+            'quickplay' => '',
             'realtime' => 'žaidimas tinkle',
             'show' => 'info',
         ],
@@ -113,7 +115,7 @@ return [
             'copyright' => 'Autorinės teisės (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privatumas',
-            'rules' => '',
+            'rules' => 'Taisyklės',
             'server_status' => 'Serverio būsena',
             'source_code' => 'Pirminis Kodas',
             'terms' => 'Sąlygos',
@@ -196,13 +198,13 @@ return [
             'account-edit' => 'Nustatymai',
             'follows' => 'Stebėjimo sąrašai',
             'friends' => 'Draugai',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer rėžimas',
+            'legacy_score_only_toggle_tooltip' => 'Lazer rėžimas rodo lazer rezultatus naudojančius naują taškų skaičiavimo algoritmą',
             'logout' => 'Atsijungti',
             'profile' => 'Mano Profilis',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
-            'team' => '',
+            'scoring_mode_toggle' => 'Klasikiniai taškai',
+            'scoring_mode_toggle_tooltip' => 'Nustatyti kad taškų vertės butu panašesnės į klasikinio neribojamo taškų skaičiavimo',
+            'team' => 'Mano Komanda',
         ],
     ],
 

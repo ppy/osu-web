@@ -64,10 +64,10 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Se contribuisci nei repository open-source di osu!, collegare qui il tuo account GitHub assocerà il profilo osu! alle tue modifiche nelle note di rilascio. Gli account GitHub che non hanno ancora contribuito con osu! non possono essere collegati.",
-        'link' => 'Collega Account GitHub',
+        'info' => "Se contribuisci nei repository open-source di osu!, puoi collegare qui il tuo account GitHub per associare le tue modifiche nel changelog al tuo profilo osu!. Gli account di GitHub che non hanno ancora contribuito con osu! non possono essere collegati.",
+        'link' => 'Collega account GitHub',
         'title' => 'GitHub',
-        'unlink' => 'Scollega Account GitHub',
+        'unlink' => 'Scollega account GitHub',
 
         'error' => [
             'already_linked' => 'Questo account GitHub è già associato a un altro utente.',
@@ -80,19 +80,21 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
         'beatmapset_disqualify' => 'ricevi notifiche quando le beatmap delle seguenti modalità vengono squalificate',
         'comment_reply' => 'ricevi notifiche per le risposte ai tuoi commenti',
+        'news_post' => 'ricevi notifiche dei post di nuove notizie',
         'title' => 'Notifiche',
         'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic che crei nel forum',
 
         'options' => [
             '_' => 'opzioni di notifica',
-            'beatmap_owner_change' => 'difficoltà guest',
+            'beatmap_owner_change' => 'difficoltà ospite',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
-            'channel_team' => 'messaggi chat della squadra',
+            'channel_team' => 'messaggi chat di squadra',
             'comment_new' => 'nuovi commenti',
             'forum_topic_reply' => 'risposta al topic',
             'mail' => 'mail',
             'mapping' => 'mapper di beatmap',
+            'news_post' => 'nuove notizie',
             'push' => 'push',
         ],
     ],
@@ -127,12 +129,13 @@ return [
     'privacy' => [
         'friends_only' => 'blocca messaggi privati da chi non è nella tua lista amici',
         'hide_online' => 'nascondi il tuo stato online',
+        'hide_online_info' => 'su osu!lazer, funziona come l\'opzione "Mostrati offline"',
         'title' => 'Privacy',
     ],
 
     'security' => [
         'current_session' => 'questo dispositivo',
-        'end_session' => 'Termina Sessione',
+        'end_session' => 'Termina sessione',
         'end_session_confirmation' => 'Questo terminerà la sessione sul dispositivo selezionato. Vuoi continuare?',
         'last_active' => 'Ultima attività:',
         'title' => 'Sicurezza',
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'aggiorna',
+    ],
+
+    'user_totp' => [
+        'title' => 'Autenticatore',
+        'usage_note' => 'Utilizza un\'app di autenticazione invece dell\'email per verificare l\'accesso. La verifica con email rimarrà comunque come opzione di riserva.',
+
+        'button' => [
+            'remove' => 'Rimuovi',
+            'setup' => 'Inserisci app di autenticazione',
+        ],
+        'status' => [
+            'label' => 'stato',
+            'not_set' => 'Non configurato',
+            'set' => 'Configurato',
+        ],
     ],
 
     'verification_completed' => [

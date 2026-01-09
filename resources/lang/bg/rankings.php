@@ -33,25 +33,50 @@ return [
         'used' => 'Похарчени',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Потребителят има по-малко от 30 дни скорошна история в класирането.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'под прожекторите',
         'country' => 'държава',
         'daily_challenge' => 'предизвикателство',
         'global' => 'Глобално',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'мултиплейър',
-        'seasons' => 'сезони',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'отбор',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Все още няма плейлисти за този сезон.',
         'ongoing' => 'Сезонът все още продължава (ще има повече плейлисти).',
         'room_count' => 'Брой плейлисти',
+        'summary' => '',
         'url' => 'Повече информация за текущия сезон.',
         'validation' => [
             'not_enough_factors' => 'няма достатъчно фактори за оценка за правилно изчисление',

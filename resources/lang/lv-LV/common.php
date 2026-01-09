@@ -76,6 +76,7 @@ return [
         'minutes' => ':count_delimited minūte|:count_delimited minūtes',
         'months' => ':count_delimited mēnesis|:count_delimited mēneši',
         'notifications' => ':count_delimited paziņojums|:count_delimited paziņojumi',
+        'player' => ':count_delimited spēlētājs |:count_delimited spēlētāji',
         'plus_others' => '+ :count_delimited cits!|+ :count_delimited citi!',
         'post' => ':count_delimited raksts|:count_delimited raksti',
         'second_short_unit' => 'sek|sek',

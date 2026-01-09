@@ -399,6 +399,9 @@ return [
                 'title_longer' => 'Jaunākās ziņas',
                 'show_more' => 'apskatīt vairāk rakstus',
             ],
+            'quickplay' => [
+                'title' => 'Ātrās spēles mači',
+            ],
             'recent_activity' => [
                 'title' => 'Nesenie',
             ],
@@ -467,6 +470,11 @@ return [
             'twitter' => '',
             'website' => 'Mājaslapa',
         ],
+
+        'matchmaking' => [
+            'title' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Meklējamais cilvēks, iespējams nomainīja savu lietotājvārdu.',
             'reason_2' => 'Konts var nebūt uz kādu laiku pieejams, drošību vai ļaunprātīgu iemeslu dēļ.',

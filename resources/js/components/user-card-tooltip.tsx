@@ -85,8 +85,9 @@ function createTooltip(element: HTMLElement) {
   // React should override the existing content after mounting.
   // Casting because cloneNode returns Node by default.
   const card = blankCard().cloneNode(true) as HTMLElement;
-  card.classList.remove('js-react--user-card');
-  card.classList.add('js-react--user-card-tooltip');
+  card.classList.add('js-user-card-tooltip');
+  card.classList.add('js-react');
+  card.dataset.react = 'user-card-tooltip';
   card.dataset.lookup = userId;
   for (const [key, value] of Object.entries(element.dataset)) {
     card.dataset[key] = value;
@@ -143,7 +144,7 @@ function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement
     if (qtip != null) {
       const tooltipElement = qtip.tooltip;
       if (tooltipElement != null) {
-        const container = tooltipElement.find('.js-react--user-card-tooltip')[0];
+        const container = tooltipElement.find('.js-user-card-tooltip')[0];
         if (container != null) {
           unmountComponentAtNode(container);
         }
@@ -174,7 +175,7 @@ function onRemoveUserCard(_event: unknown, element: HTMLElement | null) {
 
   const qtip = $(tooltipElement).qtip('api');
   if (qtip != null) {
-    const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+    const container = tooltipElement.querySelector('.js-user-card-tooltip');
     if (container != null) {
       unmountComponentAtNode(container);
     }
@@ -203,8 +204,8 @@ function shouldShow(event: JQuery.Event, api: any) {
 
 export function startListening() {
   $(document).on('mouseover', '.js-usercard', onMouseOver);
-  $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
-  $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
+  $(document).on('mouseenter', '.js-user-card-tooltip', onMouseEnter);
+  $(document).on('mouseleave', '.js-user-card-tooltip', onMouseLeave);
   $(document).on('turbo:before-cache', onBeforeCache);
   $.subscribe('user-card:remove.tooltip', onRemoveUserCard);
 }

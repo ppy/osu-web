@@ -11,7 +11,7 @@
 @section('content')
     @include('users._restricted_banner', compact('user'))
 
-    <div class="js-react--user-multiplayer-index u-contents"></div>
+    <div class="js-react u-contents" data-react="user-multiplayer-index"></div>
 @endsection
 
 @section ("script")

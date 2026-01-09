@@ -209,15 +209,6 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->sandboxAssertion();
         $this->assertValidTransaction();
 
-        DB::connection('mysql-store')->transaction(function () {
-            $order = $this->getOrder()->lockSelf();
-            // Only supported by Paypal processor atm, so assume eCheck.
-            // Change if the situation changes.
-            $order->tracking_code = Order::PENDING_ECHECK;
-            $order->transaction_id = $this->getTransactionId();
-            $order->saveOrExplode();
-        });
-
         datadog_increment('store.payments.pending', ['provider' => $this->getPaymentProvider()]);
     }
 

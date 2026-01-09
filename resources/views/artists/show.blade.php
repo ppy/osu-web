@@ -67,7 +67,12 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="js-react--artistTracklist" data-artist-src="{{ $artistJsonId }}" data-src="album-json-{{$album['id']}}"></div>
+                                <div
+                                    class="js-react"
+                                    data-artist-src="{{ $artistJsonId }}"
+                                    data-react="artistTracklist"
+                                    data-src="album-json-{{$album['id']}}"
+                                ></div>
                                 <script id="album-json-{{$album['id']}}" type="application/json">
                                     {!! json_encode($album['tracks']) !!}
                                 </script>
@@ -81,7 +86,12 @@
                             <div class="artist-album__header-overlay" style="background-image: url('{{ $images['header_url'] }}');"></div>
                             <span class="artist-album__title">{{osu_trans('artist.songs._')}}</span>
                         </div>
-                        <div class="js-react--artistTracklist" data-artist-src="{{ $artistJsonId }}" data-src="singles-json-{{$artist->id}}"></div>
+                        <div
+                            class="js-react"
+                            data-artist-src="{{ $artistJsonId }}"
+                            data-react="artistTracklist"
+                            data-src="singles-json-{{$artist->id}}"
+                        ></div>
                         <script id="singles-json-{{$artist->id}}" type="application/json">
                             {!! json_encode($json['tracks']) !!}
                         </script>

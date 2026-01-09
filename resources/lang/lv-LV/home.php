@@ -83,12 +83,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Lejupielādēt osu!',
-        'action_lazer' => 'Ielādēt osu!(lazer)',
-        'action_lazer_description' => 'nākamais lielais atjauninājums osu!',
         'action_lazer_info' => 'apskatīt šo lapu priekš vairāk informācijas',
-        'action_lazer_title' => 'pamēģini osu!(lazer)',
-        'action_title' => 'ielādēt osu!',
+        'download' => 'Lejupielādēt',
         'for_os' => 'priekš :os',
         'macos-fallback' => 'macOS lietotāji',
         'mirror' => 'instalācija',
@@ -96,7 +92,9 @@ return [
         'os_version_or_later' => ':os_version vai jaunāku ',
         'other_os' => 'citas platformas',
         'quick_start_guide' => 'ātra sākuma pamācība',
-        'tagline' => "sagatavosim <br> tevi!",
+        'stable_text' => 'ja meklē vecāko versiju',
+        'tagline_1' => 'sāksim',
+        'tagline_2' => 'darbu!',
         'video-guide' => 'video pamācība',
 
         'help' => [

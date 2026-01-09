@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ta emot aviseringar om nya problem på kvalificerade beatmaps i följande spellägen',
         'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
         'comment_reply' => 'ta emot aviseringar för svar på dina kommentarer',
+        'news_post' => '',
         'title' => 'Aviseringar',
         'topic_auto_subscribe' => 'aktivera aviseringar automatiskt på nya forumtrådar som du skapar ',
 
@@ -88,11 +89,12 @@ return [
             'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmapmodding',
             'channel_message' => 'privata chattmeddelanden',
-            'channel_team' => '',
+            'channel_team' => 'lagchattsmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'e-post',
             'mapping' => 'beatmap-ägare',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'blockera privata meddelanden från icke-vänner',
         'hide_online' => 'dölj din online-närvaro',
+        'hide_online_info' => '',
         'title' => 'Sekretess',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'uppdatera',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

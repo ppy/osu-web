@@ -33,25 +33,50 @@ return [
         'used' => 'Gastado',
     ],
 
+    'matchmaking' => [
+        'plays' => 'Jugadas',
+        'points' => 'Puntos',
+        'provisional' => 'No se han jugado suficientes partidas para determinar con precisión la clasificación',
+        'rating' => 'Clasificación',
+        'wins' => 'Victorias',
+    ],
+
+    'multiplayer' => [
+        'room_name' => 'Nombre de la sala',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Este usuario tiene menos de 30 días en su historial de clasificación reciente.',
     ],
 
+    'top_plays' => [
+        'empty' => 'Los datos todavía están siendo calculados...',
+        'last_updated' => 'Actualizado por última vez',
+    ],
+
+    'playlists' => [
+        'charts' => 'spotlights (antiguo)',
+        'featured' => 'destacados',
+        'season_room' => 'sala de la temporada',
+        'seasons' => 'temporadas',
+    ],
+
     'type' => [
-        'charts' => 'destacados',
         'country' => 'países',
         'daily_challenge' => 'desafío diario',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multijugador',
-        'seasons' => 'temporadas',
+        'matchmaking' => 'partidas rápidas',
+        'playlists' => 'listas de juego',
         'team' => 'equipos',
+        'top_plays' => 'mejores jugadas',
     ],
 
     'seasons' => [
         'empty' => 'Todavía no hay salas en esta temporada.',
         'ongoing' => 'Esta temporada aún está en curso (se agregarán más listas de juego).',
         'room_count' => 'Número de listas de juego',
+        'summary' => 'Ver resumen de la temporada',
         'url' => 'Mostrar más información sobre esa temporada.',
         'validation' => [
             'not_enough_factors' => 'no hay suficientes factores de puntuación para un cálculo adecuado',

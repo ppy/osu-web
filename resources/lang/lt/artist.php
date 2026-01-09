@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'osu! Rekomenduojami atlikėjai',
-    'title' => 'Rekomenduojami Atlikėjai',
+    'title' => 'Ryškieji Atlikėjai',
 
     'admin' => [
         'hidden' => 'ŠIS ATLIKĖJAS ŠIUO METU YRA PASLĖPTAS',
@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Rekomenduojami atlikėjai - tai atlikėjai su kuriais mes bendradarbiaujame norint suteikti naujausią ir orginaliausią muziką osu! žaidime. Šie atlikėjai ir jų išskirtiniai kūriniai buvo išrinkti osu! komandos kaip geriausi ir labiausiai tinkami beatmap\'ų kūrimui. Kai kurie atlikėjai sukūrė specialiai osu! skirtų kūrinių.<br><br>Visi kūriniai šioje skiltyje yra pateikti jau su sureguliuotu tempu ir buvo oficialiai licencijuoti naudojimui osu! žaidime ir su osu! žaidimu susijusiam turiniui.',
+        'description' => 'Ryškieji atlikėjai - tai atlikėjai su kuriais mes bendradarbiaujame norint suteikti naujausią ir orginaliausią muziką osu! žaidime. Šie atlikėjai ir jų išskirtiniai kūriniai buvo išrinkti osu! komandos kaip geriausi ir labiausiai tinkami beatmap\'ų kūrimui. Kai kurie atlikėjai sukūrė specialiai osu! skirtų kūrinių.<br><br>Visi kūriniai šioje skiltyje yra pateikti jau su sureguliuotu tempu ir buvo oficialiai licencijuoti naudojimui osu! žaidime ir su osu! žaidimu susijusiam turiniui.',
     ],
 
     'links' => [
@@ -46,8 +46,8 @@ return [
             '_' => 'takelių paieška',
 
             'exclusive_only' => [
-                'all' => '',
-                'exclusive_only' => '',
+                'all' => 'Visi',
+                'exclusive_only' => 'osu! autentiški',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Minimalus BPM',
                 'bpm_lte' => 'Maksimalus BPM',
                 'empty' => 'Takelių atitinkančių paieškos kriterijus nerasta.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Tipas',
                 'genre' => 'Žanras',
                 'genre_all' => 'Visi',
                 'length_gte' => 'Minimali Trukmė',

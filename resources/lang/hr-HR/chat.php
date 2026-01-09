@@ -8,7 +8,7 @@ return [
     'talking_in' => 'razgovaranje u :channel',
     'talking_with' => 'razgovaranje sa :name',
     'title_compact' => 'razgovor',
-    'unread_messages' => '',
+    'unread_messages' => 'nepročitane poruke',
 
     'cannot_send' => [
         'channel' => 'Trenutno ne možeš slati poruke u ovom kanalu.',
@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Želiš li sakriti ovaj kanal? I dalje ćeš primati poruke iz ovog kanala.',
         'create' => 'napravi obavijest',
-        'join' => '',
-        'none' => '',
+        'join' => 'uđi u kanal',
+        'none' => 'nema kanala',
 
         'list' => [
             'title' => [
@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Grupe',
                 'PM' => 'Direktne Poruke',
                 'PUBLIC' => 'Kanali',
-                'TEAM' => '',
+                'TEAM' => 'Tim',
             ],
         ],
     ],
@@ -39,7 +39,7 @@ return [
 
         'labels' => [
             'description' => 'opis',
-            'message' => '',
+            'message' => 'poruka',
             'name' => 'ime sobe',
             'users' => 'igrači za dodavanje',
         ],
@@ -65,6 +65,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Učitavanje lista kanala...',
     ],
 ];

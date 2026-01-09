@@ -33,25 +33,50 @@ return [
         'used' => 'المُنفق',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'لهذا المستخدم سِجل ترتيب يقل عن 30 يوماً.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'منطقة ألأضواء',
         'country' => 'الدولة',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => 'كودوسو',
-        'multiplayer' => 'متعدد اللاعبين',
-        'seasons' => 'مواسم',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => '',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'لا توجد غرف في هذا الموسم حتى الآن.',
         'ongoing' => 'هذا الموسم لا يزال جاريا (سيتم إضافة المزيد من قوائم التشغيل).',
         'room_count' => 'عدد قوائم التشغيل',
+        'summary' => '',
         'url' => 'عرض المزيد من المعلومات عن هذا الموسم.',
         'validation' => [
             'not_enough_factors' => '',

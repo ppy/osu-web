@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных карт наступных рэжымаў',
         'beatmapset_disqualify' => 'атрымліваць апавяшчэння, калі карты для наступных рэжымаў будуць діскваліфікаваны',
         'comment_reply' => 'атрымліваць апавяшчэнні аб адказах на каментарыі',
+        'news_post' => '',
         'title' => 'Апавяшчэнні',
         'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'адказы да тэмы',
             'mail' => 'пошта',
             'mapping' => 'стваральнік карты',
+            'news_post' => '',
             'push' => 'push',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'заблакаваць прыватныя паведамленні ад людзей не з вашага спісу сяброў',
         'hide_online' => 'схаваць маю анлайн прысутнасць',
+        'hide_online_info' => '',
         'title' => 'Прыватнасць',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'абнавіць',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

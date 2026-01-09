@@ -33,25 +33,50 @@ return [
         'used' => 'Ξοδεύτηκαν',
     ],
 
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
     'performance' => [
         'insufficient_history' => 'Αυτός ο χρήστης έχει λιγότερο από 30 ημέρες πρόσφατου ιστορικού κατάταξης.',
     ],
 
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'Spotlights',
         'country' => 'Χώρας',
         'daily_challenge' => 'ημερήσια πρόκληση',
         'global' => 'παγκόσμια',
         'kudosu' => 'kudosu',
-        'multiplayer' => 'multiplayer',
-        'seasons' => 'εποχές',
+        'matchmaking' => '',
+        'playlists' => '',
         'team' => 'ομάδα',
+        'top_plays' => '',
     ],
 
     'seasons' => [
         'empty' => 'Δεν υπάρχουν ακόμα δωμάτια σε αυτή τη σεζόν.',
         'ongoing' => 'Αυτή η σεζόν βρίσκεται ακόμα σε εξέλιξη (θα υπάρξουν περισσότερες λίστες αναπαραγωγής).',
         'room_count' => 'Πλήθος λίστας αναπαραγωγής',
+        'summary' => '',
         'url' => 'Εμφάνιση περισσότερων πληροφοριών σε εκείνη τη σεζόν.',
         'validation' => [
             'not_enough_factors' => 'δεν υπάρχουν αρκετοί παράγοντες βαθμολογίας για τον σωστό υπολογισμό',

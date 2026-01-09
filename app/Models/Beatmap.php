@@ -74,6 +74,23 @@ class Beatmap extends Model implements AfterCommit
         'mania' => 3,
     ];
 
+    const VARIANT_BY_ID = [
+        self::MODES['osu'] => [
+            0 => '',
+        ],
+        self::MODES['taiko'] => [
+            0 => '',
+        ],
+        self::MODES['fruits'] => [
+            0 => '',
+        ],
+        self::MODES['mania'] => [
+            0 => '',
+            4 => '4k',
+            7 => '7k',
+        ],
+    ];
+
     const VARIANTS = [
         'mania' => ['4k', '7k'],
     ];
@@ -404,7 +421,7 @@ class Beatmap extends Model implements AfterCommit
             }
             // slowTopTagIds is only used by indexing so it should be fine to filter out tags under the threshold for now.
             $minVotes = $GLOBALS['cfg']['osu']['beatmap_tags']['min_votes_display'];
-            $countById = array_filter($countById, fn ($count) => $count >= $minVotes);
+            $countById = array_filter($countById, fn ($count) => $count['count'] >= $minVotes);
 
             usort($countById, fn ($a, $b) => $a['count'] === $b['count']
                 ? $a['tag_id'] - $b['tag_id']
@@ -445,7 +462,7 @@ class Beatmap extends Model implements AfterCommit
             $value = $this->getRawAttribute('difficultyrating');
         }
 
-        return round($value, 2);
+        return (float) $value;
     }
 
     private function getDiffSize()

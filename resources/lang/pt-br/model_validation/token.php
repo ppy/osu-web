@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'O cliente está sem dono.',
         'client_unauthorized' => 'O cliente não está autorizado.',
         'delegate_bot_only' => 'Ordens com as Credenciais de Cliente só estão disponíveis para chat bots.',
-        'delegate_client_credentials_only' => 'Ordenar escopo ó é valido para tokens client_credentials.',
+        'client_credentials_only' => 'Esse escopo só é valido para tokens de client_credentials.',
         'delegate_invalid_combination' => 'Ordens não são permitidas com essa combinação de escopos.',
         'delegate_required' => 'Delegar escopos é necessário.',
         'empty' => 'Tokens sem escopos não são necessários.',

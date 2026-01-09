@@ -27,7 +27,7 @@ return [
         'title' => 'sök',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Se fler sökresultat av utvalda artistlåtar',
         ],
         'beatmapset' => [
             'login_required' => 'Logga in för att söka efter beatmaps',
@@ -54,16 +54,16 @@ return [
 
         'mode' => [
             'all' => 'alla',
-            'artist_track' => '',
+            'artist_track' => 'utvalda artistlåtar',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'lag',
             'user' => 'spelare',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'more_simple' => 'Se fler lag sökresultat',
         ],
 
         'user' => [
@@ -82,12 +82,8 @@ return [
     ],
 
     'download' => [
-        'action' => 'Ladda ner osu!',
-        'action_lazer' => 'Ladda ner osu!(lazer)',
-        'action_lazer_description' => 'den nästa stora uppdateringen till osu!',
         'action_lazer_info' => 'se denna sida för mer information',
-        'action_lazer_title' => 'pröva osu!(lazer)',
-        'action_title' => 'installera osu!',
+        'download' => '',
         'for_os' => 'för :os',
         'macos-fallback' => 'macOS-användare',
         'mirror' => 'mirror',
@@ -95,7 +91,9 @@ return [
         'os_version_or_later' => ':os_version eller senare',
         'other_os' => 'andra plattformar',
         'quick_start_guide' => 'snabbstartsguide',
-        'tagline' => "låt oss<br>få dig igång!",
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
         'video-guide' => 'videoguide',
 
         'help' => [
@@ -142,11 +140,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Daglig utmaning Beatmap',
             'new' => 'Nya rankade beatmaps',
             'popular' => 'Populära beatmaps',
             'by_user' => 'av :user',
-            'resets' => '',
+            'resets' => 'återställer :ends',
         ],
         'buttons' => [
             'download' => 'Ladda ner osu!',
@@ -155,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Öppna administratörskonsol',
             ],
         ],
     ],

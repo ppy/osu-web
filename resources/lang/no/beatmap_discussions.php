@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
+        'checking' => 'Ser etter oppdateringer...',
         'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'no_updates' => 'Ingen oppdateringer.',
+        'updating' => 'Oppdaterer…',
     ],
 
     'reply' => [

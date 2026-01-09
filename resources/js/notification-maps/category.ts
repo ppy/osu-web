@@ -40,6 +40,7 @@ export const nameToCategory: Partial<Record<string, string>> = {
   comment_new: 'comment',
   comment_reply: 'comment',
   forum_topic_reply: 'forum_topic_reply',
+  news_post_new: 'news_post',
   team_application_accept: 'team_application',
   team_application_reject: 'team_application',
   team_application_store: 'team_application',

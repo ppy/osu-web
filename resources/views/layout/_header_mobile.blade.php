@@ -53,6 +53,18 @@
                             {{ $user->username }}
                         </span>
                     </a>
+                    @if ($GLOBALS['cfg']['osu']['user']['wrapped_enabled'])
+                        <a
+                            class="{{ class_with_modifiers('mobile-menu-tab', [
+                                'link-button' => true,
+                                'wrapped-first' => !has_viewed_wrapped(),
+                            ]) }}"
+                            href="{{ route('wrapped', $currentUser->getKey()) }}"
+                            title="View your summary of 2025!"
+                        >
+                            <span class="fas fa-star"></span>
+                        </a>
+                    @endif
                 @else
                     <button
                         class="mobile-menu-tab mobile-menu-tab--user js-user-link"
@@ -77,8 +89,9 @@
                     </button>
 
                     <a
-                        class="mobile-menu-tab js-click-menu js-react--chat-icon"
+                        class="mobile-menu-tab js-click-menu js-react"
                         data-click-menu-target="mobile-chat-notification"
+                        data-react="chat-icon"
                         data-turbo-permanent
                         data-type='mobile'
                         id="notification-widget-chat-icon-mobile"
@@ -91,8 +104,9 @@
                     </a>
 
                     <a
-                        class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
+                        class="mobile-menu-tab js-click-menu js-react"
                         data-click-menu-target="mobile-notification"
+                        data-react="main-notification-icon"
                         data-turbo-permanent
                         data-type='mobile'
                         id="notification-widget-icon-mobile"
@@ -115,22 +129,27 @@
             </div>
 
             @if (isset($user))
-                <div class="mobile-menu__item mobile-menu__item--search js-click-menu js-react--quick-search" data-click-menu-id="mobile-search">
-                </div>
+                <div
+                    class="mobile-menu__item mobile-menu__item--search js-click-menu js-react"
+                    data-click-menu-id="mobile-search"
+                    data-react="quick-search"
+                ></div>
 
                 <div
-                    class="mobile-menu__item js-click-menu js-react--notification-widget"
+                    class="mobile-menu__item js-click-menu js-react"
                     data-click-menu-id="mobile-chat-notification"
                     data-notification-widget="{{ json_encode(['only' => 'channel']) }}"
+                    data-react="notification-widget"
                     data-visibility="hidden"
                     data-turbo-permanent
                     id="notification-widget-chat-mobile"
                 ></div>
 
                 <div
-                    class="mobile-menu__item js-click-menu js-react--notification-widget"
+                    class="mobile-menu__item js-click-menu js-react"
                     data-click-menu-id="mobile-notification"
                     data-notification-widget="{{ json_encode(['excludes' => ['channel']]) }}"
+                    data-react="notification-widget"
                     data-visibility="hidden"
                     data-turbo-permanent
                     id="notification-widget-mobile"

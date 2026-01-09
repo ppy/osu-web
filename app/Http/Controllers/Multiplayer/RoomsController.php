@@ -11,6 +11,7 @@ use App\Libraries\DailyChallengeDateHelper;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Multiplayer\Room;
+use App\Models\SeasonRoom;
 use App\Models\User;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\BeatmapsetCompactTransformer;
@@ -168,6 +169,7 @@ class RoomsController extends Controller
             ->with($includes)
             ->withRecentParticipantIds()
             ->get();
+        Room::preloadRecentParticipants($rooms);
 
         $rooms->each->findAndSetCurrentPlaylistItem();
         $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
@@ -270,7 +272,17 @@ class RoomsController extends Controller
         $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
         $highScores = $room->topScores()->paginate();
-        $spotlightRooms = Room::featured()->orderBy('id', 'DESC')->get();
+        $roomsQuery = Room::orderByDesc('id');
+        if ($room->season === null) {
+            if ($room->isFeatured()) {
+                $roomsQuery->featured();
+            } else {
+                $roomsQuery = null;
+            }
+        } else {
+            $seasonRoomIds = SeasonRoom::where('season_id', $room->season->getKey())->select('room_id');
+            $roomsQuery->whereIn('id', $seasonRoomIds);
+        }
 
         $userScore = ($currentUser = \Auth::user()) === null
             ? null
@@ -280,7 +292,7 @@ class RoomsController extends Controller
             'beatmaps' => $beatmaps,
             'beatmapsets' => $beatmapsets,
             'room' => $room,
-            'rooms' => $spotlightRooms,
+            'rooms' => $roomsQuery?->get(),
             'scores' => $highScores,
             'userScore' => $userScore,
         ]);

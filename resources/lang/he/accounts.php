@@ -80,6 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'לקבל הודעת בעת תקלה במפה מאומתת במודים הנלווים',
         'beatmapset_disqualify' => 'קבלת התראות עבור כאשר מפות השייכות למצבי המשחק הבאים נפסלות',
         'comment_reply' => 'קבל התראות עבור מענות לתגובות שלכם',
+        'news_post' => '',
         'title' => 'התראות',
         'topic_auto_subscribe' => 'קבלת התראות אוטומטית בפורום אשר נוצר על ידך',
 
@@ -93,6 +94,7 @@ return [
             'forum_topic_reply' => 'תגובה על הנושא',
             'mail' => 'דואר אלקטרוני',
             'mapping' => '',
+            'news_post' => '',
             'push' => 'דחיפה',
         ],
     ],
@@ -127,6 +129,7 @@ return [
     'privacy' => [
         'friends_only' => 'לחסום הודעות פרטיות מאנשים לא ברשימת החברים שלך',
         'hide_online' => 'הסתר את הנוכחות המקוונת שלך',
+        'hide_online_info' => '',
         'title' => '僅用於中文',
     ],
 
@@ -145,6 +148,21 @@ return [
 
     'update_password' => [
         'update' => 'עדכן',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [
