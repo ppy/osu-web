@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited minut|:count_delimited minuts',
         'months' => ':count_delimited mes|:count_delimited mesos',
         'notifications' => ':count_delimited notificació|:count_delimited notificacions',
-        'player' => '',
+        'player' => ':count_delimited jugador|:count_delimited jugadors',
         'plus_others' => '+ :count_delimited altre!|+ :count_delimited altres!',
         'post' => ':count_delimited publicació|:count_delimited publicacions',
         'second_short_unit' => 'seg|segs',

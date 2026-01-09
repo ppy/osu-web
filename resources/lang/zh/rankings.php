@@ -28,21 +28,21 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '获得的',
-        'available' => '可用的',
-        'used' => '已用的',
+        'total' => '总计',
+        'available' => '可用',
+        'used' => '已用',
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => '游玩次数',
+        'points' => '点数',
+        'provisional' => '游玩次数过少，无法准确计算等级分',
+        'rating' => '等级分',
+        'wins' => '获胜次数',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => '房间名',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => '数据还在计算中……',
-        'last_updated' => '',
+        'last_updated' => '上次更新于',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => '季赛（旧版）',
+        'featured' => '特殊',
+        'season_room' => '季赛房间',
+        'seasons' => '季赛',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => '每日挑战',
         'global' => '全球',
         'kudosu' => 'Kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => '快速匹配模式',
+        'playlists' => '歌单模式',
         'team' => '战队',
         'top_plays' => '单图成绩',
     ],
