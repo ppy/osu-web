@@ -47,7 +47,7 @@ class Screenshot extends Model
             if (!self::isLegacyId($id)) {
                 return null;
             }
-        } else if (self::hashForId($id) !== $hash) {
+        } else if (!hash_equals(self::hashForId($id), $hash)) {
             return null;
         }
 
@@ -72,12 +72,8 @@ class Screenshot extends Model
         ]);
     }
 
-    public function hash(): ?string
+    public function hash(): string
     {
-        if (self::isLegacyId($this->getKey())) {
-            return null;
-        }
-
         return self::hashForId($this->getKey());
     }
 

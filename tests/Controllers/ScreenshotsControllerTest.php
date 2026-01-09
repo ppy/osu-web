@@ -16,12 +16,17 @@ use Tests\TestCase;
 
 class ScreenshotsControllerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        \Storage::fake('local-screenshot');
+    }
+
     public function testStore()
     {
         $user = User::factory()->create();
         $this->actAsScopedUser($user);
-
-        \Storage::fake('local-screenshot');
 
         $url = $this->postJson(route('api.screenshots.store'), [
             'screenshot' => UploadedFile::fake()->image('screenshot.jpg'),
@@ -40,8 +45,7 @@ class ScreenshotsControllerTest extends TestCase
 
     public function testShow()
     {
-        $user = User::factory()->create();
-        $screenshot = Screenshot::factory()->create(['user_id' => $user->getKey()]);
+        $screenshot = Screenshot::factory()->create();
         $screenshot->store(UploadedFile::fake()->image('ss.jpg'));
 
         $this->expectCountChange(fn () => $screenshot->fresh()->hits, 1);
@@ -60,10 +64,8 @@ class ScreenshotsControllerTest extends TestCase
     {
         $oldDate = Carbon::now()->subDays(7);
 
-        $user = User::factory()->create();
         $screenshot = Screenshot::factory()->create([
             'screenshot_id' => 727,
-            'user_id' => $user->getKey(),
             'last_access' => $oldDate,
         ]);
 
@@ -77,10 +79,7 @@ class ScreenshotsControllerTest extends TestCase
 
     public function testShowLegacy()
     {
-        \Storage::fake('local-screenshot');
-
-        $user = User::factory()->create();
-        $screenshot = Screenshot::factory()->create(['user_id' => $user->getKey()]);
+        $screenshot = Screenshot::factory()->create();
         $screenshot->store(UploadedFile::fake()->image('ss.jpg'));
 
         config_set('osu.screenshots.legacy_id_cutoff', $screenshot->getKey() + 1);
@@ -97,6 +96,9 @@ class ScreenshotsControllerTest extends TestCase
     public function testShowLegacyIdAboveCutoff()
     {
         config_set('osu.screenshots.legacy_id_cutoff', 727000);
+
+        $screenshot = Screenshot::factory()->create(['screenshot_id' => 727001]);
+        $screenshot->store(UploadedFile::fake()->image('ss.jpg'));
 
         $this->get(route('screenshots.show', [
             'screenshot' => 727001,
