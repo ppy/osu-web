@@ -1156,7 +1156,7 @@
         ]
     },
     {
-        "uri": "api/v2/scores/{rulesetOrScore}/{score}/download",
+        "uri": "api/v2/scores/{ruleset}/{score}/download",
         "methods": [
             "GET",
             "HEAD"
@@ -1173,7 +1173,23 @@
         ]
     },
     {
-        "uri": "api/v2/scores/{rulesetOrScore}/{score?}",
+        "uri": "api/v2/scores/{ruleset}/{score}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\ScoresController@show",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/scores/{score}",
         "methods": [
             "GET",
             "HEAD"

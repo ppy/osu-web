@@ -21,7 +21,7 @@ import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, displayMods, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, displayMods, isPerfectCombo, calculateStatisticsFor, rank } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -40,7 +40,7 @@ export default class TopCard extends React.PureComponent<Props> {
       <div className={classWithModifiers('beatmap-score-top', this.props.modifiers)}>
         <a
           className='beatmap-score-top__link-container'
-          href={scoreUrl(this.props.score)}
+          href={route('scores.show', { score: this.props.score.id })}
         />
 
         <div className='beatmap-score-top__section'>
