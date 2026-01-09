@@ -56,9 +56,15 @@ module.exports = function(config) {
   config.set({
     autoWatch: true,
     basePath: '.',
-    browsers: ['ChromeHeadless'],
     colors: true,
     concurrency: Infinity,
+    customLaunchers: {
+      ChromeCustom: {
+        base: 'ChromeHeadless',
+        // chrome sandboxing does not work in every container runtime
+        flags: process.env.CHROME_NO_SANDBOX ? ['--no-sandbox'] : [],
+      },
+    },
     exclude: [],
     files,
     frameworks: ['jasmine', 'webpack'],
