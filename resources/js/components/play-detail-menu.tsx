@@ -4,12 +4,13 @@
 import ScorePin from 'components/score-pin';
 import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { rulesetName } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
-import { canBeReported, hasReplay, hasShow, scoreDownloadUrl, scoreUrl } from 'utils/score-helper';
+import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 
@@ -35,7 +36,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         )}
 
         {hasShow(score) && (
-          <a className='simple-menu__item' href={scoreUrl(score)}>
+          <a className='simple-menu__item' href={route('scores.show', { score: score.id })}>
             {trans('users.show.extra.top_ranks.view_details')}
           </a>
         )}
@@ -43,7 +44,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         {hasReplay(score) && (
           <a
             className='simple-menu__item js-login-required--click'
-            href={scoreDownloadUrl(score)}
+            href={route('scores.download', { score: score.id })}
             onClick={dismiss}
           >
             {trans('users.show.extra.top_ranks.download_replay')}
