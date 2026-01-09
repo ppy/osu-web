@@ -490,7 +490,7 @@ class SanityTest extends DuskTestCase
                 'locale' => 'en',
             ],
             'screenshots.show' => [
-                 'hash' => self::$scaffolding['screenshot']->urlHash(),
+                'hash' => self::$scaffolding['screenshot']->hash(),
             ],
         ];
 
