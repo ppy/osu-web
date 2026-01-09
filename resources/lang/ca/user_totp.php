@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Acaba',
+        'key' => 'Escanegeu el codi QR amb l\'Authenticator i escriviu el codi de verificació.',
+        'key_copy' => 'O feu clic en aquest enllaç per a copiar la clau per a l\'Authenticator.',
+        'key_link' => 'Feu servir aquest enllaç si feu servir telèfon mòbil.',
+        'password' => 'Per a configurar la verificació amb l\'Authenticator, escriviu la contrasenya actual',
+        'start' => 'Continua',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'No teniu la verificació amb l\'Authenticator configurada.',
+        'ok' => 'S\'ha tret la verificació amb l\'aplicació Authenticator.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Escriviu la contrasenya actual per a traure la verificació amb l\'aplicació Authenticator.',
+        'start' => 'Trau',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Ja teniu la verificació amb l\'Authenticator configurada.',
+        'ok' => 'S\'ha configurat la verificació amb l\'Authenticator.',
+        'restart' => 'S\'ha produït un error i cal tornar a començar el procés.',
     ],
 ];

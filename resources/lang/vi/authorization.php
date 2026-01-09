@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Không thể chỉnh sửa bài đăng đã bị xóa.',
                 'locked' => 'Bài đăng đã bị khóa chỉnh sửa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
-                'no_permission' => '',
+                'no_permission' => 'Không có quyền chỉnh sửa',
                 'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
                 'topic_locked' => 'Không thể chỉnh sửa bài đăng của một chủ đề bị khóa.',
             ],

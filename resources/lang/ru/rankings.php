@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Игры',
+        'points' => 'Очки',
+        'provisional' => 'Сыграно недостаточно матчей для точного определения рейтинга',
+        'rating' => 'Рейтинг',
+        'wins' => 'Победы',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Название комнаты',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => 'Идёт обработка данных...',
-        'last_updated' => '',
+        'last_updated' => 'Последнее обновление',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'чарты (устарел)',
+        'featured' => 'избранные',
+        'season_room' => 'комната сезона',
+        'seasons' => 'сезоны',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'по картам дня',
         'global' => 'мировой',
         'kudosu' => 'по кудосу',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'по быстрой игре',
+        'playlists' => 'по плейлистам',
         'team' => 'по командам',
         'top_plays' => 'по лучшим играм',
     ],

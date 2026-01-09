@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'nhấp vào đây để biết thêm thông tin',
-        'download' => '',
+        'download' => 'Tải xuống',
         'for_os' => 'dành cho :os',
         'macos-fallback' => 'người dùng macOS',
         'mirror' => 'liên kết phụ',
@@ -91,9 +91,9 @@ return [
         'os_version_or_later' => ':os_version trở lên',
         'other_os' => 'nền tảng khác',
         'quick_start_guide' => 'hướng dẫn nhanh',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'nếu bạn đang tìm cái cũ hơn',
+        'tagline_1' => 'hãy giúp bạn',
+        'tagline_2' => 'bắt đầu!',
         'video-guide' => 'hướng dẫn bằng video',
 
         'help' => [
@@ -153,7 +153,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Mở bảng điều khiển quản trị viên',
             ],
         ],
     ],
