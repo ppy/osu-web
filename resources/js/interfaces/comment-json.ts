@@ -13,6 +13,7 @@ export type CommentableMetaJson = {
   title: string;
   type: string;
   url: string;
+  locked: boolean;
 } | {
   title: string;
 };
