@@ -14,15 +14,25 @@ use App\Models\UserSummary;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use Illuminate\Auth\AuthenticationException;
 
 class WrappedController extends Controller
 {
-    public function show($userId)
+    public function show($userId = null)
     {
+        $currentUser = \Auth::user();
+        $shareKey = get_string(request('share')) ?? '';
+
+        if ($userId === null) {
+            if ($currentUser === null) {
+                throw new AuthenticationException();
+            }
+
+            $userId = $currentUser->getKey();
+            $shareKey = ''; // force redirect down there
+        }
         // validate user id and ban status
         $user = User::default()->findOrFail($userId);
-
-        $currentUser = \Auth::user();
 
         $viewingOwn = $currentUser?->getKey() === $user->getKey();
         if ($viewingOwn) {
@@ -35,7 +45,7 @@ class WrappedController extends Controller
             abort(404, "It doesn't seem the user has played in 2025!");
         }
 
-        if (!hash_equals($summary->share_key, get_string(request('share')) ?? '')) {
+        if (!hash_equals($summary->share_key, $shareKey)) {
             if ($viewingOwn) {
                 return ujs_redirect(route('wrapped', ['user' => $summary->user_id, 'share' => $summary->share_key]));
             } else {

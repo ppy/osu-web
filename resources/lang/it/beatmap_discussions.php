@@ -17,7 +17,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'eliminato',
+        'deleted_beatmap' => 'eliminata',
         'none_found' => 'Nessuna discussione corrispondente ai criteri di ricerca trovata.',
         'title' => 'Discussioni Beatmap',
 
@@ -75,7 +75,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Registrati per Rispondere',
+            'guest' => 'Accedi per rispondere',
             'user' => 'Rispondi',
         ],
     ],

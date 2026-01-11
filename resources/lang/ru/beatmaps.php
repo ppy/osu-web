@@ -263,7 +263,7 @@ return [
                 'title' => 'Названию',
                 'artist' => 'Исполнителю',
                 'difficulty' => 'Сложности',
-                'favourites' => 'Добавлениям в Избранные',
+                'favourites' => 'Количеству в избранных',
                 'updated' => 'Дате обновления',
                 'ranked' => 'Дате появления в категории',
                 'rating' => 'Оценкам',
@@ -296,7 +296,7 @@ return [
     'status' => [
         'any' => 'Все',
         'approved' => 'Одобренные',
-        'favourites' => 'В избранном',
+        'favourites' => 'В избранных',
         'graveyard' => 'Заброшенные',
         'leaderboard' => 'С таблицей рекордов',
         'loved' => 'Любимые',
@@ -367,7 +367,7 @@ return [
     ],
     'panel' => [
         'playcount' => 'Количество игр: :count',
-        'favourites' => 'В избранном: :count',
+        'favourites' => 'В избранных: :count',
     ],
     'variant' => [
         'mania' => [

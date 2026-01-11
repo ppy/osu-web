@@ -126,7 +126,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
     });
 
-    Route::get('ss/{screenshot}/{hash}', 'ScreenshotsController@show')->name('screenshots.show');
+    Route::get('ss/{screenshot}/{hash?}', 'ScreenshotsController@show')->name('screenshots.show');
 
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
         Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
@@ -414,7 +414,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('wrapped/{user}', 'WrappedController@show')->name('wrapped');
+    Route::get('wrapped/{user?}', 'WrappedController@show')->name('wrapped');
 
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');

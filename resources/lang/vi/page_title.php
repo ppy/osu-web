@@ -53,7 +53,7 @@ return [
             'discussion' => 'góc thảo luận beatmap ',
             'index' => 'danh sách beatmap',
             'show' => 'thông tin beatmap',
-            'versions' => '',
+            'versions' => 'Lịch sử phiên bản beatmap',
         ],
         'changelog_controller' => [
             '_' => 'nhật ký thay đổi',
@@ -72,7 +72,7 @@ return [
             'judge' => 'đánh giá bài thi',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'lịch sử nhóm',
         ],
         'groups_controller' => [
             'show' => 'nhóm',
@@ -126,7 +126,7 @@ return [
             '_' => 'ảnh bìa người dùng mặc định',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'ứng dụng xác thực',
         ],
         'users_controller' => [
             '_' => 'thông tin người chơi',

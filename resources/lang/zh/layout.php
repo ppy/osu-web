@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => '摸图',
             'playlists' => '歌单',
-            'quickplay' => '匹配模式',
+            'quickplay' => '快速匹配模式',
             'realtime' => '多人游戏',
             'show' => '信息',
         ],

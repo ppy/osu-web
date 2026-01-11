@@ -400,7 +400,7 @@ return [
                 'show_more' => 'veure més publicacions',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Partides ràpides',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -472,8 +472,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Partides ràpides',
         ],
 
         'not_found' => [

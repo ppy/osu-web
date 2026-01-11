@@ -18,7 +18,7 @@ return [
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
-        'build' => 'Note di rilascio',
+        'build' => 'Changelog',
         'news_post' => 'Notizie',
         '_deleted' => 'Elemento Eliminato',
     ],
@@ -34,7 +34,7 @@ return [
 
     'guest_button' => [
         'new' => 'Effettua il login per commentare',
-        'reply' => 'Effettua il login per rispondere',
+        'reply' => 'Accedi per rispondere',
     ],
 
     'index' => [
