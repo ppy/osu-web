@@ -73,7 +73,7 @@ return [
 
         'wrong_type' => [
             'art' => 'Only .jpg and .png files are accepted for this contest.',
-            'beatmap' => 'Only .osu files are accepted for this contest.',
+            'beatmap' => 'Only .osz files are accepted for this contest.',
             'music' => 'Only .mp3 files are accepted for this contest.',
         ],
 
