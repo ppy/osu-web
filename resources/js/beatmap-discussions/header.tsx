@@ -163,6 +163,7 @@ export class Header extends React.Component<Props> {
             <h2 className={`${bn}__title ${bn}__title--artist`}>
               {getArtist(this.beatmapset)}
               <BeatmapsetBadge beatmapset={this.beatmapset} type='featured_artist' />
+              <BeatmapsetBadge beatmapset={this.beatmapset} type='exclusive' />
             </h2>
           </div>
           <div className={`${bn}__filters`}>
