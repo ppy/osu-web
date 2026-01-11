@@ -146,6 +146,7 @@ return [
             'nominators' => 'Nominators',
             'nsfw' => 'Explicit content',
             'offset' => 'Online offset',
+            'pack_tags' => 'Beatmap Packs',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
