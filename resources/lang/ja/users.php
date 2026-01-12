@@ -475,7 +475,6 @@ CAPTCHA認証を成功させてから再試行してください。
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

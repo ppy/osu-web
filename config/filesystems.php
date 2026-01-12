@@ -90,6 +90,12 @@ return [
             'base_url' => "{$appUrl}/uploads/central",
         ],
 
+        'local-screenshot' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/screenshot'),
+            'visibility' => 'private',
+        ],
+
         'local-solo-replay' => [
             'driver' => 'local',
             'root' => public_path('uploads/solo-replay'),
@@ -116,6 +122,12 @@ return [
             ...$s3Default,
             'bucket' => env('S3_CENTRAL_BUCKET_NAME'),
             'region' => env('S3_CENTRAL_BUCKET_REGION'),
+        ],
+
+        's3-screenshot' => [
+            ...$s3Default,
+            'bucket' => presence(env('S3_SCREENSHOT_BUCKET')) ?? 'screenshots',
+            'visibility' => 'private',
         ],
 
         's3-solo-replay' => [
