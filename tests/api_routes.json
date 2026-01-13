@@ -1675,6 +1675,19 @@
         ]
     },
     {
+        "uri": "api/v2/screenshots",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\ScreenshotsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/beatmapsets/{beatmapset}/download",
         "methods": [
             "GET",
@@ -1685,18 +1698,5 @@
             "App\\Http\\Middleware\\RequireScopes"
         ],
         "scopes": []
-    },
-    {
-      "uri": "api/v2/screenshots",
-      "methods": [
-        "POST"
-      ],
-      "controller": "App\\Http\\Controllers\\ScreenshotsController@store",
-      "middlewares": [
-        "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
-        "App\\Http\\Middleware\\RequireScopes",
-        "Illuminate\\Auth\\Middleware\\Authenticate"
-      ],
-      "scopes": []
     }
 ]
