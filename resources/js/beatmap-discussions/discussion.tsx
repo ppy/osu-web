@@ -166,7 +166,7 @@ export class Discussion extends React.Component<Props> {
             </div>
             {this.renderPostButtons()}
           </div>
-          {this.postFooter()}
+          {this.renderReplies()}
           <div className={lineClasses} />
         </div>
       </div>
@@ -194,29 +194,6 @@ export class Discussion extends React.Component<Props> {
 
   private isVisible(object: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
     return object != null && (this.showDeleted || object.deleted_at == null);
-  }
-
-  private postFooter() {
-    if (this.props.discussionsState == null) return null;
-
-    let cssClasses = `${bn}__expanded`;
-    if (this.collapsed) {
-      cssClasses += ' hidden';
-    }
-
-    return (
-      <div className={cssClasses}>
-        <div className={`${bn}__replies`}>
-          {this.props.discussion.posts.slice(1).map(this.renderReply)}
-        </div>
-        {this.props.discussionsState != null && this.canBeRepliedTo && (
-          <NewReply
-            discussion={this.props.discussion}
-            discussionsState={this.props.discussionsState}
-          />
-        )}
-      </div>
-    );
   }
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
@@ -283,6 +260,29 @@ export class Discussion extends React.Component<Props> {
             </div>
           </button>
         </div>
+      </div>
+    );
+  }
+
+  private renderReplies() {
+    if (this.props.discussionsState == null) return null;
+
+    let cssClasses = `${bn}__expanded`;
+    if (this.collapsed) {
+      cssClasses += ' hidden';
+    }
+
+    return (
+      <div className={cssClasses}>
+        <div className={`${bn}__replies`}>
+          {this.props.discussion.posts.slice(1).map(this.renderReply)}
+        </div>
+        {this.props.discussionsState != null && this.canBeRepliedTo && (
+          <NewReply
+            discussion={this.props.discussion}
+            discussionsState={this.props.discussionsState}
+          />
+        )}
       </div>
     );
   }
