@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审 (Qualified) 谱面上的新问题通知：',
         'beatmapset_disqualify' => '接收以下游戏模式谱面下架 (DQ) 时的通知：',
         'comment_reply' => '在你的评论被回复时接收通知',
-        'news_post' => '',
+        'news_post' => '接收这些新闻的通知',
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
 
@@ -94,7 +94,7 @@ return [
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',
             'mapping' => '谱师',
-            'news_post' => '',
+            'news_post' => '新闻帖子',
             'push' => '推送',
         ],
     ],

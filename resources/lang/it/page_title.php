@@ -56,7 +56,7 @@ return [
             'versions' => 'cronologia versioni beatmap',
         ],
         'changelog_controller' => [
-            '_' => 'note di rilascio',
+            '_' => 'changelog',
         ],
         'chat_controller' => [
             '_' => 'chat',
@@ -147,7 +147,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'negozio',
     ],
     'teams' => [
         'members_controller' => [
