@@ -12,13 +12,28 @@ use GuzzleHttp\Client;
 class LivestreamCollection
 {
     const FEATURED_CACHE_KEY = 'featuredStream:arr:v2';
+    const FEATURED_DATA_CACHE_KEY = 'featuredStream:data:v2';
 
     private $streams;
     private $token;
 
     public static function promote($id)
     {
-        Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
+        if (empty($id)) {
+            Cache::forget(static::FEATURED_CACHE_KEY);
+            Cache::forget(static::FEATURED_DATA_CACHE_KEY);
+            return;
+        }
+
+        $collection = new static();
+
+        foreach ($collection->all() as $stream) {
+            if ($stream->data['id'] === (string) $id) {
+                Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
+                Cache::put(static::FEATURED_DATA_CACHE_KEY, $stream->data, 300);
+                return;
+            }
+        }
     }
 
     public function all()
@@ -74,13 +89,22 @@ class LivestreamCollection
     {
         $featuredStreamId = presence((string) Cache::get(static::FEATURED_CACHE_KEY));
 
-        if ($featuredStreamId !== null) {
-            foreach ($this->all() as $stream) {
-                if ($stream->data['id'] === $featuredStreamId) {
-                    return $stream;
-                }
+        if ($featuredStreamId === null) return null;
+
+        $cachedStreamData = Cache::get(static::FEATURED_DATA_CACHE_KEY);
+        if ($cachedStreamData !== null) {
+            return new Twitch\Stream($cachedStreamData);
+        }
+
+        foreach ($this->all() as $stream) {
+            if ($stream->data['id'] === $featuredStreamId) {
+                Cache::put(static::FEATURED_DATA_CACHE_KEY, $stream->data, 300);
+                return $stream;
             }
         }
+
+        Cache::forget(static::FEATURED_CACHE_KEY);
+        return null;
     }
 
     public function token()
