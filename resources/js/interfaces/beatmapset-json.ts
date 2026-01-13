@@ -92,6 +92,7 @@ export interface BeatmapsetJsonAvailableIncludes {
   has_favourited: boolean;
   language: LanguageJson;
   nominations: BeatmapsetNominationsInterface;
+  pack_tags: string[];
   ratings: number[];
   recent_favourites: UserJson[];
   related_tags: TagJson[];
@@ -116,7 +117,6 @@ interface BeatmapsetJsonDefaultAttributes {
   id: number;
   nsfw: boolean;
   offset: number;
-  pack_tags: string[];
   play_count: number;
   preview_url: string;
   source: string;
