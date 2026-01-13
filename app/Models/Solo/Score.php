@@ -533,7 +533,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function url(): string
     {
-        return route('scores.show', ['rulesetOrScore' => $this->getKey()]);
+        return route('scores.show', ['score' => $this->getKey()]);
     }
 
     public function userRank(?array $params = null): int

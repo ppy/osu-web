@@ -53,12 +53,12 @@ class ScoresController extends Controller
         $shouldRedirect = !is_api_request() && !from_app_url();
         if ($id === null) {
             if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId]));
+                return ujs_redirect(route('scores.show', ['score' => $rulesetOrSoloId]));
             }
             $score = Score::where('has_replay', true)->findOrFail($rulesetOrSoloId);
         } else {
             if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId, 'score' => $id]));
+                return ujs_redirect(route('scores.show', ['ruleset' => $rulesetOrSoloId, 'score' => $id]));
             }
             // don't limit downloading replays of restricted users for review purpose
             $score = Score::where([
