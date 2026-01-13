@@ -70,13 +70,7 @@ return [
         'preparation' => 'We are currently preparing this contest. Please wait patiently!',
         'drop_here' => 'Drop your entry here',
         'download' => 'Download .osz',
-
-        'wrong_type' => [
-            'art' => 'Only .jpg and .png files are accepted for this contest.',
-            'beatmap' => 'Only .osz files are accepted for this contest.',
-            'music' => 'Only .mp3 files are accepted for this contest.',
-        ],
-
+        'wrong_type' => 'Only :types files are accepted for this contest.',
         'wrong_dimensions' => 'Entries for this contest must be :widthx:height',
         'too_big' => 'Entries for this contest can only be up to :limit.',
     ],
