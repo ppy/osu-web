@@ -149,7 +149,6 @@ export function deletedBeatmapset(): BeatmapsetJson {
     id: 0,
     nsfw: false,
     offset: 0,
-    pack_tags: [],
     play_count: 0,
     preview_url: '',
     source: '',
