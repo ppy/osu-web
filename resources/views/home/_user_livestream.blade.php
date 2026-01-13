@@ -10,7 +10,6 @@
         id="{{ $playerId }}"
         class="js-twitch-player user-home-livestream__player"
         data-channel="{{ $stream->data['user_name'] }}"
-        data-autoplay="true"
         data-muted="true"
     ></div>
 </div>
