@@ -89,7 +89,9 @@ class LivestreamCollection
     {
         $featuredStreamId = presence((string) Cache::get(static::FEATURED_CACHE_KEY));
 
-        if ($featuredStreamId === null) return null;
+        if ($featuredStreamId === null) {
+            return null;
+        }
 
         $cachedStreamData = Cache::get(static::FEATURED_DATA_CACHE_KEY);
         if ($cachedStreamData !== null) {
