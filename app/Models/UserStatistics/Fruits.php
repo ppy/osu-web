@@ -19,7 +19,7 @@ namespace App\Models\UserStatistics;
  * @property int $exit_count
  * @property int $fail_count
  * @property float $hit_accuracy
- * @property float $accuracy_normalized
+ * @property float $accuracy_normalised
  * @property \Carbon\Carbon $last_played
  * @property \Carbon\Carbon $last_update
  * @property float $level

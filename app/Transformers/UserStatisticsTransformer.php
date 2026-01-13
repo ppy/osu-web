@@ -45,7 +45,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             'pp_exp' => 0,
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->hit_accuracy,
-            'accuracy' => $stats->accuracy_normalized,
+            'accuracy' => $stats->accuracy_normalised,
             'play_count' => $stats->playcount,
             'play_time' => $stats->total_seconds_played,
             'total_score' => $stats->total_score,
