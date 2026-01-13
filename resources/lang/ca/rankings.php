@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Jugades',
+        'points' => 'Punts',
+        'provisional' => 'No s\'han jugat prou partides per a determinar bé la classificació.',
+        'rating' => 'Valoració',
+        'wins' => 'Victòries',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Nom de la sala',
     ],
 
     'performance' => [
@@ -50,15 +50,15 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Les dades es calculen...',
+        'last_updated' => 'Actualitzat per últim cop',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'destacats (antics)',
+        'featured' => 'destacat',
+        'season_room' => 'sala de temporada',
+        'seasons' => 'temporades',
     ],
 
     'type' => [
@@ -66,17 +66,17 @@ return [
         'daily_challenge' => 'repte diari',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'partides ràpides',
+        'playlists' => 'llistes d\'àudio',
         'team' => 'equip',
-        'top_plays' => '',
+        'top_plays' => 'més jugades',
     ],
 
     'seasons' => [
         'empty' => 'Encara no hi ha sales en aquesta temporada.',
         'ongoing' => 'Aquesta temporada encara està en curs (s\'afegiran més llistes de reproducció).',
         'room_count' => 'Nombre de llistes de reproducció',
-        'summary' => '',
+        'summary' => 'Mostra el resum de la temporada',
         'url' => 'Mostra més informació sobre la temporada.',
         'validation' => [
             'not_enough_factors' => 'no hi ha prou factors de puntuació per a un càlcul adequat',

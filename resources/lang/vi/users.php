@@ -400,7 +400,7 @@ return [
                 'show_more' => 'xem bài viết khác',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Ván chơi nhanh',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
@@ -472,8 +472,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Chơi nhanh',
         ],
 
         'not_found' => [

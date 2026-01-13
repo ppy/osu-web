@@ -4,7 +4,6 @@
 import Ruleset from 'interfaces/ruleset';
 import ScoreJson, { ScoreStatisticsAttribute } from 'interfaces/score-json';
 import ScoreModJson from 'interfaces/score-mod-json';
-import { route } from 'laroute';
 import modNames from 'mod-names.json';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
@@ -210,36 +209,6 @@ function differenceBetweenConsecutiveElements(arr: number[]): number[] {
   }
 
   return result;
-}
-
-export function scoreDownloadUrl(score: ScoreJson) {
-  if (score.type === 'solo_score') {
-    return route('scores.download', { score: score.id });
-  }
-
-  if (score.best_id != null) {
-    return route('scores.download-legacy', {
-      rulesetOrScore: rulesetName(score.ruleset_id),
-      score: score.best_id,
-    });
-  }
-
-  throw new Error('score json doesn\'t have download url');
-}
-
-export function scoreUrl(score: ScoreJson) {
-  if (score.type === 'solo_score') {
-    return route('scores.show', { rulesetOrScore: score.id });
-  }
-
-  if (score.best_id != null) {
-    return route('scores.show', {
-      rulesetOrScore: rulesetName(score.ruleset_id),
-      score: score.best_id,
-    });
-  }
-
-  throw new Error('score json doesn\'t have url');
 }
 
 function shouldReturnLegacyValue(score: ScoreJson) {

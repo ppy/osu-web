@@ -7,9 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\Ruleset;
 use App\Models\Beatmap;
-use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\ScoreReplayStats;
-use App\Models\Solo\Score as SoloScore;
+use App\Models\Solo\Score;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Auth\AuthenticationException;
@@ -54,22 +53,20 @@ class ScoresController extends Controller
         $shouldRedirect = !is_api_request() && !from_app_url();
         if ($id === null) {
             if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId]));
+                return ujs_redirect(route('scores.show', ['score' => $rulesetOrSoloId]));
             }
-            $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
+            $score = Score::where('has_replay', true)->findOrFail($rulesetOrSoloId);
         } else {
             if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show', ['rulesetOrScore' => $rulesetOrSoloId, 'score' => $id]));
+                return ujs_redirect(route('scores.show', ['ruleset' => $rulesetOrSoloId, 'score' => $id]));
             }
             // don't limit downloading replays of restricted users for review purpose
-            $soloScore = SoloScore::where([
+            $score = Score::where([
                 'has_replay' => true,
                 'legacy_score_id' => $id,
                 'ruleset_id' => Beatmap::MODES[$rulesetOrSoloId] ?? abort(404, 'unknown ruleset name'),
             ])->firstOrFail();
         }
-
-        $score = $soloScore->legacyScore ?? $soloScore;
 
         $file = $score->replayFile()?->get();
         if ($file === null) {
@@ -83,7 +80,7 @@ class ScoresController extends Controller
             && ($currentUser->token()?->client->password_client ?? false)
         ) {
             $countLock = \Cache::lock(
-                "view:score_replay:{$soloScore->getKey()}:{$currentUser->getKey()}",
+                "view:score_replay:{$score->getKey()}:{$currentUser->getKey()}",
                 static::REPLAY_DOWNLOAD_COUNT_INTERVAL,
             );
 
@@ -95,27 +92,23 @@ class ScoresController extends Controller
                     ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
                     ->incrementInstance('count');
 
-                if ($score instanceof ScoreBest) {
-                    $score->replayViewCount()
-                        ->firstOrCreate([], ['play_count' => 0])
-                        ->incrementInstance('play_count');
-                }
+                $score->legacyScore?->replayViewCount()
+                    ->firstOrCreate([], ['play_count' => 0])
+                    ->incrementInstance('play_count');
 
-                if ($soloScore !== null) {
-                    ScoreReplayStats
-                        ::createOrFirst(['score_id' => $soloScore->getKey()], ['user_id' => $soloScore->user_id])
-                        ->incrementInstance('watch_count');
-                }
+                ScoreReplayStats
+                    ::createOrFirst(['score_id' => $score->getKey()], ['user_id' => $score->user_id])
+                    ->incrementInstance('watch_count');
             }
         }
 
-        static $responseHeaders = [
-            'Content-Type' => 'application/x-osu-replay',
-        ];
-
-        return response()->streamDownload(function () use ($file) {
-            echo $file;
-        }, $this->makeReplayFilename($score), $responseHeaders);
+        return response()->streamDownload(
+            function () use ($file) {
+                echo $file;
+            },
+            "solo-replay-{$score->getMode()}_{$score->beatmap_id}_{$score->getKey()}.osr",
+            ['Content-Type' => 'application/x-osu-replay'],
+        );
     }
 
     /**
@@ -147,7 +140,7 @@ class ScoresController extends Controller
         $cursor = cursor_from_params($params);
         $isOldScores = false;
         if (isset($cursor['id']) && ($idFromCursor = get_int($cursor['id'])) !== null) {
-            $currentMaxId = SoloScore::max('id');
+            $currentMaxId = Score::max('id');
             $idDistance = $currentMaxId - $idFromCursor;
             if ($idDistance > $GLOBALS['cfg']['osu']['scores']['index_max_id_distance']) {
                 abort(422, 'cursor is too old');
@@ -168,8 +161,8 @@ class ScoresController extends Controller
             'score_index:'.($rulesetId ?? '').':'.json_encode($cursor),
             $isOldScores ? 600 : 5,
             function () use ($cursor, $isOldScores, $rulesetId) {
-                $cursorHelper = SoloScore::makeDbCursorHelper('old');
-                $scoresQuery = SoloScore::forListing()->limit(1_000);
+                $cursorHelper = Score::makeDbCursorHelper('old');
+                $scoresQuery = Score::forListing()->limit(1_000);
                 if ($rulesetId !== null) {
                     $scoresQuery->where('ruleset_id', $rulesetId);
                 }
@@ -207,9 +200,9 @@ class ScoresController extends Controller
     public function show($rulesetOrSoloId, $legacyId = null)
     {
         if ($legacyId === null) {
-            $scoreQuery = SoloScore::whereKey(static::parseIdOrFail($rulesetOrSoloId));
+            $scoreQuery = Score::whereKey(static::parseIdOrFail($rulesetOrSoloId));
         } else {
-            $scoreQuery = SoloScore::where([
+            $scoreQuery = Score::where([
                 'ruleset_id' => Ruleset::tryFromName($rulesetOrSoloId) ?? abort(404, 'unknown ruleset name'),
                 'legacy_score_id' => static::parseIdOrFail($legacyId),
             ]);
@@ -236,14 +229,5 @@ class ScoresController extends Controller
         }
 
         return ext_view('scores.show', compact('score', 'scoreJson'));
-    }
-
-    private function makeReplayFilename(ScoreBest|SoloScore $score): string
-    {
-        $prefix = $score instanceof SoloScore
-            ? 'solo-replay'
-            : 'replay';
-
-        return "{$prefix}-{$score->getMode()}_{$score->beatmap_id}_{$score->getKey()}.osr";
     }
 }

@@ -161,10 +161,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Novidades (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -274,7 +274,7 @@ return [
             ],
 
             'news_post' => [
-                'news_post_new' => '',
+                'news_post_new' => 'Novidades (:series): ":title"',
             ],
         ],
 

@@ -45,6 +45,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\Score;
+use App\Models\Screenshot;
 use App\Models\Season;
 use App\Models\Store;
 use App\Models\Team;
@@ -289,6 +290,8 @@ class SanityTest extends DuskTestCase
         PlaylistItem::factory()->create(['room_id' => self::$scaffolding['daily_challenge_room']]);
 
         self::$scaffolding['team'] = Team::factory()->create(['leader_id' => self::$scaffolding['user']]);
+
+        self::$scaffolding['screenshot'] = Screenshot::factory()->create(['user_id' => self::$scaffolding['user']]);
     }
 
     private static function echo($text): void
@@ -469,11 +472,11 @@ class SanityTest extends DuskTestCase
                 'daily_challenge' => DailyChallengeDateHelper::roomId(self::$scaffolding['daily_challenge_room']),
             ],
             'scores.download-legacy' => [
-                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'ruleset' => static::$scaffolding['score']->getMode(),
                 'score' => static::$scaffolding['score']->getKey(),
             ],
-            'scores.show' => [
-                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+            'scores.show-legacy' => [
+                'ruleset' => static::$scaffolding['score']->getMode(),
                 'score' => static::$scaffolding['score']->getKey(),
             ],
             'legal' => [
@@ -485,6 +488,9 @@ class SanityTest extends DuskTestCase
             ],
             'wiki.sitemap' => [
                 'locale' => 'en',
+            ],
+            'screenshots.show' => [
+                'hash' => self::$scaffolding['screenshot']->hash(),
             ],
         ];
 

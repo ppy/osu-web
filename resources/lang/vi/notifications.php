@@ -162,7 +162,7 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Tin tức (:series)',
 
                 'news_post_new' => '',
                 'news_post_new_compact' => '',
