@@ -80,12 +80,12 @@ return [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap Qualified di mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi untuk balasan baru pada komentar yang kamu tulis',
-        'news_post' => '',
+        'news_post' => 'terima notifikasi untuk postingan berita yang berkaitan dengan',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis bagi topik forum baru yang kamu buat atau balas',
 
         'options' => [
-            '_' => 'kirimkan notifikasi melalui',
+            '_' => 'opsi pengiriman',
             'beatmap_owner_change' => 'tingkat kesulitan tamu',
             'beatmapset:modding' => 'modding',
             'channel_message' => 'pesan pribadi',
@@ -94,14 +94,14 @@ return [
             'forum_topic_reply' => 'balasan topik',
             'mail' => 'email',
             'mapping' => 'mapper',
-            'news_post' => '',
+            'news_post' => 'postingan berita',
             'push' => 'push (web)',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'klien diizinkan',
-        'own_clients' => 'klien yang dimiliki',
+        'authorized_clients' => 'klien yang terizin',
+        'own_clients' => 'klien yang kamu miliki',
         'title' => 'OAuth',
     ],
 

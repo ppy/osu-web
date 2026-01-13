@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'thông tin',
             'discussions' => 'thảo luận',
-            'versions' => '',
+            'versions' => 'Lịch sử phiên bản',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'danh sách phát',
-            'quickplay' => '',
+            'quickplay' => 'Chơi nhanh',
             'realtime' => 'nhiều người chơi',
             'show' => 'thông tin',
         ],

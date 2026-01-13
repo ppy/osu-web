@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Partite',
+        'points' => 'Punti',
+        'provisional' => 'Non ci sono partite sufficienti per una valutazione precisa',
+        'rating' => 'Valutazione',
+        'wins' => 'Vittorie',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Nome stanza',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => 'I dati sono in fase di calcolo...',
-        'last_updated' => '',
+        'last_updated' => 'Ultimo aggiornamento',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlight (archivio)',
+        'featured' => 'in evidenza',
+        'season_room' => 'stanza della stagione',
+        'seasons' => 'stagioni',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'sfida giornaliera',
         'global' => 'globale',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'quick play',
+        'playlists' => 'playlist',
         'team' => 'squadra',
         'top_plays' => 'migliori partite',
     ],
@@ -84,10 +84,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => 'Data Fine',
-        'map_count' => 'N° Beatmap',
+        'end_date' => 'Data fine',
+        'map_count' => 'Mappe',
         'participants' => 'Partecipanti',
-        'start_date' => 'Data Inizio',
+        'start_date' => 'Data inizio',
     ],
 
     'stat' => [
