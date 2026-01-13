@@ -121,12 +121,13 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->name('download-legacy');
+        Route::get('{ruleset}/{score}/download', 'ScoresController@download')->name('download-legacy');
 
-        Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+        Route::get('{ruleset}/{score}', 'ScoresController@show')->name('show-legacy');
+        Route::get('{score}', 'ScoresController@show')->name('show');
     });
 
-    Route::get('ss/{screenshot}/{hash}', 'ScreenshotsController@show')->name('screenshots.show');
+    Route::get('ss/{screenshot}/{hash?}', 'ScreenshotsController@show')->name('screenshots.show');
 
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
         Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
@@ -545,9 +546,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+            Route::get('{ruleset}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
-            Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+            Route::get('{ruleset}/{score}', 'ScoresController@show')->name('show-legacy');
+            Route::get('{score}', 'ScoresController@show')->name('show');
 
             Route::get('/', 'ScoresController@index');
         });

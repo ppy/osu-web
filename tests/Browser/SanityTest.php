@@ -472,11 +472,11 @@ class SanityTest extends DuskTestCase
                 'daily_challenge' => DailyChallengeDateHelper::roomId(self::$scaffolding['daily_challenge_room']),
             ],
             'scores.download-legacy' => [
-                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+                'ruleset' => static::$scaffolding['score']->getMode(),
                 'score' => static::$scaffolding['score']->getKey(),
             ],
-            'scores.show' => [
-                'rulesetOrScore' => static::$scaffolding['score']->getMode(),
+            'scores.show-legacy' => [
+                'ruleset' => static::$scaffolding['score']->getMode(),
                 'score' => static::$scaffolding['score']->getKey(),
             ],
             'legal' => [
@@ -490,7 +490,7 @@ class SanityTest extends DuskTestCase
                 'locale' => 'en',
             ],
             'screenshots.show' => [
-                 'hash' => self::$scaffolding['screenshot']->urlHash(),
+                'hash' => self::$scaffolding['screenshot']->hash(),
             ],
         ];
 
