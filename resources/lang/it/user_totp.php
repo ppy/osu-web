@@ -7,7 +7,7 @@ return [
     'create' => [
         'finish' => 'Concludi',
         'key' => 'Scansiona il codice QR con l\'app di autenticazione e inserisci la chiave generata',
-        'key_copy' => 'Oppure clicca qui per copiare la chiave da inserire nell\'app di autenticazione',
+        'key_copy' => 'Oppure clicca questo link per copiare la chiave da inserire nell\'app di autenticazione',
         'key_link' => 'Usa questo link se stai navigando da telefono',
         'password' => 'Per impostare la verifica tramite app di autenticazione, inserisci la tua password attuale',
         'start' => 'Continua',

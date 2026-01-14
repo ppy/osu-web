@@ -13,7 +13,7 @@ return [
         'message' => [
             'group_add' => 'Группа :group создана.',
             'group_remove' => 'Группа :group удалена.',
-            'group_rename' => ':previous_group переименована в :group.',
+            'group_rename' => 'Группа :previous_group переименована в :group.',
             'user_add' => ':user добавлен в :group.',
             'user_add_with_playmodes' => ':user добавлен в :group по режиму игры :rulesets.',
             'user_add_playmodes' => 'Участнику :user группы :group назначен режим игры :rulesets.',

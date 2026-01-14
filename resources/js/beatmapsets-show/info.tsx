@@ -228,6 +228,27 @@ export default class Info extends React.Component<Props> {
                 </div>
               </div>
             }
+
+            {this.controller.beatmapset.pack_tags.length > 0 &&
+              <div className='beatmapset-info__row'>
+                <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
+                  {trans('beatmapsets.show.info.pack_tags')}
+                </h3>
+                <div>
+                  {this.controller.beatmapset.pack_tags.map((pack, i) => (
+                    <React.Fragment key={`${pack}-${i}`}>
+                      {i !== 0 && ', '}
+                      <a
+                        className='beatmapset-info__link'
+                        href={route('packs.show', pack)}
+                      >
+                        {pack}
+                      </a>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            }
           </div>
           {this.withEditMetadata && this.renderEditMetadataButton()}
         </div>
