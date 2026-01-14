@@ -59,8 +59,8 @@ abstract class Model extends BaseModel
 
     public function getAccuracyNormalisedAttribute()
     {
-        return $this->accuracy_new !== null 
-        ? $this->accuracy_new / 100 
+        return $this->accuracy_new !== null
+        ? $this->accuracy_new / 100
         : $this->accuracy;
     }
 
