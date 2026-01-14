@@ -37,13 +37,14 @@
 
 Represents a team. Extends [Team](#team) object with additional attributes.
 
-| Field              | Type                              | Description                                   |
-|--------------------|-----------------------------------|-----------------------------------------------|
-| cover_url          | string?                           | URL to the cover image                        |
-| default_ruleset_id | integer?                          |                                               |
-| created_at         | [Timestamp](#timestamp)           |                                               |
-| description        | string?                           |                                               |
-| statistics         | [TeamStatistics](#teamstatistics) | The team's gameplay stats for a given ruleset |
+| Field              | Type                              | Description                                                 |
+|--------------------|-----------------------------------|-------------------------------------------------------------|
+| cover_url          | string?                           | URL to the cover image                                      |
+| default_ruleset_id | integer                           |                                                             |
+| created_at         | [Timestamp](#timestamp)           |                                                             |
+| description        | string?                           |                                                             |
+| statistics         | [TeamStatistics](#teamstatistics) | The team's gameplay stats for a given ruleset               |
+| is_open            | boolean                           | Whether the team is currently accepting member applications |
 
 
 
