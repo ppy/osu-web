@@ -70,7 +70,7 @@ return [
         'preparation' => 'We are currently preparing this contest. Please wait patiently!',
         'drop_here' => 'Drop your entry here',
         'download' => 'Download .osz',
-        'wrong_type' => 'Only :types files are accepted for this contest.',
+        'wrong_file_type' => 'Only :types files are accepted for this contest.',
         'wrong_dimensions' => 'Entries for this contest must be :widthx:height',
         'too_big' => 'Entries for this contest can only be up to :limit.',
     ],
