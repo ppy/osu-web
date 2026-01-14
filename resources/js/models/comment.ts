@@ -66,13 +66,13 @@ export default class Comment {
   @computed
   get canReply() {
     const meta = this.controller.getCommentableMeta(this);
-    
+
     if (this.isDeleted) {
       return false;
     }
 
     if (
-      'current_user_attributes' in meta && 
+      'current_user_attributes' in meta &&
       meta.current_user_attributes.can_new_comment_reason == null
     ) {
       return true;
