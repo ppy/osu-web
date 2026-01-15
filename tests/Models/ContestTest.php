@@ -77,6 +77,27 @@ class ContestTest extends TestCase
         ];
     }
 
+    public static function dataProviderForTestAllowedExtensions(): array
+    {
+        return [
+            ['art', null, ['jpg', 'jpeg', 'png']],
+            ['beatmap', null, ['osz']],
+            ['music', null, ['mp3']],
+            ['art', ['jpg', 'png'], ['jpg', 'png']],
+            ['beatmap', ['osz', 'zip'], ['osz', 'zip']],
+            ['music', ['mp3', 'wav', 'flac'], ['mp3', 'wav', 'flac']],
+        ];
+    }
+
+    public static function dataProviderForTestMaxFilesize(): array
+    {
+        return [
+            ['art', 8 * 1024 * 1024],
+            ['beatmap', 32 * 1024 * 1024],
+            ['music', 16 * 1024 * 1024],
+        ];
+    }
+
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
@@ -229,5 +250,31 @@ class ContestTest extends TestCase
             'extra_options' => $extraOptions,
         ]);
         $this->assertSame($result, $contest->show_judges);
+    }
+
+    /**
+     * @dataProvider dataProviderForTestAllowedExtensions
+     */
+    public function testAllowedExtensions(string $type, ?array $allowedExtensions, array $expectedResult): void
+    {
+        $extraOptions = $allowedExtensions === null
+            ? null
+            : ['allowed_extensions' => $allowedExtensions];
+        $contest = Contest::factory()->create([
+            'type' => $type,
+            'extra_options' => $extraOptions,
+        ]);
+        $this->assertSame($expectedResult, $contest->getAllowedExtensions());
+    }
+
+    /**
+     * @dataProvider dataProviderForTestMaxFilesize
+     */
+    public function testMaxFilesize(string $type, int $expectedResult): void
+    {
+        $contest = Contest::factory()->create([
+            'type' => $type,
+        ]);
+        $this->assertSame($expectedResult, $contest->getMaxFilesize());
     }
 }
