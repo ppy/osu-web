@@ -74,14 +74,14 @@ class Room extends Model
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'realtime' => self::REALTIME_STANDARD_TYPES,
-        'quickplay' => [self::MATCHMAKING_TYPE],
+        'quickplay' => self::MATCHMAKING_TYPES,
     ];
 
     const PLAYLIST_TYPE = 'playlists';
-    const MATCHMAKING_TYPE = 'matchmaking';
+    const MATCHMAKING_TYPES = ['matchmaking', 'ranked_play'];
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_STANDARD_TYPES = ['head_to_head', 'team_versus'];
-    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, self::MATCHMAKING_TYPE];
+    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, ...self::MATCHMAKING_TYPES];
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
@@ -448,16 +448,14 @@ class Room extends Model
 
     public function isRealtime()
     {
-        static $realtimeTypes;
-
-        $realtimeTypes ??= new Set(static::REALTIME_TYPES);
-
+        static $realtimeTypes = new Set(self::REALTIME_TYPES);
         return $realtimeTypes->contains($this->type);
     }
 
     public function isMatchmaking()
     {
-        return $this->type === static::MATCHMAKING_TYPE;
+        static $matchmakingTypes = new Set(self::MATCHMAKING_TYPES);
+        return $matchmakingTypes->contains($this->type);
     }
 
     public function isScoreSubmissionStillAllowed()
@@ -699,10 +697,6 @@ class Room extends Model
 
         $playlistItemsCount = count($playlistItems);
 
-        if ($playlistItemsCount < 1) {
-            throw new InvariantException('room must have at least one playlist item');
-        }
-
         if ($this->isMatchmaking()) {
             $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
             foreach ($playlistItems as $item) {
@@ -710,6 +704,8 @@ class Room extends Model
             }
         } elseif ($this->isRealtime() && $playlistItemsCount !== 1) {
             throw new InvariantException('realtime room must have exactly one playlist item');
+        } elseif (!$this->isRealtime() && $playlistItemsCount < 1) {
+            throw new InvariantException('room must have at least one playlist item');
         }
 
         if (mb_strlen($this->name) > 100) {
