@@ -448,19 +448,13 @@ class Room extends Model
 
     public function isRealtime()
     {
-        static $realtimeTypes;
-
-        $realtimeTypes ??= new Set(static::REALTIME_TYPES);
-
+        static $realtimeTypes = new Set(self::REALTIME_TYPES);
         return $realtimeTypes->contains($this->type);
     }
 
     public function isMatchmaking()
     {
-        static $matchmakingTypes;
-
-        $matchmakingTypes ??= new Set(static::MATCHMAKING_TYPES);
-
+        static $matchmakingTypes = new Set(self::MATCHMAKING_TYPES);
         return $matchmakingTypes->contains($this->type);
     }
 

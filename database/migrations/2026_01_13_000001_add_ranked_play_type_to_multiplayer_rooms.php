@@ -13,22 +13,26 @@ return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement("ALTER TABLE `multiplayer_rooms` MODIFY `type` ENUM(
-            'playlists',
-            'head_to_head',
-            'team_versus',
-            'matchmaking',
-            'ranked_play'
-        ) NOT NULL");
+        Schema::table('multiplayer_rooms', function (Blueprint $table) {
+            $table->enum('type', [
+                'playlists',
+                'head_to_head',
+                'team_versus',
+                'matchmaking',
+                'ranked_play',
+            ])->change();
+        });
     }
 
     public function down(): void
     {
-        DB::statement("ALTER TABLE `multiplayer_rooms` MODIFY `type` ENUM(
-            'playlists',
-            'head_to_head',
-            'team_versus',
-            'matchmaking'
-        ) NOT NULL");
+        Schema::table('multiplayer_rooms', function (Blueprint $table) {
+            $table->enum('type', [
+                'playlists',
+                'head_to_head',
+                'team_versus',
+                'matchmaking',
+            ])->change();
+        });
     }
 };
