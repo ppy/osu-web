@@ -5,14 +5,9 @@
   @_top: livestream-featured;
 
   position: relative;
-
-  &::before {
-    content: "";
-    display: block;
-    width: 100%;
-    // ensuring fixed aspect ratio
-    padding-bottom: (100% * 9 / 16);
-  }
+  aspect-ratio: 16 / 9;
+  display: grid;
+  grid-template-areas: "content";
 
   &__actions {
     position: absolute;
@@ -30,20 +25,20 @@
   }
 
   &__content {
-    .full-size();
+    grid-area: content;
     background-size: cover;
-    transition: opacity 1000ms;
 
-    &:link {
-      text-decoration: none;
+    &--placeholder {
+      display: grid;
+      align-items: end;
+      &:link {
+        text-decoration: none;
+      }
     }
   }
 
   &__info {
-    position: absolute;
     width: 100%;
-    bottom: 0;
-    left: 0;
     padding: 30px 40px;
     background-image: linear-gradient(transparent, #000);
   }
