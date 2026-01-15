@@ -4,6 +4,7 @@
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
+import { Spinner } from 'components/spinner'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { formatBytes } from 'utils/html'
@@ -23,6 +24,7 @@ export class Uploader extends React.Component
 
     @state =
       state: ''
+      uploading: false
 
 
   setOverlay: (state) ->
@@ -84,13 +86,17 @@ export class Uploader extends React.Component
             width: @props.contest.forced_width,
             height: @props.contest.forced_height), 'danger'
 
-      submit: ->
+      submit: =>
+        @setState uploading: true
         $.publish 'dragendGlobal'
 
-      done: (_e, data) ->
+      done: (_e, data) =>
+        @setState uploading: false
         $.publish 'contest:entries:update', data: data.result
 
-      fail: fileuploadFailCallback
+      fail: (e, data) =>
+        @setState uploading: false
+        fileuploadFailCallback(e, data)
 
 
   componentWillUnmount: =>
@@ -124,9 +130,18 @@ export class Uploader extends React.Component
       label
         className: 'contest-userentry__uploader'
         ref: @uploadContainerRef
-        span className: 'contest-userentry__icon',
-          span className: 'fas fa-plus'
-        div {}, trans('contest.entry.drop_here')
+        if @state.uploading
+          div className: 'contest-userentry__spinner',
+            el Spinner
+        else
+          el React.Fragment, null,
+            span className: 'contest-userentry__icon',
+              span className: 'fas fa-plus'
+            div {}, trans('contest.entry.drop_here')
+            div
+              className: 'contest-userentry__info'
+              div {}, trans('contest.entry.allowed_extensions', types: @props.contest.allowed_extensions.map((ext) -> ".#{ext.toLowerCase()}").join(', '))
+              div {}, trans('contest.entry.max_size', limit: formatBytes(@props.contest.max_filesize, 0))
 
 
   $uploadButton: =>
