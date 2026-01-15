@@ -92,9 +92,11 @@ class ScoresController extends Controller
                     ->firstOrCreate(['year_month' => $currentMonth], ['count' => 0])
                     ->incrementInstance('count');
 
-                $score->legacyScore?->replayViewCount()
-                    ->firstOrCreate([], ['play_count' => 0])
-                    ->incrementInstance('play_count');
+                if (($legacyBestId = $score->legacy_best_id) !== null) {
+                    $score->legacyReplayViewCount()
+                        ->firstOrCreate(['score_id' => $legacyBestId], ['play_count' => 0])
+                        ->incrementInstance('play_count');
+                }
 
                 ScoreReplayStats
                     ::createOrFirst(['score_id' => $score->getKey()], ['user_id' => $score->user_id])
