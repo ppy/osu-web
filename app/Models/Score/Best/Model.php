@@ -75,7 +75,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     public function url(): string
     {
-        return route('scores.show', ['rulesetOrScore' => $this->getMode(), 'score' => $this->getKey()]);
+        return route('scores.show', ['ruleset' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
     public function scopeDefault($query)

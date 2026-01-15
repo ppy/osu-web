@@ -5,26 +5,26 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Hoàn thành',
+        'key' => 'Quét mã QR với ứng dụng xác thực và nhập mã xác thực',
+        'key_copy' => 'Hoặc bấm liên kết này để sao chép cho ứng dụng xác thực',
+        'key_link' => 'Sử dụng liên kết này nếu bạn đang dùng điện thoại',
+        'password' => 'Để cài đặt ứng dụng xác thực, vui lòng nhập mật khẩu của bạn',
+        'start' => 'Tiếp tục',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Bạn chưa cài đặt ứng dụng xác thực.',
+        'ok' => 'Đã xóa xác thực bằng ứng dụng.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Vui lòng nhập mật khẩu của bạn để xóa sử dụng xác thực bằng ứng dụng.',
+        'start' => 'Xóa',
     ],
 
     'store' => [
-        'existing' => '',
+        'existing' => 'Bạn đã có ứng dụng xác thực cài đặt.',
         'ok' => '',
         'restart' => '',
     ],
