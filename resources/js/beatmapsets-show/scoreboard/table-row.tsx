@@ -19,7 +19,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -55,7 +55,7 @@ interface Props {
 export default class ScoreboardTableRow extends React.Component<Props> {
   @computed
   get scoreUrl() {
-    return scoreUrl(this.props.score);
+    return route('scores.show', { score: this.props.score.id });
   }
 
   constructor(props: Props) {
