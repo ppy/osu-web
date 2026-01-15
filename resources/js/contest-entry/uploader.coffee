@@ -141,6 +141,8 @@ export class Uploader extends React.Component
             div
               className: 'contest-userentry__info'
               div {}, trans('contest.entry.allowed_extensions', types: @props.contest.allowed_extensions.map((ext) -> ".#{ext.toLowerCase()}").join(', '))
+              if @props.contest.forced_width && @props.contest.forced_height
+                div {}, trans('contest.entry.required_dimensions', width: @props.contest.forced_width, height: @props.contest.forced_height)
               div {}, trans('contest.entry.max_size', limit: formatBytes(@props.contest.max_filesize, 0))
 
 

@@ -71,6 +71,7 @@ return [
         'drop_here' => 'Drop your entry here',
         'allowed_extensions' => ':types files are accepted',
         'max_size' => 'Max size: :limit',
+        'required_dimensions' => 'Dimensions must be :widthx:height',
         'download' => 'Download .osz',
         'wrong_file_type' => 'Only :types files are accepted for this contest.',
         'wrong_dimensions' => 'Entries for this contest must be :widthx:height',
