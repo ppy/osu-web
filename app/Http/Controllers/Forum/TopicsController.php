@@ -168,9 +168,8 @@ class TopicsController extends Controller
 
         $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
-        $type = 'issue_tag_'.str_slug($issueTag);
 
-        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
+        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, Topic::getIssueTagsFlat(), true)) {
             abort(422);
         }
 
@@ -180,7 +179,7 @@ class TopicsController extends Controller
 
         $topic->$method($issueTag);
 
-        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
+        return response()->noContent();
     }
 
     /**
