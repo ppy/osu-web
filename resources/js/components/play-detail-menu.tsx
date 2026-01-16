@@ -8,7 +8,6 @@ import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { rulesetName } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
@@ -23,7 +22,6 @@ interface Props {
 export class PlayDetailMenu extends React.Component<Props> {
   render() {
     const { score, user } = this.props;
-    const ruleset = rulesetName(score.ruleset_id);
 
     const children = (dismiss: () => void) => (
       <div className='simple-menu'>
@@ -55,8 +53,8 @@ export class PlayDetailMenu extends React.Component<Props> {
           <ReportReportable
             className='simple-menu__item'
             onFormOpen={dismiss}
-            reportableId={(score.best_id ?? score.id).toString()}
-            reportableType={score.type === 'solo_score' ? score.type : `score_best_${ruleset}`}
+            reportableId={score.id.toString()}
+            reportableType={score.type}
             user={user}
           />
         )}
