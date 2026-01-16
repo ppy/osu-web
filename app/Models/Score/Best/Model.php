@@ -6,7 +6,6 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\Score\LegacyReplayFile;
-use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\Score\Model as BaseModel;
 use App\Models\Traits;
@@ -15,9 +14,9 @@ use App\Models\User;
 /**
  * @property User $user
  */
-abstract class Model extends BaseModel implements Traits\ReportableInterface
+abstract class Model extends BaseModel
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+    use Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     const SORTS = [
         'score_asc' => [
@@ -116,11 +115,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         }
 
         return $query->whereIn('user_id', $userIds);
-    }
-
-    public function trashed()
-    {
-        return $this->getAttribute('hidden');
     }
 
     public function user()
