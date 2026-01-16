@@ -1084,6 +1084,9 @@ function issue_icon($issue)
         'duplicate' => 'fas fa-copy',
         'invalid' => 'far fa-times-circle',
         'resolved' => 'far fa-check-circle',
+        'technical support' => 'fas fa-tools',
+        'question' => 'fas fa-question-circle',
+        'other' => 'fas fa-ellipsis-h',
         default => null,
     };
 
