@@ -8,7 +8,6 @@ import { ScoreJsonForShow } from 'interfaces/score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { rulesetName } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
 import { canBeReported, hasReplay } from 'utils/score-helper';
 
@@ -26,8 +25,6 @@ export default function Buttons(props: Props) {
   if (core.scorePins.canBePinned(props.score)) {
     visibleMenuItems.add('pin');
   }
-
-  const ruleset = rulesetName(props.score.ruleset_id);
 
   return (
     <div className='score-buttons'>
@@ -56,8 +53,8 @@ export default function Buttons(props: Props) {
                   <ReportReportable
                     className='simple-menu__item'
                     onFormOpen={dismiss}
-                    reportableId={(props.score.best_id ?? props.score.id).toString()}
-                    reportableType={props.score.type === 'solo_score' ? props.score.type : `score_best_${ruleset}`}
+                    reportableId={props.score.id.toString()}
+                    reportableType={props.score.type}
                     user={props.score.user}
                   />
                 }

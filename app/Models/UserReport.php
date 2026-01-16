@@ -8,8 +8,6 @@ namespace App\Models;
 use App\Exceptions\ValidationException;
 use App\Libraries\MorphMap;
 use App\Models\Chat\Message;
-use App\Models\Score\Best;
-use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\RoutesNotifications;
@@ -43,10 +41,6 @@ class UserReport extends Model
     const ALLOWED_REASONS = [
         MorphMap::MAP[BeatmapDiscussionPost::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Beatmapset::class] => self::BEATMAPSET_TYPE_REASONS,
-        MorphMap::MAP[Best\Fruits::class] => self::SCORE_TYPE_REASONS,
-        MorphMap::MAP[Best\Mania::class] => self::SCORE_TYPE_REASONS,
-        MorphMap::MAP[Best\Osu::class] => self::SCORE_TYPE_REASONS,
-        MorphMap::MAP[Best\Taiko::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Chat\Message::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
@@ -81,7 +75,6 @@ class UserReport extends Model
         if (
             $reason === 'Cheating'
             || $reason === 'MultipleAccounts'
-            || $reportableModel instanceof BestModel
             || $reportableModel instanceof Solo\Score
         ) {
             return $GLOBALS['cfg']['osu']['user_report_notification']['endpoint_cheating'];

@@ -6,7 +6,6 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\Score\LegacyReplayFile;
-use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
@@ -16,9 +15,9 @@ use App\Models\User;
 /**
  * @property User $user
  */
-abstract class Model extends BaseModel implements Traits\ReportableInterface
+abstract class Model extends BaseModel
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+    use Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     const SORTS = [
         'score_asc' => [
@@ -125,11 +124,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
 
         return $this->hasOne($class, 'score_id');
-    }
-
-    public function trashed()
-    {
-        return $this->getAttribute('hidden');
     }
 
     public function user()
