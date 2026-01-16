@@ -2,17 +2,6 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-$icons = [
-    'added' => 'fas fa-cogs',
-    'archived' => 'fas fa-archive',
-    'assigned' => 'fas fa-user',
-    'confirmed' => 'fas fa-exclamation-triangle',
-    'duplicate' => 'fas fa-copy',
-    'invalid' => 'far fa-times-circle',
-    'resolved' => 'far fa-check-circle',
-];
-@endphp
 <div
     class="js-forum-tag-editor u-relative"
     data-topic-id="{{ $topic->topic_id }}"
@@ -41,15 +30,13 @@ $icons = [
                     type="button"
                     class="
                         simple-menu__item
-                        js-forum-tag-editor-ajax
+                        js-forum-topic-tag-editor-ajax
                     "
                     data-url="{{ route('forum.topics.issue-tag', [
                         $topic,
                         'state' => !$state,
                         'issue_tag' => $type,
                     ]) }}"
-                    data-remote="1"
-                    data-method="post"
                 >
                     <label class="osu-switch-v2">
                         <input type="checkbox" class="osu-switch-v2__input" {{ $state ? 'checked' : '' }}>
