@@ -67,6 +67,7 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
             ->with('beatmap')
             ->chunkById(1000, function ($scores) {
                 $this->recordUserBestScores($scores);
+                $this->unlinkLegacyScores($scores);
                 $this->deleteScores($scores);
             });
         BeatmapLeader
@@ -145,6 +146,23 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
                     Arr::set($this->userBestScores, $key, $score);
                 }
             }
+        }
+    }
+
+    private function unlinkLegacyScores(Collection $scores): void
+    {
+        $ids = [];
+        foreach ($scores as $score) {
+            if ($score->legacy_best_id !== null) {
+                $ids[] = $score->getKey();
+            }
+        }
+
+        if (count($ids) !== 0) {
+            Score::whereKey($ids)->update([
+                'has_replay' => false,
+                'legacy_score_id' => 0,
+            ]);
         }
     }
 
