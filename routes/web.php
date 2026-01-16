@@ -596,6 +596,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
+        //  PUT /api/v2/me/achievements/:achievementId
+        Route::put('me/achievements/{achievementId}', 'UsersController@unlockClientSideAchievement')->name('unlock-client-side-achievement');
 
         Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
 
