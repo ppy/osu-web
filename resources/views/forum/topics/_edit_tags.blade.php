@@ -23,31 +23,7 @@
         @foreach ($topic::ISSUE_TAGS as $category => $types)
             <span class="simple-menu__heading">{{ $category }}</span>
             @foreach ($types as $type)
-                @php
-                    $state = $topic->hasIssueTag($type);
-                @endphp
-                <button
-                    type="button"
-                    class="
-                        simple-menu__item
-                        js-forum-topic-tag-editor-ajax
-                    "
-                    data-url="{{ route('forum.topics.issue-tag', [
-                        $topic,
-                        'state' => !$state,
-                        'issue_tag' => $type,
-                    ]) }}"
-                >
-                    <label class="osu-switch-v2">
-                        <input type="checkbox" class="osu-switch-v2__input" {{ $state ? 'checked' : '' }}>
-                        <span class="osu-switch-v2__content"></span>
-                    </label>
-                    <span class="simple-menu__item-icon">{!! issue_icon($type) !!}</span>
-                    <span>{{ $type }}</span>
-                    <span class="simple-menu__item-loading-spinner">
-                        {!! spinner() !!}
-                    </span>
-                </button>
+                @include('forum.topics._issue_tag_'.str_slug($type))
             @endforeach
         @endforeach
     </div>
