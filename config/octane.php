@@ -31,11 +31,11 @@ return [
     | when starting, restarting, or stopping your server via the CLI. You
     | are free to change this to the supported server of your choosing.
     |
-    | Supported: "roadrunner", "swoole"
+    | Supported: "roadrunner", "swoole", "frankenphp"
     |
     */
 
-    'server' => env('OCTANE_SERVER', 'swoole'),
+    'server' => env('OCTANE_SERVER', 'frankenphp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -125,13 +125,6 @@ return [
     ],
 
     'flush' => [
-    ],
-
-    'swoole' => [
-        'options' => [
-            // default of 10mb is too low for beatmap contest uploads
-            'package_max_length' => 32 * 1024 * 1024,
-        ],
     ],
 
     /*
