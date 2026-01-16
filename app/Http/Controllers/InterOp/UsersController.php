@@ -20,6 +20,9 @@ class UsersController extends Controller
     public function achievement($id, $achievementId, $beatmapId = null)
     {
         $achievement = app('medals')->byIdOrFail($achievementId);
+
+        abort_if($achievement->client_side, 422, 'achievement cannot be unlocked via interop call');
+
         $unlocked = UserAchievement::unlock(
             User::findOrFail($id),
             $achievement,
@@ -28,7 +31,7 @@ class UsersController extends Controller
 
         abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
 
-        datadog_increment('user_achievement_unlock', ['id' => $achievementId]);
+        datadog_increment('user_achievement_unlock', ['id' => $achievementId, 'source' => 'interop']);
 
         return $achievement->getKey();
     }

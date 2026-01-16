@@ -7,6 +7,7 @@ namespace App\Models;
 
 /**
  * @property int $achievement_id
+ * @property bool $client_side
  * @property string|null $description
  * @property bool $enabled
  * @property string $grouping
@@ -26,6 +27,7 @@ class Achievement extends Model
     protected $primaryKey = 'achievement_id';
 
     protected $casts = [
+        'client_side' => 'boolean',
         'enabled' => 'boolean',
     ];
     public $timestamps = false;
@@ -48,6 +50,7 @@ class Achievement extends Model
         return match ($key) {
             'achieved_count',
             'achievement_id',
+            'client_side',
             'description',
             'grouping',
             'image',
