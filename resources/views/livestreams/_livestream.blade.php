@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div class="livestream-item">
-    <a class="livestream-item__content" href="{{ $stream->url() }}">
+    <a class="livestream-item__content" href="{{ $stream->url() }}" target="_blank">
         <div
             class="livestream-item__image"
             style="background-image: url('{{ $stream->preview(640, 360) }}');"
