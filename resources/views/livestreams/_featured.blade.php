@@ -2,22 +2,11 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-<?php
-    $playerId = 'livestream-'.time().'-'.rand();
-?>
 <div class="livestream-featured">
-    <div
-        id="{{ $playerId }}"
-        class="js-twitch-player livestream-featured__content hidden"
-        data-channel="{{ $featuredStream->data['user_name'] }}"
-    ></div>
-
     <a
         href="{{ $featuredStream->url() }}"
-        class="js-twitch-player--no-cookie livestream-featured__content livestream-featured__content--no-cookie"
+        class="livestream-featured__content livestream-featured__content--placeholder"
         style="background-image: url('{{ $featuredStream->preview(1280, 720) }}');"
-        data-visibility="visible"
-        data-player-id="{{ $playerId }}"
     >
         <div class="livestream-featured__info">
             <h3 class="livestream-featured__text livestream-featured__text--name">
@@ -33,6 +22,12 @@
             </p>
         </div>
     </a>
+
+    <div
+        id="{{ 'livestream-'.time().'-'.rand() }}"
+        class="js-twitch-player livestream-featured__content"
+        data-channel="{{ $featuredStream->data['user_name'] }}"
+    ></div>
 
     @if (priv_check('LivestreamPromote')->can())
         <div class="livestream-featured__actions">
