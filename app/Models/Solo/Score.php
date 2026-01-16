@@ -154,6 +154,11 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->belongsTo(Build::class, 'build_id');
     }
 
+    public function legacyReplayViewCount(): MorphTo
+    {
+        return $this->morphTo(__FUNCTION__, 'legacy_replay_view_count_type', 'legacy_best_id');
+    }
+
     public function legacyScore(): MorphTo
     {
         return $this->morphTo(__FUNCTION__, 'legacy_score_type', 'legacy_best_id');
@@ -274,10 +279,12 @@ class Score extends Model implements Traits\ReportableInterface
             'legacy_perfect' => $this->isPerfectLegacyCombo(),
 
             'legacy_best_id' => $this->getLegacyBestId(),
+            'legacy_replay_view_count_type' => $this->getLegacyReplayViewCountType(),
             'legacy_score_type' => $this->getLegacyScoreType(),
 
             'beatmap',
             'build',
+            'legacyReplayViewCount',
             'legacyScore',
             'performance',
             'processHistory',
@@ -291,6 +298,7 @@ class Score extends Model implements Traits\ReportableInterface
     {
         return match ($key) {
             'legacy_best_id',
+            'legacy_replay_view_count_type',
             'legacy_score_type' => $this->getAttribute($key),
             default => parent::getAttributeFromArray($key),
         };
@@ -521,7 +529,7 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->has_replay
             ? (
                 $this->isLegacy()
-                    ? new LegacyReplayFile($this->legacyScore)
+                    ? new LegacyReplayFile($this)
                     : new ReplayFile($this)
             ) : null;
     }
@@ -571,9 +579,18 @@ class Score extends Model implements Traits\ReportableInterface
         return $bestId === null || $bestId === 0 ? null : $bestId;
     }
 
-    private function getLegacyScoreType(): string
+    private function getLegacyReplayViewCountType(): ?string
     {
-        return 'score_best_'.Beatmap::modeStr($this->ruleset_id);
+        return ($rulesetId = $this->ruleset_id) === null
+            ? null
+            : 'legacy_replay_view_count_'.Beatmap::modeStr($rulesetId);
+    }
+
+    private function getLegacyScoreType(): ?string
+    {
+        return ($rulesetId = $this->ruleset_id) === null
+            ? null
+            : 'score_best_'.Beatmap::modeStr($rulesetId);
     }
 
     /**

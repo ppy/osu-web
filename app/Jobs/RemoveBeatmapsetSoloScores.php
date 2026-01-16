@@ -64,7 +64,7 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
         Score
             ::whereIn('beatmap_id', $beatmapIds)
             ->where('id', '<=', $this->maxScoreId)
-            ->with('beatmap')
+            ->with(['beatmap', 'legacyReplayViewCount', 'user'])
             ->chunkById(1000, function ($scores) {
                 $this->recordUserBestScores($scores);
                 $this->unlinkLegacyScores($scores);
@@ -153,9 +153,12 @@ class RemoveBeatmapsetSoloScores implements ShouldQueue
     {
         $ids = [];
         foreach ($scores as $score) {
-            if ($score->legacy_best_id !== null) {
-                $ids[] = $score->getKey();
+            if ($score->legacy_best_id === null) {
+                continue;
             }
+            $score->legacyReplayViewCount?->delete();
+            $score->replayFile()?->delete();
+            $ids[] = $score->getKey();
         }
 
         if (count($ids) !== 0) {

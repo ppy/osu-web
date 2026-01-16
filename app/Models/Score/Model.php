@@ -133,7 +133,6 @@ abstract class Model extends BaseModel
 
             'beatmap',
             'best',
-            'replayViewCount',
             'user' => $this->getRelationValue($key),
         };
     }
