@@ -62,10 +62,11 @@ class BBCodeForDB
     /**
      * Handles:
      * - Centre (centre).
+     * - Right  (right).
      */
     public function parseBlockSimple($text)
     {
-        foreach (['centre'] as $tag) {
+        foreach (['centre', 'right'] as $tag) {
             $text = preg_replace(
                 "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
