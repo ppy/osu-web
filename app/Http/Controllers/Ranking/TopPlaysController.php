@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Ranking;
 use App\Http\Controllers\Controller;
 use App\Libraries\Score\TopPlays;
 use App\Models\Beatmap;
+use App\Models\CountryStatistics;
 use App\Models\Solo\Score;
 use App\Transformers\ScoreTransformer;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,16 @@ class TopPlaysController extends Controller
 
         $rulesetId = Beatmap::MODES[$rulesetName] ?? abort(422, 'invalid ruleset parameter');
         $page = \Number::clamp(get_int(\Request::input('page')) ?? 1, 1, static::PAGES);
-        $data = new TopPlays($rulesetId)->get();
+        $country = \Request::input('country');
+
+        $countryStats = $country !== null
+            ? CountryStatistics
+                ::where('country_code', $country)
+                ->where('mode', $rulesetId)
+                ->firstOrFail()
+            : null;
+
+        $data = new TopPlays($rulesetId, $country)->get();
 
         if (isset($data)) {
             $lastUpdate = parse_time_to_carbon($data['time']);
@@ -57,6 +67,7 @@ class TopPlaysController extends Controller
             'rulesetName',
             'scores',
             'scoresJson',
+            'countryStats',
         ));
     }
 }
