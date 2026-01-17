@@ -560,6 +560,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::put('/', 'ScorePinsController@store')->name('store');
         });
 
+        Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+            Route::get('{ruleset?}', 'TeamsController@show')->middleware('require-scopes:public')->name('show');
+        });
+
         Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
         Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
             //  GET /api/v2/users/:user_id/kudosu
