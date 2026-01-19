@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Lượt chơi',
+        'points' => 'Điểm',
+        'provisional' => 'Chưa đủ lần chơi để quyết định hạng chính xác',
+        'rating' => 'Đánh giá',
+        'wins' => 'Số lần thắng',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Tên phòng',
     ],
 
     'performance' => [
@@ -50,15 +50,15 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Đang tính toán dữ liệu...',
+        'last_updated' => 'Cập nhật lần cuối',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
+        'charts' => 'Nổi bật (cũ)',
+        'featured' => 'nổi bật',
         'season_room' => '',
-        'seasons' => '',
+        'seasons' => 'mùa',
     ],
 
     'type' => [
@@ -66,17 +66,17 @@ return [
         'daily_challenge' => 'thử thách hằng ngày',
         'global' => 'toàn cầu',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'chơi nhanh',
+        'playlists' => 'danh sách phát',
         'team' => 'đội',
-        'top_plays' => '',
+        'top_plays' => 'lần chơi tốt nhất',
     ],
 
     'seasons' => [
         'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
         'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
         'room_count' => 'Số danh sách phát',
-        'summary' => '',
+        'summary' => 'Xem tổng kết mùa',
         'url' => 'Hiện thêm thông tin về mùa đó.',
         'validation' => [
             'not_enough_factors' => 'không có đủ các hệ số điểm để tính toán một cách bình thường',

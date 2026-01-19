@@ -240,6 +240,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => 'Zvýraznění',
+        'label' => 'Zvýrazněná',
     ],
 ];

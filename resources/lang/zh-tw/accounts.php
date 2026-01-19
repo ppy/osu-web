@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '接收以下模式的合格圖譜新問題通知',
         'beatmapset_disqualify' => '在以下模式的圖譜被標記為取消資格時收到通知',
         'comment_reply' => '接收您留言被回覆的通知',
-        'news_post' => '',
+        'news_post' => '接收新貼文的消息貼文',
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用您建立或回覆的新論壇主題通知',
 
