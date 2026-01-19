@@ -25,7 +25,7 @@ class BeatmapsetsController extends Controller
         $job = (new RemoveBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
         $this->dispatch($job);
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function regenerateCovers($id)
@@ -35,7 +35,7 @@ class BeatmapsetsController extends Controller
         $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
         $this->dispatch($job);
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function show($id)

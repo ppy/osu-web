@@ -30,7 +30,7 @@ class BeatmapsetWatchesController extends Controller
             }
         }
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function destroy($beatmapsetId)
@@ -39,6 +39,6 @@ class BeatmapsetWatchesController extends Controller
 
         $beatmapset->watches()->where('user_id', '=', Auth::user()->getKey())->delete();
 
-        return response([], 204);
+        return response()->noContent();
     }
 }

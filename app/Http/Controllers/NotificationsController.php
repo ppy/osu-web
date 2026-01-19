@@ -30,7 +30,7 @@ class NotificationsController extends Controller
             BatchIdentities::fromParams(request()->all())
         );
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function endpoint()
@@ -123,7 +123,7 @@ class NotificationsController extends Controller
             BatchIdentities::fromParams(request()->all())
         );
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     private function endpointUrl()

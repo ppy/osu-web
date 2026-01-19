@@ -703,7 +703,7 @@ class UsersController extends Controller
         abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
 
         datadog_increment('user_achievement_unlock', ['id' => $achievementId, 'source' => 'client']);
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function updatePage($id)
@@ -1018,7 +1018,7 @@ class UsersController extends Controller
             $registration->assertValid();
 
             if (get_bool($rawParams['check'] ?? null)) {
-                return response(null, 204);
+                return response()->noContent();
             }
 
             $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);
