@@ -50,7 +50,6 @@ class Achievement extends Model
         return match ($key) {
             'achieved_count',
             'achievement_id',
-            'client_side',
             'description',
             'grouping',
             'image',
@@ -61,6 +60,7 @@ class Achievement extends Model
             'quest_ordering',
             'slug' => $this->getRawAttribute($key),
 
+            'client_side',
             'enabled' => (bool) $this->getRawAttribute($key),
 
             'mode' => $this->getMode(),
