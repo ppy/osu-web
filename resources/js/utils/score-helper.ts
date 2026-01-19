@@ -20,10 +20,8 @@ export function accuracy(score: ScoreJson) {
   return Math.floor(acc * 10000) / 10000;
 }
 
-export function canBeReported(score: ScoreJson) {
-  return (score.best_id != null || score.type === 'solo_score')
-    && core.currentUser != null
-    && score.user_id !== core.currentUser.id;
+export function canBeReported(score: ScoreJson): score is ScoreJson & { type: 'solo_score' } {
+  return score.type === 'solo_score' && core.currentUser != null && score.user_id !== core.currentUser.id;
 }
 
 /**
