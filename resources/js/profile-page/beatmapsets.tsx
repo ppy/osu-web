@@ -8,6 +8,7 @@ import ShowMoreLink from 'components/show-more-link';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import ExtraHeader from './extra-header';
 import ExtraPageProps, { BeatmapsetSection } from './extra-page-props';
 
@@ -45,8 +46,20 @@ const sectionKeys = [
 @observer
 export default class Beatmapsets extends React.Component<ExtraPageProps> {
   @computed
+  private get hasAnyEntries() {
+    return sectionKeys.some(({ key }) => {
+      const state = this.data?.[key];
+      return state != null && state.items.length > 0;
+    });
+  }
+
+  private get data() {
+    return this.props.controller.state.lazy.beatmaps;
+  }
+
+  @computed
   private get hasData() {
-    return this.props.controller.state.lazy.beatmaps != null;
+    return this.data != null;
   }
 
   render() {
@@ -54,7 +67,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
         <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleOnLoad}>
-          {sectionKeys.map(this.renderBeatmapsets)}
+          {this.hasAnyEntries ? sectionKeys.map(this.renderBeatmapsets) : this.renderEmpty()}
         </LazyLoad>
       </div>
     );
@@ -67,8 +80,8 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
   };
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
-    const state = this.props.controller.state.lazy.beatmaps?.[section.key];
-    if (state == null || ((state.count <= 0) && (section.key === 'nominated'))) return;
+    const state = this.data?.[section.key];
+    if (state == null || state.count <= 0) return;
 
     return (
       <React.Fragment key={section.key}>
@@ -94,4 +107,8 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
       </React.Fragment>
     );
   };
+
+  private renderEmpty() {
+    return <p className='profile-extra-entries'>{trans('events.empty')}</p>;
+  }
 }
