@@ -68,7 +68,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
     const state = this.props.controller.state.lazy.beatmaps?.[section.key];
-    if (state == null) return;
+    if (state == null || ((state.count <= 0) && (section.key === 'nominated'))) return;
 
     return (
       <React.Fragment key={section.key}>
