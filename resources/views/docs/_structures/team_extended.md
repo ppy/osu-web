@@ -45,7 +45,6 @@ Represents a team. Extends [Team](#team) object with additional attributes.
 | default_ruleset_id | integer                           |                                                             |
 | description        | string?                           |                                                             |
 | is_open            | boolean                           | Whether the team is currently accepting member applications |
-| statistics         | [TeamStatistics](#teamstatistics) | The team's gameplay stats for a given ruleset               |
 
 
 
@@ -54,3 +53,4 @@ In addition, the following [optional attributes on Team](#team-optionalattribute
 - empty_slots
 - leader
 - members_count
+- statistics

@@ -13,7 +13,6 @@ use App\Models\Beatmap;
 use App\Models\Team;
 use App\Models\User;
 use App\Transformers\TeamExtendedTransformer;
-use App\Transformers\TeamStatisticsTransformer;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -176,22 +175,12 @@ class TeamsController extends Controller
             return ujs_redirect(route('teams.show', compact('team', 'ruleset')));
         }
 
-        $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
-
         $team->loadMissing(prefix_strings('members.user.', UserCompactTransformer::CARD_INCLUDES_PRELOAD));
 
         if (is_api_request()) {
-            $jsonTeam = [
-                ...json_item($team, new TeamExtendedTransformer()),
-                'statistics' => json_item($statistics, new TeamStatisticsTransformer(), ['rank']),
-            ];
-
-            // remove stuff from the statistics object since it's already in the main team object
-            unset($jsonTeam['statistics']['ruleset_id']);
-            unset($jsonTeam['statistics']['team_id']);
-
-            return response()->json($jsonTeam);
+            return response()->json(json_item($team, new TeamExtendedTransformer()->setRulesetId($rulesetId)));
         } else {
+            $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
             return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
         }
     }

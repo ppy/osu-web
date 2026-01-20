@@ -15,6 +15,7 @@ class TeamExtendedTransformer extends TeamTransformer
         'empty_slots',
         'leader',
         'members_count',
+        'statistics',
     ];
 
     public function transform(Team $team): array

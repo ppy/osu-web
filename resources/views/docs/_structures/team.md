@@ -21,8 +21,9 @@ Represents a team.
 
 Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable.
 
-| Field         | Type          | Notes                                      |
-|---------------|---------------|--------------------------------------------|
-| empty_slots   | integer       | amount of available free slots in the team |
-| leader        | [User](#user) | the current owner of the team              |
-| members_count | integer       | amount of users currently in the team      |
+| Field         | Type                              | Notes                                              |
+|---------------|-----------------------------------|----------------------------------------------------|
+| empty_slots   | integer                           | amount of available free slots in the team         |
+| leader        | [User](#user)                     | the current owner of the team                      |
+| members_count | integer                           | amount of users currently in the team              |
+| statistics    | [TeamStatistics](#teamstatistics) | the team's gameplay statistics for a given ruleset |

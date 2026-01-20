@@ -17,7 +17,17 @@ class TeamTransformer extends TransformerAbstract
         'empty_slots',
         'leader',
         'members_count',
+        'statistics',
     ];
+
+    protected int $rulesetId = 0; // osu
+
+    public function setRulesetId(int $rulesetId): static
+    {
+        $this->rulesetId = $rulesetId;
+
+        return $this;
+    }
 
     public function transform(Team $team): array
     {
@@ -42,5 +52,10 @@ class TeamTransformer extends TransformerAbstract
     public function includeMembersCount(Team $team): Primitive
     {
         return $this->primitive($team->members->count());
+    }
+
+    public function includeStatistics(Team $team): Item
+    {
+        return $this->item($team->statistics()->firstOrNew(['ruleset_id' => $this->rulesetId]), new TeamStatisticsTransformer());
     }
 }
