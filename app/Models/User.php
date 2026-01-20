@@ -107,10 +107,6 @@ use Request;
  * @property-read Collection<UserReplaysWatchedCount> $replaysWatchedCounts
  * @property-read Collection<UserReport> $reportsMade
  * @property-read Collection<ScorePin> $scorePins
- * @property-read Collection<Score\Best\Fruits> $scoresBestFruits
- * @property-read Collection<Score\Best\Mania> $scoresBestMania
- * @property-read Collection<Score\Best\Osu> $scoresBestOsu
- * @property-read Collection<Score\Best\Taiko> $scoresBestTaiko
  * @property-read Collection<Score\Best\Fruits> $scoresFirstFruits
  * @property-read Collection<Score\Best\Mania> $scoresFirstMania
  * @property-read Collection<Score\Best\Osu> $scoresFirstOsu
@@ -952,10 +948,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'reportedIn',
             'reportsMade',
             'scorePins',
-            'scoresBestFruits',
-            'scoresBestMania',
-            'scoresBestOsu',
-            'scoresBestTaiko',
             'scoresFirstFruits',
             'scoresFirstMania',
             'scoresFirstOsu',
@@ -1479,37 +1471,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $this->beatmapLeaders()->ruleset($mode);
-    }
-
-    public function scoresBestOsu()
-    {
-        return $this->hasMany(Score\Best\Osu::class)->default();
-    }
-
-    public function scoresBestFruits()
-    {
-        return $this->hasMany(Score\Best\Fruits::class)->default();
-    }
-
-    public function scoresBestMania()
-    {
-        return $this->hasMany(Score\Best\Mania::class)->default();
-    }
-
-    public function scoresBestTaiko()
-    {
-        return $this->hasMany(Score\Best\Taiko::class)->default();
-    }
-
-    public function scoresBest(string $mode, bool $returnQuery = false)
-    {
-        if (!Beatmap::isModeValid($mode)) {
-            return;
-        }
-
-        $relation = 'scoresBest'.studly_case($mode);
-
-        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function soloScores(): HasMany
