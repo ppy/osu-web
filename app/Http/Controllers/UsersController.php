@@ -21,6 +21,7 @@ use App\Models\IpBan;
 use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
+use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -77,6 +78,7 @@ class UsersController extends Controller
             'me',
             'posts',
             'updatePage',
+            'unlockClientSideAchievement',
         ]]);
 
         $this->middleware('throttle:60,10', ['only' => ['store']]);
@@ -683,6 +685,27 @@ class UsersController extends Controller
         }
     }
 
+    public function unlockClientSideAchievement($achievementId)
+    {
+        $user = \Auth::user();
+        $request = \Request::instance();
+        $achievement = app('medals')->byIdOrFail($achievementId);
+
+        abort_unless($achievement->client_side, 422, 'achievement cannot be unlocked');
+
+        try {
+            ClientCheck::parseToken($request);
+        } catch (HttpException $e) {
+            abort(403);
+        }
+
+        $unlocked = UserAchievement::unlock($user, $achievement);
+        abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
+
+        datadog_increment('user_achievement_unlock', ['id' => $achievementId, 'source' => 'client']);
+        return response()->noContent();
+    }
+
     public function updatePage($id)
     {
         $user = User::findOrFail($id);
@@ -995,7 +1018,7 @@ class UsersController extends Controller
             $registration->assertValid();
 
             if (get_bool($rawParams['check'] ?? null)) {
-                return response(null, 204);
+                return response()->noContent();
             }
 
             $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);

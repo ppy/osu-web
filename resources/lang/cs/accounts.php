@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map u následujících módů',
         'beatmapset_disqualify' => 'dostávat notifikace kdy mapy následujících módů jsou diskvalifikované',
         'comment_reply' => 'dostávat notifikace na odpovědi na vaše komentáře',
-        'news_post' => '',
+        'news_post' => 'dostávat oznámení na články o novinkách',
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
 
@@ -94,7 +94,7 @@ return [
             'forum_topic_reply' => 'odpověď v tématu',
             'mail' => 'e-mail',
             'mapping' => 'tvůrce beatmapy',
-            'news_post' => '',
+            'news_post' => 'články o novinkách',
             'push' => 'push',
         ],
     ],

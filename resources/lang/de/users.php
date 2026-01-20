@@ -472,8 +472,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Quick Play',
         ],
 
         'not_found' => [

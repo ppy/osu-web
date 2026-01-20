@@ -49,6 +49,6 @@ class ReportsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }

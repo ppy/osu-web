@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'Qualified 비트맵에 문제가 생길 경우 알림을 수신할 모드',
         'beatmapset_disqualify' => '비트맵이 Disqualified 처리됐을 때 알림을 수신할 모드',
         'comment_reply' => '댓글에 답글이 달리면 알림 받기',
-        'news_post' => '',
+        'news_post' => '뉴스 게시물 알림 받기',
         'title' => '알림',
         'topic_auto_subscribe' => '생성했거나 답변을 게시한 포럼 주제에 대한 알림을 자동으로 활성화',
 
@@ -94,7 +94,7 @@ return [
             'forum_topic_reply' => '주제 답글',
             'mail' => '메일',
             'mapping' => '비트맵 제작자',
-            'news_post' => '',
+            'news_post' => '뉴스 게시물',
             'push' => '푸시 알림',
         ],
     ],

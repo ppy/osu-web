@@ -244,7 +244,7 @@ return [
         'search' => [
             'prompt' => 'ketik kata kunci pencarian...',
             'login_required' => 'Silakan masuk untuk mencari.',
-            'options' => 'Pilihan Pencarian Lebih Lanjut',
+            'options' => 'Opsi Pencarian Lainnya',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan tag osu!supporter yang aktif',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '… enggak, tidak ada yang ditemukan.',

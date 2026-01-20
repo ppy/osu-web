@@ -137,7 +137,7 @@
                         @include('rankings._main_column', ['object' => $score->user])
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ format_percentage($score->accuracy_new / 100) }}
+                        {{ format_percentage($score->accuracy_normalised) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format($score->playcount) }}

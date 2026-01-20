@@ -5,11 +5,11 @@ import { PopupMenuPersistent } from 'components/popup-menu-persistent';
 import { ReportReportable } from 'components/report-reportable';
 import ScorePin from 'components/score-pin';
 import { ScoreJsonForShow } from 'interfaces/score-json';
+import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { rulesetName } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
-import { canBeReported, hasReplay, scoreDownloadUrl } from 'utils/score-helper';
+import { canBeReported, hasReplay } from 'utils/score-helper';
 
 interface Props {
   score: ScoreJsonForShow;
@@ -26,14 +26,12 @@ export default function Buttons(props: Props) {
     visibleMenuItems.add('pin');
   }
 
-  const ruleset = rulesetName(props.score.ruleset_id);
-
   return (
     <div className='score-buttons'>
       {hasReplay(props.score) && (
         <a
           className='js-login-required--click btn-osu-big btn-osu-big--rounded'
-          href={scoreDownloadUrl(props.score)}
+          href={route('scores.download', { score: props.score.id })}
         >
           {trans('users.show.extra.top_ranks.download_replay')}
         </a>
@@ -55,8 +53,8 @@ export default function Buttons(props: Props) {
                   <ReportReportable
                     className='simple-menu__item'
                     onFormOpen={dismiss}
-                    reportableId={(props.score.best_id ?? props.score.id).toString()}
-                    reportableType={props.score.type === 'solo_score' ? props.score.type : `score_best_${ruleset}`}
+                    reportableId={props.score.id.toString()}
+                    reportableType={props.score.type}
                     user={props.score.user}
                   />
                 }

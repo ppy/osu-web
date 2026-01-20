@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => '플레이 횟수',
+        'points' => '점수',
+        'provisional' => '평점을 정확히 산정하기 위한 경기 횟수가 충분하지 않습니다.',
+        'rating' => '평점',
+        'wins' => '승리',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => '방 이름',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => '데이터를 계산 중입니다...',
-        'last_updated' => '',
+        'last_updated' => '최종 업데이트',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => '스포트라이트 (이전)',
+        'featured' => '특집',
+        'season_room' => '시즌 방',
+        'seasons' => '시즌',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => '일일 도전',
         'global' => '전세계',
         'kudosu' => 'Kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => '빠른 대전',
+        'playlists' => '플레이리스트',
         'team' => '팀',
         'top_plays' => '최고 기록',
     ],

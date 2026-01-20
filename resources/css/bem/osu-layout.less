@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .osu-layout {
+  @_top: osu-layout;
   display: flex;
   flex-direction: column;
 
@@ -60,6 +61,10 @@
     }
   }
 
+  &--wrapped {
+    background-color: hsl(var(--hsl-pink-4));
+  }
+
   &__no-scroll {
     overflow: hidden;
     flex: 1 0 auto;
@@ -73,6 +78,10 @@
 
     &--full {
       flex: 1 0 auto;
+
+      .@{_top}--wrapped & {
+        margin-bottom: 0;
+      }
     }
 
     &--landing-footer {
