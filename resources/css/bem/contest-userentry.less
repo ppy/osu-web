@@ -5,6 +5,8 @@
   @_top: contest-userentry;
 
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 150px;
   background: @osu-colour-b4;
   margin: 10px;
@@ -67,16 +69,13 @@
   }
 
   &__uploader {
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
+    flex: 1;
     padding: 10px;
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
-    position: relative;
   }
 
   &__info {
