@@ -14,9 +14,9 @@ use League\Fractal\Resource\Primitive;
 class TeamTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
+        'empty_slots',
         'leader',
         'members_count',
-        'empty_slots',
     ];
 
     public function transform(Team $team): array
@@ -29,6 +29,11 @@ class TeamTransformer extends TransformerAbstract
         ];
     }
 
+    public function includeEmptySlots(Team $team): Primitive
+    {
+        return $this->primitive($team->emptySlots());
+    }
+
     public function includeLeader(Team $team): Item
     {
         return $this->item($team->leader, new UserCompactTransformer());
@@ -37,10 +42,5 @@ class TeamTransformer extends TransformerAbstract
     public function includeMembersCount(Team $team): Primitive
     {
         return $this->primitive($team->members()->count());
-    }
-
-    public function includeEmptySlots(Team $team): Primitive
-    {
-        return $this->primitive($team->emptySlots());
     }
 }
