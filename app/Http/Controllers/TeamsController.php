@@ -146,6 +146,7 @@ class TeamsController extends Controller
      * - empty_slots
      * - leader
      * - members_count
+     * - statistics
      *
      * @urlParam team string required Id or `@`-prefixed shortname of the team. Example: `1`.
      * @urlParam mode string [Ruleset](#ruleset). Default ruleset will be used if not specified. Example: `osu`.
