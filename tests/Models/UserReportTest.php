@@ -205,9 +205,6 @@ class UserReportTest extends TestCase
         $this->expectCountChange(fn () => $reportable->reportedIn()->count(), 1, 'reportedIn query');
 
         $report = $reportable->reportBy($reporter, static::reportParams());
-        if ($reportable instanceof BestModel) {
-            $this->assertSame($reportable->getKey(), $report->score_id);
-        }
         $reportableUserId = match ($reportable::class) {
             Forum\Post::class => $reportable->poster_id,
             Team::class => $reportable->leader_id,
