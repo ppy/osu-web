@@ -33,6 +33,6 @@ class BulkController extends Controller
             }
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }

@@ -24,7 +24,7 @@ class OrdersController extends Controller
         $order = auth()->user()->orders()->findOrFail($id);
         $order->cancel(auth()->user());
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function index()

@@ -14,7 +14,7 @@ class UserContestEntriesController extends Controller
         $entry = UserContestEntry::findOrFail($id);
         $entry->delete();
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function restore($id)
@@ -22,6 +22,6 @@ class UserContestEntriesController extends Controller
         $entry = UserContestEntry::withTrashed()->findOrFail($id);
         $entry->restore();
 
-        return response([], 204);
+        return response()->noContent();
     }
 }

@@ -23,6 +23,6 @@ class AuthorizedClientsController extends Controller
         $client = Client::findOrFail($clientId);
         $client->revokeForUser(auth()->user());
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }

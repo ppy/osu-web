@@ -44,7 +44,7 @@ class FollowsController extends Controller
             }
         }
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function index($subtype = null)
@@ -92,7 +92,7 @@ class FollowsController extends Controller
             dispatch(new UpdateUserMappingFollowerCountCache($params['notifiable_id']));
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     private function getParams()
