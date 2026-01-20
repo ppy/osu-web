@@ -12,7 +12,7 @@ use GuzzleHttp\Client;
 class LivestreamCollection
 {
     const FEATURED_CACHE_KEY = 'featuredStream:arr:v2';
-    const FEATURED_DATA_CACHE_KEY = 'featuredStream:data:v2';
+    const FEATURED_DATA_CACHE_KEY = 'featuredStream:data';
 
     private $streams;
     private $token;
@@ -30,7 +30,7 @@ class LivestreamCollection
         foreach ($collection->all() as $stream) {
             if ($stream->data['id'] === (string) $id) {
                 Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
-                Cache::put(static::FEATURED_DATA_CACHE_KEY, $stream->data, 300);
+                Cache::forget(static::FEATURED_DATA_CACHE_KEY);
                 return;
             }
         }
@@ -87,20 +87,20 @@ class LivestreamCollection
 
     public function featured()
     {
+        $cachedStream = Cache::get(static::FEATURED_DATA_CACHE_KEY);
+        if ($cachedStream !== null) {
+            return $cachedStream;
+        }
+
         $featuredStreamId = presence((string) Cache::get(static::FEATURED_CACHE_KEY));
 
         if ($featuredStreamId === null) {
             return null;
         }
 
-        $cachedStreamData = Cache::get(static::FEATURED_DATA_CACHE_KEY);
-        if ($cachedStreamData !== null) {
-            return new Twitch\Stream($cachedStreamData);
-        }
-
         foreach ($this->all() as $stream) {
             if ($stream->data['id'] === $featuredStreamId) {
-                Cache::put(static::FEATURED_DATA_CACHE_KEY, $stream->data, 300);
+                Cache::put(static::FEATURED_DATA_CACHE_KEY, $stream, 300);
                 return $stream;
             }
         }
