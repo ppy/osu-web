@@ -23,7 +23,7 @@ class LegacyIrcKeyController extends Controller
     {
         Auth::user()->legacyIrcKey?->delete();
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function store()

@@ -105,7 +105,7 @@ class GithubUsersController extends Controller
     {
         auth()->user()->githubUser()->update(['user_id' => null]);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     private function makeGithubOAuthProvider(): GithubProvider

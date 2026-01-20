@@ -15,6 +15,6 @@ class TeamsController extends Controller
     {
         Team::findOrFail($id)->delete();
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }
