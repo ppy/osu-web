@@ -107,10 +107,10 @@ use Request;
  * @property-read Collection<UserReplaysWatchedCount> $replaysWatchedCounts
  * @property-read Collection<UserReport> $reportsMade
  * @property-read Collection<ScorePin> $scorePins
- * @property-read Collection<Score\Best\Fruits> $scoresFirstFruits
- * @property-read Collection<Score\Best\Mania> $scoresFirstMania
- * @property-read Collection<Score\Best\Osu> $scoresFirstOsu
- * @property-read Collection<Score\Best\Taiko> $scoresFirstTaiko
+ * @property-read Collection<LegacyScoreFirst\Fruits> $scoresFirstFruits
+ * @property-read Collection<LegacyScoreFirst\Mania> $scoresFirstMania
+ * @property-read Collection<LegacyScoreFirst\Osu> $scoresFirstOsu
+ * @property-read Collection<LegacyScoreFirst\Taiko> $scoresFirstTaiko
  * @property-read Collection<UserSeasonScoreAggregate> $seasonScores
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
