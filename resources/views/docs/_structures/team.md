@@ -17,6 +17,8 @@ Represents a team.
 | name       | string  | team's display name                                        |
 | short_name | string  | team's unique short identifier (max 4 characters)          |
 
+<div id="team-optionalattributes" data-unique="team-optionalattributes"></div>
+
 ### Optional attributes
 
 Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable.
