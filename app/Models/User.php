@@ -111,10 +111,6 @@ use Request;
  * @property-read Collection<Score\Best\Mania> $scoresFirstMania
  * @property-read Collection<Score\Best\Osu> $scoresFirstOsu
  * @property-read Collection<Score\Best\Taiko> $scoresFirstTaiko
- * @property-read Collection<Score\Fruits> $scoresFruits
- * @property-read Collection<Score\Mania> $scoresMania
- * @property-read Collection<Score\Osu> $scoresOsu
- * @property-read Collection<Score\Taiko> $scoresTaiko
  * @property-read Collection<UserSeasonScoreAggregate> $seasonScores
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
@@ -1401,37 +1397,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         if ($relationName !== null) {
             return $returnQuery ? $this->$relationName() : $this->$relationName;
         }
-    }
-
-    public function scoresOsu()
-    {
-        return $this->hasMany(Score\Osu::class)->default();
-    }
-
-    public function scoresFruits()
-    {
-        return $this->hasMany(Score\Fruits::class)->default();
-    }
-
-    public function scoresMania()
-    {
-        return $this->hasMany(Score\Mania::class)->default();
-    }
-
-    public function scoresTaiko()
-    {
-        return $this->hasMany(Score\Taiko::class)->default();
-    }
-
-    public function scores(string $mode, bool $returnQuery = false)
-    {
-        if (!Beatmap::isModeValid($mode)) {
-            return;
-        }
-
-        $relation = 'scores'.studly_case($mode);
-
-        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function scoresFirstOsu()
