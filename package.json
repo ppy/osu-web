@@ -13,7 +13,7 @@
   "dependencies": {
     "@discordapp/twemoji": "^16.0.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@hotwired/turbo": "^8.0.12",
+    "@hotwired/turbo": "^8.0.21",
     "@shopify/hydrogen-react": "^2024.10.0",
     "@shopify/storefront-api-client": "^1.0.3",
     "@types/autosize": "^4.0.1",
