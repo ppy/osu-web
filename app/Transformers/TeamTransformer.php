@@ -20,7 +20,7 @@ class TeamTransformer extends TransformerAbstract
         'statistics',
     ];
 
-    protected int $rulesetId = 0; // osu
+    protected ?int $rulesetId;
 
     public function setRulesetId(int $rulesetId): static
     {
@@ -31,6 +31,8 @@ class TeamTransformer extends TransformerAbstract
 
     public function transform(Team $team): array
     {
+        $this->rulesetId = $team->default_ruleset_id ?? 0;
+
         return [
             'flag_url' => $team->flag()->url(),
             'id' => $team->getKey(),
@@ -56,6 +58,6 @@ class TeamTransformer extends TransformerAbstract
 
     public function includeStatistics(Team $team): Item
     {
-        return $this->item($team->statistics()->firstOrNew(['ruleset_id' => $this->rulesetId]), new TeamStatisticsTransformer());
+        return $this->item($team->statistics()->firstOrNew(['ruleset_id' => $this->rulesetId ?? 0]), new TeamStatisticsTransformer());
     }
 }
