@@ -14,16 +14,4 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
     public $incrementing = false;
-
-    protected static function suffix()
-    {
-        return get_class_basename(static::class);
-    }
-
-    public function score()
-    {
-        $class = ScoreBest::class.'\\'.static::suffix();
-
-        return $this->belongsTo($class, 'score_id');
-    }
 }
