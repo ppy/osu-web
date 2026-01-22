@@ -51,7 +51,7 @@ class TeamTransformer extends TransformerAbstract
 
     public function includeMembersCount(Team $team): Primitive
     {
-        return $this->primitive($team->members->count());
+        return $this->primitive($team->members()->count());
     }
 
     public function includeStatistics(Team $team): Item

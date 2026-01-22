@@ -32,6 +32,7 @@ import StoreSupporterTag from 'store/store-supporter-tag';
 import { parseJson } from 'utils/json';
 import { mapBy } from 'utils/map';
 import { getInt } from 'utils/math';
+import TeamMemberList from './teams/member-list';
 
 function reqJson<T>(input: string|undefined): T {
   // This will throw when input is missing and thus parsing empty string.
@@ -163,4 +164,10 @@ core.reactTurbolinks.register('wiki-search', () => <WikiSearch />);
 
 core.reactTurbolinks.register('landing-news', () => (
   <LandingNews posts={parseJson('json-posts')} />
+));
+
+core.reactTurbolinks.register('team-member-list', (container) => (
+  <TeamMemberList
+    teamId={parseInt(reqStr(container.dataset.teamId), 10)}
+  />
 ));
