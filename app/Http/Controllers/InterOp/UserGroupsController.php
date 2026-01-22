@@ -18,7 +18,7 @@ class UserGroupsController extends Controller
             $this->getActor(),
         );
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function destroy($userId, $groupId)
@@ -28,7 +28,7 @@ class UserGroupsController extends Controller
             $this->getActor(),
         );
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function setDefault($userId, $groupId)
@@ -38,7 +38,7 @@ class UserGroupsController extends Controller
             $this->getActor(),
         );
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     private function getActor(): ?User

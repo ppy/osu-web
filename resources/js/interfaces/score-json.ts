@@ -114,6 +114,7 @@ export type ScoreJsonForShow = ScoreJson
 & Required<Pick<ScoreJson, 'beatmapset' | 'rank_global' | 'user'>>
 & {
   beatmap: WithBeatmapOwners<BeatmapExtendedJson>;
+  type: 'solo_score';
 };
 
 export type ScoreJsonForUser = ScoreJson & Required<Pick<ScoreJson, 'beatmap' | 'beatmapset'>>;
