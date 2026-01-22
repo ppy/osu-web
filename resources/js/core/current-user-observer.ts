@@ -11,6 +11,7 @@ export default class CurrentUserObserver {
 
   constructor(private readonly core: OsuCore) {
     $(document).on('turbo:load', this.setAvatars);
+    $(document).on('turbo:load', this.setCovers);
 
     // one time setup to monitor user url variables. No disposer because nothing destroys this object.
     $(() => reaction(() => this.core.currentUser?.avatar_url, this.setAvatars));
