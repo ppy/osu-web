@@ -44,13 +44,9 @@ const sectionKeys = [
 
 @observer
 export default class Beatmapsets extends React.Component<ExtraPageProps> {
-  private get data() {
-    return this.props.controller.state.lazy.beatmaps;
-  }
-
   @computed
   private get hasData() {
-    return this.data != null;
+    return this.props.controller.state.lazy.beatmaps != null;
   }
 
   render() {
@@ -71,9 +67,9 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
   };
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
-    const state = this.data?.[section.key];
+    const state = this.props.controller.state.lazy.beatmaps?.[section.key];
     if (state == null) return;
-    if(state.count <= 0 && section.key !== 'favourite') return;
+    if (state.count === 0 && section.key !== 'favourite') return;
 
     return (
       <React.Fragment key={section.key}>
