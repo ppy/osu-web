@@ -445,7 +445,7 @@ class TopicsController extends Controller
 
         if (!$isJsonRequest && $posts->count() === 0) {
             if ($skipLayout) {
-                return response(null, 204);
+                return response()->noContent();
             } else {
                 // make sure topic has posts at all otherwise this will be a redirect loop
                 if ($topic->posts()->showDeleted($showDeleted)->exists()) {
@@ -681,7 +681,7 @@ class TopicsController extends Controller
             if (is_api_request()) {
                 return json_item($topic, new TopicTransformer());
             } else {
-                return response(null, 204);
+                return response()->noContent();
             }
         } else {
             return error_popup($topic->validationErrors()->toSentence());

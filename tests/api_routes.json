@@ -1260,6 +1260,22 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/teams/{team}/{ruleset?}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\TeamsController@show",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/users/lookup",
         "methods": [
             "GET",
@@ -1528,6 +1544,19 @@
         "scopes": [
             "identify"
         ]
+    },
+    {
+        "uri": "api/v2/me/achievements/{achievementId}",
+        "methods": [
+            "PUT"
+        ],
+        "controller": "App\\Http\\Controllers\\UsersController@unlockClientSideAchievement",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
     },
     {
         "uri": "api/v2/oauth/tokens/current",

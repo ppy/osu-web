@@ -3,11 +3,12 @@
 
 .beatmapset-cover {
   .center-content();
+  --bg-default: var(--bg-default-0);
   position: relative;
   width: 45px;
   height: 30px;
   border-radius: var(--border-radius, 6px);
-  .at2x("~@images/layout/beatmaps/default-bg.png");
+  background-image: var(--bg-default);
   background-position: center;
   background-size: cover;
   vertical-align: middle;

@@ -54,3 +54,6 @@ export function urlPresence(url?: string | null) {
   return present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined;
 }
 
+export function varBgDefault(id?: number | null) {
+  return `var(--bg-default-${(id ?? 0) % 6})`;
+}

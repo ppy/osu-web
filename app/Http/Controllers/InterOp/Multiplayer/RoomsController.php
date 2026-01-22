@@ -19,7 +19,7 @@ class RoomsController extends Controller
         $room->assertCorrectPassword(get_string(request('password')));
         $room->join($user);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function part(string $id, string $userId)
@@ -29,7 +29,7 @@ class RoomsController extends Controller
 
         $room->part($user);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function store()

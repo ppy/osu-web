@@ -6,7 +6,6 @@
 namespace Database\Seeders\ModelSeeders;
 
 use App\Models\Beatmap;
-use App\Models\Score\Best\Model as ScoresBestModel;
 use App\Models\Spotlight;
 use App\Models\UserStatistics\Spotlight\Model as UserStatisticsModel;
 use Carbon\Carbon;
@@ -100,33 +99,6 @@ class SpotlightSeeder extends Seeder
                     $stats->setTable($spotlight->userStatsTableName($ruleset));
 
                     $stats->save();
-
-                    // scores
-                    $scoresClass = ScoresBestModel::getClass($ruleset);
-                    $possible_ranks = ['A', 'S', 'B', 'SH', 'XH', 'X'];
-
-                    foreach ($beatmaps as $beatmap) {
-                        $maxcombo = rand(1, $beatmap->countNormal);
-                        $score = new $scoresClass([
-                            'user_id' => $user->user_id,
-                            'beatmap_id' => $beatmap->beatmap_id,
-                            'beatmapset_id' => $beatmap->beatmapset_id,
-                            'score' => rand(50000, 100000000),
-                            'maxcombo' => $maxcombo,
-                            'rank' => array_rand_val($possible_ranks),
-                            'count300' => round($maxcombo * 0.8),
-                            'count100' => rand(0, round($maxcombo * 0.15)),
-                            'count50' => rand(0, round($maxcombo * 0.05)),
-                            'countgeki' => round($maxcombo * 0.3),
-                            'countmiss' => round($maxcombo * 0.05),
-                            'countkatu' => round($maxcombo * 0.05),
-                            'date' => rand($spotlight->start_date->timestamp, $spotlight->end_date->timestamp),
-                        ]);
-
-                        $score->setConnection('mysql-charts');
-                        $score->setTable($spotlight->bestScoresTableName($ruleset));
-                        $score->save();
-                    }
                 }
             }
         });

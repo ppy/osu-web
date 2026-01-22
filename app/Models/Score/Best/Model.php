@@ -6,9 +6,7 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\Score\LegacyReplayFile;
-use App\Models\Beatmap;
 use App\Models\Country;
-use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\Traits;
 use App\Models\User;
@@ -16,9 +14,9 @@ use App\Models\User;
 /**
  * @property User $user
  */
-abstract class Model extends BaseModel implements Traits\ReportableInterface
+abstract class Model extends BaseModel
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+    use Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     const SORTS = [
         'score_asc' => [
@@ -62,7 +60,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'best_id' => $this->getKey(),
 
             'beatmap',
-            'replayViewCount',
             'reportedIn',
             'user' => $this->getRelationValue($key),
         };
@@ -120,37 +117,9 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return $query->whereIn('user_id', $userIds);
     }
 
-    public function replayViewCount()
-    {
-        $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
-
-        return $this->hasOne($class, 'score_id');
-    }
-
-    public function trashed()
-    {
-        return $this->getAttribute('hidden');
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    /**
-     * This doesn't delete the score in elasticsearch.
-     */
-    public function delete()
-    {
-        $result = $this->getConnection()->transaction(function () {
-            $this->replayViewCount?->delete();
-
-            return parent::delete();
-        });
-
-        $this->replayFile()?->delete();
-
-        return $result;
     }
 
     protected function newReportableExtraParams(): array

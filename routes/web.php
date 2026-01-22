@@ -560,6 +560,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::put('/', 'ScorePinsController@store')->name('store');
         });
 
+        Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+            Route::get('{ruleset?}', 'TeamsController@show')->middleware('require-scopes:public')->name('show');
+        });
+
         Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
         Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
             //  GET /api/v2/users/:user_id/kudosu
@@ -596,6 +600,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
+        //  PUT /api/v2/me/achievements/:achievementId
+        Route::put('me/achievements/{achievementId}', 'UsersController@unlockClientSideAchievement')->name('unlock-client-side-achievement');
 
         Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
 
