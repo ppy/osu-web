@@ -15,6 +15,9 @@ use App\Transformers\TeamMemberTransformer;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group Teams
+ */
 class MembersController extends Controller
 {
     const int PAGE_SIZE = 50;
@@ -43,6 +46,22 @@ class MembersController extends Controller
         return response()->noContent();
     }
 
+    /**
+     * Get Team Members
+     *
+     * This endpoint returns the members of a specified team.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Returns the [TeamMember](#teammember) object.
+     *
+     * @urlParam team integer required ID of the team. Example: 1
+     * @queryParam limit integer Maximum number of results. Example: 50
+     * @queryParam offset integer Result offset for pagination. Example: 100
+     * @queryParam withLeader boolean Whether the response should include the team leader. Example: 0
+     */
     public function index(string $teamId): Response
     {
         $team = Team::findOrFail($teamId);
