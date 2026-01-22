@@ -4,7 +4,7 @@
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as React from 'react';
 import { showVisual } from 'utils/beatmapset-helper';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, Modifiers, varBgDefault } from 'utils/css';
 import { cssVar2x } from 'utils/html';
 import { trans } from 'utils/lang';
 
@@ -27,11 +27,15 @@ type Props = BaseProps & (PropsWithIsDeleted | PropsWithSize);
 
 export default function BeatmapsetCover(props: Props) {
   const className = classWithModifiers('beatmapset-cover', props.modifiers);
+  let style = {
+    '--bg-default': varBgDefault(props.beatmapset?.id),
+  } as React.CSSProperties;
 
   if (props.isDeleted ?? false) {
     return (
       <div
         className={className}
+        style={style}
         title={trans('beatmapsets.cover.deleted')}
       >
         <span className='fas fa-trash' />
@@ -39,9 +43,9 @@ export default function BeatmapsetCover(props: Props) {
     );
   }
 
-  const style = props.beatmapset != null && showVisual(props.beatmapset, props.forceShowNsfw)
-    ? cssVar2x(props.beatmapset.covers[props.size])
-    : undefined;
+  if (props.beatmapset != null && showVisual(props.beatmapset, props.forceShowNsfw)) {
+    style = { ...style, ...cssVar2x(props.beatmapset.covers[props.size]) };
+  }
 
   return <div className={className} style={style} />;
 }

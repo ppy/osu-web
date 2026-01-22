@@ -282,7 +282,7 @@ return [
         'featured_artists' => 'Artistes destacats',
         'follows' => 'Mapejadors subscrits',
         'recommended' => 'Dificultat recomanada',
-        'spotlights' => 'Beatmaps destacats',
+        'spotlights' => 'Mapes destacats',
     ],
     'mode' => [
         'all' => 'Tots',

@@ -11,9 +11,9 @@
     "watch-poll": "yarn run watch --watch-options-poll"
   },
   "dependencies": {
-    "@discordapp/twemoji": "^14.0.2",
+    "@discordapp/twemoji": "^16.0.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@hotwired/turbo": "^8.0.12",
+    "@hotwired/turbo": "^8.0.21",
     "@shopify/hydrogen-react": "^2024.10.0",
     "@shopify/storefront-api-client": "^1.0.3",
     "@types/autosize": "^4.0.1",
@@ -62,7 +62,7 @@
     "lang.js": "^1.1.14",
     "less": "^4.2.1",
     "less-loader": "^11.1.3",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.23",
     "mdast-util-gfm-autolink-literal": "^1.0.3",
     "micromark-extension-gfm-autolink-literal": "^1.0.3",
     "mini-css-extract-plugin": "^2.7.6",

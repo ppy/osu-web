@@ -2,19 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .fancy-graph {
-  &__circle {
-    fill: @osu-colour-h1;
-    pointer-events: none;
-  }
+  color: hsl(var(--hsl-h1));
 
-  &__hover-area {
-    fill: none;
-    pointer-events: all;
+  &__circle {
+    fill: currentColor;
   }
 
   &__line {
     fill: none;
-    stroke: @osu-colour-h1;
+    stroke: currentColor;
     stroke-width: 1px;
   }
 }

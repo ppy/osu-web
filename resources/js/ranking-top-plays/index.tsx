@@ -35,6 +35,9 @@ export default function RankingScores(props: Props) {
           <div className='ranking-page-grid-item__col'>
             {trans('beatmapsets.show.scoreboard.headers.accuracy')}
           </div>
+          <div className='ranking-page-grid-item__col'>
+            {trans('beatmapsets.show.scoreboard.headers.miss')}
+          </div>
           <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number-focus'>
             {trans('beatmapsets.show.scoreboard.headers.pp')}
           </div>
@@ -51,7 +54,7 @@ export default function RankingScores(props: Props) {
         <div key={score.id} className='ranking-page-grid-item'>
           <a
             className='ranking-page-grid-item__link-bg'
-            href={route('scores.show', { rulesetOrScore: score.id })}
+            href={route('scores.show', { score: score.id })}
           />
           <div className='ranking-page-grid-item__content'>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus'>
@@ -95,6 +98,11 @@ export default function RankingScores(props: Props) {
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number'>
               <span className={classWithModifiers('ranking-page-grid-item__value', { perfect: score.accuracy === 1 })}>
                 {formatNumber(score.accuracy, 2, { style: 'percent' })}
+              </span>
+            </div>
+            <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number'>
+              <span className={classWithModifiers('ranking-page-grid-item__value')}>
+                {formatNumber(score.statistics.miss ?? 0)}
               </span>
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus'>

@@ -83,7 +83,7 @@ return [
 
     'download' => [
         'action_lazer_info' => '點此來了解更多',
-        'download' => '',
+        'download' => '下載',
         'for_os' => ':os 版',
         'macos-fallback' => 'macOS 使用者',
         'mirror' => '鏡像站',
