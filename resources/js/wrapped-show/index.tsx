@@ -364,7 +364,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
   }
 
   private fallbackBackground(offset?: number) {
-    return `/images/wrapped/fallback_${(this.user.id + (offset ?? 0)) % 6}.jpeg`;
+    return `/images/backgrounds/placeholders/${(this.user.id + (offset ?? 0)) % 6}.jpg`;
   }
 
   @action

@@ -27,7 +27,7 @@ class BeatmapsetsController extends Controller
             Event::generate('beatmapsetUpload', ['beatmapset' => $beatmapset]);
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function broadcastRevive($id)
@@ -40,7 +40,7 @@ class BeatmapsetsController extends Controller
             Event::generate('beatmapsetRevive', ['beatmapset' => $beatmapset]);
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function broadcastUpdate($id)
@@ -50,7 +50,7 @@ class BeatmapsetsController extends Controller
 
         Event::generate('beatmapsetUpdate', ['beatmapset' => $beatmapset, 'user' => $user]);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function destroy($id)
@@ -60,7 +60,7 @@ class BeatmapsetsController extends Controller
 
         (new BeatmapsetDelete($beatmapset, $user))->handle();
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function disqualify($id)

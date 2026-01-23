@@ -34,6 +34,6 @@ class TokensController extends Controller
             $token->revokeRecursive();
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }
