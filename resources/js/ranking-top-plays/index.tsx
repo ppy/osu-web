@@ -54,7 +54,7 @@ export default function RankingScores(props: Props) {
         <div key={score.id} className='ranking-page-grid-item'>
           <a
             className='ranking-page-grid-item__link-bg'
-            href={route('scores.show', { rulesetOrScore: score.id })}
+            href={route('scores.show', { score: score.id })}
           />
           <div className='ranking-page-grid-item__content'>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus'>

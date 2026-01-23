@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Screenshot;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 
@@ -33,9 +34,23 @@ class ScreenshotsController extends Controller
         ]);
     }
 
-    public function show($screenshot, string $hash)
+    public function show($id, ?string $hash = null)
     {
-        // TODO: move this logic over from legacy web
-        //       this empty method is left as a placeholder for the route used above to work
+        $screenshot = Screenshot::lookup(intval($id), $hash);
+        abort_if($screenshot === null, 404);
+
+        $file = $screenshot->fetch();
+        abort_if($file === null, 404);
+
+        $screenshot->incrementInstance('hits', 1, [
+            'last_access' => Carbon::now(),
+        ]);
+
+        return response()->stream(function () use ($file) {
+            echo $file;
+        }, 200, [
+            'Content-Type' => 'image/jpeg',
+            'Cache-Control' => 'max-age=31536000, public',
+        ]);
     }
 }

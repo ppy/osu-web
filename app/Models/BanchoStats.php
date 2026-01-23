@@ -5,8 +5,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
-
 /**
  * @property int $banchostats_id
  * @property \Carbon\Carbon $date
@@ -26,7 +24,7 @@ class BanchoStats extends Model
     {
         return array_reverse(
             static::whereRaw('banchostats_id mod 10 = 0')
-                ->select(['users_irc', DB::raw('(users_osu + users_lazer) AS users'), 'multiplayer_games', 'date'])
+                ->selectRaw('(users_osu + users_lazer) AS users, multiplayer_games, multiplayer_games_lazer')
                 ->orderBy('banchostats_id', 'DESC')
                 ->limit(24 * 60 / 10)
                 ->get()
