@@ -7,7 +7,7 @@
     $slug = str_slug($issueTag);
 ?>
 <div
-    class="simple-menu__item js-forum-topic-tag-editor-ajax"
+    class="simple-menu__item js-forum-topic-tag-editor-tag"
     data-issue-tag="{{ $issueTag }}"
 >
     <label class="osu-switch-v2">

@@ -166,18 +166,21 @@ class TopicsController extends Controller
 
         priv_check('ForumModerate', $topic->forum)->ensureCan();
 
-        $issueTag = presence(Request::input('issue_tag'));
-        $state = get_bool(Request::input('state'));
+        $tags = presence(get_arr(Request::input('tags'), 'get_bool')) ?? [];
 
-        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, Topic::getIssueTagsFlat(), true)) {
+        if (
+            empty($tags)
+            || !$topic->isIssue()
+            || array_any(array_keys($tags), fn ($tag) => !in_array($tag, Topic::getIssueTagsFlat(), true))
+        ) {
             abort(422);
         }
 
-        $this->logModerate('LOG_ISSUE_TAG', compact('issueTag', 'state'), $topic);
-
-        $method = $state ? 'setIssueTag' : 'unsetIssueTag';
-
-        $topic->$method($issueTag);
+        foreach ($tags as $tag => $state) {
+            $this->logModerate('LOG_ISSUE_TAG', compact('tag', 'state'), $topic);
+            $method = $state ? 'setIssueTag' : 'unsetIssueTag';
+            $topic->$method($tag);
+        }
 
         return response()->noContent();
     }

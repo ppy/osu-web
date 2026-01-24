@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <div
-    class="js-forum-tag-editor u-relative"
+    class="js-forum-topic-tag-editor u-relative"
     data-topic-id="{{ $topic->topic_id }}"
 >
     <button
@@ -11,7 +11,7 @@
         class="btn-circle btn-circle--topic-nav js-menu"
         data-menu-target="tag-editor"
     >
-        <span class="btn-circle__content">
+        <span class="btn-circle__content js-forum-topic-tag-editor-button">
             <i class="fa fa-tag"></i>
         </span>
     </button>
