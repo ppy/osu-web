@@ -177,6 +177,7 @@ class TopicsController extends Controller
         }
 
         foreach ($tags as $tag => $state) {
+            $state = get_bool($state);
             $this->logModerate('LOG_ISSUE_TAG', compact('tag', 'state'), $topic);
             $method = $state ? 'setIssueTag' : 'unsetIssueTag';
             $topic->$method($tag);

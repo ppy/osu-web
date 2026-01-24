@@ -1504,11 +1504,11 @@ function get_arr($input, $callback = null)
         }
 
         $result = [];
-        foreach ($input as $key => $value) {
+        foreach ($input as $value) {
             $casted = call_user_func($callback, $value);
 
             if ($casted !== null) {
-                $result[$key] = $casted;
+                $result[] = $casted;
             }
         }
 
