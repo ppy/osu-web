@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Libraries\User;
 
+use App\Exceptions\InvariantException;
 use App\Mail\PasswordReset;
 use App\Models\User;
 
@@ -137,13 +138,16 @@ class PasswordResetData
         \Cache::put($this->cacheKey, $this->attrs, $this->attrs['expiresAt'] - time());
     }
 
-    public function sendMail(bool $isResending): bool
+    public function sendMail(bool $isResending): void
     {
         if ($isResending) {
             $now = time();
 
-            if ($now < $this->attrs['canResendMailAfter'] || !static::attempt($this->user)) {
-                return false;
+            if ($now < $this->attrs['canResendMailAfter']) {
+                throw new InvariantException(osu_trans('password_reset.error.wait_resend'));
+            }
+            if (!static::attempt($this->user)) {
+                throw new InvariantException(osu_trans('password_reset.error.too_many_requests'));
             }
             $this->attrs['canResendMailAfter'] = $now + static::RESEND_MAIL_INTERVAL;
         }
@@ -152,7 +156,5 @@ class PasswordResetData
             'user' => $this->user,
             'key' => $this->attrs['key'],
         ]));
-
-        return true;
     }
 }
