@@ -33,7 +33,7 @@ class PasswordResetData
     public static function attempt(User $user): bool
     {
         $limiterKey = "password_reset_user:{$user->getKey()}";
-        if (\RateLimiter::remaining($limiterKey, 3) < 1) {
+        if (\RateLimiter::attempts($limiterKey) >= 3) {
             return false;
         }
 
