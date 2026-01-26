@@ -25,15 +25,8 @@ class LivestreamCollection
             return;
         }
 
-        $collection = new static();
-
-        foreach ($collection->all() as $stream) {
-            if ($stream->data['id'] === (string) $id) {
-                Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
-                Cache::forget(static::FEATURED_DATA_CACHE_KEY);
-                return;
-            }
-        }
+        Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
+        Cache::forget(static::FEATURED_DATA_CACHE_KEY);
     }
 
     public function all()
@@ -87,12 +80,13 @@ class LivestreamCollection
 
     public function featured()
     {
-        $cachedStream = Cache::get(static::FEATURED_DATA_CACHE_KEY);
+        $cacheValues = Cache::many([static::FEATURED_DATA_CACHE_KEY, static::FEATURED_CACHE_KEY]);
+        $cachedStream = $cacheValues[static::FEATURED_DATA_CACHE_KEY];
+        $featuredStreamId = presence((string) $cacheValues[static::FEATURED_CACHE_KEY]);
+
         if ($cachedStream !== null) {
             return $cachedStream;
         }
-
-        $featuredStreamId = presence((string) Cache::get(static::FEATURED_CACHE_KEY));
 
         if ($featuredStreamId === null) {
             return null;
