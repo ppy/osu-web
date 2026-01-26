@@ -52,6 +52,11 @@ class Follow extends Model
         $this->notifiable()->associate($value);
     }
 
+    public function getNotifiableIdAttribute($value): ?int
+    {
+        return isset($this->attributes['notifiable_type']) ? $value : null;
+    }
+
     public function setNotifiableTypeAttribute($value)
     {
         if (MorphMap::getClass($value) === null) {
