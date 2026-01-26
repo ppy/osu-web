@@ -42,6 +42,12 @@ class PasswordResetData
             return osu_trans('password_reset.error.is_privileged');
         }
 
+        $limiterKey = "password_reset_user:{$user->getKey()}";
+        if (\RateLimiter::remaining($limiterKey, 3) < 1) {
+            return osu_trans('password_reset.error.too_many_requests');
+        }
+
+        \RateLimiter::increment($limiterKey, 86_400 * 7);
         $now = time();
         $data = new static([
             'authHash' => static::authHash($user),
