@@ -12,7 +12,7 @@ use App\Models\User;
 
 class PasswordResetData
 {
-    private const RESEND_MAIL_INTERVAL = 300;
+    private const RESEND_MAIL_INTERVAL = 10;
 
     private string $cacheKey;
 
@@ -22,6 +22,23 @@ class PasswordResetData
         string $username
     ) {
         $this->cacheKey = static::cacheKey($this->user, $username);
+    }
+
+    /**
+     * Rate limiter for password reset attempts
+     *
+     * This applies to both new reset request and resend mail request.
+     */
+    public static function attempt(User $user): bool
+    {
+        $limiterKey = "password_reset_user:{$user->getKey()}";
+        if (\RateLimiter::remaining($limiterKey, 3) < 1) {
+            return false;
+        }
+
+        \RateLimiter::increment($limiterKey, 86_400 * 7);
+
+        return true;
     }
 
     public static function create(?User $user, ?string $username): ?string
@@ -42,21 +59,19 @@ class PasswordResetData
             return osu_trans('password_reset.error.is_privileged');
         }
 
-        $limiterKey = "password_reset_user:{$user->getKey()}";
-        if (\RateLimiter::remaining($limiterKey, 3) < 1) {
+        if (!static::attempt($user)) {
             return osu_trans('password_reset.error.too_many_requests');
         }
 
-        \RateLimiter::increment($limiterKey, 86_400 * 7);
         $now = time();
         $data = new static([
             'authHash' => static::authHash($user),
-            'canResendMailAfter' => $now - 1,
+            'canResendMailAfter' => $now + static::RESEND_MAIL_INTERVAL,
             'key' => bin2hex(random_bytes($GLOBALS['cfg']['osu']['user']['password_reset']['key_length'] / 2)),
-            'expiresAt' => $now + $GLOBALS['cfg']['osu']['user']['password_reset']['expires_hour'] * 3600,
+            'expiresAt' => $now + $GLOBALS['cfg']['osu']['user']['password_reset']['expires_minute'] * 60,
             'tries' => 0,
         ], $user, $username);
-        $data->sendMail();
+        $data->sendMail(false);
         $data->save();
 
         return null;
@@ -122,19 +137,21 @@ class PasswordResetData
         \Cache::put($this->cacheKey, $this->attrs, $this->attrs['expiresAt'] - time());
     }
 
-    public function sendMail(): bool
+    public function sendMail(bool $isResending): bool
     {
-        $now = time();
+        if ($isResending) {
+            $now = time();
 
-        if ($now < $this->attrs['canResendMailAfter']) {
-            return false;
+            if ($now < $this->attrs['canResendMailAfter'] || !static::attempt($this->user)) {
+                return false;
+            }
+            $this->attrs['canResendMailAfter'] = $now + static::RESEND_MAIL_INTERVAL;
         }
 
         \Mail::to($this->user)->send(new PasswordReset([
             'user' => $this->user,
             'key' => $this->attrs['key'],
         ]));
-        $this->attrs['canResendMailAfter'] = $now + static::RESEND_MAIL_INTERVAL;
 
         return true;
     }
