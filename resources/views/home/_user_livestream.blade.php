@@ -7,6 +7,6 @@
         id="home-livestream-{{ time() }}-{{ rand() }}"
         class="js-twitch-player user-home-livestream__player"
         data-channel="{{ $stream->data['user_name'] }}"
-        data-muted="true"
+        data-autoplay="false"
     ></div>
 </div>
