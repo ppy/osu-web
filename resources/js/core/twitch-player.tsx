@@ -31,14 +31,12 @@ export default class TwitchPlayer {
       || div.dataset.twitchPlayerStarted === 'true') return;
 
     div.dataset.twitchPlayerStarted = 'true';
-    const options = {
+    new window.Twitch.Player(div.id, {
+      autoplay: div.dataset.autoplay === 'true',
       channel: div.dataset.channel ?? fail(`twitch player ${div.id} is missing channel data`),
       height: '100%',
-      muted: div.dataset.muted === 'true',
       width: '100%',
-    };
-
-    new window.Twitch.Player(div.id, options);
+    });
   }
 
   startAll = () => {

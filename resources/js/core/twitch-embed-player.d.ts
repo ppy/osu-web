@@ -4,6 +4,7 @@
 declare module 'twitch-embed-player' {
   // (2024-03-26) see https://dev.twitch.tv/docs/embed/video-and-clips/ for all options.
   interface PlayerOptions {
+    autoplay?: boolean;
     channel: string;
     height: number | string;
     width: number | string;
