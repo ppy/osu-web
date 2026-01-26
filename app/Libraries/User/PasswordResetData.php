@@ -103,8 +103,7 @@ class PasswordResetData
 
     public function isActive(): bool
     {
-        return $this->attrs['expiresAt'] > time()
-            && hash_equals($this->attrs['authHash'], static::authHash($this->user));
+        return hash_equals($this->attrs['authHash'], static::authHash($this->user));
     }
 
     public function isValidKey(string $key): bool
