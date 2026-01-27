@@ -64,31 +64,16 @@ class ImageProcessor
         }
 
         $exifRotation = exif_read_data($this->inputPath)['Orientation'] ?? null;
-
-        $args = '';
-        switch ($exifRotation) {
-            case 2:
-                $args = '-flip horizontal';
-                break;
-            case 3:
-                $args = '-rotate 180';
-                break;
-            case 4:
-                $args = '-flip vertical';
-                break;
-            case 5:
-                $args = '-transpose';
-                break;
-            case 6:
-                $args = '-rotate 90';
-                break;
-            case 7:
-                $args = '-transverse';
-                break;
-            case 8:
-                $args = '-rotate 270';
-                break;
-        }
+        $args = match ($exifRotation) {
+            2 => '-flip horizontal',
+            3 => '-rotate 180',
+            4 => '-flip vertical',
+            5 => '-transpose',
+            6 => '-rotate 90',
+            7 => '-transverse',
+            8 => '-rotate 270',
+            default => '',
+        };
 
         exec('jpegtran '.$args.' -trim -outfile '.escapeshellarg($this->inputPath).' '.escapeshellarg($this->inputPath));
         $this->parseInput();
