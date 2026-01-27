@@ -7,14 +7,10 @@ concurrency:
 
 jobs:
   tests:
-    strategy:
-      matrix:
-        php: [ '8.4' ]
     name: Tests
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PHP_VERSION: ${{ matrix.php }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6

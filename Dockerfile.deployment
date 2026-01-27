@@ -1,9 +1,11 @@
 FROM --platform=$BUILDPLATFORM almalinux:10-minimal as buildenv
 
+COPY .php-version /
+
 RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
     microdnf install -y epel-release && \
     rpm -i https://rpm.henderkes.com/static-php-1-0.noarch.rpm && \
-    microdnf module enable -y php-zts:static-8.4 && \
+    microdnf module enable -y php-zts:static-$(cat /.php-version) && \
     microdnf install -y \
       frankenphp \
       git \
@@ -46,10 +48,12 @@ RUN yarn --prod --ignore-optional --frozen-lockfile
 
 FROM almalinux:10-minimal as runenv
 
+COPY .php-version /
+
 RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
     microdnf install -y epel-release && \
     rpm -i https://rpm.henderkes.com/static-php-1-0.noarch.rpm && \
-    microdnf module enable -y php-zts:static-8.4 && \
+    microdnf module enable -y php-zts:static-$(cat /.php-version) && \
     microdnf install -y \
       frankenphp \
       libjpeg-turbo-utils \
