@@ -63,10 +63,10 @@ class ImageProcessor
             return;
         }
 
-        $exifRotation = exec('exiv2 --key Exif.Thumbnail.Orientation -P v '.escapeshellarg($this->inputPath));
+        $exifRotation = exif_read_data($this->inputPath)['Orientation'] ?? null;
 
         $args = '';
-        switch ((int) $exifRotation) {
+        switch ($exifRotation) {
             case 2:
                 $args = '-flip horizontal';
                 break;
