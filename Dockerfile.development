@@ -10,7 +10,6 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       chromedriver \
       chromium \
       frankenphp \
-      exiv2 \
       git \
       libjpeg-turbo-utils \
       mysql8.4 \
