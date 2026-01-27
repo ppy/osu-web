@@ -75,7 +75,7 @@ class ImageProcessor
             default => '',
         };
 
-        exec('jpegtran '.$args.' -trim -outfile '.escapeshellarg($this->inputPath).' '.escapeshellarg($this->inputPath));
+        exec('jpegtran '.$args.' -trim -copy none -outfile '.escapeshellarg($this->inputPath).' '.escapeshellarg($this->inputPath));
         $this->parseInput();
     }
 
