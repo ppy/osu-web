@@ -479,7 +479,7 @@ fetch("{{ $GLOBALS['cfg']['app']['url'] }}/api/[version]/[endpoint]", {
 <p>
     Client Credentials Grant tokens may be allowed to act on behalf of the owner of the OAuth client (delegation) by requesting the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope, in addition to other scopes supporting delegation.
     When using the Client Credentials grant with scopes that support delegation, all requested scopes must support delegation.
-    Delegation is only available to <a href="{{ $wikiUrl }}">Chat Bot</a>s.
+    Delegation is only available to <a href="{{ $wikiUrl }}">Bot</a>s.
 </p>
 
 <p>
@@ -503,6 +503,7 @@ $scopeDescriptions = [
     'friends.read' => 'Allows reading of the user\'s friend list.',
     'group_permissions' => "Allows `delegate` tokens to inherit the Resource Owner's group permissions in some cases.",
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
+    'multiplayer.write_manage' => "Allows creating and managing multiplayer rooms on a user's behalf. (Under active development, documentation to be added later)",
     'public' => 'Allows reading of publicly available data on behalf of the user.',
 ];
 @endphp
@@ -541,8 +542,8 @@ $scopeDescriptions = [
 <p>
     Using any of the {!! implode(' ', $ownScopeBadges) !!} scopes requires either
     <ul>
-        <li>a <a href="{{ $wikiUrl }}">Chat Bot</a> account to send messages on behalf of other users.
-        <li>Authorization code grant where the user is the same as the client's owner (send as yourself).
+        <li>a <a href="{{ $wikiUrl }}">Bot</a> account to perform actions on behalf of other users.
+        <li>Authorization code grant where the user is the same as the client's owner (act as yourself).
     </ul>
 </p>
 
