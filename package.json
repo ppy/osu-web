@@ -62,7 +62,7 @@
     "lang.js": "^1.1.14",
     "less": "^4.2.1",
     "less-loader": "^11.1.3",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.23",
     "mdast-util-gfm-autolink-literal": "^1.0.3",
     "micromark-extension-gfm-autolink-literal": "^1.0.3",
     "mini-css-extract-plugin": "^2.7.6",
