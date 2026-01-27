@@ -13,10 +13,7 @@ x-env: &x-env
 
 x-web: &x-web
   build:
-    context: ./docker/development
-    dockerfile: ../../Dockerfile.development
-    args:
-      PHP_VERSION: "${PHP_VERSION}"
+    dockerfile: Dockerfile.development
   init: true
   volumes:
     - .:/app
