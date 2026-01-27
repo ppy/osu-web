@@ -94,7 +94,6 @@ RUN yarn production
 
 RUN php artisan ip2asn:update
 RUN php artisan scribe:generate
-RUN php artisan octane:install
 
 RUN rm -rf node_modules
 
