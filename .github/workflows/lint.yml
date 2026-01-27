@@ -5,6 +5,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  APP_ENV: testing
+
 jobs:
   lint:
     name: Lint all
@@ -12,41 +15,45 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Get current date
-        id: current-date
-        run: echo "today=$(date '+%Y%m%d')" >> "$GITHUB_OUTPUT"
-
-      - name: Cache ip2asn
-        uses: actions/cache@v5
+      - name: Setup node.js
+        uses: actions/setup-node@v4
         with:
-          path: database/ip2asn/
-          key: ip2asn-${{ steps.current-date.outputs.today }}
-          restore-keys: ip2asn-
+          cache: yarn
+          node-version: '22'
+
+      - name: Set php version
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2, cs2pr
+          php-version: '8.4'
+          coverage: none
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
-          path: .docker/.cache/composer/files/
+          path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Prepare Docker dev environment
-        run: ./bin/docker_dev.sh -d php
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Composer dependencies
+        run: >-
+          composer config -g github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+          && composer install --prefer-dist --no-progress
 
-      - run: 'docker compose exec php yarn lint --max-warnings 54 > /dev/null'
+      - name: Install js dependencies
+        run: yarn --frozen-lockfile
 
-      - run: docker compose exec php yarn pretty
+      - run: 'yarn lint --max-warnings 54 > /dev/null'
+
+      - run: yarn pretty
 
       - run: ./bin/update_licence.sh -nf
 
       - name: Run PHPCS
-        run: docker compose exec php ./vendor/bin/phpcs --report=checkstyle --basepath="/app" -q > checkstyle.xml || true
-
-      - name: Annotate pull request
-        uses: staabm/annotate-pull-request-from-checkstyle-action@v1
-        with:
-          files: checkstyle.xml
+        run: ./vendor/bin/phpcs --report=checkstyle --basepath="$PWD" -q | cs2pr
