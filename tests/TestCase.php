@@ -81,9 +81,9 @@ class TestCase extends BaseTestCase
         );
     }
 
-    protected static function chatScopes(): Collection
+    protected static function ownClientOrBotScopes(): Collection
     {
-        return static::allPassportScopeIds()->filter(fn ($scope) => str_starts_with($scope, 'chat.'));
+        return static::allPassportScopeIds()->filter(fn ($scope) => in_array($scope, Token::SCOPES_OWN_CLIENT, true));
     }
 
     protected static function allPassportScopeIds(): Collection
