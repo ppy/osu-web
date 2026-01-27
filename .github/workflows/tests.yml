@@ -13,6 +13,7 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PHP_VERSION: ${{ matrix.php }}
     steps:
       - name: Checkout
@@ -23,7 +24,6 @@ jobs:
           cat > .env <<EOF
           APP_ENV=testing
           APP_URL=http://nginx
-          GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           PAYMENT_SANDBOX=true
           EOF
 
