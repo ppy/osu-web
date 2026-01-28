@@ -62,7 +62,7 @@ module.exports = function(config) {
       ChromeCustom: {
         base: 'ChromeHeadless',
         // chrome sandboxing does not work in every container runtime
-        flags: process.env.CHROME_NO_SANDBOX ? ['--no-sandbox'] : [],
+        flags: '--no-sandbox',
       },
     },
     exclude: [],
