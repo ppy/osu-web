@@ -11,7 +11,6 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       frankenphp \
       git \
       nodejs \
-      npm \
       php-zts-cli \
       php-zts-ds \
       php-zts-fileinfo \

@@ -15,7 +15,6 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       libjpeg-turbo-utils \
       mysql8.4 \
       nodejs \
-      npm \
       php-zts-cli \
       php-zts-ds \
       php-zts-fileinfo \
