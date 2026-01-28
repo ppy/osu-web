@@ -49,5 +49,8 @@ WORKDIR /app
 
 RUN groupadd osuweb && useradd -g osuweb -d /app/.docker osuweb
 
+# fix broken readline in php console
+ENV TERMINFO /usr/share/terminfo
+
 ENTRYPOINT ["/app/docker/development/entrypoint.sh"]
 CMD ["octane"]

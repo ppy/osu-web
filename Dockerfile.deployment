@@ -117,6 +117,8 @@ RUN useradd -m osuweb
 RUN chown -R osuweb /var/lib/nginx bootstrap/cache storage
 USER osuweb
 ENV LOG_CHANNEL stderr
+# fix broken readline in php console
+ENV TERMINFO /usr/share/terminfo
 
 EXPOSE 8000
 EXPOSE 8080
