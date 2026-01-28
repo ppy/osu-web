@@ -265,9 +265,30 @@
           }
         ],
         "IncompatibleMods": [
-          "SI",
           "TC",
+          "SI",
           "AD",
+          "DP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForFreestyleAsRequiredMod": false,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
+        "Acronym": "TC",
+        "Name": "Traceable",
+        "Description": "Put your faith in the approach circles...",
+        "Type": "DifficultyIncrease",
+        "Settings": [],
+        "IncompatibleMods": [
+          "HD",
+          "TP",
+          "SI",
+          "GR",
+          "DF",
           "DP"
         ],
         "RequiresConfiguration": false,
@@ -405,10 +426,10 @@
         ],
         "IncompatibleMods": [
           "SD",
+          "TC",
           "ST",
           "RD",
           "SO",
-          "TC",
           "AD",
           "DP"
         ],
@@ -775,9 +796,9 @@
         "Settings": [],
         "IncompatibleMods": [
           "HD",
+          "TC",
           "GR",
           "DF",
-          "TC",
           "AD",
           "DP"
         ],
@@ -802,10 +823,10 @@
           }
         ],
         "IncompatibleMods": [
+          "TC",
           "SI",
           "GR",
           "DF",
-          "TC",
           "AD",
           "DP"
         ],
@@ -830,10 +851,10 @@
           }
         ],
         "IncompatibleMods": [
+          "TC",
           "SI",
           "GR",
           "DF",
-          "TC",
           "AD",
           "DP"
         ],
@@ -922,27 +943,6 @@
         "ValidForMultiplayer": true,
         "ValidForFreestyleAsRequiredMod": true,
         "ValidForMultiplayerAsFreeMod": false,
-        "AlwaysValidForSubmission": false
-      },
-      {
-        "Acronym": "TC",
-        "Name": "Traceable",
-        "Description": "Put your faith in the approach circles...",
-        "Type": "Fun",
-        "Settings": [],
-        "IncompatibleMods": [
-          "HD",
-          "TP",
-          "SI",
-          "GR",
-          "DF",
-          "DP"
-        ],
-        "RequiresConfiguration": false,
-        "UserPlayable": true,
-        "ValidForMultiplayer": true,
-        "ValidForFreestyleAsRequiredMod": false,
-        "ValidForMultiplayerAsFreeMod": true,
         "AlwaysValidForSubmission": false
       },
       {
@@ -1238,13 +1238,13 @@
         ],
         "IncompatibleMods": [
           "HD",
+          "TC",
           "TP",
           "TR",
           "WG",
           "SI",
           "GR",
           "DF",
-          "TC",
           "MG",
           "RP",
           "FR",
