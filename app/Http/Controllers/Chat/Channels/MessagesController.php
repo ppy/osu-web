@@ -128,7 +128,7 @@ class MessagesController extends BaseController
             $messages = $messages->orderBy('message_id', 'desc')->get()->reverse();
         }
 
-        $messages = Message::filterBacklogs($channel, $messages);
+        $messages = Message::filter($channel, $messages);
 
         if (!$returnObject) {
             return json_collection(
@@ -142,7 +142,7 @@ class MessagesController extends BaseController
             'messages' => json_collection($messages, new MessageTransformer()),
             // FIXME: messages with null used should be removed from db...
             'users' => json_collection(
-                $messages->pluck('sender')->filter()->uniqueStrict('user_id')->values(),
+                collect($messages)->pluck('sender')->filter()->uniqueStrict('user_id')->values(),
                 new UserCompactTransformer()
             ),
         ];

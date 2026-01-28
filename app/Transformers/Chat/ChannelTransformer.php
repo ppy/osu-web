@@ -80,7 +80,7 @@ class ChannelTransformer extends TransformerAbstract
     public function includeRecentMessages(Channel $channel)
     {
         if ($channel->exists) {
-            $messages = Message::filterBacklogs(
+            $messages = Message::filter(
                 $channel,
                 $channel
                     ->messages()

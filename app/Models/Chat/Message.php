@@ -13,7 +13,6 @@ use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
-use Illuminate\Support\Collection;
 
 /**
  * @property Channel $channel
@@ -29,7 +28,12 @@ class Message extends Model implements ReportableInterface
 {
     use Reportable;
 
-    public static function filterBacklogs(Channel $channel, Collection $messages): Collection
+    public static function filter(Channel $channel, iterable $messages): iterable
+    {
+        return static::filterUserCommands(static::filterBacklogs($channel, $messages));
+    }
+
+    public static function filterBacklogs(Channel $channel, iterable $messages): iterable
     {
         if (!$channel->isPublic()) {
             return $messages;
@@ -44,7 +48,19 @@ class Message extends Model implements ReportableInterface
             }
         }
 
-        return collect($ret);
+        return $ret;
+    }
+
+    public static function filterUserCommands(iterable $messages): iterable
+    {
+        $ret = [];
+        foreach ($messages as $message) {
+            if (!$message->isUserCommand()) {
+                $ret[] = $message;
+            }
+        }
+
+        return $ret;
     }
 
     public ?string $uuid = null;
@@ -102,6 +118,15 @@ class Message extends Model implements ReportableInterface
         if ($class !== null) {
             new $class($this, $this->sender)->dispatch();
         }
+    }
+
+    public function isUserCommand(): bool
+    {
+        $content = $this->content;
+
+        return strlen($content) > 1
+            && $content[0] === '!'
+            && ($content[1] !== ' ' || $content[1] !== '!');
     }
 
     public function reportableAdditionalInfo(): ?string
