@@ -63,8 +63,12 @@ class ImageProcessor
             return;
         }
 
-        $exifRotation = exif_read_data($this->inputPath)['Orientation'] ?? null;
-        $args = match ($exifRotation) {
+        try {
+            $exifRotation = exif_read_data($this->inputPath)['Orientation'] ?? null;
+        } catch (\ErrorException) {
+            // ignore errors
+        }
+        $args = match ($exifRotation ?? null) {
             2 => '-flip horizontal',
             3 => '-rotate 180',
             4 => '-flip vertical',
