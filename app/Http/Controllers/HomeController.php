@@ -14,6 +14,7 @@ use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Forum\Post;
+use App\Models\LivestreamCollection;
 use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
@@ -133,12 +134,16 @@ class HomeController extends Controller
 
             $dailyChallenge = Room::dailyChallengeFor(CarbonImmutable::now());
 
+            $livestream = new LivestreamCollection();
+            $featuredStream = $livestream->featured();
+
             return ext_view('home.user', compact(
                 'menuImages',
                 'newBeatmapsets',
                 'news',
                 'popularBeatmapsets',
                 'dailyChallenge',
+                'featuredStream',
             ));
         } else {
             $news = json_collection($news, 'NewsPost');
