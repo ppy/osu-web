@@ -41,8 +41,6 @@ _run yarn --network-timeout 100000 --frozen-lockfile
 
 _run composer install
 
-_run artisan dusk:chrome-driver
-
 if [ -d storage/oauth-public.key ]; then
     echo "oauth-public.key is a directory. Removing it"
     rmdir storage/oauth-public.key
@@ -51,6 +49,7 @@ fi
 if [ ! -f storage/oauth-public.key ]; then
     echo "Generating passport key pair"
     _run artisan passport:keys
+    chmod 644 storage/oauth-public.key
 fi
 
 if [ ! -f .docker/.my.cnf ]; then

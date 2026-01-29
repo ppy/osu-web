@@ -63,7 +63,19 @@ class ImageProcessor
             return;
         }
 
-        exec('jhead -autorot -purejpg -q '.escapeshellarg($this->inputPath));
+        $exifRotation = exif_read_data($this->inputPath)['Orientation'] ?? null;
+        $args = match ($exifRotation) {
+            2 => '-flip horizontal',
+            3 => '-rotate 180',
+            4 => '-flip vertical',
+            5 => '-transpose',
+            6 => '-rotate 90',
+            7 => '-transverse',
+            8 => '-rotate 270',
+            default => '',
+        };
+
+        exec('jpegtran '.$args.' -trim -copy none -outfile '.escapeshellarg($this->inputPath).' '.escapeshellarg($this->inputPath));
         $this->parseInput();
     }
 
