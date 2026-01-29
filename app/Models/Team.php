@@ -190,7 +190,7 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
     public function emptySlots(): int
     {
         $max = $this->maxMembers();
-        $current = $this->members->count();
+        $current = $this->members()->count();
 
         return $max - $current;
     }
@@ -271,9 +271,10 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
 
     public function maxMembers(): int
     {
-        $this->loadMissing('members.user');
-
-        $supporterCount = $this->members->filter(fn ($member) => $member->user?->isSupporter() ?? false)->count();
+        $supporterCount = $this->members()->whereHas(
+            'user',
+            fn ($query) => $query->where('osu_subscriber', true)
+        )->count();
 
         return min(8 + (4 * $supporterCount), $GLOBALS['cfg']['osu']['team']['max_members']);
     }

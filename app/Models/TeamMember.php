@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TeamMember extends Model
@@ -32,5 +33,10 @@ class TeamMember extends Model
         return $user === null || $user->isRestricted()
             ? new DeletedUser(['user_id' => $this->user_id])
             : $user;
+    }
+
+    public function scopeDefault(Builder $query)
+    {
+        return $query->whereHas('user', fn ($query) => $query->default());
     }
 }

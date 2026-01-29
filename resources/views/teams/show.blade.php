@@ -7,27 +7,14 @@
     use App\Models\DeletedUser;
     use App\Transformers\UserCompactTransformer;
 
-    $members = [];
-    foreach ($team->members->sortBy('user.username', SORT_STRING | SORT_FLAG_CASE) as $member) {
-        $user = $member->userOrDeleted();
-        if ($user->getKey() === $team->leader_id) {
-            $leader = $user;
-        } elseif (!($user instanceof DeletedUser)) {
-            $members[] = $user;
-        }
-    }
-    $userTransformer = new UserCompactTransformer();
-    $members = json_collection(
-        $members,
-        $userTransformer,
-        UserCompactTransformer::CARD_INCLUDES,
-    );
     $leader = json_item(
-        $leader ?? $team->members()->make(['user_id' => $team->leader_id])->userOrDeleted(),
-        $userTransformer,
+        $team->leaderOrDeleted(),
+        new UserCompactTransformer(),
         UserCompactTransformer::CARD_INCLUDES,
     );
     $headerUrl = $team->header()->url();
+
+    $memberCount = $team->members()->default()->count();
 
     $currentUser = Auth::user();
     $defaultRuleset = Beatmap::modeStr($team->default_ruleset_id);
@@ -248,7 +235,7 @@
                                 {{ osu_trans('rankings.stat.members') }}
                             </div>
                             <div class="team-info-entry__value">
-                                {{ i18n_number_format(count($members) + 1) }}
+                                {{ i18n_number_format($memberCount) }}
                             </div>
                         </div>
                     </div>
@@ -287,23 +274,11 @@
                         ></div>
                     </div>
 
-                    <div class="team-members__type">
-                        <div class="team-members__meta">
-                            <span>
-                                {{ osu_trans('teams.show.members.members') }}
-                            </span>
-                            <span>
-                                {{ i18n_number_format(count($members)) }}
-                            </span>
-                        </div>
-                        @foreach ($members as $memberJson)
-                            <div
-                                class="js-react u-contents"
-                                data-react="user-card"
-                                data-user="{{ json_encode($memberJson) }}"
-                            ></div>
-                        @endforeach
-                    </div>
+                    <div
+                        class="js-react u-contents"
+                        data-react="team-member-list"
+                        data-team-id="{{ $team->getKey() }}"
+                    ></div>
                 </div>
             </div>
         </div>
