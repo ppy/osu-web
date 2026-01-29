@@ -5,12 +5,12 @@
 @php
     $class = 'avatar
         avatar--nav2
-        js-current-user-avatar
         js-click-menu
         js-user-login--menu
         js-user-header';
+    $currentUser ??= Auth::user();
 @endphp
-@if (Auth::user() === null)
+@if ($currentUser === null)
     <button
         class="{{ $class }} avatar--guest"
         data-click-menu-target="nav2-login-box"
@@ -18,9 +18,8 @@
     ></button>
 @else
     <a
-        class="{{ $class }} {{ Auth::user()->isRestricted() ? 'avatar--restricted' : '' }}"
+        class="{{ $class }} {{ $currentUser->isRestricted() ? 'avatar--restricted' : '' }} u-current-user-avatar"
         data-click-menu-target="nav2-user-popup"
-        href="{{ route('users.show', Auth::user()) }}"
-        {!! background_image(Auth::user()->user_avatar) !!}
+        href="{{ route('users.show', $currentUser) }}"
     ></a>
 @endif

@@ -7,7 +7,6 @@ import HeaderV4 from 'components/header-v4';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import homeLinks from 'home-links';
-import CurrentUserJson from 'interfaces/current-user-json';
 import FollowCommentJson from 'interfaces/follow-comment-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -15,7 +14,6 @@ import { trans } from 'utils/lang';
 
 interface Props {
   follows: FollowCommentJson[];
-  user: CurrentUserJson;
 }
 
 export default class Main extends React.PureComponent<Props> {
@@ -23,7 +21,7 @@ export default class Main extends React.PureComponent<Props> {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
-          backgroundImage={this.props.user.cover.url}
+          backgroundExtraClass='u-current-user-cover'
           links={homeLinks('follows.index')}
           theme='settings'
         />
