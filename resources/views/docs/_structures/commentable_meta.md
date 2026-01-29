@@ -21,6 +21,7 @@ owner_title             | string?                                               
 title                   | string                                                             | display title
 type                    | string                                                             | the type of the object
 url                     | string                                                             | url of the object
+locked                  | boolean                                                            | `true` if new comments are disabled
 
 Otherwise if object has been deleted:
 
