@@ -103,18 +103,26 @@ class Topic extends Model implements AfterCommit
         'announcement' => 2,
     ];
 
-    const ISSUE_TAGS = [
-        'added',
-        'archived',
-        'assigned',
-        'confirmed',
-        'duplicate',
-        'invalid',
-        'resolved',
-
-        'osu!lazer',
-        'osu!stable',
-        'osu!web',
+    const array ISSUE_TAGS = [
+        'status' => [
+            'added',
+            'archived',
+            'assigned',
+            'confirmed',
+            'duplicate',
+            'invalid',
+            'resolved',
+        ],
+        'platform' => [
+            'osu!lazer',
+            'osu!stable',
+            'osu!web',
+        ],
+        'misc' => [
+            'technical support',
+            'question',
+            'other',
+        ],
     ];
 
     const MAX_FIELD_LENGTHS = [
@@ -138,6 +146,14 @@ class Topic extends Model implements AfterCommit
         'topic_last_view_time' => TimestampOrZero::class,
         'topic_time' => TimestampOrZero::class,
     ];
+
+    /**
+     * @return string[]
+     */
+    public static function getIssueTagsFlat(): array
+    {
+        return array_merge(...array_values(static::ISSUE_TAGS));
+    }
 
     public static function createNew($forum, $params, $poll = null)
     {
@@ -333,7 +349,7 @@ class Topic extends Model implements AfterCommit
 
         static $tags = array_map(
             fn (string $t): string => "[{$t}]",
-            static::ISSUE_TAGS,
+            self::getIssueTagsFlat(),
         );
 
         return trim(str_ireplace($tags, '', $title));
@@ -347,7 +363,7 @@ class Topic extends Model implements AfterCommit
             }
 
             $tags = [];
-            foreach (static::ISSUE_TAGS as $tag) {
+            foreach (self::getIssueTagsFlat() as $tag) {
                 if ($this->hasIssueTag($tag)) {
                     $tags[] = $tag;
                 }
