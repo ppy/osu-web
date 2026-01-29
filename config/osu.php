@@ -281,7 +281,7 @@ return [
         'max_score_pins_supporter' => get_int(env('USER_MAX_SCORE_PINS_SUPPORTER')) ?? 50,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)) * 60,
         'password_reset' => [
-            'expires_hour' => 2,
+            'expires_minute' => 10,
             'key_length' => 8,
             'tries' => 8,
         ],

@@ -63,9 +63,10 @@ class PasswordResetController extends Controller
             \Session::flash('popup', osu_trans('password_reset.error.expired'));
 
             return ujs_redirect(route('password-reset'));
-        } elseif ($data->sendMail()) {
-            $data->save();
         }
+
+        $data->sendMail(true);
+        $data->save();
 
         return ['message' => osu_trans('password_reset.notice.sent')];
     }

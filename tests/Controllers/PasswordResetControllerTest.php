@@ -99,7 +99,7 @@ class PasswordResetControllerTest extends TestCase
         Mail::fake();
         $this->generateKey($user);
 
-        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertSuccessful();
+        $this->post(route('password-reset.resend-mail', ['username' => $user->username]))->assertStatus(422);
         Mail::assertQueuedCount(1);
     }
 
