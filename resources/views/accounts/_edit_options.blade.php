@@ -92,7 +92,7 @@
                 <label class="account-edit-entry__checkbox">
                     @include('objects._switch', ['locals' => [
                         'additionalClass'=> 'js-account-edit__input',
-                        'checked' => $customization['beatmapset_show_nsfw'],
+                        'checked' => $customization['beatmapset_show_anime_cover'],
                         'name' => 'user_profile_customization[beatmapset_show_anime_cover]',
                     ]])
 
