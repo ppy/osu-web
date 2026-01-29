@@ -28,14 +28,15 @@ for envfile in .env .env.testing .env.dusk.local; do
     fi
 done
 
+docker compose build
+docker compose build testjs
+
 if [ -n "${GITHUB_TOKEN:-}" ]; then
     _run composer config -g github-oauth.github.com "${GITHUB_TOKEN}"
     for envfile in .env .env.dusk.local; do
         grep -q '^GITHUB_TOKEN=' "${envfile}" || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> "${envfile}"
     done
 fi
-
-docker compose build
 
 _run yarn --network-timeout 100000 --frozen-lockfile
 
