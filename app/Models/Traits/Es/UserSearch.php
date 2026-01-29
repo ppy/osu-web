@@ -32,6 +32,7 @@ trait UserSearch
             'is_old' => $this->isOld(),
             'previous_usernames' => $this->previousUsernames(true)->unique()->values(),
             'user_lastvisit' => $this->displayed_last_visit,
+            'groups' => $this->userGroups->pluck('group_id')->values(),
             default => $this->$field,
         };
     }
