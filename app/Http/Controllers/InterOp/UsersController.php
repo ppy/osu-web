@@ -57,7 +57,7 @@ class UsersController extends Controller
         $params['user'] = User::findOrFail($userId);
 
         Event::generate('rank', $params);
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function firstPlaceLost($userId, $beatmapId, $rulesetId)
@@ -71,7 +71,7 @@ class UsersController extends Controller
             'ruleset' => Beatmap::modeStr($rulesetId),
             'user' => User::findOrFail($userId),
         ]);
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function store()

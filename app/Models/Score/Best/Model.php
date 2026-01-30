@@ -5,29 +5,10 @@
 
 namespace App\Models\Score\Best;
 
-use App\Libraries\Score\LegacyReplayFile;
-use App\Models\Beatmap;
-use App\Models\Country;
 use App\Models\Score\Model as BaseModel;
-use App\Models\Traits;
-use App\Models\User;
 
-/**
- * @property User $user
- */
-abstract class Model extends BaseModel implements Traits\ReportableInterface
+abstract class Model extends BaseModel
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
-
-    const SORTS = [
-        'score_asc' => [
-            ['column' => 'score', 'order' => 'ASC'],
-            ['column' => 'score_id', 'columnInput' => 'id', 'order' => 'DESC'],
-        ],
-    ];
-
-    const DEFAULT_SORT = 'score_asc';
-
     public function getAttribute($key)
     {
         return match ($key) {
@@ -64,77 +45,5 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'reportedIn',
             'user' => $this->getRelationValue($key),
         };
-    }
-
-    public function replayFile(): ?LegacyReplayFile
-    {
-        return $this->replay ? new LegacyReplayFile($this) : null;
-    }
-
-    public function url(): string
-    {
-        return route('scores.show', ['ruleset' => $this->getMode(), 'score' => $this->getKey()]);
-    }
-
-    public function scopeDefault($query)
-    {
-        return $query
-            ->whereHas('beatmap')
-            ->orderBy('score', 'DESC')
-            ->orderBy('score_id', 'ASC');
-    }
-
-    public function scopeVisibleUsers($query)
-    {
-        return $query->where(['hidden' => false]);
-    }
-
-    public function scopeWithType($query, $type, $options)
-    {
-        switch ($type) {
-            case 'country':
-                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym ?? Country::UNKNOWN;
-
-                return $query->fromCountry($countryAcronym);
-            case 'friend':
-                return $query->friendsOf($options['user']);
-        }
-    }
-
-    public function scopeFromCountry($query, $countryAcronym)
-    {
-        return $query->where('country_acronym', $countryAcronym);
-    }
-
-    public function scopeFriendsOf($query, $user)
-    {
-        if ($user === null) {
-            $userIds = [];
-        } else {
-            $userIds = $user->friends()->allRelatedIds();
-            $userIds[] = $user->getKey();
-        }
-
-        return $query->whereIn('user_id', $userIds);
-    }
-
-    public function trashed()
-    {
-        return $this->getAttribute('hidden');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    protected function newReportableExtraParams(): array
-    {
-        return [
-            'mode' => Beatmap::modeInt($this->getMode()),
-            'reason' => 'Cheating',
-            'score_id' => $this->getKey(),
-            'user_id' => $this->user_id,
-        ];
     }
 }
