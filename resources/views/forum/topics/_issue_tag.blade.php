@@ -6,26 +6,17 @@
     $state = $topic->hasIssueTag($issueTag);
     $slug = str_slug($issueTag);
 ?>
-<button
-    type="button"
-    class="
-        js-forum-topic-issue_tag_{{ $slug }}
-        btn-circle
-        btn-circle--topic-nav
-        btn-circle--purple
-        {{ $state ? 'btn-circle--activated' : '' }}
-    "
-    data-topic-id="{{ $topic->topic_id }}"
-    title="{{ osu_trans('forum.topics.issue_tag_'.$slug.'.to_'.(int) !$state) }}"
-    data-url="{{ route('forum.topics.issue-tag', [
-        $topic,
-        'state' => !$state,
-        'issue_tag' => $issueTag,
-    ]) }}"
-    data-remote="1"
-    data-method="post"
+<div
+    class="simple-menu__item js-forum-topic-tag-editor-tag"
+    data-issue-tag="{{ $issueTag }}"
 >
-    <span class="btn-circle__content">
-        {!! issue_icon($issueTag) !!}
+    <label class="osu-switch-v2">
+        <input type="checkbox" class="osu-switch-v2__input" {{ $state ? 'checked' : '' }}>
+        <span class="osu-switch-v2__content"></span>
+    </label>
+    <span class="simple-menu__item-icon">{!! issue_icon($issueTag) !!}</span>
+    <span>{{ $issueTag }}</span>
+    <span class="simple-menu__item-loading-spinner">
+        {!! spinner() !!}
     </span>
-</button>
+</div>

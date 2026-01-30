@@ -253,69 +253,6 @@ return [
             'views' => 'views',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Remove "added" tag',
-            'to_0_done' => 'Removed "added" tag',
-            'to_1' => 'Add "added" tag',
-            'to_1_done' => 'Added "added" tag',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Remove "assigned" tag',
-            'to_0_done' => 'Removed "assigned" tag',
-            'to_1' => 'Add "assigned" tag',
-            'to_1_done' => 'Added "assigned" tag',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Remove "confirmed" tag',
-            'to_0_done' => 'Removed "confirmed" tag',
-            'to_1' => 'Add "confirmed" tag',
-            'to_1_done' => 'Added "confirmed" tag',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Remove "duplicate" tag',
-            'to_0_done' => 'Removed "duplicate" tag',
-            'to_1' => 'Add "duplicate" tag',
-            'to_1_done' => 'Added "duplicate" tag',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Remove "invalid" tag',
-            'to_0_done' => 'Removed "invalid" tag',
-            'to_1' => 'Add "invalid" tag',
-            'to_1_done' => 'Added "invalid" tag',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Remove "resolved" tag',
-            'to_0_done' => 'Removed "resolved" tag',
-            'to_1' => 'Add "resolved" tag',
-            'to_1_done' => 'Added "resolved" tag',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Remove "osu!lazer" tag',
-            'to_0_done' => 'Removed "osu!lazer" tag',
-            'to_1' => 'Add "osu!lazer" tag',
-            'to_1_done' => 'Added "osu!lazer" tag',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Remove "osu!stable" tag',
-            'to_0_done' => 'Removed "osu!stable" tag',
-            'to_1' => 'Add "osu!stable" tag',
-            'to_1_done' => 'Added "osu!stable" tag',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Remove "osu!web" tag',
-            'to_0_done' => 'Removed "osu!web" tag',
-            'to_1' => 'Add "osu!web" tag',
-            'to_1_done' => 'Added "osu!web" tag',
-        ],
-
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
             'to_0' => 'Unlock topic',
