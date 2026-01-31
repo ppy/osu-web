@@ -561,6 +561,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         });
 
         Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+            Route::apiResource('members', 'Teams\MembersController', ['only' => ['index']])->middleware('require-scopes:public');
             Route::get('{ruleset?}', 'TeamsController@show')->middleware('require-scopes:public')->name('show');
         });
 
