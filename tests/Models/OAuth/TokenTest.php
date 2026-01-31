@@ -16,15 +16,15 @@ use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
-    public static function dataProviderForTestAuthCodeChatScopesAllowsSelf()
+    public static function dataProviderForTestAuthCodeOwnClientOrBotScopesAllowsSelf()
     {
-        return static::chatScopes()->map(fn ($scope) => [$scope]);
+        return static::ownClientOrBotScopes()->map(fn ($scope) => [$scope]);
     }
 
-    public static function dataProviderForTestAuthCodeChatScopesRequiresBotGroup()
+    public static function dataProviderForTestAuthCodeOwnClientOrBotScopesRequiresBotGroup()
     {
         $data = [];
-        foreach (static::chatScopes() as $scope) {
+        foreach (static::ownClientOrBotScopes() as $scope) {
             $data[] = [$scope, null, true];
             $data[] = [$scope, 'admin', true];
             $data[] = [$scope, 'bng', true];
@@ -89,8 +89,8 @@ class TokenTest extends TestCase
         ];
     }
 
-    #[DataProvider('dataProviderForTestAuthCodeChatScopesAllowsSelf')]
-    public function testAuthCodeChatScopesAllowsSelf(string $scope)
+    #[DataProvider('dataProviderForTestAuthCodeOwnClientOrBotScopesAllowsSelf')]
+    public function testAuthCodeOwnClientOrBotScopesAllowsSelf(string $scope)
     {
         $user = User::factory()->create();
         $client = Client::factory()->create(['user_id' => $user]);
@@ -102,8 +102,8 @@ class TokenTest extends TestCase
         $this->assertTrue($user->is(auth()->user()));
     }
 
-    #[DataProvider('dataProviderForTestAuthCodeChatScopesRequiresBotGroup')]
-    public function testAuthCodeChatScopesRequiresBotGroup(string $scope, ?string $group, bool $shouldThrow)
+    #[DataProvider('dataProviderForTestAuthCodeOwnClientOrBotScopesRequiresBotGroup')]
+    public function testAuthCodeOwnClientOrBotScopesRequiresBotGroup(string $scope, ?string $group, bool $shouldThrow)
     {
         $user = User::factory()->withGroup($group)->create();
         $client = Client::factory()->create(['user_id' => $user]);

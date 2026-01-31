@@ -23,7 +23,7 @@ class OAuthAuthCodeRequestTest extends TestCase
 
     public static function dataProviderForTestNonBotClientCannotRequestChatScopes()
     {
-        return static::chatScopes()->map(fn ($scope) => [$scope]);
+        return static::ownClientOrBotScopes()->map(fn ($scope) => [$scope]);
     }
 
     #[DataProvider('dataProviderForTestBotClient')]
