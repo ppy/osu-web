@@ -84,8 +84,7 @@ class UserAccountHistory extends Model
     public function scopeRecent($query)
     {
         return $query
-            ->whereRaw('(UNIX_TIMESTAMP(`timestamp`) + `period`) > ?', time())
-            ->orWhere('timestamp', '>', Carbon::now()->subDays($GLOBALS['cfg']['osu']['user']['ban_persist_days']))
+            ->whereRaw('(UNIX_TIMESTAMP(`timestamp`) + `period`) > ?', Carbon::now()->subDays($GLOBALS['cfg']['osu']['user']['ban_persist_days'])->getTimestamp())
             ->orWhere('permanent', true)
             ->orderBy('timestamp', 'desc');
     }
