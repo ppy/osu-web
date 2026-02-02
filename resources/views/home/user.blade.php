@@ -34,37 +34,50 @@
         @endif
 
         <div class="user-home">
-            <div class="user-home__news">
-                <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
-
-                @foreach ($news as $post)
-                    @if ($loop->iteration > $newsPostLargePreviews)
-                        @break
-                    @endif
-
-                    @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => false])
-                @endforeach
-
-                @if (count($news) > $newsPostLargePreviews)
-                    <div class="user-home__news-posts-group">
-                        @foreach ($news as $post)
-                            @if ($loop->iteration <= $newsPostLargePreviews)
-                                @continue
-                            @endif
-
-                            @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => true])
-                        @endforeach
+            <div class="user-home__left-section">
+                @if ($featuredStream !== null)
+                    <div class="user-home__livestream-section">
+                        <h2 class="user-home__left-title">
+                            <a href="{{ route('livestreams.index') }}">
+                                {{ osu_trans('home.user.livestream.title') }}
+                            </a>
+                        </h2>
+                        @include('home._user_livestream', ['stream' => $featuredStream])
                     </div>
                 @endif
 
-                @if (count($news) > NewsPost::DASHBOARD_LIMIT)
-                    <a
-                        href="{{ route('news.index') }}"
-                        class="user-home__news-posts-group user-home__news-posts-group--more"
-                    >
-                        {{ osu_trans('common.buttons.see_more') }}
-                    </a>
-                @endif
+                <div class="user-home__news">
+                    <h2 class="user-home__left-title">{{ osu_trans('home.user.news.title') }}</h2>
+
+                    @foreach ($news as $post)
+                        @if ($loop->iteration > $newsPostLargePreviews)
+                            @break
+                        @endif
+
+                        @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => false])
+                    @endforeach
+
+                    @if (count($news) > $newsPostLargePreviews)
+                        <div class="user-home__news-posts-group">
+                            @foreach ($news as $post)
+                                @if ($loop->iteration <= $newsPostLargePreviews)
+                                    @continue
+                                @endif
+
+                                @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => true])
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if (count($news) > NewsPost::DASHBOARD_LIMIT)
+                        <a
+                            href="{{ route('news.index') }}"
+                            class="user-home__news-posts-group user-home__news-posts-group--more"
+                        >
+                            {{ osu_trans('common.buttons.see_more') }}
+                        </a>
+                    @endif
+                </div>
             </div>
             <div class="user-home__right-sidebar">
                 <div class="user-home__status-box">
