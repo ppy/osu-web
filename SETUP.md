@@ -13,6 +13,8 @@ There are a few different options to get started:
 - elasticsearch 6+
 - redis
 
+Current targeted PHP and NodeJS versions can be found in [`.php-version`](.php-version) and [`.node-version`](.node-version).
+
 ### Clone the git repository
 
 ```
