@@ -71,14 +71,15 @@ export default class Comment {
 
     const meta = this.controller.getCommentableMeta(this);
 
-    if (
-      'current_user_attributes' in meta &&
-      meta.current_user_attributes.can_new_comment_reason == null
-    ) {
+    if(!('locked' in meta)) {
+      return false;
+    }
+
+    if (meta.current_user_attributes.can_new_comment_reason == null) {
       return true;
     }
 
-    return 'locked' in meta && !meta.locked;
+    return !meta.locked;
   }
 
   @computed

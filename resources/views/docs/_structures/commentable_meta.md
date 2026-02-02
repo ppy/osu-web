@@ -16,12 +16,12 @@ Field                   | Type                                                  
 ----------------------- | ------------------------------------------------------------------ | ------------------
 current_user_attributes | [CurrentUserAttributes](#commentable-meta-current-user-attributes) | |
 id                      | integer                                                            | the ID of the object
+locked                  | boolean                                                            | `true` if new comments are disabled
 owner_id                | integer?                                                           | User ID which owns the object
 owner_title             | string?                                                            | Object owner type, used for display (`MAPPER` for beatmapset)
 title                   | string                                                             | display title
 type                    | string                                                             | the type of the object
 url                     | string                                                             | url of the object
-locked                  | boolean                                                            | `true` if new comments are disabled
 
 Otherwise if object has been deleted:
 
