@@ -28,18 +28,16 @@ class UserNotificationDigest extends Mailable
     {
     }
 
-    private static function getDetails(Notification $notification)
+    private static function getDetails(Notification $notification): array
     {
         // remove anything not a string because trans doesn't like it.
-        return array_filter($notification->details ?? [], fn ($value) => is_string($value));
+        return array_filter($notification->details ?? [], is_string(...));
     }
 
     private function addToGroups(Notification $notification)
     {
         try {
             $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
-            $baseKey = 'notifications.mail.'.$class::getMailBaseKey($notification);
-            $key = $class::getMailGroupingKey($notification);
 
             if ($class === NewsPostNew::class) {
                 // group news by category
@@ -49,6 +47,9 @@ class UserNotificationDigest extends Mailable
 
                 return;
             }
+
+            $baseKey = 'notifications.mail.'.$class::getMailBaseKey($notification);
+            $key = $class::getMailGroupingKey($notification);
 
             if (!isset($this->groups[$key])) {
                 $details = static::getDetails($notification);
