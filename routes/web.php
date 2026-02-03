@@ -474,7 +474,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
 
             Route::group(['as' => 'discussions.', 'prefix' => 'discussions'], function () {
-                Route::apiResource('posts', 'BeatmapDiscussionPostsController', ['only' => ['index']]);
+                Route::apiResource('posts', 'BeatmapDiscussionPostsController', ['only' => ['index', 'store', 'update']]);
                 Route::apiResource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
             });
 

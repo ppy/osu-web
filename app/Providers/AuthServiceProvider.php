@@ -76,6 +76,7 @@ class AuthServiceProvider extends ServiceProvider
             'group_permissions' => '',
             'identify' => osu_trans('api.scopes.identify'),
             'public' => osu_trans('api.scopes.public'),
+            'beatmap_discussion.write' => osu_trans('api.scopes.beatmap_discussion.write'),
         ]);
     }
 }
