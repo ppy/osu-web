@@ -14,6 +14,7 @@
           "ssh": 3
       },
       "hit_accuracy": 92.19,
+      "accuracy": 0.9219,
       "is_ranked": true,
       "level": {
           "current": 30,

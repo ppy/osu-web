@@ -15,19 +15,25 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Read versions
+        id: versions
+        run: |
+          echo "php_version=$(cat ./.php-version)" >> $GITHUB_OUTPUT
+          echo "node_version=$(cat ./.node-version)" >> $GITHUB_OUTPUT
 
       - name: Setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: yarn
-          node-version: '20'
+          node-version: '${{ steps.versions.outputs.node_version }}'
 
       - name: Set php version
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2, cs2pr
-          php-version: '8.4'
+          php-version: '${{ steps.versions.outputs.php_version }}'
           coverage: none
 
       - name: Get composer cache directory
@@ -35,7 +41,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}

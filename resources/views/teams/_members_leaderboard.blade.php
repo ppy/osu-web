@@ -50,7 +50,7 @@
                     ])
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {{ format_percentage($stats->accuracy_new / 100) }}
+                    {{ format_percentage($stats->accuracy_normalised) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     {{ i18n_number_format($stats->playcount) }}

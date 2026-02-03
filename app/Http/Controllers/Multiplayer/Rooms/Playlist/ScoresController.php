@@ -219,7 +219,7 @@ class ScoresController extends BaseController
 
         $score = $scoreLink->score;
         if ($score->wasRecentlyCreated) {
-            ClientCheck::queueToken($clientTokenData, $score->getKey());
+            ClientCheck::queueToken($clientTokenData, scoreId: $score->getKey());
             $score->queueForProcessing();
         }
 

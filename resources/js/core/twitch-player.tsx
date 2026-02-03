@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import type TwitchEmbedPlayer from 'twitch-embed-player';
-import { fadeOut } from 'utils/fade';
+import { fail } from 'utils/fail';
 import TurbolinksReload from './turbolinks-reload';
 
 declare global {
@@ -15,7 +15,6 @@ declare global {
 }
 
 export default class TwitchPlayer {
-  private readonly playerDivs = document.getElementsByClassName('js-twitch-player');
 
   constructor(private readonly turbolinksReload: TurbolinksReload) {
     document.addEventListener('turbo:load', this.startAll);
@@ -27,39 +26,28 @@ export default class TwitchPlayer {
       ?.then(this.startAll);
   }
 
-  noCookieDiv(playerDivId: string) {
-    return document.querySelector<HTMLElement>(`.js-twitch-player--no-cookie[data-player-id='${playerDivId}']`);
-  }
-
-  openPlayer(div: HTMLElement) {
-    if (!div.classList.contains('hidden')) return;
-
-    div.classList.remove('hidden');
-    fadeOut(this.noCookieDiv(div.id));
-  }
-
   start(div: HTMLElement) {
     if (window.Twitch == null
       || div.dataset.twitchPlayerStarted === 'true') return;
 
     div.dataset.twitchPlayerStarted = 'true';
-    const options = {
-      channel: div.dataset.channel,
+    new window.Twitch.Player(div.id, {
+      autoplay: div.dataset.autoplay === 'true',
+      channel: div.dataset.channel ?? fail(`twitch player ${div.id} is missing channel data`),
       height: '100%',
       width: '100%',
-    };
-
-    const player = new window.Twitch.Player(div.id, options);
-    player.addEventListener(window.Twitch.Player.PLAY, () => this.openPlayer(div));
+    });
   }
 
   startAll = () => {
-    if (this.playerDivs.length === 0) return;
+    const playerDivs = document.querySelectorAll('.js-twitch-player');
+
+    if (playerDivs.length === 0) return;
 
     if (window.Twitch == null) {
       this.initializeEmbed();
     } else {
-      for (const div of this.playerDivs) {
+      for (const div of playerDivs) {
         if (div instanceof HTMLElement) {
           this.start(div);
         }

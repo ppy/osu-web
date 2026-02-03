@@ -34,7 +34,7 @@ class RoomsController extends Controller
     {
         Room::findOrFail($id)->endGame(\Auth::user());
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function events($id)
@@ -242,7 +242,7 @@ class RoomsController extends Controller
         $room = Room::findOrFail($roomId);
         $room->part($currentUser);
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function show($id)

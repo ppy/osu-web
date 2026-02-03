@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
         'preparation' => 'We are currently preparing this contest. Please wait patiently!',
         'drop_here' => 'Drop your entry here',
+        'allowed_extensions' => ':types files are accepted',
+        'max_size' => 'Max size: :limit',
+        'required_dimensions' => 'Dimensions must be :widthx:height',
         'download' => 'Download .osz',
-
-        'wrong_type' => [
-            'art' => 'Only .jpg and .png files are accepted for this contest.',
-            'beatmap' => 'Only .osu files are accepted for this contest.',
-            'music' => 'Only .mp3 files are accepted for this contest.',
-        ],
-
+        'wrong_file_type' => 'Only :types files are accepted for this contest.',
         'wrong_dimensions' => 'Entries for this contest must be :widthx:height',
         'too_big' => 'Entries for this contest can only be up to :limit.',
     ],

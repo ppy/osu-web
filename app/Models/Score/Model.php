@@ -6,7 +6,6 @@
 namespace App\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
-use App\Libraries\Mods;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\Traits\Scoreable;
@@ -37,65 +36,6 @@ abstract class Model extends BaseModel
         }
 
         return get_class_namespace(static::class).'\\'.studly_case($ruleset);
-    }
-
-    public function scopeDefault($query)
-    {
-        return $query
-            ->whereHas('beatmap.beatmapset')
-            ->orderBy('score_id', 'desc');
-    }
-
-    public function scopeForUser($query, User $user)
-    {
-        return $query->where('user_id', $user->user_id);
-    }
-
-    public function scopeVisibleUsers($query)
-    {
-        return $query->whereHas('user', function ($userQuery) {
-            $userQuery->default();
-        });
-    }
-
-    public function scopeWithMods($query, $modsArray)
-    {
-        return $query->where(function ($q) use ($modsArray) {
-            $bitset = app('mods')->idsToBitset($modsArray);
-            $preferenceMask = ~Mods::LEGACY_PREFERENCE_MODS_BITSET;
-
-            if (in_array('NM', $modsArray, true)) {
-                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
-            }
-
-            if ($bitset > 0) {
-                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
-            }
-        });
-    }
-
-    public function scopeWithoutMods($query, $modsArray)
-    {
-        $bitset = app('mods')->idsToBitset($modsArray);
-
-        return $query->whereRaw('enabled_mods & ? = 0', $bitset);
-    }
-
-    public function beatmap()
-    {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
-    }
-
-    public function best()
-    {
-        $basename = get_class_basename(static::class);
-
-        return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getAttribute($key)
@@ -133,7 +73,6 @@ abstract class Model extends BaseModel
 
             'beatmap',
             'best',
-            'replayViewCount',
             'user' => $this->getRelationValue($key),
         };
     }

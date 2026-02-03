@@ -121,12 +121,13 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->name('download-legacy');
+        Route::get('{ruleset}/{score}/download', 'ScoresController@download')->name('download-legacy');
 
-        Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+        Route::get('{ruleset}/{score}', 'ScoresController@show')->name('show-legacy');
+        Route::get('{score}', 'ScoresController@show')->name('show');
     });
 
-    Route::get('ss/{screenshot}/{hash}', 'ScreenshotsController@show')->name('screenshots.show');
+    Route::get('ss/{screenshot}/{hash?}', 'ScreenshotsController@show')->name('screenshots.show');
 
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
         Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
@@ -545,9 +546,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+            Route::get('{ruleset}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
-            Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+            Route::get('{ruleset}/{score}', 'ScoresController@show')->name('show-legacy');
+            Route::get('{score}', 'ScoresController@show')->name('show');
 
             Route::get('/', 'ScoresController@index');
         });
@@ -556,6 +558,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
             Route::delete('/', 'ScorePinsController@destroy')->name('destroy');
             Route::put('/', 'ScorePinsController@store')->name('store');
+        });
+
+        Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+            Route::get('{ruleset?}', 'TeamsController@show')->middleware('require-scopes:public')->name('show');
         });
 
         Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -594,6 +600,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
+        //  PUT /api/v2/me/achievements/:achievementId
+        Route::put('me/achievements/{achievementId}', 'UsersController@unlockClientSideAchievement')->name('unlock-client-side-achievement');
 
         Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
 

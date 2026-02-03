@@ -145,6 +145,6 @@ class FriendsController extends Controller
 
         dispatch(new UpdateUserFollowerCountCache($id));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }

@@ -4,12 +4,12 @@
 import ScorePin from 'components/score-pin';
 import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { rulesetName } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
-import { canBeReported, hasReplay, hasShow, scoreDownloadUrl, scoreUrl } from 'utils/score-helper';
+import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 
@@ -22,7 +22,6 @@ interface Props {
 export class PlayDetailMenu extends React.Component<Props> {
   render() {
     const { score, user } = this.props;
-    const ruleset = rulesetName(score.ruleset_id);
 
     const children = (dismiss: () => void) => (
       <div className='simple-menu'>
@@ -35,7 +34,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         )}
 
         {hasShow(score) && (
-          <a className='simple-menu__item' href={scoreUrl(score)}>
+          <a className='simple-menu__item' href={route('scores.show', { score: score.id })}>
             {trans('users.show.extra.top_ranks.view_details')}
           </a>
         )}
@@ -43,7 +42,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         {hasReplay(score) && (
           <a
             className='simple-menu__item js-login-required--click'
-            href={scoreDownloadUrl(score)}
+            href={route('scores.download', { score: score.id })}
             onClick={dismiss}
           >
             {trans('users.show.extra.top_ranks.download_replay')}
@@ -54,8 +53,8 @@ export class PlayDetailMenu extends React.Component<Props> {
           <ReportReportable
             className='simple-menu__item'
             onFormOpen={dismiss}
-            reportableId={(score.best_id ?? score.id).toString()}
-            reportableType={score.type === 'solo_score' ? score.type : `score_best_${ruleset}`}
+            reportableId={score.id.toString()}
+            reportableType={score.type}
             user={user}
           />
         )}

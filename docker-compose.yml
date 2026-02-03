@@ -13,8 +13,7 @@ x-env: &x-env
 
 x-web: &x-web
   build:
-    context: ./docker/development
-    dockerfile: ../../Dockerfile.development
+    dockerfile: Dockerfile.development
   init: true
   volumes:
     - .:/app

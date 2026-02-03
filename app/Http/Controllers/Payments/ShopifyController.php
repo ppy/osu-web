@@ -43,7 +43,7 @@ class ShopifyController extends Controller
             ];
             Log::info('Shopify callback with missing orderId', $data);
 
-            return response([], 204);
+            return response()->noContent();
         }
 
         /** @var Order $order */
@@ -63,7 +63,7 @@ class ShopifyController extends Controller
                 break;
             case 'orders/create':
                 if ($order->isShipped() && $this->isDuplicateOrder()) {
-                    return response([], 204);
+                    return response()->noContent();
                 }
 
                 (new OrderCheckout($order))->completeCheckout();
@@ -85,7 +85,7 @@ class ShopifyController extends Controller
                 break;
         }
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     private function getWebookType()
