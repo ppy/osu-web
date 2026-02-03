@@ -8,6 +8,7 @@ namespace App\Mail;
 use App\Exceptions\InvalidNotificationException;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Jobs\Notifications\NewsPostNew;
+use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Mail\Mailable;
@@ -43,7 +44,7 @@ class UserNotificationDigest extends Mailable
                 // group news by category
                 $details = static::getDetails($notification);
                 $details['link'] = NewsPostNew::getMailLink($notification);
-                $this->news[] = $details;
+                $this->news[$details['series']][] = $details;
 
                 return;
             }
@@ -84,10 +85,17 @@ class UserNotificationDigest extends Mailable
             $this->addToGroups($notification);
         }
 
+        $news = [];
+        foreach (NewsPost::SERIES as $series) {
+            if (isset($this->news[$series])) {
+                $news[$series] = $this->news[$series];
+            }
+        }
+
         return $this
             ->text('emails.user_notification_digest', [
                 'groups' => array_values($this->groups),
-                'news' => $this->news,
+                'news' => $news,
                 'user' => $this->user,
             ])
             ->subject(osu_trans('mail.user_notification_digest.subject'));
