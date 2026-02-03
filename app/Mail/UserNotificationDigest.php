@@ -19,12 +19,6 @@ class UserNotificationDigest extends Mailable
     private array $groups = [];
     private array $news = [];
 
-    private static function getDetails(Notification $notification)
-    {
-        // remove anything not a string because trans doesn't like it.
-        return array_filter($notification->details ?? [], fn ($value) => is_string($value));
-    }
-
     /**
      * Create a new message instance.
      *
@@ -32,6 +26,12 @@ class UserNotificationDigest extends Mailable
      */
     public function __construct(private array $notifications, private User $user)
     {
+    }
+
+    private static function getDetails(Notification $notification)
+    {
+        // remove anything not a string because trans doesn't like it.
+        return array_filter($notification->details ?? [], fn ($value) => is_string($value));
     }
 
     private function addToGroups(Notification $notification)
