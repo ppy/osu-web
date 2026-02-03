@@ -83,9 +83,6 @@ class UserNotificationDigest extends Mailable
             $this->addToGroups($notification);
         }
 
-        $groups = array_values($this->groups);
-        $user = $this->user;
-
         return $this
             ->text('emails.user_notification_digest', [
                 'groups' => array_values($this->groups),
