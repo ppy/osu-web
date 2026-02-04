@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import UserLink from 'components/user-link';
 import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
 import { rulesetIdToName } from 'interfaces/ruleset';
@@ -76,7 +76,7 @@ export default observer(function Score(props: Props) {
           )}
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'mods')}>
-          {props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+          <Mods mods={props.score.mods} />
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'stats')}>
           <div className={classWithModifiers('mp-history-player-score__stat-row', 'first')}>
