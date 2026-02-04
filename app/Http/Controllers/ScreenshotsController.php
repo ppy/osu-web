@@ -38,7 +38,7 @@ class ScreenshotsController extends Controller
     {
         $screenshot = Screenshot::lookup(intval($id), $hash);
         $file = $screenshot?->fetch();
-        if ($screenshot === null || $file === null) {
+        if ($file === null) {
             return response('Not found', 404);
         }
 
