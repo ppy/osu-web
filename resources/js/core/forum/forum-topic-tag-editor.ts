@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { route } from '../../laroute';
-import { onError } from '../../utils/ajax';
+import { onError } from 'utils/ajax';
 
-type Event = JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>;
+type Event = JQuery.TriggeredEvent<unknown, unknown, HTMLInputElement, unknown>;
 
 export default class ForumTopicTagEditor {
   private readonly debouncedUpdate;
@@ -15,7 +15,7 @@ export default class ForumTopicTagEditor {
   constructor() {
     this.debouncedUpdate = debounce(this.update, 1000);
 
-    $(document).on('click', '.js-forum-topic-tag-editor-tag', this.onClick);
+    $(document).on('change', '.js-forum-topic-tag-editor-checkbox', this.onChange);
   }
 
   private getEnabledTags(container: HTMLElement) {
@@ -24,31 +24,22 @@ export default class ForumTopicTagEditor {
       .map((el) => el.name);
   }
 
-  private readonly onClick = (e: Event) => {
+  private readonly onChange = (e: Event) => {
+    const target = e.currentTarget;
+    const container = target.closest<HTMLElement>('.js-forum-topic-tag-editor');
+
+    if (container == null) {
+      throw new Error('missing container');
+    }
+
     this.xhr?.abort();
 
-    const target = e.currentTarget;
-    const editor: HTMLElement | null = target.closest('.js-forum-topic-tag-editor');
-
-    if (editor == null) {
-      throw new Error('could not find editor element');
-    }
+    // set the checkbox state on both desktop and mobile copies of the editor element
+    $(`.js-forum-topic-tag-editor-checkbox[name="${target.name}"]`)
+      .prop('checked', target.checked);
 
     this.setLoading();
-
-    const tagToApply = target.dataset.issueTag;
-
-    if (tagToApply === null || tagToApply === undefined) {
-      return;
-    }
-
-    const checkbox = target.querySelector('.js-forum-topic-tag-editor-checkbox') as HTMLInputElement;
-
-    // set the checkbox state on both desktop and mobile copies of the editor element
-    $(`.js-forum-topic-tag-editor-checkbox[name="${tagToApply}"]`)
-      .prop('checked', !checkbox.checked);
-
-    this.debouncedUpdate(editor);
+    this.debouncedUpdate(container);
   };
 
   private readonly setComplete = () => {
@@ -69,7 +60,7 @@ export default class ForumTopicTagEditor {
       topic: editor.dataset.topicId,
     }));
 
-    this.xhr.catch(onError)
-      .done(this.setComplete);
+    this.xhr.done(this.setComplete)
+      .fail(onError);
   };
 }

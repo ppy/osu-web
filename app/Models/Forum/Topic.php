@@ -152,7 +152,7 @@ class Topic extends Model implements AfterCommit
      */
     public static function getIssueTagsFlat(): array
     {
-        return array_merge(...array_values(static::ISSUE_TAGS));
+        return array_flatten(static::ISSUE_TAGS);
     }
 
     public static function createNew($forum, $params, $poll = null)

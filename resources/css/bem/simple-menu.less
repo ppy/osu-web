@@ -194,7 +194,7 @@
     font-size: @font-size--normal;
     font-weight: 900;
     text-transform: uppercase;
-    color: #ffffff;
+    color: #fff;
   }
 
   &__item {
@@ -242,12 +242,9 @@
     .@{_top}--forum-topic-tag-editor & {
       display: grid;
       grid-template-columns: min-content 35px min-content min-content;
-      padding: @_gutter @_gutter * 2;
+      font-size: inherit;
+      font-weight: inherit;
       align-items: center;
-
-      &::before {
-        display: none;
-      }
     }
 
     .@{_top}--popup-menu-compact & {
@@ -289,8 +286,7 @@
     will-change: opacity;
     margin-left: 5px;
 
-    .js-forum-topic-watch-ajax--loading &,
-    .js-forum-topic-tag-editor-ajax--loading & {
+    .js-forum-topic-watch-ajax--loading & {
       opacity: 1;
     }
   }

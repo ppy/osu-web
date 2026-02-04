@@ -6,17 +6,12 @@
     $state = $topic->hasIssueTag($issueTag);
     $slug = str_slug($issueTag);
 ?>
-<div
-    class="simple-menu__item js-forum-topic-tag-editor-tag"
-    data-issue-tag="{{ $issueTag }}"
->
+
+<label class="simple-menu__item">
     <label class="osu-switch-v2">
         <input type="checkbox" name="{{ $issueTag }}" class="osu-switch-v2__input js-forum-topic-tag-editor-checkbox" {{ $state ? 'checked' : '' }}>
         <span class="osu-switch-v2__content"></span>
     </label>
     <span class="simple-menu__item-icon">{!! issue_icon($issueTag) !!}</span>
     <span>{{ $issueTag }}</span>
-    <span class="simple-menu__item-loading-spinner">
-        {!! spinner() !!}
-    </span>
-</div>
+</label>
