@@ -108,6 +108,13 @@ export class SearchContent extends React.Component<Props> {
               </div>
             )}
             <div className='beatmapsets__content js-audio--group'>
+              {this.controller.filters.rank != null &&
+                <div className='wiki-notice wiki-notice--beatmapset-search'>
+                  <span className='fas fa-info-circle' />
+                  {' '}
+                  {trans('beatmaps.listing.search.rank_filter_note')}
+                </div>
+              }
               {this.controller.isSupporterMissing ? this.renderSupporterRequired() : this.renderList() }
             </div>
             {!this.controller.isSupporterMissing && (
