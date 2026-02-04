@@ -128,7 +128,7 @@ class MessagesController extends BaseController
             $messages = $messages->orderBy('message_id', 'desc')->get()->reverse();
         }
 
-        $messages = Message::filter($channel, $messages);
+        $messages = Message::filter($messages, $channel, $user->getKey());
 
         if (!$returnObject) {
             return json_collection(

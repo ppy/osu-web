@@ -28,12 +28,12 @@ class Message extends Model implements ReportableInterface
 {
     use Reportable;
 
-    public static function filter(Channel $channel, iterable $messages): iterable
+    public static function filter(iterable $messages, Channel $channel, ?int $userId): iterable
     {
-        return static::filterUserCommands(static::filterBacklogs($channel, $messages));
+        return static::filterUserCommands(static::filterBacklogs($messages, $channel), $userId);
     }
 
-    public static function filterBacklogs(Channel $channel, iterable $messages): iterable
+    public static function filterBacklogs(iterable $messages, Channel $channel): iterable
     {
         if (!$channel->isPublic()) {
             return $messages;
@@ -51,11 +51,11 @@ class Message extends Model implements ReportableInterface
         return $ret;
     }
 
-    public static function filterUserCommands(iterable $messages): iterable
+    public static function filterUserCommands(iterable $messages, ?int $userId): iterable
     {
         $ret = [];
         foreach ($messages as $message) {
-            if (!$message->isUserCommand()) {
+            if ($message->user_id === $userId || !$message->isUserCommand()) {
                 $ret[] = $message;
             }
         }

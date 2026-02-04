@@ -81,7 +81,6 @@ class ChannelTransformer extends TransformerAbstract
     {
         if ($channel->exists) {
             $messages = Message::filter(
-                $channel,
                 $channel
                     ->messages()
                     // assumes sender will be included by the Message transformer
@@ -90,6 +89,8 @@ class ChannelTransformer extends TransformerAbstract
                     ->limit(50)
                     ->get()
                     ->reverse(),
+                $channel,
+                $this->user?->getKey(),
             );
         } else {
             $messages = [];
