@@ -37,10 +37,10 @@ class ScreenshotsController extends Controller
     public function show($id, ?string $hash = null)
     {
         $screenshot = Screenshot::lookup(intval($id), $hash);
-        abort_if($screenshot === null, 404);
-
-        $file = $screenshot->fetch();
-        abort_if($file === null, 404);
+        $file = $screenshot?->fetch();
+        if ($screenshot === null || $file === null) {
+            return response('Not found', 404);
+        }
 
         $screenshot->incrementInstance('hits', 1, [
             'last_access' => Carbon::now(),
