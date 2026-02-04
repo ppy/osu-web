@@ -245,6 +245,7 @@ return [
             'prompt' => 'type in keywords...',
             'login_required' => 'Sign in to search.',
             'options' => 'More Search Options',
+            'rank_filter_note' => 'Profile top rank counts and results shown on this page are based on your highest "standardised" (aka "lazer") scores on beatmaps.',
             'supporter_filter' => 'Filtering by :filters requires an active osu!supporter tag',
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
