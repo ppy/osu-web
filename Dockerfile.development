@@ -39,7 +39,7 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       util-linux && \
     microdnf clean all
 
-RUN npm install -g yarn
+RUN corepack enable yarn
 
 RUN curl -L "https://getcomposer.org/download/latest-2.x/composer.phar" > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
 
