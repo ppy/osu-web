@@ -480,9 +480,8 @@ class Channel extends Model
 
             if (!$message->isUserCommand()) {
                 $message->dispatchNotification();
-
-                new ChatMessageEvent($message)->broadcast(true);
             }
+            new ChatMessageEvent($message)->broadcast(true);
         });
 
         datadog_increment('chat.channel.send', ['target' => $this->type]);
