@@ -79,6 +79,20 @@ class FollowsControllerTest extends TestCase
         $this->assertSame(Follow::count(), $initialCount + 1);
     }
 
+    public function testStoreInvalidNotifiableType(): void
+    {
+        $user = User::factory()->create();
+
+        $this
+            ->actingAsVerified($user)
+            ->json('POST', route('follows.store'), [
+                'follow' => [
+                    'notifiable_type' => 'invalid type',
+                    'notifiable_id' => 1,
+                ],
+            ])->assertStatus(422);
+    }
+
     public function testStoreDuplicate()
     {
         $user = User::factory()->create();
