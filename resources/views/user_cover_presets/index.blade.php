@@ -98,41 +98,38 @@
                             data-reload-on-success="1"
                             method="POST"
                         >
-                            <p>
-                                <input type="hidden" name="_method" value="PUT" />
-                                <button
-                                    class="btn-osu-big btn-osu-big--rounded-small"
-                                    title="{{ osu_trans('user_cover_presets.index.item.'.(
-                                        $isActive ? 'click_to_disable' : 'click_to_enable'
-                                    )) }}"
-                                >
-                                    @if ($isActive)
-                                        <span class="fas fa-circle"></span>
-                                        {{ osu_trans('user_cover_presets.index.item.enabled') }}
-                                    @else
-                                        <span class="far fa-circle"></span>
-                                        {{ osu_trans('user_cover_presets.index.item.disabled') }}
-                                    @endif
-                                </button>
-                            </p>
+                            <input type="hidden" name="_method" value="PUT" />
+                            <button
+                                class="btn-osu-big btn-osu-big--rounded-small"
+                                title="{{ osu_trans('user_cover_presets.index.item.'.(
+                                    $isActive ? 'click_to_disable' : 'click_to_enable'
+                                )) }}"
+                            >
+                                @if ($isActive)
+                                    <span class="fas fa-circle"></span>
+                                    {{ osu_trans('user_cover_presets.index.item.enabled') }}
+                                @else
+                                    <span class="far fa-circle"></span>
+                                    {{ osu_trans('user_cover_presets.index.item.disabled') }}
+                                @endif
+                            </button>
                         </form>
 
                         <form
                             action="{{ route('user-cover-presets.update', $item) }}"
+                            class="user-cover-preset-replace"
                             enctype="multipart/form-data"
                             method="POST"
                             data-reload-on-success="1"
                         >
-                            <div class="user-cover-preset-replace">
-                                @csrf
-                                <input type="hidden" name="_method" value="PUT" />
-                                <input class="user-cover-preset-replace__input" type="file" name="file" accept="image/*" required />
-                                <button class="btn-osu-big btn-osu-big--rounded-small">
-                                    {{ osu_trans('user_cover_presets.index.item.'.(
-                                        $imageUrl === null ? 'image_store' : 'image_update'
-                                    )) }}
-                                </button>
-                            </div>
+                            @csrf
+                            <input type="hidden" name="_method" value="PUT" />
+                            <input class="user-cover-preset-replace__input" type="file" name="file" accept="image/*" required />
+                            <button class="btn-osu-big btn-osu-big--rounded-small">
+                                {{ osu_trans('user_cover_presets.index.item.'.(
+                                    $imageUrl === null ? 'image_store' : 'image_update'
+                                )) }}
+                            </button>
                         </form>
                     </div>
 
