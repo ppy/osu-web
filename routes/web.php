@@ -7,6 +7,7 @@ use App\Http\Middleware\ThrottleRequests;
 
 Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
 Route::get('media-url', 'ProxyMediaController')->name('media-url');
+Route::get('ss/{screenshot}/{hash?}', 'ScreenshotsController@show')->name('screenshots.show');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -126,8 +127,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('{ruleset}/{score}', 'ScoresController@show')->name('show-legacy');
         Route::get('{score}', 'ScoresController@show')->name('show');
     });
-
-    Route::get('ss/{screenshot}/{hash?}', 'ScreenshotsController@show')->name('screenshots.show');
 
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
         Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');

@@ -211,12 +211,12 @@ class UsersController extends Controller
         }
 
         try {
-            ClientCheck::parseToken($request);
+            $clientTokenData = ClientCheck::parseToken($request);
         } catch (HttpException $e) {
             return static::storeClientDisabledError();
         }
 
-        return $this->storeUser($request->all());
+        return $this->storeUser($request->all(), $clientTokenData);
     }
 
     public function storeWeb()
@@ -253,7 +253,7 @@ class UsersController extends Controller
             }
         }
 
-        return $this->storeUser($rawParams);
+        return $this->storeUser($rawParams, null);
     }
 
     /**
@@ -990,7 +990,7 @@ class UsersController extends Controller
         return $userJson;
     }
 
-    private function storeUser(array $rawParams)
+    private function storeUser(array $rawParams, ?array $clientTokenData)
     {
         if (!$GLOBALS['cfg']['osu']['user']['allow_registration']) {
             return abort(403, 'User registration is currently disabled');
@@ -1046,6 +1046,10 @@ class UsersController extends Controller
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $user->getKey())
                 );
+            }
+
+            if ($clientTokenData !== null) {
+                ClientCheck::queueToken($clientTokenData, userId: $user->getKey());
             }
 
             if (is_json_request()) {

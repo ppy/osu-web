@@ -49,7 +49,7 @@ class ScoresController extends BaseController
         });
 
         if ($score->wasRecentlyCreated) {
-            ClientCheck::queueToken($clientTokenData, $score->getKey());
+            ClientCheck::queueToken($clientTokenData, scoreId: $score->getKey());
             $score->queueForProcessing();
         }
 

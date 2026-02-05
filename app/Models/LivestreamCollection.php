@@ -12,13 +12,21 @@ use GuzzleHttp\Client;
 class LivestreamCollection
 {
     const FEATURED_CACHE_KEY = 'featuredStream:arr:v2';
+    const FEATURED_DATA_CACHE_KEY = 'featuredStream:data';
 
     private $streams;
     private $token;
 
     public static function promote($id)
     {
+        if (empty($id)) {
+            Cache::forget(static::FEATURED_CACHE_KEY);
+            Cache::forget(static::FEATURED_DATA_CACHE_KEY);
+            return;
+        }
+
         Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
+        Cache::forget(static::FEATURED_DATA_CACHE_KEY);
     }
 
     public function all()
@@ -72,15 +80,27 @@ class LivestreamCollection
 
     public function featured()
     {
-        $featuredStreamId = presence((string) Cache::get(static::FEATURED_CACHE_KEY));
+        $cacheValues = Cache::many([static::FEATURED_DATA_CACHE_KEY, static::FEATURED_CACHE_KEY]);
+        $cachedStream = $cacheValues[static::FEATURED_DATA_CACHE_KEY];
+        $featuredStreamId = presence((string) $cacheValues[static::FEATURED_CACHE_KEY]);
 
-        if ($featuredStreamId !== null) {
-            foreach ($this->all() as $stream) {
-                if ($stream->data['id'] === $featuredStreamId) {
-                    return $stream;
-                }
+        if ($cachedStream !== null) {
+            return $cachedStream;
+        }
+
+        if ($featuredStreamId === null) {
+            return null;
+        }
+
+        foreach ($this->all() as $stream) {
+            if ($stream->data['id'] === $featuredStreamId) {
+                Cache::put(static::FEATURED_DATA_CACHE_KEY, $stream, 300);
+                return $stream;
             }
         }
+
+        Cache::forget(static::FEATURED_CACHE_KEY);
+        return null;
     }
 
     public function token()
