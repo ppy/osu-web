@@ -89,16 +89,16 @@
                     </label>
 
                     <div>
-                        <p>
-                            <form
-                                action="{{ route('user-cover-presets.update', [
-                                    'user_cover_preset' => $item->getKey(),
-                                    'active' => $item->active ? '0' : '1',
-                                ]) }}"
-                                class="u-contents"
-                                data-reload-on-success="1"
-                                method="POST"
-                            >
+                        <form
+                            action="{{ route('user-cover-presets.update', [
+                                'user_cover_preset' => $item->getKey(),
+                                'active' => $item->active ? '0' : '1',
+                            ]) }}"
+                            class="u-contents"
+                            data-reload-on-success="1"
+                            method="POST"
+                        >
+                            <p>
                                 <input type="hidden" name="_method" value="PUT" />
                                 <button
                                     class="btn-osu-big btn-osu-big--rounded-small"
@@ -114,16 +114,16 @@
                                         {{ osu_trans('user_cover_presets.index.item.disabled') }}
                                     @endif
                                 </button>
-                            </form>
-                        </p>
-                        <p>
-                            <form
-                                action="{{ route('user-cover-presets.update', $item) }}"
-                                enctype="multipart/form-data"
-                                method="POST"
-                                class="user-cover-preset-replace"
-                                data-reload-on-success="1"
-                            >
+                            </p>
+                        </form>
+
+                        <form
+                            action="{{ route('user-cover-presets.update', $item) }}"
+                            enctype="multipart/form-data"
+                            method="POST"
+                            data-reload-on-success="1"
+                        >
+                            <div class="user-cover-preset-replace">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT" />
                                 <input class="user-cover-preset-replace__input" type="file" name="file" accept="image/*" required />
@@ -132,8 +132,8 @@
                                         $imageUrl === null ? 'image_store' : 'image_update'
                                     )) }}
                                 </button>
-                            </form>
-                        </p>
+                            </div>
+                        </form>
                     </div>
 
                     @if ($imageUrl === null)
