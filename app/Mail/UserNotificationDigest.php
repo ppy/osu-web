@@ -39,11 +39,12 @@ class UserNotificationDigest extends Mailable
     {
         try {
             $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
+            $link = $class::getMailLink($notification);
 
             if ($class === NewsPostNew::class) {
                 // group news by category
                 $details = static::getDetails($notification);
-                $details['link'] = NewsPostNew::getMailLink($notification);
+                $details['link'] = $link;
                 $this->news[$details['series']][] = $details;
 
                 return;
@@ -67,7 +68,6 @@ class UserNotificationDigest extends Mailable
                 ];
             }
 
-            $link = $class::getMailLink($notification);
             $this->groups[$key]['links'][$link] = '';
         } catch (InvalidNotificationException $e) {
             log_error($e);
