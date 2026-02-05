@@ -33,6 +33,7 @@
 
         <div class="user-cover-preset-table">
             <div class="user-cover-preset-table__row">
+                <label>
                     @include('objects._switch', ['locals' => [
                         'additionalClass' => '
                             js-user-cover-preset-batch-enable
@@ -42,7 +43,7 @@
                         'modifiers' => 'grid',
                         'name' => 'select-all',
                     ]])
-
+                </label>
                 <div class="user-cover-preset-table__toolbar">
                     <button
                         class="js-user-cover-preset-batch-enable btn-osu-big btn-osu-big--rounded-small"
@@ -73,7 +74,7 @@
                     id="cover-{{ $id }}"
                 >
                     {{-- wrap in u-contents because shift-click on label doesn't trigger click on the checkbox --}}
-                    <div
+                    <label
                         class="u-contents js-user-cover-preset-batch-enable"
                         data-action="select"
                     >
@@ -85,7 +86,7 @@
                             'modifiers' => 'grid',
                             'name' => 'ids[]',
                         ]])
-                    </div>
+                    </label>
 
                     <div>
                         <p>
