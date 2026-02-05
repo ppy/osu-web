@@ -8,10 +8,11 @@
 ?>
 
 <label class="simple-menu__item">
-    <label class="osu-switch-v2">
-        <input type="checkbox" name="{{ $issueTag }}" class="osu-switch-v2__input js-forum-topic-tag-editor-checkbox" {{ $state ? 'checked' : '' }}>
-        <span class="osu-switch-v2__content"></span>
-    </label>
+    @include('objects._switch', ['locals' => [
+        'additionalClass' => 'js-forum-topic-tag-editor-checkbox',
+        'checked' => $state,
+        'name' => $issueTag,
+    ]])
     <span class="simple-menu__item-icon">{!! issue_icon($issueTag) !!}</span>
     <span>{{ $issueTag }}</span>
 </label>
