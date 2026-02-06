@@ -28,6 +28,9 @@ for envfile in .env .env.testing .env.dusk.local; do
     fi
 done
 
+docker compose build
+docker compose build testjs
+
 if [ -n "${GITHUB_TOKEN:-}" ]; then
     _run composer config -g github-oauth.github.com "${GITHUB_TOKEN}"
     for envfile in .env .env.dusk.local; do
@@ -35,13 +38,9 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
     done
 fi
 
-docker compose build
-
 _run yarn --network-timeout 100000 --frozen-lockfile
 
 _run composer install
-
-_run artisan dusk:chrome-driver
 
 if [ -d storage/oauth-public.key ]; then
     echo "oauth-public.key is a directory. Removing it"
@@ -51,6 +50,7 @@ fi
 if [ ! -f storage/oauth-public.key ]; then
     echo "Generating passport key pair"
     _run artisan passport:keys
+    chmod 644 storage/oauth-public.key
 fi
 
 if [ ! -f .docker/.my.cnf ]; then

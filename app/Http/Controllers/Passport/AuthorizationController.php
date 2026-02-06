@@ -37,6 +37,9 @@ class AuthorizationController extends PassportAuthorizationController
         TokenRepository $tokens
     ) {
         try {
+            if (\Auth::user() === null) {
+                throw new AuthenticationException();
+            }
             return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
         } catch (AuthenticationException $_e) {
             $cancelUrl = $request->fullUrl();

@@ -92,7 +92,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             <div className={`${bn}__score-detail-top-right`}>
               <div className={`${bn}__accuracy-and-weighted-pp`}>
                 <span className={`${bn}__accuracy`}>
-                  {formatNumber(accuracy(score) * 100, 2)}%
+                  {formatNumber(accuracy(score), 2, { style: 'percent' })}
                 </span>
                 {scoreWeight != null && (
                   <span className={`${bn}__weighted-pp`}>
@@ -104,7 +104,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
                   {trans('users.show.extra.top_ranks.pp_weight', {
-                    percentage: `${formatNumber(Math.round(scoreWeight.percentage))}%`,
+                    percentage: `${formatNumber(scoreWeight.percentage / 100, 0, { style: 'percent' })}`,
                   })}
                 </div>
               )}

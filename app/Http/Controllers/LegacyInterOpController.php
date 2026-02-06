@@ -49,7 +49,7 @@ class LegacyInterOpController extends Controller
 
             (new ForumTopicReply($post, $user))->dispatch();
 
-            return response(null, 204);
+            return response()->noContent();
         }
     }
 
@@ -64,7 +64,7 @@ class LegacyInterOpController extends Controller
 
         dispatch(new EsDocument($beatmapset));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function news()
@@ -307,7 +307,7 @@ class LegacyInterOpController extends Controller
             '--user' => $user->getKey(),
         ]);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function userRecalculateRankedScores($id)
@@ -319,7 +319,7 @@ class LegacyInterOpController extends Controller
             $class::recalculateRankedScoreForUser($user);
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     /**

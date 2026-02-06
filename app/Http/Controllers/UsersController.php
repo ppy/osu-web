@@ -21,6 +21,7 @@ use App\Models\IpBan;
 use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
+use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -77,6 +78,7 @@ class UsersController extends Controller
             'me',
             'posts',
             'updatePage',
+            'unlockClientSideAchievement',
         ]]);
 
         $this->middleware('throttle:60,10', ['only' => ['store']]);
@@ -209,12 +211,12 @@ class UsersController extends Controller
         }
 
         try {
-            ClientCheck::parseToken($request);
+            $clientTokenData = ClientCheck::parseToken($request);
         } catch (HttpException $e) {
             return static::storeClientDisabledError();
         }
 
-        return $this->storeUser($request->all());
+        return $this->storeUser($request->all(), $clientTokenData);
     }
 
     public function storeWeb()
@@ -251,7 +253,7 @@ class UsersController extends Controller
             }
         }
 
-        return $this->storeUser($rawParams);
+        return $this->storeUser($rawParams, null);
     }
 
     /**
@@ -683,6 +685,27 @@ class UsersController extends Controller
         }
     }
 
+    public function unlockClientSideAchievement($achievementId)
+    {
+        $user = \Auth::user();
+        $request = \Request::instance();
+        $achievement = app('medals')->byIdOrFail($achievementId);
+
+        abort_unless($achievement->client_side, 422, 'achievement cannot be unlocked');
+
+        try {
+            ClientCheck::parseToken($request);
+        } catch (HttpException $e) {
+            abort(403);
+        }
+
+        $unlocked = UserAchievement::unlock($user, $achievement);
+        abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
+
+        datadog_increment('user_achievement_unlock', ['id' => $achievementId, 'source' => 'client']);
+        return response()->noContent();
+    }
+
     public function updatePage($id)
     {
         $user = User::findOrFail($id);
@@ -967,7 +990,7 @@ class UsersController extends Controller
         return $userJson;
     }
 
-    private function storeUser(array $rawParams)
+    private function storeUser(array $rawParams, ?array $clientTokenData)
     {
         if (!$GLOBALS['cfg']['osu']['user']['allow_registration']) {
             return abort(403, 'User registration is currently disabled');
@@ -976,7 +999,7 @@ class UsersController extends Controller
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {
-            return error_popup('Banned IP', 403);
+            return error_popup('Account registration currently unavailable', 403);
         }
 
         $params = get_params($rawParams, 'user', [
@@ -995,7 +1018,7 @@ class UsersController extends Controller
             $registration->assertValid();
 
             if (get_bool($rawParams['check'] ?? null)) {
-                return response(null, 204);
+                return response()->noContent();
             }
 
             $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);
@@ -1023,6 +1046,10 @@ class UsersController extends Controller
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $user->getKey())
                 );
+            }
+
+            if ($clientTokenData !== null) {
+                ClientCheck::queueToken($clientTokenData, userId: $user->getKey());
             }
 
             if (is_json_request()) {

@@ -90,6 +90,6 @@ class BlocksController extends Controller
 
         $user->blocks()->detach($block);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }
