@@ -41,7 +41,7 @@ class Message extends Model implements ReportableInterface
         return static::filterUserCommands(static::filterBacklogs($messages, $channel), $userId);
     }
 
-    public static function filterBacklogs(iterable $messages, Channel $channel): iterable
+    private static function filterBacklogs(iterable $messages, Channel $channel): iterable
     {
         if (!$channel->isPublic()) {
             return $messages;
@@ -59,7 +59,7 @@ class Message extends Model implements ReportableInterface
         return $ret;
     }
 
-    public static function filterUserCommands(iterable $messages, ?int $userId): iterable
+    private static function filterUserCommands(iterable $messages, ?int $userId): iterable
     {
         $ret = [];
         foreach ($messages as $message) {
