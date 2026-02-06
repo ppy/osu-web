@@ -28,6 +28,14 @@ class Message extends Model implements ReportableInterface
 {
     use Reportable;
 
+    public ?string $uuid = null;
+
+    protected $primaryKey = 'message_id';
+    protected $casts = [
+        'is_action' => 'boolean',
+        'timestamp' => 'datetime',
+    ];
+
     public static function filter(iterable $messages, Channel $channel, ?int $userId): iterable
     {
         return static::filterUserCommands(static::filterBacklogs($messages, $channel), $userId);
@@ -62,14 +70,6 @@ class Message extends Model implements ReportableInterface
 
         return $ret;
     }
-
-    public ?string $uuid = null;
-
-    protected $primaryKey = 'message_id';
-    protected $casts = [
-        'is_action' => 'boolean',
-        'timestamp' => 'datetime',
-    ];
 
     public function channel()
     {
