@@ -126,7 +126,7 @@ class Message extends Model implements ReportableInterface
 
         return strlen($content) > 1
             && $content[0] === '!'
-            && ($content[1] !== ' ' || $content[1] !== '!');
+            && ($content[1] !== ' ' && $content[1] !== '!');
     }
 
     public function reportableAdditionalInfo(): ?string
