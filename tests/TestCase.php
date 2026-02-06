@@ -81,11 +81,6 @@ class TestCase extends BaseTestCase
         );
     }
 
-    protected static function ownClientOrBotScopes(): Collection
-    {
-        return static::allPassportScopeIds()->filter(fn ($scope) => in_array($scope, Token::SCOPES_OWN_CLIENT, true));
-    }
-
     protected static function allPassportScopeIds(): Collection
     {
         return Passport::scopes()->pluck('id');

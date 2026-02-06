@@ -18,13 +18,13 @@ class TokenTest extends TestCase
 {
     public static function dataProviderForTestAuthCodeOwnClientOrBotScopesAllowsSelf()
     {
-        return static::ownClientOrBotScopes()->map(fn ($scope) => [$scope]);
+        return array_map(fn ($scope) => [$scope], Token::SCOPES_OWN_CLIENT);
     }
 
     public static function dataProviderForTestAuthCodeOwnClientOrBotScopesRequiresBotGroup()
     {
         $data = [];
-        foreach (static::ownClientOrBotScopes() as $scope) {
+        foreach (Token::SCOPES_OWN_CLIENT as $scope) {
             $data[] = [$scope, null, true];
             $data[] = [$scope, 'admin', true];
             $data[] = [$scope, 'bng', true];
