@@ -999,7 +999,7 @@ class UsersController extends Controller
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {
-            return error_popup('Banned IP', 403);
+            return error_popup('Account registration currently unavailable', 403);
         }
 
         $params = get_params($rawParams, 'user', [
