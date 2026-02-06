@@ -15,6 +15,14 @@ use Tests\TestCase;
 
 class MessageTest extends TestCase
 {
+    public static function dataProviderForTestFilterOldMessage(): array
+    {
+        return [
+            ['public', true],
+            ['team', false],
+        ];
+    }
+
     public static function dataProviderForTestIsUserCommand(): array
     {
         return [
@@ -27,16 +35,6 @@ class MessageTest extends TestCase
         ];
     }
 
-    public function testFilterOldMessage(): void
-    {
-        $channel = Channel::factory()->make(['type' => Channel::TYPES['public']]);
-        $message = Message::factory()->make([
-            'timestamp' => Carbon::now()->subHours($GLOBALS['cfg']['osu']['chat']['public_backlog_limit'] + 1),
-        ]);
-
-        $this->assertSame(0, count(Message::filter([$message], $channel, null)));
-    }
-
     public function testFilterCurrentMessage(): void
     {
         $channel = Channel::factory()->make(['type' => Channel::TYPES['public']]);
@@ -45,6 +43,17 @@ class MessageTest extends TestCase
         ]);
 
         $this->assertSame(1, count(Message::filter([$message], $channel, null)));
+    }
+
+    #[DataProvider('dataProviderForTestFilterOldMessage')]
+    public function testFilterOldMessage(string $type, bool $isRemoved): void
+    {
+        $channel = Channel::factory()->make(['type' => Channel::TYPES[$type]]);
+        $message = Message::factory()->make([
+            'timestamp' => Carbon::now()->subHours($GLOBALS['cfg']['osu']['chat']['public_backlog_limit'] + 1),
+        ]);
+
+        $this->assertSame($isRemoved ? 0 : 1, count(Message::filter([$message], $channel, null)));
     }
 
     public function testFilterUserCommand(): void
