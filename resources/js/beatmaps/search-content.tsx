@@ -4,7 +4,6 @@
 import BeatmapsetCardSizeSelector from 'beatmaps/beatmapset-card-size-selector';
 import VirtualListMeta from 'beatmaps/virtual-list-meta';
 import BeatmapsetPanel, { beatmapsetCardSizes } from 'beatmapset-panel';
-import Img2x from 'components/img2x';
 import StringWithComponent from 'components/string-with-component';
 import { route } from 'laroute';
 import { chunk } from 'lodash';
@@ -47,9 +46,8 @@ const BeatmapList = ({ items }: RenderProps<number[]>) => (
 
 const EmptyList = () => (
   <div className='beatmapsets__empty'>
-    <Img2x
-      alt={trans('beatmaps.listing.search.not-found')}
-      src='/images/layout/beatmaps/not-found.png'
+    <div
+      className='beatmapsets__empty-not-found'
       title={trans('beatmaps.listing.search.not-found')}
     />
     {trans('beatmaps.listing.search.not-found-quote')}
@@ -150,9 +148,8 @@ export class SearchContent extends React.Component<Props> {
 
     return (
       <div className='beatmapsets__empty'>
-        <Img2x
-          alt={trans('beatmaps.listing.search.supporter_filter', { filters })}
-          src='/images/layout/beatmaps/supporter-required.png'
+        <div
+          className='beatmapsets__empty-supporter-required'
           title={trans('beatmaps.listing.search.supporter_filter', { filters })}
         />
         <p>
