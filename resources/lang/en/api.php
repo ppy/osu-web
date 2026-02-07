@@ -31,6 +31,10 @@ return [
             'read' => 'See who you are following.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => 'Create and manage multiplayer rooms on your behalf.',
+        ],
+
         'public' => 'Read public data on your behalf.',
     ],
 ];
