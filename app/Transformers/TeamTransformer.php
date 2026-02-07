@@ -7,7 +7,9 @@ declare(strict_types=1);
 
 namespace App\Transformers;
 
+use App\Models\DeletedUser;
 use App\Models\Team;
+use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\Primitive;
 
@@ -16,7 +18,7 @@ class TeamTransformer extends TransformerAbstract
     protected array $availableIncludes = [
         'empty_slots',
         'leader',
-        'members_count',
+        'members',
         'statistics',
     ];
 
@@ -49,9 +51,24 @@ class TeamTransformer extends TransformerAbstract
         return $this->item($team->leader, new UserCompactTransformer());
     }
 
-    public function includeMembersCount(Team $team): Primitive
+    public function includeMembers(Team $team): Collection
     {
-        return $this->primitive($team->members->count());
+        $users = [];
+
+        foreach ($team->members->sortBy('user.username', SORT_STRING | SORT_FLAG_CASE) as $member) {
+            $user = $member->userOrDeleted();
+
+            if ($user instanceof DeletedUser || $user->user_id === $team->leader_id) {
+                continue;
+            }
+
+            $users[] = $user;
+        }
+
+        return $this->collection(
+            $users,
+            new UserCompactTransformer(),
+        );
     }
 
     public function includeStatistics(Team $team): Item

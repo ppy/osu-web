@@ -14,7 +14,7 @@ class TeamExtendedTransformer extends TeamTransformer
     protected array $defaultIncludes = [
         'empty_slots',
         'leader',
-        'members_count',
+        'members',
         'statistics',
     ];
 
