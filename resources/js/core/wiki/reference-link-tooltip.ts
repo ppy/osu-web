@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { qtipPosition } from 'utils/qtip-helper';
+
 export default class ReferenceLinkTooltip {
   constructor() {
     $(document).on('mouseover', '.js-reference-link', this.showTooltip);
@@ -18,11 +20,7 @@ export default class ReferenceLinkTooltip {
         },
         fixed: true,
       },
-      position: {
-        at: 'top center',
-        my: 'bottom center',
-        viewport: $(window),
-      },
+      position: qtipPosition('top center'),
       show: {
         delay: 200,
         effect() {
