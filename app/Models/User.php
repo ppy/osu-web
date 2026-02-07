@@ -1330,6 +1330,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
     }
 
+    public function scoreReplayStats(): HasMany
+    {
+        return $this->hasMany(ScoreReplayStats::class);
+    }
+
     public function storeAddresses()
     {
         return $this->hasMany(Store\Address::class);

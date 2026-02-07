@@ -355,6 +355,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('kudosu', 'UsersController@kudosu')->name('kudosu');
         Route::get('recent_activity', 'UsersController@recentActivity')->name('recent-activity');
+        Route::get('score-replay-stats', 'UsersController@scoreReplayStats')->name('score-replay-stats');
         Route::get('scores/{type}', 'UsersController@scores')->name('scores');
         Route::get('beatmapsets/{type}', 'UsersController@beatmapsets')->name('beatmapsets');
     });
