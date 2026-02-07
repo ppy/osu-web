@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import cogBadge from '@images/badges/mods/blanks/mod-cog-badge.svg';
 import ScoreModJson from 'interfaces/score-mod-json';
 import modNames from 'mod-names.json';
 import * as React from 'react';
@@ -131,7 +132,14 @@ export default function Mod({ mod, modifiers }: Props) {
         data-acronym={modJson.acronym}
       />
       {extendedContent !== null && <div className='mod__extender'><span>{extendedContent}</span></div>}
-      {Object.entries(mod.settings ?? {}).length > 0 && <div className='mod__customised-indicator' />}
+      {Object.entries(mod.settings ?? {}).length > 0 && (
+        <div className='mod__customised-indicator'>
+          {/* Doing it this way allows using page css variables */}
+          <svg height='100%' viewBox='0 0 32 32' width='100%'>
+            <use href={`${cogBadge}#icon`} />
+          </svg>
+        </div>
+      )}
     </div>
   );
 }
