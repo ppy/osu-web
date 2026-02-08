@@ -51,6 +51,7 @@ class Notification extends Model
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
     const USER_BEATMAPSET_NEW = 'user_beatmapset_new';
     const USER_BEATMAPSET_REVIVE = 'user_beatmapset_revive';
+    const USER_SILENCED = 'user_silenced';
 
     // sync with resources/js/notification-maps/category.ts
     const NAME_TO_CATEGORY = [
@@ -79,6 +80,7 @@ class Notification extends Model
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
         self::USER_BEATMAPSET_NEW => 'user_beatmapset_new',
         self::USER_BEATMAPSET_REVIVE => 'user_beatmapset_new',
+        self::USER_SILENCED => 'global',
     ];
 
     const NOTIFIABLE_CLASSES = [

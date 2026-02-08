@@ -82,6 +82,8 @@ class AppServiceProvider extends ServiceProvider
         Scribe::normalizeEndpointUrlUsing(fn ($url) => $url);
 
         \Hash::extend('osubcrypt', fn () => new OsuBcryptHasher());
+
+        \App\Models\UserAccountHistory::observe(\App\Observers\UserAccountHistoryObserver::class);
     }
 
     /**
