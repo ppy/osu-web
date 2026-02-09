@@ -218,6 +218,7 @@ return [
     ],
     'team' => [
         'create_require_supporter' => get_bool(env('TEAM_CREATE_REQUIRE_SUPPORTER')) ?? false,
+        'extra_statistics_cache_duration' => get_int(env('TEAM_EXTRA_STATISTICS_CACHE_DURATION')) ?? 600,
         'max_members' => get_int(env('TEAM_MAX_MEMBERS')) ?? 40,
     ],
     'totp' => [
