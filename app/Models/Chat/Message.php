@@ -122,11 +122,7 @@ class Message extends Model implements ReportableInterface
 
     public function isUserCommand(): bool
     {
-        $content = $this->content;
-
-        return strlen($content) > 1
-            && $content[0] === '!'
-            && ($content[1] !== ' ' && $content[1] !== '!');
+        return preg_match('/^![^ !]/', $this->content) === 1;
     }
 
     public function reportableAdditionalInfo(): ?string
