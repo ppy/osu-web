@@ -28,6 +28,7 @@ class CommentableMetaTransformer extends TransformerAbstract
                 'url' => $commentable->url(),
                 'owner_id' => $ownerId ?? null,
                 'owner_title' => $ownerTitle ?? null,
+                'locked' => $commentable->commentLocked(),
             ];
         } else {
             return [

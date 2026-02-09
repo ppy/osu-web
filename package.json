@@ -95,7 +95,7 @@
     "unified": "^10.1.2",
     "uuid": "^11.0.3",
     "watchpack": "^2.4.0",
-    "webpack": "^5.94.0",
+    "webpack": "^5.104.1",
     "webpack-cli": "^5.1.4",
     "webpack-manifest-plugin": "^5.0.0",
     "yargs": "^18.0.0",
