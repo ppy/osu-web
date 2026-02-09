@@ -166,21 +166,30 @@ class TopicsController extends Controller
 
         priv_check('ForumModerate', $topic->forum)->ensureCan();
 
-        $issueTag = presence(Request::input('issue_tag'));
-        $state = get_bool(Request::input('state'));
-        $type = 'issue_tag_'.str_slug($issueTag);
+        $tags = get_arr(Request::input('tags'), 'get_string') ?? [];
 
-        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
+        if (
+            !$topic->isIssue()
+            || array_any($tags, fn ($tag) => !in_array($tag, Topic::getIssueTagsFlat(), true))
+        ) {
             abort(422);
         }
 
-        $this->logModerate('LOG_ISSUE_TAG', compact('issueTag', 'state'), $topic);
+        $currentTags = $topic->issueTags();
+        $removed = array_diff($currentTags, $tags);
+        $added = array_diff($tags, $currentTags);
 
-        $method = $state ? 'setIssueTag' : 'unsetIssueTag';
+        foreach ($removed as $removedTag) {
+            $this->logModerate('LOG_ISSUE_TAG', ['issueTag' => $removedTag, 'state' => false], $topic);
+            $topic->unsetIssueTag($removedTag);
+        }
 
-        $topic->$method($issueTag);
+        foreach ($added as $addedTag) {
+            $this->logModerate('LOG_ISSUE_TAG', ['issueTag' => $addedTag, 'state' => true], $topic);
+            $topic->setIssueTag($addedTag);
+        }
 
-        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
+        return response()->noContent();
     }
 
     /**
