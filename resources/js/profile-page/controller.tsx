@@ -9,6 +9,7 @@ import EventJson from 'interfaces/event-json';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import Ruleset from 'interfaces/ruleset';
 import ScoreJson, { isScoreJsonForUser, ScoreJsonForUser } from 'interfaces/score-json';
+import { ScoreReplayStatsJsonForUser } from 'interfaces/score-replay-stats-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
@@ -35,6 +36,7 @@ const sectionToUrlType = {
   nominatedBeatmapsets: 'nominated',
   pendingBeatmapsets: 'pending',
   rankedBeatmapsets: 'ranked',
+  scoreReplayStats: 'score-replay-stats',
   scoresBest: 'best',
   scoresFirsts: 'firsts',
   scoresPinned: 'pinned',
@@ -50,6 +52,7 @@ interface HistoricalJson {
   monthly_playcounts: UserMonthlyPlaycountJson[];
   recent: PageSectionJson<ScoreJsonForUser>;
   replays_watched_counts: UserReplaysWatchedCountJson[];
+  score_replay_stats: PageSectionJson<ScoreReplayStatsJsonForUser>;
 }
 
 type TopScoresKeys = 'best' | 'firsts' | 'pinned';
@@ -366,6 +369,17 @@ export default class Controller {
 
       case 'recentlyReceivedKudosu':
         // do nothing
+        break;
+
+      case 'scoreReplayStats':
+        if (this.state.lazy.historical?.score_replay_stats != null) {
+          this.xhr[section] = apiShowMore(
+            this.state.lazy.historical.score_replay_stats,
+            'users.score-replay-stats',
+            baseParams,
+          );
+        }
+
         break;
 
       case 'scoresBest':
