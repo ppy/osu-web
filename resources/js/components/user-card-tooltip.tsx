@@ -11,6 +11,7 @@ import { unmountComponentAtNode } from 'react-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
+import { qtipPosition, PositionAt } from 'utils/qtip-helper';
 import { presence } from 'utils/string';
 import { apiLookupUsers } from 'utils/user';
 import { UserCard } from './user-card';
@@ -29,7 +30,7 @@ let inCard = false;
 let tooltipWithActiveMenu: any;
 
 function createTooltipOptions(card: HTMLElement) {
-  const at = card.dataset.tooltipPosition ?? 'right center';
+  const at = (card.dataset.tooltipPosition ?? 'right center') as PositionAt;
 
   return {
     content: {
@@ -45,10 +46,8 @@ function createTooltipOptions(card: HTMLElement) {
       fixed: true,
     },
     position: {
+      ...qtipPosition(at),
       adjust: { scroll: false },
-      at,
-      my: my(at),
-      viewport: $(window),
     },
     show: {
       delay: 200,
@@ -94,21 +93,6 @@ function createTooltip(element: HTMLElement) {
   }
 
   $(element).qtip(createTooltipOptions(card));
-}
-
-function my(at: string) {
-  switch (at) {
-    case 'top center':
-      return 'bottom center';
-    case 'top right':
-      return 'bottom left';
-    case 'left center':
-      return 'right center';
-    case 'bottom center':
-      return 'top center';
-  }
-
-  return 'left center';
 }
 
 function onBeforeCache() {

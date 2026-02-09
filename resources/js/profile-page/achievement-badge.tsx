@@ -5,6 +5,7 @@ import AchievementJson from 'interfaces/achievement-json';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { mergeModifiers, Modifiers } from 'utils/css';
+import { qtipPosition } from 'utils/qtip-helper';
 import { nextVal } from 'utils/seq';
 import AchievementBadgeIcon from './achievement-badge-icon';
 import AchievementBadgePopup from './achievement-badge-popup';
@@ -58,12 +59,8 @@ export default class AchievementBadge extends React.PureComponent<Props> {
       },
       overwrite: false,
       position: {
-        adjust: {
-          scroll: false,
-        },
-        at: 'top center',
-        my: 'bottom center',
-        viewport: $(window),
+        ...qtipPosition('top center'),
+        adjust: { scroll: false },
       },
       show: {
         delay: 200,
