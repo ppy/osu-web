@@ -23,8 +23,8 @@ class Token extends PassportToken implements SessionVerificationInterface
 
     const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.write_manage', 'group_permissions'];
     const SCOPES_EXCLUDE_FROM_ALL = ['delegate', 'group_permissions'];
-    const SCOPES_OWN_CLIENT = ['chat.read', 'chat.write', 'chat.write_manage'];
-    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate', 'forum.write', 'forum.write_manage', 'group_permissions'];
+    const SCOPES_OWN_CLIENT = ['chat.read', 'chat.write', 'chat.write_manage', 'multiplayer.write_manage'];
+    const SCOPES_REQUIRE_DELEGATION = ['chat.write', 'chat.write_manage', 'delegate', 'forum.write', 'forum.write_manage', 'group_permissions', 'multiplayer.write_manage'];
 
     protected $casts = [
         'expires_at' => 'datetime',
