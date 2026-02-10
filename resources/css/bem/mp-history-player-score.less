@@ -36,6 +36,7 @@
 
   &__shapes {
     width: auto; // follows grid
+    background-image: var(--bg);
     background-size: cover;
     display: var(--shapes-display);
 
@@ -45,6 +46,14 @@
       background-size: contain;
       background-position: bottom left;
       background-repeat: no-repeat;
+    }
+
+    &--blue {
+      --bg: url("~@images/layout/mp-history/shapes-team-blue.svg");
+    }
+
+    &--red {
+      --bg: url("~@images/layout/mp-history/shapes-team-red.svg");
     }
   }
 
