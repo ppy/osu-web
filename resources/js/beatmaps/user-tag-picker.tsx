@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import React, { useEffect, useRef } from 'react';
 import BeatmapTag from '../models/beatmap-tag';
 import core from '../osu-core-singleton';
+import { trans } from '../utils/lang';
 import { TagGroup } from './user-tag-picker-controller';
 
 const controller = core.beatmapTagPickerController;
@@ -27,7 +28,7 @@ const UserTagPicker = observer(() => {
         className='user-tag-picker__search'
         name='tag-search'
         onChange={onChange}
-        placeholder='type to search'
+        placeholder={trans('beatmaps.listing.search.tag_picker.prompt')}
         value={controller.query ?? ''}
       />
       <div ref={scrollViewRef} className='user-tag-picker__list u-fancy-scrollbar'>

@@ -276,6 +276,9 @@ return [
                 '_' => 'Filtering by :filters requires an active :link',
                 'link_text' => 'osu!supporter tag',
             ],
+            'tag_picker' => [
+                'prompt' => 'type to search',
+            ],
         ],
     ],
     'general' => [
