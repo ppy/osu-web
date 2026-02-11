@@ -5,7 +5,7 @@ import { FilterKey } from 'beatmapset-search-filters';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import Portal from 'components/portal';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -14,6 +14,7 @@ import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
+import UserTagPickerContainer from './user-tag-picker-container';
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -47,11 +48,19 @@ const Filter = observer(({ multiselect = false, name, options, grid = false }: F
 export class SearchPanel extends React.Component<Props> {
   private readonly inputRef = React.createRef<HTMLInputElement>();
   private readonly pinnedInputRef = React.createRef<HTMLInputElement>();
-  @observable private query = this.controller.filters.query ?? '';
 
   @computed
   private get controller() {
     return core.beatmapsetSearchController;
+  }
+
+  @computed
+  private get query() {
+    return this.controller.filters.query ?? '';
+  }
+
+  private set query(query: string) {
+    this.controller.filters.update('query', query);
   }
 
   constructor(props: Props) {
@@ -100,7 +109,6 @@ export class SearchPanel extends React.Component<Props> {
   @action
   private readonly onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.query = event.currentTarget.value;
-    this.controller.filters.update('query', this.query);
   };
 
   // TODO: deprecated event. Update to onbeforeinput once safari adds it on normal enter
@@ -200,6 +208,7 @@ export class SearchPanel extends React.Component<Props> {
             type='search'
             value={this.query}
           />
+          <UserTagPickerContainer />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
           </div>

@@ -1,0 +1,110 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.user-tag-picker {
+  .default-box-shadow();
+  width: 500px;
+  height: 400px;
+
+  // left/right padding is applied on the list
+  // to put the scrollbar on the far edge of the element
+  padding-top: 20px;
+  padding-bottom: $padding-top;
+  border-radius: @border-radius--large;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  color: @osu-colour-c1;
+  background-color: @osu-colour-b4;
+
+  @media @mobile and (max-width: $width + @gutter-v2 * 2) {
+    width: calc(100vw - @gutter-v2 * 2);
+  }
+
+  &__search {
+    .default-border-radius();
+
+    width: calc(100% - $padding-top * 2);
+    height: 30px;
+
+    margin: 0 $padding-top;
+    padding: 0 5px;
+    flex-shrink: 0;
+
+    outline: none;
+    border: none;
+
+    background-color: @osu-colour-b5;
+    font-size: 14px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    padding: 0 $padding-top;
+  }
+
+  &__category {
+    font-size: @font-size--title-small-4;
+    font-weight: 600;
+    margin: 5px 0;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      margin-right: 5px;
+
+      width: 6px;
+      height: 12px;
+      border-radius: 3px;
+
+      background-color: #00ffaa;
+    }
+  }
+
+  &__tag {
+    .default-border-radius();
+    width: 100%;
+    min-height: 30px;
+    padding: 5px 10px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    background-color: @osu-colour-b3;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    transition: background-color 120ms;
+
+    &:hover {
+      background-color: @osu-colour-b2;
+    }
+  }
+
+  &__tag-info {
+    font-size: @font-size--title-small;
+
+    &--name {
+      width: 100px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    &--description {
+      flex-grow: 1;
+      font-size: @font-size--normal;
+
+      font-weight: 500;
+    }
+  }
+}
