@@ -80,9 +80,6 @@
   }
 
   &__icon {
-    position: absolute;
-    right: 0;
-    top: 0;
     height: 100%;
     width: @_icon-width + 20px;
     display: flex;
@@ -92,31 +89,28 @@
     .@{_top}--sticky & {
       width: @_icon-width--sticky + 20px;
     }
+
+    &--tags {
+      cursor: pointer;
+    }
+
+    &--active {
+      color: @osu-colour-l3;
+    }
   }
 
   &__input {
-    border: 1px solid @osu-colour-b4;
-    width: 100%;
+    flex-grow: 1;
     padding: 10px;
-    padding-right: 10px + @_icon-width + 20px;
-    background-color: @osu-colour-b2;
     color: @osu-colour-c1;
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 10px @osu-colour-l1;
-      border-color: @osu-colour-c1;
-    }
+    border: none;
+    outline: none;
+    background-color: transparent;
 
     .@{_top}--sticky & {
       padding: 5px;
       padding-right: 5px + @_icon-width--sticky + 20px;
-    }
-
-    &[disabled] {
-      background-color: @osu-colour-b2;
-      border-color: @osu-colour-b4;
-      color: @osu-colour-c1;
     }
   }
 
@@ -125,6 +119,18 @@
     font-size: @font-size--large;
     margin: 20px 0;
     position: relative;
+
+    border: 1px solid @osu-colour-b4;
+    background-color: @osu-colour-b2;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &:has(.@{_top}__input:focus) {
+      box-shadow: 0 0 10px @osu-colour-l1;
+      border-color: @osu-colour-c1;
+    }
 
     @media @desktop {
       margin-left: -10px;
