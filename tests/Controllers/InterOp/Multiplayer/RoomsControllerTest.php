@@ -137,10 +137,11 @@ class RoomsControllerTest extends TestCase
                 fn($url) => $this->post($url, $params),
             );
 
-            if ($i < 4)
+            if ($i < 4) {
                 $response->assertSuccessful();
-            else
+            } else {
                 $response->assertStatus(422);
+            }
         }
     }
 
