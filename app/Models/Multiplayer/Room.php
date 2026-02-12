@@ -810,7 +810,7 @@ class Room extends Model
             $max = 1;
         } else {
             $query->where('type', static::PLAYLIST_TYPE);
-            $max = $this->host->maxMultiplayerRooms();
+            $max = $this->host->maxPlaylists();
         }
 
         if ($query->count() >= $max) {
