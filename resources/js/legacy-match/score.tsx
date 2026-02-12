@@ -49,9 +49,7 @@ export default observer(function Score(props: Props) {
 
   return (
     <div className={classWithModifiers('mp-history-player-score', { team: props.showTeam })}>
-      <div
-        className='mp-history-player-score__shapes'
-        style={{ backgroundImage: `url(/images/layout/mp-history/shapes-team-${team}.svg)` }} />
+      <div className={classWithModifiers('mp-history-player-score__shapes', team)} />
       <div className='mp-history-player-score__main'>
         <div className={classWithModifiers('mp-history-player-score__info-box', ['user'])}>
           <div className='mp-history-player-score__username-box'>
