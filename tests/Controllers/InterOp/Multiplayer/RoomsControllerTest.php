@@ -98,4 +98,70 @@ class RoomsControllerTest extends TestCase
             fn ($url) => $this->post($url, $params),
         )->assertSuccessful();
     }
+
+    public function testUserCanOnlyStoreOneRoomIfNotTournamentMode(): void
+    {
+        $beatmap = Beatmap::factory()->create();
+        $params = [
+            ...static::startRoomParams(),
+            'user_id' => User::factory()->create()->getKey(),
+        ];
+
+        $this->expectCountChange(fn () => Room::count(), 1);
+
+        $this->withInterOpHeader(
+            route('interop.multiplayer.rooms.store'),
+            fn ($url) => $this->post($url, $params),
+        )->assertSuccessful();
+
+        $this->withInterOpHeader(
+            route('interop.multiplayer.rooms.store'),
+            fn ($url) => $this->post($url, $params),
+        )->assertStatus(422);
+    }
+
+    public function testUserCanStoreMoreRoomsIfTournamentMode(): void
+    {
+        $beatmap = Beatmap::factory()->create();
+        $params = [
+            ...static::startRoomParams(),
+            'user_id' => User::factory()->create()->getKey(),
+            'tournament_mode' => true,
+        ];
+
+        $this->expectCountChange(fn () => Room::count(), 4);
+
+        for ($i = 0; $i < 5; $i++) {
+            $response = $this->withInterOpHeader(
+                route('interop.multiplayer.rooms.store'),
+                fn($url) => $this->post($url, $params),
+            );
+
+            if ($i < 4)
+                $response->assertSuccessful();
+            else
+                $response->assertStatus(422);
+        }
+    }
+
+    public function testUserCanStoreEvenMoreRoomsIfBot(): void
+    {
+        $beatmap = Beatmap::factory()->create();
+        $params = [
+            ...static::startRoomParams(),
+            'user_id' => User::factory()->withGroup('bot')->create()->getKey(),
+            'tournament_mode' => true,
+        ];
+
+        $this->expectCountChange(fn () => Room::count(), 6);
+
+        for ($i = 0; $i < 6; $i++) {
+            $response = $this->withInterOpHeader(
+                route('interop.multiplayer.rooms.store'),
+                fn($url) => $this->post($url, $params),
+            );
+
+            $response->assertSuccessful();
+        }
+    }
 }
