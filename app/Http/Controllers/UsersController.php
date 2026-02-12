@@ -23,6 +23,7 @@ use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\ScoreReplayStatsTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserMonthlyPlaycountTransformer;
@@ -44,6 +45,8 @@ class UsersController extends Controller
     const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
 
     const PER_PAGE = [
+        'scoreReplayStats' => 5,
+
         'scoresBest' => 5,
         'scoresFirsts' => 5,
         'scoresPinned' => 5,
@@ -89,6 +92,7 @@ class UsersController extends Controller
             'index',
             'kudosu',
             'recentActivity',
+            'scoreReplayStats',
             'scores',
             'show',
         ]]);
@@ -98,7 +102,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity'],
+            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity', 'scoreReplayStats'],
         ]);
 
         parent::__construct();
@@ -169,6 +173,10 @@ class UsersController extends Controller
                         $this->user->soloScores()->recent($this->mode, false)->count(),
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
+                    'score_replay_stats' => $this->getExtraSection(
+                        'scoreReplayStats',
+                        min($this->maxResults, $this->user->scoreReplayStats()->whereHas('score.beatmap.beatmapset')->count()),
+                    ),
                 ];
 
             case 'kudosu':
@@ -211,12 +219,12 @@ class UsersController extends Controller
         }
 
         try {
-            ClientCheck::parseToken($request);
+            $clientTokenData = ClientCheck::parseToken($request);
         } catch (HttpException $e) {
             return static::storeClientDisabledError();
         }
 
-        return $this->storeUser($request->all());
+        return $this->storeUser($request->all(), $clientTokenData);
     }
 
     public function storeWeb()
@@ -253,7 +261,7 @@ class UsersController extends Controller
             }
         }
 
-        return $this->storeUser($rawParams);
+        return $this->storeUser($rawParams, null);
     }
 
     /**
@@ -481,6 +489,11 @@ class UsersController extends Controller
     public function recentActivity($_userId)
     {
         return $this->getExtra('recentActivity', [], $this->perPage, $this->offset);
+    }
+
+    public function scoreReplayStats()
+    {
+        return $this->getExtra('scoreReplayStats', [], $this->perPage, $this->offset);
     }
 
     /**
@@ -829,6 +842,15 @@ class UsersController extends Controller
                     ->orderBy('exchange_id', 'desc');
                 break;
 
+            case 'scoreReplayStats':
+                $transformer = new ScoreReplayStatsTransformer();
+                $includes = ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES;
+                $query = $this->user->scoreReplayStats()
+                    ->whereHas('score.beatmap.beatmapset')
+                    ->orderByDesc('watch_count')
+                    ->with(ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                break;
+
             // Score
             case 'scoresBest':
                 $transformer = new ScoreTransformer();
@@ -990,7 +1012,7 @@ class UsersController extends Controller
         return $userJson;
     }
 
-    private function storeUser(array $rawParams)
+    private function storeUser(array $rawParams, ?array $clientTokenData)
     {
         if (!$GLOBALS['cfg']['osu']['user']['allow_registration']) {
             return abort(403, 'User registration is currently disabled');
@@ -999,7 +1021,7 @@ class UsersController extends Controller
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {
-            return error_popup('Banned IP', 403);
+            return error_popup('Account registration currently unavailable', 403);
         }
 
         $params = get_params($rawParams, 'user', [
@@ -1046,6 +1068,10 @@ class UsersController extends Controller
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $user->getKey())
                 );
+            }
+
+            if ($clientTokenData !== null) {
+                ClientCheck::queueToken($clientTokenData, userId: $user->getKey());
             }
 
             if (is_json_request()) {

@@ -67,7 +67,7 @@ class ClientCheck
         return $ret;
     }
 
-    public static function queueToken(?array $tokenData, int $scoreId): void
+    public static function queueToken(?array $tokenData, ?int $scoreId = null, ?int $userId = null): void
     {
         if ($tokenData['token'] === null) {
             return;
@@ -75,9 +75,10 @@ class ClientCheck
 
         \LaravelRedis::lpush($GLOBALS['cfg']['osu']['client']['token_queue'], json_encode([
             'body' => $tokenData['body'],
-            'id' => $scoreId,
+            'score_id' => $scoreId,
             'token' => $tokenData['token'],
             'url' => $tokenData['url'],
+            'user_id' => $userId,
         ]));
     }
 

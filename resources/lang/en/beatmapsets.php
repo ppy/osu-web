@@ -151,6 +151,7 @@ return [
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
             'success-rate' => 'Success Rate',
+            'success_rate_plays' => ':passes of :count_delimited play|:passes of :count_delimited plays',
             'user_tags' => 'User Tags',
             'video' => 'This beatmap contains video',
         ],

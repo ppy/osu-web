@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { qtipPosition } from 'utils/qtip-helper'
 import { presence } from 'utils/string'
 
 export default class TooltipDefault
@@ -55,10 +56,7 @@ export default class TooltipDefault
     options =
       overwrite: false
       content: $content
-      position:
-        my: my
-        at: at
-        viewport: $(window)
+      position: qtipPosition(at)
       show:
         event: event.type
         ready: true

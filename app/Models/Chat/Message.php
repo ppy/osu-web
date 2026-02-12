@@ -13,7 +13,6 @@ use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
-use Illuminate\Support\Collection;
 
 /**
  * @property Channel $channel
@@ -29,7 +28,20 @@ class Message extends Model implements ReportableInterface
 {
     use Reportable;
 
-    public static function filterBacklogs(Channel $channel, Collection $messages): Collection
+    public ?string $uuid = null;
+
+    protected $primaryKey = 'message_id';
+    protected $casts = [
+        'is_action' => 'boolean',
+        'timestamp' => 'datetime',
+    ];
+
+    public static function filter(iterable $messages, Channel $channel, ?int $userId): iterable
+    {
+        return static::filterUserCommands(static::filterBacklogs($messages, $channel), $userId);
+    }
+
+    private static function filterBacklogs(iterable $messages, Channel $channel): iterable
     {
         if (!$channel->isPublic()) {
             return $messages;
@@ -44,16 +56,20 @@ class Message extends Model implements ReportableInterface
             }
         }
 
-        return collect($ret);
+        return $ret;
     }
 
-    public ?string $uuid = null;
+    private static function filterUserCommands(iterable $messages, ?int $userId): iterable
+    {
+        $ret = [];
+        foreach ($messages as $message) {
+            if ($message->user_id === $userId || !$message->isUserCommand()) {
+                $ret[] = $message;
+            }
+        }
 
-    protected $primaryKey = 'message_id';
-    protected $casts = [
-        'is_action' => 'boolean',
-        'timestamp' => 'datetime',
-    ];
+        return $ret;
+    }
 
     public function channel()
     {
@@ -102,6 +118,11 @@ class Message extends Model implements ReportableInterface
         if ($class !== null) {
             new $class($this, $this->sender)->dispatch();
         }
+    }
+
+    public function isUserCommand(): bool
+    {
+        return preg_match('/^![^ !]/', $this->content) === 1;
     }
 
     public function reportableAdditionalInfo(): ?string

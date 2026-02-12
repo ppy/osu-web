@@ -6,10 +6,10 @@
 namespace App\Models\Chat;
 
 use App\Events\ChatChannelEvent;
+use App\Events\ChatMessageEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Libraries\AuthorizationResult;
-use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
@@ -478,9 +478,10 @@ class Channel extends Model
 
             $this->unhide();
 
-            $message->dispatchNotification();
-
-            MessageTask::dispatch($message);
+            if (!$message->isUserCommand()) {
+                $message->dispatchNotification();
+            }
+            new ChatMessageEvent($message)->broadcast(true);
         });
 
         datadog_increment('chat.channel.send', ['target' => $this->type]);

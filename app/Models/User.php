@@ -107,18 +107,10 @@ use Request;
  * @property-read Collection<UserReplaysWatchedCount> $replaysWatchedCounts
  * @property-read Collection<UserReport> $reportsMade
  * @property-read Collection<ScorePin> $scorePins
- * @property-read Collection<Score\Best\Fruits> $scoresBestFruits
- * @property-read Collection<Score\Best\Mania> $scoresBestMania
- * @property-read Collection<Score\Best\Osu> $scoresBestOsu
- * @property-read Collection<Score\Best\Taiko> $scoresBestTaiko
- * @property-read Collection<Score\Best\Fruits> $scoresFirstFruits
- * @property-read Collection<Score\Best\Mania> $scoresFirstMania
- * @property-read Collection<Score\Best\Osu> $scoresFirstOsu
- * @property-read Collection<Score\Best\Taiko> $scoresFirstTaiko
- * @property-read Collection<Score\Fruits> $scoresFruits
- * @property-read Collection<Score\Mania> $scoresMania
- * @property-read Collection<Score\Osu> $scoresOsu
- * @property-read Collection<Score\Taiko> $scoresTaiko
+ * @property-read Collection<LegacyScoreFirst\Fruits> $scoresFirstFruits
+ * @property-read Collection<LegacyScoreFirst\Mania> $scoresFirstMania
+ * @property-read Collection<LegacyScoreFirst\Osu> $scoresFirstOsu
+ * @property-read Collection<LegacyScoreFirst\Taiko> $scoresFirstTaiko
  * @property-read Collection<UserSeasonScoreAggregate> $seasonScores
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
@@ -952,10 +944,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'reportedIn',
             'reportsMade',
             'scorePins',
-            'scoresBestFruits',
-            'scoresBestMania',
-            'scoresBestOsu',
-            'scoresBestTaiko',
             'scoresFirstFruits',
             'scoresFirstMania',
             'scoresFirstOsu',
@@ -1342,6 +1330,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
     }
 
+    public function scoreReplayStats(): HasMany
+    {
+        return $this->hasMany(ScoreReplayStats::class);
+    }
+
     public function storeAddresses()
     {
         return $this->hasMany(Store\Address::class);
@@ -1411,37 +1404,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
     }
 
-    public function scoresOsu()
-    {
-        return $this->hasMany(Score\Osu::class)->default();
-    }
-
-    public function scoresFruits()
-    {
-        return $this->hasMany(Score\Fruits::class)->default();
-    }
-
-    public function scoresMania()
-    {
-        return $this->hasMany(Score\Mania::class)->default();
-    }
-
-    public function scoresTaiko()
-    {
-        return $this->hasMany(Score\Taiko::class)->default();
-    }
-
-    public function scores(string $mode, bool $returnQuery = false)
-    {
-        if (!Beatmap::isModeValid($mode)) {
-            return;
-        }
-
-        $relation = 'scores'.studly_case($mode);
-
-        return $returnQuery ? $this->$relation() : $this->$relation;
-    }
-
     public function scoresFirstOsu()
     {
         return $this->hasMany(LegacyScoreFirst\Osu::class)->default();
@@ -1479,37 +1441,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         return $this->beatmapLeaders()->ruleset($mode);
-    }
-
-    public function scoresBestOsu()
-    {
-        return $this->hasMany(Score\Best\Osu::class)->default();
-    }
-
-    public function scoresBestFruits()
-    {
-        return $this->hasMany(Score\Best\Fruits::class)->default();
-    }
-
-    public function scoresBestMania()
-    {
-        return $this->hasMany(Score\Best\Mania::class)->default();
-    }
-
-    public function scoresBestTaiko()
-    {
-        return $this->hasMany(Score\Best\Taiko::class)->default();
-    }
-
-    public function scoresBest(string $mode, bool $returnQuery = false)
-    {
-        if (!Beatmap::isModeValid($mode)) {
-            return;
-        }
-
-        $relation = 'scoresBest'.studly_case($mode);
-
-        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function soloScores(): HasMany

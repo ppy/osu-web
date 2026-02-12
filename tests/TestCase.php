@@ -81,11 +81,6 @@ class TestCase extends BaseTestCase
         );
     }
 
-    protected static function chatScopes(): Collection
-    {
-        return static::allPassportScopeIds()->filter(fn ($scope) => str_starts_with($scope, 'chat.'));
-    }
-
     protected static function allPassportScopeIds(): Collection
     {
         return Passport::scopes()->pluck('id');

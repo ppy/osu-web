@@ -8,13 +8,6 @@
     @if ($userCanModerate)
         @include('forum.topics._moderate_pin', compact('topic'))
         @include('forum.topics._moderate_move', compact('topic'))
-
-        @if ($topic->isIssue())
-            @foreach ($topic::ISSUE_TAGS as $type)
-                @include('forum.topics._issue_tag_'.str_slug($type))
-            @endforeach
-        @endif
-
         @include('forum.topics._moderate_toggle_deleted')
         @include('forum.topics._moderate_logs', compact('topic'))
     @endif
@@ -47,6 +40,9 @@
 
         @if ($userCanModerate)
             <div class="forum-topic-nav__mobile-float forum-topic-nav__mobile-float--right">
+                @if ($topic->isIssue())
+                    @include('forum.topics._edit_tags', ['topic' => $topic])
+                @endif
                 <div
                     class="btn-circle btn-circle--topic-nav js-menu"
                     data-menu-target="topic-moderation-mobile"
@@ -69,6 +65,9 @@
 
         <div class="forum-topic-nav__group forum-topic-nav__group--desktop">
             @yield('forum-topic-moderation-menu')
+            @if ($userCanModerate && $topic->isIssue())
+                @include('forum.topics._edit_tags', ['topic' => $topic])
+            @endif
             @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
         </div>
 

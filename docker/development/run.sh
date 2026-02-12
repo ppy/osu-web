@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export CHROME_BIN=/usr/bin/chromium
+export CHROME_BIN=/usr/bin/chromium-browser
 export DUSK_WEBDRIVER_BIN=/usr/bin/chromedriver
 export LANG="C.UTF-8"
 export LC_ALL="C.UTF-8"
@@ -50,7 +50,7 @@ _test() {
 
     case "$command" in
         browser) _test_browser "$@";;
-        js) exec yarn karma start --single-run --browsers ChromeHeadless "$@";;
+        js) exec yarn karma start --single-run --browsers ChromeCustom "$@";;
         phpunit) exec ./bin/phpunit.sh "$@";;
     esac
 }

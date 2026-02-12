@@ -7,6 +7,8 @@ namespace App\Mail;
 
 use App\Exceptions\InvalidNotificationException;
 use App\Jobs\Notifications\BroadcastNotificationBase;
+use App\Jobs\Notifications\NewsPostNew;
+use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Mail\Mailable;
@@ -15,7 +17,8 @@ use Illuminate\Mail\Mailable;
 // Paired with App\Jobs\UserNotificationDigest
 class UserNotificationDigest extends Mailable
 {
-    private $groups = [];
+    private array $groups = [];
+    private array $news = [];
 
     /**
      * Create a new message instance.
@@ -30,14 +33,23 @@ class UserNotificationDigest extends Mailable
     {
         try {
             $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
+            $link = $class::getMailLink($notification);
+
+            if ($class === NewsPostNew::class) {
+                // group news by category
+                $details = $notification->details;
+                $details['link'] = $link;
+                $this->news[$details['series']][] = $details;
+
+                return;
+            }
+
             $baseKey = 'notifications.mail.'.$class::getMailBaseKey($notification);
             $key = $class::getMailGroupingKey($notification);
 
             if (!isset($this->groups[$key])) {
                 // remove anything not a string because trans doesn't like it.
-                $details = array_filter($notification->details ?? [], function ($value) {
-                    return is_string($value);
-                });
+                $details = array_filter($notification->details ?? [], is_string(...));
 
                 if (
                     $this->user->getKey() === $notification->source_user_id
@@ -46,16 +58,11 @@ class UserNotificationDigest extends Mailable
                     $baseKey = "{$baseKey}_self";
                 }
 
-                if ($notification->name === 'news_post_new' && isset($details['series'])) {
-                    $details['series'] = osu_trans("news.series.{$details['series']}");
-                }
-
                 $this->groups[$key] = [
                     'text' => osu_trans($baseKey, $details),
                 ];
             }
 
-            $link = $class::getMailLink($notification);
             $this->groups[$key]['links'][$link] = '';
         } catch (InvalidNotificationException $e) {
             log_error($e);
@@ -73,11 +80,19 @@ class UserNotificationDigest extends Mailable
             $this->addToGroups($notification);
         }
 
-        $groups = array_values($this->groups);
-        $user = $this->user;
+        $news = [];
+        foreach (NewsPost::SERIES as $series) {
+            if (isset($this->news[$series])) {
+                $news[$series] = $this->news[$series];
+            }
+        }
 
         return $this
-            ->text('emails.user_notification_digest', compact('groups', 'user'))
+            ->text('emails.user_notification_digest', [
+                'groups' => array_values($this->groups),
+                'news' => $news,
+                'user' => $this->user,
+            ])
             ->subject(osu_trans('mail.user_notification_digest.subject'));
     }
 }
