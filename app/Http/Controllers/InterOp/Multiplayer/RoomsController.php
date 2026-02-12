@@ -36,8 +36,9 @@ class RoomsController extends Controller
     {
         $params = \Request::all();
         $user = User::findOrFail(get_int($params['user_id'] ?? null));
+        $tournamentMode = get_bool($params['tournament_mode'] ?? false);
 
-        $room = (new Room())->startGame($user, $params);
+        $room = (new Room())->startGame($user, $params, tournamentMode: $tournamentMode);
 
         return $room->getKey();
     }

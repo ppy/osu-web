@@ -277,6 +277,8 @@ return [
         'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
         'max_playlists' => get_int(env('USER_MAX_PLAYLISTS')) ?? 1,
         'max_playlists_supporter' => get_int(env('USER_MAX_PLAYLISTS_SUPPORTER')) ?? 5,
+        'max_tournament_rooms' => get_int(env('USER_MAX_TOURNAMENT_ROOMS')) ?? 4,
+        'max_tournament_rooms_bot' => get_int(env('USER_MAX_TOURNAMENT_ROOMS_BOT')) ?? 50,
         'max_score_pins' => get_int(env('USER_MAX_SCORE_PINS')) ?? 10,
         'max_score_pins_supporter' => get_int(env('USER_MAX_SCORE_PINS_SUPPORTER')) ?? 50,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)) * 60,

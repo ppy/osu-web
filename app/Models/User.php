@@ -1565,6 +1565,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_playlists_supporter'] : $GLOBALS['cfg']['osu']['user']['max_playlists'];
     }
 
+    public function maxTournamentRooms()
+    {
+        return $this->isBot() ? $GLOBALS['cfg']['osu']['user']['max_tournament_rooms_bot'] : $GLOBALS['cfg']['osu']['user']['max_tournament_rooms'];
+    }
+
     public function maxScorePins()
     {
         return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_score_pins_supporter'] : $GLOBALS['cfg']['osu']['user']['max_score_pins'];
