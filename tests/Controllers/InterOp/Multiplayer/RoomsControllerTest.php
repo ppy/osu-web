@@ -156,17 +156,22 @@ class RoomsControllerTest extends TestCase
             'tournament_mode' => true,
         ];
 
-        $countRoomsToCreate = $normalUser->maxTournamentRooms() + 2;
+        $maxTournamentRoomsForBot = $normalUser->maxTournamentRooms() + 2;
+        config_set('osu.user.max_tournament_rooms_bot', $maxTournamentRoomsForBot);
 
-        $this->expectCountChange(fn () => Room::count(), $countRoomsToCreate);
+        $this->expectCountChange(fn () => Room::count(), $maxTournamentRoomsForBot);
 
-        for ($i = 0; $i < $countRoomsToCreate; $i++) {
+        for ($i = 0; $i < $maxTournamentRoomsForBot + 1; $i++) {
             $response = $this->withInterOpHeader(
                 route('interop.multiplayer.rooms.store'),
                 fn($url) => $this->post($url, $params),
             );
 
-            $response->assertSuccessful();
+            if ($i < $maxTournamentRoomsForBot) {
+                $response->assertSuccessful();
+            } else {
+                $response->assertStatus(422);
+            }
         }
     }
 }
