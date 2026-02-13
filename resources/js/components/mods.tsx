@@ -77,18 +77,20 @@ export default class Mods extends React.Component<Props> {
 
     const componentFn = () => (
       <div className='mods-overflow-tooltip'>
-        {this.overflowMods.map((mod) => {
-          const modJson = modDetails(mod);
-          return (
-            <div
-              key={mod.acronym}
-              className='mods-overflow-tooltip__item'
-            >
-              <Mod hideNameInTitle mod={mod} />
-              {modJson.name}
-            </div>
-          );
-        })}
+        <div className='mods-overflow-tooltip__content'>
+          {this.overflowMods.map((mod) => {
+            const modJson = modDetails(mod);
+            return (
+              <div
+                key={mod.acronym}
+                className='mods-overflow-tooltip__item'
+              >
+                <Mod hideNameInTitle mod={mod} />
+                {modJson.name}
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
 
