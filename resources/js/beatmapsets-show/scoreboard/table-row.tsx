@@ -155,11 +155,12 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <ScoreboardTime dateTime={score.ended_at} />
         </TdLink>
 
-        <TdLink href={this.scoreUrl} modifiers='mods'>
+        <td className={`${bn}__cell ${bn}__cell--player u-relative`}>
+          <a className={classWithModifiers(`${bn}__cell-content`, 'bg-link')} href={this.scoreUrl} />
           <div className={`${bn}__mods`}>
             <Mods mods={displayMods(score)} />
           </div>
-        </TdLink>
+        </td>
 
         <td className={`${bn}__popup-menu`}>
           {hasMenu(score) && <PlayDetailMenu score={score} user={score.user} />}
