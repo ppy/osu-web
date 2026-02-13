@@ -3,7 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import FlagTeam from 'components/flag-team';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
@@ -155,11 +155,12 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <ScoreboardTime dateTime={score.ended_at} />
         </TdLink>
 
-        <TdLink href={this.scoreUrl} modifiers='mods'>
+        <td className={`${bn}__cell ${bn}__cell--player u-relative`}>
+          <a className={classWithModifiers(`${bn}__cell-content`, 'bg-link')} href={this.scoreUrl} />
           <div className={`${bn}__mods`}>
-            {displayMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            <Mods mods={displayMods(score)} />
           </div>
-        </TdLink>
+        </td>
 
         <td className={`${bn}__popup-menu`}>
           {hasMenu(score) && <PlayDetailMenu score={score} user={score.user} />}
