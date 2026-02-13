@@ -20,7 +20,7 @@ interface Props {
 @observer
 export default class Mods extends React.Component<Props> {
   private overflowMods: Props['mods'] = [];
-  private tooltipDisposer: undefined | (() => void);
+  private tooltipDisposer?: () => void;
 
   constructor(props: Props) {
     super(props);
