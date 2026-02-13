@@ -219,36 +219,106 @@
                                 {{ $rank === null ? '-' : '#'.i18n_number_format($rank) }}
                             </div>
                         </div>
-                        <div class="team-info-entry">
-                            <div class="team-info-entry__title">
-                                {{ osu_trans('rankings.stat.performance') }}
+                        <div class="team-info__entries">
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">
+                                    {{ osu_trans('rankings.stat.performance') }}
+                                </div>
+                                <div class="team-info-entry__value">
+                                    {{ i18n_number_format($statistics->performance) }}
+                                </div>
                             </div>
-                            <div class="team-info-entry__value">
-                                {{ i18n_number_format($statistics->performance) }}
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">
+                                    {{ osu_trans('rankings.stat.ranked_score') }}
+                                </div>
+                                <div class="team-info-entry__value">
+                                    {{ i18n_number_format($statistics->ranked_score) }}
+                                </div>
+                            </div>
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">
+                                    {{ osu_trans('teams.show.statistics.first_places') }}
+                                </div>
+                                <div class="team-info-entry__value">
+                                    {{ i18n_number_format($extraStatistics['first_places']) }}
+                                </div>
+                            </div>
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">
+                                    {{ osu_trans('rankings.stat.play_count') }}
+                                </div>
+                                <div class="team-info-entry__value">
+                                    {{ i18n_number_format($statistics->play_count) }}
+                                </div>
+                            </div>
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">
+                                    {{ osu_trans('users.show.stats.play_time') }}
+                                </div>
+                                <div class="team-info-entry__value">
+                                     {{ Carbon\CarbonInterval
+                                        ::seconds($extraStatistics['total_seconds_played'])
+                                        ->cascade()
+                                        ->forHumans(['parts' => 2, 'short' => true])
+                                    }}
+                                </div>
+                            </div>
+                            <div class="team-info-entry">
+                                <div class="team-info-entry__title">
+                                    {{ osu_trans('rankings.stat.members') }}
+                                </div>
+                                <div class="team-info-entry__value">
+                                    {{ i18n_number_format(count($members) + 1) }}
+                                </div>
                             </div>
                         </div>
+                        @if ($extraStatistics['ranked_beatmapsets'] > 0 || $extraStatistics['kudosu_total'] > 0)
+                            <div class="team-info__entries">
+                                @if ($extraStatistics['ranked_beatmapsets'] > 0)
+                                    <div class="team-info-entry">
+                                        <div class="team-info-entry__title">
+                                            {{ osu_trans('teams.show.statistics.ranked_beatmapsets') }}
+                                        </div>
+                                        <div class="team-info-entry__value">
+                                            {{ i18n_number_format($extraStatistics['ranked_beatmapsets']) }}
+                                        </div>
+                                    </div>
+                                @endif
+                                @if ($extraStatistics['kudosu_total'] > 0)
+                                    <div class="team-info-entry">
+                                        <div class="team-info-entry__title">
+                                            {{ osu_trans('users.show.extra.kudosu.total') }}
+                                        </div>
+                                        <div class="team-info-entry__value">
+                                            {{ i18n_number_format($extraStatistics['kudosu_total']) }}
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
                         <div class="team-info-entry">
-                            <div class="team-info-entry__title">
-                                {{ osu_trans('rankings.stat.ranked_score') }}
-                            </div>
-                            <div class="team-info-entry__value">
-                                {{ i18n_number_format($statistics->ranked_score) }}
-                            </div>
-                        </div>
-                        <div class="team-info-entry">
-                            <div class="team-info-entry__title">
-                                {{ osu_trans('rankings.stat.play_count') }}
-                            </div>
-                            <div class="team-info-entry__value">
-                                {{ i18n_number_format($statistics->play_count) }}
-                            </div>
-                        </div>
-                        <div class="team-info-entry">
-                            <div class="team-info-entry__title">
-                                {{ osu_trans('rankings.stat.members') }}
-                            </div>
-                            <div class="team-info-entry__value">
-                                {{ i18n_number_format(count($members) + 1) }}
+                            <div class="profile-rank-count profile-rank-count--team">
+                                <div>
+                                    <div class="score-rank score-rank--XH score-rank--profile-page"></div>
+                                    {{ i18n_number_format($extraStatistics['xh_rank_count']) }}
+                                </div>
+                                <div>
+                                    <div class="score-rank score-rank--X score-rank--profile-page"></div>
+                                    {{ i18n_number_format($extraStatistics['x_rank_count']) }}
+                                </div>
+                                <div>
+                                    <div class="score-rank score-rank--SH score-rank--profile-page"></div>
+                                    {{ i18n_number_format($extraStatistics['sh_rank_count']) }}
+                                </div>
+                                <div>
+                                    <div class="score-rank score-rank--S score-rank--profile-page"></div>
+                                    {{ i18n_number_format($extraStatistics['s_rank_count']) }}
+                                </div>
+                                <div>
+                                    <div class="score-rank score-rank--A score-rank--profile-page"></div>
+                                    {{ i18n_number_format($extraStatistics['a_rank_count']) }}
+                                </div>
                             </div>
                         </div>
                     </div>

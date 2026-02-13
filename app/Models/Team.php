@@ -195,6 +195,15 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         return $max - $current;
     }
 
+    public function extraStatistics($rulesetId): array
+    {
+        return \Cache::remember(
+            "team:{$this->getKey()}:extraStatistics:{$rulesetId}",
+            $GLOBALS['cfg']['osu']['team']['extra_statistics_cache_duration'],
+            fn () => $this->slowExtraStatistics($rulesetId),
+        );
+    }
+
     public function flag(): Uploader
     {
         return $this->flag ??= new Uploader(
@@ -325,6 +334,46 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         $this->header()->updateFile();
 
         return parent::save($options);
+    }
+
+    public function slowExtraStatistics(int $rulesetId): array
+    {
+        $userIds = $this
+            ->members()
+            ->whereHas('user', fn ($q) => $q->default())
+            ->pluck('user_id');
+
+        $userStats = UserStatistics\Model::getClass(Beatmap::modeStr($rulesetId))
+            ::whereIn('user_id', $userIds)
+            ->selectRaw('
+                SUM(x_rank_count) x_rank_count,
+                SUM(xh_rank_count) xh_rank_count,
+                SUM(s_rank_count) s_rank_count,
+                SUM(sh_rank_count) sh_rank_count,
+                SUM(a_rank_count) a_rank_count,
+                SUM(total_seconds_played) total_seconds_played
+            ')->first()?->getAttributes();
+
+        static $userStatsKeys = [
+            'x_rank_count',
+            'xh_rank_count',
+            's_rank_count',
+            'sh_rank_count',
+            'a_rank_count',
+            'total_seconds_played',
+        ];
+
+        $ret = [];
+        foreach ($userStatsKeys as $key) {
+            $ret[$key] = intval($userStats[$key] ?? 0);
+        }
+
+        $ret['first_places'] = BeatmapLeader::whereIn('user_id', $userIds)->where('ruleset_id', $rulesetId)->count();
+
+        $ret['ranked_beatmapsets'] = Beatmapset::whereIn('user_id', $userIds)->ranked()->count();
+        $ret['kudosu_total'] = intval(User::whereIn('user_id', $userIds)->sum('osu_kudostotal') ?? 0);
+
+        return $ret;
     }
 
     public function trashed(): bool

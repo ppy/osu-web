@@ -175,8 +175,12 @@ class TeamsController extends Controller
         if (is_api_request()) {
             return response()->json(json_item($team, new TeamExtendedTransformer()->setRulesetId($rulesetId)));
         } else {
-            $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
-            return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
+            return ext_view('teams.show', [
+                'extraStatistics' => $team->extraStatistics($rulesetId),
+                'rulesetId' => $rulesetId,
+                'statistics' => $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]),
+                'team' => $team,
+            ]);
         }
     }
 

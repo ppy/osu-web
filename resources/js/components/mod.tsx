@@ -140,7 +140,7 @@ export default function Mod({ extendedContent, hideNameInTitle, mod }: Props) {
       {Object.entries(mod.settings ?? {}).length > 0 && (
         <div className='mod__customised-indicator'>
           {/* Doing it this way allows using page css variables */}
-          <svg height='100%' viewBox='0 0 32 32' width='100%'>
+          <svg height='100%' viewBox='0 0 32 16' width='100%'>
             <use href={`${cogBadge}#icon`} />
           </svg>
         </div>
