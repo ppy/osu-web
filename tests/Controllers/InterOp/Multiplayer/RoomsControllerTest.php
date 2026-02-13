@@ -101,7 +101,6 @@ class RoomsControllerTest extends TestCase
 
     public function testUserCanOnlyStoreOneRoomIfNotTournamentMode(): void
     {
-        $beatmap = Beatmap::factory()->create();
         $params = [
             ...static::startRoomParams(),
             'user_id' => User::factory()->create()->getKey(),
@@ -122,22 +121,24 @@ class RoomsControllerTest extends TestCase
 
     public function testUserCanStoreMoreRoomsIfTournamentMode(): void
     {
-        $beatmap = Beatmap::factory()->create();
+        $user = User::factory()->create();
         $params = [
             ...static::startRoomParams(),
-            'user_id' => User::factory()->create()->getKey(),
+            'user_id' => $user->getKey(),
             'tournament_mode' => true,
         ];
 
-        $this->expectCountChange(fn () => Room::count(), 4);
+        $maxTournamentRooms = $user->maxTournamentRooms();
 
-        for ($i = 0; $i < 5; $i++) {
+        $this->expectCountChange(fn () => Room::count(), $maxTournamentRooms);
+
+        for ($i = 0; $i < $maxTournamentRooms + 1; $i++) {
             $response = $this->withInterOpHeader(
                 route('interop.multiplayer.rooms.store'),
                 fn($url) => $this->post($url, $params),
             );
 
-            if ($i < 4) {
+            if ($i < $maxTournamentRooms) {
                 $response->assertSuccessful();
             } else {
                 $response->assertStatus(422);
@@ -147,16 +148,19 @@ class RoomsControllerTest extends TestCase
 
     public function testUserCanStoreEvenMoreRoomsIfBot(): void
     {
-        $beatmap = Beatmap::factory()->create();
+        $normalUser = User::factory()->create();
+        $botUser = User::factory()->withGroup('bot')->create();
         $params = [
             ...static::startRoomParams(),
-            'user_id' => User::factory()->withGroup('bot')->create()->getKey(),
+            'user_id' => $botUser->getKey(),
             'tournament_mode' => true,
         ];
 
-        $this->expectCountChange(fn () => Room::count(), 6);
+        $countRoomsToCreate = $normalUser->maxTournamentRooms() + 2;
 
-        for ($i = 0; $i < 6; $i++) {
+        $this->expectCountChange(fn () => Room::count(), $countRoomsToCreate);
+
+        for ($i = 0; $i < $countRoomsToCreate; $i++) {
             $response = $this->withInterOpHeader(
                 route('interop.multiplayer.rooms.store'),
                 fn($url) => $this->post($url, $params),
