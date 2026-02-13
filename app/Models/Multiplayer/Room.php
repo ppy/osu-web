@@ -100,6 +100,7 @@ class Room extends Model
         'password' => PresentString::class,
         'pinned' => 'boolean',
         'starts_at' => 'datetime',
+        'tournament_mode' => 'boolean',
     ];
     protected array $macros = [
         'dailyChallengeFor',
