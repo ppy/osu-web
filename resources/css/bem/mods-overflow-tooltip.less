@@ -1,0 +1,24 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.mods-overflow-tooltip {
+  .default-box-shadow();
+  display: grid;
+  gap: 5px;
+  background: hsl(var(--hsl-b5));
+  padding: 10px 0;
+  border-radius: @border-radius-large;
+
+  &__content {
+    .fancy-scrollbar();
+    max-height: 70vh;
+    padding: 0 10px;
+    overflow-y: auto;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}

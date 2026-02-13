@@ -3,7 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import FlagTeam from 'components/flag-team';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import ScorePin from 'components/score-pin';
 import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
@@ -196,7 +196,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   {trans('beatmapsets.show.scoreboard.headers.mods')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--mods u-hover'>
-                  {displayMods(this.props.score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+                  <Mods mods={displayMods(this.props.score)} />
                 </div>
               </div>
             </div>
