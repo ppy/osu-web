@@ -47,6 +47,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property-read Season $season
  * @property \Carbon\Carbon $starts_at
+ * @property bool $tournament_mode
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
  * @property string $type
@@ -627,7 +628,7 @@ class Room extends Model
             ->all();
     }
 
-    public function startGame(User $host, array $rawParams, array $extraParams = [], bool $tournamentMode = false)
+    public function startGame(User $host, array $rawParams, array $extraParams = [])
     {
         priv_check_user($host, 'MultiplayerRoomCreate')->ensureCan();
 
@@ -684,7 +685,7 @@ class Room extends Model
             }
         }
 
-        $this->assertValidStartGame($tournamentMode);
+        $this->assertValidStartGame();
 
         if (!is_array($params['playlist'])) {
             throw new InvariantException("field 'playlist' must an an array");
@@ -792,7 +793,7 @@ class Room extends Model
         return $this->userHighScores()->forRanking()->with(['user.country', 'user.team']);
     }
 
-    private function assertHostRoomAllowance(bool $tournamentMode)
+    private function assertHostRoomAllowance()
     {
         $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
 
@@ -807,7 +808,7 @@ class Room extends Model
             throw new InvariantException('matchmaking rooms cannot be created');
         } else if ($this->isRealtime()) {
             $query->whereIn('type', static::REALTIME_TYPES);
-            $max = $tournamentMode ? $this->host->maxTournamentRooms() : 1;
+            $max = $this->tournament_mode ? $this->host->maxTournamentRooms() : 1;
         } else {
             $query->where('type', static::PLAYLIST_TYPE);
             $max = $this->host->maxPlaylists();
@@ -825,9 +826,9 @@ class Room extends Model
         }
     }
 
-    private function assertValidStartGame(bool $tournamentMode)
+    private function assertValidStartGame()
     {
-        $this->assertHostRoomAllowance($tournamentMode);
+        $this->assertHostRoomAllowance();
 
         foreach (['ends_at', 'name'] as $field) {
             if (!present($this->$field)) {
