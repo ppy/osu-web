@@ -249,35 +249,23 @@
   align-items: center;
 }
 
-.at2x(@url, @w: auto, @h: auto) {
-  .at2x-simple(@url);
-  background-size: @w @h;
-}
-
-.at2x-simple(@url) {
-  @url2x: .at2x-url(@url) [];
-  background-image: url(@url);
-
-  @media @highdpi {
-    background-image: url(@url2x);
-  }
+.at2x(@url) {
+  background-image: .image-set-2x(@url) [];
 }
 
 .at2x-simple-var(@var) {
-  background-image: var(@var);
-
-  @media @highdpi {
-    background-image: var(~"@{var}-2x");
-  }
+  background-image: .image-set-var-2x(@var) [];
 }
 
 .at2x-fallback(@var, @fallback) {
   @fallback2x: .at2x-url(@fallback) [];
-  background-image: var(@var, url(@fallback));
+  @{var}-with-fallback: var(@var, url(@fallback));
+  @{var}-with-fallback-2x: var(~"@{var}-2x", url(@fallback2x));
+  background-image: .image-set-var-2x(~"@{var}-with-fallback") [];
+}
 
-  @media @highdpi {
-    background-image: var(~"@{var}-2x", url(@fallback2x));
-  }
+.at2x-url(@url) {
+  @result: replace(@url, "(\.[^.]+)$", "@2x$1");
 }
 
 .at2x-url(@url) {
@@ -323,6 +311,15 @@
 .icon-bg() {
   .btn-bg();
   background-size: cover;
+}
+
+.image-set-2x(@url) {
+  @url2x: .at2x-url(@url) [];
+  @result: image-set(url(@url) 1x, url(@url2x) 2x);
+}
+
+.image-set-var-2x(@var) {
+  @result: image-set(var(@var) 1x, var(~"@{var}-2x") 2x);
 }
 
 .reset-input() {
