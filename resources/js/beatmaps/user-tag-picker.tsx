@@ -3,18 +3,16 @@
 
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import React, { useEffect, useRef } from 'react';
-import BeatmapTag from '../models/beatmap-tag';
-import core from '../osu-core-singleton';
-import { trans } from '../utils/lang';
-import { TagGroup } from './user-tag-picker-controller';
+import { trans } from 'utils/lang';
+import { BeatmapTagManyRulesets, TagGroup } from './user-tag-picker-controller';
 
 const controller = core.beatmapTagPickerController;
 const beatmapsetSearchController = core.beatmapsetSearchController;
 
 const UserTagPicker = observer(() => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const scrollViewRef = useRef<HTMLDivElement>(null);
   const onChange = action((e: React.ChangeEvent<HTMLInputElement>) => controller.query = e.target.value);
 
   useEffect(() => {
@@ -31,7 +29,7 @@ const UserTagPicker = observer(() => {
         placeholder={trans('beatmaps.listing.search.tag_picker.prompt')}
         value={controller.query ?? ''}
       />
-      <div ref={scrollViewRef} className='user-tag-picker__list u-fancy-scrollbar'>
+      <div className='user-tag-picker__list u-fancy-scrollbar'>
         {controller.groups.map((group) => <UserTagGroup key={group.name} group={group} />)}
       </div>
     </div>
@@ -44,7 +42,7 @@ const UserTagGroup = observer(({ group }: { group: TagGroup }) => (
   </>
 ));
 
-const UserTag = observer(({ tag }: { tag: BeatmapTag }) => {
+const UserTag = observer(({ tag }: { tag: BeatmapTagManyRulesets }) => {
   const onClick = action(() => {
     let tagString = tag.fullName;
 
@@ -62,7 +60,12 @@ const UserTag = observer(({ tag }: { tag: BeatmapTag }) => {
   });
 
   return (<div className='user-tag-picker__tag' onClick={onClick}>
-    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
+    <div>
+      {beatmapsetSearchController.filters.mode === null && tag.rulesets.map((ruleset) => (
+        <span key={ruleset} className={`user-tag-picker__tag-info user-tag-picker__tag-info--ruleset fal fa-extra-mode-${ruleset}`} />
+      ))}
+      <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
+    </div>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>{tag.description}</span>
   </div>);
 });
