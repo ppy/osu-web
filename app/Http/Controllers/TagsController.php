@@ -9,6 +9,13 @@ namespace App\Http\Controllers;
 
 class TagsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware(['auth', 'require-scopes:public']);
+    }
+
     public function index()
     {
         return [

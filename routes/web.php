@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
             Route::post('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
-        Route::resource('tags', 'TagsController', ['only' => ['index']])->middleware('auth');
+        Route::resource('tags', 'TagsController', ['only' => ['index']]);
     });
 
     Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -623,7 +623,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
 
         // Tags
-        Route::apiResource('tags', 'TagsController', ['only' => ['index']])->middleware('require-scopes:public');
+        Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
 
         Route::post('screenshots', 'ScreenshotsController@store')->middleware('auth')->name('screenshots.store');
     });
