@@ -14,7 +14,7 @@ import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
-import UserTagPickerContainer from './user-tag-picker-container';
+import UserTagPickerButton from './user-tag-picker-button';
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -208,7 +208,7 @@ export class SearchPanel extends React.Component<Props> {
             type='search'
             value={this.query}
           />
-          <UserTagPickerContainer />
+          <UserTagPickerButton />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
           </div>

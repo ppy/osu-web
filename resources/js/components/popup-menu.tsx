@@ -169,7 +169,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
     let left = scrollX + buttonRect.right;
     // shift the menu right if it clips out of the window;
     // menuRect.x doesn't update until after layout is finished so the known position of buttonRect is used instead.
-    if (this.props.direction === 'right' || buttonRect.x - menuRect.width < 0) {
+    if (this.props.direction === 'right' || buttonRect.right - menuRect.width < 0) {
       left += menuRect.width - buttonRect.width;
     }
 
