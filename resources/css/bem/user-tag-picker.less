@@ -2,41 +2,39 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-tag-picker {
+  @padding: 20px;
+
+  @search-container-offset: 46px; // 45px search icon width + 1px search container border
+
   .default-box-shadow();
-  width: 500px;
+  width: calc(100vw - @gutter-v2 * 2 - @search-container-offset);
+  max-width: 500px;
+
   height: 400px;
 
   // left/right padding is applied on the list
   // to put the scrollbar on the far edge of the element
-  padding-top: 20px;
-  padding-bottom: $padding-top;
+  padding: @padding 0;
   border-radius: @border-radius--large;
 
   display: flex;
   flex-direction: column;
   gap: 10px;
 
-  color: @osu-colour-c1;
-  background-color: @osu-colour-b4;
-
-  @media @mobile and (max-width: $width + @gutter-v2 * 2) {
-    width: calc(100vw - @gutter-v2 * 2);
-  }
+  color: hsl(var(--hsl-c1));
+  background-color: hsl(var(--hsl-b4));
 
   &__search {
     .default-border-radius();
 
-    width: calc(100% - $padding-top * 2);
-    height: 30px;
-
-    margin: 0 $padding-top;
-    padding: 0 5px;
+    margin: 0 @padding;
+    padding: 8px 5px;
     flex-shrink: 0;
 
     outline: none;
     border: none;
 
-    background-color: @osu-colour-b5;
+    background-color: hsl(var(--hsl-b5));
     font-size: 14px;
   }
 
@@ -46,7 +44,7 @@
     gap: 5px;
     overflow-y: scroll;
     overscroll-behavior: contain;
-    padding: 0 $padding-top;
+    padding: 0 @padding;
   }
 
   &__category {
@@ -63,7 +61,7 @@
       height: 12px;
       border-radius: 3px;
 
-      background-color: #00ffaa;
+      background-color: hsl(var(--hsl-h1));
     }
   }
 
@@ -74,12 +72,13 @@
     padding: 5px 10px;
     flex-shrink: 0;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 100px 1fr;
     gap: 10px;
 
-    background-color: @osu-colour-b3;
+    align-items: center;
+
+    background-color: hsl(var(--hsl-b3));
 
     overflow: hidden;
     cursor: pointer;
@@ -87,7 +86,7 @@
     transition: background-color 120ms;
 
     &:hover {
-      background-color: @osu-colour-b2;
+      background-color: hsl(var(--hsl-b2));
     }
   }
 
@@ -98,6 +97,10 @@
       width: 100px;
       font-weight: 700;
       flex-shrink: 0;
+    }
+
+    &--ruleset {
+      padding-right: 2px;
     }
 
     &--description {
