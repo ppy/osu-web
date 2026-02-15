@@ -20,7 +20,6 @@ export type BeatmapTagManyRulesets = Omit<BeatmapTag, 'ruleset'> & {
 
 export default class UserTagPickerController {
   @observable query: string|null = null;
-  @observable showPicker = false;
   @observable tags: BeatmapTag[] = [];
 
   @computed
@@ -59,6 +58,9 @@ export default class UserTagPickerController {
       : filtered;
 
     const sortPredicates: ((tag: BeatmapTag) => any)[] = [((tag) => tag.fullName)];
+
+    // Order tags by ruleset when all rulesets are displayed so that they are not
+    // mixed between each other in a non-intuitive way.
     if (ruleset === null) {
       sortPredicates.unshift(((tag) => this.rulesetOrdering(tag.ruleset)));
     }
