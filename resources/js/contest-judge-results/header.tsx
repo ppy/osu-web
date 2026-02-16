@@ -5,13 +5,13 @@ import SelectOptions, { OptionRenderProps } from 'components/select-options';
 import UserLink from 'components/user-link';
 import ValueDisplay from 'components/value-display';
 import { ContestEntryJsonForResults } from 'interfaces/contest-entry-json';
-import { ContestJsonForResults } from 'interfaces/contest-json';
 import { route } from 'laroute';
-import { computed } from 'mobx';
+import { action, computed } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { navigate } from 'utils/turbolinks';
+import State from './state';
 
 interface Option {
   contest_id: ContestEntryJsonForResults['contest_id'];
@@ -20,9 +20,7 @@ interface Option {
 }
 
 interface Props {
-  contest: ContestJsonForResults;
-  entries: ContestEntryJsonForResults[];
-  entry: ContestEntryJsonForResults;
+  state: State;
 }
 
 function entryToOption(entry: ContestEntryJsonForResults) {
@@ -33,19 +31,17 @@ function entryToOption(entry: ContestEntryJsonForResults) {
   };
 }
 
-export default class Header extends React.PureComponent<Props> {
+@observer
+export default class Header extends React.Component<Props> {
   @computed
   private get options() {
-    return this.props.entries.map(entryToOption);
-  }
-
-  private get selected() {
-    return entryToOption(this.props.entry);
+    return this.props.state.entries.map(entryToOption);
   }
 
   render() {
-    const totalScore = `${this.props.entry.results.votes}/${this.props.contest.max_total_score}`;
-    const totalScoreStd = this.props.entry.results.score_std;
+    const selectedEntry = this.props.state.selected;
+    const totalScore = `${selectedEntry.results.votes}/${this.props.state.contest.max_total_score}`;
+    const totalScoreStd = selectedEntry.results.score_std;
 
     return (
       <div className='contest-judge-results-header'>
@@ -53,7 +49,7 @@ export default class Header extends React.PureComponent<Props> {
           onChange={this.handleChange}
           options={this.options}
           renderOption={this.renderOption}
-          selected={this.selected}
+          selected={entryToOption(selectedEntry)}
         />
 
         <div className='contest-judge-results-header__values'>
@@ -75,7 +71,7 @@ export default class Header extends React.PureComponent<Props> {
             label={trans('contest.judge_results.creator')}
             modifiers='judge-results'
             value={
-              <UserLink user={this.props.entry.user} />
+              <UserLink user={selectedEntry.user} />
             }
           />
         </div>
@@ -83,8 +79,9 @@ export default class Header extends React.PureComponent<Props> {
     );
   }
 
+  @action
   private readonly handleChange = (option: Option) => {
-    navigate(route('contests.entries.judge-results', { contest: option.contest_id, contest_entry: option.id }));
+    this.props.state.select(option.id);
   };
 
   private readonly renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => (

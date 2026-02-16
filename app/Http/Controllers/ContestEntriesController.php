@@ -44,20 +44,14 @@ class ContestEntriesController extends Controller
         $entries = $contest->entriesByType(null)->loadMissing($relationships);
         $entry = $entries->findOrFail($id);
 
-        $contestJson = json_item(
-            $contest,
-            new ContestTransformer(),
-            [
-                'max_judging_score',
-                'max_total_score',
-                'scoring_categories',
+        return ext_view('contest_entries.judge-results', [
+            'contest' => $contest,
+            'entry' => $entry,
+            'json' => [
+                'contest' => json_item($contest, new ContestTransformer(), ['max_judging_score', 'max_total_score', 'scoring_categories']),
+                'entries' => json_collection($entries, new ContestEntryTransformer(), $includes),
             ],
-        );
-
-        $entryJson = json_item($entry, new ContestEntryTransformer(), $includes);
-        $entriesJson = json_collection($entries, new ContestEntryTransformer(), $includes);
-
-        return ext_view('contest_entries.judge-results', compact('contestJson', 'entryJson', 'entriesJson'));
+        ]);
     }
 
     public function judgeVote($contestId, $id)
