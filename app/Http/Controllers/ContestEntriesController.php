@@ -26,11 +26,7 @@ class ContestEntriesController extends Controller
 
         abort_if(!$contest->isJudged() || !$contest->show_votes, 404);
 
-        $relationships = [
-            'judgeVotes.scores',
-            'user',
-        ];
-
+        $relationships = [];
         $includes = [
             'judge_votes.scores',
             'judge_votes.total_score',
@@ -44,11 +40,9 @@ class ContestEntriesController extends Controller
             $includes[] = 'judge_votes.user';
         }
 
-        $entry = ContestEntry
-            ::with($relationships)
-            ->withScore($contest)
-            ->findOrFail($id)
-            ->loadSum('scores', 'value');
+        // entriesByType includes required scores and user data.
+        $entries = $contest->entriesByType(null)->loadMissing($relationships);
+        $entry = $entries->findOrFail($id);
 
         $contestJson = json_item(
             $contest,
@@ -61,18 +55,9 @@ class ContestEntriesController extends Controller
         );
 
         $entryJson = json_item($entry, new ContestEntryTransformer(), $includes);
+        $entriesJson = json_collection($entries, new ContestEntryTransformer(), $includes);
 
-        foreach ($contest->entries as $entry) {
-            $entry->setRelation('contest', $contest);
-        }
-
-        $entriesJson = json_collection($contest->entries, new ContestEntryTransformer(), ['results', 'user']);
-
-        return ext_view('contest_entries.judge-results', [
-            'contestJson' => $contestJson,
-            'entryJson' => $entryJson,
-            'entriesJson' => $entriesJson,
-        ]);
+        return ext_view('contest_entries.judge-results', compact('contestJson', 'entryJson', 'entriesJson'));
     }
 
     public function judgeVote($contestId, $id)

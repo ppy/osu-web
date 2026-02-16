@@ -37,7 +37,8 @@ class ContestJudgeVote extends Model
 
     public function totalScore(): int
     {
-        return intval($this->scores()->sum('value'));
+        $rel = $this->relationLoaded('scores') ? $this->scores : $this->scores();
+        return intval($rel->sum('value'));
     }
 
     public function user(): BelongsTo
