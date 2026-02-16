@@ -322,10 +322,19 @@ class Contest extends Model
     public function entriesByType(?User $user, array $preloads = [])
     {
         if ($this->show_votes) {
+            $includes = [
+                'contest',
+                'user' => fn ($q) => $q->select('user_id', 'username'),
+            ];
+
+            if ($this->isJudged()) {
+                $includes[] = 'judgeVotes.scores';
+            }
+
             return \Cache::remember(
                 $this->entriesWithScoresKey(),
                 300,
-                fn () => $this->entries()->with(['contest', 'user'])->withScore($this)->get()
+                fn () => $this->entries()->with($includes)->withScore($this)->get()
             );
         }
 
