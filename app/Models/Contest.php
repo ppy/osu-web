@@ -10,7 +10,6 @@ use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
-use Cache;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -324,7 +323,7 @@ class Contest extends Model
     {
         if ($this->show_votes) {
             return \Cache::remember(
-                $this->getScoresCacheKey(),
+                $this->entriesWithScoresKey(),
                 300,
                 fn () => $this->entries()->with(['contest', 'user'])->withScore($this)->get()
             );
@@ -425,8 +424,8 @@ class Contest extends Model
 
     public function usersVotedCount(): int
     {
-        return cache()->remember(
-            static::class.':'.__FUNCTION__.':'.$this->getKey(),
+        return \Cache::remember(
+            $this->usersVotedCountCacheKey(),
             300,
             fn () => $this->votes()->distinct('user_id')->count(),
         );
@@ -475,13 +474,19 @@ class Contest extends Model
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
     }
 
-    private function resetCache(): void
+    private function entriesWithScoresKey(): string
     {
-        \Cache::forget($this->getScoresCacheKey());
+        return "contest:{$this->getKey()}:entries_with_scores";
     }
 
-    private function getScoresCacheKey(): string
+    private function resetCache(): void
     {
-        return "contest_entries_with_votes_{$this->getKey()}";
+        \Cache::forget($this->entriesWithScoresKey());
+        \Cache::forget($this->usersVotedCountCacheKey());
+    }
+
+    private function usersVotedCountCacheKey(): string
+    {
+        return "contest:{$this->getKey()}:users_voted_count";
     }
 }
