@@ -66,7 +66,7 @@ class ContestEntriesController extends Controller
             $entry->setRelation('contest', $contest);
         }
 
-        $entriesJson = json_collection($contest->entries, new ContestEntryTransformer());
+        $entriesJson = json_collection($contest->entries, new ContestEntryTransformer(), ['results', 'user']);
 
         return ext_view('contest_entries.judge-results', [
             'contestJson' => $contestJson,
