@@ -320,15 +320,17 @@ class Contest extends Model
 
     public function entriesByType(?User $user, array $preloads = [])
     {
-        $query = $this->entries()->with(['contest', ...$preloads]);
-
         if ($this->show_votes) {
             return Cache::remember(
-                "contest_entries_with_votes_{$this->id}",
+                $this->getScoresCacheKey(),
                 300,
-                fn () => $query->with(['contest', ...$preloads])->withScore($this)->get()
+                fn () => $this->entries()->with(['contest', 'user'])->withScore($this)->get()
             );
-        } elseif ($this->isBestOf()) {
+        }
+
+        $query = $this->entries()->with(['contest', ...$preloads]);
+
+        if ($this->isBestOf()) {
             if ($user === null) {
                 return [];
             }
@@ -469,5 +471,10 @@ class Contest extends Model
     public function showEntryUser(): bool
     {
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
+    }
+
+    private function getScoresCacheKey(): string
+    {
+        return "contest_entries_with_votes_{$this->id}";
     }
 }
