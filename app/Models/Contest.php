@@ -145,6 +145,8 @@ class Contest extends Model
             [$stdDev, $mean] = $judgeScores[$vote->user_id];
             $vote->update(['total_score_std' => $stdDev === 0.0 ? 0 : ($vote->totalScore() - $mean) / $stdDev]);
         }
+
+        $this->resetCache();
     }
 
     public function isBestOf(): bool
@@ -321,7 +323,7 @@ class Contest extends Model
     public function entriesByType(?User $user, array $preloads = [])
     {
         if ($this->show_votes) {
-            return Cache::remember(
+            return \Cache::remember(
                 $this->getScoresCacheKey(),
                 300,
                 fn () => $this->entries()->with(['contest', 'user'])->withScore($this)->get()
@@ -473,8 +475,13 @@ class Contest extends Model
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
     }
 
+    private function resetCache(): void
+    {
+        \Cache::forget($this->getScoresCacheKey());
+    }
+
     private function getScoresCacheKey(): string
     {
-        return "contest_entries_with_votes_{$this->id}";
+        return "contest_entries_with_votes_{$this->getKey()}";
     }
 }
