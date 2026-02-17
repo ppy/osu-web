@@ -31,6 +31,10 @@ return [
             'read' => 'Melihat ikutan anda.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Membaca data awam untuk pihak anda.',
     ],
 ];

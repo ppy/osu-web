@@ -16,8 +16,10 @@ return [
         'invalid' => 'Nepričakovana napaka v verifikacijski kodi.',
         'is_privileged' => 'Prosimo kontaktiraj skrbnika na visoki ravni za povrnitev računa.',
         'missing_key' => 'Obvezno.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Preveč neuspelih poskusov.',
         'user_not_found' => 'Željeni uporabnik ne obstaja.',
+        'wait_resend' => '',
         'wrong_key' => 'Napačna koda.',
     ],
 

@@ -5,10 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Inte i någon pågående osu!(laser) :type_group spel!',
+        'ended' => 'Inte i någon färdig osu!(laser) :type_group spel ännu!',
         'playlists' => 'spellista',
-        'quickplay' => '',
+        'quickplay' => 'snabbspel',
         'realtime' => 'flerspelarläge',
     ],
 
@@ -18,8 +18,8 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited spelare|:count_delimited spelare',
         'time_left' => ':time kvar',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Visa historik',
+        'view_summary' => 'Visa sammanfattning',
 
         'errors' => [
             'duration_too_long' => 'Varaktigheten är för lång.',

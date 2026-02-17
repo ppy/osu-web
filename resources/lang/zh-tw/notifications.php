@@ -161,10 +161,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => '新聞（:series）',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => '您現在是圖譜 ":title" 的客串譜師',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '新聞【:title】中有新的留言',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

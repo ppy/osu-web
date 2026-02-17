@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => 'Còn trống :count_delimited chỗ|Còn trống :count_delimited chỗ',
+            'first_places' => '',
             'leader' => 'Trưởng đội',
             'rank' => 'Hạng',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

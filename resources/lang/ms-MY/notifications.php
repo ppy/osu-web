@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Anda kini tamu peta rentak ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Terdapat komen baharu pada berita ":title"',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

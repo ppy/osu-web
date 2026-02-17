@@ -146,10 +146,12 @@ return [
             'nominators' => '提名者',
             'nsfw' => '成人內容',
             'offset' => '線上偏移調整',
+            'pack_tags' => '',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
             'storyboard' => '這張圖譜包含 Storyboard',
             'success-rate' => '成功率',
+            'success_rate_plays' => '',
             'user_tags' => '玩家標籤',
             'video' => '此圖譜包含背景影片',
         ],
@@ -224,8 +226,8 @@ return [
             'rating-spread' => '評分狀況',
             'nominations' => '提名',
             'playcount' => '遊玩次數',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => '收藏',
+            'no_favourites' => '無人收藏',
         ],
 
         'status' => [

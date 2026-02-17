@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => '制限されている間やサイレンス中はコンテストにエントリーすることはできません。',
         'preparation' => 'このコンテストは準備中です。しばらくお待ちください！',
         'drop_here' => 'エントリーをここにドロップ！',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '.oszをダウンロード',
-
-        'wrong_type' => [
-            'art' => 'このコンテストは.jpgか.png拡張子のファイルしか受け付けていません。',
-            'beatmap' => 'このコンテストは.osu拡張子のファイルしか受け付けていません。',
-            'music' => 'このコンテストは.mp3拡張子のファイルしか受け付けていません。',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'このコンテストのエントリーは:widthx:heightでなければいけません',
         'too_big' => 'このコンテストのエントリーの上限は:limitです。',
     ],
@@ -89,7 +86,7 @@ return [
         'list' => '投票',
         'count' => ':count_delimited 票',
         'points' => ':count_delimited ポイント',
-        'points_float' => '',
+        'points_float' => ':points ポイント',
     ],
 
     'dates' => [
@@ -110,7 +107,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => '詳細と応募内容を表示',
         ],
     ],
 ];

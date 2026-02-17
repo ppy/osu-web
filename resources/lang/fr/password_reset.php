@@ -16,8 +16,10 @@ return [
         'invalid' => 'Erreur inattendue dans le code de vérification.',
         'is_privileged' => 'Veuillez contacter un administrateur de haut niveau pour récupérer votre compte.',
         'missing_key' => 'Requis.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Trop de tentatives échouées.',
         'user_not_found' => 'L\'utilisateur demandé n\'existe pas.',
+        'wait_resend' => '',
         'wrong_key' => 'Code incorrect.',
     ],
 

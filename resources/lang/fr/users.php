@@ -333,6 +333,9 @@ return [
                     'title' => 'Historique des replays regardés',
                     'count_label' => 'Replays regardés',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Historique de Kudosu récents',
@@ -400,7 +403,7 @@ return [
                 'show_more' => 'voir plus de posts',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Historique des parties rapides',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',
@@ -472,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Partie rapide',
         ],
 
         'not_found' => [

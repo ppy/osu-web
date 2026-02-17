@@ -31,6 +31,10 @@ return [
             'read' => 'Skatīt, kam tu seko.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Lasīt publiskos datus tavā vārdā.',
     ],
 ];

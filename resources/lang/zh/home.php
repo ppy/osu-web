@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => '查看更多战队搜索结果',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => '下载 osu!',
             'support' => '支持 osu!',
             'store' => 'osu! 商店',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

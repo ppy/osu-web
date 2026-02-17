@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => '账户受限或禁言时无法参加评选。',
         'preparation' => '我们正在准备这场评选，请耐心等待！',
         'drop_here' => '将您的参赛文件拖到此处',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '下载 .osz 文件',
-
-        'wrong_type' => [
-            'art' => '只接受 .jpg 和 .png 格式的文件.',
-            'beatmap' => '只接受 .osu 格式的文件.',
-            'music' => '只接受 .mp3 格式的文件.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '参与竞赛的数量必须达到 :widthx:height',
         'too_big' => '参赛文件的大小不能超过 :limit.',
     ],

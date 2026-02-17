@@ -333,6 +333,9 @@ return [
                     'title' => 'Ιστορικό Παρακολούθησης Replay',
                     'count_label' => 'Παρακολουθημένες Επαναλήψεις',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Πρόσφατο Ιστορικό Kudosu',

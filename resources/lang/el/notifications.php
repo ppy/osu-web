@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Είσαι τώρα επισκέπτης του beatmap \'\':title\'\'',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Νέα ":title" έχει νέα σχόλια',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

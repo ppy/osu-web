@@ -94,7 +94,7 @@ return [
             'forum_topic_reply' => '主題回覆',
             'mail' => '郵件',
             'mapping' => '譜師',
-            'news_post' => '',
+            'news_post' => '新聞貼文',
             'push' => '推送',
         ],
     ],
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => '隱藏成人內容圖譜的警告',
         'beatmapset_title_show_original' => '以原語言顯示圖譜資料',
         'title' => '選項',
@@ -152,7 +153,7 @@ return [
 
     'user_totp' => [
         'title' => '驗證應用程式',
-        'usage_note' => '會以驗證應用程式代替電子郵件驗證。 電子郵件驗證仞然會以備用的驗證方式做使用。',
+        'usage_note' => '會以驗證應用程式代替電子郵件驗證。 電子郵件驗證仍然會以備用的驗證方式做使用。',
 
         'button' => [
             'remove' => '移除',

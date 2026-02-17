@@ -253,69 +253,6 @@ return [
             'views' => 'vistas',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Eliminar etiqueta «added»',
-            'to_0_done' => 'Etiqueta «added» eliminada',
-            'to_1' => 'Añadir etiqueta «added»',
-            'to_1_done' => 'Etiqueta «added» añadida',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Eliminar etiqueta «assigned»',
-            'to_0_done' => 'Etiqueta «assigned» eliminada',
-            'to_1' => 'Añadir etiqueta «assigned»',
-            'to_1_done' => 'Etiqueta «assigned» añadida',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Eliminar etiqueta «confirmed»',
-            'to_0_done' => 'Etiqueta «confirmed» eliminada',
-            'to_1' => 'Añadir etiqueta «confirmed»',
-            'to_1_done' => 'Etiqueta «confirmed» añadida',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Eliminar etiqueta «duplicate»',
-            'to_0_done' => 'Etiqueta «duplicate» eliminada',
-            'to_1' => 'Añadir etiqueta «duplicate»',
-            'to_1_done' => 'Etiqueta «duplicate» añadida',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Eliminar etiqueta «invalid»',
-            'to_0_done' => 'Etiqueta «invalid» eliminada',
-            'to_1' => 'Añadir etiqueta «invalid»',
-            'to_1_done' => 'Etiqueta «invalid» añadida',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Eliminar etiqueta «resolved»',
-            'to_0_done' => 'Etiqueta «resolved» eliminada',
-            'to_1' => 'Añadir etiqueta «resolved»',
-            'to_1_done' => 'Etiqueta «resolved» añadida',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Eliminar la etiqueta «osu!lazer»',
-            'to_0_done' => 'Etiqueta «osu!lazer» eliminada',
-            'to_1' => 'Añadir la etiqueta «osu!lazer»',
-            'to_1_done' => 'Etiqueta «osu!lazer» añadida',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Eliminar la etiqueta «osu!stable»',
-            'to_0_done' => 'Etiqueta «osu!stable» eliminada',
-            'to_1' => 'Añadir la etiqueta «osu!stable»',
-            'to_1_done' => 'Etiqueta «osu!stable» añadida',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Eliminar la etiqueta «osu!web»',
-            'to_0_done' => 'Etiqueta «osu!web» eliminada',
-            'to_1' => 'Añadir la etiqueta «osu!web»',
-            'to_1_done' => 'Etiqueta «osu!web» añadida',
-        ],
-
         'lock' => [
             'is_locked' => 'Este tema está cerrado y no se puede responder',
             'to_0' => 'Abrir tema',

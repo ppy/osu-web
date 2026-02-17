@@ -333,6 +333,9 @@ return [
                     'title' => 'Angeschaute Replays',
                     'count_label' => 'Replays angeschaut',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Kudosu-Verlauf',
@@ -441,20 +444,20 @@ return [
             'account_standing' => [
                 'title' => 'Accountstatus',
                 'bad_standing' => "Der Account von :username hat zurzeit keinen guten Ruf :(",
-                'remaining_silence' => ':username kann in :duration wieder sprechen.',
+                'remaining_silence' => ':username wird :duration wieder sprechen können.',
 
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',
                     'date' => 'Datum',
                     'action' => 'Maßnahme',
                     'length' => 'Dauer',
-                    'length_indefinite' => 'Unbestimmt',
+                    'length_indefinite' => 'Unbefristet',
                     'description' => 'Beschreibung',
                     'actor' => 'von :username',
 
                     'actions' => [
                         'restriction' => 'Bann',
-                        'silence' => 'Silence',
+                        'silence' => 'Stummschaltung',
                         'tournament_ban' => 'Turniersperre',
                         'note' => 'Warnung',
                     ],

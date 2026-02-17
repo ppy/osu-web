@@ -57,7 +57,7 @@ return [
     'playlists' => [
         'charts' => 'Nổi bật (cũ)',
         'featured' => 'nổi bật',
-        'season_room' => '',
+        'season_room' => 'phòng mùa giải',
         'seasons' => 'mùa',
     ],
 

@@ -333,6 +333,9 @@ return [
                     'title' => 'Sejarah Tontonan Ulangan',
                     'count_label' => 'Tontonan Ulangan',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Sejarah Kudosu Semasa',

@@ -245,6 +245,7 @@ return [
             'prompt' => 'جستجو...',
             'login_required' => 'برای سرچ‌کردن، لاگین کنید.',
             'options' => 'تنظیمات بیشتر',
+            'rank_filter_note' => '',
             'supporter_filter' => 'صافی‌کردن با :filters نیازمند تگ osu!supporter فعال است',
             'not-found' => 'نتیجه ای یافت نشد',
             'not-found-quote' => '... نچ. هیچی پیدا نکردم.',

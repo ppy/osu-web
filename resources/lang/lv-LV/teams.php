@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited vieta brīva|:count_delimited vietas brīvas',
+            'first_places' => '',
             'leader' => 'Komandas Līderis',
             'rank' => 'Rangs',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

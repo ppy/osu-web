@@ -222,6 +222,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => '您现在是 ":title" 的客串作者
@@ -274,10 +276,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '新闻 ":title" 有新的评论',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '新闻（:series）：":title"',
             ],
         ],
 

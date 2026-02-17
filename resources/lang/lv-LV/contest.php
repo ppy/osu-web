@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Jūs nevarat piedalīties konkursos, kamēr esat ierobežots vai apklusināts.',
         'preparation' => 'Mēs pašlaik gatavojam šo konkursu. Lūdzu, pacietīgi gaidiet!',
         'drop_here' => 'Iemetiet savu pieteikumu šeit',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Lejupielādēt .osz',
-
-        'wrong_type' => [
-            'art' => 'Šajā konkursā pieņem tikai .jpg un .png failus.',
-            'beatmap' => 'Šajā konkursā tiek pieņemti tikai .osu faili.',
-            'music' => 'Šajā konkursā tiek pieņemti tikai .mp3 faili.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Šajā konkursā pieteikumiem jābūt :widthx:height',
         'too_big' => 'Dalība šajā konkursā var būt tikai līdz :limit.',
     ],

@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'ascunde avertismente pentru conținut obscen în beatmap-uri',
         'beatmapset_title_show_original' => 'arată datele melodiilor în limba originală',
         'title' => 'Opțiuni',

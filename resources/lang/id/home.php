@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Lihat lebih banyak hasil pencarian tim',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Unduh osu!',
             'support' => 'Dukung osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

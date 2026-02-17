@@ -51,7 +51,7 @@ Belirtilen tarihte günlük meydan okuma yok!',
     ],
 
     'top_plays' => [
-        'empty' => '',
+        'empty' => 'Veriler hesaplanıyor...',
         'last_updated' => '',
     ],
 

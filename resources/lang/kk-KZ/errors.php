@@ -22,10 +22,6 @@ return [
             'generic' => '',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => '',
-        'standard_converts_only' => '',
-    ],
     'checkout' => [
         'generic' => '',
     ],

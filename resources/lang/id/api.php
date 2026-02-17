@@ -31,6 +31,10 @@ return [
             'read' => 'Melihat siapa saja yang kamu ikuti.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Membaca data yang bersifat publik atas nama akunmu.',
     ],
 ];

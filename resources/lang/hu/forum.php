@@ -253,69 +253,6 @@ return [
             'views' => 'megtekintések',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => '"added" címke eltávolítása',
-            'to_0_done' => '"added" címke eltávolítva',
-            'to_1' => '“added” címke hozzáadása',
-            'to_1_done' => '“added” címke hozzáadva',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '“assigned” címke eltávolítása',
-            'to_0_done' => '“assigned” címke eltávolítva',
-            'to_1' => '“assigned” címke hozzáadása',
-            'to_1_done' => '“assigned” címke hozzáadva',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '“confirmed” címke eltávolítása',
-            'to_0_done' => '“confirmed” címke eltávolítva',
-            'to_1' => '“confirmed” címke hozzáadása',
-            'to_1_done' => '“confirmed” címke hozzáadva',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '“duplicate” címke eltávolítása',
-            'to_0_done' => '“duplicate” címke eltávolítva',
-            'to_1' => '“duplicate” címke hozzáadása',
-            'to_1_done' => '“duplicate” címke hozzáadva',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '“invalid” címke eltávolítása',
-            'to_0_done' => '“invalid” címke eltávolítva',
-            'to_1' => '“invalid” címke hozzáadása',
-            'to_1_done' => '“invalid” címke hozzáadva',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '“resolved” címke eltávolítása',
-            'to_0_done' => '“resolved” címke eltávolítva',
-            'to_1' => '“resolved” címke hozzáadása',
-            'to_1_done' => '“resolved” címke hozzáadva',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '"osu!lazer" címke eltávolítása',
-            'to_0_done' => '"osu!lazer" címke eltávolítva',
-            'to_1' => '"osu!lazer" címke hozzáadása',
-            'to_1_done' => '"osu!lazer" címke hozzáadva',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '"osu!stable" címke eltávolítása',
-            'to_0_done' => '"osu!stable" címke eltávolítva',
-            'to_1' => '"osu!stable" címke hozzáadása',
-            'to_1_done' => '"osu!stable" címke hozzáadva',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '"osu!web" címke eltávolítása',
-            'to_0_done' => '"osu!web" címke eltávolítva',
-            'to_1' => '"osu!web" címke hozzáadása',
-            'to_1_done' => '"osu!web" címke hozzáadva',
-        ],
-
         'lock' => [
             'is_locked' => 'Ez a téma zárva van és nem lehet rá válaszolni',
             'to_0' => 'Téma feloldása',

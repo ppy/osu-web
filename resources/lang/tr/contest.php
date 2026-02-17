@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Kısıtlanmış veya susturulmuşken yarışmalara katılamazsınız.',
         'preparation' => 'Şu an bu yarışmayı hazırlıyoruz. Lütfen sabırla bekleyiniz!',
         'drop_here' => 'Girdinizi buraya bırakın',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '.osz indir',
-
-        'wrong_type' => [
-            'art' => 'Bu yarışma için sadece .jpg ve .png dosyaları kabul edilir.',
-            'beatmap' => 'Bu yarışma için sadece .osu dosyaları kabul edilir.',
-            'music' => 'Bu yarışma için sadece .mp3 dosyaları kabul edilir.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Bu yarışma için başvurular şu şekilde olmalıdır: :widthx:height',
         'too_big' => 'Bu yarışma için :limit girdi gönderilebilir.',
     ],

@@ -333,6 +333,9 @@ return [
                     'title' => 'Kasaysayan sa Panooran ng Replay',
                     'count_label' => 'Beses na Napanooran ng Replay',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Kamakailang Kaganapan sa Kudosu',

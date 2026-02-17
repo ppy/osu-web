@@ -333,6 +333,9 @@ return [
                     'title' => 'تاريخ مشاهدات الـ Replays',
                     'count_label' => 'الـ Replays التي شاهدتها',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'تاريخ الكودوسو الفائت',

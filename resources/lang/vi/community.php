@@ -145,7 +145,7 @@ return [
 
             'gifted' => [
                 '_' => 'Trong tất cả các đóng góp của bạn, bạn đã cho :dollars cho :users trong khoảng :duration. Bạn thật hào phóng!',
-                'users' => '',
+                'users' => ':count_delimited người dùng khác|:count_delimited người dùng khác',
             ],
         ],
     ],

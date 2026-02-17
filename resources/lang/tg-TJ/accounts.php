@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => '',
         'beatmapset_title_show_original' => '',
         'title' => '',

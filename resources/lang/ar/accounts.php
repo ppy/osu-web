@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'إخفاء تحذيرات للمحتوى الحساس في الخرائط',
         'beatmapset_title_show_original' => 'إظهار بيانات تعريف الخرائط باللغة الأصلية',
         'title' => 'الخيارات',

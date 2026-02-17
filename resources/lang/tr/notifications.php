@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Artık ":title" beatmapinin bir konuğusunuz',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '":title" haber göndersinde yeni yorumlar mevcut',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

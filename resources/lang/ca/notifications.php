@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Ara ets un convidat del mapa «:title»',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Les novetats ":title" tenen nous comentaris',
-            ],
-
-            'news_post' => [
-                'news_post_new' => 'Notícies (:series): «:title»',
             ],
         ],
 

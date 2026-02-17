@@ -56,7 +56,7 @@ return [
 
     'playlists' => [
         'charts' => '季赛（旧版）',
-        'featured' => '特殊',
+        'featured' => '特辑',
         'season_room' => '季赛房间',
         'seasons' => '季赛',
     ],

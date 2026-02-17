@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited 個欄位可用',
+            'first_places' => '',
             'leader' => '隊長',
             'rank' => '排名',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

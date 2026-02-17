@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Kamu tidak dapat mengikuti kontes ketika kamu sedang di-restrict atau di-silence.',
         'preparation' => 'Kami sedang mempersiapkan kontes ini. Mohon bersabar!',
         'drop_here' => 'Letakkan entrimu di sini',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Unduh .osz',
-
-        'wrong_type' => [
-            'art' => 'Kontes ini hanya menerima berkas dengan ekstensi .jpg dan .png.',
-            'beatmap' => 'Kontes ini hanya menerima berkas dengan ekstensi .osu.',
-            'music' => 'Kontes ini hanya menerima berkas dengan ekstensi .mp3.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Entri untuk kontes ini harus berukuran :widthx:height',
         'too_big' => 'Berkas yang diikutsertakan untuk kontes ini tidak boleh melebihi batas ukuran :limit.',
     ],

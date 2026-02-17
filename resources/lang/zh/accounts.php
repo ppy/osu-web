@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => '隐藏不良内容谱面提示',
         'beatmapset_title_show_original' => '以原语言显示谱面信息',
         'title' => '选项',

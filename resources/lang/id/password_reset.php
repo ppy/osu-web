@@ -16,8 +16,10 @@ return [
         'invalid' => 'Terdapat kesalahan yang tidak terduga dalam kode verifikasi.',
         'is_privileged' => 'Silakan hubungi admin dengan izin akses tingkat tinggi untuk memulihkan akun.',
         'missing_key' => 'Wajib.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Terlalu banyak percobaan yang gagal.',
         'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',
+        'wait_resend' => '',
         'wrong_key' => 'Kode salah.',
     ],
 

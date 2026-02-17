@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Цяпер вы госць бітмапы ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Навіны ":title" маюць новыя каментарыі',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

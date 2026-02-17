@@ -22,10 +22,6 @@ return [
             'generic' => 'Došlo k chybě. Zkus stránku obnovit.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Byl specifikován neplatný mód.',
-        'standard_converts_only' => 'Není dostupné žádné score pro zvolený mód na této obtížnosti.',
-    ],
     'checkout' => [
         'generic' => 'Při zpracování vaší objednávky došlo k chybě.',
     ],

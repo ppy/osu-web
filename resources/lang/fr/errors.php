@@ -22,10 +22,6 @@ return [
             'generic' => 'Une erreur est survenue. Essayez de rafraîchir la page.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Mode spécifié invalide.',
-        'standard_converts_only' => 'Aucun score n\'est disponible pour le mode sélectionné sur cette difficulté.',
-    ],
     'checkout' => [
         'generic' => 'Une erreur s’est produite lors de votre achat.',
     ],

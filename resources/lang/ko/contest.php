@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => '침묵, 제한 상태에서는 콘테스트에 참가할 수 없습니다.',
         'preparation' => '현재 콘테스트가 준비중에 있습니다. 인내심을 갖고 조금만 더 기다려주세요!',
         'drop_here' => '참가할 작품을 이곳에 끌어넣어주세요.',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '.osz 파일 다운로드',
-
-        'wrong_type' => [
-            'art' => '이 콘테스트에서는 .jpg 파일과 .png 파일만 등록할 수 있습니다.',
-            'beatmap' => '이 콘테스트에서는 .osu 파일만 등록할 수 있습니다.',
-            'music' => '이 콘테스트에서는 .mp3 파일만 등록할 수 있습니다.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '이 콘테스트의 출품작은 반드시 :widthx:height 여야 합니다.',
         'too_big' => '이 콘테스트의 최대 참가 가능한 작품 수는 :limit개 입니다.',
     ],

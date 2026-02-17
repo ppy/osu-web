@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Vidi više rezultata pretraživanja za timove',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Preuzmi osu!',
             'support' => 'Podrži osu!',
             'store' => 'osu!trgovina',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

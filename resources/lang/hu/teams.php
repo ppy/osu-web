@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => '',
+            'first_places' => '',
             'leader' => 'Csapatvezető',
             'rank' => 'Rang',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

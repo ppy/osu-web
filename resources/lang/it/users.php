@@ -333,6 +333,9 @@ return [
                     'title' => 'Cronologia Replay Guardati',
                     'count_label' => 'Replay guardati',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Cronologia Kudosu Recenti',

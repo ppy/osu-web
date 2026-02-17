@@ -6,7 +6,7 @@
 return [
     'invalid_scope' => [
         'all_scope_no_client_credentials' => '* non è consentito con le Credenziali del Client',
-        'all_scope_no_mix' => '',
+        'all_scope_no_mix' => '* non è valido con altri scope',
         'client_missing_owner' => 'Il client ha un proprietario mancante.',
         'client_unauthorized' => 'Il client non è autorizzato.',
         'delegate_bot_only' => 'La delegazione con le credenziali del client è solo disponibile ai chat bot.',

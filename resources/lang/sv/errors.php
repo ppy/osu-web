@@ -22,10 +22,6 @@ return [
             'generic' => 'Ett fel uppstod. Försök att ladda om sidan.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Ogiltigt läge specificerat.',
-        'standard_converts_only' => 'Inga rekord finns tillgängliga för det begärda läget på denna svårighetsgrad.',
-    ],
     'checkout' => [
         'generic' => 'Ett fel inträffade när din transaktion förbereddes.',
     ],

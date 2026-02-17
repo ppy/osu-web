@@ -5,8 +5,8 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Hiện không có ván osu!(lazer) :type_group: nào đang diễn ra!',
+        'ended' => 'Chưa có ván osu!(lazer) :type_group: nào hoàn thành!',
         'playlists' => 'danh sách phát',
         'quickplay' => 'chơi nhanh',
         'realtime' => 'nhiều người chơi',

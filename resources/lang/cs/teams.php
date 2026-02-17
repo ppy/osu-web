@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited slot k dispozici|:count_delimited sloty k dispozici|:count_delimited slotů k dispozici',
+            'first_places' => '',
             'leader' => 'Vedoucí týmu',
             'rank' => 'Umístění',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

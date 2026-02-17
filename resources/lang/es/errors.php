@@ -22,10 +22,6 @@ return [
             'generic' => 'Ocurrió un error. Intente actualizar la página.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Modo especificado no válido.',
-        'standard_converts_only' => 'No hay puntuaciones disponibles para el modo solicitado en esta dificultad del mapa.',
-    ],
     'checkout' => [
         'generic' => 'Se produjo un error mientras se preparaba su compra.',
     ],

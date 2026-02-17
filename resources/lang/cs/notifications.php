@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Nyní hostujete beatmapu ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Novinky ":title" mají nové komentáře',
-            ],
-
-            'news_post' => [
-                'news_post_new' => 'Novinky (:series): ":title"',
             ],
         ],
 

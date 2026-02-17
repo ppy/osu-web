@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => '',
         'preparation' => '',
         'drop_here' => '',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '',
-
-        'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '',
         'too_big' => '',
     ],

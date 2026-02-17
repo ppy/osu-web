@@ -107,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'скрыть предупреждения об откровенном содержании в картах',
         'beatmapset_title_show_original' => 'показывать метаданные карт на языке оригинала',
         'title' => 'Веб-сайт',

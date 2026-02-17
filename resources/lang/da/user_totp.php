@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'finish' => '',
+        'finish' => 'Afslut',
         'key' => '',
         'key_copy' => '',
         'key_link' => '',

@@ -13,7 +13,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Mapes',
-        'download' => 'descarrega la plantilla del beatmap',
+        'download' => 'descarrega la plantilla del mapa',
         'download-na' => 'La plantilla del mapa encara no està disponible',
     ],
 

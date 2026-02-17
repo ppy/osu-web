@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'もっとチームの検索結果を見る',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'osu!をダウンロード',
             'support' => 'osu!を支援する',
             'store' => 'osu!ストア',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

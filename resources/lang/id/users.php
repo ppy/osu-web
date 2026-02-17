@@ -75,7 +75,7 @@ return [
         'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa tenggang selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan banding apa pun yang terkait dengan akun kamu. Setelah masa ini berakhir, kamu baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru setelah akun utamamu dinonaktifkan <strong>hanya akan memperpanjang masa hukumanmu selama satu bulan</strong>, dan <strong>pelanggaranmu akan semakin berat untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
 
         'if_mistake' => [
-            '_' => 'Apabila kamu merasa bahwa hal ini merupakan sebuah kesalahan, kamu dipersilakan untuk menghubungi kami (baik melalui :email atau tombol "?" yang terletak pada pojok kanan bawah halaman ini) secara langsung. Mohon diperhatikan bahwa kami selalu sepenuhnya yakin akan seluruh tindakan kami, karena segala sesuatunya selalu kami dasarkan pada data yang konkrit. Kami berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu telah dengan sengaja berbohong kepada kami.',
+            '_' => 'Apabila kamu merasa bahwa hal ini adalah sebuah kesalahan, kamu dipersilakan untuk menghubungi kami (baik melalui :email atau tombol "?" yang ada di pojok kanan bawah halaman ini) secara langsung. Mohon diperhatikan bahwa kami selalu sepenuhnya yakin dengan tindakan kami, karena tindakan ini selalu didasarkan pada data yang konkrit. Kami berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu telah dengan sengaja berbohong kepada kami.',
             'email' => 'email',
         ],
 
@@ -187,8 +187,8 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akunmu telah di-restrict!',
-        'message' => 'Selama di-restrict, kamu tidak akan dapat berinteraksi dengan para pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya merupakan hasil dari proses otomatis yang berlangsung dan akan diangkat dalam 24 jam. :link',
+        'title' => 'Akunmu telah dibatasi!',
+        'message' => 'Selama dibatasi, kamu tidak akan dapat berinteraksi dengan pengguna lainnya, dan skor kamu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya merupakan hasil dari proses yang berlangsung secara otomatis dan akan diangkat dalam 24 jam. :link',
         'message_link' => 'Kunjungi halaman ini untuk informasi lebih lanjut.',
     ],
     'show' => [
@@ -247,7 +247,7 @@ return [
                     'unsupported_format' => 'Format tidak didukung.',
 
                     'restriction_info' => [
-                        '_' => 'Pengunggahan gambar sampul hanya tersedia bagi para pemilik :link',
+                        '_' => 'Unggahan gambar sampul hanya tersedia bagi pemilik :link',
                         'link' => 'osu!supporter',
                     ],
                 ],
@@ -332,6 +332,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => 'Riwayat Pemutaran Tayangan Ulang',
                     'count_label' => 'Kali Tayangan Ulang Ditonton',
+                ],
+                'score_replay_stats' => [
+                    'title' => '',
                 ],
             ],
             'kudosu' => [
@@ -484,12 +487,12 @@ return [
         ],
         'page' => [
             'button' => 'sunting halaman profil',
-            'description' => '<strong>saya!</strong> merupakan area pribadi pada halaman profilmu yang dapat kamu isi sesuka hati.',
+            'description' => '<strong>saya!</strong> adalah area pribadi pada halaman profilmu yang dapat kamu isi sesuka hati.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten halaman di sini',
 
             'restriction_info' => [
-                '_' => 'Kamu harus menjadi seorang :link untuk menggunakan fitur ini.',
+                '_' => 'Kamu harus menjadi :link untuk menggunakan fitur ini.',
                 'link' => 'osu!supporter',
             ],
         ],

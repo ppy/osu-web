@@ -22,10 +22,6 @@ return [
             'generic' => 'Došlo je do pogreške. Pokušaj osvježiti stranicu.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Naveden je nevažeći mod.',
-        'standard_converts_only' => 'Nema dostupnih rezultata za traženi mod na ovoj težini beatmape.',
-    ],
     'checkout' => [
         'generic' => 'Došlo je do pogreške pri pripremanju tvoje naplate.',
     ],

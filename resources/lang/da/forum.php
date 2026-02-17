@@ -253,69 +253,6 @@ return [
             'views' => 'visninger',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Fjern "tilføjet" tag',
-            'to_0_done' => 'Fjern "tilføjet" tag',
-            'to_1' => 'Tilføj "tilføjet" tag',
-            'to_1_done' => 'Tilføj "tilføjet" tag',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Fjern "tildelt" tag',
-            'to_0_done' => 'Fjern "tildelt" tag',
-            'to_1' => 'Tilføj "tildelt" tag',
-            'to_1_done' => 'Tilføj "tildelt" tag',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Fjern "bekræftet" tag',
-            'to_0_done' => 'Fjern "bekræftet" tag',
-            'to_1' => 'Tilføj "bekræftet" tag',
-            'to_1_done' => 'Tilføj "bekræftet" tag',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Fjern "duplikeret" tag',
-            'to_0_done' => 'Fjern "duplikeret" tag',
-            'to_1' => 'Tilføj "duplikeret" tag',
-            'to_1_done' => 'Tilføj "duplikeret" tag',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Fjern "ugyldigt" tag',
-            'to_0_done' => 'Fjern "ugyldigt" tag',
-            'to_1' => 'Tilføj "ugyldigt" tag',
-            'to_1_done' => 'Tilføj "ugyldigt" tag',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Fjern "løst" tag',
-            'to_0_done' => 'Fjern "løst" tag',
-            'to_1' => 'Tilføj "løst" tag',
-            'to_1_done' => 'Tilføj "løst" tag',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => 'Dette emne er arkiveret og kan ikke svares',
             'to_0' => 'Oplås emne',

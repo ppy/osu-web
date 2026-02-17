@@ -253,69 +253,6 @@ return [
             'views' => 'visualizações',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Remover marcador "adicionado"',
-            'to_0_done' => 'Marcador "adicionado" removido',
-            'to_1' => 'Adicionar marcador "adicionado"',
-            'to_1_done' => 'Marcador "adicionado" adicionado',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Remover marcador "nomeado"',
-            'to_0_done' => 'Marcador "nomeado" removido',
-            'to_1' => 'Adicionar marcador "nomeado"',
-            'to_1_done' => 'Marcador "nomeado" adicionado',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Remover marcador "confirmado"',
-            'to_0_done' => 'Marcador "confirmado" removido',
-            'to_1' => 'Adicionar marcador "confirmado"',
-            'to_1_done' => 'Marcador "confirmado" adicionado',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Remover marcador "duplicado"',
-            'to_0_done' => 'Marcador "duplicado" removido',
-            'to_1' => 'Adicionar marcador "duplicado"',
-            'to_1_done' => 'Marcador "duplicado" adicionado',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Remover marcador "inválido"',
-            'to_0_done' => 'Marcador "inválido" removido',
-            'to_1' => 'Adicionar marcador "inválido"',
-            'to_1_done' => 'Marcador "inválido" adicionado',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Remover marcador "resolvido"',
-            'to_0_done' => 'Marcador "resolvido" removido',
-            'to_1' => 'Adicionar marcador "resolvido"',
-            'to_1_done' => 'Marcador "resolvido" adicionado',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Remover marcador "osu!lazer"',
-            'to_0_done' => 'Marcador "osu!lazer" removido',
-            'to_1' => 'Adicionar marcador "osu!lazer"',
-            'to_1_done' => 'Marcador "osu!lazer" adicionado',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Remova marcador "osu!stable"',
-            'to_0_done' => 'Marcador "osu!stable" removido',
-            'to_1' => 'Adicionar marcador "osu!stable"',
-            'to_1_done' => 'Marcador "osu!stable" adicionado',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Remova o marcador "osu!web"',
-            'to_0_done' => 'Marcador "osu!web" removido',
-            'to_1' => 'Adicionar marcador "osu!web"',
-            'to_1_done' => 'Marcador "osu!web" adicionado',
-        ],
-
         'lock' => [
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
             'to_0' => 'Destrancar tópico',

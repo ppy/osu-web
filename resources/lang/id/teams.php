@@ -124,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => 'Pengguna :user kini menjabat sebagai ketua tim.',
+            'success' => 'Pengguna :user sekarang adalah ketua tim.',
         ],
     ],
 
@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited slot tersedia|:count_delimited slot tersedia',
+            'first_places' => '',
             'leader' => 'Ketua Tim',
             'rank' => 'Peringkat',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

@@ -20,7 +20,7 @@ return [
 
     'edit' => [
         'password' => '',
-        'start' => '',
+        'start' => 'Kaldır',
     ],
 
     'store' => [
