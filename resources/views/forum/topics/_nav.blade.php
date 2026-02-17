@@ -65,7 +65,7 @@
 
         <div class="forum-topic-nav__group forum-topic-nav__group--desktop">
             @yield('forum-topic-moderation-menu')
-            @if ($topic->isIssue())
+            @if ($userCanModerate && $topic->isIssue())
                 @include('forum.topics._edit_tags', ['topic' => $topic])
             @endif
             @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])

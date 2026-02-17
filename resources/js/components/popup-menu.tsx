@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { TooltipContext } from 'tooltip-context';
+import { classWithModifiers } from 'utils/css';
 import { isModalShowing } from 'utils/modal-helper';
 import { nextVal } from 'utils/seq';
 import Portal from './portal';
@@ -138,7 +139,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
     return (
       <Portal>
         <div ref={this.menuRootRef}>
-          <div ref={this.menuRef} className='popup-menu-float'>
+          <div ref={this.menuRef} className={classWithModifiers('popup-menu-float', this.props.direction)}>
             {this.props.children(this.dismiss)}
           </div>
         </div>
@@ -164,19 +165,22 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
 
     const buttonRect = buttonEl.getBoundingClientRect();
     const menuRect = menuEl.getBoundingClientRect();
+    const viewportWidth = document.body.scrollWidth;
     const { scrollX, scrollY } = window;
 
-    let left = scrollX + buttonRect.right;
-    // shift the menu right if it clips out of the window;
-    // menuRect.x doesn't update until after layout is finished so the known position of buttonRect is used instead.
-    if (this.props.direction === 'right' || buttonRect.right - menuRect.width < 0) {
-      left += menuRect.width - buttonRect.width;
-    }
+    const left = this.props.direction === 'left'
+      ? Math.min(
+        viewportWidth,
+        buttonRect.right + Math.max(0, menuRect.width - buttonRect.right),
+      ) : Math.max(
+        0,
+        buttonRect.x - Math.max(0, buttonRect.x + menuRect.width - viewportWidth),
+      );
 
     menuRootEl.style.display = 'block';
     menuRootEl.style.position = 'absolute';
     menuRootEl.style.top = `${Math.floor(scrollY + buttonRect.bottom + 5)}px`;
-    menuRootEl.style.left = `${Math.floor(left)}px`;
+    menuRootEl.style.left = `${Math.floor(scrollX + left)}px`;
 
     // keeps the menu showing above the tooltip;
     // portal should be after the tooltip in the document body.

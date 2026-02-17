@@ -36,8 +36,12 @@ class RoomsController extends Controller
     {
         $params = \Request::all();
         $user = User::findOrFail(get_int($params['user_id'] ?? null));
+        $tournamentMode = get_bool($params['tournament_mode'] ?? false);
 
-        $room = (new Room())->startGame($user, $params);
+        // `tournament_mode` is purposefully copied to `$extraParams`
+        // because it should only be directly controllable by this one endpoint
+        // and not by other consumers of `startGame()`.
+        $room = (new Room())->startGame($user, $params, ['tournament_mode' => $tournamentMode]);
 
         return $room->getKey();
     }

@@ -1330,6 +1330,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->profileBanners()->active()->with('tournamentBanner')->orderBy('banner_id');
     }
 
+    public function scoreReplayStats(): HasMany
+    {
+        return $this->hasMany(ScoreReplayStats::class);
+    }
+
     public function storeAddresses()
     {
         return $this->hasMany(Store\Address::class);
@@ -1555,9 +1560,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_multiplayer_duration_supporter'] : $GLOBALS['cfg']['osu']['user']['max_multiplayer_duration'];
     }
 
-    public function maxMultiplayerRooms()
+    public function maxPlaylists()
     {
-        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_multiplayer_rooms_supporter'] : $GLOBALS['cfg']['osu']['user']['max_multiplayer_rooms'];
+        return $this->isSupporter() ? $GLOBALS['cfg']['osu']['user']['max_playlists_supporter'] : $GLOBALS['cfg']['osu']['user']['max_playlists'];
+    }
+
+    public function maxTournamentRooms()
+    {
+        return $this->isBot() ? $GLOBALS['cfg']['osu']['user']['max_tournament_rooms_bot'] : $GLOBALS['cfg']['osu']['user']['max_tournament_rooms'];
     }
 
     public function maxScorePins()

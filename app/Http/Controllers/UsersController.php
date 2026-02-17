@@ -23,6 +23,7 @@ use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\ScoreReplayStatsTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserMonthlyPlaycountTransformer;
@@ -44,6 +45,8 @@ class UsersController extends Controller
     const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
 
     const PER_PAGE = [
+        'scoreReplayStats' => 5,
+
         'scoresBest' => 5,
         'scoresFirsts' => 5,
         'scoresPinned' => 5,
@@ -89,6 +92,7 @@ class UsersController extends Controller
             'index',
             'kudosu',
             'recentActivity',
+            'scoreReplayStats',
             'scores',
             'show',
         ]]);
@@ -98,7 +102,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity'],
+            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity', 'scoreReplayStats'],
         ]);
 
         parent::__construct();
@@ -169,6 +173,10 @@ class UsersController extends Controller
                         $this->user->soloScores()->recent($this->mode, false)->count(),
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
+                    'score_replay_stats' => $this->getExtraSection(
+                        'scoreReplayStats',
+                        min($this->maxResults, $this->user->scoreReplayStats()->whereHas('score.beatmap.beatmapset')->count()),
+                    ),
                 ];
 
             case 'kudosu':
@@ -481,6 +489,11 @@ class UsersController extends Controller
     public function recentActivity($_userId)
     {
         return $this->getExtra('recentActivity', [], $this->perPage, $this->offset);
+    }
+
+    public function scoreReplayStats()
+    {
+        return $this->getExtra('scoreReplayStats', [], $this->perPage, $this->offset);
     }
 
     /**
@@ -827,6 +840,15 @@ class UsersController extends Controller
                         $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
                     }])
                     ->orderBy('exchange_id', 'desc');
+                break;
+
+            case 'scoreReplayStats':
+                $transformer = new ScoreReplayStatsTransformer();
+                $includes = ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES;
+                $query = $this->user->scoreReplayStats()
+                    ->whereHas('score.beatmap.beatmapset')
+                    ->orderByDesc('watch_count')
+                    ->with(ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 break;
 
             // Score

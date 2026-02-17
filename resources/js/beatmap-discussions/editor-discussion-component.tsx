@@ -12,6 +12,7 @@ import { ReactEditor } from 'slate-react';
 import { formatTimestamp, makeUrl, nearbyDiscussions, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans, transArray } from 'utils/lang';
+import { qtipPosition } from 'utils/qtip-helper';
 import { linkHtml } from 'utils/url';
 import DiscussionsState from './discussions-state';
 import { DraftsContext } from './drafts-context';
@@ -119,11 +120,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         delay: 200,
         fixed: true,
       },
-      position: {
-        at: 'top center',
-        my: 'bottom center',
-        viewport: $(window),
-      },
+      position: qtipPosition('top center'),
       show: {
         delay: 200,
         ready: true,

@@ -311,7 +311,7 @@ class RoomsControllerTest extends TestCase
         $token = Token::factory()->create(['scopes' => ['*']]);
         $user = $token->user;
 
-        for ($i = 0; $i < $user->maxMultiplayerRooms(); $i++) {
+        for ($i = 0; $i < $user->maxPlaylists(); $i++) {
             Room::factory()->create(['user_id' => $user]);
         }
 
@@ -377,7 +377,7 @@ class RoomsControllerTest extends TestCase
 
         $user = $token->user;
 
-        for ($i = 0; $i < $user->maxMultiplayerRooms(); $i++) {
+        for ($i = 0; $i < $user->maxPlaylists(); $i++) {
             Room::factory()->create(['user_id' => $user]);
         }
 

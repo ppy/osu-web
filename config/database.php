@@ -36,8 +36,8 @@ $mysqlDefaults = [
         'NO_ENGINE_SUBSTITUTION',
     ],
     'options' => [
-        PDO::ATTR_PERSISTENT => true,
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
+        Pdo\Mysql::ATTR_PERSISTENT => true,
+        Pdo\Mysql::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
     ],
 ];
 

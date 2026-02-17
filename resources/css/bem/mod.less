@@ -7,6 +7,7 @@
   // or bake a scale into every single size specification of every element of the component.
   // this is implementing the second approach via usage of `font-size` and `em`.
   font-size: var(--mod-height, @mod-height-normal);
+  --icon-width: 1.42em;
   height: 1em;
   display: flex;
   position: relative;
@@ -35,13 +36,9 @@
   .mod-type(Fun, @osu-colour-pink-1);
   .mod-type(System, @yellow);
 
-  &--dynamic {
-    font-size: 1em;
-  }
-
   &__icon {
     position: relative;
-    width: 1.42em;
+    width: var(--icon-width);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -184,21 +181,13 @@
   }
 
   &__customised-indicator {
-    .fas();
-    .center-content();
-    width: 0.35em;
-    height: 0.35em;
-    border-radius: 50%;
-    background-color: var(--type-fg-colour);
     position: absolute;
-    left: 1.05em;
-    top: -0.125em;
-
-    &::after {
-      content: @fa-var-cog;
-      color: var(--type-bg-colour);
-      font-size: 0.2em;
-    }
+    left: 0;
+    top: calc((1em - var(--icon-width)) / 2);
+    height: calc(var(--icon-width) / 2);
+    width: var(--icon-width);
+    display: grid;
+    pointer-events: none;
   }
 
   &__extender {
