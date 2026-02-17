@@ -42,9 +42,9 @@ class TagsFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [['q' => 'triangles'], [0, 1, 3], ['_score', 'id']],
+            [['q' => 'triangles'], [0, 1], ['_score', 'id']],
             [['q' => '-triangles'], [2, 3], ['_score', 'id']],
-            [['q' => 'triangles -revival'], [0, 3], ['_score', 'id']],
+            [['q' => 'triangles -revival'], [0], ['_score', 'id']],
 
             [['q' => 'tag=triangles'], [3]],
             [['q' => 'tag=aim'], [3, 1]],
