@@ -41,8 +41,8 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => 'Tingkat kesulitan tamu',
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan ":beatmap" pada beatmap ":title"',
-                'beatmap_owner_change_compact' => 'Kamu telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
+                'beatmap_owner_change' => 'Kamu sekarang adalah pemilik dari tingkat kesulitan ":beatmap" pada beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Kamu sekarang adalah pemilik dari tingkat kesulitan ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -182,8 +182,8 @@ return [
             'team_application' => [
                 '_' => 'Permintaan gabung tim',
 
-                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
-                'team_application_accept_compact' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_accept' => "Kamu sekarang adalah anggota dari tim :title",
+                'team_application_accept_compact' => "Kamu sekarang adalah anggota dari tim :title",
 
                 'team_application_group' => 'Pembaruan permintaan gabung tim',
 
@@ -220,9 +220,11 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan tamu pada beatmap ":title"',
+                'beatmap_owner_change' => 'Kamu sekarang adalah pemilik tingkat kesulitan tamu pada beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -272,10 +274,6 @@ return [
             'comment' => [
                 'comment_new' => 'Terdapat komentar baru pada topik berita ":title"',
             ],
-
-            'news_post' => [
-                'news_post_new' => 'Berita (:series): ":title"',
-            ],
         ],
 
         'forum_topic' => [
@@ -286,7 +284,7 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_accept' => "Kamu sekarang adalah anggota dari tim :title",
                 'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
                 'team_application_store' => ':title meminta untuk bergabung ke tim kamu',
             ],

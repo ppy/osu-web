@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Voir plus de résultats de recherche d\'équipes',
         ],
 
@@ -91,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version ou plus',
         'other_os' => 'autres plateformes',
         'quick_start_guide' => 'guide de démarrage rapide',
-        'stable_text' => 'si vous cherchez l\'ancienne version',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'si vous cherchez l\'ancienne version ',
+        'tagline_1' => ' commencez à jouer',
+        'tagline_2' => 'dès maintenant !',
         'video-guide' => 'guide vidéo',
 
         'help' => [
@@ -150,6 +151,9 @@ return [
             'download' => 'Télécharger osu!',
             'support' => 'Soutenir osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

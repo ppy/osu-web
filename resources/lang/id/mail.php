@@ -27,8 +27,8 @@ return [
         'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',
 
         'benefit' => [
-            'gift' => 'Para pengguna yang kamu hadiahkan kini akan dapat mengakses osu!direct dan berbagai keutamaan supporter lainnya.',
-            'self' => 'Kamu kini dapat mengakses osu!direct dan berbagai keutamaan supporter lainnya selama :duration.',
+            'gift' => 'Para pengguna yang kamu hadiahkan sekarang akan memiliki akses ke osu!direct dan berbagai keutamaan supporter lainnya.',
+            'self' => 'Kamu sekarang dapat mengakses osu!direct dan berbagai keutamaan supporter lainnya selama :duration.',
         ],
 
         'support' => [
@@ -62,7 +62,7 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'Pengguna yang menghadiahkanmu tag supporter ini dapat memilih untuk tetap anonim, sehingga nama mereka tidak disebutkan pada email ini.',
+        'anonymous_gift' => 'Pengguna yang menghadiahkanmu tag supporter ini bisa jadi memilih untuk tetap anonim, sehingga nama mereka tidak disebutkan pada email ini.',
         'anonymous_gift_maybe_not' => 'Tetapi kamu mungkin sudah tahu siapa itu ;).',
         'duration' => 'Berkat mereka, kamu kini dapat mengakses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
         'features' => 'Kamu dapat membaca rincian lebih lanjut mengenai berbagai fitur ini di sini:',
@@ -72,7 +72,7 @@ return [
     ],
 
     'user_email_updated' => [
-        'changed_to' => 'Email ini merupakan bukti konfirmasi bahwa alamat email yang terhubung dengan akun osu! milikmu telah diubah menjadi ":email".',
+        'changed_to' => 'Email ini adalah bukti konfirmasi bahwa alamat email yang terhubung dengan akun osu! milikmu telah diubah menjadi ":email".',
         'check' => 'Mohon pastikan bahwa kamu menerima email ini pada alamat email yang baru agar ke depannya kamu tidak kehilangan akses menuju akun osu! milikmu.',
         'sent' => 'Demi alasan keamanan, email ini telah dikirim ke alamat email baru dan lama milikmu.',
         'subject' => 'Konfirmasi perubahan email osu!',
@@ -92,7 +92,7 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => 'Email ini merupakan bukti konfirmasi bahwa kata sandi akun osu! milikmu telah diubah.',
+        'confirmation' => 'Email ini adalah bukti konfirmasi bahwa kata sandi akun osu! milikmu telah diubah.',
         'subject' => 'Konfirmasi perubahan kata sandi osu!',
     ],
 

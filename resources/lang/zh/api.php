@@ -31,6 +31,10 @@ return [
             'read' => '看看你关注了谁。',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => '以你的身份读取公开数据。',
     ],
 ];

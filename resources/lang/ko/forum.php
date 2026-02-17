@@ -253,69 +253,6 @@ return [
             'views' => '조회수',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => '"added" 태그 삭제',
-            'to_0_done' => '"added" 태그 삭제됨',
-            'to_1' => '"added" 태그 추가',
-            'to_1_done' => '"added" 태그 추가됨',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '"assigned" 태그 삭제',
-            'to_0_done' => '"assigned" 태그 삭제됨',
-            'to_1' => '"assigned" 태그 추가',
-            'to_1_done' => '"assigned" 태그 추가됨',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '"confirmed" 태그 삭제',
-            'to_0_done' => '"confirmed" 태그 삭제됨',
-            'to_1' => '"confirmed" 태그 추가',
-            'to_1_done' => '"confirmed" 태그 추가됨',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '"duplicate" 태그 삭제',
-            'to_0_done' => '"duplicate" 태그 삭제됨',
-            'to_1' => '"duplicate" 태그 추가',
-            'to_1_done' => '"duplicate" 태그 추가됨',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '"invalid" 태그 삭제',
-            'to_0_done' => '"invalid" 태그 삭제됨',
-            'to_1' => '"invalid" 태그 추가',
-            'to_1_done' => '"invalid" 태그 추가됨',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '"resolved" 태그 삭제',
-            'to_0_done' => '"resolved" 태그 삭제됨',
-            'to_1' => '"resolved" 태그 추가',
-            'to_1_done' => '"resolved" 태그 추가됨',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '"osu!lazer" 태그 제거',
-            'to_0_done' => '"osu!lazer" 태그 제거됨',
-            'to_1' => '"osu!lazer" 태그 추가',
-            'to_1_done' => '"osu!lazer" 태그 추가됨',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '"osu!stable" 태그 제거',
-            'to_0_done' => '"osu!stable" 태그 제거됨',
-            'to_1' => '"osu!stable" 태그 추가',
-            'to_1_done' => '"osu!stable" 태그 추가됨',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '"osu!web" 태그 제거',
-            'to_0_done' => '"osu!web" 태그 제거됨',
-            'to_1' => '"osu!web" 태그 추가',
-            'to_1_done' => '"osu!web" 태그 추가됨',
-        ],
-
         'lock' => [
             'is_locked' => '주제글이 잠겨있어 답글을 달 수 없습니다.',
             'to_0' => '주제글 잠금 풀기',

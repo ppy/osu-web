@@ -333,6 +333,9 @@ return [
                     'title' => '回放被观看记录',
                     'count_label' => '回放被观看次数',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => '最近 Kudosu 记录',

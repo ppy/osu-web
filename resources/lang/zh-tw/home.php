@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => '查看更多團隊搜尋結果',
         ],
 
@@ -91,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version或更新版本',
         'other_os' => '其他平台',
         'quick_start_guide' => '三步開始遊玩 osu!',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => '如果你正在尋找舊版本',
+        'tagline_1' => '讓我們',
+        'tagline_2' => '開始吧！',
         'video-guide' => '影片教學',
 
         'help' => [
@@ -150,6 +151,9 @@ return [
             'download' => '下載 osu!',
             'support' => '贊助 osu!',
             'store' => 'osu! 商店',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

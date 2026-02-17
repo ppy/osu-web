@@ -22,10 +22,6 @@ return [
             'generic' => '发生未知错误，请尝试刷新页面。',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => '指定的游戏模式无效。',
-        'standard_converts_only' => '此谱面难度在请求的游戏模式下成绩不可用。',
-    ],
     'checkout' => [
         'generic' => '结账时发生了一个错误',
     ],

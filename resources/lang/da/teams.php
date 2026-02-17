@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Tilføjede bruger til teamet.',
         ],
         'destroy' => [
             'ok' => '',
@@ -24,31 +24,31 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Opret Team',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
+            'name_help' => 'Dit teams navn. Navnet er permanent i øjeblikket.',
+            'short_name_help' => 'Højst 4 tegn.',
             'title' => "",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Spil sammen med eksisterende eller nye venner. Du er ikke i et team lige nu. Du kan melde dig ind i et team ved at besøge teamets side, eller lav dit eget team fra denne side.",
+            'title' => 'Team!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Team fjernet.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'Indstillinger gemt.',
+        'title' => 'Team-indstillinger',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Beskrivelse',
+            'title' => 'Team-beskrivelse',
         ],
 
         'flag' => [
@@ -69,7 +69,7 @@ return [
             'title' => '',
 
             'application_state' => [
-                'state_0' => '',
+                'state_0' => 'Lukket',
                 'state_1' => '',
             ],
         ],
@@ -110,7 +110,7 @@ return [
             'table' => [
                 'joined_at' => '',
                 'remove' => '',
-                'remove_confirm' => '',
+                'remove_confirm' => 'Fjern brugeren :user fra teamet?',
                 'set_leader' => '',
                 'set_leader_confirm' => '',
                 'status' => '',
@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => '',
+            'first_places' => '',
             'leader' => '',
             'rank' => '',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

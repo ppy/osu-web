@@ -12,7 +12,7 @@ return [
 
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
-            'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas paket yang kamu peroleh ke dalam folder Songs yang terdapat pada direktori osu! milikmu.',
+            'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak konten paket ini ke folder Songs kamu dan osu! akan melakukan sisanya untukmu.',
         ],
     ],
 

@@ -333,6 +333,9 @@ return [
                     'title' => 'Tekrar İzlenme Geçmişi',
                     'count_label' => 'Tekrar İzlendi',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Son Kudosu Geçmişi',

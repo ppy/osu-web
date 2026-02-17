@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'схаваць папярэджанні аб відавочным змесце ў картах',
         'beatmapset_title_show_original' => 'паказаць метададзеныя карты на мове арыгіналу',
         'title' => 'Налады',

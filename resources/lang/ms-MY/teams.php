@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited slot tersedia',
+            'first_places' => '',
             'leader' => 'Ketua Pasukan',
             'rank' => 'Pangkat',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

@@ -22,10 +22,6 @@ return [
             'generic' => 'En feil oppstod. Prøv å oppdatere siden.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Ugyldig spillmodus angitt.',
-        'standard_converts_only' => 'Ingen spillforsøk på dette beatmappet er tilgjengelig for den forespurte spillmodusen på denne vanskelighetsgraden.',
-    ],
     'checkout' => [
         'generic' => 'En feil oppstod under klargjøring av kjøpet ditt.',
     ],

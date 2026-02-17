@@ -22,10 +22,6 @@ return [
             'generic' => 'Nastala chyba. Skúste obnoviť stránku.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Bol identifikovaný invalidný režim.',
-        'standard_converts_only' => 'Nie je dostupné žiadne skóre pre zvolený mód na tejto obtiažnosti.',
-    ],
     'checkout' => [
         'generic' => '',
     ],

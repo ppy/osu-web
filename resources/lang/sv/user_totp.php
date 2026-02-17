@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Slutför',
+        'key' => 'Skanna QR-koden med autentiseringsappen och ange verifieringsnyckeln',
+        'key_copy' => 'Eller klicka på denna länk för att kopiera nyckeln till autentiseringsappen',
+        'key_link' => 'Använd denna länk om du använder mobiltelefon',
+        'password' => 'För att konfigurera verifiering av autentiseringsappen, vänligen ange ditt nuvarande lösenord',
+        'start' => 'Fortsätt',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Du har inte konfigurerat verifiering av autentiseringsappar.',
+        'ok' => 'Verifiering av autentiseringsapp har tagits bort.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Ange ditt nuvarande lösenord för att ta bort verifiering av autentiseringsappen.',
+        'start' => 'Ta bort ',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Du har redan konfigurerat verifiering av autentiseringsappen.',
+        'ok' => 'Verifiering av autentiseringsapp har konfigurerats',
+        'restart' => 'Ett fel uppstod. Starta om processen.',
     ],
 ];

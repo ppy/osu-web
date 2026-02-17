@@ -245,6 +245,7 @@ return [
             'prompt' => '',
             'login_required' => '',
             'options' => '',
+            'rank_filter_note' => '',
             'supporter_filter' => '',
             'not-found' => '',
             'not-found-quote' => '',

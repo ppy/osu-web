@@ -31,6 +31,10 @@ return [
             'read' => '檢視您追蹤的玩家。',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => '以您的身分讀取公開資料。',
     ],
 ];

@@ -333,6 +333,9 @@ return [
                     'title' => 'Historial de repeticions vistes',
                     'count_label' => 'Repeticions vistes',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Historial de Kudosu recent',
@@ -538,7 +541,7 @@ return [
     'status' => [
         'all' => 'Tots',
         'online' => 'En línia',
-        'offline' => 'Sense connexió',
+        'offline' => 'Desconnectat',
     ],
     'store' => [
         'from_client' => 'si us plau, registreu-vos a través del client del joc!',

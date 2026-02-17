@@ -25,7 +25,7 @@ return [
 
     'store' => [
         'existing' => 'Bạn đã có ứng dụng xác thực cài đặt.',
-        'ok' => '',
-        'restart' => '',
+        'ok' => 'Ứng dụng xác thực đã được thiết lập',
+        'restart' => 'Đã xảy ra lỗi. Vui lòng chạy lại.',
     ],
 ];

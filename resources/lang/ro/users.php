@@ -333,6 +333,9 @@ return [
                     'title' => 'Istoricul reluărilor vizionate',
                     'count_label' => 'Reluări Vizionate',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Istoricul Kudosu recent',

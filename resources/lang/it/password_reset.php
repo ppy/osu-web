@@ -16,8 +16,10 @@ return [
         'invalid' => 'Errore inatteso nel codice di verifica.',
         'is_privileged' => 'Contatta peppy lulz.',
         'missing_key' => 'Richiesto.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Troppi tentativi sbagliati.',
         'user_not_found' => 'L\'utente richiesto non esiste.',
+        'wait_resend' => '',
         'wrong_key' => 'Codice errato.',
     ],
 

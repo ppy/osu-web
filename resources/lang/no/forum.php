@@ -253,69 +253,6 @@ return [
             'views' => 'visninger',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Fjern "lagt til" merknaden',
-            'to_0_done' => 'Fjernet "lagt til" merknaden',
-            'to_1' => 'Legg til "lagt til" merknad',
-            'to_1_done' => 'Lagt til "lagt til" merknad',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Fjern "tilordnet" merknad',
-            'to_0_done' => 'Fjernet "tilordnet" merknaden',
-            'to_1' => 'Legg til "tilordnet" merknad',
-            'to_1_done' => 'Lagt til "tilordnet" merknad',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Fjern "bekreftet" merknad',
-            'to_0_done' => 'Fjernet "bekreftet" merknaden',
-            'to_1' => 'Legg til "bekreftet" merknad',
-            'to_1_done' => 'Lagt til "bekreftet" merknad',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Fjern "kopi" merknad',
-            'to_0_done' => 'Fjernet "kopi" merknaden',
-            'to_1' => 'Legg til "kopi" merknad',
-            'to_1_done' => 'Lagt til "kopi" merknad',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Fjern "ugyldig" merknad',
-            'to_0_done' => 'Fjernet "ugyldig" merknaden',
-            'to_1' => 'Legg til "ugyldig" merknad',
-            'to_1_done' => 'Lagt til "ugyldig" merknad',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Fjern "løst" merknaden',
-            'to_0_done' => 'Fjernet "løst" merknaden',
-            'to_1' => 'Legg til "løst" merknad',
-            'to_1_done' => 'Lagt til "løst" merknad',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => 'Dette emne er låst og kan ikke besvares',
             'to_0' => 'Lås opp emne',

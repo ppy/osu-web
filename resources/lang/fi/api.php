@@ -31,6 +31,10 @@ return [
             'read' => 'Nähdä, keitä seuraat.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Lukea julkisia tietoja sinun nimissäsi.',
     ],
 ];

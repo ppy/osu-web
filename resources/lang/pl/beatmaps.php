@@ -245,6 +245,7 @@ return [
             'prompt' => 'wpisz poszukiwaną frazę...',
             'login_required' => 'Zaloguj się, aby wyszukać.',
             'options' => 'Więcej opcji wyszukiwania',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Użycie wybranych filtrów (:filters) wymaga aktywnego statusu donatora osu!',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',

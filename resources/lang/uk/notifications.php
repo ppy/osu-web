@@ -161,10 +161,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Новини (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Ви тепер гість на карті ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'У новини ":title" були знайдені нові комментарі',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

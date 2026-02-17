@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'No pots accedir a tornejos mentre estràs silenciat o restringit.',
         'preparation' => 'Estem preparant aquest torneig. Si us plau, espera pacientment!',
         'drop_here' => 'Posa la teva inscripció aquí',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Descarregar .osz',
-
-        'wrong_type' => [
-            'art' => 'Només fitxers .jpg i .png s\'accepten per aquest torneig.',
-            'beatmap' => 'Només fitxers .osu s\'accepten per aquest torneig.',
-            'music' => 'Només fitxer .mp3 s\'accepten per aquest torneig.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Les inscripcions per aquest torneig han de ser :widthx:height',
         'too_big' => 'Les inscripcions per aquest torneig només poden ser fins a :limit.',
     ],

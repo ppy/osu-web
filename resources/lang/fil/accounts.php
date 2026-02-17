@@ -108,6 +108,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'itago ang mga babala para sa mga sensitibong nilalaman sa mga beatmaps',
         'beatmapset_title_show_original' => 'ipakita ang beatmap metadata sa orihinal na wika',
         'title' => 'Mga pagpipilian',

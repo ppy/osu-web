@@ -333,6 +333,9 @@ return [
                     'title' => 'История на гледани повторения от останалите',
                     'count_label' => 'Гледани повторения',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Скорошна Kudosu история',

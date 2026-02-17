@@ -333,6 +333,9 @@ return [
                     'title' => 'Історія переглянутих повторів',
                     'count_label' => 'Переглянутих повторів',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Останні обміни',
@@ -472,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Швидка гра',
         ],
 
         'not_found' => [

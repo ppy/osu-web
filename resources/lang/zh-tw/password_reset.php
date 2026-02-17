@@ -16,8 +16,10 @@ return [
         'invalid' => '驗證碼中發生未預期的錯誤。',
         'is_privileged' => '聯繫 peppy（笑）',
         'missing_key' => '必填',
+        'too_many_requests' => '',
         'too_many_tries' => '重試次數過多',
         'user_not_found' => '請求的使用者不存在。',
+        'wait_resend' => '',
         'wrong_key' => '不正確的驗證碼',
     ],
 

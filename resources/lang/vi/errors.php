@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Tải dữ liệu thất bại.',
     'missing_route' => 'Url không hợp lệ hoặc phương pháp yêu cầu không chính xác.',
     'no_restricted_access' => 'Không thể thực hiện hành động do tài khoản của bạn đang bị hạn chế.',
-    'param_too_large' => '',
+    'param_too_large' => 'Tham số :name cho phép tối đa :count_delimited mục :count_delimited|Tham số :name cho phép tối đa :count_delimited mục',
     'supporter_only' => 'Bạn phải là một osu!supporter để sử dụng tính năng này.',
     'unknown' => 'Đã xảy ra lỗi không xác định.',
 
@@ -21,10 +21,6 @@ return [
         'profile-order' => [
             'generic' => 'Đã xảy ra lỗi. Vui lòng thử tải lại trang.',
         ],
-    ],
-    'beatmaps' => [
-        'invalid_mode' => 'Chế độ đã chỉ định không hợp lệ.',
-        'standard_converts_only' => 'Không có điểm số cho chế độ được yêu cầu trong độ khó của beatmap này.',
     ],
     'checkout' => [
         'generic' => 'Đã xảy ra lỗi trong quá trình thanh toán cho đơn hàng của bạn.',

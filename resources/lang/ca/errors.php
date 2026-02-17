@@ -22,10 +22,6 @@ return [
             'generic' => 'S\'ha produït un error. Intenta refrescar la pàgina.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'El mode especificat no és vàlid.',
-        'standard_converts_only' => 'No hi ha puntuacions disponibles per al mode sol·licitat en aquesta dificultat.',
-    ],
     'checkout' => [
         'generic' => 'S\'ha produït un error mentre preparàvem la teva compra.',
     ],

@@ -32,7 +32,7 @@ return [
 
         'vote' => [
             'bot' => "Tidak dapat memberikan suara pada topik diskusi yang dibuka oleh bot",
-            'limit_exceeded' => 'Harap tunggu sebentar sebelum memberikan lebih banyak suara.',
+            'limit_exceeded' => 'Silakan tunggu sejenak sebelum memberikan lebih banyak suara',
             'owner' => "Tidak dapat memberikan suara pada topik diskusi sendiri.",
             'wrong_beatmapset_state' => 'Hanya dapat memberikan suara pada diskusi di beatmap pending.',
         ],
@@ -164,7 +164,7 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Gambar sampul yang Anda ingin terapkan tidak valid.',
+                'uneditable' => 'Gambar sampul yang ditentukan tidak valid.',
                 'not_owner' => 'Hanya pemilik topik yang dapat menyunting sampul.',
             ],
             'store' => [
@@ -204,7 +204,7 @@ return [
         ],
         'part' => [
             'is_leader' => "Ketua tim tidak dapat meninggalkan tim.",
-            'not_member' => 'Kamu bukan merupakan anggota dari tim ini.',
+            'not_member' => 'Kamu bukan anggota tim ini.',
         ],
         'store' => [
             'require_supporter_tag' => 'Tag osu!supporter diperlukan untuk membuat tim.',

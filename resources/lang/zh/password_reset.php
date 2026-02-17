@@ -16,8 +16,10 @@ return [
         'invalid' => '发送验证码时出现意外错误。',
         'is_privileged' => '请联系高级管理员进行账户恢复。',
         'missing_key' => '必填',
+        'too_many_requests' => '',
         'too_many_tries' => '重试次数过多',
         'user_not_found' => '请求的用户不存在',
+        'wait_resend' => '',
         'wrong_key' => '验证码不正确。',
     ],
 

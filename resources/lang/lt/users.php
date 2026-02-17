@@ -333,6 +333,9 @@ return [
                     'title' => 'Įrašų Peržiūros Istorija',
                     'count_label' => 'Įrašai Žiūrėti',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Paskutinių Kudosu Istorija',

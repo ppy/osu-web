@@ -333,6 +333,9 @@ return [
                     'title' => 'Historial de repetições vistas',
                     'count_label' => 'Repetições assistidas',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Historial recente de kudosu',

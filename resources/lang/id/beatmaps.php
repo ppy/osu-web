@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => 'Ruleset yang diberikan tidak valid.',
+    'invalid_ruleset' => 'Ruleset yang ditentukan tidak valid.',
 
     'change_owner' => [
         'too_many' => 'Jumlah mapper tamu terlalu banyak.',
@@ -245,6 +245,7 @@ return [
             'prompt' => 'ketik kata kunci pencarian...',
             'login_required' => 'Silakan masuk untuk mencari.',
             'options' => 'Opsi Pencarian Lainnya',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan tag osu!supporter yang aktif',
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '… enggak, tidak ada yang ditemukan.',

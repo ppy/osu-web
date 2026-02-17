@@ -16,8 +16,10 @@ return [
         'invalid' => 'Neočekivana pogreška u kodu za potvrdu.',
         'is_privileged' => 'Za oporavak računa kontaktiraj administratora više razine.',
         'missing_key' => 'Obavezno.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Previše neuspješnih pokušaja.',
         'user_not_found' => 'Zatraženi korisnik ne postoji.',
+        'wait_resend' => '',
         'wrong_key' => 'Netočan kod.',
     ],
 

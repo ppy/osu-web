@@ -333,6 +333,9 @@ return [
                     'title' => '',
                     'count_label' => '',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => '',

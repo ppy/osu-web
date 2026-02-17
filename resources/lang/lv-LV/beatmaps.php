@@ -245,6 +245,7 @@ return [
             'prompt' => 'rakstiet atslēgas vārdus...',
             'login_required' => 'Ieiet, lai meklētu.',
             'options' => 'Vairāk Meklēšanas Opcijas',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtrēšanai pēc :filters ir nepieciešams aktīvs osu!atbalstītāja piekariņš',
             'not-found' => 'nav rezultātu',
             'not-found-quote' => '... nah, nekas netika atrasts.',

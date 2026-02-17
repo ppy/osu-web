@@ -333,6 +333,9 @@ return [
                     'title' => 'Гісторыя праглядаў паўтораў',
                     'count_label' => 'Паўтораў прагледжана',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Нядаўняя гісторыя кудосу',

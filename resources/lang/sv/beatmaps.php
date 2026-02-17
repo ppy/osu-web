@@ -245,6 +245,7 @@ return [
             'prompt' => 'skriv in nyckelord...',
             'login_required' => 'Logga in för att söka.',
             'options' => 'Fler sökalternativ',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtrering av :filters kräver en aktiv osu!supporter-tagg',
             'not-found' => 'inga resultat',
             'not-found-quote' => '... näpp, ingenting hittades.',

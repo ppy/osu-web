@@ -245,6 +245,7 @@ return [
             'prompt' => 'введите ключевые слова...',
             'login_required' => 'Войдите в аккаунт, чтобы начать поиск',
             'options' => 'Больше настроек поиска',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Фильтрация по критерию :filters доступна только с тегом osu!supporter',
             'not-found' => 'нет результатов',
             'not-found-quote' => '... увы, ничего не найдено.',

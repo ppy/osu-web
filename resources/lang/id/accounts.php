@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Silakan hubungi :accounts apabila kamu perlu untuk memperbarui alamat emailmu.',
+                '_' => 'Silakan hubungi :accounts apabila kamu perlu memperbarui alamat emailmu.',
                 'accounts' => 'tim dukungan akun',
             ],
         ],
@@ -64,14 +64,14 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entri riwayat perubahanmu dengan profil osu! kamu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
+        'info' => "Apabila kamu adalah kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entri riwayat perubahanmu dengan profil osu! kamu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
         'link' => 'Tautkan Akun GitHub',
         'title' => 'GitHub',
         'unlink' => 'Lepas Tautan Akun GitHub',
 
         'error' => [
             'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
-            'no_contribution' => 'Tidak dapat menautkan akun GitHub yang tidak memiliki kontribusi terhadap proyek osu!',
+            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi pada repositori osu! tidak dapat ditautkan.',
             'unverified_email' => 'Silakan verifikasi email utama kamu di GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
         ],
     ],
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'sembunyikan peringatan untuk konten eksplisit pada beatmap',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',

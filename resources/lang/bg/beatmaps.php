@@ -245,6 +245,7 @@ return [
             'prompt' => 'въведете ключови думи...',
             'login_required' => 'Моля, влез в профила си, за търсене.',
             'options' => 'Повече опции за търсене',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Подреждане по :filters изисква активен osu!supporter',
             'not-found' => 'няма намерени резултати',
             'not-found-quote' => '... не, нищо не е намерено.',

@@ -333,6 +333,9 @@ return [
                     'title' => 'Histórico de Replays Assistidos',
                     'count_label' => 'Replays Assistidos',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Histórico de kudosu recente',

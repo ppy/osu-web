@@ -333,6 +333,9 @@ return [
                     'title' => 'Wykres obejrzanych powtórek',
                     'count_label' => 'Obejrzane powtórki:',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
@@ -472,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Szybka Gra',
         ],
 
         'not_found' => [

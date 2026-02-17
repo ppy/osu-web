@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => '',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'حَمِل osu!',
             'support' => 'اِدعم osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

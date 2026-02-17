@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'skjul advarsler for eksplicit indhold i beatmaps',
         'beatmapset_title_show_original' => 'vis beatmap metadata på originalt sprog',
         'title' => 'Indstillinger',

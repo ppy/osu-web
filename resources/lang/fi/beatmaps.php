@@ -245,6 +245,7 @@ return [
             'prompt' => 'kirjoita hakusanoja...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Lisää hakuvaihtoehtoja',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',

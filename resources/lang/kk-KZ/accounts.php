@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'карталардағы ерсі контент ескертулерін жасыру',
         'beatmapset_title_show_original' => 'карта метадеректерін түпнұсқа тілінде көрсету',
         'title' => 'Баптаулар',

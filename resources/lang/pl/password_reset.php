@@ -16,8 +16,10 @@ return [
         'invalid' => 'Wystąpił nieoczekiwany błąd z kodem weryfikacyjnym.',
         'is_privileged' => 'Skontaktuj się administratorem, by odzyskać konto.',
         'missing_key' => 'Wymagane.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Zbyt wiele nieudanych prób.',
         'user_not_found' => 'Ten użytkownik nie istnieje.',
+        'wait_resend' => '',
         'wrong_key' => 'Nieprawidłowy kod.',
     ],
 

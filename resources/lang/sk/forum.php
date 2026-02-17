@@ -253,69 +253,6 @@ return [
             'views' => 'videní',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Odstrániť označenie "pridané"',
-            'to_0_done' => 'Odstránenie označenia "pridané"',
-            'to_1' => 'Pridať označenie "pridané"',
-            'to_1_done' => 'Pridané označenie "pridané"',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Odstrániť označenie "pridelený"',
-            'to_0_done' => 'Odstránenie označenia "pridelený"',
-            'to_1' => 'Pridanie označenia "pridelený"',
-            'to_1_done' => 'Pridané označenie "pridelený"',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Odstrániť označenie "potvrdený"',
-            'to_0_done' => 'Odstránenie označenia "potvrdený"',
-            'to_1' => 'Pridať označenie "potvrdený"',
-            'to_1_done' => 'Pridané označenie "potvrdený"',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Odstrániť označenie "duplicitný"',
-            'to_0_done' => 'Odstránenie označenia "duplicitný"',
-            'to_1' => 'Pridať označenie "duplicitný"',
-            'to_1_done' => 'Pridané označenie "duplicitný"',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Odstrániť označenie "neplatný"',
-            'to_0_done' => 'Odstránenie označenia "neplatný"',
-            'to_1' => 'Pridať označenie "neplatný"',
-            'to_1_done' => 'Pridané označenie "neplatný"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Odstrániť označenie "vyriešené"',
-            'to_0_done' => 'Odstránenie označenia "vyriešené"',
-            'to_1' => 'Pridať označenie "vyriešené"',
-            'to_1_done' => 'Pridané označenie "vyriešené"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => 'Táto téma je uzamknutá a nedá sa na ňu odpovedať',
             'to_0' => 'Odomknúť tému',

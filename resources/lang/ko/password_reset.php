@@ -16,8 +16,10 @@ return [
         'invalid' => '인증 코드에 예상치 못한 오류가 있습니다.',
         'is_privileged' => '계정을 복구하려면 상위 관리자에게 문의해주세요.',
         'missing_key' => '요구됨.',
+        'too_many_requests' => '',
         'too_many_tries' => '실패한 횟수가 너무 많습니다.',
         'user_not_found' => '요청하신 유저가 존재하지 않습니다.',
+        'wait_resend' => '',
         'wrong_key' => '잘못된 코드입니다.',
     ],
 

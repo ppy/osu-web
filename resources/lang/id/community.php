@@ -20,25 +20,25 @@ return [
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
-                'description' => 'Kontribusimu akan digunakan untuk membiayai server yang menjalankan fasilitas seperti situs web, layanan multiplayer, papan peringkat online, dan lain sebagainya.',
+                'description' => 'Kontribusimu digunakan untuk membiayai server yang menjalankan situs web, layanan multiplayer, papan peringkat online, dan lain sebagainya.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat menghubungi lebih banyak musisi berbakat dan melisensi lebih banyak lagu untuk digunakan di osu!.',
+                'description' => 'Berkat dukunganmu, kami dapat menghubungi lebih banyak musisi yang kece dan melisensi lebih banyak lagu untuk digunakan di osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
                 'title' => 'Membantu osu! Tetap Mandiri',
-                'description' => 'Kontribusimu membantu menjaga permainan ini untuk tetap mandiri dan sepenuhnya terbebas dari iklan maupun sponsor.',
+                'description' => 'Kontribusimu membantu menjaga permainan ini tetap mandiri dan sepenuhnya bebas dari iklan dan sponsor luar.',
             ],
             'tournaments' => [
-                'title' => 'Pendanaan Turnamen Resmi',
-                'description' => 'Dukungan yang kamu berikan akan digunakan untuk memenuhi biaya operasional (serta menambah pundi-pundi hadiah) turnamen World Cup resmi yang kami selenggarakan.',
-                'link_text' => 'Jelajahi rangkaian turnamen resmi kami &raquo;',
+                'title' => 'Turnamen Resmi',
+                'description' => 'Dukungan kamu membantu menjalankan (serta memenuhi pundi-pundi hadiah) turnamen World Cup resmi yang osu! selenggarakan.',
+                'link_text' => 'Jelajahi turnamen kami &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Program Open Source Bounty',
-                'description' => 'Sebagian dari dana ini juga akan disalurkan kepada para kontributor komunitas yang telah menyisihkan waktu dan upaya mereka demi membuat osu! menjadi lebih baik.',
+                'description' => 'Sebagian dari dana ini juga disalurkan kepada para kontributor komunitas yang telah menyisihkan waktu dan upaya mereka demi membuat osu! menjadi lebih baik.',
                 'link_text' => 'Cari tahu lebih lanjut seputar program Open Source Bounty &raquo;',
             ],
         ],
@@ -46,12 +46,12 @@ return [
             'title' => 'Menarik! Keuntungan apa saja yang akan saya dapatkan?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Dapatkan akses yang cepat dan mudah ke bilah pencarian dan unduhan beatmap tanpa harus meninggalkan permainan.',
+                'description' => 'Dapatkan akses yang cepat dan mudah untuk mencari dan mengunduh beatmap tanpa harus meninggalkan permainan.',
             ],
 
             'friend_ranking' => [
                 'title' => 'Papan Peringkat Teman',
-                'description' => "Bandingkan skor kamu dengan skor teman-temanmu pada papan peringkat khusus teman, baik itu di dalam permainan maupun pada situs web.",
+                'description' => "Bandingkan skor kamu dengan skor teman-temanmu pada papan peringkat beatmap, baik di dalam permainan maupun pada situs web.",
             ],
 
             'country_ranking' => [
@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Unduhan Otomatis',
-                'description' => 'osu! akan secara otomatis mengunduh beatmap yang belum kamu miliki pada saat kamu bermain multiplayer, menonton orang lain, atau mengklik tautan dalam chat!',
+                'description' => 'Beatmap akan diunduh secara otomatis pada saat kamu bermain multiplayer, menonton orang lain, atau mengeklik tautan di chat!',
             ],
 
             'upload_more' => [
@@ -125,7 +125,7 @@ return [
             ],
             'more_friends' => [
                 'title' => 'Lebih Banyak Teman',
-                'description' => 'Batas jumlah teman yang dapat kamu tambahkan bertambah dari :normally &rarr; :supporter',
+                'description' => 'Batas jumlah teman yang dapat kamu miliki bertambah dari :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',
@@ -144,7 +144,7 @@ return [
             'was_valid_until' => 'Tag supporter kamu telah berakhir pada :date.',
 
             'gifted' => [
-                '_' => 'Dari jumlah ini, kamu telah menghadiahkan tag senilai :dollars kepada :users, yang mencakup total durasi selama :duration. Terima kasih atas kemurahan hatimu!',
+                '_' => 'Dari jumlah ini, kamu telah menghadiahkan tag senilai :dollars kepada :users yang lamanya mencakup :duration. Terima kasih atas kemurahan hatimu!',
                 'users' => ':count_delimited pengguna lainnya|:count_delimited[ pengguna lainnya',
             ],
         ],

@@ -106,7 +106,7 @@ return [
         '_' => '登入',
         'button' => '登入',
         'button_posting' => '登入中...',
-        'email_login_disabled' => '目前沒辦法使用電郵登入，請使用使用者名稱登入。',
+        'email_login_disabled' => '目前無法使用電子郵件登入，請使用使用者名稱登入。',
         'failed' => '登入失敗',
         'forgot' => '忘記密碼？',
         'info' => '請先登入以繼續',
@@ -333,6 +333,9 @@ return [
                     'title' => '重播觀看的歷史記錄',
                     'count_label' => '重播觀看次數',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => '近期 Kudosu 記錄',
@@ -400,7 +403,7 @@ return [
                 'show_more' => '顯示更多貼文',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => '快速遊玩紀錄',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
@@ -472,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => '快速遊玩',
         ],
 
         'not_found' => [

@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited paikka jäljellä|:count_delimited paikkaa jäljellä',
+            'first_places' => '',
             'leader' => 'Joukkuejohtaja',
             'rank' => 'Sijoitus',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

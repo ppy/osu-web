@@ -26,11 +26,11 @@ return [
         'info' => [
             'logout' => [
                 '_' => 'Aynı zamanda :link.',
-                'link' => 'Çıkış yapabilirsin',
+                'link' => 'çıkış yap',
             ],
             'mail_fallback' => [
                 '_' => 'Uygulamana erişemiyorsan, :link',
-                'link' => 'Email ile doğrulayabilirsin',
+                'link' => 'bunun yerine e-posta ile doğrula',
             ],
         ],
     ],

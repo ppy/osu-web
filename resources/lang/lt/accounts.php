@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'slėpti perspėjimus dėl eksplicitinio turinio beatmap\'uose',
         'beatmapset_title_show_original' => 'rodyti beatmap\'o metaduomenys orginaliaja kalba',
         'title' => 'Parinktys',
@@ -156,11 +157,11 @@ return [
         'usage_note' => '',
 
         'button' => [
-            'remove' => '',
+            'remove' => 'Pašalinti',
             'setup' => '',
         ],
         'status' => [
-            'label' => '',
+            'label' => 'būsena',
             'not_set' => '',
             'set' => '',
         ],

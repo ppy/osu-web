@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Nemôžeš sa zúčastniť súťaže, keď je tvoj účet v obmedzenom režime alebo umlčaný.',
         'preparation' => 'Momentálne pripravujeme túto súťaž. Prosím čakaj trpezlivo!',
         'drop_here' => 'Tvoj vstup pretiahni sem',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Stiahnuť .osz',
-
-        'wrong_type' => [
-            'art' => 'Iba .jpg a .png súbory sú akceptované pre túto súťaž.',
-            'beatmap' => 'Iba .osu súbory su akceptované pre túto súťaž.',
-            'music' => 'Iba .mp3 súbory sú akceptované pre túto súťaž.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '',
         'too_big' => 'Možné vstupy pre túto súťaž sú :limit-krát.',
     ],

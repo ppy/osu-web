@@ -8,18 +8,18 @@ return [
     'view' => '查看群組歷史',
 
     'event' => [
-        'actor' => '',
+        'actor' => '操作員：:user',
 
         'message' => [
             'group_add' => '建立:group。',
             'group_remove' => '已刪除:group。',
             'group_rename' => ':previous_group 已被重新命名為 :group。',
             'user_add' => ':user 已加入 :group。',
-            'user_add_with_playmodes' => '',
-            'user_add_playmodes' => '',
+            'user_add_with_playmodes' => ':user 已成為 :rulesets 模式的 :group 。',
+            'user_add_playmodes' => '已新增 :rulesets 模式到 :user 於 :group 的身分中 。',
             'user_remove' => ':user 已退出 :group。',
-            'user_remove_playmodes' => '',
-            'user_set_default' => '',
+            'user_remove_playmodes' => '已自 :user 於 :group 的身分中移除 :rulesets 模式。',
+            'user_set_default' => ':user 的預設群組已設定為 :group 。',
         ],
     ],
 

@@ -31,6 +31,10 @@ return [
             'read' => 'Zie wie u volgt.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Openbare gegevens lezen namens jou.',
     ],
 ];

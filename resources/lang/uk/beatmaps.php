@@ -245,6 +245,7 @@ return [
             'prompt' => 'почніть вводити ключові слова...',
             'login_required' => 'Увійдіть, для використання пошуку.',
             'options' => 'Більше параметрів пошуку',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Фільтрація по :filters потребує наявності тегу osu!supporter',
             'not-found' => 'немає результатів',
             'not-found-quote' => '... на жаль, нічого немає.',

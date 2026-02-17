@@ -31,6 +31,10 @@ return [
             'read' => 'Lásd, hogy kit követsz.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Nyilvános adatok olvasása az ön nevében',
     ],
 ];

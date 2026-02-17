@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Вас назначили владельцем сложности на карте ":title" ',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Новые комментарии под новостью ":title"',
-            ],
-
-            'news_post' => [
-                'news_post_new' => 'Новости (:series): ":title"',
             ],
         ],
 

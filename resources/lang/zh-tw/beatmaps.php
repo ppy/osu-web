@@ -245,6 +245,7 @@ return [
             'prompt' => '輸入關鍵字...',
             'login_required' => '登入以搜尋。',
             'options' => '更多搜尋選項',
+            'rank_filter_note' => '',
             'supporter_filter' => '使用 :filters 進行篩選需要有效的 osu!supporter 標籤',
             'not-found' => '沒有結果',
             'not-found-quote' => '...呃，什麼都沒找到。',

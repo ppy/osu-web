@@ -245,6 +245,7 @@ return [
             'prompt' => 'zadaj kľúčové slova...',
             'login_required' => 'Prihláste sa, ak chcete hľadať.',
             'options' => 'Viac možností hladania',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtrovanie podľa :filters vyžaduje aktívny osu!supporter tag',
             'not-found' => 'bez výsledkov',
             'not-found-quote' => '... nič sa nenašlo.',

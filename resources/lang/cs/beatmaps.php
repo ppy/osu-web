@@ -245,6 +245,7 @@ return [
             'prompt' => 'zadej klíčová slova...',
             'login_required' => 'Pro hledání se přihlaste.',
             'options' => 'Další možnosti hledání',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtrování podle :filters vyžaduje štítek podporovatele',
             'not-found' => 'bez výsledků',
             'not-found-quote' => '... ups, nic nebylo nalezeno.',
