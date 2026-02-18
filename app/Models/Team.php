@@ -27,7 +27,7 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
 
     const MAX_FIELD_LENGTHS = [
         'description' => 64000,
-        'name' => 100,
+        'name' => 40,
         'short_name' => 4,
         'url' => 255,
     ];
