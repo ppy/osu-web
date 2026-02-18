@@ -87,9 +87,8 @@ class ClientCheck
         ]));
 
         $result = \LaravelRedis::blPop([$validationKey], $GLOBALS['cfg']['osu']['client']['token_validation_timeout']);
-        $timedOut = empty($result);
 
-        if ($timedOut) {
+        if ($result === null) {
             // TODO: perhaps abort in the future
             datadog_increment('token_validation_timeout');
             return;
@@ -109,16 +108,12 @@ class ClientCheck
             ?? '';
     }
 
-    private static function getMultipartData(Request $request): ?string
+    private static function getMultipartData(Request $request): ?array
     {
         $contentType = $request->header('Content-Type', '');
-        $isMultipart = str_contains($contentType, 'multipart/form-data');
+        $isMultipart = str_starts_with($contentType, 'multipart/form-data');
 
-        if (!$isMultipart) {
-            return null;
-        }
-
-        return json_encode($request->post());
+        return $isMultipart ? $request->post() : null;
     }
 
     private static function splitToken(string $token): array
