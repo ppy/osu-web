@@ -118,7 +118,7 @@ class ClientCheck
             return null;
         }
 
-        return json_encode($request->all());
+        return json_encode($request->post());
     }
 
     private static function splitToken(string $token): array
