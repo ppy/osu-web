@@ -83,7 +83,7 @@ class ClientCheck
             'score_id' => $scoreId,
             'token' => $tokenData['token'],
             'url' => $tokenData['url'],
-            'validation_key' => $validationKey
+            'validation_key' => $validationKey,
         ]));
 
         $result = \LaravelRedis::blPop([$validationKey], $GLOBALS['cfg']['osu']['client']['token_validation_timeout']);
@@ -97,7 +97,7 @@ class ClientCheck
 
         $validationResult = $result[1];
 
-        if ($validationResult !== "success") {
+        if ($validationResult !== 'success') {
             abort(422, $validationResult);
         }
     }
