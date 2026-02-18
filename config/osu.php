@@ -118,6 +118,7 @@ return [
         'token_keys' => $clientTokenKeys,
         'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
         'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
+        'token_validation_timeout' => env('CLIENT_TOKEN_VALIDATION_TIMEOUT') ?? 0.05,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
