@@ -25,18 +25,18 @@ interface Props {
   entry: ContestEntryJsonForResults;
 }
 
+function entryToOption(entry: ContestEntryJsonForResults) {
+  return {
+    contest_id: entry.contest_id,
+    id: entry.id,
+    text: `${entry.title} (${entry.user.username})`,
+  };
+}
+
 export default class Header extends React.PureComponent<Props> {
   @computed
   private get options() {
-    return this.props.entries.map((entry) => ({
-      contest_id: entry.contest_id,
-      id: entry.id,
-      text: entry.title,
-    }));
-  }
-
-  private get selected() {
-    return { contest_id: this.props.entry.contest_id, id: this.props.entry.id, text: this.props.entry.title };
+    return this.props.entries.map(entryToOption);
   }
 
   render() {
@@ -49,7 +49,7 @@ export default class Header extends React.PureComponent<Props> {
           onChange={this.handleChange}
           options={this.options}
           renderOption={this.renderOption}
-          selected={this.selected}
+          selected={entryToOption(this.props.entry)}
         />
 
         <div className='contest-judge-results-header__values'>
