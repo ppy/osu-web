@@ -3,7 +3,11 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 
-@extends('master')
+@php
+    $title = "{$entryJson['title']} ({$entryJson['user']['username']})";
+@endphp
+
+@extends('master', ['titlePrepend' => $title])
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
@@ -12,7 +16,7 @@
             ['url' => route('contests.show', $contestJson['id']), 'title' => $contestJson['name']],
             [
                 'url' => route('contests.entries.judge-results', ['contest' => $contestJson['id'], 'contest_entry' => $entryJson['id']]),
-                'title' => "{$entryJson['title']} ({$entryJson['user']['username']})"
+                'title' => $title,
             ],
         ],
         'linksBreadcrumb' => true,
