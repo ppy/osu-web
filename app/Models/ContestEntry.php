@@ -53,6 +53,11 @@ class ContestEntry extends Model
         return $this->hasMany(ContestVote::class);
     }
 
+    public function getTitleAttribute()
+    {
+        return $this->contest->unmasked ? $this->name : $this->masked_name;
+    }
+
     public function scopeForBestOf(Builder $query, User $user, string $ruleset, ?string $variant = null): Builder
     {
         $beatmapsetIdsQuery = Beatmap::select('beatmapset_id')

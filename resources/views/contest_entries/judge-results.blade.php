@@ -6,34 +6,14 @@
 @extends('master')
 
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
-        'links' => [
-            ['url' => route('contests.index'), 'title' => osu_trans('contest.index.nav_title')],
-            ['url' => route('contests.show', $contestJson['id']), 'title' => $contestJson['name']],
-            ['url' => route('contests.entries.judge-results', ['contest' => $contestJson['id'], 'contest_entry' => $entryJson['id']]), 'title' => $entryJson['title']],
-        ],
-        'linksBreadcrumb' => true,
-        'theme' => 'contests',
-    ]])
-
-    <div class="osu-page">
-        <div class="js-react" data-react="contest-judge-results"></div>
-    </div>
+    <div class="js-react" data-react="contest-judge-results" data-selected-id={{ $entry->getKey() }}></div>
 @endsection
 
 @section('script')
     @parent
 
-    <script id="json-contest" type="application/json">
-        {!! json_encode($contestJson) !!}
-    </script>
-
-    <script id="json-entry" type="application/json">
-        {!! json_encode($entryJson) !!}
-    </script>
-
-    <script id="json-entries" type="application/json">
-        {!! json_encode($entriesJson) !!}
+    <script id="json-judge-results" type="application/json">
+        {!! json_encode($json) !!}
     </script>
 
     @include('layout._react_js', ['src' => 'js/contest-judge-results.js'])

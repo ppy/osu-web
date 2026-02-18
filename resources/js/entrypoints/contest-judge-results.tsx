@@ -6,10 +6,6 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('contest-judge-results', () => (
-  <Main
-    contest={parseJson('json-contest')}
-    entries={parseJson('json-entries')}
-    entry={parseJson('json-entry')}
-  />
+core.reactTurbolinks.register('contest-judge-results', (container: HTMLElement) => (
+  <Main {...parseJson('json-judge-results')} container={container} />
 ));

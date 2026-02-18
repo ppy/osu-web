@@ -10,7 +10,6 @@ use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
-use Cache;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -145,6 +144,8 @@ class Contest extends Model
             [$stdDev, $mean] = $judgeScores[$vote->user_id];
             $vote->update(['total_score_std' => $stdDev === 0.0 ? 0 : ($vote->totalScore() - $mean) / $stdDev]);
         }
+
+        $this->resetCache();
     }
 
     public function isBestOf(): bool
@@ -320,15 +321,26 @@ class Contest extends Model
 
     public function entriesByType(?User $user, array $preloads = [])
     {
+        if ($this->show_votes) {
+            $includes = [
+                'contest',
+                'user' => fn ($q) => $q->select('user_id', 'username'),
+            ];
+
+            if ($this->isJudged()) {
+                $includes[] = 'judgeVotes.scores';
+            }
+
+            return \Cache::remember(
+                $this->entriesWithScoresKey(),
+                300,
+                fn () => $this->entries()->with($includes)->withScore($this)->get()
+            );
+        }
+
         $query = $this->entries()->with(['contest', ...$preloads]);
 
-        if ($this->show_votes) {
-            return Cache::remember(
-                "contest_entries_with_votes_{$this->id}",
-                300,
-                fn () => $query->with(['contest', ...$preloads])->withScore($this)->get()
-            );
-        } elseif ($this->isBestOf()) {
+        if ($this->isBestOf()) {
             if ($user === null) {
                 return [];
             }
@@ -421,8 +433,8 @@ class Contest extends Model
 
     public function usersVotedCount(): int
     {
-        return cache()->remember(
-            static::class.':'.__FUNCTION__.':'.$this->getKey(),
+        return \Cache::remember(
+            $this->usersVotedCountCacheKey(),
             300,
             fn () => $this->votes()->distinct('user_id')->count(),
         );
@@ -469,5 +481,21 @@ class Contest extends Model
     public function showEntryUser(): bool
     {
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
+    }
+
+    private function entriesWithScoresKey(): string
+    {
+        return "contest:{$this->getKey()}:entries_with_scores";
+    }
+
+    private function resetCache(): void
+    {
+        \Cache::forget($this->entriesWithScoresKey());
+        \Cache::forget($this->usersVotedCountCacheKey());
+    }
+
+    private function usersVotedCountCacheKey(): string
+    {
+        return "contest:{$this->getKey()}:users_voted_count";
     }
 }
