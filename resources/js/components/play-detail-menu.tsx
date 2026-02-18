@@ -11,6 +11,7 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
+import PopupMenuState from './popup-menu-state';
 import { ReportReportable } from './report-reportable';
 
 interface Props {
@@ -23,12 +24,12 @@ export class PlayDetailMenu extends React.Component<Props> {
   render() {
     const { score, user } = this.props;
 
-    const children = (dismiss: () => void) => (
+    const children = (state: PopupMenuState) => (
       <div className='simple-menu'>
         {core.scorePins.canBePinned(score) && (
           <ScorePin
             className='simple-menu__item'
-            onUpdate={dismiss}
+            onUpdate={state.dismiss}
             score={score}
           />
         )}
@@ -43,7 +44,7 @@ export class PlayDetailMenu extends React.Component<Props> {
           <a
             className='simple-menu__item js-login-required--click'
             href={route('scores.download', { score: score.id })}
-            onClick={dismiss}
+            onClick={state.dismiss}
           >
             {trans('users.show.extra.top_ranks.download_replay')}
           </a>
@@ -52,7 +53,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         {canBeReported(score) && (
           <ReportReportable
             className='simple-menu__item'
-            onFormOpen={dismiss}
+            onFormOpen={state.dismiss}
             reportableId={score.id.toString()}
             reportableType={score.type}
             user={user}
