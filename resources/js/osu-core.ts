@@ -46,6 +46,7 @@ import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
 import { parseJsonNullable } from 'utils/json';
+import UserTagPickerController from './beatmaps/user-tag-picker-controller';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -55,6 +56,7 @@ export default class OsuCore {
   readonly animateNav;
   readonly bbcodeAutoPreview;
   readonly beatmapsetSearchController;
+  readonly beatmapTagPickerController;
   readonly bladePopup;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -154,6 +156,7 @@ export default class OsuCore {
     this.windowFocusObserver = new WindowFocusObserver();
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
+    this.beatmapTagPickerController = new UserTagPickerController();
 
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);

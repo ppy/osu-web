@@ -1,0 +1,124 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.user-tag-picker {
+  @padding: 20px;
+
+  @search-container-offset: 46px; // 45px search icon width + 1px search container border
+
+  .default-box-shadow();
+  width: calc(100vw - @gutter-v2 * 2 - @search-container-offset);
+  max-width: 500px;
+
+  height: 400px;
+
+  // left/right padding is applied on the list
+  // to put the scrollbar on the far edge of the element
+  padding: @padding 0;
+  border-radius: @border-radius--large;
+
+  display: grid;
+  grid-template-rows: min-content auto;
+
+  gap: 10px;
+
+  color: hsl(var(--hsl-c1));
+  background-color: hsl(var(--hsl-b4));
+
+  &__search {
+    .default-border-radius();
+
+    margin: 0 @padding;
+    padding: 8px 5px;
+
+    outline: none;
+    border: none;
+
+    background-color: hsl(var(--hsl-b5));
+    font-size: 14px;
+  }
+
+  &__scroll-area {
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+  }
+
+  &__list {
+    display: grid;
+    grid-auto-rows: auto;
+
+    gap: 5px;
+    padding: 0 @padding;
+  }
+
+  &__category {
+    font-size: @font-size--title-small-4;
+    font-weight: 600;
+    padding-bottom: 5px;
+
+    position: sticky;
+    top: 0;
+
+    background-color: hsl(var(--hsl-b4));
+
+    &::before {
+      content: "";
+      display: inline-block;
+      margin-right: 5px;
+
+      width: 6px;
+      height: 12px;
+      border-radius: 3px;
+
+      background-color: hsl(var(--hsl-h1));
+    }
+  }
+
+  &__tag {
+    .default-border-radius();
+    width: 100%;
+    padding: 5px 10px;
+
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 10px;
+
+    align-items: center;
+
+    background-color: hsl(var(--hsl-b3));
+
+    cursor: pointer;
+
+    transition: background-color 120ms;
+
+    &:hover {
+      background-color: hsl(var(--hsl-b2));
+    }
+
+    &--active {
+      background-color: hsl(var(--hsl-h2));
+
+      &:hover {
+        background-color: hsl(var(--hsl-h1));
+      }
+    }
+  }
+
+  &__tag-info {
+    font-size: @font-size--title-small;
+
+    &--name {
+      font-weight: 700;
+    }
+
+    &--ruleset {
+      padding-right: 2px;
+    }
+
+    &--description {
+      font-size: @font-size--normal;
+
+      font-weight: 500;
+    }
+  }
+}

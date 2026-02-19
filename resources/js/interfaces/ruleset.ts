@@ -8,10 +8,21 @@ export const rulesetIdToName = {
   3: 'mania',
 } as const;
 export const rulesets = Object.values(rulesetIdToName);
+export const rulesetIds = Object.keys(rulesetIdToName).map((id) => parseInt(id, 10));
 
 export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
   if ((rulesets as readonly string[]).includes(maybeRuleset)) {
     return maybeRuleset as Ruleset;
+  }
+}
+
+export function ensureRulesetId(maybeRulesetId: number|string): RulesetId | undefined {
+  if (typeof maybeRulesetId === 'string') {
+    maybeRulesetId = parseInt(maybeRulesetId, 10);
+  }
+
+  if ((rulesetIds as readonly number[]).includes(maybeRulesetId)) {
+    return maybeRulesetId as RulesetId;
   }
 }
 
