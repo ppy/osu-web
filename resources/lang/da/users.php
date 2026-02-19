@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'blokerede brugere (:count)',
         'hide_profile' => 'Skjul profil',
         'hide_comment' => 'skjul',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Dette opslag er skjult.',
         'not_blocked' => 'Denne bruger er ikke blokeret.',
         'show_profile' => 'Vis profil',
         'show_comment' => 'vis',
@@ -183,12 +183,12 @@ return [
             'nonsense' => 'Nonsens',
             'other' => 'Andet (Skriv under)',
             'spam' => 'Spamming',
-            'unwanted_content' => 'Sender links med upassende indhold',
+            'unwanted_content' => 'Upassende indhold',
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Du konto er blevet begrænset!',
-        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen fjernes normalt indenfor 24 timer. :link',
+        'title' => 'Din konto er blevet begrænset!',
+        'message' => 'Mens du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette sker som regel på grund af en automatisk proces, og begrænsningen fjernes normalt indenfor 24 timer. :link',
         'message_link' => 'Tjek denne side for at lære mere.',
     ],
     'show' => [
@@ -333,6 +333,9 @@ return [
                     'title' => 'Replays Set Historik',
                     'count_label' => 'Replays Set',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Seneste Kudosu Historik',
@@ -441,13 +444,13 @@ return [
             'account_standing' => [
                 'title' => 'Kontostatus',
                 'bad_standing' => ":username's konto er ikke i en god position :(",
-                'remaining_silence' => ':username kan tale igen :duration.',
+                'remaining_silence' => ':username vil kunne tale igen :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Seneste Overtrædelser',
                     'date' => 'dato',
                     'action' => 'handling',
-                    'length' => 'længde',
+                    'length' => 'varighed',
                     'length_indefinite' => 'Tidsubegrænset',
                     'description' => 'beskrivelse',
                     'actor' => 'af :username',

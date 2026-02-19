@@ -253,69 +253,6 @@ return [
             'views' => 'vues',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Supprimer le tag "added"',
-            'to_0_done' => 'Tag "added" supprimé',
-            'to_1' => 'Ajouter le tag "added"',
-            'to_1_done' => 'Tag "added" ajouté',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Supprimer le tag "assigned"',
-            'to_0_done' => 'Tag "assigned" supprimé',
-            'to_1' => 'Ajouter le tag "assigned"',
-            'to_1_done' => 'Tag "assigned" ajouté',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Supprimer le tag "confirmed"',
-            'to_0_done' => 'Tag "confirmed" supprimé',
-            'to_1' => 'Ajouter le tag "confirmed"',
-            'to_1_done' => 'Tag "confirmed" ajouté',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Supprimer le tag "duplicate"',
-            'to_0_done' => 'Tag "duplicate" supprimé',
-            'to_1' => 'Ajouter le tag "duplicate"',
-            'to_1_done' => 'Tag "duplicate" ajouté',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Supprimer le tag "invalid"',
-            'to_0_done' => 'Tag "invalid" supprimé',
-            'to_1' => 'Ajouter le tag "invalid"',
-            'to_1_done' => 'Tag "invalid" ajouté',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Supprimer le tag "resolved"',
-            'to_0_done' => 'Tag "resolved" supprimé',
-            'to_1' => 'Ajouter le tag "resolved"',
-            'to_1_done' => 'Tag "resolved" ajouté',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Supprimer le tag « osu!lazer »',
-            'to_0_done' => 'Tag « osu!lazer » supprimé',
-            'to_1' => 'Ajouter le tag « osu!lazer »',
-            'to_1_done' => 'Tag « osu!lazer » ajouté',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Supprimer le tag « osu!stable »',
-            'to_0_done' => 'Tag « osu!stable » supprimé',
-            'to_1' => 'Ajouter le tag « osu!stable »',
-            'to_1_done' => 'Tag « osu!stable » ajouté',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Supprimer le tag « osu!web »',
-            'to_0_done' => 'Tag « osu!web » supprimé',
-            'to_1' => 'Ajouter le tag « osu!web »',
-            'to_1_done' => 'Tag « osu!web » ajouté',
-        ],
-
         'lock' => [
             'is_locked' => 'Ce sujet est verrouillé, vous ne pouvez pas y répondre',
             'to_0' => 'Déverrouiller le sujet',

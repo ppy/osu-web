@@ -333,6 +333,9 @@ return [
                     'title' => 'Historikk For Repriser',
                     'count_label' => 'Repriser Sett',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nylig Kudosu Historie',
@@ -441,7 +444,7 @@ return [
             'account_standing' => [
                 'title' => 'Kontostatus',
                 'bad_standing' => "<strong>:username</strong> sin konto er ikke i god stand :(",
-                'remaining_silence' => '<strong>:username</strong> vil kunne snakke igjen om :duration.',
+                'remaining_silence' => ':username vil kunne snakke igjen :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Nylige overtredelser',

@@ -160,8 +160,10 @@ return [
 
         'statistics' => [
             'empty_slots' => '',
+            'first_places' => '',
             'leader' => 'Takım Lideri',
             'rank' => 'Sıralama',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

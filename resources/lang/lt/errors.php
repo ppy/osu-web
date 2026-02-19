@@ -22,10 +22,6 @@ return [
             'generic' => 'Įvyko klaida. Pabandykite perkrauti puslapį.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Nurodytas neteisingas režimas.',
-        'standard_converts_only' => 'Nėra rezultatų prašomam režimui šiame beatmap\'o sunkume.',
-    ],
     'checkout' => [
         'generic' => 'Įvyko klaida apdorojant jūsų apmokėjimą.',
     ],

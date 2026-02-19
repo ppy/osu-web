@@ -16,8 +16,10 @@ return [
         'invalid' => 'Erro inesperado no código de verificação.',
         'is_privileged' => 'Fala com o peppy, lul.',
         'missing_key' => 'Obrigatório.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Número de tentativas excedido.',
         'user_not_found' => 'O usuário selecionado não existe.',
+        'wait_resend' => '',
         'wrong_key' => 'Código incorreto.',
     ],
 

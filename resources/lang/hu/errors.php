@@ -22,10 +22,6 @@ return [
             'generic' => 'Hiba történt. Próbáld frissiteni az oldalt.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Érvénytelen mód lett megadva.',
-        'standard_converts_only' => 'Nincs elérhető eredmény a kért módra ezen a beatmap nehézségen.',
-    ],
     'checkout' => [
         'generic' => 'Hiba történt a fizetés előkészítése közben.',
     ],

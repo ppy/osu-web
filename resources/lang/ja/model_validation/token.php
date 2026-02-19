@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
+        'all_scope_no_client_credentials' => 'Client Credentialsでは * は許可されていません',
+        'all_scope_no_mix' => '* は他のスコープと併用できません',
+        'client_missing_owner' => 'クライアントのオーナーが見つかりません。',
         'client_unauthorized' => 'クライアントは承認されていません。',
-        'delegate_bot_only' => '',
-        'client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'delegate_bot_only' => 'クライアント資格情報を使用した委任は、チャットボットのみ利用可能です。',
+        'client_credentials_only' => 'このスコープは、client_credentialsトークンに対してのみ有効です。',
+        'delegate_invalid_combination' => 'このスコープの組み合わせでは、権限の委譲はサポートされていません。',
+        'delegate_required' => '委任スコープが必要です。',
+        'empty' => 'スコープが設定されていないトークンは無効です。',
+        'bot_only' => 'このスコープは、チャットボットまたは自身で作成したクライアントでのみ利用可能です。',
     ],
 ];

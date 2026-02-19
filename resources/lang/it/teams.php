@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited posto disponibile|:count_delimited posti disponibili',
+            'first_places' => '',
             'leader' => 'Capitano',
             'rank' => 'Posizione',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

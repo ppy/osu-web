@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Berikut merupakan daftar diskusi beatmap yang sedang kamu ikuti. Kamu akan menerima notifikasi setiap kali terdapat postingan atau perkembangan baru.',
+        'description' => 'Berikut adalah daftar diskusi beatmap yang sedang kamu ikuti. Kamu akan menerima notifikasi setiap kali terdapat postingan atau perkembangan baru.',
         'title_compact' => 'daftar pengamatan beatmap',
 
         'counts' => [

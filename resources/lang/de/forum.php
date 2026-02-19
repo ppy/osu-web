@@ -253,69 +253,6 @@ return [
             'views' => 'Aufrufe',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Tag "added" entfernen',
-            'to_0_done' => 'Tag "added" entfernt',
-            'to_1' => 'Tag "added" hinzufügen',
-            'to_1_done' => 'Tag "added" hinzugefügt',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Tag "assigned" entfernen',
-            'to_0_done' => 'Tag "assigned" entfernt',
-            'to_1' => 'Tag "assigned" hinzufügen',
-            'to_1_done' => 'Tag "assigned" hinzugefügt',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Tag "confirmed" entfernen',
-            'to_0_done' => 'Tag "confirmed" entfernt',
-            'to_1' => 'Tag "confirmed" hinzufügen',
-            'to_1_done' => 'Tag "confirmed" hinzugefügt',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Tag "duplicate" entfernen',
-            'to_0_done' => 'Tag "duplicate" entfernt',
-            'to_1' => 'Tag "duplicate" hinzufügen',
-            'to_1_done' => 'Tag "duplicate" hinzugefügt',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Tag "invalid" entfernen',
-            'to_0_done' => 'Tag "invalid" entfernt',
-            'to_1' => 'Tag "invalid" hinzufügen',
-            'to_1_done' => 'Tag "invalid" hinzugefügt',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Tag "resolved" entfernen',
-            'to_0_done' => 'Tag "resolved" entfernt',
-            'to_1' => 'Tag "resolved" hinzufügen',
-            'to_1_done' => 'Tag "resolved" hinzugefügt',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '"osu!lazer"-Tag entfernen',
-            'to_0_done' => '"osu!lazer" Tag entfernt',
-            'to_1' => 'Tag "osu!lazer" hinzufügen',
-            'to_1_done' => '"osu!lazer" Tag hinzugefügt',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '"osu!stable" Tag entfernen',
-            'to_0_done' => '"osu!stable"-Tag entfernt',
-            'to_1' => '"osu!stable"-Tag hinzufügen',
-            'to_1_done' => '"osu!stable"-Tag hinzugefügt',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '"osu!web"-Tag entfernen',
-            'to_0_done' => '"osu!web"-Tag entfernt',
-            'to_1' => '"osu!web"-Tag hinzufügen',
-            'to_1_done' => '"osu!web"-Tag hinzugefügt',
-        ],
-
         'lock' => [
             'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
             'to_0' => 'Thread entsperren',
@@ -353,7 +290,7 @@ return [
 
             'feature_vote' => [
                 'current' => 'Aktuelle Priorität: +:count',
-                'do' => 'Bringe dieses Request voran',
+                'do' => 'Stimme für diesen Vorschlag',
 
                 'info' => [
                     '_' => 'Dies ist ein :feature_request. Über Funktionsvorschläge können nur :supporters abstimmen.',

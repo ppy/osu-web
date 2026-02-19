@@ -333,6 +333,9 @@ return [
                     'title' => 'سابقه تماشای بازپخش ها',
                     'count_label' => 'بازپخش های تماشا شده',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'تاریخچه kudosu اخیر',

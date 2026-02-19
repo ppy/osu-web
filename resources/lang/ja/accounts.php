@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
         'beatmapset_disqualify' => '次のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
         'comment_reply' => 'コメントへの返信の通知を受け取る',
-        'news_post' => '',
+        'news_post' => 'ニュースの通知を受け取る',
         'title' => '通知',
         'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
 
@@ -94,7 +94,7 @@ return [
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',
             'mapping' => 'ビートマップマッパー',
-            'news_post' => '',
+            'news_post' => '新しい投稿',
             'push' => 'プッシュ通知',
         ],
     ],
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'ビートマップ内の不適切なコンテンツの警告を非表示にする',
         'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
         'title' => 'オプション',

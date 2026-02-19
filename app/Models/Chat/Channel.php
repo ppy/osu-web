@@ -478,8 +478,9 @@ class Channel extends Model
 
             $this->unhide();
 
-            $message->dispatchNotification();
-
+            if (!$message->isUserCommand()) {
+                $message->dispatchNotification();
+            }
             new ChatMessageEvent($message)->broadcast(true);
         });
 

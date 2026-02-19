@@ -22,10 +22,6 @@ return [
             'generic' => 'Terdapat suatu masalah. Cobalah untuk memuat ulang halaman.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Mode permainan yang ditentukan tidak valid.',
-        'standard_converts_only' => 'Tidak ada skor yang tersedia untuk mode permainan yang diminta pada tingkat kesulitan ini.',
-    ],
     'checkout' => [
         'generic' => 'Terjadi kesalahan pada saat mempersiapkan proses checkout.',
     ],

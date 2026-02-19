@@ -253,69 +253,6 @@ return [
             'views' => '',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => '',
             'to_0' => '',

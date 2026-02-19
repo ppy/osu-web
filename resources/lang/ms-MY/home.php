@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Lihat hasil carian pasukan lain',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Muat turun osu!',
             'support' => 'Sokong osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Taga-ambag ka na sa beatmap ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Ang balitang ":title" ay may mga bagong komento',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

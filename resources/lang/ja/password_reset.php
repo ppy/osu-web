@@ -16,8 +16,10 @@ return [
         'invalid' => '認証コードに予期しないエラーが発生しました。',
         'is_privileged' => 'peppyに相談だ',
         'missing_key' => '必須項目',
+        'too_many_requests' => '',
         'too_many_tries' => '試行回数が多すぎます。',
         'user_not_found' => '指定のユーザーは存在しません。',
+        'wait_resend' => '',
         'wrong_key' => 'コードが違います。',
     ],
 

@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
         'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter !',
         'drop_here' => 'Déposez votre entrée ici',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Télécharger le .osz',
-
-        'wrong_type' => [
-            'art' => 'Seuls les fichiers .jpg et .png sont acceptés pour ce concours.',
-            'beatmap' => 'Seuls les fichiers .osu sont acceptés pour ce concours.',
-            'music' => 'Seuls les fichiers .mp3 sont acceptés pour ce concours.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Les dimensions des entrées envoyées à ce concours doivent être de :widthx:height',
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],

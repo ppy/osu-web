@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => '',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'osu! letöltése',
             'support' => 'osu! támogatása',
             'store' => 'osu!bolt',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

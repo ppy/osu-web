@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'プレイ数',
+        'points' => 'ポイント',
+        'provisional' => '試合数が不足しているため、正確なレートを算出できません',
+        'rating' => 'レーティング',
+        'wins' => '勝利数',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'ルーム名',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => 'データを計算中・・・',
-        'last_updated' => '',
+        'last_updated' => '最終更新',
     ],
 
     'playlists' => [
-        'charts' => '',
+        'charts' => 'スポットライト (旧)',
         'featured' => '',
         'season_room' => '',
-        'seasons' => '',
+        'seasons' => 'シーズン',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'デイリーチャレンジ',
         'global' => 'グローバル',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'クイックプレイ',
+        'playlists' => 'プレイリスト',
         'team' => 'チーム',
         'top_plays' => 'トッププレイ',
     ],
@@ -76,7 +76,7 @@ return [
         'empty' => '今シーズンはまだルームがありません。',
         'ongoing' => '今シーズンはまだ継続中です（プレイリストはさらに追加される予定）。',
         'room_count' => 'プレイリスト数',
-        'summary' => '',
+        'summary' => 'シーズンの概要を表示',
         'url' => 'そのシーズンに関する詳細情報を表示する。',
         'validation' => [
             'not_enough_factors' => '適切に計算するためのスコア要素が不足しています',

@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => '帳號受限時無法參加評選。',
         'preparation' => '我們正在準備這場評選，請耐心等待！',
         'drop_here' => '將您的參賽檔案拖曳至此',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '下載 .osz 檔案',
-
-        'wrong_type' => [
-            'art' => '只接受 .jpg 和 .png 格式的檔案。',
-            'beatmap' => '只接受 .osu 格式的檔案。',
-            'music' => '只接受 .mp3 格式的檔案。',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '參加競賽的數量必須達到 :widthx:height',
         'too_big' => '參賽檔案的大小不能超過 :limit。',
     ],

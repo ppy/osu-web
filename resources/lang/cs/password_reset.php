@@ -16,8 +16,10 @@ return [
         'invalid' => 'Neočekávaná chyba v ověřovacím kódu.',
         'is_privileged' => 'Pro obnovení účtu kontaktuj admina s vysokými oprávněními.',
         'missing_key' => 'Vyžadováno.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Příliš mnoho nezdařených pokusů.',
         'user_not_found' => 'Zadaný uživatel neexistuje.',
+        'wait_resend' => '',
         'wrong_key' => 'Neplatný kód.',
     ],
 

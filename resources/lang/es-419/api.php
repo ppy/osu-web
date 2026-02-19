@@ -31,6 +31,10 @@ return [
             'read' => 'Ver a quién sigues.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Leer datos públicos en tu nombre.',
     ],
 ];

@@ -253,69 +253,6 @@ return [
             'views' => 'kali dilihat',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Hapus tag "added"',
-            'to_0_done' => 'Tag "added" dihapus',
-            'to_1' => 'Tambah tag "added"',
-            'to_1_done' => 'Tag "added" ditambahkan',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Hapus tag "assigned"',
-            'to_0_done' => 'Tag "assigned" dihapus',
-            'to_1' => 'Tambah tag "assigned"',
-            'to_1_done' => 'Tag "assigned" ditambahkan',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Hapus tag "confirmed"',
-            'to_0_done' => 'Tag "confirmed" dihapus',
-            'to_1' => 'Tambah tag "confirmed"',
-            'to_1_done' => 'Tag "confirmed" ditambahkan',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Hapus tag "duplicate"',
-            'to_0_done' => 'Tag "duplilcate" dihapus',
-            'to_1' => 'Tambah tag "duplicate"',
-            'to_1_done' => 'Tag "duplicate" ditambahkan',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Hapus tag "invalid"',
-            'to_0_done' => 'Tag "invalid" dihapus',
-            'to_1' => 'Tambah tag "invalid"',
-            'to_1_done' => 'Tag "invalid" ditambahkan',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Hapus tag "resolved"',
-            'to_0_done' => 'Tag "resolved" dihapus',
-            'to_1' => 'Tambah tag "resolved"',
-            'to_1_done' => 'Tag "resolved" ditambahkan',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Hapus tag "osu!lazer"',
-            'to_0_done' => 'Tag "osu!lazer" dihapus',
-            'to_1' => 'Tambah tag "osu!lazer"',
-            'to_1_done' => 'Tag "osu!lazer" ditambahkan',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Hapus tag "osu!stable"',
-            'to_0_done' => 'Tag "osu!stable" dihapus',
-            'to_1' => 'Tambah tag "osu!stable"',
-            'to_1_done' => 'Tag "osu!stable" ditambahkan',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Hapus tag "osu!web"',
-            'to_0_done' => 'Tag "osu!web" dihapus',
-            'to_1' => 'Tambah tag "osu!web"',
-            'to_1_done' => 'Tag "osu!web" ditambahkan',
-        ],
-
         'lock' => [
             'is_locked' => 'Topik ini telah dikunci dan tidak dapat dibalas',
             'to_0' => 'Buka kunci topik',

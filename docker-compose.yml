@@ -13,8 +13,7 @@ x-env: &x-env
 
 x-web: &x-web
   build:
-    context: ./docker/development
-    dockerfile: ../../Dockerfile.development
+    dockerfile: Dockerfile.development
   init: true
   volumes:
     - .:/app
@@ -40,7 +39,7 @@ services:
 
   assets:
     <<: *x-web
-    command: ['watch']
+    command: ["${ASSETS_COMMAND:-watch}"]
 
   job:
     <<: *x-web

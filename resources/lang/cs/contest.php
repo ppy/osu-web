@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Nemůžeš se účastnit soutěží, zatímco je tvůj účet omezený nebo ztlumený.',
         'preparation' => 'Tuto soutěž právě připravujeme. Prosím čekej trpělivě!',
         'drop_here' => 'Tvůj vstup přetáhni sem',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Stáhnout .osz',
-
-        'wrong_type' => [
-            'art' => 'Pouze .jpg a .png soubory jsou přijímány pro tuto soutěž.',
-            'beatmap' => 'Pouze .osu soubory jsou přijímány pro tuto soutěž.',
-            'music' => 'Pouze .mp3 soubory jsou přijímány pro tuto soutěž.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Příspěvky do soutěže musí mít rozměry :widthx:height',
         'too_big' => 'Možné vstupy pro tuto soutěž jsou :limit-krát.',
     ],

@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Виж повече резултати за търсенето в отбора',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Изтегли osu!',
             'support' => 'Подкрепи osu!',
             'store' => 'osu!магазин',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

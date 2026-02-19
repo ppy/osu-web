@@ -245,6 +245,7 @@ return [
             'prompt' => 'Stichwörter eingeben...',
             'login_required' => 'Melde dich an, um zu suchen.',
             'options' => 'Mehr Suchoptionen',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Um nach :filters zu filtern, benötigt es ein aktives osu!supporter-Tag',
             'not-found' => 'keine Ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',

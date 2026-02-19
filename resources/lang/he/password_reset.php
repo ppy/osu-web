@@ -16,8 +16,10 @@ return [
         'invalid' => '',
         'is_privileged' => 'צור קשר עם peppy חחח.',
         'missing_key' => 'נדרש.',
+        'too_many_requests' => '',
         'too_many_tries' => 'יותר מדי נסיונות כושלים.',
         'user_not_found' => 'שם המשתמש המבוקש אינו קיים.',
+        'wait_resend' => '',
         'wrong_key' => 'קוד שגוי.',
     ],
 

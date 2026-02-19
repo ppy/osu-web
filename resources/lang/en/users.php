@@ -333,6 +333,9 @@ return [
                     'title' => 'Replays Watched History',
                     'count_label' => 'Replays Watched',
                 ],
+                'score_replay_stats' => [
+                    'title' => 'Most Watched Replays',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Recent Kudosu History',

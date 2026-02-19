@@ -16,8 +16,10 @@ return [
         'invalid' => 'Doğrulama koduyla ilgili beklenmeyen bir hata oluştu.',
         'is_privileged' => 'Hesabınızı kurtarmak için lütfen üst düzey bir yönetici ile iletişime geçin.',
         'missing_key' => 'Gerekli.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Çok fazla sayıda başarısız deneme yapıldı.',
         'user_not_found' => 'Böyle bir kullanıcı mevcut değil.',
+        'wait_resend' => '',
         'wrong_key' => 'Yanlış kod.',
     ],
 

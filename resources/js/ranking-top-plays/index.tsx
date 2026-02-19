@@ -3,7 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import FlagTeam from 'components/flag-team';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import ScoreboardTime from 'components/scoreboard-time';
 import UserLink from 'components/user-link';
@@ -117,7 +117,7 @@ export default function RankingScores(props: Props) {
             </div>
             <div className='ranking-page-grid-item__col'>
               <div className='ranking-page-grid-item__icons u-hover'>
-                {displayMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} modifiers='dynamic' />)}
+                <Mods modifiers='dynamic' mods={displayMods(score)} />
               </div>
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--menu u-hover'>

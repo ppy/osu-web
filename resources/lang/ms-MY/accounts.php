@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'sorok amaran untuk kandungan tidak senonoh dalam peta rentak',
         'beatmapset_title_show_original' => 'paparkan metadata peta rentak dalam bahasa asli',
         'title' => 'Pilihan',

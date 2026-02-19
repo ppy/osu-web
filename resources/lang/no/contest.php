@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Du kan ikke bli med i konkurranser mens du er begrenset eller stum.',
         'preparation' => 'Vi driver for tiden å forbereder denne konkurransen. Vennligst vent tålmodig!',
         'drop_here' => 'Slipp bidraget ditt her',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Last ned .osz',
-
-        'wrong_type' => [
-            'art' => 'Bare .jpg og .png filer er akseptert for denne konkurransen.',
-            'beatmap' => 'Bare .osu filer er akseptert for denne konkurransen.',
-            'music' => 'Bare .mp3 filer er akseptert for denne konkurransen.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Innsendinger for denne konkurransen må være :widthx:height',
         'too_big' => 'Bidrag til denne konkurransen kan maks være :limit.',
     ],

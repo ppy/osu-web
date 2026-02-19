@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ta emot aviseringar om nya problem på kvalificerade beatmaps i följande spellägen',
         'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
         'comment_reply' => 'ta emot aviseringar för svar på dina kommentarer',
-        'news_post' => '',
+        'news_post' => 'ta emot aviseringar för nyhetsinlägg',
         'title' => 'Aviseringar',
         'topic_auto_subscribe' => 'aktivera aviseringar automatiskt på nya forumtrådar som du skapar ',
 
@@ -94,7 +94,7 @@ return [
             'forum_topic_reply' => 'ämnessvar',
             'mail' => 'e-post',
             'mapping' => 'beatmap-ägare',
-            'news_post' => '',
+            'news_post' => 'nya inlägg',
             'push' => 'push',
         ],
     ],
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'dölj varningar för explicit innehåll i beatmaps',
         'beatmapset_title_show_original' => 'visa beatmapmetadata på originalspråk',
         'title' => 'Alternativ',
@@ -129,7 +130,7 @@ return [
     'privacy' => [
         'friends_only' => 'blockera privata meddelanden från icke-vänner',
         'hide_online' => 'dölj din online-närvaro',
-        'hide_online_info' => '',
+        'hide_online_info' => 'denna kartor till "visas offline" läge i osu!laser',
         'title' => 'Sekretess',
     ],
 
@@ -151,17 +152,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Autentiseringsapp',
+        'usage_note' => 'Använd autentiseringsappen istället för e-post för verifiering. E-postverifiering kommer fortfarande att finnas tillgänglig som reserv.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Ta bort ',
+            'setup' => 'Lägg till autentiseringsapp',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'status',
+            'not_set' => 'Inte konfigurerad',
+            'set' => 'Konfigurerad',
         ],
     ],
 

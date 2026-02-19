@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Zobacz więcej wyszukanych zespołów',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Pobierz osu!',
             'support' => 'Wspomóż osu!',
             'store' => 'Sklep osu!',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

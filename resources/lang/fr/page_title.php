@@ -53,7 +53,7 @@ return [
             'discussion' => 'discussion sur la beatmap',
             'index' => 'liste des beatmaps',
             'show' => 'informations sur la beatmap',
-            'versions' => '',
+            'versions' => 'historique des versions de la beatmap',
         ],
         'changelog_controller' => [
             '_' => 'changelog',
@@ -72,7 +72,7 @@ return [
             'judge' => 'jugement du concours',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'historique des groupes',
         ],
         'groups_controller' => [
             'show' => 'groupes',
@@ -125,7 +125,7 @@ return [
             '_' => 'préréglages de bannières',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'application d\'authentification',
         ],
         'users_controller' => [
             '_' => 'informations du joueur',

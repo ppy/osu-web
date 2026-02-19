@@ -6,7 +6,7 @@
 return [
     'availability' => [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
-        'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
+        'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuatnya atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
         'rule_violation' => 'Sebagian aset yang terkandung dalam beatmap ini telah dihapus setelah dinilai tidak layak untuk digunakan di osu!.',
     ],
@@ -48,7 +48,7 @@ return [
         'invalid_limited_nomination' => 'Beatmap ini memiliki nominasi yang tidak valid dan tidak dapat dikualifikasikan dalam kondisi saat ini.',
         'invalid_ruleset' => 'Nominasi ini memiliki ruleset yang tidak valid.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
-        'too_many_non_main_ruleset' => 'Persyaratan nominasi untuk ruleset yang bukan merupakan ruleset utama telah terpenuhi.',
+        'too_many_non_main_ruleset' => 'Persyaratan nominasi untuk ruleset yang bukan ruleset utama telah terpenuhi.',
 
         'dialog' => [
             'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
@@ -146,10 +146,12 @@ return [
             'nominators' => 'Nominator',
             'nsfw' => 'Konten eksplisit',
             'offset' => 'Offset online',
+            'pack_tags' => '',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'storyboard' => 'Beatmap ini menyertakan storyboard',
             'success-rate' => 'Tingkat Keberhasilan',
+            'success_rate_plays' => '',
             'user_tags' => 'Tag Pengguna',
             'video' => 'Beatmap ini menyertakan video',
         ],

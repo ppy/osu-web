@@ -31,6 +31,10 @@ return [
             'read' => 'Kimi takip ettiğinizi görebilir.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Herkese açık verilerinizi sizin adınıza okuyabilir.',
     ],
 ];

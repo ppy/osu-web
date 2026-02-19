@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Utvalda artistspår',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Annat',
-        'team' => '',
+        'team' => 'Lag',
         'user' => 'Spelare',
         'wiki_page' => 'Wiki',
     ],
@@ -19,15 +19,15 @@ return [
         'title' => ':mode Sökresultat',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Inga resultat för :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Utvalda artistspår',
+            'beatmapset' => 'Slagkartor',
+            'forum_post' => 'Forum',
+            'other' => 'Andra',
+            'team' => 'Lag',
+            'user' => 'Spelare',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

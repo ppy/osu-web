@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recevoir des notifications lorsqu\'un nouveau problème est posté sur les beatmaps qualifiées dans les modes suivants',
         'beatmapset_disqualify' => 'recevoir des notifications lorsque des beatmaps sont disqualifiées dans les modes suivants',
         'comment_reply' => 'recevoir des notifications pour des réponses à vos commentaires',
-        'news_post' => '',
+        'news_post' => 'recevoir des notifications pour les articles d\'actualité',
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets que vous créez ou auxquels vous avez répondu sur le forum',
 
@@ -94,7 +94,7 @@ return [
             'forum_topic_reply' => 'réponse à un sujet',
             'mail' => 'mail',
             'mapping' => 'créateur de beatmap',
-            'news_post' => '',
+            'news_post' => 'articles d\'actualité',
             'push' => 'push',
         ],
     ],
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'masquer les avertissements de contenu explicite dans les beatmaps',
         'beatmapset_title_show_original' => 'afficher les métadonnées des beatmaps dans la langue d\'origine',
         'title' => 'Options',
@@ -129,7 +130,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloquer les messages privés des utilisateurs qui ne sont pas dans votre liste d’amis',
         'hide_online' => 'masquer votre présence en ligne',
-        'hide_online_info' => '',
+        'hide_online_info' => 'vous fera apparaître hors-ligne sur osu!lazer si activé',
         'title' => 'Confidentialité',
     ],
 

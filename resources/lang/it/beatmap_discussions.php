@@ -24,15 +24,15 @@ return [
         'form' => [
             '_' => 'Cerca',
             'deleted' => 'Includi discussioni eliminate',
-            'mode' => 'Modalità Beatmap',
+            'mode' => 'Modalità beatmap',
             'only_unresolved' => 'Mostra solo discussioni irrisolte',
-            'show_review_embeds' => 'Mostra post di recensione',
+            'show_review_embeds' => 'Mostra post di revisione',
             'types' => 'Tipi di messaggio',
-            'username' => 'Nome Utente',
+            'username' => 'Nome utente',
 
             'beatmapset_status' => [
-                '_' => 'Stato Beatmap',
-                'all' => 'Tutti',
+                '_' => 'Stato beatmap',
+                'all' => 'Qualsiasi',
                 'disqualified' => 'Squalificata',
                 'never_qualified' => 'Mai Qualificata',
                 'qualified' => 'Qualificata',

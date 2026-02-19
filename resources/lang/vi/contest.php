@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Bạn không thể tham gia cuộc thi trong khi bị hạn chế hoặc bị im lặng.',
         'preparation' => 'Chúng tôi đang chuẩn bị cho cuộc thi này. Xin hãy kiên nhẫn chờ đợi!',
         'drop_here' => 'Thả bài dự thi của bạn vào đây',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Tải xuống .osz',
-
-        'wrong_type' => [
-            'art' => 'Chỉ những tệp .jpg và .png mới được chấp nhận cho cuộc thi này.',
-            'beatmap' => 'Chỉ những tệp .osu mới được chấp nhận cho cuộc thi này.',
-            'music' => 'Chỉ những tệp .mp3 mới được chấp nhận cho cuộc thi này.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Bài dự thi cho cuộc thi này phải có :widthx:height',
         'too_big' => 'Số bài dự thi cho cuộc thi này tối đa là :limit.',
     ],
@@ -110,7 +107,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Xem thông tin và các mục',
         ],
     ],
 ];

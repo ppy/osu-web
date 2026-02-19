@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'bilgi',
             'discussions' => 'tartışma',
-            'versions' => '',
+            'versions' => 'sürüm geçmişi',
         ],
 
         'changelog' => [

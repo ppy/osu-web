@@ -333,6 +333,9 @@ return [
                     'title' => 'Историја погледаних резултата',
                     'count_label' => 'Погледани Резултати',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Скорија kudosu историја',

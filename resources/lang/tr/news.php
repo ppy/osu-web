@@ -24,7 +24,7 @@ return [
         'community_tournaments' => '',
         'fanart_contests' => '',
         'featured_artists' => '',
-        'game_updates' => '',
+        'game_updates' => 'istemci ve web sitesi güncellemeleri',
         'mappers_guild' => '',
         'monthly_beatmapping_contest' => '',
         'merch_runs' => '',

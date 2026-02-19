@@ -253,69 +253,6 @@ return [
             'views' => 'ogledi',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Odstrani oznako "dodano"',
-            'to_0_done' => 'Odstranjena oznaka "dodano" ',
-            'to_1' => 'Dodaj oznako "dodano"',
-            'to_1_done' => 'Dodana oznaka "dodano"',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Odstrani oznako "dodeljeno"',
-            'to_0_done' => 'Odstranjena oznaka "dodeljeno"',
-            'to_1' => 'Dodaj oznako "dodeljeno"',
-            'to_1_done' => 'Dodana oznaka "dodeljeno"',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Odstrani oznako "potrjeno"',
-            'to_0_done' => 'Odstranjena oznaka "potrjeno"',
-            'to_1' => 'Dodaj oznako "potrjeno"',
-            'to_1_done' => 'Dodana oznaka "potrjeno"',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Odstrani oznako "podvojeno"',
-            'to_0_done' => 'Odstranjena oznaka "podvojeno"',
-            'to_1' => 'Dodaj oznako "podvojeno"',
-            'to_1_done' => 'Dodana oznaka "podvojeno"',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Odstrani oznako "neveljavno"',
-            'to_0_done' => 'Odstranjena oznaka "neveljavno" ',
-            'to_1' => 'Dodaj oznako "neveljavno"',
-            'to_1_done' => 'Dodana oznaka "neveljavno"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Odstrani oznako "razrešeno"',
-            'to_0_done' => 'Odstranjena oznaka "razrešeno"',
-            'to_1' => 'Dodaj oznako "razrešeno"',
-            'to_1_done' => 'Dodana oznaka "razrešeno"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => 'Ta tema je zaklenjena in ni možno odgovarjati nanjo',
             'to_0' => 'Odkleni temo',

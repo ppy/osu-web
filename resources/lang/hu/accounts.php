@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'beatmapekben lévő felnőtt tartalmakra vonatkozó figyelmeztetések elrejtése',
         'beatmapset_title_show_original' => 'a beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',

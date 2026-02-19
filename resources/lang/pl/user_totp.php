@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Zakończ',
+        'key' => 'Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej i wprowadź klucz weryfikacyjny',
+        'key_copy' => 'Lub kliknij ten link, aby skopiować klucz dla aplikacji uwierzytelniającej',
+        'key_link' => 'Użyj tego linku, jeśli używasz telefonu',
+        'password' => 'Aby skonfigurować weryfikację aplikacji uwierzytelniającej, wprowadź swoje hasło',
+        'start' => 'Kontynuuj',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Brak skonfigurowanej weryfikacji aplikacji uwierzytelniającej.',
+        'ok' => 'Weryfikacja uwierzytelniająca została usunięta.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Wprowadź swoje hasło, aby usunąć weryfikacje uwierzytelniającą.',
+        'start' => 'Usuń',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Masz już skonfigurowaną weryfikacje uwierzytelniającą.',
+        'ok' => 'Weryfikacja uwierzytelniająca została skonfigurowana',
+        'restart' => 'Wystąpił bląd. Uruchom ponownie proces.',
     ],
 ];

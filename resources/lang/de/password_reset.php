@@ -16,8 +16,10 @@ return [
         'invalid' => 'Unerwarteter Fehler im Bestätigungscode.',
         'is_privileged' => 'Kontaktiere peppy lulz.',
         'missing_key' => 'Erforderlich.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Zu viele fehlgeschlagene Versuche.',
         'user_not_found' => 'Angeforderter Benutzer existiert nicht.',
+        'wait_resend' => '',
         'wrong_key' => 'Falscher Code.',
     ],
 

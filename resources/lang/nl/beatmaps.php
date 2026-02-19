@@ -245,6 +245,7 @@ return [
             'prompt' => 'typ sleutelwoorden in...',
             'login_required' => 'Log in om te zoeken.',
             'options' => 'Meer Zoekopties',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filteren met :filters vereist een actieve osu!supporter tag',
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',

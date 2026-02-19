@@ -221,6 +221,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Du er nå gjest for beatmap ":title',
@@ -272,10 +274,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Nyheter ":title" har nye kommentarer',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

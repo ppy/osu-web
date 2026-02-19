@@ -31,6 +31,10 @@ return [
             'read' => 'Vidět, koho sledujete.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Číst veřejná data vaším jménem.',
     ],
 ];

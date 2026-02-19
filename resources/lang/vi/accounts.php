@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không lành mạnh trong beatmap',
         'beatmapset_title_show_original' => 'hiển thị metadata của beatmap bằng ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
@@ -129,7 +130,7 @@ return [
     'privacy' => [
         'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
         'hide_online' => 'ẩn trạng thái của bạn khi bạn online',
-        'hide_online_info' => '',
+        'hide_online_info' => 'ss',
         'title' => 'Quyền Riêng Tư',
     ],
 

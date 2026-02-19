@@ -1,0 +1,21 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.mods {
+  display: flex;
+  font-size: var(--mod-height, @mod-height-normal);
+
+  &--dynamic {
+    --mod-height: 1em;
+  }
+
+  &__over {
+    background: hsl(var(--hsl-b1));
+    font-size: 0.6em;
+    padding: 2px 6px;
+    border-radius: 10000px;
+    margin-left: 2px;
+    align-self: center;
+    line-height: 1;
+  }
+}

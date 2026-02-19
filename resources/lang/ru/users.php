@@ -333,6 +333,9 @@ return [
                     'title' => 'История просмотров записей игр',
                     'count_label' => 'Просмотры:',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'История кудосу',

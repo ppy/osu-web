@@ -164,8 +164,8 @@ return [
             'news_post' => [
                 '_' => 'Tin tức (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -221,6 +221,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Bạn hiện là khách của beatmap ":title"',
@@ -272,10 +274,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Tin mới ":title" đã có bình luận mới',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

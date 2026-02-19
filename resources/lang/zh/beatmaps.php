@@ -245,6 +245,7 @@ return [
             'prompt' => '输入关键字...',
             'login_required' => '登录以搜索。',
             'options' => '更多搜索选项',
+            'rank_filter_note' => '',
             'supporter_filter' => '需要成为支持者才能按 :filters 筛选',
             'not-found' => '没有结果',
             'not-found-quote' => '呃，什么也没有...',

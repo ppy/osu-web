@@ -253,69 +253,6 @@ return [
             'views' => 'visualizações',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Remover a etiqueta "adicionado"',
-            'to_0_done' => 'Removida a etiqueta "adicionado"',
-            'to_1' => 'Adicionar a etiqueta "adicionado"',
-            'to_1_done' => 'Adicionada a etiqueta "adicionado"',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Remover a etiqueta "atribuído"',
-            'to_0_done' => 'Removida a etiqueta "atribuído"',
-            'to_1' => 'Adicionar a etiqueta "atribuído"',
-            'to_1_done' => 'Adicionada a etiqueta "atribuído"',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Remover a etiqueta "confirmado"',
-            'to_0_done' => 'Removida a etiqueta "confirmado"',
-            'to_1' => 'Adicionar a etiqueta "confirmado"',
-            'to_1_done' => 'Adicionada a etiqueta "confirmado"',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Remover a etiqueta "duplicado"',
-            'to_0_done' => 'Removida a etiqueta "duplicado"',
-            'to_1' => 'Adicionar a etiqueta "duplicado"',
-            'to_1_done' => 'Adicionada a etiqueta "duplicado"',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Remover a etiqueta "inválido"',
-            'to_0_done' => 'Removida a etiqueta "inválido"',
-            'to_1' => 'Adicionar a etiqueta "inválido"',
-            'to_1_done' => 'Adicionada a etiqueta "inválido"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Remover a etiqueta "resolvido"',
-            'to_0_done' => 'Removida a etiqueta "resolvido"',
-            'to_1' => 'Adicionar a etiqueta "resolvido"',
-            'to_1_done' => 'Adicionada a etiqueta "resolvido"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Remover a etiqueta "osu!lazer"',
-            'to_0_done' => 'Removida a etiqueta "osu!lazer"',
-            'to_1' => 'Adicionada a etiqueta "osu!lazer"',
-            'to_1_done' => 'Adicionada a etiqueta "osu!lazer"',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Remover a etiqueta "osu!stable"',
-            'to_0_done' => 'Removida a etiqueta "osu!stable"',
-            'to_1' => 'Adicionar etiqueta "osu!stable"',
-            'to_1_done' => 'Adicionada a etiqueta "osu!stable"',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Remover a etiqueta "osu!web"',
-            'to_0_done' => 'Removida a etiqueta "osu!web"',
-            'to_1' => 'Adicionada a etiqueta "osu!web"',
-            'to_1_done' => 'Adicionada a etiqueta "osu!web"',
-        ],
-
         'lock' => [
             'is_locked' => 'Este tópico está fechado e não pode ser respondido',
             'to_0' => 'Desbloquear tópico',
