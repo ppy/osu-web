@@ -29,8 +29,10 @@ const UserTagPicker = observer(() => {
         placeholder={trans('beatmaps.listing.search.tag_picker.prompt')}
         value={controller.query ?? ''}
       />
-      <div className='user-tag-picker__list u-fancy-scrollbar'>
-        {controller.groups.map((group) => <UserTagGroup key={group.name} group={group} />)}
+      <div className='user-tag-picker__scroll-area u-fancy-scrollbar'>
+        <div className='user-tag-picker__list'>
+          {controller.groups.map((group) => <UserTagGroup key={group.name} group={group} />)}
+        </div>
       </div>
     </div>
   );

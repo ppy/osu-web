@@ -17,8 +17,9 @@
   padding: @padding 0;
   border-radius: @border-radius--large;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content auto;
+
   gap: 10px;
 
   color: hsl(var(--hsl-c1));
@@ -29,7 +30,6 @@
 
     margin: 0 @padding;
     padding: 8px 5px;
-    flex-shrink: 0;
 
     outline: none;
     border: none;
@@ -38,19 +38,28 @@
     font-size: 14px;
   }
 
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  &__scroll-area {
     overflow-y: scroll;
     overscroll-behavior: contain;
+  }
+
+  &__list {
+    display: grid;
+    grid-auto-rows: auto;
+
+    gap: 5px;
     padding: 0 @padding;
   }
 
   &__category {
     font-size: @font-size--title-small-4;
     font-weight: 600;
-    margin: 5px 0;
+    padding-bottom: 5px;
+
+    position: sticky;
+    top: 0;
+
+    background-color: hsl(var(--hsl-b4));
 
     &::before {
       content: "";
@@ -68,9 +77,7 @@
   &__tag {
     .default-border-radius();
     width: 100%;
-    min-height: 30px;
     padding: 5px 10px;
-    flex-shrink: 0;
 
     display: grid;
     grid-template-columns: 100px 1fr;
@@ -80,7 +87,6 @@
 
     background-color: hsl(var(--hsl-b3));
 
-    overflow: hidden;
     cursor: pointer;
 
     transition: background-color 120ms;
@@ -94,9 +100,7 @@
     font-size: @font-size--title-small;
 
     &--name {
-      width: 100px;
       font-weight: 700;
-      flex-shrink: 0;
     }
 
     &--ruleset {
@@ -104,7 +108,6 @@
     }
 
     &--description {
-      flex-grow: 1;
       font-size: @font-size--normal;
 
       font-weight: 500;
