@@ -319,26 +319,17 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType(?User $user, array $preloads = [])
+    public function entriesByType(?User $user)
     {
         if ($this->show_votes) {
-            $includes = [
-                'contest',
-                'user' => fn ($q) => $q->select('user_id', 'username'),
-            ];
-
-            if ($this->isJudged()) {
-                $includes[] = 'judgeVotes.scores';
-            }
-
             return \Cache::remember(
                 $this->entriesWithScoresCacheKey(),
                 300,
-                fn () => $this->entries()->with($includes)->withScore($this)->get()
+                fn () => $this->entries()->withScore($this)->get()
             );
         }
 
-        $query = $this->entries()->with(['contest', ...$preloads]);
+        $query = $this->entries();
 
         if ($this->isBestOf()) {
             if ($user === null) {
@@ -355,7 +346,7 @@ class Contest extends Model
     public function defaultJson($user = null)
     {
         $includes = [];
-        $preloads = [];
+        $preloads = ['contest'];
 
         if ($this->type === 'art') {
             $includes[] = 'artMeta';
@@ -377,7 +368,7 @@ class Contest extends Model
         );
         if ($this->isVotingStarted()) {
             $contestJson['entries'] = json_collection(
-                $this->entriesByType($user, $preloads),
+                $this->entriesByType($user)->loadMissing($preloads),
                 new ContestEntryTransformer(),
                 $includes,
             );
