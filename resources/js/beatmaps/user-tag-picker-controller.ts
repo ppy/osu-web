@@ -19,14 +19,12 @@ export default class UserTagPickerController {
   @observable tags: BeatmapTag[] = [];
 
   @computed
-  private get ruleset(): RulesetId|null {
+  private get ruleset(): RulesetId|undefined {
     const mode = core.beatmapsetSearchController.filters.mode;
 
     if (mode !== null) {
-      ensureRulesetId(mode);
+      return ensureRulesetId(mode);
     }
-
-    return null;
   }
 
   constructor() {
@@ -38,7 +36,7 @@ export default class UserTagPickerController {
   get groups() {
     const ruleset = this.ruleset;
 
-    const filtered = ruleset !== null
+    const filtered = ruleset != null
       ? this.tags.filter((tag) => tag.rulesetIds.length === 0 || tag.rulesetIds.includes(ruleset))
       : this.tags;
 
