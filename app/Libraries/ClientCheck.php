@@ -119,7 +119,7 @@ class ClientCheck
     private static function splitToken(string $token): array
     {
         $data = substr($token, -82);
-        if (strlen($data) !== 82 || !ctype_xdigit(substr($data, 0, 80))) {
+        if (strlen($data) !== 82 || !ctype_xdigit($data)) {
             $data = str_repeat('0', 82);
         }
         $clientTime = unpack('V', hex2bin(substr($data, 32, 8)))[1];
