@@ -332,7 +332,7 @@ class Contest extends Model
             }
 
             return \Cache::remember(
-                $this->entriesWithScoresKey(),
+                $this->entriesWithScoresCacheKey(),
                 300,
                 fn () => $this->entries()->with($includes)->withScore($this)->get()
             );
@@ -483,14 +483,14 @@ class Contest extends Model
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
     }
 
-    private function entriesWithScoresKey(): string
+    private function entriesWithScoresCacheKey(): string
     {
         return "contest:{$this->getKey()}:entries_with_scores";
     }
 
     private function resetCache(): void
     {
-        \Cache::forget($this->entriesWithScoresKey());
+        \Cache::forget($this->entriesWithScoresCacheKey());
         \Cache::forget($this->usersVotedCountCacheKey());
     }
 
