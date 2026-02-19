@@ -3,24 +3,27 @@
 
 import { rulesetIds, rulesetIdToName } from 'interfaces/ruleset';
 import { reduce } from 'lodash';
-import { action } from 'mobx';
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import BeatmapTag from 'models/beatmap-tag';
 import core from 'osu-core-singleton';
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { trans } from 'utils/lang';
 import { TagGroup } from './user-tag-picker-controller';
 
 const controller = core.beatmapTagPickerController;
 const beatmapsetSearchController = core.beatmapsetSearchController;
 
-const UserTagPicker = observer(() => {
+export default observer(function UserTagPicker() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const onChange = action((e: React.ChangeEvent<HTMLInputElement>) => controller.query = e.target.value);
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => runInAction(() => controller.query = e.target.value),
+    [],
+  );
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, [inputRef]);
+  }, []);
 
   return (
     <div className='user-tag-picker'>
@@ -40,29 +43,27 @@ const UserTagPicker = observer(() => {
     </div>
   );
 });
-const UserTagGroup = observer(({ group }: { group: TagGroup }) => (
-  <>
-    <span className='user-tag-picker__category'>{group.name}</span>
-    {group.tags.map((tag) => <UserTag key={tag.id} tag={tag} />)}
-  </>
-));
 
-const UserTag = observer(({ tag }: { tag: BeatmapTag }) => {
-  const onClick = action(() => {
-    let tagString = tag.fullName;
+const UserTagGroup = observer(function UserTagGroup({ group }: { group: TagGroup }) {
+  return (
+    <>
+      <span className='user-tag-picker__category'>{group.name}</span>
+      {group.tags.map((tag) => <UserTag key={tag.id} tag={tag} />)}
+    </>
+  );
+});
 
-    if (/\s/g.test(tagString)) {
-      tagString = `"${tagString}"`;
-    }
-
+const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
+  const onClick = useCallback(() => {
+    const tagString = `tag="${tag.fullName}"`;
     const currentQuery = beatmapsetSearchController.filters.query;
 
     const newQuery = currentQuery !== null
-      ? currentQuery + ` tag="${tagString}"`
-      : `tag="${tagString}"`;
+      ? currentQuery + ` ${tagString}`
+      : tagString;
 
     beatmapsetSearchController.filters.update('query', newQuery);
-  });
+  }, [tag]);
 
   const hasAllRulesets = reduce(
     rulesetIds,
@@ -71,14 +72,12 @@ const UserTag = observer(({ tag }: { tag: BeatmapTag }) => {
   );
 
   return (<div className='user-tag-picker__tag' onClick={onClick}>
+    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
     <div>
       {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (
         <span key={rulesetIdToName[ruleset]} className={`user-tag-picker__tag-info user-tag-picker__tag-info--ruleset fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />
       ))}
-      <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
+      <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>{tag.description}</span>
     </div>
-    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>{tag.description}</span>
   </div>);
 });
-
-export default UserTagPicker;

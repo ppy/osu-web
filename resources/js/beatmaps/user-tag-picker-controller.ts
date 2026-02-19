@@ -15,7 +15,7 @@ export interface TagGroup {
 }
 
 export default class UserTagPickerController {
-  @observable query: string|null = null;
+  @observable query: string = '';
   @observable tags: BeatmapTag[] = [];
 
   @computed
@@ -36,16 +36,15 @@ export default class UserTagPickerController {
 
   @computed
   get groups() {
-    const query = this.query;
     const ruleset = this.ruleset;
 
     const filtered = ruleset !== null
       ? this.tags.filter((tag) => tag.rulesetIds.length === 0 || tag.rulesetIds.includes(ruleset))
       : this.tags;
 
-    const queried = query !== null
-      ? filtered.filter((tag) => tag.fullName.toLowerCase().includes(query.toLowerCase()))
-      : filtered;
+    const queried = filtered.filter(
+      (tag) => tag.fullName.toLowerCase().includes(this.query.toLowerCase()),
+    );
 
     const grouped = groupBy(
       queried,
