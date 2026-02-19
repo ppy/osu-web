@@ -373,31 +373,9 @@ class Contest extends Model
         }
 
         $this->preloadedEntries = $this->entriesByType($user)->loadMissing($preloads);
-        $contestJson = json_item(
-            $this,
-            new ContestTransformer(),
-            $includes,
-        );
-
-        if (!empty($contestJson['entries'])) {
-            if (!$showVotes) {
-                if ($this->unmasked) {
-                    // For unmasked contests, we sort alphabetically.
-                    usort($contestJson['entries'], function ($a, $b) {
-                        return strnatcasecmp($a['title'], $b['title']);
-                    });
-                } else {
-                    // We want the results to appear randomized to the user but be
-                    // deterministic (i.e. we don't want the rows shuffling each time
-                    // the user votes), so we seed based on user_id (when logged in)
-                    $seed = $user ? $user->user_id : time();
-                    seeded_shuffle($contestJson['entries'], $seed);
-                }
-            }
-        }
 
         return json_encode([
-            'contest' => $contestJson,
+            'contest' => json_item($this, new ContestTransformer(), $includes),
             'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
         ]);
     }
