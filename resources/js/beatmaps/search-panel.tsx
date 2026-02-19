@@ -3,6 +3,7 @@
 
 import { FilterKey } from 'beatmapset-search-filters';
 import BeatmapsetCover from 'components/beatmapset-cover';
+import PopupMenu from 'components/popup-menu';
 import Portal from 'components/portal';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { action, computed, makeObservable } from 'mobx';
@@ -14,7 +15,7 @@ import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
-import UserTagPickerButton from './user-tag-picker-button';
+import UserTagPicker from './user-tag-picker';
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -188,6 +189,28 @@ export class SearchPanel extends React.Component<Props> {
     );
   }
 
+  private renderTagPicker() {
+    return(
+      <PopupMenu customRender={this.renderTagPickerButton} direction='left'>
+        {() => <UserTagPicker />}
+      </PopupMenu>
+    );
+  }
+
+  private readonly renderTagPickerButton = (children: React.ReactNode, ref: React.RefObject<HTMLButtonElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => (
+    <>
+      <button
+        ref={ref}
+        className='beatmapsets-search__icon beatmapsets-search__icon--tags'
+        onClick={toggle}
+        title={trans('beatmaps.listing.search.tag_picker.tooltip')}
+      >
+        <i className='fas fa-tag' />
+      </button>
+      {children}
+    </>
+  );
+
   private renderUser() {
     const filters = this.props.availableFilters;
     const cssClasses = classWithModifiers('beatmapsets-search', { expanded: this.controller.isExpanded });
@@ -208,7 +231,7 @@ export class SearchPanel extends React.Component<Props> {
             type='search'
             value={this.query}
           />
-          <UserTagPickerButton />
+          {this.renderTagPicker()}
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
           </div>
