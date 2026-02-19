@@ -7,17 +7,23 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\AuthenticationException;
+
 class TagsController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
 
-        $this->middleware(['auth', 'require-scopes:public']);
+        $this->middleware('require-scopes:public');
     }
 
     public function index()
     {
+        if (!is_api_request() && \Auth::check() === false) {
+            throw new AuthenticationException('User is not logged in.');
+        }
+
         return [
             'tags' => app('tags')->json(),
         ];
