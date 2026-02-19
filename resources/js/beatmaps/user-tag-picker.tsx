@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import BeatmapTag from 'models/beatmap-tag';
 import core from 'osu-core-singleton';
 import React, { useCallback, useEffect, useRef } from 'react';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { TagGroup } from './user-tag-picker-controller';
 
@@ -54,8 +55,9 @@ const UserTagGroup = observer(function UserTagGroup({ group }: { group: TagGroup
 });
 
 const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
+  const tagString = `tag="${tag.fullName}"`;
+
   const onClick = useCallback(() => {
-    const tagString = `tag="${tag.fullName}"`;
     const currentQuery = beatmapsetSearchController.filters.query;
 
     const newQuery = currentQuery !== null
@@ -63,7 +65,7 @@ const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
       : tagString;
 
     beatmapsetSearchController.filters.update('query', newQuery);
-  }, [tag]);
+  }, [tagString]);
 
   const hasAllRulesets = reduce(
     rulesetIds,
@@ -71,7 +73,10 @@ const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
     true,
   );
 
-  return (<div className='user-tag-picker__tag' onClick={onClick}>
+  const active = beatmapsetSearchController.filters.query?.toLowerCase()
+    .includes(tagString.toLowerCase());
+
+  return (<div className={classWithModifiers('user-tag-picker__tag', { active })} onClick={onClick}>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
     <div>
       {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (
