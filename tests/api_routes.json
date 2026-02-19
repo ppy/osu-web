@@ -1713,7 +1713,6 @@
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",
-            "Illuminate\\Auth\\Middleware\\Authenticate",
             "App\\Http\\Middleware\\RequireScopes:public"
         ],
         "scopes": [
