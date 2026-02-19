@@ -69,6 +69,8 @@ class Contest extends Model
         'voting_starts_at' => 'datetime',
     ];
 
+    public ?Collection $preloadedEntries = null;
+
     public function contestJudges(): HasMany
     {
         return $this->HasMany(ContestJudge::class);

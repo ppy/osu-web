@@ -6,7 +6,6 @@
 namespace App\Transformers;
 
 use App\Models\Contest;
-use Auth;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Primitive;
 use League\Fractal\Resource\ResourceInterface;
@@ -59,7 +58,7 @@ class ContestTransformer extends TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
+        return $this->collection($contest->preloadedEntries ?? $contest->entriesByType(\Auth::user()), new ContestEntryTransformer());
     }
 
     public function includeMaxJudgingScore(Contest $contest): Primitive
