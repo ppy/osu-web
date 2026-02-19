@@ -350,31 +350,34 @@ class Contest extends Model
         $includes = [];
         $preloads = ['contest'];
 
-        if ($this->type === 'art') {
-            $includes[] = 'artMeta';
-        }
-
         $showVotes = $this->show_votes;
         if ($showVotes) {
-            $includes[] = 'results';
+            $includes[] = 'users_voted_count';
         }
+
         if ($this->showEntryUser()) {
-            $includes[] = 'user';
             $preloads[] = 'user';
         }
 
+        if ($this->isVotingStarted()) {
+            $includes[] = 'entries';
+            if ($this->type === 'art') {
+                $includes[] = 'entries.artMeta';
+            }
+            if ($showVotes) {
+                $includes[] = 'entries.results';
+            }
+            if ($this->showEntryUser()) {
+                $includes[] = 'entries.user';
+            }
+        }
+
+        $this->preloadedEntries = $this->entriesByType($user)->loadMissing($preloads);
         $contestJson = json_item(
             $this,
             new ContestTransformer(),
-            $showVotes ? ['users_voted_count'] : null,
+            $includes,
         );
-        if ($this->isVotingStarted()) {
-            $contestJson['entries'] = json_collection(
-                $this->entriesByType($user)->loadMissing($preloads),
-                new ContestEntryTransformer(),
-                $includes,
-            );
-        }
 
         if (!empty($contestJson['entries'])) {
             if (!$showVotes) {
