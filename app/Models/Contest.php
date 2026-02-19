@@ -7,7 +7,6 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Traits\Memoizes;
-use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Exception;
@@ -345,8 +344,9 @@ class Contest extends Model
         return $query->get();
     }
 
-    public function defaultJson($user = null)
+    public function defaultJson(?User $user = null)
     {
+        $transformer = new ContestTransformer();
         $includes = [];
         $preloads = ['contest'];
 
@@ -360,6 +360,19 @@ class Contest extends Model
         }
 
         if ($this->isVotingStarted()) {
+            if (!$this->show_votes) {
+                if ($this->unmasked) {
+                    // For unmasked contests, we sort alphabetically.
+                    $transformer->sort = ContestTransformer::SORT_ALPHA;
+                } else {
+                    // We want the results to appear randomized to the user but be
+                    // deterministic (i.e. we don't want the rows shuffling each time
+                    // the user votes), so we seed based on user_id (when logged in)
+                    $transformer->sort = ContestTransformer::SORT_SHUFFLE;
+                    $transformer->seed = $user->getKey() ?? time();
+                }
+            }
+
             $includes[] = 'entries';
             if ($this->type === 'art') {
                 $includes[] = 'entries.artMeta';
@@ -375,7 +388,7 @@ class Contest extends Model
         $this->preloadedEntries = $this->entriesByType($user)->loadMissing($preloads);
 
         return json_encode([
-            'contest' => json_item($this, new ContestTransformer(), $includes),
+            'contest' => json_item($this, $transformer, $includes),
             'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
         ]);
     }
