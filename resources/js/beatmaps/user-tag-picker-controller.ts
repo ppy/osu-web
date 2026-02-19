@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Ruleset, { rulesetIdToName, RulesetId } from 'interfaces/ruleset';
+import { ensureRulesetId, RulesetId } from 'interfaces/ruleset';
 import TagJson from 'interfaces/tag-json';
 import { route } from 'laroute';
 import { findIndex, groupBy, reduce, sortBy } from 'lodash';
@@ -11,32 +11,22 @@ import core from 'osu-core-singleton';
 
 export interface TagGroup {
   name: string;
-  tags: BeatmapTagManyRulesets[];
+  tags: BeatmapTag[];
 }
-
-export type BeatmapTagManyRulesets = Omit<BeatmapTag, 'ruleset'> & {
-  rulesets: Ruleset[];
-};
 
 export default class UserTagPickerController {
   @observable query: string|null = null;
   @observable tags: BeatmapTag[] = [];
 
   @computed
-  private get ruleset() {
-    const filter = core.beatmapsetSearchController.filters.mode;
+  private get ruleset(): RulesetId|null {
+    const mode = core.beatmapsetSearchController.filters.mode;
 
-    if (filter === null) {
-      return null;
+    if (mode !== null) {
+      ensureRulesetId(mode);
     }
 
-    const ruleset = parseInt(filter, 10);
-
-    if (!(ruleset in rulesetIdToName)) {
-      return null;
-    }
-
-    return rulesetIdToName[ruleset as RulesetId];
+    return null;
   }
 
   constructor() {
@@ -50,43 +40,15 @@ export default class UserTagPickerController {
     const ruleset = this.ruleset;
 
     const filtered = ruleset !== null
-      ? this.tags.filter((tag) => tag.ruleset === ruleset || tag.ruleset === null)
+      ? this.tags.filter((tag) => tag.rulesetIds.length === 0 || tag.rulesetIds.includes(ruleset))
       : this.tags;
 
     const queried = query !== null
       ? filtered.filter((tag) => tag.fullName.toLowerCase().includes(query.toLowerCase()))
       : filtered;
 
-    const sorted = sortBy(queried, (tag) => tag.fullName);
-
-    // In some cases there's several tags with the same name across different rulesets.
-    // We deduplicate them here and mark the deduplicated tag with each ruleset,
-    // so that all of them will be shown in the UI.
-    const unique = reduce<BeatmapTag, BeatmapTagManyRulesets[]>(
-      sorted,
-      (result, tag) => {
-        const existingTagIndex = findIndex(result, (t) => t.fullName === tag.fullName);
-
-        if (existingTagIndex === -1) {
-          const tagToAdd = {
-            ...tag,
-            rulesets: [],
-          } as BeatmapTagManyRulesets;
-
-          if (tag.ruleset !== null) tagToAdd.rulesets.push(tag.ruleset);
-
-          result.push(tagToAdd);
-        } else if (tag.ruleset !== null) {
-          result[existingTagIndex].rulesets.push(tag.ruleset);
-        }
-
-        return result;
-      },
-      [],
-    );
-
     const grouped = groupBy(
-      unique,
+      queried,
       (tag) => tag.group,
     );
 
@@ -100,6 +62,38 @@ export default class UserTagPickerController {
     }
 
     $.get(route('tags.index'))
-      .done(action((tags: { tags: TagJson[] }) => this.tags = tags.tags.map((tag) => new BeatmapTag(tag))));
+      .done(action((response: { tags: TagJson[] }) => this.tags = this.processTags(response.tags)));
   };
+
+  private processTags(tags: TagJson[]): BeatmapTag[] {
+    const beatmapTags = tags.map((tag) => new BeatmapTag(tag));
+
+    const sorted = sortBy(beatmapTags, (tag) => tag.fullName);
+
+    // In some cases there's several tags with the same name across different rulesets.
+    // We deduplicate them here and mark the deduplicated tag with each ruleset,
+    // so that all of them will be shown in the UI.
+    const unique = reduce<BeatmapTag, BeatmapTag[]>(
+      sorted,
+      (result, tag) => {
+        const existingTagIndex = findIndex(result, (t) => t.fullName === tag.fullName);
+
+        if (existingTagIndex === -1) {
+          result.push(tag);
+        } else {
+          result[existingTagIndex].rulesetIds.push(...tag.rulesetIds);
+        }
+
+        return result;
+      },
+      [],
+    );
+
+    // ensure that displayed ruleset icons follow the common order
+    for (const tag of unique) {
+      tag.rulesetIds.sort();
+    }
+
+    return unique;
+  }
 }

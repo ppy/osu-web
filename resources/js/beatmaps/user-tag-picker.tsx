@@ -1,12 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { rulesetIds, rulesetIdToName } from 'interfaces/ruleset';
+import { reduce } from 'lodash';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
+import BeatmapTag from 'models/beatmap-tag';
 import core from 'osu-core-singleton';
 import React, { useEffect, useRef } from 'react';
 import { trans } from 'utils/lang';
-import { BeatmapTagManyRulesets, TagGroup } from './user-tag-picker-controller';
+import { TagGroup } from './user-tag-picker-controller';
 
 const controller = core.beatmapTagPickerController;
 const beatmapsetSearchController = core.beatmapsetSearchController;
@@ -44,7 +47,7 @@ const UserTagGroup = observer(({ group }: { group: TagGroup }) => (
   </>
 ));
 
-const UserTag = observer(({ tag }: { tag: BeatmapTagManyRulesets }) => {
+const UserTag = observer(({ tag }: { tag: BeatmapTag }) => {
   const onClick = action(() => {
     let tagString = tag.fullName;
 
@@ -61,10 +64,16 @@ const UserTag = observer(({ tag }: { tag: BeatmapTagManyRulesets }) => {
     beatmapsetSearchController.filters.update('query', newQuery);
   });
 
+  const hasAllRulesets = reduce(
+    rulesetIds,
+    (hasAll, id) => hasAll && (tag.rulesetIds as readonly number[]).includes(id),
+    true,
+  );
+
   return (<div className='user-tag-picker__tag' onClick={onClick}>
     <div>
-      {beatmapsetSearchController.filters.mode === null && tag.rulesets.map((ruleset) => (
-        <span key={ruleset} className={`user-tag-picker__tag-info user-tag-picker__tag-info--ruleset fal fa-extra-mode-${ruleset}`} />
+      {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (
+        <span key={rulesetIdToName[ruleset]} className={`user-tag-picker__tag-info user-tag-picker__tag-info--ruleset fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />
       ))}
       <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
     </div>
