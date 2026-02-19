@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Ruleset, { rulesetIdToName, rulesets, RulesetId } from 'interfaces/ruleset';
+import Ruleset, { rulesetIdToName, RulesetId } from 'interfaces/ruleset';
 import TagJson from 'interfaces/tag-json';
 import { route } from 'laroute';
 import { findIndex, groupBy, reduce, sortBy } from 'lodash';
@@ -57,15 +57,7 @@ export default class UserTagPickerController {
       ? filtered.filter((tag) => tag.fullName.toLowerCase().includes(query.toLowerCase()))
       : filtered;
 
-    const sortPredicates: ((tag: BeatmapTag) => any)[] = [((tag) => tag.fullName)];
-
-    // Order tags by ruleset when all rulesets are displayed so that they are not
-    // mixed between each other in a non-intuitive way.
-    if (ruleset === null) {
-      sortPredicates.unshift(((tag) => this.rulesetOrdering(tag.ruleset)));
-    }
-
-    const sorted = sortBy(queried, sortPredicates);
+    const sorted = sortBy(queried, (tag) => tag.fullName);
 
     // In some cases there's several tags with the same name across different rulesets.
     // We deduplicate them here and mark the deduplicated tag with each ruleset,
@@ -110,8 +102,4 @@ export default class UserTagPickerController {
     $.get(route('tags.index'))
       .done(action((tags: { tags: TagJson[] }) => this.tags = tags.tags.map((tag) => new BeatmapTag(tag))));
   };
-
-  private rulesetOrdering(ruleset: Ruleset|null) {
-    return ruleset === null ? -1 : rulesets.indexOf(ruleset);
-  }
 }
