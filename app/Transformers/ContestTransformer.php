@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\Contest;
+use App\Models\ContestEntry;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Primitive;
 use League\Fractal\Resource\ResourceInterface;
@@ -58,7 +59,22 @@ class ContestTransformer extends TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->preloadedEntries ?? $contest->entriesByType(\Auth::user()), new ContestEntryTransformer());
+        $entries = $contest->preloadedEntries ?? $contest->entries;
+        if (!$contest->show_votes) {
+            if ($contest->unmasked) {
+                // For unmasked contests, we sort alphabetically.
+                $entries = $entries->sort(fn (ContestEntry $a, ContestEntry $b) => strnatcasecmp($a->title, $b->title));
+            } else {
+                // We want the results to appear randomized to the user but be
+                // deterministic (i.e. we don't want the rows shuffling each time
+                // the user votes), so we seed based on user_id (when logged in)
+                $user = \Auth::user();
+                $seed = $user !== null ? $user->getKey() : time();
+                seeded_shuffle($entries, $seed);
+            }
+        }
+
+        return $this->collection($entries, new ContestEntryTransformer());
     }
 
     public function includeMaxJudgingScore(Contest $contest): Primitive
