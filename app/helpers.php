@@ -1865,7 +1865,7 @@ function array_to_graph_json(array $array, string $fieldName): array
 }
 
 // Fisher-Yates
-function seeded_shuffle(ArrayAccess&Countable &$items, int $seed = 0)
+function seeded_shuffle(array|(ArrayAccess&Countable) &$items, int $seed = 0)
 {
     mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {
