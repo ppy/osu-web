@@ -66,8 +66,9 @@ trait BeatmapsetSearch
         foreach ($this->beatmaps as $beatmap) {
             $beatmapValues = [];
             foreach ($mappings as $field => $mapping) {
+                $topTags = $this->esBeatmapTags($beatmap);
                 $value = match ($field) {
-                    'top_tags' => $this->esBeatmapTags($beatmap),
+                    'top_tags' => $topTags,
                     // TODO: remove adding $beatmap->user_id once everything else also populated beatmap_owners by default.
                     // Duplicate user_id in the array should be fine for now since the field isn't scored for querying.
                     'user_id' => $beatmap->beatmapOwners->pluck('user_id')->add($beatmap->user_id),
