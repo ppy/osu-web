@@ -11,7 +11,7 @@ const bn = 'select-options';
 
 export interface Option {
   id: string | number | null;
-  text: string;
+  text: string | React.ReactNode;
 }
 
 export interface OptionRenderProps<T extends Option> {
@@ -68,15 +68,19 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
       this.props.modifiers,
     );
 
+    const text = this.props.selected?.text;
+
     return (
       <div ref={this.ref} className={className}>
         <div className={`${bn}__select`}>
           {this.renderOption({
             children: (
               <>
-                <div className='u-ellipsis-overflow'>
-                  {this.props.selected?.text}
-                </div>
+                {typeof text === 'string' ? (
+                  <div className='u-ellipsis-overflow'>
+                    {text}
+                  </div>
+                ) : text}
 
                 <div className={`${bn}__decoration`}>
                   <span className='fas fa-chevron-down' />
