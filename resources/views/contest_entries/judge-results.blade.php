@@ -4,7 +4,7 @@
 --}}
 
 @php
-    $title = "{$entryJson['title']} ({$entryJson['user']['username']})";
+    $title = "{$entryJson['user']['username']} - {$entryJson['title']}";
 @endphp
 
 @extends('master', ['titlePrepend' => $title])
