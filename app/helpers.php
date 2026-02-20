@@ -16,6 +16,7 @@ use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Sentry\State\Scope;
 
@@ -1865,7 +1866,7 @@ function array_to_graph_json(array $array, string $fieldName): array
 }
 
 // Fisher-Yates
-function seeded_shuffle(array|(ArrayAccess&Countable) &$items, int $seed = 0)
+function seeded_shuffle(array|Collection &$items, int $seed = 0)
 {
     mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {
