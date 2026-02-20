@@ -52,6 +52,20 @@ class BeatmapsetFactory extends Factory
         return $this->state(['deleted_at' => now()]);
     }
 
+    // Sets search scorable fields to the same value.
+    // The relevancy score between different runs will still be different.
+    public function fixedStrings(): static
+    {
+        return $this->state([
+            'artist' => 'test',
+            'creator' => 'test',
+            'source' => 'test',
+            'tags' => 'test',
+            'title' => 'test',
+            'favourite_count' => 0,
+        ]);
+    }
+
     public function inactive()
     {
         return $this->state(['active' => 0]);
