@@ -17,6 +17,7 @@ import FlagCountry from './flag-country';
 import FlagTeam from './flag-team';
 import FollowUserMappingButton from './follow-user-mapping-button';
 import { PopupMenuPersistent } from './popup-menu-persistent';
+import PopupMenuState from './popup-menu-state';
 import { ReportReportable } from './report-reportable';
 import { Spinner } from './spinner';
 import StringWithComponent from './string-with-component';
@@ -288,13 +289,13 @@ export class UserCard extends React.PureComponent<Props, State> {
       return null;
     }
 
-    const items = (dismiss: () => void) => (
+    const items = (state: PopupMenuState) => (
       <div className='simple-menu'>
         {this.canMessage && (
           <a
             className='simple-menu__item js-login-required--click'
             href={route('messages.users.show', { user: this.user.id })}
-            onClick={dismiss}
+            onClick={state.dismiss}
           >
             <span className='fas fa-envelope' />
             {` ${trans('users.card.send_message')}`}
@@ -304,18 +305,18 @@ export class UserCard extends React.PureComponent<Props, State> {
         <a
           className='simple-menu__item'
           href={giftSupporterTagUrl(this.user)}
-          onClick={dismiss}
+          onClick={state.dismiss}
         >
           <span className='fas fa-gift' />
           {` ${trans('users.card.gift_supporter')}`}
         </a>
 
-        <BlockButton modifiers='inline' onClick={dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
+        <BlockButton modifiers='inline' onClick={state.dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
 
         <ReportReportable
           className='simple-menu__item'
           icon
-          onFormOpen={dismiss}
+          onFormOpen={state.dismiss}
           reportableId={this.props.reportable?.id ?? this.user.id.toString()}
           reportableType={this.props.reportable?.type ?? 'user'}
           user={this.user}
