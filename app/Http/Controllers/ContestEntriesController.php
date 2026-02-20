@@ -26,7 +26,10 @@ class ContestEntriesController extends Controller
 
         abort_if(!$contest->isJudged() || !$contest->show_votes, 404);
 
-        $relationships = [];
+        $relationships = [
+            'judgeVotes.scores',
+            'user',
+        ];
         $includes = [
             'judge_votes.scores',
             'judge_votes.total_score',
@@ -40,8 +43,10 @@ class ContestEntriesController extends Controller
             $includes[] = 'judge_votes.user';
         }
 
-        // entriesByType includes required scores and user data.
         $entries = $contest->entriesByType(null)->loadMissing($relationships);
+        foreach ($entries as $entry) {
+            $entry->setRelation('contest', $contest);
+        }
         $entry = $entries->findOrFail($id);
 
         return ext_view('contest_entries.judge-results', [
