@@ -30,7 +30,6 @@ class ContestEntriesController extends Controller
             'judgeVotes.scores',
             'user',
         ];
-
         $includes = [
             'judge_votes.scores',
             'judge_votes.total_score',
@@ -44,34 +43,16 @@ class ContestEntriesController extends Controller
             $includes[] = 'judge_votes.user';
         }
 
-        $entry = ContestEntry
-            ::with($relationships)
-            ->withScore($contest)
-            ->findOrFail($id)
-            ->loadSum('scores', 'value');
-
-        $contestJson = json_item(
-            $contest,
-            new ContestTransformer(),
-            [
-                'max_judging_score',
-                'max_total_score',
-                'scoring_categories',
-            ],
-        );
-
-        $entryJson = json_item($entry, new ContestEntryTransformer(), $includes);
-
-        foreach ($contest->entries as $entry) {
+        $entries = $contest->entriesByType(null)->loadMissing($relationships);
+        foreach ($entries as $entry) {
             $entry->setRelation('contest', $contest);
         }
-
-        $entriesJson = json_collection($contest->entries, new ContestEntryTransformer());
+        $entry = $entries->findOrFail($id);
 
         return ext_view('contest_entries.judge-results', [
-            'contestJson' => $contestJson,
-            'entryJson' => $entryJson,
-            'entriesJson' => $entriesJson,
+            'contestJson' => json_item($contest, new ContestTransformer(), ['max_judging_score', 'max_total_score', 'scoring_categories']),
+            'entryJson' => json_item($entry, new ContestEntryTransformer(), $includes),
+            'entriesJson' => json_collection($entries, new ContestEntryTransformer(), $includes),
         ]);
     }
 
