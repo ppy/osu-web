@@ -138,7 +138,11 @@ class UsersController extends Controller
 
         $available = $errors->isEmpty();
         $message = $available ? "Username '".e($username)."' is available!" : $errors->toSentence();
-        $cost = $available ? Auth::user()->usernameChangeCost() : 0;
+        $isCapitalizationOnly = strcasecmp($username, Auth::user()->username) === 0 && $username !== Auth::user()->username;
+        $cost = 0;
+        if ($available) {
+        $cost = $isCapitalizationOnly ? 0 : Auth::user()->usernameChangeCost();
+        }
 
         return [
             'username' => Request::input('username'),
