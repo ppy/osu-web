@@ -6,3 +6,5 @@ export default interface TagJson {
   id: number;
   name: string;
 }
+
+export type TagJsonWithCount = TagJson & { count: number };
