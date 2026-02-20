@@ -57,7 +57,8 @@ class ClientCheck
             }
 
             $ret['token'] = $token;
-            // to be included in queue
+
+            $ret['multipart'] = static::getMultipartData($request);
             $ret['body'] = base64_encode($request->getContent());
             $ret['url'] = $request->getRequestUri();
         } catch (ClientCheckParseTokenException $e) {
@@ -67,19 +68,37 @@ class ClientCheck
         return $ret;
     }
 
-    public static function queueToken(?array $tokenData, ?int $scoreId = null, ?int $userId = null): void
+    public static function validateToken(?array $tokenData, ?int $scoreId = null): void
     {
         if ($tokenData['token'] === null) {
             return;
         }
 
+        $validationRequestId = bin2hex(random_bytes(16));
+        $validationKey = "osu-queue:token-validation:{$validationRequestId}";
+
         \LaravelRedis::lpush($GLOBALS['cfg']['osu']['client']['token_queue'], json_encode([
             'body' => $tokenData['body'],
+            'multipart_data' => $tokenData['multipart'],
             'score_id' => $scoreId,
             'token' => $tokenData['token'],
             'url' => $tokenData['url'],
-            'user_id' => $userId,
+            'validation_key' => $validationKey,
         ]));
+
+        $result = \LaravelRedis::blPop([$validationKey], $GLOBALS['cfg']['osu']['client']['token_validation_timeout']);
+
+        if ($result === null) {
+            // TODO: perhaps abort in the future
+            datadog_increment('token_validation_timeout');
+            return;
+        }
+
+        $validationResult = $result[1];
+
+        if ($validationResult !== 'success') {
+            abort(422, $validationResult);
+        }
     }
 
     private static function getKey(Build $build): string
@@ -89,10 +108,18 @@ class ClientCheck
             ?? '';
     }
 
+    private static function getMultipartData(Request $request): ?array
+    {
+        $contentType = $request->header('Content-Type', '');
+        $isMultipart = str_starts_with($contentType, 'multipart/form-data');
+
+        return $isMultipart ? $request->post() : null;
+    }
+
     private static function splitToken(string $token): array
     {
         $data = substr($token, -82);
-        if (strlen($data) !== 82 || !ctype_xdigit(substr($data, 0, 80))) {
+        if (strlen($data) !== 82 || !ctype_xdigit($data)) {
             $data = str_repeat('0', 82);
         }
         $clientTime = unpack('V', hex2bin(substr($data, 32, 8)))[1];
@@ -102,7 +129,7 @@ class ClientCheck
             'clientHash' => hex2bin(substr($data, 0, 32)),
             'clientTime' => $clientTime,
             'expected' => hex2bin(substr($data, 40, 40)),
-            'version' => substr($data, 80, 2),
+            'version' => hexdec(substr($data, 80, 2)),
         ];
     }
 }
