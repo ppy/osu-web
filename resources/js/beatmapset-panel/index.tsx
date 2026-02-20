@@ -434,6 +434,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           </a>
           <div className="beatmapset-panel__badge-container">
             <BeatmapsetBadge beatmapset={this.props.beatmapset} type='featured_artist' />
+            <BeatmapsetBadge beatmapset={this.props.beatmapset} type='exclusive' />
           </div>
         </div>
 
