@@ -91,6 +91,14 @@ class BBCodeFromDB
         return $text;
     }
 
+    public function parseRight($text)
+    {
+        $text = str_replace("[right:{$this->uid}]", "<div class='right'>", $text);
+        $text = str_replace("[/right:{$this->uid}]", '</div>', $text);
+
+        return $text;
+    }
+
     public function parseCode($text)
     {
         return preg_replace(
@@ -372,6 +380,7 @@ class BBCodeFromDB
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
+        $text = $this->parseRight($text);
         $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
