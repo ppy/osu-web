@@ -154,16 +154,7 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
 
                     $channel = $this->channel;
                     if ($channel !== null) {
-                        $channel->loadMissing('userChannels.user');
-
-                        foreach ($channel->userChannels as $userChannel) {
-                            $user = $userChannel->user;
-                            if ($user === null) {
-                                $userChannel->delete();
-                            } else {
-                                $channel->removeUser($user);
-                            }
-                        }
+                        $channel->close();
 
                         if ($channel->messages()->count() === 0) {
                             $channel->delete();

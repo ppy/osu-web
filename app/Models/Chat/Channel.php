@@ -383,6 +383,12 @@ class Channel extends Model
             $this->validationErrors()->add('name', 'required');
         }
 
+        if ($this->type === null) {
+            $this->type = static::TYPES['temporary'];
+        } else if (!in_array($this->type, static::TYPES, true)) {
+            $this->validationErrors()->add('type', '.unsupported_type');
+        }
+
         $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
@@ -515,6 +521,24 @@ class Channel extends Model
         (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
 
         datadog_increment('chat.channel.join', ['type' => $this->type]);
+    }
+
+    /**
+     * Remove all users from the channel but keep existing messages.
+     *
+     * This doesn't do anything to prevent anyone to re-join the channel.
+     */
+    public function close(): void
+    {
+        $this->loadMissing('userChannels.user');
+        foreach ($this->userChannels as $userChannel) {
+            $user = $userChannel->user;
+            if ($user === null) {
+                $userChannel->delete();
+            } else {
+                $this->removeUser($user);
+            }
+        }
     }
 
     public function removeUser(User $user)

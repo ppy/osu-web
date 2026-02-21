@@ -635,7 +635,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api/v2', 'middleware' => ['api', 'req
     Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download');
 });
 
-// Callbacks for legacy systems to interact with
+// Callbacks for internal systems to interact with
 Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], function () {
     Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
@@ -660,6 +660,17 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             });
         });
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy']]);
+
+        Route::group(['as' => 'chat.', 'namespace' => 'Chat', 'prefix' => 'chat'], function () {
+            Route::resource('channels', 'ChannelsController', ['only' => ['store']]);
+
+            Route::group(['as' => 'channels.', 'prefix' => 'channels/{channel}'], function () {
+                Route::post('close', 'ChannelsController@close')->name('close');
+
+                Route::put('users/{user}', 'ChannelsController@addUser')->name('add-user');
+                Route::delete('users/{user}', 'ChannelsController@removeUser')->name('remove-user');
+            });
+        });
 
         Route::group(['as' => 'indexing.', 'prefix' => 'indexing'], function () {
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
