@@ -88,6 +88,11 @@ type ScoreJsonAttributes = {
   user_id: number;
 } & (ScoreJsonAttributesLegacyMatch | ScoreJsonAttributesSolo | ScoreJsonAttributesMultiplayer);
 
+interface ScoreMetadata {
+  rank_delta: number;
+  pp_delta: number;
+}
+
 export interface ScoreJsonDefaultIncludes {
   current_user_attributes: {
     pin?: ScoreCurrentUserPinJson;
@@ -102,6 +107,7 @@ export interface ScoreJsonAvailableIncludes {
   rank_global: number;
   user: UserJson;
   weight: PpWeight;
+  metadata: ScoreMetadata | null;
 }
 
 type ScoreJson = ScoreJsonAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;

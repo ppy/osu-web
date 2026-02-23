@@ -48,6 +48,8 @@ class ScoreTransformer extends TransformerAbstract
         // Only for MultiplayerScoreLink
         'position',
         'scores_around',
+
+        'metadata',
     ];
 
     protected array $defaultIncludes = [
@@ -195,6 +197,18 @@ class ScoreTransformer extends TransformerAbstract
             'slot' => $score->slot,
             'team' => $score->team,
             'pass' => $score->pass,
+        ]);
+    }
+
+    public function includeMetadata(SoloScore $score)
+    {
+        if (!$score->metadata) {
+            return null;
+        }
+
+        return $this->primitive([
+            'rank_delta' => $score->metadata->rank_delta,
+            'pp_delta' => $score->metadata->pp_delta,
         ]);
     }
 
