@@ -1,8 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { rulesetIds, rulesetIdToName } from 'interfaces/ruleset';
-import { reduce } from 'lodash';
+import { rulesetIdToName, rulesets } from 'interfaces/ruleset';
 import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import BeatmapTag from 'models/beatmap-tag';
@@ -34,7 +33,7 @@ export default observer(function UserTagPicker() {
         name='tag-search'
         onChange={onChange}
         placeholder={trans('beatmaps.listing.search.tag_picker.prompt')}
-        value={controller.query ?? ''}
+        value={controller.query}
       />
       <div className='user-tag-picker__scroll-area u-fancy-scrollbar'>
         <div className='user-tag-picker__list'>
@@ -67,22 +66,18 @@ const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
     beatmapsetSearchController.filters.update('query', newQuery);
   }, [tagString]);
 
-  const hasAllRulesets = reduce(
-    rulesetIds,
-    (hasAll, id) => hasAll && (tag.rulesetIds as readonly number[]).includes(id),
-    true,
-  );
+  const hasAllRulesets = tag.rulesetIds.length === rulesets.length;
 
   const active = beatmapsetSearchController.filters.query?.toLowerCase()
     .includes(tagString.toLowerCase());
 
   return (<div className={classWithModifiers('user-tag-picker__tag', { active })} onClick={onClick}>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
-    <div>
+    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>
       {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (
-        <span key={rulesetIdToName[ruleset]} className={`user-tag-picker__tag-info user-tag-picker__tag-info--ruleset fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />
+        <span key={ruleset} className={`user-tag-picker__tag-ruleset fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />
       ))}
-      <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>{tag.description}</span>
-    </div>
+      {tag.description}
+    </span>
   </div>);
 });

@@ -7,6 +7,7 @@ import TagJson from 'interfaces/tag-json';
 export default class BeatmapTag {
   description: string;
   fullName: string;
+  fullNameLowercase: string;
   group: string;
   id: number;
   name: string;
@@ -22,6 +23,7 @@ export default class BeatmapTag {
     this.description = tag.description;
     this.id = tag.id;
     this.fullName = tag.name;
+    this.fullNameLowercase = tag.name.toLowerCase();
 
     if (tag.ruleset_id !== null) {
       this.rulesetIds.push(tag.ruleset_id);
@@ -31,5 +33,9 @@ export default class BeatmapTag {
 
     this.group = split[0];
     this.name = split[1];
+  }
+
+  matchesFullName(match: string) {
+    return this.fullNameLowercase.includes(match.toLowerCase());
   }
 }
