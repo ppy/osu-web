@@ -165,7 +165,8 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->morphTo(__FUNCTION__, 'legacy_score_type', 'legacy_best_id');
     }
 
-    public function metadata() {
+    public function metadata()
+    {
         return $this->hasOne(ScoreMetadata::class, 'score_id');
     }
 
