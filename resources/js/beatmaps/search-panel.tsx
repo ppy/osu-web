@@ -60,10 +60,6 @@ export class SearchPanel extends React.Component<Props> {
     return this.controller.filters.query ?? '';
   }
 
-  private set query(query: string) {
-    this.controller.filters.update('query', query);
-  }
-
   constructor(props: Props) {
     super(props);
 
@@ -109,7 +105,7 @@ export class SearchPanel extends React.Component<Props> {
 
   @action
   private readonly onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.query = event.currentTarget.value;
+    this.controller.filters.update('query', event.target.value);
   };
 
   // TODO: deprecated event. Update to onbeforeinput once safari adds it on normal enter

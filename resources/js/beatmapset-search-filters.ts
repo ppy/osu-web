@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { invert } from 'lodash';
-import { action, computed, intercept, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import { presence, present } from 'utils/string';
 import { updateQueryString } from 'utils/url';
@@ -53,10 +53,25 @@ export class BeatmapsetSearchFilters {
   @observable mode: FilterValueType = null;
   @observable nsfw: FilterValueType = null;
   @observable played: FilterValueType = null;
+
+  /**
+   * Contains the raw unprocessed contents of the search panel input box.
+   * Should not be used by external consumers unless required.
+   */
   @observable query: FilterValueType = null;
+
   @observable rank: FilterValueType = null;
   @observable sort: FilterValueType = null;
   @observable status: FilterValueType = null;
+
+  /**
+   * Contains the cleaned up, trimmed search input query. Consumers should
+   * use this instead of {@link query} if it isn't required for some reason.
+   */
+  @computed
+  get queryClean() {
+    return presence((this.query)?.trim()) ?? null;
+  }
 
   @computed
   get displaySort() {
@@ -69,7 +84,7 @@ export class BeatmapsetSearchFilters {
     const charParams: Record<string, FilterValueType> = {};
 
     for (const key of keyNames) {
-      const value = this[key];
+      const value = this.getValue(key);
 
       charParams[keyToChar[key]] = value === this.getDefault(key) ? null : value;
     }
@@ -96,12 +111,6 @@ export class BeatmapsetSearchFilters {
     }
 
     makeObservable(this);
-
-    intercept(this, 'query', (change) => {
-      change.newValue = presence((change.newValue)?.trim()) ?? null;
-
-      return change;
-    });
   }
 
   getDefault(key: FilterKey) {
@@ -131,7 +140,7 @@ export class BeatmapsetSearchFilters {
   }
 
   selectedValue(key: FilterKey) {
-    return this[key] ?? this.getDefault(key);
+    return this.getValue(key) ?? this.getDefault(key);
   }
 
   toKeyString() {
@@ -147,5 +156,11 @@ export class BeatmapsetSearchFilters {
     }
 
     this[key] = value === this.getDefault(key) ? null : value;
+  }
+
+  private getValue(key: FilterKey) {
+    if (key === 'query') return this.queryClean;
+
+    return this[key];
   }
 }

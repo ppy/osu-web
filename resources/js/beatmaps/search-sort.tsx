@@ -27,7 +27,7 @@ export class SearchSort extends React.Component<Props> {
       plays: true,
       ranked: false,
       rating: true,
-      relevance: this.filters.query != null,
+      relevance: this.filters.queryClean != null,
       title: true,
       updated: false,
     };
