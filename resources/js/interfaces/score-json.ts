@@ -103,10 +103,10 @@ export interface ScoreJsonAvailableIncludes {
   beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
   match: Match;
+  metadata: ScoreMetadata | null;
   rank_country: number;
   rank_global: number;
   user: UserJson;
-  metadata: ScoreMetadata | null;
   weight: PpWeight;
 }
 
