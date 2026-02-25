@@ -100,9 +100,9 @@ export interface ScoreJsonAvailableIncludes {
   match: Match;
   rank_country: number;
   rank_global: number;
+  replay_views: number;
   user: UserJson;
   weight: PpWeight;
-  replay_views: number;
 }
 
 type ScoreJson = ScoreJsonAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
