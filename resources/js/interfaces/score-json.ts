@@ -89,8 +89,8 @@ type ScoreJsonAttributes = {
 } & (ScoreJsonAttributesLegacyMatch | ScoreJsonAttributesSolo | ScoreJsonAttributesMultiplayer);
 
 interface ScoreMetadata {
-  rank_delta: number;
   pp_delta: number;
+  rank_delta: number;
 }
 
 export interface ScoreJsonDefaultIncludes {
@@ -106,8 +106,8 @@ export interface ScoreJsonAvailableIncludes {
   rank_country: number;
   rank_global: number;
   user: UserJson;
-  weight: PpWeight;
   metadata: ScoreMetadata | null;
+  weight: PpWeight;
 }
 
 type ScoreJson = ScoreJsonAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
