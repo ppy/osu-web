@@ -6,6 +6,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import { presence, present } from 'utils/string';
 import { updateQueryString } from 'utils/url';
+import BeatmapTag from './models/beatmap-tag';
 
 export const charToKey: Record<string, FilterKey> = {
   c: 'general',
@@ -141,6 +142,30 @@ export class BeatmapsetSearchFilters {
 
   selectedValue(key: FilterKey) {
     return this.getValue(key) ?? this.getDefault(key);
+  }
+
+  @action
+  tagAdd(tag: BeatmapTag) {
+    const currentQuery = this.queryClean;
+    const tagString = tag.tagString();
+
+    const newQuery = currentQuery !== null
+      ? currentQuery + ` ${tagString}`
+      : tagString;
+
+    this.update('query', newQuery);
+  }
+
+  @action
+  tagRemove(tag: BeatmapTag) {
+    const currentQuery = this.queryClean;
+
+    if (currentQuery === null) {
+      return;
+    }
+
+    const newQuery = currentQuery.replace(tag.tagString(), '').trim();
+    this.update('query', newQuery);
   }
 
   toKeyString() {

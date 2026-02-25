@@ -38,4 +38,8 @@ export default class BeatmapTag {
   matchesFullName(match: string) {
     return this.fullNameLowercase.includes(match.toLowerCase());
   }
+
+  tagString() {
+    return `tag="${this.fullName}"`;
+  }
 }

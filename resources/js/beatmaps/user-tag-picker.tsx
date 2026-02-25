@@ -54,22 +54,18 @@ const UserTagGroup = observer(function UserTagGroup({ group }: { group: TagGroup
 });
 
 const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
-  const tagString = `tag="${tag.fullName}"`;
+  const active = beatmapsetSearchController.filters.queryClean?.toLowerCase()
+    .includes(tag.tagString().toLowerCase());
 
   const onClick = useCallback(() => {
-    const currentQuery = beatmapsetSearchController.filters.queryClean;
-
-    const newQuery = currentQuery !== null
-      ? currentQuery + ` ${tagString}`
-      : tagString;
-
-    beatmapsetSearchController.filters.update('query', newQuery);
-  }, [tagString]);
+    if (!active) {
+      beatmapsetSearchController.filters.tagAdd(tag);
+    } else {
+      beatmapsetSearchController.filters.tagRemove(tag);
+    }
+  }, [tag, active]);
 
   const hasAllRulesets = tag.rulesetIds.length === rulesets.length;
-
-  const active = beatmapsetSearchController.filters.queryClean?.toLowerCase()
-    .includes(tagString.toLowerCase());
 
   return (<div className={classWithModifiers('user-tag-picker__tag', { active })} onClick={onClick}>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
