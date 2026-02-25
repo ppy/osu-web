@@ -102,6 +102,7 @@ export interface ScoreJsonAvailableIncludes {
   rank_global: number;
   user: UserJson;
   weight: PpWeight;
+  replay_views: number;
 }
 
 type ScoreJson = ScoreJsonAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
@@ -111,7 +112,7 @@ export default ScoreJson;
 export type ScoreJsonForBeatmap = ScoreJson & Required<Pick<ScoreJson, 'user'>>;
 
 export type ScoreJsonForShow = ScoreJson
-& Required<Pick<ScoreJson, 'beatmapset' | 'rank_global' | 'user'>>
+& Required<Pick<ScoreJson, 'beatmapset' | 'rank_global' | 'user' | 'replay_views'>>
 & {
   beatmap: WithBeatmapOwners<BeatmapExtendedJson>;
   type: 'solo_score';
