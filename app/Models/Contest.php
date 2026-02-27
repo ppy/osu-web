@@ -360,7 +360,7 @@ class Contest extends Model
         }
 
         if ($this->isVotingStarted()) {
-            if (!$this->show_votes) {
+            if (!$showVotes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
                     $transformer->sort = ContestTransformer::SORT_ALPHA;
