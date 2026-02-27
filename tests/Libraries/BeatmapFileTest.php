@@ -16,17 +16,32 @@ class BeatmapFileTest extends TestCase
     public static function dataProviderForTestFindBackground(): array
     {
         return [
-            ['test background 1.osu', 'bg.jpg'],
-            ['test background 2.osu', 'arrow.png'],
-            ['test background 3.osu', null],
+            ['test background 1.osu', [
+                'audioFilename' => 'audio.mp3',
+                'previewTime' => -1,
+                'backgroundImage' => 'bg.jpg',
+            ]],
+            ['test background 2.osu', [
+                'audioFilename' => 'audio.mp3',
+                'previewTime' => 73743,
+                'backgroundImage' => 'arrow.png',
+            ]],
+            ['test background 3.osu', [
+                'audioFilename' => 'audio.mp3',
+                'previewTime' => -1,
+                'backgroundImage' => null,
+            ]],
         ];
     }
 
     #[DataProvider('dataProviderForTestFindBackground')]
-    public function testFindBackground(string $osuFilename, ?string $expectedFilename): void
+    public function testFindBackground(string $osuFilename, ?array $expectedAttributes): void
     {
         $path = __DIR__.'/beatmap_examples/'.$osuFilename;
+        $parsed = new BeatmapFile(file_get_contents($path));
 
-        $this->assertSame($expectedFilename, BeatmapFile::findBackground(file_get_contents($path)));
+        foreach ($expectedAttributes as $key => $expectedValue) {
+            $this->assertSame($expectedValue, $parsed->$key);
+        }
     }
 }

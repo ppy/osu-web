@@ -89,7 +89,7 @@ class BeatmapsetArchive
                 continue;
             }
 
-            $filename = BeatmapFile::findBackground($content);
+            $filename = new BeatmapFile($content)->backgroundImage;
             // return if background is set in the file and present in .osz
             if ($filename !== null && $this->hasFile($filename)) {
                 return $filename;
