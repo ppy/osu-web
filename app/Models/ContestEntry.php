@@ -102,7 +102,6 @@ class ContestEntry extends Model
 
     public function getTitleAttribute()
     {
-        // TODO: pass in Content instead?
         return $this->contest->unmasked ? $this->name : $this->masked_name;
     }
 

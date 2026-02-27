@@ -28,10 +28,6 @@ class ContestTransformer extends TransformerAbstract
     public ?int $seed = null;
     public ?string $sort = null;
 
-    public function __construct()
-    {
-    }
-
     public function transform(Contest $contest)
     {
         return [
