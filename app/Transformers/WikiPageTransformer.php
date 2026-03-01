@@ -20,6 +20,7 @@ class WikiPageTransformer extends TransformerAbstract
             'subtitle' => $page->subtitle(),
             'tags' => $page->tags(),
             'title' => $page->title(),
+            'updated_at' => json_time($page->updatedAt()),
         ];
     }
 }

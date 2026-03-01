@@ -107,6 +107,23 @@ class OsuWiki
         return $diff['files'];
     }
 
+    public static function fetchLastCommitDate(string $path): ?string
+    {
+        try {
+            $commits = GitHub::repo()
+                ->commits()
+                ->all(static::user(), static::repository(), [
+                    'path' => $path,
+                    'sha' => static::branch(),
+                    'per_page' => 1,
+                ]);
+
+            return $commits[0]['commit']['committer']['date'] ?? null;
+        } catch (GithubException $e) {
+            return null;
+        }
+    }
+
     public static function isImage($path)
     {
         return preg_match('/\.(?:jpe?g|gif|png)$/i', $path) === 1;

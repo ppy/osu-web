@@ -74,6 +74,12 @@
 
                 @if ($page->get() !== null)
                     {!! $page->get()['output'] !!}
+
+                    @if ($page->updatedAt() !== null)
+                        <div class="wiki-page__footer">
+                            {{ osu_trans('wiki.show.updated_at', ['date' => i18n_date($page->updatedAt())]) }}
+                        </div>
+                    @endif
                 @else
                     <div class="wiki-content">
                         <p>

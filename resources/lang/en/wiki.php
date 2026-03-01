@@ -14,6 +14,7 @@ return [
         'search' => 'Search existing pages for :link.',
         'stub' => 'This article is incomplete and waiting on someone to expand it.',
         'toc' => 'Contents',
+        'updated_at' => 'This page was last edited on :date.',
 
         'edit' => [
             'link' => 'Show on GitHub',
