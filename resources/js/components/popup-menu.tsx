@@ -36,7 +36,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults> {
   private activeStateUpdated = false;
   private readonly disposeActiveStateMonitor;
   private readonly eventId = `popup-menu-${nextVal()}`;
-  private readonly internalMobxState;
+  private internalMobxState?: PopupMenuState;
   private readonly menuRef = React.createRef<HTMLDivElement>();
   private readonly menuRootRef = React.createRef<HTMLDivElement>();
   private tooltipHideEvent: unknown;
@@ -48,7 +48,8 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults> {
   }
 
   private get mobxState() {
-    return this.props.state ?? this.internalMobxState;
+    return this.props.state
+      ?? (this.internalMobxState ??= new PopupMenuState());
   }
 
   private get tooltipElement() {
@@ -58,8 +59,6 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults> {
   constructor(props: PropsWithDefaults) {
     super(props);
     makeObservable(this);
-    // the property won't actually be used if the props contains a state
-    this.internalMobxState = this.props.state ?? new PopupMenuState();
 
     this.disposeActiveStateMonitor = reaction(() => this.mobxState.active, () => {
       // delay handling of the state update until react finishes updating
