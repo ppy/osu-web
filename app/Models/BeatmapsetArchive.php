@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\BeatmapFile;
 
 class BeatmapsetArchive
 {
@@ -88,16 +89,10 @@ class BeatmapsetArchive
                 continue;
             }
 
-            $osu = BeatmapFile::parse($content);
-            if ($osu === false) {
-                // invalid .osu
-                continue;
-            }
-
-            // return if background is present in .osz
-            $backgroundFilename = $osu->backgroundImage();
-            if ($this->hasFile($backgroundFilename)) {
-                return $backgroundFilename;
+            $filename = BeatmapFile::findBackground($content);
+            // return if background is set in the file and present in .osz
+            if ($filename !== null && $this->hasFile($filename)) {
+                return $filename;
             }
         }
 

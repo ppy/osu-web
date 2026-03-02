@@ -118,6 +118,7 @@ return [
         'token_keys' => $clientTokenKeys,
         'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
         'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
+        'token_validation_timeout' => get_float(env('CLIENT_TOKEN_VALIDATION_TIMEOUT')) ?? 0.05,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
@@ -278,6 +279,7 @@ return [
         'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
         'max_playlists' => get_int(env('USER_MAX_PLAYLISTS')) ?? 1,
         'max_playlists_supporter' => get_int(env('USER_MAX_PLAYLISTS_SUPPORTER')) ?? 5,
+        'max_items_in_playlist' => get_int(env('USER_MAX_ITEMS_IN_PLAYLIST')) ?? 256,
         'max_tournament_rooms' => get_int(env('USER_MAX_TOURNAMENT_ROOMS')) ?? 4,
         'max_tournament_rooms_bot' => get_int(env('USER_MAX_TOURNAMENT_ROOMS_BOT')) ?? 50,
         'max_score_pins' => get_int(env('USER_MAX_SCORE_PINS')) ?? 10,

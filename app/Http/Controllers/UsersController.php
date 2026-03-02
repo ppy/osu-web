@@ -1049,6 +1049,14 @@ class UsersController extends Controller
                 abort(429);
             }
 
+            if ($clientTokenData !== null) {
+                $validationResult = ClientCheck::validateToken($clientTokenData);
+
+                if ($validationResult !== null && $validationResult !== ClientCheck::SUCCESS) {
+                    abort(422, $validationResult);
+                }
+            }
+
             $registration->save();
             app(RateLimiter::class)->hit($throttleKey, 600);
 
@@ -1068,10 +1076,6 @@ class UsersController extends Controller
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $user->getKey())
                 );
-            }
-
-            if ($clientTokenData !== null) {
-                ClientCheck::queueToken($clientTokenData, userId: $user->getKey());
             }
 
             if (is_json_request()) {

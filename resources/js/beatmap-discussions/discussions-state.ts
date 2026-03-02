@@ -277,6 +277,11 @@ export default class DiscussionsState {
   }
 
   @computed
+  get firstUnresolvedDiscussion() {
+    return this.nonDeletedDiscussions.find((discussion) => discussion.can_be_resolved && !discussion.resolved);
+  }
+
+  @computed
   get nominators() {
     const nominators: UserJson[] = [];
     for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {

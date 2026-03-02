@@ -23,7 +23,7 @@ class FetchDedupedScores
         $this->limit = $this->params->size;
     }
 
-    public function all(): array
+    public function all(?array $columns = null): array
     {
         $this->params->size = $this->limit + 50;
         $search = new ScoreSearch($this->params);
@@ -40,7 +40,11 @@ class FetchDedupedScores
             $response = $search->response();
             $search->assertNoError();
 
-            $records = $response->records()->whereHas('beatmap.beatmapset')->get()->all();
+            $query = $response->records()->whereHas('beatmap.beatmapset');
+            if ($columns !== null) {
+                $query->select($columns);
+            }
+            $records = $query->get()->all();
             if ($this->append($records)) {
                 break;
             }

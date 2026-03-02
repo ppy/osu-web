@@ -12,20 +12,14 @@ class NotificationDeleteEvent extends NotificationEventBase
 {
     use SerializesModels;
 
-    public $params;
-    public $userId;
-
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($userId, array $params)
+    public function __construct(public $userId, public array $params, public bool $shouldBroadcastNow = false)
     {
         parent::__construct();
-
-        $this->params = $params;
-        $this->userId = $userId;
     }
 
     public function broadcastAs()
@@ -46,5 +40,10 @@ class NotificationDeleteEvent extends NotificationEventBase
     public function broadcastWith()
     {
         return $this->params;
+    }
+
+    public function shouldBroadcastNow()
+    {
+        return $this->shouldBroadcastNow;
     }
 }
