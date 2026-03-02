@@ -42,6 +42,13 @@ document.addEventListener('turbo:before-fetch-response', (e) => {
 
 // disable turbo navigation for old webs
 document.addEventListener('turbo:click', (event) => {
+  // work around anchor links not correctly detected
+  // reference: https://github.com/hotwired/turbo/pull/1285#discussion_r2799488011
+  if (document.location.href.replace(/#.*/, '') === event.detail.url.replace(/#.*/, '')) {
+    event.preventDefault();
+    return;
+  }
+
   const url = new URL(event.detail.url);
 
   if (
