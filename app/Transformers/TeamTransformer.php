@@ -48,7 +48,15 @@ class TeamTransformer extends TransformerAbstract
 
     public function includeLeader(Team $team): Item
     {
-        return $this->item($team->leader, new UserCompactTransformer());
+        if ($team->relationLoaded('members')) {
+            $leader = $team->members->firstWhere('user_id', $team->leader_id)?->userOrDeleted();
+        }
+        if (!isset($leader)) {
+            $leader = $team->leaderOrDeleted();
+            $leader->setRelation('team', $team);
+        }
+
+        return $this->item($leader, new UserCompactTransformer());
     }
 
     public function includeMembers(Team $team): Collection

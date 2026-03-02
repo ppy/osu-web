@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import PopupMenu from 'components/popup-menu';
+import PopupMenuState from 'components/popup-menu-state';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { SlateContext } from './slate-context';
@@ -24,41 +25,31 @@ export default class IconDropdownMenu extends React.Component<Props> {
   static contextType = SlateContext;
   declare context: React.ContextType<typeof SlateContext>;
 
-  render(): React.ReactNode {
-    return (
-      <PopupMenu customRender={this.renderButton} direction='right'>
-        {() => (
-          <div className='simple-menu simple-menu--popup-menu-compact'>
-            {this.props.menuOptions.map(this.renderMenuItem)}
-          </div>
-        )}
-      </PopupMenu>
-    );
-  }
+  private readonly popupMenuState = new PopupMenuState();
 
-  renderButton = (children: React.ReactNode, ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
+  render() {
     const selected: MenuItem = this.props.menuOptions.find((option) => option.id === this.props.selected) ?? this.props.menuOptions[0];
-    const bn = 'icon-dropdown-menu';
-    const mods = [];
-
-    if (this.props.disabled) {
-      toggle = () => { /* do nothing */ };
-      mods.push('disabled');
-    }
 
     return (
       <div
-        ref={ref}
-        className={classWithModifiers(bn, mods)}
+        ref={this.popupMenuState.setButtonRef}
+        className={classWithModifiers('icon-dropdown-menu', { disabled: this.props.disabled })}
         // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
         contentEditable={false}
-        onClick={toggle}
+        onClick={this.toggle}
       >
         {selected.icon}
-        {children}
+
+        <PopupMenu direction='right' skipButton state={this.popupMenuState}>
+          {() => (
+            <div className='simple-menu simple-menu--popup-menu-compact'>
+              {this.props.menuOptions.map(this.renderMenuItem)}
+            </div>
+          )}
+        </PopupMenu>
       </div>
     );
-  };
+  }
 
   renderMenuItem = (menuItem: MenuItem) => (
     <button
@@ -91,5 +82,11 @@ export default class IconDropdownMenu extends React.Component<Props> {
     }
 
     this.props.onSelect(target.dataset.id ?? '');
+  };
+
+  private readonly toggle = () => {
+    if (!this.props.disabled) {
+      this.popupMenuState.toggle();
+    }
   };
 }

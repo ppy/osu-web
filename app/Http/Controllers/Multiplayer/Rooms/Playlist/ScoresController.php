@@ -219,7 +219,13 @@ class ScoresController extends BaseController
 
         $score = $scoreLink->score;
         if ($score->wasRecentlyCreated) {
-            ClientCheck::validateToken($clientTokenData, scoreId: $score->getKey());
+            $validationResult = ClientCheck::validateToken($clientTokenData, scoreId: $score->getKey());
+
+            if ($validationResult !== null && $validationResult !== ClientCheck::SUCCESS) {
+                $score->update(['ranked' => false]);
+                abort(422, $validationResult);
+            }
+
             $score->queueForProcessing();
         }
 
