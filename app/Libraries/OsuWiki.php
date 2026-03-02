@@ -124,6 +124,19 @@ class OsuWiki
         }
     }
 
+    public static function fetchCommitDate(string $hash): ?string
+    {
+        try {
+            $commit = GitHub::repo()
+                ->commits()
+                ->show(static::user(), static::repository(), $hash);
+
+            return $commit['commit']['committer']['date'] ?? null;
+        } catch (GithubException $e) {
+            return null;
+        }
+    }
+
     public static function isImage($path)
     {
         return preg_match('/\.(?:jpe?g|gif|png)$/i', $path) === 1;
