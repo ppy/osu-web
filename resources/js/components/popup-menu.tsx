@@ -36,7 +36,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults> {
   private activeStateUpdated = false;
   private readonly disposeActiveStateMonitor;
   private readonly eventId = `popup-menu-${nextVal()}`;
-  private internalMobxState?: PopupMenuState;
+  private fallbackMobxState?: PopupMenuState;
   private readonly menuRef = React.createRef<HTMLDivElement>();
   private readonly menuRootRef = React.createRef<HTMLDivElement>();
   private tooltipHideEvent: unknown;
@@ -49,7 +49,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults> {
 
   private get mobxState() {
     return this.props.state
-      ?? (this.internalMobxState ??= new PopupMenuState());
+      ?? (this.fallbackMobxState ??= new PopupMenuState());
   }
 
   private get tooltipElement() {
