@@ -672,7 +672,7 @@ export class Nominations extends React.Component<Props> {
               }}
               pattern={trans('beatmaps.nominations.rank_estimate._')}
             />
-            {firstUnresolvedDiscussion !== null &&
+            {firstUnresolvedDiscussion != null &&
               <div className={`${bn}__problems`}>
                 <StringWithComponent
                   mappings={{
