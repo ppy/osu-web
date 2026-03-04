@@ -10,12 +10,14 @@ use App\Libraries\BeatmapFile;
 
 class BeatmapsetArchive
 {
-    private $fileList;
     private $errorCode;
+    private $fileList;
+    private array $osuFileList;
     private $osz;
+    private array $parsedFiles = [];
     private $zip;
 
-    public function __construct(string $osz)
+    public function __construct(string $osz, private ?Beatmapset $beatmapset = null)
     {
         $this->osz = $osz;
         $this->zip = new \ZipArchive();
@@ -25,7 +27,7 @@ class BeatmapsetArchive
         }
     }
 
-    public function fetch(Beatmapset $beatmapset): ?static
+    public static function fetch(Beatmapset $beatmapset): ?static
     {
         $oszFile = tmpfile();
         $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
@@ -57,11 +59,57 @@ class BeatmapsetArchive
         }
 
         try {
-            return new BeatmapsetArchive(get_stream_filename($oszFile));
+            return new BeatmapsetArchive(get_stream_filename($oszFile), $beatmapset);
         } catch (BeatmapProcessorException) {
             // zip file is broken, nothing to do for now
             return null;
         }
+    }
+
+    private static function convertAudioForPreview(string $audioFile, int $previewTime): ?string
+    {
+        $srcFile = tmpfile();
+        fwrite($srcFile, $audioFile);
+        $srcFilename = get_stream_filename($srcFile);
+        $dstFile = tmpfile();
+        $dstFilename = get_stream_filename($dstFile);
+
+        $duration = 10000;
+        $previewTime = max($previewTime, 0);
+
+        $fadeInExtension = min($previewTime, 100);
+        $fadeIn = $fadeInExtension + 100;
+        $duration += $fadeInExtension;
+        $previewTime -= $fadeInExtension;
+
+        $fadeOut = $duration - 1000;
+
+        $filter = implode(',', [
+            // unify output to 44.1kHz stereo
+            // note that vorbis doesn't have bit depth
+            'aresample=osr=44100:ochl=stereo',
+            "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
+            "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
+        ]);
+
+        exec(implode(' ', [
+            'timeout 20s',
+            'ffmpeg',
+            '-loglevel quiet',
+            '-nostdin',
+            "-ss {$previewTime}ms",
+            "-t {$duration}ms",
+            '-i '.escapeshellarg($srcFilename),
+            "-af {$filter}",
+            '-map 0:a', // strip out non-audio streams
+            '-map_metadata -1', // strip out metadata
+            '-c:a libvorbis -q 1.0',
+            '-f ogg',
+            '-y',
+            escapeshellarg($dstFilename),
+        ]));
+
+        return presence(file_get_contents($dstFilename));
     }
 
     public function __destruct()
@@ -87,7 +135,11 @@ class BeatmapsetArchive
 
     public function osuFileList()
     {
-        return preg_grep('/\.osu$/i', $this->fileList());
+        return $this->osuFileList ??= array_values(array_unique([
+            // use db order
+            ...($this->beatmapset?->beatmaps->pluck('filename') ?? []),
+            ...preg_grep('/\.osu$/i', $this->fileList()),
+        ]));
     }
 
     public function readFile(?string $filename)
@@ -108,33 +160,52 @@ class BeatmapsetArchive
         return $this->zip->locateName($filename, \ZipArchive::FL_NOCASE) !== false;
     }
 
-    // Parses given list (of .osu files) and finds background images referenced.
-    // If $performFallback is enabled, all .osu files in archive are scanned if $filelist yields no result.
-    // This allows beatmap order to dictate the priority (to match existing behaviour).
-    public function scanBeatmapsForBackground(array $filelist, bool $performFallback = false)
+    public function generateAudioPreview(): ?string
     {
-        if ($performFallback) {
-            $filelist = array_merge($filelist, $this->osuFileList());
-        }
+        foreach ($this->osuFileList() as $file) {
+            $parsedFile = $this->getParsedFile($file);
 
-        if (empty($filelist)) {
-            return;
-        }
-
-        foreach ($filelist as $file) {
-            $content = $this->readFile($file);
-            if ($content === false) {
-                // missing .osu (usually due to mismatching filename from unicode stripping)
+            if ($parsedFile === null) {
                 continue;
             }
 
-            $filename = new BeatmapFile($content)->backgroundImage;
+            $previewTime = $parsedFile->previewTime;
+            $audioFilename = $parsedFile->audioFilename;
+
+            if (isset($audioFilename, $previewTime)) {
+                $audioFile = $this->readFile($audioFilename);
+
+                if ($audioFile !== null) {
+                    return static::convertAudioForPreview($audioFile, $previewTime);
+                }
+            }
+        }
+    }
+
+    public function scanBeatmapsForBackground(): ?string
+    {
+        foreach ($this->osuFileList() as $file) {
+            $filename = $this->getParsedFile($file)?->backgroundImage;
+
             // return if background is set in the file and present in .osz
             if ($filename !== null && $this->hasFile($filename)) {
                 return $filename;
             }
         }
 
-        return false;
+        return null;
+    }
+
+    private function getParsedFile(string $file): ?BeatmapFile
+    {
+        if (!array_key_exists($file, $this->parsedFiles)) {
+            $content = $this->readFile($file);
+
+            $this->parsedFiles[$file] = $content === false
+                ? null
+                : new BeatmapFile($content);
+        }
+
+        return $this->parsedFiles[$file];
     }
 }
