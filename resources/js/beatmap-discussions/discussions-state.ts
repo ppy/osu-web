@@ -278,7 +278,11 @@ export default class DiscussionsState {
 
   @computed
   get firstUnresolvedDiscussion() {
-    return this.nonDeletedDiscussions.find((discussion) => discussion.can_be_resolved && !discussion.resolved);
+    return this.nonDeletedDiscussions.find((discussion) => (
+      discussion.can_be_resolved
+      && !discussion.resolved
+      && (discussion.beatmap_id == null || this.store.beatmaps.get(discussion.beatmap_id)?.deleted_at == null)
+    ));
   }
 
   @computed
