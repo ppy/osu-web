@@ -65,7 +65,7 @@ class ContestTransformer extends TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        $entries = $contest->preloadedEntries ?? $contest->entries;
+        $entries = $contest->entries;
 
         if ($this->sort === static::SORT_ALPHA) {
             $entries = $entries->sort(fn (ContestEntry $a, ContestEntry $b) => strnatcasecmp($a->title, $b->title));

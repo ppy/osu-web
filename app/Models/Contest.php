@@ -68,8 +68,6 @@ class Contest extends Model
         'voting_starts_at' => 'datetime',
     ];
 
-    public ?Collection $preloadedEntries = null;
-
     public function contestJudges(): HasMany
     {
         return $this->HasMany(ContestJudge::class);
@@ -151,27 +149,15 @@ class Contest extends Model
 
     public function entriesWithScore(): Collection
     {
-        return \Cache::remember(
+        $entries = \Cache::remember(
             $this->entriesWithScoresCacheKey(),
             300,
             fn () => $this->entries()->withScore($this)->get()
         );
-    }
 
-    public function entriesForUser(?User $user): Collection
-    {
-        $query = $this->entries();
+        $this->setRelation('entries', $entries);
 
-        if ($this->isBestOf()) {
-            if ($user === null) {
-                return $query->getRelated()->newCollection();
-            }
-
-            $options = $this->getExtraOptions()['best_of'];
-            $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
-        }
-
-        return $query->get();
+        return $entries;
     }
 
     public function isBestOf(): bool
@@ -386,7 +372,9 @@ class Contest extends Model
             }
         }
 
-        $this->preloadedEntries = ($showVotes ? $this->entriesWithScore() : $this->entriesForUser($user))->loadMissing($preloads);
+        // load relation and preloads.
+        $entries = $showVotes ? $this->entriesWithScore() : $this->entriesForUser($user);
+        $entries->loadMissing($preloads);
 
         return json_encode([
             'contest' => json_item($this, $transformer, $includes),
@@ -469,6 +457,26 @@ class Contest extends Model
     public function showEntryUser(): bool
     {
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
+    }
+
+    private function entriesForUser(?User $user): Collection
+    {
+        $query = $this->entries();
+
+        if ($this->isBestOf()) {
+            if ($user === null) {
+                $query->none();
+            } else {
+                $options = $this->getExtraOptions()['best_of'];
+                $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
+            }
+        }
+
+        $entries = $query->get();
+        // not sure if good idea to set the relation to a filtered query...
+        $this->setRelation('entries', $entries);
+
+        return $entries;
     }
 
     private function entriesWithScoresCacheKey(): string
