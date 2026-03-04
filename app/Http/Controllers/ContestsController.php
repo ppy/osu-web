@@ -38,7 +38,6 @@ class ContestsController extends Controller
         foreach ($contest->entries as $entry) {
             $entry->setRelation('contest', $contest);
         }
-        $contest->preloadedEntries = $contest->entries;
 
         $contestJson = json_item($contest, new ContestTransformer(), [
             'current_user_attributes',
