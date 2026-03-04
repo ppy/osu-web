@@ -256,7 +256,8 @@ class LegacyInterOpController extends Controller
                         $sender,
                         $pmTarget,
                         presence($messageParams['message'] ?? null),
-                        $messageParams['is_action'] ?? null
+                        $messageParams['is_action'] ?? null,
+                        false,
                     );
                 } else {
                     $channel = $channels[$messageParams['target_id']] ?? null;
@@ -268,7 +269,8 @@ class LegacyInterOpController extends Controller
                         $sender,
                         $channel,
                         presence($messageParams['message'] ?? null),
-                        $messageParams['is_action'] ?? false
+                        $messageParams['is_action'] ?? false,
+                        false,
                     );
                 }
 

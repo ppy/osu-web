@@ -64,22 +64,24 @@ class Chat
     }
 
     // Do the restricted user lookup before calling this.
-    public static function sendPrivateMessage(User $sender, User $target, ?string $message, ?bool $isAction, ?string $uuid = null)
+    public static function sendPrivateMessage(User $sender, User $target, ?string $message, ?bool $isAction, ?string $uuid = null, bool $privCheck = true)
     {
         if ($target->is($sender)) {
             abort(422, "can't send message to same user");
         }
 
-        priv_check_user($sender, 'ChatPmStart', $target)->ensureCan();
+        if ($privCheck) {
+            priv_check_user($sender, 'ChatPmStart', $target)->ensureCan();
+        }
 
-        return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction, $uuid) {
+        return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction, $uuid, $privCheck) {
             $channel = Channel::findPM($target, $sender) ?? Channel::createPM($target, $sender);
 
-            return static::sendMessage($sender, $channel, $message, $isAction, $uuid);
+            return static::sendMessage($sender, $channel, $message, $isAction, $uuid, $privCheck);
         });
     }
 
-    public static function sendMessage(User $sender, Channel $channel, ?string $message, ?bool $isAction, ?string $uuid = null)
+    public static function sendMessage(User $sender, Channel $channel, ?string $message, ?bool $isAction, ?string $uuid = null, bool $privCheck = true)
     {
         if ($channel->isPM()) {
             // restricted users should be treated as if they do not exist
@@ -88,7 +90,9 @@ class Chat
             }
         }
 
-        priv_check_user($sender, 'ChatChannelSend', $channel)->ensureCan();
+        if ($privCheck) {
+            priv_check_user($sender, 'ChatChannelSend', $channel)->ensureCan();
+        }
 
         try {
             return $channel->receiveMessage($sender, $message, $isAction ?? false, $uuid);
