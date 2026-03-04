@@ -490,6 +490,11 @@ function qr_svg(string $text): string
     )->writeString($text);
 }
 
+function storage_disk(string $type): Illuminate\Contracts\Filesystem\Filesystem
+{
+    return \Storage::disk("{$GLOBALS['cfg']['filesystems']['default']}-{$type}");
+}
+
 function trim_unicode(?string $value)
 {
     return preg_replace('/(^\s+|\s+$)/u', '', $value);
