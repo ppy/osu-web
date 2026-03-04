@@ -25,6 +25,45 @@ class BeatmapsetArchive
         }
     }
 
+    public function fetch(Beatmapset $beatmapset): ?static
+    {
+        $oszFile = tmpfile();
+        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
+            ?? throw new \Exception('no available mirror');
+        $url = $mirror->generateURL($beatmapset, true);
+
+        if ($url === false) {
+            return null;
+        }
+
+        $curl = curl_init($url);
+        curl_setopt_array($curl, [
+            CURLOPT_FILE => $oszFile,
+            CURLOPT_TIMEOUT => 30,
+        ]);
+        curl_exec($curl);
+
+        if (curl_errno($curl) > 0) {
+            throw new BeatmapProcessorException('Failed downloading osz: '.curl_error($curl));
+        }
+
+        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // archive file is gone, nothing to do for now
+        if ($statusCode === 302) {
+            return null;
+        }
+        if ($statusCode !== 200) {
+            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
+        }
+
+        try {
+            return new BeatmapsetArchive(get_stream_filename($oszFile));
+        } catch (BeatmapProcessorException) {
+            // zip file is broken, nothing to do for now
+            return null;
+        }
+    }
+
     public function __destruct()
     {
         if ($this->errorCode === true) {
