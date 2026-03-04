@@ -149,6 +149,31 @@ class Contest extends Model
         $this->resetCache();
     }
 
+    public function entriesWithScore(): Collection
+    {
+        return \Cache::remember(
+            $this->entriesWithScoresCacheKey(),
+            300,
+            fn () => $this->entries()->withScore($this)->get()
+        );
+    }
+
+    public function entriesForUser(?User $user): Collection
+    {
+        $query = $this->entries();
+
+        if ($this->isBestOf()) {
+            if ($user === null) {
+                return $query->getRelated()->newCollection();
+            }
+
+            $options = $this->getExtraOptions()['best_of'];
+            $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
+        }
+
+        return $query->get();
+    }
+
     public function isBestOf(): bool
     {
         return isset($this->getExtraOptions()['best_of']);
@@ -320,30 +345,6 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType(?User $user)
-    {
-        if ($this->show_votes) {
-            return \Cache::remember(
-                $this->entriesWithScoresCacheKey(),
-                300,
-                fn () => $this->entries()->withScore($this)->get()
-            );
-        }
-
-        $query = $this->entries();
-
-        if ($this->isBestOf()) {
-            if ($user === null) {
-                return [];
-            }
-
-            $options = $this->getExtraOptions()['best_of'];
-            $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
-        }
-
-        return $query->get();
-    }
-
     public function defaultJson(?User $user = null)
     {
         $transformer = new ContestTransformer();
@@ -385,7 +386,7 @@ class Contest extends Model
             }
         }
 
-        $this->preloadedEntries = $this->entriesByType($user)->loadMissing($preloads);
+        $this->preloadedEntries = ($showVotes ? $this->entriesWithScore() : $this->entriesForUser($user))->loadMissing($preloads);
 
         return json_encode([
             'contest' => json_item($this, $transformer, $includes),
