@@ -65,7 +65,7 @@ return [
         'country' => '国家/地区',
         'daily_challenge' => '每日挑战',
         'global' => '全球',
-        'kudosu' => 'Kudosu',
+        'kudosu' => 'kudosu',
         'matchmaking' => '快速匹配模式',
         'playlists' => '歌单模式',
         'team' => '战队',

@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'read' => 'Telah Dibaca',
+        'read' => 'Sudah Dibaca',
         'unread' => 'Belum Dibaca',
     ],
 ];

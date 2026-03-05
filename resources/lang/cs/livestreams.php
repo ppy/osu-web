@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => 'Jste si jisti, že chcete propagovat toto živé vysílání?',
-        'unpin' => "Opravdu chcete odebrat propagaci tohoto živého vysílání?",
+        'pin' => 'Opravdu chceš propagovat toto živé vysílání na domovské stránce?',
+        'unpin' => "Opravdu chceš odebrat propagaci tohoto živého vysílání z domovské stránky?",
     ],
 
     'top-headers' => [

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Seluruh notifikasi telah dibaca!',
+    'all_read' => 'Semua notifikasi sudah dibaca!',
     'delete' => 'Hapus :type',
     'loading' => 'Memuat notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
@@ -47,7 +47,7 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Diskusi beatmap',
-                'beatmapset_discussion_lock' => 'Diskusi pada ":title" telah dikunci',
+                'beatmapset_discussion_lock' => 'Diskusi beatmap ":title" telah dikunci',
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
                 'beatmapset_discussion_post_new' => 'Postingan baru pada ":title" oleh :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru pada ":title" oleh :username',
@@ -55,8 +55,8 @@ return [
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
                 'beatmapset_discussion_review_new' => 'Kajian baru pada ":title" oleh :username yang mengandung :review_counts',
                 'beatmapset_discussion_review_new_compact' => 'Kajian baru oleh :username yang mengandung :review_counts',
-                'beatmapset_discussion_unlock' => 'Diskusi pada beatmap ":title" telah kembali dibuka',
-                'beatmapset_discussion_unlock_compact' => 'Diskusi beatmap telah dibuka',
+                'beatmapset_discussion_unlock' => 'Kunci diskusi beatmap ":title" telah dibuka',
+                'beatmapset_discussion_unlock_compact' => 'Kunci diskusi beatmap telah dibuka',
 
                 'review_count' => [
                     'praises' => ':count_delimited pujian|:count_delimited pujian',
@@ -77,17 +77,17 @@ return [
                 '_' => 'Perubahan status beatmap',
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
-                'beatmapset_love' => '":title" telah dipromosikan ke kategori Loved',
-                'beatmapset_love_compact' => 'Beatmap telah dipromosikan ke kategori Loved',
+                'beatmapset_love' => '":title" telah dipromosikan ke Loved',
+                'beatmapset_love_compact' => 'Beatmap telah dipromosikan ke Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
                 'beatmapset_nominate_compact' => 'Beatmap telah dinominasikan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrean ranking',
-                'beatmapset_qualify_compact' => 'Beatmap memasuki antrean ranking',
-                'beatmapset_rank' => '":title" telah berstatus Ranked',
+                'beatmapset_qualify' => '":title" telah memperoleh nominasi yang cukup untuk memasuki antrean ranking',
+                'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrean ranking',
+                'beatmapset_rank' => '":title" telah berstatus ranked',
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => '":title" telah dilepas dari Loved',
                 'beatmapset_remove_from_loved_compact' => 'Beatmap telah dilepas dari Loved',
-                'beatmapset_reset_nominations' => 'Nominasi pada ":title" telah dianulir',
+                'beatmapset_reset_nominations' => 'Nominasi beatmap ":title" telah dianulir',
                 'beatmapset_reset_nominations_compact' => 'Nominasi beatmap dianulir',
             ],
 
@@ -202,7 +202,7 @@ return [
                 'user_beatmapset_new_compact' => 'Beatmap baru ":title"',
                 'user_beatmapset_new_group' => 'Beatmap baru oleh :username',
 
-                'user_beatmapset_revive' => 'Beatmap ":title" telah dipulihkan dari Graveyard oleh :username',
+                'user_beatmapset_revive' => 'Beatmap ":title" dipulihkan dari Graveyard oleh :username',
                 'user_beatmapset_revive_compact' => 'Beatmap ":title" dipulihkan',
             ],
         ],
@@ -220,7 +220,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Berita',
 
         'beatmapset' => [
             'beatmap_owner_change' => [

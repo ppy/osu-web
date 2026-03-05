@@ -20,11 +20,11 @@ return [
         'created_by' => 'oleh :author',
         'download' => 'Unduh',
         'item' => [
-            'cleared' => 'telah dituntaskan',
+            'cleared' => 'sudah dituntaskan',
             'not_cleared' => 'belum dituntaskan',
         ],
         'no_diff_reduction' => [
-            '_' => ':link tidak dapat digunakan untuk menuntaskan paket ini.',
+            '_' => ':link tidak bisa digunakan untuk menuntaskan paket ini.',
             'link' => 'Mod pengurang kesulitan',
         ],
     ],

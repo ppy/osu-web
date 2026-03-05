@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Tempoh terlalu panjang.',
             'name_too_long' => 'Nama bilik terlalu panjang.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

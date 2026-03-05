@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => '당신을 대신하여 멀티 플레이 방을 만들거나 관리합니다.',
         ],
 
         'public' => '당신을 대신하여 공개 데이터를 읽습니다.',

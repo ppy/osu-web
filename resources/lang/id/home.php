@@ -37,7 +37,7 @@ return [
         ],
 
         'forum_post' => [
-            'all' => 'Seluruh forum',
+            'all' => 'Semua forum',
             'link' => 'Cari di forum',
             'login_required' => 'Masuk untuk mencari forum',
             'more_simple' => 'Lihat lebih banyak hasil pencarian forum',
@@ -46,7 +46,7 @@ return [
             'label' => [
                 'forum' => 'cari di forum',
                 'forum_children' => 'sertakan subforum',
-                'include_deleted' => 'sertakan postingan yang telah dihapus',
+                'include_deleted' => 'sertakan postingan yang dihapus',
                 'topic_id' => 'topik #',
                 'username' => 'pengirim',
             ],
@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Masuk untuk mencari tim',
             'more_simple' => 'Lihat lebih banyak hasil pencarian tim',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Tayangan Ulang Unggulan',
         ],
         'show' => [
             'admin' => [

@@ -32,7 +32,7 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'Kamu telah memblokir pengguna ini.',
+        'banner_text' => 'Kamu sudah memblokir pengguna ini.',
         'comment_text' => 'Komentar ini disembunyikan.',
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
@@ -71,8 +71,8 @@ return [
     ],
 
     'disabled' => [
-        'title' => 'Uh-oh! Sepertinya akunmu telah dinonaktifkan.',
-        'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa tenggang selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan banding apa pun yang terkait dengan akun kamu. Setelah masa ini berakhir, kamu baru akan dapat menghubungi kami untuk mengembalikan akunmu. Mohon diperhatikan bahwa membuat akun baru setelah akun utamamu dinonaktifkan <strong>hanya akan memperpanjang masa hukumanmu selama satu bulan</strong>, dan <strong>pelanggaranmu akan semakin berat untuk setiap akun baru yang kamu buat</strong>. Kami harap kamu dapat belajar dari kesalahanmu!",
+        'title' => 'Uh-oh! Sepertinya akunmu sudah dinonaktifkan.',
+        'warning' => "Apabila kamu melanggar peraturan, akunmu akan ditempatkan pada masa tenggang selama satu bulan, di mana dalam rentang waktu ini kami tidak akan menanggapi permintaan banding apa pun. Setelah masa tenggang ini berakhir, kamu dipersilakan untuk menghubungi kami demi mengembalikan akunmu apabila dirasa perlu. Mohon diperhatikan bahwa membuat akun baru setelah akun utamamu dinonaktifkan <strong>hanya akan memperpanjang masa hukumanmu selama satu bulan</strong>, dan <strong>pelanggaranmu akan semakin berat untuk setiap akun baru yang kamu buat</strong>. Kami sangat menyarankanmu untuk tidak terus-menerus melanggar seperti ini!",
 
         'if_mistake' => [
             '_' => 'Apabila kamu merasa bahwa hal ini adalah sebuah kesalahan, kamu dipersilakan untuk menghubungi kami (baik melalui :email atau tombol "?" yang ada di pojok kanan bawah halaman ini) secara langsung. Mohon diperhatikan bahwa kami selalu sepenuhnya yakin dengan tindakan kami, karena tindakan ini selalu didasarkan pada data yang konkrit. Kami berhak untuk tidak menindaklanjuti aduanmu apabila kami merasa kamu telah dengan sengaja berbohong kepada kami.',
@@ -80,11 +80,11 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Akunmu terindikasi telah disusupi. Akun ini akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun terkonfirmasi.',
-            'opening' => 'Terdapat beberapa alasan yang dapat menyebabkan akunmu dinonaktifkan:',
+            'compromised' => 'Akunmu terindikasi sudah disusupi. Akun ini akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun ini terkonfirmasi.',
+            'opening' => 'Terdapat beberapa alasan yang bisa menyebabkan akunmu dinonaktifkan:',
 
             'tos' => [
-                '_' => 'Kamu telah melanggar satu atau lebih poin yang tertera pada :community_rules atau :tos kami.',
+                '_' => 'Kamu sudah melanggar satu atau lebih poin yang tertera pada :community_rules atau :tos kami.',
                 'community_rules' => 'peraturan komunitas',
                 'tos' => 'ketentuan layanan',
             ],
@@ -97,8 +97,8 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "Akunmu telah lama tidak digunakan.",
-            'inactive_different_country' => "Akunmu telah lama tidak digunakan.",
+            'inactive' => "Akunmu sudah lama tidak digunakan.",
+            'inactive_different_country' => "Akunmu sudah lama tidak digunakan.",
         ],
     ],
 
@@ -187,8 +187,8 @@ return [
         ],
     ],
     'restricted_banner' => [
-        'title' => 'Akunmu telah dibatasi!',
-        'message' => 'Selama dibatasi, kamu tidak akan dapat berinteraksi dengan pengguna lainnya, dan skor kamu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya merupakan hasil dari proses yang berlangsung secara otomatis dan akan diangkat dalam 24 jam. :link',
+        'title' => 'Akunmu sudah dibatasi!',
+        'message' => 'Selama dibatasi, kamu tidak akan bisa berinteraksi dengan pengguna lainnya, dan skor kamu hanya akan bisa dilihat oleh dirimu sendiri. Hal ini biasanya adalah hasil dari proses yang berlangsung secara otomatis dan akan diangkat dalam 24 jam. :link',
         'message_link' => 'Kunjungi halaman ini untuk informasi lebih lanjut.',
     ],
     'show' => [
@@ -200,7 +200,7 @@ return [
         'joined_at' => 'Bergabung pada :date',
         'lastvisit' => 'Terakhir terlihat :date',
         'lastvisit_online' => 'Saat ini online',
-        'missingtext' => 'Mungkin kamu salah ketik! (atau pengguna ini telah di-ban)',
+        'missingtext' => 'Mungkin kamu salah ketik! (atau pengguna ini sudah di-ban)',
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
@@ -234,14 +234,14 @@ return [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
                 'defaults_info' => 'Pilihan sampul lainnya akan tersedia di masa mendatang',
-                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia. Kamu tidak lagi akan dapat memilih gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
+                'holdover_remove_confirm' => "Gambar sampul yang sebelumnya dipilih kini sudah tidak lagi tersedia. Kamu tidak lagi akan bisa memilih gambar ini setelah kamu beralih ke gambar sampul lain. Lanjut?",
                 'title' => 'Sampul',
 
                 'upload' => [
                     'broken_file' => 'Gambar gagal diproses. Periksa keabsahan gambar yang diunggah dan coba lagi.',
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
-                    'dropzone_info' => 'Kamu juga dapat meletakkan gambarmu di sini untuk mengunggah',
+                    'dropzone_info' => 'Kamu juga bisa meletakkan gambarmu di sini untuk mengunggah',
                     'size_info' => 'Ukuran gambar sampul yang disarankan adalah 2400x640',
                     'too_large' => 'Berkas yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Kali Tayangan Ulang Ditonton',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Tayangan Ulang yang Paling Banyak Ditonton',
                 ],
             ],
             'kudosu' => [
@@ -352,7 +352,7 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Kehilangan :amount kudosu karena suara yang diperoleh pada topik diskusi :post telah dianulir',
+                            'reset' => 'Kehilangan :amount kudosu karena suara yang diperoleh pada topik diskusi :post sudah dianulir',
                         ],
 
                         'delete' => [
@@ -382,7 +382,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Berdasarkan seberapa banyak kontribusi yang telah diberikan oleh pengguna ini terhadap moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
+                    '_' => 'Berdasarkan seberapa banyak kontribusi yang sudah diberikan oleh pengguna ini terhadap moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
                     'link' => 'halaman ini',
                 ],
             ],
@@ -444,7 +444,7 @@ return [
             'account_standing' => [
                 'title' => 'Kondisi Akun',
                 'bad_standing' => "Akun :username tidak sedang berada dalam kondisi yang baik :(",
-                'remaining_silence' => ':username akan dapat kembali berbicara :duration.',
+                'remaining_silence' => ':username akan bisa kembali berbicara :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Pelanggaran Terkini',
@@ -479,15 +479,15 @@ return [
         ],
 
         'not_found' => [
-            'reason_1' => 'Pengguna ini telah mengubah nama penggunanya.',
-            'reason_2' => 'Pengguna ini telah dinonaktifkan untuk sementara waktu karena memiliki riwayat masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
+            'reason_1' => 'Pengguna ini sudah mengubah nama penggunanya.',
+            'reason_2' => 'Pengguna ini sedang tidak tersedia untuk sementara waktu karena suatu masalah yang berhubungan dengan keamanan atau penyalahgunaan akun.',
             'reason_3' => 'Atau mungkin kamu salah ketik!',
             'reason_header' => 'Ada beberapa kemungkinan mengapa hal ini bisa terjadi:',
             'title' => 'Pengguna tidak ditemukan! ;_;',
         ],
         'page' => [
             'button' => 'sunting halaman profil',
-            'description' => '<strong>saya!</strong> adalah area pribadi pada halaman profilmu yang dapat kamu isi sesuka hati.',
+            'description' => '<strong>saya!</strong> adalah area pribadi pada halaman profilmu yang bisa kamu isi sesuka hati.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten halaman di sini',
 
@@ -497,7 +497,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Berkontribusi pada :link',
+            '_' => 'Telah menulis :link',
             'count' => ':count_delimited postingan forum|:count_delimited postingan forum',
         ],
         'rank' => [
@@ -519,7 +519,7 @@ return [
             'maximum_combo' => 'Kombo Maksimum',
             'medals' => 'Jumlah Medali',
             'play_count' => 'Jumlah Permainan',
-            'play_time' => 'Telah Bermain Selama',
+            'play_time' => 'Total Waktu Permainan',
             'ranked_score' => 'Skor Ranked',
             'replays_watched_by_others' => 'Jumlah Pemutaran Tayangan Ulang',
             'score_ranks' => 'Peringkat Skor',

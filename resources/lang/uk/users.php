@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Переглянутих повторів',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Найбільш переглянуті повтори',
                 ],
             ],
             'kudosu' => [

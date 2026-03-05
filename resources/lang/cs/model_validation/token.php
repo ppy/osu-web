@@ -9,11 +9,11 @@ return [
         'all_scope_no_mix' => '* není platný s jinými rozsahy',
         'client_missing_owner' => 'Klientovi chybí vlastník.',
         'client_unauthorized' => 'Klient není autorizován.',
-        'delegate_bot_only' => 'Delegace s klientskými údaji je k dispozici pouze pro chatboty.',
+        'delegate_bot_only' => 'Delegace s klientskými údaji je k dispozici pouze pro boty.',
         'client_credentials_only' => 'Tento rozsah je platný pouze pro client_credentials tokeny.',
         'delegate_invalid_combination' => 'Pro tuto kombinaci rozsahů není delegace podporována.',
         'delegate_required' => 'rozsah delegáta je vyžadován.',
         'empty' => 'Tokeny bez rozsahu nejsou platné.',
-        'bot_only' => 'Tento rozsah je dostupný pouze pro chatboty nebo pro vaše vlastní klienty.',
+        'bot_only' => 'Tento rozsah je dostupný pouze pro boty nebo pro tvoje vlastní klienty.',
     ],
 ];

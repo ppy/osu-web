@@ -24,8 +24,8 @@ return [
     ],
 
     'store' => [
-        'existing' => 'Kamu telah memiliki verifikasi aplikasi autentikator yang terpasang.',
-        'ok' => 'Verifikasi aplikasi autentikator telah diatur',
+        'existing' => 'Kamu sudah memiliki verifikasi aplikasi autentikator yang terpasang.',
+        'ok' => 'Verifikasi aplikasi autentikator sudah diatur',
         'restart' => 'Terjadi kesalahan. Silakan mulai ulang proses ini.',
     ],
 ];

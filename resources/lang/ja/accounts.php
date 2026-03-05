@@ -106,7 +106,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'アニメ調のビートマップカバーを表示する',
         'beatmapset_show_nsfw' => 'ビートマップ内の不適切なコンテンツの警告を非表示にする',
         'beatmapset_title_show_original' => 'ビートマップのメタデータを元の言語で表示',
         'title' => 'オプション',
