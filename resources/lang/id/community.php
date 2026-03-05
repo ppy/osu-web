@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Berkat dukunganmu, kami dapat menghubungi lebih banyak musisi yang kece dan melisensi lebih banyak lagu untuk digunakan di osu!.',
+                'description' => 'Berkat dukunganmu, kami bisa menghubungi lebih banyak musisi yang kece dan melisensi lebih banyak lagu untuk digunakan di osu!.',
                 'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
@@ -38,12 +38,12 @@ return [
             ],
             'bounty-program' => [
                 'title' => 'Program Open Source Bounty',
-                'description' => 'Sebagian dari dana ini juga disalurkan kepada para kontributor komunitas yang telah menyisihkan waktu dan upaya mereka demi membuat osu! menjadi lebih baik.',
+                'description' => 'Sebagian dari dana ini juga disalurkan kepada para kontributor komunitas yang sudah menyisihkan waktu dan upaya mereka demi membuat osu! menjadi lebih baik.',
                 'link_text' => 'Cari tahu lebih lanjut seputar program Open Source Bounty &raquo;',
             ],
         ],
         'perks' => [
-            'title' => 'Menarik! Keuntungan apa saja yang akan saya dapatkan?',
+            'title' => 'Keren! Keuntungan apa saja yang akan saya dapatkan?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Dapatkan akses yang cepat dan mudah untuk mencari dan mengunduh beatmap tanpa harus meninggalkan permainan.',
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Lebih Banyak Unggahan',
-                'description' => 'Kuota tambahan bagimu untuk dapat mengunggah lebih banyak beatmap (dengan rincian satu kuota tambahan per beatmap Ranked yang kamu miliki, hingga maksimum 10 beatmap)',
+                'description' => 'Slot tambahan untuk mengunggah beatmap yang berstatus Pending (satu slot tambahan per beatmap Ranked yang Anda miliki) hingga maksimum 10 beatmap Pending.',
             ],
 
             'early_access' => [
@@ -81,12 +81,12 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomisasi Profil',
-                'description' => "Buat halaman profilmu lebih menarik dengan tambahan gambar latar atau kolom \"saya!\" yang dapat disesuaikan sesuka hati.",
+                'description' => "Buat halaman profilmu lebih menonjol dengan tambahan gambar latar atau kolom \"saya!\" yang bisa kamu sesuaikan sesuka hati.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Opsi Pencarian Beatmap Tambahan',
-                'description' => 'Dengan supporter tag, kamu akan dapat mencari beatmap mana saja yang pernah kamu mainkan beserta peringkat yang telah kamu torehkan.',
+                'description' => 'Dengan supporter tag, kamu bisa mencari beatmap mana saja yang pernah kamu mainkan beserta peringkat yang telah kamu torehkan.',
             ],
 
             'yellow_fellow' => [
@@ -101,35 +101,35 @@ return [
 
             'change_username' => [
                 'title' => 'Perubahan Nama Pengguna',
-                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu akan dapat mengubah nama penggunamu secara cuma-cuma.',
+                'description' => 'Apabila kamu pernah memiliki supporter tag, kamu akan bisa mengubah nama penggunamu secara cuma-cuma.',
             ],
 
             'skinnables' => [
                 'title' => 'Elemen Skinning Tambahan',
-                'description' => 'Buat tampilan osu! milikmu menjadi lebih personal dengan berbagai elemen tambahan yang dapat kamu kustomisasi sesuka hatimu, seperti gambar latar pada layar menu utama.',
+                'description' => 'Buat tampilan osu! milikmu menjadi lebih personal dengan berbagai elemen tambahan yang bisa kamu kustomisasi sesuka hatimu, seperti latar menu utama.',
             ],
 
             'feature_votes' => [
                 'title' => 'Hak Suara Ekstra',
-                'description' => 'Hak suara tambahan yang dapat kamu dipergunakan pada sub-forum Feature Requests. (2 suara per bulan)',
+                'description' => 'Hak suara untuk meminta fitur. (2 suara per bulan)',
             ],
 
             'sort_options' => [
                 'title' => 'Opsi Penyortiran',
-                'description' => 'Kemampuan untuk dapat mengakses papan peringkat negara / teman / mod dari dalam permainan.',
+                'description' => 'Kemampuan untuk melihat papan peringkat negara / teman / mod dari dalam permainan.',
             ],
 
             'more_favourites' => [
                 'title' => 'Lebih Banyak Favorit',
-                'description' => 'Batas jumlah beatmap yang dapat kamu favoritkan bertambah dari :normally &rarr; :supporter',
+                'description' => 'Batas jumlah beatmap yang bisa kamu favoritkan bertambah dari :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Lebih Banyak Teman',
-                'description' => 'Batas jumlah teman yang dapat kamu miliki bertambah dari :normally &rarr; :supporter',
+                'description' => 'Batas jumlah teman yang bisa kamu miliki bertambah dari :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',
-                'description' => 'Pada umumnya, jumlah beatmap Pending yang dapat kamu unggah pada satu waktu akan terbatas hanya pada bilangan :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:bonus_max beatmap).<br/><br/> Dengan supporter tag, kamu akan dapat mengunggah lebih banyak beatmap hingga bilangan :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:supporter_bonus_max beatmap).',
+                'description' => 'Pada umumnya, jumlah beatmap Pending yang bisa kamu unggah pada satu waktu terbatas hanya pada :base beatmap ditambah :bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:bonus_max beatmap).<br/><br/> Dengan supporter tag, batas ini akan bertambah hingga :supporter_base beatmap ditambah :supporter_bonus beatmap per beatmap Ranked yang kamu miliki (hingga maks. +:supporter_bonus_max beatmap).',
             ],
             'friend_filtering' => [
                 'title' => 'Papan Peringkat Teman',
@@ -138,13 +138,13 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => 'Terima kasih atas dukunganmu! Sejauh ini, kamu telah berkontribusi senilai total :dollars, yang memberikan kamu tag "Supporter" selama :duration.',
+            'contribution_with_duration' => 'Terima kasih atas dukunganmu! Sejauh ini, kamu sudah berkontribusi senilai total :dollars, yang memberikan kamu tag "Supporter" selama :duration.',
             'not_yet' => "Kamu belum pernah memiliki supporter tag :(",
             'valid_until' => 'Tag supporter yang kamu miliki saat ini berlaku hingga tanggal :date!',
-            'was_valid_until' => 'Tag supporter kamu telah berakhir pada :date.',
+            'was_valid_until' => 'Tag supporter kamu berlaku hingga tanggal :date.',
 
             'gifted' => [
-                '_' => 'Dari jumlah ini, kamu telah menghadiahkan tag senilai :dollars kepada :users yang lamanya mencakup :duration. Terima kasih atas kemurahan hatimu!',
+                '_' => 'Dari jumlah ini, kamu sudah menghadiahkan tag senilai :dollars kepada :users yang lamanya mencakup :duration. Terima kasih atas kemurahan hatimu!',
                 'users' => ':count_delimited pengguna lainnya|:count_delimited[ pengguna lainnya',
             ],
         ],

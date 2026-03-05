@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Süre aşırı uzun.',
             'name_too_long' => 'Oda ismi çok uzun.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

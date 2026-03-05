@@ -158,10 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => 'доступно :count_delimited место|доступно :count_delimited места|доступно :count_delimited мест',
-            'first_places' => '',
+            'first_places' => 'Первые места',
             'leader' => 'Капитан команды',
             'rank' => 'Рейтинг в мире',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Рейтинговые карты',
         ],
     ],
 

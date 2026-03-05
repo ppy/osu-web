@@ -17,14 +17,14 @@ return [
         'identify' => 'Identifikovat tě a prohlížet tvůj veřejný profil.',
 
         'chat' => [
-            'read' => 'Číst za vás zprávy.',
-            'write' => 'Posílejte zprávy vaším jménem.',
-            'write_manage' => 'Připojovat se a odcházet z kanálů za vás.',
+            'read' => 'Číst zprávy tvým jménem.',
+            'write' => 'Posílat zprávy tvým jménem.',
+            'write_manage' => 'Připojovat se a odcházet z kanálů tvým jménem.',
         ],
 
         'forum' => [
-            'write' => 'Vytvářet a upravovat témata fóra a příspěvky vaším jménem.',
-            'write_manage' => 'Spravovat témata fóra a příspěvky vaším jménem.',
+            'write' => 'Vytvářet a upravovat témata fóra a příspěvky tvým jménem.',
+            'write_manage' => 'Spravovat témata fóra a příspěvky tvým jménem.',
         ],
 
         'friends' => [
@@ -32,9 +32,9 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Vytvářet a spravovat místnosti her pro více hráčů tvým jménem.',
         ],
 
-        'public' => 'Číst veřejná data vaším jménem.',
+        'public' => 'Číst veřejná data tvým jménem.',
     ],
 ];

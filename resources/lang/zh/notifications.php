@@ -130,9 +130,9 @@ return [
                 '_' => '新的战队信息',
 
                 'team' => [
-                    'channel_team' => ':username 说：“:title”',
-                    'channel_team_compact' => ':username 说：“:title”',
-                    'channel_team_group' => ':username 说：“:title”',
+                    'channel_team' => ':username 说：":title"',
+                    'channel_team_compact' => ':username 说：":title"',
+                    'channel_team_group' => ':username 说：":title"',
                 ],
             ],
         ],
@@ -222,7 +222,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => '新闻',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
@@ -241,13 +241,13 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)。',
+                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)',
                 'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱 (Loved)',
-                'beatmapset_nominate' => '谱面 ":title" 已提名。',
+                'beatmapset_nominate' => '谱面 ":title" 已被提名',
                 'beatmapset_qualify' => '谱面 ":title" 已经得到足够数量的提名，并进入上架队列',
-                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)。',
+                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)',
                 'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱 (Loved)',
-                'beatmapset_reset_nominations' => '谱面 ":title" 的提名已重置',
+                'beatmapset_reset_nominations' => '谱面 ":title" 的提名已被重置',
             ],
 
             'comment' => [

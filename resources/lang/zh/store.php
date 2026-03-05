@@ -193,7 +193,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => '输入玩家名并检查是否可用',
+        'check' => '输入玩家名并检查是否可用！',
         'checking' => '正在检查 :username 是否可用...',
         'placeholder' => '想要使用的玩家名',
         'label' => '新玩家名',

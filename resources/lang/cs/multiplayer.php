@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Doba je příliě dlouhá.',
             'name_too_long' => 'Název místnosti je příliš dlouhý.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [
