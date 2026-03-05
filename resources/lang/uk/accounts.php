@@ -106,7 +106,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'відображати аніме-обкладинки у бітмапах',
         'beatmapset_show_nsfw' => 'приховати попередження щодо відвертого вмісту в мапах',
         'beatmapset_title_show_original' => 'показувати метадані мовою оригіналу',
         'title' => 'Налаштування',

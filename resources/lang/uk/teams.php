@@ -158,10 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited слот доступний|:count_delimited слотів доступно',
-            'first_places' => '',
+            'first_places' => 'Перші місця',
             'leader' => 'Лідер команди',
             'rank' => 'Ранг',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Рейтингові бітмапи',
         ],
     ],
 

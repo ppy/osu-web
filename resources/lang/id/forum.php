@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => 'Pasang gambar sampul',
             'button' => 'Unggah gambar sampul',
-            'info' => 'Ukuran gambar sampul yang disarankan adalah :dimensions. Kamu juga dapat meletakkan gambar di sini untuk mengunggahnya.',
+            'info' => 'Ukuran gambar sampul yang disarankan adalah :dimensions. Kamu juga bisa meletakkan gambar di sini untuk mengunggahnya.',
         ],
 
         'destroy' => [
@@ -38,9 +38,9 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => 'Tandai forum ini sebagai telah dibaca',
-        'forums' => 'Tandai forum yang dipilih sebagai telah dibaca',
-        'busy' => 'Menandai sebagai telah dibaca...',
+        'forum' => 'Tandai forum ini sebagai sudah dibaca',
+        'forums' => 'Tandai forum yang dipilih sebagai sudah dibaca',
+        'busy' => 'Menandai sebagai sudah dibaca...',
     ],
 
     'post' => [
@@ -81,7 +81,7 @@ return [
         'deleted' => 'topik yang dihapus',
         'go_to_latest' => 'lihat postingan terbaru',
         'go_to_unread' => 'lihat pos pertama yang belum dibaca',
-        'has_replied' => 'Kamu telah mengirimkan balasan pada topik ini',
+        'has_replied' => 'Kamu sudah mengirimkan balasan pada topik ini',
         'in_forum' => 'pada forum :forum',
         'latest_post' => ':when oleh :user',
         'latest_reply_by' => 'balasan terbaru oleh :user',
@@ -167,7 +167,7 @@ return [
                 'post_edited' => 'Postingan disunting',
                 'restore_post' => 'Postingan dipulihkan',
                 'restore_topic' => 'Topik dipulihkan',
-                'split_destination' => 'Postingan-postingan yang telah dipisah dipindahkan',
+                'split_destination' => 'Postingan yang dipisah dipindahkan',
                 'split_source' => 'Pisahkan postingan',
                 'topic_type' => 'Jenis topik ditentukan',
                 'topic_type_changed' => 'Tipe topik diubah',
@@ -234,12 +234,12 @@ return [
                 'length_days_suffix' => 'hari',
                 'length_info' => 'Kosongkan untuk jajak pendapat yang tidak pernah berakhir',
                 'max_options' => 'Pilihan per pengguna',
-                'max_options_info' => 'Jumlah pilihan yang dapat dipilih oleh masing-masing pengguna.',
+                'max_options_info' => 'Jumlah pilihan yang bisa dipilih oleh masing-masing pengguna.',
                 'options' => 'Pilihan',
-                'options_info' => 'Tempatkan masing-masing pilihan pada baris baru. Kamu dapat menyertakan hingga 10 pilihan.',
+                'options_info' => 'Tempatkan masing-masing pilihan pada baris baru. Kamu bisa menyertakan hingga 10 pilihan.',
                 'title' => 'Pertanyaan',
                 'vote_change' => 'Izinkan pemilihan ulang.',
-                'vote_change_info' => 'Apabila diaktifkan, para pengguna akan dapat mengubah pilihan mereka.',
+                'vote_change_info' => 'Apabila diaktifkan, para pengguna akan bisa mengubah pilihan mereka.',
             ],
         ],
 
@@ -254,13 +254,13 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Topik ini telah dikunci dan tidak dapat dibalas',
+            'is_locked' => 'Topik ini sudah dikunci dan tidak dapat dibalas',
             'to_0' => 'Buka kunci topik',
             'to_0_confirm' => 'Buka kunci topik?',
-            'to_0_done' => 'Kunci topik telah dibuka',
+            'to_0_done' => 'Kunci topik dibuka',
             'to_1' => 'Kunci topik',
             'to_1_confirm' => 'Kunci topik?',
-            'to_1_done' => 'Topik telah dikunci',
+            'to_1_done' => 'Topik dikunci',
         ],
 
         'moderate_move' => [
@@ -280,8 +280,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => 'Tampilkan postingan yang telah dihapus',
-            'hide' => 'Sembunyikan postingan yang telah dihapus',
+            'show' => 'Tampilkan postingan yang dihapus',
+            'hide' => 'Sembunyikan postingan yang dihapus',
         ],
 
         'show' => [
@@ -293,7 +293,7 @@ return [
                 'do' => 'Promosikan permintaan ini',
 
                 'info' => [
-                    '_' => 'Ini adalah sebuah :feature_request. Fitur yang diajukan dapat di-vote lebih lanjut oleh :supporters.',
+                    '_' => 'Ini adalah sebuah :feature_request. Fitur yang diajukan bisa di-vote lebih lanjut oleh :supporters.',
                     'feature_request' => 'permintaan fitur',
                     'supporters' => 'para supporter',
                 ],
@@ -319,7 +319,7 @@ return [
 
                 'detail' => [
                     'end_time' => 'Jajak pendapat akan berakhir pada :time',
-                    'ended' => 'Jajak pendapat telah berakhir pada :time',
+                    'ended' => 'Jajak pendapat berakhir pada :time',
                     'results_hidden' => 'Hasil jajak pendapat akan ditampilkan setelah pemungutan suara berakhir.',
                     'total' => 'Jumlah suara: :count',
                 ],

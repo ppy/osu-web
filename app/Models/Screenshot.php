@@ -79,6 +79,6 @@ class Screenshot extends Model
 
     private function storage(): Filesystem
     {
-        return \Storage::disk("{$GLOBALS['cfg']['filesystems']['default']}-screenshot");
+        return storage_disk('screenshot');
     }
 }

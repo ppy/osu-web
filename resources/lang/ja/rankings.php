@@ -56,8 +56,8 @@ return [
 
     'playlists' => [
         'charts' => 'スポットライト (旧)',
-        'featured' => '',
-        'season_room' => '',
+        'featured' => '特集',
+        'season_room' => 'シーズンルーム',
         'seasons' => 'シーズン',
     ],
 

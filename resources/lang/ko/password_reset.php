@@ -16,10 +16,10 @@ return [
         'invalid' => '인증 코드에 예상치 못한 오류가 있습니다.',
         'is_privileged' => '계정을 복구하려면 상위 관리자에게 문의해주세요.',
         'missing_key' => '요구됨.',
-        'too_many_requests' => '',
+        'too_many_requests' => '비밀번호 초기화 요청 제한에 도달했습니다. 계정을 복구하려면 지원팀에 문의해 주세요.',
         'too_many_tries' => '실패한 횟수가 너무 많습니다.',
         'user_not_found' => '요청하신 유저가 존재하지 않습니다.',
-        'wait_resend' => '',
+        'wait_resend' => '잠시만 기다려주세요.',
         'wrong_key' => '잘못된 코드입니다.',
     ],
 

@@ -133,11 +133,11 @@ return [
         ],
         '403' => [
             'error' => "Kamu tidak seharusnya berada di sini.",
-            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya.',
+            'description' => 'Kamu bisa mencoba untuk kembali ke halaman sebelumnya.',
         ],
         '401' => [
             'error' => "Kamu tidak seharusnya berada di sini.",
-            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin untuk masuk terlebih dahulu.',
+            'description' => 'Kamu bisa mencoba untuk kembali ke halaman sebelumnya. Atau mungkin untuk masuk ke akunmu.',
         ],
         '405' => [
             'error' => 'Halaman Tidak Ditemukan',
@@ -161,14 +161,14 @@ return [
         ],
         '503' => [
             'error' => 'Sedang dalam pemeliharaan!',
-            'description' => "Proses pemeliharaan pada umumnya dapat memakan waktu yang cukup beragam, mulai dari 5 detik hingga 10 menit. Apabila proses ini berlangsung lebih lama dari yang sewajarnya, kunjungi :link untuk informasi lebih lanjut.",
+            'description' => "Proses pemeliharaan pada umumnya menghabiskan waktu yang cukup beragam, mulai dari 5 detik hingga 10 menit. Apabila proses ini berlangsung lebih lama dari yang sewajarnya, kunjungi :link untuk informasi lebih lanjut.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat kamu berikan kepada tim layanan dukungan kami!",
+        'reference' => "Untuk berjaga-jaga, berikut ini adalah kode yang bisa kamu berikan kepada tim layanan dukungan kami!",
     ],
 
     'popup_login' => [

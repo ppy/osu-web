@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Увійдіть для пошуку команд',
             'more_simple' => 'Переглянути інші результати пошуку команд',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'Магазин osu!',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Пряма трансляція',
         ],
         'show' => [
             'admin' => [
