@@ -24,7 +24,7 @@ class BeatmapsetFile extends Model
 
     public static function storage(): Filesystem
     {
-        return \Storage::disk("{$GLOBALS['cfg']['filesystems']['default']}-central");
+        return storage_disk('central');
     }
 
     public function versionFiles(): HasMany
