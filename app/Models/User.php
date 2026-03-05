@@ -1826,6 +1826,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         $this
             ->tokens()
+            ->reorder()
             ->with('refreshToken')
             ->chunkById(1000, fn ($tokens) => $tokens->each->revokeRecursive());
     }

@@ -40,19 +40,19 @@ export default function Buttons(props: Props) {
       {visibleMenuItems.size > 0 && (
         <div className='score-buttons__menu'>
           <PopupMenuPersistent>
-            {(dismiss: () => void) => (
+            {(state) => (
               <div className='simple-menu'>
                 {visibleMenuItems.has('pin') &&
                   <ScorePin
                     className='simple-menu__item'
-                    onUpdate={dismiss}
+                    onUpdate={state.dismiss}
                     score={props.score}
                   />
                 }
                 {visibleMenuItems.has('report') &&
                   <ReportReportable
                     className='simple-menu__item'
-                    onFormOpen={dismiss}
+                    onFormOpen={state.dismiss}
                     reportableId={props.score.id.toString()}
                     reportableType={props.score.type}
                     user={props.score.user}

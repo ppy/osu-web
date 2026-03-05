@@ -63,7 +63,7 @@ export default class Details extends React.Component<Props> {
               {trans('legacy_irc_key.form.username')}
             </div>
             <div className='legacy-api-details__value'>
-              {user.username}
+              {user.username.replace(/ /g, '_')}
             </div>
           </div>
           <div className='legacy-api-details__entry'>

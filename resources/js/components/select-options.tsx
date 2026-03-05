@@ -11,7 +11,7 @@ const bn = 'select-options';
 
 export interface Option {
   id: string | number | null;
-  text: string;
+  text: string | React.ReactNode;
 }
 
 export interface OptionRenderProps<T extends Option> {
@@ -74,9 +74,7 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
           {this.renderOption({
             children: (
               <>
-                <div className='u-ellipsis-overflow'>
-                  {this.props.selected?.text}
-                </div>
+                {this.renderText(this.props.selected.text)}
 
                 <div className={`${bn}__decoration`}>
                   <span className='fas fa-chevron-down' />
@@ -133,17 +131,21 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
 
   private renderOptions() {
     return this.props.options.map((option) => this.renderOption({
-      children: (
-        <div className='u-ellipsis-overflow'>
-          {option.text}
-        </div>
-      ),
+      children: this.renderText(option.text),
       onClick: (event: React.MouseEvent) => {
         this.optionSelected(event, option);
       },
       option,
       selected: this.props.selected?.id === option.id,
     }));
+  }
+
+  private renderText(text: T['text']) {
+    return typeof text === 'string' ? (
+      <div className='u-ellipsis-overflow'>
+        {text}
+      </div>
+    ) : text;
   }
 
   @action

@@ -708,6 +708,8 @@ class Room extends Model
             throw new InvariantException('realtime room must have exactly one playlist item');
         } elseif (!$this->isRealtime() && $playlistItemsCount < 1) {
             throw new InvariantException('room must have at least one playlist item');
+        } elseif (!$this->isRealtime() && $playlistItemsCount > $GLOBALS['cfg']['osu']['user']['max_items_in_playlist']) {
+            throw new InvariantException(osu_trans('multiplayer.room.errors.too_many_playlist_items'));
         }
 
         if (mb_strlen($this->name) > 100) {
