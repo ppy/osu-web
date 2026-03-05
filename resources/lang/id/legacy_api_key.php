@@ -8,7 +8,7 @@ return [
     'none' => 'Tidak ada kunci.',
 
     'docs' => [
-        '_' => 'Dokumentasi lebih lanjut seputar API osu! dapat dilihat di :github.',
+        '_' => 'Dokumentasi lebih lanjut seputar API osu! bisa dilihat di :github.',
         'github' => 'GitHub',
     ],
 
@@ -25,6 +25,6 @@ return [
     'warning' => [
         'line1' => 'Jangan bagikan informasi ini kepada siapa pun.',
         'line2' => "Tindakan ini sama halnya dengan memberikan kata sandimu.",
-        'line3' => 'Apabila kamu gegabah, akunmu akan dapat disusupi.',
+        'line3' => 'Harap untuk tidak membagikan informasi ini.',
     ],
 ];

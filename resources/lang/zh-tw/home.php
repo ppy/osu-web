@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => '登入以搜尋隊伍',
             'more_simple' => '查看更多團隊搜尋結果',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'osu! 商店',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => '精選直播',
         ],
         'show' => [
             'admin' => [

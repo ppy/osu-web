@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Ilgums ir pārāk garš.',
             'name_too_long' => 'Istabas vārds ir par garu.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

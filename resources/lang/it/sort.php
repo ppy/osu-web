@@ -11,7 +11,7 @@ return [
     'last_visit' => 'Attivo di recente',
     'new' => 'Recente',
     'old' => 'Vecchio',
-    'rank' => 'Rank',
+    'rank' => 'Classifica',
     'top' => 'Migliore',
     'username' => 'Nome utente',
 

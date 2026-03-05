@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Erstelle und verwalte selbst Mehrspielerräume.',
         ],
 
         'public' => 'In deinem Namen öffentliche Daten auslesen.',

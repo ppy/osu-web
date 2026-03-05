@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Záznamů přehráno',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Nejvíce sledované záznamy',
                 ],
             ],
             'kudosu' => [

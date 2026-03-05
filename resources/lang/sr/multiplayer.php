@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Трајање је предугачко.',
             'name_too_long' => 'Име собе је предугачко.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

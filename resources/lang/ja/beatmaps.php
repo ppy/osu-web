@@ -245,7 +245,7 @@ return [
             'prompt' => 'キーワードを入力・・・',
             'login_required' => 'ログインして検索する。',
             'options' => '検索の詳細設定',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'このページに表示されているプロフィールのトップランク数および実績は、各譜面におけるあなたの最高「標準化」（別名 "lazer"）スコアに基づいています。',
             'supporter_filter' => ':filters による絞り込みにはosu!サポータータグが必要です',
             'not-found' => '該当結果なし',
             'not-found-quote' => '・・・なにも見つからなかったようだ。',

@@ -16,10 +16,10 @@ return [
         'invalid' => 'Error inesperado en el código de verificación.',
         'is_privileged' => 'Por favor, póngase en contacto con un administrador de alto nivel para recuperar la cuenta.',
         'missing_key' => 'Requerido.',
-        'too_many_requests' => '',
+        'too_many_requests' => 'Se ha alcanzado el límite de solicitudes para restablecer la contraseña. Ponte en contacto con el soporte para recuperar tu cuenta.',
         'too_many_tries' => 'Demasiados intentos fallidos.',
         'user_not_found' => 'El usuario solicitado no existe.',
-        'wait_resend' => '',
+        'wait_resend' => 'Por favor, espera un momento.',
         'wrong_key' => 'Código incorrecto.',
     ],
 

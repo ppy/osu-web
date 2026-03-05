@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Pro hledání týmů se přihlaste',
             'more_simple' => 'Zobrazit další výsledky vyhledávání týmů',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Doporučené živé vysílání',
         ],
         'show' => [
             'admin' => [

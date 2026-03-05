@@ -106,7 +106,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'afficher les couvertures de beatmap de style anime',
         'beatmapset_show_nsfw' => 'masquer les avertissements de contenu explicite dans les beatmaps',
         'beatmapset_title_show_original' => 'afficher les métadonnées des beatmaps dans la langue d\'origine',
         'title' => 'Options',

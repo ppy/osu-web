@@ -158,14 +158,14 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited slot tersedia|:count_delimited slot tersedia',
-            'first_places' => '',
+            'first_places' => 'Peringkat pertama',
             'leader' => 'Ketua Tim',
             'rank' => 'Peringkat',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Beatmap Ranked',
         ],
     ],
 
     'store' => [
-        'ok' => 'Tim telah dibuat.',
+        'ok' => 'Tim dibuat.',
     ],
 ];
