@@ -64,14 +64,14 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Apabila kamu adalah kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entri riwayat perubahanmu dengan profil osu! kamu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
+        'info' => "Apabila kamu adalah kontributor repositori open-source osu!, kamu bisa menautkan akun GitHub kamu di sini untuk menghubungkan entri riwayat perubahanmu dengan profil osu! kamu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak bisa ditautkan.",
         'link' => 'Tautkan Akun GitHub',
         'title' => 'GitHub',
         'unlink' => 'Lepas Tautan Akun GitHub',
 
         'error' => [
-            'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
-            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi pada repositori osu! tidak dapat ditautkan.',
+            'already_linked' => 'Akun GitHub ini sudah terhubung ke pengguna lain.',
+            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi pada repositori osu! tidak bisa ditautkan.',
             'unverified_email' => 'Silakan verifikasi email utama kamu di GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
         ],
     ],
@@ -106,7 +106,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'tampilkan sampul beatmap bergaya anime',
         'beatmapset_show_nsfw' => 'sembunyikan peringatan untuk konten eksplisit pada beatmap',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
@@ -162,16 +162,16 @@ return [
         'status' => [
             'label' => 'status',
             'not_set' => 'Belum diatur',
-            'set' => 'Telah diatur',
+            'set' => 'Sudah diatur',
         ],
     ],
 
     'verification_completed' => [
-        'text' => 'Kamu dapat menutup tab/jendela ini sekarang',
+        'text' => 'Kamu bisa menutup tab/jendela ini sekarang',
         'title' => 'Verifikasi selesai',
     ],
 
     'verification_invalid' => [
-        'title' => 'Tautan verifikasi tidak valid atau telah kedaluwarsa',
+        'title' => 'Tautan verifikasi tidak valid atau sudah kedaluwarsa',
     ],
 ];

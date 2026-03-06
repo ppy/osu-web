@@ -106,7 +106,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => '顯示動漫風格的圖譜封面',
         'beatmapset_show_nsfw' => '隱藏成人內容圖譜的警告',
         'beatmapset_title_show_original' => '以原語言顯示圖譜資料',
         'title' => '選項',

@@ -6,8 +6,8 @@
 return [
     'load_failed' => 'Data gagal dimuat.',
     'missing_route' => 'URL tidak valid atau metode permintaan tidak tepat.',
-    'no_restricted_access' => 'Kamu tidak dapat melakukan tindakan ini ketika akunmu sedang di-restrict.',
-    'param_too_large' => 'Parameter :name hanya dapat mengandung maksimal :count_delimited item|Parameter :name hanya dapat mengandung maksimal :count_delimited item',
+    'no_restricted_access' => 'Kamu tidak bisa melakukan tindakan ini ketika akunmu sedang di-restrict.',
+    'param_too_large' => 'Parameter :name hanya bisa mengandung maksimal :count_delimited item|Parameter :name hanya bisa mengandung maksimal :count_delimited item',
     'supporter_only' => 'Kamu harus menjadi osu!supporter untuk menggunakan fitur ini.',
     'unknown' => 'Terjadi kesalahan yang tidak diketahui.',
 
@@ -29,11 +29,11 @@ return [
         'invalid_id' => 'ID skor tidak valid.',
     ],
     'search' => [
-        'default' => 'Tidak ada hasil pencarian yang dapat diperoleh. Silakan coba lagi nanti.',
+        'default' => 'Tidak ada hasil pencarian yang bisa diperoleh. Silakan coba lagi nanti.',
         'invalid_cursor_exception' => 'Parameter kursor yang ditentukan tidak valid.',
         'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Silakan coba lagi nanti.',
     ],
     'user_report' => [
-        'recently_reported' => "Kamu telah melaporkan hal ini baru-baru ini.",
+        'recently_reported' => "Kamu sudah melaporkan hal ini baru-baru ini.",
     ],
 ];

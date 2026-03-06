@@ -128,7 +128,7 @@ return [
             'reply' => [
                 'double_post' => '请编辑您的最后一条评论，而不是再发一遍。',
                 'locked' => '无法回复被锁定的主题。',
-                'no_forum_access' => '没有权限进入该板块。',
+                'no_forum_access' => '没有进入该板块的权限。',
                 'no_permission' => '没有权限，无法回复。',
 
                 'user' => [
@@ -139,8 +139,8 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => '没有权限，无法进入该板块。',
-                'no_permission' => '没有权限，无法创建新主题。',
+                'no_forum_access' => '没有权限进入该板块。',
+                'no_permission' => '没有创建新主题的权限。',
                 'forum_closed' => '该板块已关闭，无法发表新主题。',
             ],
 

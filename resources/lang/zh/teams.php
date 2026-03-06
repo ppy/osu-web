@@ -99,7 +99,7 @@ return [
 
             'applications' => [
                 'accept_confirm' => '确定将玩家 :user 添加进战队吗？',
-                'created_at' => '申请日期：',
+                'created_at' => '申请于',
                 'empty' => '目前没有加入请求。',
                 'empty_slots' => '剩余名额',
                 'empty_slots_overflow' => ':count_delimited 名玩家超限',
@@ -158,10 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited 栏位可用',
-            'first_places' => '',
+            'first_places' => '第一名',
             'leader' => '队长',
             'rank' => '排名',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => '已上架谱面',
         ],
     ],
 

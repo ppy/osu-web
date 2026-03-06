@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Bruger',
-                    'cover_presets' => '',
+                    'cover_presets' => 'Profil Cover Forudindstillinger',
                 ],
             ],
         ],

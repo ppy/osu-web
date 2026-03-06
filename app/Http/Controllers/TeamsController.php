@@ -176,9 +176,15 @@ class TeamsController extends Controller
             return ujs_redirect(route('teams.show', compact('team', 'ruleset')));
         }
 
-        $team->loadMissing(prefix_strings('members.user.', UserCompactTransformer::CARD_INCLUDES_PRELOAD));
+        $team->loadMissing(prefix_strings(
+            'members.user.',
+            array_diff(UserCompactTransformer::CARD_INCLUDES_PRELOAD, ['team']),
+        ));
 
         if (is_api_request()) {
+            foreach ($team->members as $member) {
+                $member->user?->setRelation('team', $team);
+            }
             return response()->json(json_item(
                 $team,
                 new TeamExtendedTransformer()->setRulesetId($rulesetId),

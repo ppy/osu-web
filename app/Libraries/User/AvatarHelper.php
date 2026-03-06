@@ -13,10 +13,12 @@ use App\Models\User;
 
 class AvatarHelper
 {
+    private const DISK = 'avatar';
+
     public static function set(User $user, ?\SplFileInfo $src): bool
     {
         $id = $user->getKey();
-        $storage = \Storage::disk(static::disk());
+        $storage = storage_disk(static::DISK);
 
         if ($src === null) {
             $storage->delete($id);
@@ -39,13 +41,8 @@ class AvatarHelper
         $value = $user->getRawAttribute('user_avatar');
 
         return present($value)
-            ? StorageUrl::make(static::disk(), strtr($value, '_', '?'))
+            ? StorageUrl::make(static::DISK, strtr($value, '_', '?'))
             : $GLOBALS['cfg']['osu']['avatar']['default'];
-    }
-
-    private static function disk(): string
-    {
-        return "{$GLOBALS['cfg']['filesystems']['default']}-avatar";
     }
 
     private static function purgeCache(int $id): void

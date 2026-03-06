@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Varaktigheten är för lång.',
             'name_too_long' => 'Rum namn är för långt.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

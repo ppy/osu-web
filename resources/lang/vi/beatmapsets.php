@@ -146,7 +146,7 @@ return [
             'nominators' => 'Người đề cử',
             'nsfw' => 'Nội dung không lành mạnh',
             'offset' => 'Offset online',
-            'pack_tags' => '',
+            'pack_tags' => 'Gói beatmap',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'storyboard' => 'Beatmap này chứa storyboard',
