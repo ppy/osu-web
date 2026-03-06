@@ -59,7 +59,7 @@ class BeatmapsetArchive
         }
 
         try {
-            return new BeatmapsetArchive(get_stream_filename($oszFile), $beatmapset);
+            return new static(get_stream_filename($oszFile), $beatmapset);
         } catch (BeatmapProcessorException) {
             // zip file is broken, nothing to do for now
             return null;
