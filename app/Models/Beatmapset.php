@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Enums\Ruleset;
-use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\ImageProcessorServiceException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
@@ -454,6 +453,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $urls;
     }
 
+    public function archive(): ?BeatmapsetArchive
+    {
+        return $this->memoize(__FUNCTION__, fn () => BeatmapsetArchive::fetch($this));
+    }
+
     public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
         $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
@@ -499,53 +503,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $this->update(['cover_updated_at' => $this->freshTimestamp()]);
     }
 
-    public function fetchBeatmapsetArchive()
-    {
-        $oszFile = tmpfile();
-        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
-            ?? throw new \Exception('no available mirror');
-        $url = $mirror->generateURL($this, true);
-
-        if ($url === false) {
-            return false;
-        }
-
-        $curl = curl_init($url);
-        curl_setopt_array($curl, [
-            CURLOPT_FILE => $oszFile,
-            CURLOPT_TIMEOUT => 30,
-        ]);
-        curl_exec($curl);
-
-        if (curl_errno($curl) > 0) {
-            throw new BeatmapProcessorException('Failed downloading osz: '.curl_error($curl));
-        }
-
-        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        // archive file is gone, nothing to do for now
-        if ($statusCode === 302) {
-            return false;
-        }
-        if ($statusCode !== 200) {
-            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
-        }
-
-        try {
-            return new BeatmapsetArchive(get_stream_filename($oszFile));
-        } catch (BeatmapProcessorException $e) {
-            // zip file is broken, nothing to do for now
-            return false;
-        }
-    }
-
     public function regenerateCovers(?array $sizesToRegenerate = null)
     {
         if (empty($sizesToRegenerate)) {
             $sizesToRegenerate = static::coverSizes();
         }
 
-        $osz = $this->fetchBeatmapsetArchive();
-        if ($osz === false) {
+        $osz = $this->archive();
+        if ($osz === null) {
             return false;
         }
 
@@ -595,6 +560,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+    }
+
+    public function regenerateAudioPreview(): mixed
+    {
+        $preview = $this->archive()->generateAudioPreview();
+
+        if ($preview === null) {
+            return false;
+        }
+
+        return storage_disk('beatmapset')->put(
+            "preview/{$this->getKey()}.mp3",
+            $preview,
+            ['Content-Type' => 'audio/ogg'],
+        );
     }
 
     public function allCoverImagesPresent()

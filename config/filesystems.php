@@ -84,6 +84,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'local-beatmapset' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/beatmapset'),
+            'visibility' => 'private',
+        ],
+
         'local-central' => [
             'driver' => 'local',
             'root' => public_path('/uploads/central'),
@@ -116,6 +122,12 @@ return [
             'key' => env('S3_AVATAR_KEY'),
             'region' => env('S3_AVATAR_REGION'),
             'secret' => env('S3_AVATAR_SECRET'),
+        ],
+
+        's3-beatmapset' => [
+            ...$s3Default,
+            'bucket' => presence(env('S3_BEATMAPSET_BUCKET')) ?? 'beatmapsets',
+            'visibility' => 'private',
         ],
 
         's3-central' => [
