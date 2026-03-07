@@ -88,6 +88,11 @@ type ScoreJsonAttributes = {
   user_id: number;
 } & (ScoreJsonAttributesLegacyMatch | ScoreJsonAttributesSolo | ScoreJsonAttributesMultiplayer);
 
+interface ScoreMetadata {
+  pp_delta: number;
+  rank_delta: number;
+}
+
 export interface ScoreJsonDefaultIncludes {
   current_user_attributes: {
     pin?: ScoreCurrentUserPinJson;
@@ -98,6 +103,7 @@ export interface ScoreJsonAvailableIncludes {
   beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
   match: Match;
+  metadata: ScoreMetadata | null;
   rank_country: number;
   rank_global: number;
   user: UserJson;
