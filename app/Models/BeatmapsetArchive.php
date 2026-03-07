@@ -164,13 +164,7 @@ class BeatmapsetArchive
 
     public function generateAudioPreview(): ?string
     {
-        foreach ($this->osuFileList() as $file) {
-            $parsedFile = $this->getParsedFile($file);
-
-            if ($parsedFile === null) {
-                continue;
-            }
-
+        foreach ($this->getParsedFiles() as $parsedFile) {
             $previewTime = $parsedFile->previewTime;
             $audioFilename = $parsedFile->audioFilename;
 
@@ -188,8 +182,8 @@ class BeatmapsetArchive
 
     public function scanBeatmapsForBackground(): ?string
     {
-        foreach ($this->osuFileList() as $file) {
-            $filename = $this->getParsedFile($file)?->backgroundImage;
+        foreach ($this->getParsedFiles() as $parsedFile) {
+            $filename = $parsedFile->backgroundImage;
 
             // return if background is set in the file and present in .osz
             if ($filename !== null && $this->hasFile($filename)) {
@@ -211,5 +205,16 @@ class BeatmapsetArchive
         }
 
         return $this->parsedFiles[$file];
+    }
+
+    private function getParsedFiles(): iterable
+    {
+        foreach ($this->osuFileList() as $file) {
+            $parsedFile = $this->getParsedFile($file);
+
+            if ($parsedFile !== null) {
+                yield $parsedFile;
+            }
+        }
     }
 }
