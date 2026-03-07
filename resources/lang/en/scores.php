@@ -20,6 +20,8 @@ return [
                 'country' => 'Country Rank',
                 'global' => 'Global Rank',
             ],
+
+            'watched' => 'Watched',
         ],
     ],
 

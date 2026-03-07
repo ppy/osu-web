@@ -52,6 +52,12 @@ export default function Player(props: Props) {
           {props.score.user.username}
         </strong>
         <span>
+          {trans('scores.show.player.watched')}
+        </span>
+        <strong>
+          {props.score.replay_views} times
+        </strong>
+        <span>
           {trans('scores.show.player.submitted_on')}
         </span>
         <strong>
