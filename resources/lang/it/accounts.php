@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'mostra copertine beatmap contenenti lo stile anime',
         'beatmapset_show_nsfw' => 'nascondi avvisi per i contenuti espliciti nelle beatmap',
         'beatmapset_title_show_original' => 'mostra i metadati della beatmap in lingua originale',
         'title' => 'Opzioni',
@@ -152,7 +153,7 @@ return [
 
     'user_totp' => [
         'title' => 'Autenticatore',
-        'usage_note' => 'Utilizza un\'app di autenticazione invece dell\'email per verificare l\'accesso. La verifica con email rimarrà comunque come opzione di riserva.',
+        'usage_note' => 'Utilizza un\'app di autenticazione al posto dell\'email per effettuare la verifica. La conferma tramite email rimarrà comunque come opzione di riserva.',
 
         'button' => [
             'remove' => 'Rimuovi',

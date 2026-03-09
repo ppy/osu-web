@@ -31,6 +31,10 @@ return [
             'read' => 'zobaczyć, kogo obserwujesz.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'odczytywać dane publiczne w twoim imieniu.',
     ],
 ];

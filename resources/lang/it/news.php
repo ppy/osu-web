@@ -9,7 +9,7 @@ return [
 
         'nav' => [
             'newer' => 'Post più recenti',
-            'older' => 'Post più vecchi',
+            'older' => 'Post meno recenti',
         ],
 
         'title' => [
@@ -28,7 +28,7 @@ return [
         'mappers_guild' => 'Mapper\'s Guild',
         'monthly_beatmapping_contest' => 'Monthly Beatmapping Contest',
         'merch_runs' => 'prodotti osu!',
-        'miscellaneous' => 'notizie varie',
+        'miscellaneous' => 'annunci vari',
         'official_contests' => 'concorsi ufficiali',
         'offline_events' => 'eventi offline',
         'online_events' => 'eventi online',
@@ -41,8 +41,8 @@ return [
         'by' => 'di :user',
 
         'nav' => [
-            'newer' => 'Post più recenti',
-            'older' => 'Post più vecchi',
+            'newer' => 'Post più recente',
+            'older' => 'Post meno recente',
         ],
 
         'title' => [

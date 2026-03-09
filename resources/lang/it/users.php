@@ -319,7 +319,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Cronologia Partite',
-                    'count_label' => 'Giocate',
+                    'count_label' => 'Partite',
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
@@ -332,6 +332,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => 'Cronologia Replay Guardati',
                     'count_label' => 'Replay guardati',
+                ],
+                'score_replay_stats' => [
+                    'title' => 'Replay Più Guardati',
                 ],
             ],
             'kudosu' => [
@@ -413,7 +416,7 @@ return [
                 'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata :percentage',
                 'view_details' => 'Visualizza dettagli',
-                'title' => 'Rank',
+                'title' => 'Classifiche',
 
                 'best' => [
                     'title' => 'Migliore Performance',

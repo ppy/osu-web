@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Du kan ikke deltage i konkurrencer, når du er mutet eller begrænset.',
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
         'drop_here' => 'Aflever dit bidrag her',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Download .osz',
-
-        'wrong_type' => [
-            'art' => 'Kun .jpg og .png filer er accepteret i denne konkurrence.',
-            'beatmap' => 'Kun .osu filer er accepteret i denne konkurrence.',
-            'music' => 'Kun .mp3 filer er accepteret i denne konkurrence.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '',
         'too_big' => 'Bidrag til denne konkurrence kan maks være op til :limit.',
     ],

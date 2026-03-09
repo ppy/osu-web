@@ -16,8 +16,10 @@ return [
         'invalid' => 'รหัสยืนยันมีปัญหาที่ไม่คาดคิด',
         'is_privileged' => 'ติดต่อ peppy เลย (พูดจริง)',
         'missing_key' => 'จำเป็น',
+        'too_many_requests' => '',
         'too_many_tries' => 'จำนวนการลองไม่สำเร็จมากเกินไป',
         'user_not_found' => 'ไม่พบผู้ใช้ดังกล่าว',
+        'wait_resend' => '',
         'wrong_key' => 'รหัสไม่ถูกต้อง.',
     ],
 

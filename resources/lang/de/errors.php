@@ -22,10 +22,6 @@ return [
             'generic' => 'Ein Fehler ist aufgetreten. Versuche die Seite neuzuladen.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Ungültigen Modus gewählt.',
-        'standard_converts_only' => 'Es gibt keine Ranglisten für den angeforderten Modus auf dieser Beatmap-Difficulty',
-    ],
     'checkout' => [
         'generic' => 'Bei der Vorbereitung deiner Bestellung ist ein Fehler aufgetreten.',
     ],

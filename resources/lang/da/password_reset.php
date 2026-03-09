@@ -16,8 +16,10 @@ return [
         'invalid' => 'Uventet fejl i verifikationskode.',
         'is_privileged' => 'Kontakt peppy lulz.',
         'missing_key' => 'Krævet.',
+        'too_many_requests' => '',
         'too_many_tries' => 'For mange mislykkede forsøg.',
         'user_not_found' => 'Brugeren eksisterer ikke.',
+        'wait_resend' => '',
         'wrong_key' => 'Forkert kode.',
     ],
 

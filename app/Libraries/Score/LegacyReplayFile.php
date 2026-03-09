@@ -109,8 +109,6 @@ class LegacyReplayFile implements ScoreReplayFileInterface
 
     private function storage(): Filesystem
     {
-        $disk = "{$GLOBALS['cfg']['filesystems']['default']}-legacy-replay-{$this->score->getMode()}";
-
-        return \Storage::disk($disk);
+        return storage_disk("legacy-replay-{$this->score->getMode()}");
     }
 }

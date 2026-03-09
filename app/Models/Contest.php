@@ -7,10 +7,8 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Traits\Memoizes;
-use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
-use Cache;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -145,6 +143,21 @@ class Contest extends Model
             [$stdDev, $mean] = $judgeScores[$vote->user_id];
             $vote->update(['total_score_std' => $stdDev === 0.0 ? 0 : ($vote->totalScore() - $mean) / $stdDev]);
         }
+
+        $this->resetCache();
+    }
+
+    public function entriesWithScore(): Collection
+    {
+        $entries = \Cache::remember(
+            $this->entriesWithScoresCacheKey(),
+            300,
+            fn () => $this->entries()->withScore($this)->get()
+        );
+
+        $this->setRelation('entries', $entries);
+
+        return $entries;
     }
 
     public function isBestOf(): bool
@@ -318,78 +331,53 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType(?User $user, array $preloads = [])
+    public function defaultJson(?User $user = null)
     {
-        $query = $this->entries()->with(['contest', ...$preloads]);
-
-        if ($this->show_votes) {
-            return Cache::remember(
-                "contest_entries_with_votes_{$this->id}",
-                300,
-                fn () => $query->with(['contest', ...$preloads])->withScore($this)->get()
-            );
-        } elseif ($this->isBestOf()) {
-            if ($user === null) {
-                return [];
-            }
-
-            $options = $this->getExtraOptions()['best_of'];
-            $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
-        }
-
-        return $query->get();
-    }
-
-    public function defaultJson($user = null)
-    {
+        $transformer = new ContestTransformer();
         $includes = [];
-        $preloads = [];
-
-        if ($this->type === 'art') {
-            $includes[] = 'artMeta';
-        }
+        $preloads = ['contest'];
 
         $showVotes = $this->show_votes;
         if ($showVotes) {
-            $includes[] = 'results';
+            $includes[] = 'users_voted_count';
         }
+
         if ($this->showEntryUser()) {
-            $includes[] = 'user';
             $preloads[] = 'user';
         }
 
-        $contestJson = json_item(
-            $this,
-            new ContestTransformer(),
-            $showVotes ? ['users_voted_count'] : null,
-        );
         if ($this->isVotingStarted()) {
-            $contestJson['entries'] = json_collection(
-                $this->entriesByType($user, $preloads),
-                new ContestEntryTransformer(),
-                $includes,
-            );
-        }
-
-        if (!empty($contestJson['entries'])) {
             if (!$showVotes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
-                    usort($contestJson['entries'], function ($a, $b) {
-                        return strnatcasecmp($a['title'], $b['title']);
-                    });
+                    $transformer->sort = ContestTransformer::SORT_ALPHA;
                 } else {
                     // We want the results to appear randomized to the user but be
                     // deterministic (i.e. we don't want the rows shuffling each time
                     // the user votes), so we seed based on user_id (when logged in)
-                    $seed = $user ? $user->user_id : time();
-                    seeded_shuffle($contestJson['entries'], $seed);
+                    $transformer->sort = ContestTransformer::SORT_SHUFFLE;
+                    $transformer->seed = $user->getKey() ?? time();
                 }
+            }
+
+            $includes[] = 'entries';
+            if ($this->type === 'art') {
+                $includes[] = 'entries.artMeta';
+            }
+            if ($showVotes) {
+                $includes[] = 'entries.results';
+            }
+            if ($this->showEntryUser()) {
+                $includes[] = 'entries.user';
             }
         }
 
+        // load relation and preloads.
+        $entries = $showVotes ? $this->entriesWithScore() : $this->entriesForUser($user);
+        $entries->loadMissing($preloads);
+
         return json_encode([
-            'contest' => $contestJson,
+            'contest' => json_item($this, $transformer, $includes),
             'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
         ]);
     }
@@ -421,8 +409,8 @@ class Contest extends Model
 
     public function usersVotedCount(): int
     {
-        return cache()->remember(
-            static::class.':'.__FUNCTION__.':'.$this->getKey(),
+        return \Cache::remember(
+            $this->usersVotedCountCacheKey(),
             300,
             fn () => $this->votes()->distinct('user_id')->count(),
         );
@@ -469,5 +457,41 @@ class Contest extends Model
     public function showEntryUser(): bool
     {
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
+    }
+
+    private function entriesForUser(?User $user): Collection
+    {
+        $query = $this->entries();
+
+        if ($this->isBestOf()) {
+            if ($user === null) {
+                $query->none();
+            } else {
+                $options = $this->getExtraOptions()['best_of'];
+                $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
+            }
+        }
+
+        $entries = $query->get();
+        // not sure if good idea to set the relation to a filtered query...
+        $this->setRelation('entries', $entries);
+
+        return $entries;
+    }
+
+    private function entriesWithScoresCacheKey(): string
+    {
+        return "contest:{$this->getKey()}:entries_with_scores";
+    }
+
+    private function resetCache(): void
+    {
+        \Cache::forget($this->entriesWithScoresCacheKey());
+        \Cache::forget($this->usersVotedCountCacheKey());
+    }
+
+    private function usersVotedCountCacheKey(): string
+    {
+        return "contest:{$this->getKey()}:users_voted_count";
     }
 }

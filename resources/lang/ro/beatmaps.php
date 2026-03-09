@@ -245,6 +245,7 @@ return [
             'prompt' => 'scrieți cuvinte cheie...',
             'login_required' => 'Conectează-te pentru a căuta.',
             'options' => 'Mai multe opțiuni de căutare',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Trebuie să fii un suporter osu! pentru a putea filtra prin :filters',
             'not-found' => 'niciun rezultat',
             'not-found-quote' => '... nup, nimic găsit.',

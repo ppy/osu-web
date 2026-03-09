@@ -253,69 +253,6 @@ return [
             'views' => 'beses na nakita',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Tanggalin ang panandang "idinagdag"',
-            'to_0_done' => 'Tinanggal ang panandang "idinagdag"',
-            'to_1' => 'Lagyan ng panandang "idinagdag"',
-            'to_1_done' => 'Nilagyan ng panandang "idinagdag"',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Tanggalin ang panandang "itinalaga"',
-            'to_0_done' => 'Tinanggal ang panandang "itinalaga"',
-            'to_1' => 'Lagyan ng panandang "itinalaga"',
-            'to_1_done' => 'Nilagyan ng panandang "itinalaga"',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Tanggalin ang panandang "kumpirmado"',
-            'to_0_done' => 'Tinanggal ang panandang "kumpirmado"',
-            'to_1' => 'Lagyan ng panandang "kumpirmado"',
-            'to_1_done' => 'Nilagyan ng panandang "kumpirmado"',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Tanggalin ang panandang "may kapareho"',
-            'to_0_done' => 'Tinanggal ang panandang "may kapareho"',
-            'to_1' => 'Lagyan ng panandang "may kapareho"',
-            'to_1_done' => 'Nilagyan ng panandang "may kapareho"',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Tanggalin ang panandang "hindi maaari"',
-            'to_0_done' => 'Tinanggal ang panandang "hindi maaari"',
-            'to_1' => 'Lagyan ng panandang "hindi maaari"',
-            'to_1_done' => 'Nilagyan ng panandang "hindi maaari"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Tanggalin ang panandang "naresolba"',
-            'to_0_done' => 'Tinanggal ang panandang "naresolba"',
-            'to_1' => 'Lagyan ng panandang "naresolba"',
-            'to_1_done' => 'Nilagyan ng panandang "naresolba"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => 'Sarado na ang paksang ito at hindi na maaari pang sagutan',
             'to_0' => 'I-unlock ang paksa',

@@ -47,7 +47,7 @@ return [
             'label' => [
                 'forum' => 'søg i forummerne',
                 'forum_children' => 'inkluder subforummer',
-                'include_deleted' => '',
+                'include_deleted' => 'inkluder slettede opslag',
                 'topic_id' => 'emne #',
                 'username' => 'forfatter',
             ],
@@ -64,6 +64,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => '',
         ],
 
@@ -92,10 +93,10 @@ return [
         'or' => 'eller',
         'os_version_or_later' => ':os_version eller nyere',
         'other_os' => 'andre platforme',
-        'quick_start_guide' => '',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'quick_start_guide' => 'opstartsvejledning',
+        'stable_text' => 'hvis du leder efter den ældre udgave',
+        'tagline_1' => 'lad os få dig',
+        'tagline_2' => 'i gang!',
         'video-guide' => 'video-guide',
 
         'help' => [
@@ -146,12 +147,15 @@ return [
             'new' => 'Nye Rangerede Beatmaps',
             'popular' => 'Populære Beatmaps',
             'by_user' => 'af :user',
-            'resets' => '',
+            'resets' => 'nulstiller :ends',
         ],
         'buttons' => [
             'download' => 'Hent osu!',
             'support' => 'Støt osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

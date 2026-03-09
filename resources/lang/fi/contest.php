@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Et voi osallistua kilpailuun jos olet rajoitetussa -tai mykistetyssä tilassa.',
         'preparation' => 'Valmistelemme tätä kilpailua. Odota rauhassa!',
         'drop_here' => 'Pudota työsi tähän',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Lataa .osz-tiedosto',
-
-        'wrong_type' => [
-            'art' => 'Tähän kilpailuun sallitaan ainoastaan .jpg- ja -png-tiedostot.',
-            'beatmap' => 'Tähän kilpailuun sallitaan ainoastaan .osu-tiedostot.',
-            'music' => 'Tähän kilpailuun sallitaan ainoastaan .mp3-tiedostot.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Tämän kilpailun kohteiden on oltava :widthx:height',
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],

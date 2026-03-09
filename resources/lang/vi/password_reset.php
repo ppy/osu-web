@@ -16,8 +16,10 @@ return [
         'invalid' => 'Lỗi không xác định trong mã xác nhận.',
         'is_privileged' => 'Liên hệ peppy ấy lulz.',
         'missing_key' => 'Bắt buộc.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Quá nhiều lần thử không thành công.',
         'user_not_found' => 'Người dùng này không tồn tại.',
+        'wait_resend' => '',
         'wrong_key' => 'Mã không chính xác.',
     ],
 

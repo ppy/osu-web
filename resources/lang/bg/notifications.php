@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Вече притежавате бийтмапа ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Новина ":title" има нов коментар',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

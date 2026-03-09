@@ -22,10 +22,6 @@ return [
             'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Wybrano nieprawidłowy tryb gry.',
-        'standard_converts_only' => 'Brak wyników na tym poziomie trudności dla wybranego trybu gry.',
-    ],
     'checkout' => [
         'generic' => 'Wystąpił błąd podczas przygotowywania twojego zamówienia.',
     ],

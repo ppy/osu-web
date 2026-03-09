@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'скриване на предупрежденията за бийтмапове с Explicit съдържание',
         'beatmapset_title_show_original' => 'показване на бийтмап метаданните с оригиналния им език',
         'title' => 'Hастройки',

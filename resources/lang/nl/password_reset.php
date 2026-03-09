@@ -16,8 +16,10 @@ return [
         'invalid' => 'Onverwachte fout in verificatiecode.',
         'is_privileged' => 'Neem contact op met een beheerder van een hoog niveau om je account te herstellen.',
         'missing_key' => 'Vereist.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Te veel mislukte pogingen.',
         'user_not_found' => 'Deze gebruiker bestaat niet.',
+        'wait_resend' => '',
         'wrong_key' => 'Onjuiste code.',
     ],
 

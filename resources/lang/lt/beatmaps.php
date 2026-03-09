@@ -245,6 +245,7 @@ return [
             'prompt' => 'įveskite raktažodį...',
             'login_required' => 'Prisijunkite, kad ieškoti.',
             'options' => 'Daugiau Paieškos Pasirinkimų',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Rūšiavimas pagal :filters reikalauja aktyvios osu!rėmėjo žymos',
             'not-found' => 'nėra rezultatų',
             'not-found-quote' => '... ne, nieko nerasta.',

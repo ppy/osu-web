@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'La durada és massa llarga.',
             'name_too_long' => 'El nom de la sala és massa llarg.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

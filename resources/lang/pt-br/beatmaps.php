@@ -245,6 +245,7 @@ return [
             'prompt' => 'digite em palavras-chave...',
             'login_required' => 'Conecte-se para pesquisar.',
             'options' => 'Mais opções de busca',
+            'rank_filter_note' => 'A classificação do perfil e os resultados exibidos nesta página são baseados nas suas notas mais altas "padronizadas" (também conhecido como "lazer") em beatmaps.',
             'supporter_filter' => 'Filtrar por :filters requer uma osu!supporter tag ativa',
             'not-found' => 'nenhum resultado',
             'not-found-quote' => '... não, nada encontrado.',

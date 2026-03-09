@@ -333,6 +333,9 @@ return [
                     'title' => 'Skatītie Atkārtojumi Vēsturiski',
                     'count_label' => 'Atkārtojumi Apskatīti',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Beidzamo Kudosu Vēsture',

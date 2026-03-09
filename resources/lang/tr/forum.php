@@ -253,69 +253,6 @@ return [
             'views' => 'görülme',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => '"eklendi" etiketini kaldır',
-            'to_0_done' => '"eklendi" etiketi kaldırıldı',
-            'to_1' => '"eklendi" etiketini ekle',
-            'to_1_done' => '"eklendi" etiketi eklendi',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '"atandı" etiketini kaldır',
-            'to_0_done' => '"atandı" etiketi kaldırıldı',
-            'to_1' => '"atandı" etiketini ekle',
-            'to_1_done' => '"atandı" etiketi eklendi',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '"Onaylandı" etiketini kaldır',
-            'to_0_done' => '"Onaylandı" etiketi kaldırıldı',
-            'to_1' => '"Onaylandı" etiketi koy',
-            'to_1_done' => '"Onaylandı" etiketi koyuldu',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '"kopya" etiketini kaldır',
-            'to_0_done' => '"kopya" etiketi kaldırıldı',
-            'to_1' => '"kopya" etiketi ekle',
-            'to_1_done' => '"kopya" etiketi eklendi',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '"geçersiz" etiketini kaldır',
-            'to_0_done' => '"geçersiz" etiketi kaldırıldı',
-            'to_1' => '"geçersiz" etiketi ekle',
-            'to_1_done' => '"geçersiz" etiketi eklendi',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '"çözüldü" etiketini kaldır',
-            'to_0_done' => '"çözüldü" etiketi kaldırıldı',
-            'to_1' => '"çözüldü" etiketi ekle',
-            'to_1_done' => '"çözüldü" etiketi eklendi',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '"osu!lazer" etiketini kaldır',
-            'to_0_done' => '"osu!lazer" etiketi kaldırıldı',
-            'to_1' => '"osu!lazer" etiketi ekle',
-            'to_1_done' => '"osu!lazer" etiketi eklendi',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '"osu!stable" etiketini kaldır',
-            'to_0_done' => '"osu!stable" etiketi kaldırıldı',
-            'to_1' => '"osu!stable" etiketini ekle',
-            'to_1_done' => '"osu!stable" etiketi eklendi',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '"osu!web" etiketini kaldır',
-            'to_0_done' => '"osu!web" etiketi kaldırıldı',
-            'to_1' => '"osu!web" etiketini ekle',
-            'to_1_done' => '"osu!web" etiketi eklendi',
-        ],
-
         'lock' => [
             'is_locked' => 'Bu konu kilitli ve yanıtlanamaz',
             'to_0' => 'Konu kilidini aç',

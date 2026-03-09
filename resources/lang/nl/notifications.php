@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Je bent nu gast van beatmap ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Nieuws ":title" heeft nieuwe reacties',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

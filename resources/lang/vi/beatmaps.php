@@ -245,6 +245,7 @@ return [
             'prompt' => 'nhập từ khóa...',
             'login_required' => 'Đăng nhập để tìm kiếm.',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',

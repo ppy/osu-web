@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Duration is too long.',
             'name_too_long' => 'Room name is too long.',
+            'too_many_playlist_items' => 'Too many playlist items.',
         ],
 
         'status' => [

@@ -245,6 +245,7 @@ return [
             'prompt' => 'upiši ključne riječi...',
             'login_required' => 'Prijavi se za pretraživanje.',
             'options' => 'Još opcija pretraživanja',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtriranje prema :filters zahtijeva aktivnu osu!supporter oznaku',
             'not-found' => 'nema rezultata',
             'not-found-quote' => '... ne, ništa nije pronađeno.',

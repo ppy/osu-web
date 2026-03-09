@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Ahora eres un invitado en el mapa «:title»',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'La noticia «:title» tiene nuevos comentarios',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

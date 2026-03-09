@@ -333,6 +333,9 @@ return [
                     'title' => 'História Pozretých Replayov',
                     'count_label' => 'Počet zhliadnutích hier',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nedávna Kudosu História',

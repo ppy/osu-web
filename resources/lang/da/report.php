@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld besked',
+        'title' => 'Anmeld :usernames besked?',
     ],
 
     'scores' => [

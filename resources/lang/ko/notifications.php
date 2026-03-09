@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => '당신은 이제 비트맵 ":title"의 게스트가 되었습니다.',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '뉴스 ":title"에 새로운 댓글이 달렸습니다.',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '뉴스 (:series): ":title"',
             ],
         ],
 

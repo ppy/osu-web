@@ -333,6 +333,9 @@ return [
                     'title' => 'Lịch Sử Replay Được Xem',
                     'count_label' => 'Replay Đã Xem',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Lịch Sử Kudosu Gần Đây',

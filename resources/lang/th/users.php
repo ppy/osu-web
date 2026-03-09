@@ -334,6 +334,9 @@ return [
                     'title' => 'ประวัติการดูรีเพลย์',
                     'count_label' => 'การดูรีเพลย์',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'ประวัติ Kudosu ล่าสุด',

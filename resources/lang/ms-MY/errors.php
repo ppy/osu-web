@@ -22,10 +22,6 @@ return [
             'generic' => 'Ralat telah berlaku. Cuba segar semula halaman.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Mod tidak sah ditentukan.',
-        'standard_converts_only' => 'Tiada markah tersedia untuk mod pintaan pada kesukaran peta rentak ini.',
-    ],
     'checkout' => [
         'generic' => 'Ralat berlaku ketika penyiapan semak keluar anda.',
     ],

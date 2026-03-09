@@ -245,6 +245,7 @@ return [
             'prompt' => '검색어를 입력하세요...',
             'login_required' => '검색하려면 로그인하세요.',
             'options' => '검색 옵션 더 보기',
+            'rank_filter_note' => '',
             'supporter_filter' => ':filters로 검색하려면 osu! 서포터 태그가 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',

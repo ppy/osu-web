@@ -152,7 +152,7 @@ return [
         'username' => 'Гость',
         'error' => 'Вы должны войти чтобы сделать это.',
     ],
-    'logout_confirm' => 'Вы точно хотите выйти? :(',
+    'logout_confirm' => 'Вы действительно хотите выйти? :(',
     'report' => [
         'button_text' => 'Пожаловаться',
         'comments' => 'Комментарий',
@@ -175,10 +175,10 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Нечестная игра / читы',
+            'cheating' => 'Читерство',
             'copyright_infringement' => 'Нарушение авторских прав',
             'inappropriate_chat' => 'Неподобающее поведение в чате',
-            'insults' => 'Оскорбление меня / других',
+            'insults' => 'Оскорбление меня/других',
             'multiple_accounts' => 'Использование нескольких аккаунтов',
             'nonsense' => 'Вздор',
             'other' => 'Другая (напишите ниже)',
@@ -332,6 +332,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => 'История просмотров записей игр',
                     'count_label' => 'Просмотры:',
+                ],
+                'score_replay_stats' => [
+                    'title' => 'Самые просматриваемые записи игр',
                 ],
             ],
             'kudosu' => [
@@ -514,9 +517,9 @@ return [
             'level' => 'Уровень :level',
             'level_progress' => 'прогресс до следующего уровня',
             'maximum_combo' => 'Максимальное комбо',
-            'medals' => 'Медалей',
+            'medals' => 'Медали',
             'play_count' => 'Количество игр',
-            'play_time' => 'Времени в игре',
+            'play_time' => 'Время в игре',
             'ranked_score' => 'Рейтинговые очки',
             'replays_watched_by_others' => 'Просмотров записей игр другими',
             'score_ranks' => 'Рейтинг по очкам',

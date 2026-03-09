@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
             'locked' => [
-                '_' => 'Si us plau, contacta amb el :accounts si necessites que s\'actualitzi el teu correu electrònic.',
+                '_' => 'Si us plau, contacta amb :accounts si necessites que s\'actualitzi el teu correu electrònic.',
                 'accounts' => 'equip de suport de comptes',
             ],
         ],
@@ -82,7 +82,7 @@ return [
         'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
         'news_post' => 'rep notificacions de publicacions noves',
         'title' => 'Notificacions',
-        'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creis or responguis',
+        'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que tu hagis creat o respost',
 
         'options' => [
             '_' => 'opcions d\'entrega',
@@ -106,12 +106,13 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'oculta els avisos per al contingut explícit en mapes',
         'beatmapset_title_show_original' => 'mostra les metadades del mapa en l\'idioma original',
         'title' => 'Opcions',
 
         'beatmapset_download' => [
-            '_' => 'tipus de baixada de beatmap predeterminat',
+            '_' => 'tipus de baixada de mapa predeterminat',
             'all' => 'amb vídeo si està disponible',
             'direct' => 'obre a osu!direct',
             'no_video' => 'sense vídeo',
@@ -129,7 +130,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloca els missatges privats de persones que no són a la llista d\'amics',
         'hide_online' => 'amaga la teva presència en línia',
-        'hide_online_info' => 'Va relacionat amb el mode «Mostra\'m fora de línia» a l\'osu!lazer.',
+        'hide_online_info' => 'va relacionat amb el mode «Mostra\'m desconnectat» a l\'osu!lazer',
         'title' => 'Privadesa',
     ],
 
@@ -151,12 +152,12 @@ return [
     ],
 
     'user_totp' => [
-        'title' => 'Aplicació Authenticator',
+        'title' => 'Aplicació d\'autenticació',
         'usage_note' => 'Feu servir l\'aplicació Authenticator en lloc de la verificació per correu. La verificació per correu estarà disponible com a via alternativa.',
 
         'button' => [
             'remove' => 'Trau',
-            'setup' => 'Afegeix l\'aplicació Authenticator',
+            'setup' => 'Afegeix l\'aplicació d\'autenticació',
         ],
         'status' => [
             'label' => 'estat',

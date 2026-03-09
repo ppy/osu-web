@@ -45,7 +45,7 @@ return [
             'head_to_head' => '个人',
             'tag_coop' => '接力',
             'tag_team_versus' => '组队接力',
-            'team_versus' => '组队',
+            'team_versus' => '组队对战',
         ],
 
         'teams' => [

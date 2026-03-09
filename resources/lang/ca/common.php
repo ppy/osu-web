@@ -126,7 +126,7 @@ return [
 
     'pagination' => [
         'previous' => 'prev',
-        'next' => 'seg',
+        'next' => 'següent',
     ],
 
     'score_count' => [

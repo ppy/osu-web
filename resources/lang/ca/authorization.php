@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Què tal si en comptes d\'això juguem una mica d\'osu!?',
+    'play_more' => 'Què et sembla si en comptes juguem una mica d\'osu!?',
     'require_login' => 'Si us plau, inicia sessió per continuar.',
-    'require_verification' => 'Si us plau, verifiqueu per continuar.',
+    'require_verification' => 'Si us plau, verifiqueu-vos per continuar.',
     'restricted' => "No es pot fer mentre estigui restringit.",
     'silenced' => "No es pot fer mentre estigui silenciat.",
     'unauthorized' => 'Accés denegat.',
@@ -33,7 +33,7 @@ return [
         'vote' => [
             'bot' => "No podeu votar en una discussió feta per un bot",
             'limit_exceeded' => 'Espera una mica abans de continuar votant',
-            'owner' => "No pots votar les teves discussions.",
+            'owner' => "No pots votar les teves pròpies discussions.",
             'wrong_beatmapset_state' => 'Només podeu votar en discussions de mapes pendents.',
         ],
     ],
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'No podeu editar una publicació eliminada.',
                 'locked' => 'L\'edició de la publicació està bloquejada.',
                 'no_forum_access' => 'Cal accés al fòrum sol·licitat.',
-                'no_permission' => 'Sense permís per a editar',
+                'no_permission' => 'No tens permís per editar.',
                 'not_owner' => 'Només el creador pot suprimir la publicació.',
                 'topic_locked' => 'No es pot editar la publicació d\'un tema bloquejat.',
             ],
@@ -134,7 +134,7 @@ return [
                 'user' => [
                     'require_login' => 'Si us plau, inicia sessió per respondre.',
                     'restricted' => "No podeu respondre mentre estigui restringit.",
-                    'silenced' => "No podeu respondre mentre estigui silenciat.",
+                    'silenced' => "No podeu respondre mentre estigueu silenciat.",
                 ],
             ],
 
@@ -145,7 +145,7 @@ return [
             ],
 
             'vote' => [
-                'no_forum_access' => 'Cal accés al fòrum sol·licitat.',
+                'no_forum_access' => 'Requereixes d\'accés al fòrum sol·licitat.',
                 'over' => 'L\'enquesta va acabar i ja no es pot votar.',
                 'play_more' => 'Necessites jugar més abans de votar al fòrum.',
                 'voted' => 'Canviar el vot no és permès.',

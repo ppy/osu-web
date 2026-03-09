@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Se fler lag sökresultat',
         ],
 
@@ -83,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'se denna sida för mer information',
-        'download' => '',
+        'download' => 'Hämta',
         'for_os' => 'för :os',
         'macos-fallback' => 'macOS-användare',
         'mirror' => 'mirror',
@@ -91,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version eller senare',
         'other_os' => 'andra plattformar',
         'quick_start_guide' => 'snabbstartsguide',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'om du letar efter den äldre',
+        'tagline_1' => 'låt oss få dig',
+        'tagline_2' => 'startad!',
         'video-guide' => 'videoguide',
 
         'help' => [
@@ -150,6 +151,9 @@ return [
             'download' => 'Ladda ner osu!',
             'support' => 'Stötta osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited 分鐘|:count_delimited 分鐘',
         'months' => ':count 個月',
         'notifications' => ':count_delimited 則通知|:count_delimited 則通知',
-        'player' => '',
+        'player' => ':count_delimited 位玩家',
         'plus_others' => '+ :count_delimited 其他!|+ :count_delimited 其他!',
         'post' => ':count_delimited 篇貼文',
         'second_short_unit' => '秒',

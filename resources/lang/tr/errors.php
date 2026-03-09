@@ -22,10 +22,6 @@ return [
             'generic' => 'Bir hata oluştu. Sayfayı yenilemeyi deneyin.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Geçersiz mod seçildi.',
-        'standard_converts_only' => 'Bu beatmap zorluğunda seçilen mod\'da şuanda skor mevcut değil.',
-    ],
     'checkout' => [
         'generic' => 'Checkout\'unuzu hazırlarken bir hata oluştu.',
     ],

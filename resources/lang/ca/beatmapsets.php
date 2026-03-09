@@ -36,14 +36,14 @@ return [
             'all' => 'descarregar',
             'video' => 'descarregar amb vídeo',
             'no_video' => 'descarregar sense vídeo',
-            'direct' => 'obrir en osu!direct',
+            'direct' => 'obre a osu!direct',
         ],
     ],
 
     'nominate' => [
         'bng_limited_too_many_rulesets' => 'Els nominadors provisionals no poden nominar diferents modes de joc.',
         'full_nomination_required' => 'Heu de ser nominador complet per a establir la nominació final d\'un mode de joc.',
-        'hybrid_requires_modes' => 'Un beatmap híbrid requereix que seleccionis almenys un mode de joc per nominar.',
+        'hybrid_requires_modes' => 'Un mapa híbrid requereix que seleccionis almenys un mode de joc per nominar.',
         'incorrect_mode' => 'No tens permís per nominar per al mode: :mode',
         'invalid_limited_nomination' => 'Aquest beatmap té nominacions no vàlides i, en aquest estat, no es pot nominar.',
         'invalid_ruleset' => 'Aquesta nominació té regles no vàlides.',
@@ -146,10 +146,12 @@ return [
             'nominators' => 'Nominadors',
             'nsfw' => 'Contingut explícit',
             'offset' => 'Compensació en línia',
+            'pack_tags' => '',
             'points-of-failure' => 'Punts de fracàs',
             'source' => 'Font',
             'storyboard' => 'Aquest mapa conté un storyboard',
             'success-rate' => 'Percentatge d\'èxit',
+            'success_rate_plays' => '',
             'user_tags' => 'Etiquetes d\'usuari',
             'video' => 'Aquest mapa conté vídeo',
         ],
@@ -210,7 +212,7 @@ return [
 
         'stats' => [
             'cs' => 'Mida del cercle',
-            'cs-mania' => 'Quantitat de tecles',
+            'cs-mania' => 'Tecles',
             'drain' => 'Drenat d\'HP',
             'accuracy' => 'Precisió',
             'ar' => 'Velocitat d\'aproximació',

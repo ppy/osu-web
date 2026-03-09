@@ -1,0 +1,52 @@
+﻿osu file format v128
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: -1
+Countdown: 0
+SampleSet: Normal
+StackLeniency: 0.7
+Mode: 0
+LetterboxInBreaks: 0
+WidescreenStoryboard: 1
+
+[Editor]
+DistanceSpacing: 1
+BeatDivisor: 16
+GridSize: 4
+TimelineZoom: 0.6000000238418579
+
+[Metadata]
+Title: Test Music
+TitleUnicode: Test Music
+Artist: Test Artist
+ArtistUnicode: Test Artist
+Creator: Test User
+Version: Easy
+Source: Test Source
+
+[Difficulty]
+HPDrainRate: 5
+CircleSize: 5
+OverallDifficulty: 5
+ApproachRate: 5
+SliderMultiplier: 1.4
+SliderTickRate: 1
+
+[Events]
+0,0,"bg.jpg",0,0
+
+[TimingPoints]
+1793.1889097349424,1000,4,1,0,100,1,0
+
+
+[HitObjects]
+204.40987,138.62256,2043.1889097349424,5,0,1:0:0:0:
+274.44092,150.76126,3230.688909734942,1,0,1:0:0:0:
+295.9171,154.49625,4105.688909734942,1,0,1:0:0:0:
+295.9171,154.49625,5168.188909734942,1,0,1:0:0:0:
+293.11584,154.49625,6230.688909734942,1,0,1:0:0:0:
+207.2111,278.68463,7168.188909734942,1,0,1:0:0:0:
+93.29396,154.49625,7980.688909734942,1,0,1:0:0:0:
+235.22353,108.74265,8605.688909734943,1,0,1:0:0:0:

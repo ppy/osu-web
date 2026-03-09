@@ -335,6 +335,9 @@ return [
                     'title' => 'היסטוריית שידורים חוזרים שנצפו',
                     'count_label' => 'שידורים חוזרים שנצפו',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'היסטוריית Kudosu אחרונה',

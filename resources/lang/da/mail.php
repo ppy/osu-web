@@ -67,7 +67,7 @@ return [
         'duration' => 'Takket være dem har du nu adgang til osu!direct og andre osu!supporter goder i de næste :duration.',
         'features' => 'Du kan finde flere detaljer omkring disse goder her:',
         'gifted' => 'Nogen har givet dig et osu!supporter tag!',
-        'gift_message' => '',
+        'gift_message' => 'Den person, der gav dig dette tag, efterlod en besked til dig:',
         'subject' => 'Du er blevet givet et osu!supporter tag!',
     ],
 
@@ -100,8 +100,8 @@ return [
         'code' => 'Din bekræftelseskode er:',
         'code_hint' => 'Du kan indtaste din kode med eller uden mellemrum.',
         'link' => 'Alternativt kan du også besøge dette link for at færdiggøre verifikationen:',
-        'report' => 'Hvis du ikke anmodede om dette bedes du venligst svare på denne mail MED DET SAMME da din account kan være i fare.',
-        'subject' => 'osu! kontobekræftelse',
+        'report' => 'Hvis du ikke anmodede om dette, bedes du venligst svare på denne mail MED DET SAMME, da din konto muligvis er i fare.',
+        'subject' => 'osu!-kontobekræftelse',
 
         'action_from' => [
             '_' => 'En handling udført på din account fra :country behøver verifikation.',

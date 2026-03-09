@@ -39,7 +39,7 @@ return [
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'ลบทีมออกแล้ว',
     ],
 
     'edit' => [
@@ -69,7 +69,7 @@ return [
             'title' => 'การตั้งค่าทีม',
 
             'application_state' => [
-                'state_0' => '',
+                'state_0' => 'ปิด',
                 'state_1' => '',
             ],
         ],
@@ -78,15 +78,15 @@ return [
     'header_links' => [
         'edit' => 'การตั้งค่า',
         'leaderboard' => '',
-        'show' => '',
+        'show' => 'ข้อมูล',
 
         'members' => [
-            'index' => '',
+            'index' => 'จัดการสมาชิก',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'อันดับโลก',
     ],
 
     'members' => [
@@ -104,16 +104,16 @@ return [
                 'empty_slots' => '',
                 'empty_slots_overflow' => '',
                 'reject_confirm' => '',
-                'title' => '',
+                'title' => 'คำขอเข้าร่วม',
             ],
 
             'table' => [
                 'joined_at' => '',
-                'remove' => '',
+                'remove' => 'ลบออก',
                 'remove_confirm' => '',
                 'set_leader' => '',
                 'set_leader_confirm' => '',
-                'status' => '',
+                'status' => 'สถานะ',
                 'title' => '',
             ],
 
@@ -151,15 +151,17 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'เกี่ยวกับเรา!',
+            'info' => 'ข้อมูล',
+            'members' => 'สมาชิก',
         ],
 
         'statistics' => [
             'empty_slots' => '',
+            'first_places' => '',
             'leader' => 'หัวหน้าทีม',
-            'rank' => '',
+            'rank' => 'อันดับ',
+            'ranked_beatmapsets' => 'บีทแมพที่จัดอันดับแล้ว',
         ],
     ],
 

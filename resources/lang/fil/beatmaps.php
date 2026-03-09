@@ -245,6 +245,7 @@ return [
             'prompt' => 'magtype ng keywords...',
             'login_required' => 'Mag-sign in upang makapag-search.',
             'options' => 'Mga opsyon pa sa pagsesearch',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Ang pag fi-filter ng :filters ay nag re-require ng aktibong osu!supporter tag',
             'not-found' => 'walang resulta',
             'not-found-quote' => '... nope, walang nahanap.',

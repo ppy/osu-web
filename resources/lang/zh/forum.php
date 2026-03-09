@@ -253,69 +253,6 @@ return [
             'views' => '查看数',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => '移除 "added" 标签',
-            'to_0_done' => '已移除 "added" 标签',
-            'to_1' => '添加 "added" 标签',
-            'to_1_done' => '已添加 "added" 标签',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '移除 "assigned" 标签',
-            'to_0_done' => '已移除 "assigned" 标签',
-            'to_1' => '添加 "assigned" 标签',
-            'to_1_done' => '已添加 "assigned" 标签',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '移除 "confirmed" 标签',
-            'to_0_done' => '已移除 "confirmed" 标签',
-            'to_1' => '添加 "confirmed" 标签',
-            'to_1_done' => '已添加 "confirmed" 标签',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '移除 "duplicate" 标签',
-            'to_0_done' => '已移除 "duplicate" 标签',
-            'to_1' => '添加 "duplicate" 标签',
-            'to_1_done' => '已添加 "duplicate" 标签',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '移除 "invalid" 标签',
-            'to_0_done' => '已移除 "invalid" 标签',
-            'to_1' => '添加 "invalid" 标签',
-            'to_1_done' => '已添加 "invalid" 标签',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '移除“已解决”标签',
-            'to_0_done' => '已移除“已解决”标签',
-            'to_1' => '添加 "已解决" 标签',
-            'to_1_done' => '已添加 "已解决" 标签',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '删除 "osu!lazer" 标签',
-            'to_0_done' => '已删除 "osu!lazer" 标签',
-            'to_1' => '添加 "osu!lazer" 标签',
-            'to_1_done' => '已添加 "osu!lazer" 标签',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '删除 "osu!stable" 标签',
-            'to_0_done' => '已删除 "osu!stable" 标签',
-            'to_1' => '添加 "osu!stable" 标签',
-            'to_1_done' => '已添加 "osu!stable" 标签',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '删除 "osu!web" 标签',
-            'to_0_done' => '已删除 "osu!web" 标签',
-            'to_1' => '添加 "osu!web" 标签',
-            'to_1_done' => '已添加 "osu!web" 标签',
-        ],
-
         'lock' => [
             'is_locked' => '主题已被锁定，不能回复',
             'to_0' => '解锁主题',

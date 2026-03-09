@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited laisva vieta|:count_delimited laisvų vietų',
+            'first_places' => '',
             'leader' => 'Komandos Vadovas',
             'rank' => 'Reitingas',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

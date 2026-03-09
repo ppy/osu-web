@@ -31,6 +31,10 @@ return [
             'read' => 'Voir qui vous suivez.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => 'Créer et gérer des salles multijoueurs en votre nom.',
+        ],
+
         'public' => 'Lire des données publiques en votre nom.',
     ],
 ];

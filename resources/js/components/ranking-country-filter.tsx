@@ -12,6 +12,7 @@ import { updateQueryString } from 'utils/url';
 
 interface CountryOption extends Option {
   id: string | null;
+  text: string;
 }
 
 interface Props {

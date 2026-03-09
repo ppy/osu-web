@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'slēpt brīdinājumus par nepiemērotu saturu ritma-mapēs',
         'beatmapset_title_show_original' => 'rādīt ritma-mapes metadatus oriģinālvalodā',
         'title' => 'Opcijas',

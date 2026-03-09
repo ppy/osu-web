@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Az időtartam túl hosszú.',
             'name_too_long' => '',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

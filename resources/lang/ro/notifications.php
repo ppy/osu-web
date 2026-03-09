@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Ești acum un oaspete al beatmap-ului ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Noutățile ”:title” au noi comentarii',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

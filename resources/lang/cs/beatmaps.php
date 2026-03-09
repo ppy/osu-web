@@ -245,6 +245,7 @@ return [
             'prompt' => 'zadej klíčová slova...',
             'login_required' => 'Pro hledání se přihlaste.',
             'options' => 'Další možnosti hledání',
+            'rank_filter_note' => 'Počty nejlepších známek a výsledky zobrazené na této stránce jsou založeny na tvých nejvyšších "standardizovaných" (neboli "lazer") skóre na beatmapách.',
             'supporter_filter' => 'Filtrování podle :filters vyžaduje štítek podporovatele',
             'not-found' => 'bez výsledků',
             'not-found-quote' => '... ups, nic nebylo nalezeno.',

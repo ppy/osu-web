@@ -16,8 +16,10 @@ return [
         'invalid' => 'Negaidīta kļūme apstiprināšanas kodā.',
         'is_privileged' => 'Sazināties ar augstāka līmeņa administrātoru lai atgūtu savu kontu.',
         'missing_key' => 'Nepieciešams.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Pārāk daudz neizdevušos mēģinājumu.',
         'user_not_found' => 'Pieprasītais lietotājs neeksistē.',
+        'wait_resend' => '',
         'wrong_key' => 'Nepareizs kods.',
     ],
 

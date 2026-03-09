@@ -22,10 +22,6 @@ return [
             'generic' => 'Der opstod en fejl. Prøv at genindlæse siden.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Ugyldig mode specificeret.',
-        'standard_converts_only' => 'Ingen scores er tilgængelige for den anmodede mode på denne sværhedsgrad.',
-    ],
     'checkout' => [
         'generic' => 'Der opstod en fejl under forberedelsen af ​​dit køb.',
     ],

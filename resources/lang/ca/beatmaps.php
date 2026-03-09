@@ -245,6 +245,7 @@ return [
             'prompt' => 'escriu paraules clau...',
             'login_required' => 'Inicia sessió per cercar.',
             'options' => 'Més opcions de cerca',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtrar per :filters requereix d\'una etiqueta osu!patrocinador activa',
             'not-found' => 'sense resultats',
             'not-found-quote' => '... no, no s\'ha trobat res.',

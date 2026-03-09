@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => ' Žiūrėti daugiau komandų paieškos rezultatų',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Atsisiųsti osu!',
             'support' => 'Paremti osu!',
             'store' => 'osu!parduotuvė',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

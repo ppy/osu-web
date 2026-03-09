@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'مخفی کردن هشدار ها برای محتوای نامناسب در بیت مپ ها',
         'beatmapset_title_show_original' => 'نمایش متادیتای بیت مپ ها در زبان اصلی',
         'title' => 'گزینه ها',

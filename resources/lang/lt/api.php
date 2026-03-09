@@ -31,6 +31,10 @@ return [
             'read' => 'Pažiūrėti ką jūs sekate.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Skaityti viešus duomenis jūsų valioje.',
     ],
 ];

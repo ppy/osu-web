@@ -127,7 +127,7 @@ return [
         'topic' => [
             'reply' => [
                 'double_post' => 'Modifica il tuo ultimo post invece di postare di nuovo.',
-                'locked' => 'Non puoi rispondere ad un topic bloccato.',
+                'locked' => 'Non puoi rispondere a un topic bloccato.',
                 'no_forum_access' => 'È necessario accedere al forum richiesto.',
                 'no_permission' => 'Non hai i permessi per rispondere.',
 
