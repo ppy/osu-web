@@ -562,7 +562,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         $this->update(['cover_updated_at' => $this->freshTimestamp()]);
     }
 
-    public function regenerateAudioPreview(): mixed
+    public function regenerateAudioPreview(): bool
     {
         $preview = $this->archive()->generateAudioPreview();
 
