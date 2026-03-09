@@ -56,6 +56,7 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
     rpm -i https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf module enable -y php-zts:static-$(cat /.php-version) && \
     microdnf install -y \
+      ffmpeg-free \
       frankenphp \
       libjpeg-turbo-utils \
       nginx \
