@@ -4,6 +4,7 @@
 import { FilterKey } from 'beatmapset-search-filters';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import PopupMenu from 'components/popup-menu';
+import PopupMenuState from 'components/popup-menu-state';
 import Portal from 'components/portal';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { action, computed, makeObservable } from 'mobx';
@@ -49,6 +50,8 @@ const Filter = observer(({ multiselect = false, name, options, grid = false }: F
 export class SearchPanel extends React.Component<Props> {
   private readonly inputRef = React.createRef<HTMLInputElement>();
   private readonly pinnedInputRef = React.createRef<HTMLInputElement>();
+
+  private readonly tagPopupMenuState = new PopupMenuState();
 
   @computed
   private get controller() {
@@ -185,28 +188,6 @@ export class SearchPanel extends React.Component<Props> {
     );
   }
 
-  private renderTagPicker() {
-    return(
-      <PopupMenu customRender={this.renderTagPickerButton} direction='left'>
-        {() => <UserTagPicker />}
-      </PopupMenu>
-    );
-  }
-
-  private readonly renderTagPickerButton = (children: React.ReactNode, ref: React.RefObject<HTMLButtonElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => (
-    <>
-      <button
-        ref={ref}
-        className='beatmapsets-search__icon beatmapsets-search__icon--tags'
-        onClick={toggle}
-        title={trans('beatmaps.listing.search.tag_picker.tooltip')}
-      >
-        <i className='fas fa-tag' />
-      </button>
-      {children}
-    </>
-  );
-
   private renderUser() {
     const filters = this.props.availableFilters;
     const cssClasses = classWithModifiers('beatmapsets-search', { expanded: this.controller.isExpanded });
@@ -227,7 +208,17 @@ export class SearchPanel extends React.Component<Props> {
             type='search'
             value={this.query}
           />
-          {this.renderTagPicker()}
+          <button
+            ref={this.tagPopupMenuState.setButtonRef}
+            className='beatmapsets-search__icon beatmapsets-search__icon--tags'
+            onClick={this.tagPopupMenuState.toggle}
+            title={trans('beatmaps.listing.search.tag_picker.tooltip')}
+          >
+            <i className='fas fa-tag' />
+          </button>
+          <PopupMenu direction='left' skipButton state={this.tagPopupMenuState}>
+            {() => <UserTagPicker />}
+          </PopupMenu>
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
           </div>
