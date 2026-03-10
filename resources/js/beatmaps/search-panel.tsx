@@ -210,7 +210,7 @@ export class SearchPanel extends React.Component<Props> {
           />
           <button
             ref={this.tagPopupMenuState.setButtonRef}
-            className='beatmapsets-search__icon beatmapsets-search__icon--tags'
+            className={classWithModifiers('beatmapsets-search__icon', { active: this.tagPopupMenuState.active, tags: true })}
             onClick={this.tagPopupMenuState.toggle}
             title={trans('beatmaps.listing.search.tag_picker.tooltip')}
           >
