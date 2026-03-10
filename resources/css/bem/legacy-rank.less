@@ -1,0 +1,28 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.legacy-rank {
+  .rank(@rank) {
+    &--@{rank} {
+      .at2x("~@image_resources/ranking-@{rank}.png");
+    }
+  }
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  // makes the lettering about 150px tall accounting for the whitespace.
+  height: 160px;
+  // tak up the same space as score-dial
+  width: 200px;
+  margin: 20px 0;
+
+  .rank(~"XH");
+  .rank(~"X");
+  .rank(~"SH");
+  .rank(~"S");
+  .rank(~"A");
+  .rank(~"B");
+  .rank(~"C");
+  .rank(~"D");
+}

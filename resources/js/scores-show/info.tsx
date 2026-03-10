@@ -7,6 +7,7 @@ import * as React from 'react';
 import { accuracy, rank, rankCutoffs } from 'utils/score-helper';
 import Buttons from './buttons';
 import Dial from './dial';
+import LegacyRank from './legacy-rank';
 import Player from './player';
 import Tower from './tower';
 
@@ -26,7 +27,10 @@ export default function Info({ score }: Props) {
       </div>
 
       <div className='score-info__item score-info__item--dial'>
-        <Dial accuracy={accuracy(score)} legacy={score.legacy_score_id != null} rank={rank(score)} rankCutoffs={rankCutoffs(score)} />
+        {score.legacy_score_id != null
+          ? <LegacyRank rank={rank(score)} />
+          : <Dial accuracy={accuracy(score)} rank={rank(score)} rankCutoffs={rankCutoffs(score)} />
+        }
       </div>
 
       <div className='score-info__item score-info__item--player'>

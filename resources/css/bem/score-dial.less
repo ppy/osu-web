@@ -18,31 +18,6 @@
     }
   }
 
-  &__legacy-rank {
-    // makes the letter about 150px tall.
-    width: 160px;
-    height: 160px;
-
-    .rank(@rank) {
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-
-      &--@{rank} {
-        .at2x("~@image_resources/ranking-@{rank}.png");
-      }
-    }
-
-    .rank(~"XH");
-    .rank(~"X");
-    .rank(~"SH");
-    .rank(~"S");
-    .rank(~"A");
-    .rank(~"B");
-    .rank(~"C");
-    .rank(~"D");
-  }
-
   &__inner {
     stroke: none;
 
