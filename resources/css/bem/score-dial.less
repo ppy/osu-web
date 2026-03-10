@@ -19,9 +19,27 @@
   }
 
   &__legacy-rank {
-    padding: 20px;
-    width: 100%;
-    height: 100%;
+    width: 160px;
+    height: $width;
+
+    .rank(@rank) {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      &--@{rank} {
+        background-image: url("~@image_resources/ranking-@{rank}@2x.png");
+      }
+    }
+
+    .rank(~"XH");
+    .rank(~"X");
+    .rank(~"SH");
+    .rank(~"S");
+    .rank(~"A");
+    .rank(~"B");
+    .rank(~"C");
+    .rank(~"D");
   }
 
   &__inner {

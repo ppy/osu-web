@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Img2x from 'components/img2x';
 import * as d3 from 'd3';
 import Rank from 'interfaces/rank';
 import * as React from 'react';
@@ -34,7 +33,7 @@ export default function Dial(props: Props) {
   return (
     <div className={classWithModifiers('score-dial')}>
       {props.legacy ? (
-        <Img2x className='score-dial__legacy-rank' src={`/images/layout/legacy/ranking-${props.rank}@2x.png`} />
+        <div className={classWithModifiers('score-dial__legacy-rank', props.rank)} />
       ) : (
         <>
           <div className='score-dial__layer'>
