@@ -5,12 +5,11 @@ import { RulesetId } from 'interfaces/ruleset';
 import TagJson from 'interfaces/tag-json';
 
 export default class BeatmapTag {
+  categoryName: string;
   description: string;
-  fullName: string;
-  fullNameLowercase: string;
-  group: string;
   id: number;
   name: string;
+  nameLowercase: string;
 
   /**
    * Specific rulesets for which this tag should be displayed.
@@ -19,27 +18,29 @@ export default class BeatmapTag {
    */
   rulesetIds: RulesetId[] = [];
 
+  tagName: string;
+
   constructor(tag: TagJson) {
     this.description = tag.description;
     this.id = tag.id;
-    this.fullName = tag.name;
-    this.fullNameLowercase = tag.name.toLowerCase();
+    this.name = tag.name;
+    this.nameLowercase = tag.name.toLowerCase();
 
     if (tag.ruleset_id !== null) {
       this.rulesetIds.push(tag.ruleset_id);
     }
 
-    const split = this.fullName.split('/');
+    const split = this.name.split('/');
 
-    this.group = split[0];
-    this.name = split[1];
+    this.categoryName = split[0];
+    this.tagName = split[1];
   }
 
   matchesFullName(match: string) {
-    return this.fullNameLowercase.includes(match.toLowerCase());
+    return this.nameLowercase.includes(match.toLowerCase());
   }
 
   tagString() {
-    return `tag="${this.fullName}"`;
+    return `tag="${this.name}"`;
   }
 }

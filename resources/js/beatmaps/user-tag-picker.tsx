@@ -68,7 +68,7 @@ const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
   const hasAllRulesets = tag.rulesetIds.length === rulesets.length;
 
   return (<div className={classWithModifiers('user-tag-picker__tag', { active })} onClick={onClick}>
-    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.name}</span>
+    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.tagName}</span>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>
       {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (
         <span key={ruleset} className={`user-tag-picker__tag-ruleset fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />

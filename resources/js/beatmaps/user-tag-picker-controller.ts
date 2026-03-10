@@ -42,7 +42,7 @@ export default class UserTagPickerController {
 
     const queried = filtered.filter((tag) => tag.matchesFullName(this.query));
 
-    const grouped = groupBy(queried, (tag) => tag.group);
+    const grouped = groupBy(queried, (tag) => tag.categoryName);
 
     return Object.entries(grouped).map(([name, tags]) => ({ name, tags }));
   }
@@ -73,7 +73,7 @@ export default class UserTagPickerController {
       }
     }
 
-    const unique = sortBy(Object.values(tagByName), (tag) => tag.fullName);
+    const unique = sortBy(Object.values(tagByName), (tag) => tag.name);
 
     // ensure that displayed ruleset icons follow the common order
     for (const tag of unique) {
