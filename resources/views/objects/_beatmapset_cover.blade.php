@@ -17,11 +17,12 @@
 
     $url = $beatmapset->coverURL($size);
 
-    $style = '';
+    $defaultCoverId = $beatmapset->getKey() % 6;
+    $style = "--bg-default: var(--bg-default-{$defaultCoverId});";
     if ($showVisual) {
         $url = $beatmapset->coverURL($size);
         if (!str_ends_with($url, '?0')) {
-            $style = css_var_2x('--bg', $beatmapset->coverURL($size));
+            $style .= css_var_2x('--bg', $beatmapset->coverURL($size));
         }
     }
 @endphp
