@@ -20,7 +20,7 @@ class TagsController extends Controller
 
     public function index()
     {
-        if (!is_api_request() && \Auth::check() === false) {
+        if (!is_api_request() && priv_check('BeatmapsetAdvancedSearch')->can() === false) {
             throw new AuthenticationException('User is not logged in.');
         }
 

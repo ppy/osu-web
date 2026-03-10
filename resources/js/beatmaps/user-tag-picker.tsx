@@ -14,12 +14,10 @@ import { TagGroup } from './user-tag-picker-controller';
 const controller = core.beatmapTagPickerController;
 const beatmapsetSearchController = core.beatmapsetSearchController;
 
+const onChange = (e: React.ChangeEvent<HTMLInputElement>) => runInAction(() => controller.query = e.target.value);
+
 export default observer(function UserTagPicker() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const onChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => runInAction(() => controller.query = e.target.value),
-    [],
-  );
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -55,7 +53,7 @@ const UserTagGroup = observer(function UserTagGroup({ group }: { group: TagGroup
 
 const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
   const active = beatmapsetSearchController.filters.query?.toLowerCase()
-    .includes(tag.tagString().toLowerCase());
+    .includes(tag.toQuery().toLowerCase());
 
   const onClick = useCallback(() => {
     if (!active) {
@@ -70,9 +68,9 @@ const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
   return (<div className={classWithModifiers('user-tag-picker__tag', { active })} onClick={onClick}>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.tagName}</span>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>
-      {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (
-        <span key={ruleset} className={`user-tag-picker__tag-ruleset fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />
-      ))}
+      {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (<>
+        <span key={ruleset} className={`user-tag-picker__tag-ruleset fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />{' '}
+      </>))}
       {tag.description}
     </span>
   </div>);

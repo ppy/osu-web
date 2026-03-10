@@ -40,7 +40,7 @@ export default class BeatmapTag {
     return this.nameLowercase.includes(match.toLowerCase());
   }
 
-  tagString() {
+  toQuery() {
     return `tag="${this.name}"`;
   }
 }

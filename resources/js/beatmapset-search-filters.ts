@@ -140,7 +140,7 @@ export class BeatmapsetSearchFilters {
   @action
   tagAdd(tag: BeatmapTag) {
     const currentQuery = this.query;
-    const tagString = tag.tagString();
+    const tagString = tag.toQuery();
 
     const newQuery = currentQuery !== null
       ? currentQuery + ` ${tagString}`
@@ -157,7 +157,10 @@ export class BeatmapsetSearchFilters {
       return;
     }
 
-    const newQuery = currentQuery.replace(tag.tagString(), '').trim();
+    const newQuery = currentQuery
+      .replace(tag.toQuery(), '')
+      .replace('  ', ' ')
+      .trim();
     this.update('query', newQuery);
   }
 

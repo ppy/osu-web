@@ -34,10 +34,10 @@ export default class UserTagPickerController {
 
   @computed
   get groups() {
-    const ruleset = this.rulesetId;
+    const rulesetId = this.rulesetId;
 
-    const filtered = ruleset != null
-      ? this.tags.filter((tag) => tag.rulesetIds.length === 0 || tag.rulesetIds.includes(ruleset))
+    const filtered = rulesetId != null
+      ? this.tags.filter((tag) => tag.rulesetIds.length === 0 || tag.rulesetIds.includes(rulesetId))
       : this.tags;
 
     const queried = filtered.filter((tag) => tag.matchesFullName(this.query));

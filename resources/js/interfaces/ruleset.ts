@@ -16,12 +16,12 @@ export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
   }
 }
 
-export function ensureRulesetId(maybeRulesetId: number|string): RulesetId | undefined {
+export function ensureRulesetId(maybeRulesetId: number | string): RulesetId | undefined {
   if (typeof maybeRulesetId === 'string') {
     maybeRulesetId = parseInt(maybeRulesetId, 10);
   }
 
-  if ((rulesetIds as readonly number[]).includes(maybeRulesetId)) {
+  if (rulesetIdToName[maybeRulesetId as RulesetId] != null) {
     return maybeRulesetId as RulesetId;
   }
 }
