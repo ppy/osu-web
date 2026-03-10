@@ -15,8 +15,14 @@
             && (!$isAnimeCover || $preferences['beatmapset_show_anime_cover']);
     }
 
-    $style = $showVisual
-        ? css_var_2x('--bg', $beatmapset->coverURL($size))
-        : '';
+    $url = $beatmapset->coverURL($size);
+
+    $style = '';
+    if ($showVisual) {
+        $url = $beatmapset->coverURL($size);
+        if (!str_ends_with($url, '?0')) {
+            $style = css_var_2x('--bg', $beatmapset->coverURL($size));
+        }
+    }
 @endphp
 <div class="{{ $class }}" style="{{ $style }}"></div>
