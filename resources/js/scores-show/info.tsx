@@ -26,7 +26,7 @@ export default function Info({ score }: Props) {
       </div>
 
       <div className='score-info__item score-info__item--dial'>
-        <Dial accuracy={accuracy(score)} rank={rank(score)} rankCutoffs={rankCutoffs(score)} />
+        <Dial accuracy={accuracy(score)} legacy={score.legacy_score_id != null} rank={rank(score)} rankCutoffs={rankCutoffs(score)} />
       </div>
 
       <div className='score-info__item score-info__item--player'>
