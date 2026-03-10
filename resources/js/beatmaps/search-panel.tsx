@@ -59,8 +59,8 @@ export class SearchPanel extends React.Component<Props> {
   }
 
   @computed
-  private get query() {
-    return this.controller.filters.query ?? '';
+  private get queryRaw() {
+    return this.controller.filters.queryRaw ?? '';
   }
 
   constructor(props: Props) {
@@ -174,7 +174,7 @@ export class SearchPanel extends React.Component<Props> {
             onKeyPress={this.onKeyPress}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
-            value={this.query}
+            value={this.queryRaw}
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
@@ -206,7 +206,7 @@ export class SearchPanel extends React.Component<Props> {
             onKeyPress={this.onKeyPress}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
-            value={this.query}
+            value={this.queryRaw}
           />
           <button
             ref={this.tagPopupMenuState.setButtonRef}

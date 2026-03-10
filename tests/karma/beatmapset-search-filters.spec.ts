@@ -6,7 +6,7 @@ import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 describe('BeatmapsetSearchFilters', () => {
   let subject: BeatmapsetSearchFilters;
 
-  describe('.queryClean', () => {
+  describe('.query', () => {
     beforeEach(() => {
       subject = new BeatmapsetSearchFilters('https://notarealdomain');
     });
@@ -14,19 +14,23 @@ describe('BeatmapsetSearchFilters', () => {
     it('should remove leading whitespace', () => {
       subject.query = '  whee 12 ああ';
 
-      expect(subject.queryClean).toBe('whee 12 ああ');
+      expect(subject.query).toBe('whee 12 ああ');
+      expect(subject.queryRaw).toBe('  whee 12 ああ');
     });
 
     it('should remove trailing whitespace', () => {
       subject.query = 'whee 12 ああ  ';
 
-      expect(subject.queryClean).toBe('whee 12 ああ');
+      expect(subject.query).toBe('whee 12 ああ');
+      expect(subject.queryRaw).toBe('whee 12 ああ  ');
     });
 
     it('should treat empty string as null', () => {
       subject.query = '';
 
-      expect(subject.queryClean).toBe(null);
+      // type inference was a bit _too_ smart.
+      expect(subject.query as string | null).toBe(null);
+      expect(subject.queryRaw).toBe('');
     });
   });
 

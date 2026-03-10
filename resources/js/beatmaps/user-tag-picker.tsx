@@ -54,7 +54,7 @@ const UserTagGroup = observer(function UserTagGroup({ group }: { group: TagGroup
 });
 
 const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
-  const active = beatmapsetSearchController.filters.queryClean?.toLowerCase()
+  const active = beatmapsetSearchController.filters.query?.toLowerCase()
     .includes(tag.tagString().toLowerCase());
 
   const onClick = useCallback(() => {
