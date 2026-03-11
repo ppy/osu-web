@@ -11,7 +11,15 @@
   width: 200px;
   margin: 20px 0;
 
-  @ranks: ~"XH", ~"X", ~"SH", ~"S", ~"A", ~"B", ~"C", ~"D";
+  @ranks:
+    ~"XH",
+    ~"X",
+    ~"SH",
+    ~"S",
+    ~"A",
+    ~"B",
+    ~"C",
+    ~"D";
   each(@ranks, {
     &--@{value} {
       .at2x("~@image_resources/scores/legacy-ranking-@{value}.png");
