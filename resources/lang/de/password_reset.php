@@ -16,10 +16,10 @@ return [
         'invalid' => 'Unerwarteter Fehler im Bestätigungscode.',
         'is_privileged' => 'Kontaktiere peppy lulz.',
         'missing_key' => 'Erforderlich.',
-        'too_many_requests' => '',
+        'too_many_requests' => 'Das Limit zur Zurücksetzung des Passworts wurde erreicht. Bitte kontaktiere den Support, um das Konto wiederherzustellen.',
         'too_many_tries' => 'Zu viele fehlgeschlagene Versuche.',
         'user_not_found' => 'Angeforderter Benutzer existiert nicht.',
-        'wait_resend' => '',
+        'wait_resend' => 'Bitte habe etwas Geduld.',
         'wrong_key' => 'Falscher Code.',
     ],
 

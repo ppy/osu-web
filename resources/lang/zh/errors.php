@@ -23,7 +23,7 @@ return [
         ],
     ],
     'checkout' => [
-        'generic' => '结账时发生了一个错误',
+        'generic' => '结账时发生了一个错误。',
     ],
     'scores' => [
         'invalid_id' => '无效成绩 ID。',

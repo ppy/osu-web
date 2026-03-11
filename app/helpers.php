@@ -16,6 +16,7 @@ use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Sentry\State\Scope;
 
@@ -488,6 +489,11 @@ function qr_svg(string $text): string
             new BaconQrCode\Renderer\Image\SvgImageBackEnd()
         ),
     )->writeString($text);
+}
+
+function storage_disk(string $type): Illuminate\Contracts\Filesystem\Filesystem
+{
+    return \Storage::disk("{$GLOBALS['cfg']['filesystems']['default']}-{$type}");
 }
 
 function trim_unicode(?string $value)
@@ -1865,7 +1871,7 @@ function array_to_graph_json(array $array, string $fieldName): array
 }
 
 // Fisher-Yates
-function seeded_shuffle(array &$items, int $seed = 0)
+function seeded_shuffle(array|Collection &$items, int $seed = 0)
 {
     mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {

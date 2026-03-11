@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 
 class ClientCheck
 {
+    public const string SUCCESS = 'success';
+
     public static function parseToken(Request $request): array
     {
         $token = $request->header('x-token');
@@ -68,10 +70,19 @@ class ClientCheck
         return $ret;
     }
 
-    public static function validateToken(?array $tokenData, ?int $scoreId = null): void
+    /**
+     * Queues a token for validation and waits for validation to complete.
+     *
+     * @param array $tokenData The token data to validate
+     * @param int|null $scoreId Optional score identifier associated with the token
+     *
+     * @return string|null Returns ClientCheck::SUCCESS if validation passes, a reason if it explicitly fails,
+     *                     or null if validation could not be performed.
+     */
+    public static function validateToken(array $tokenData, ?int $scoreId = null): ?string
     {
         if ($tokenData['token'] === null) {
-            return;
+            return null;
         }
 
         $validationRequestId = bin2hex(random_bytes(16));
@@ -91,14 +102,10 @@ class ClientCheck
         if ($result === null) {
             // TODO: perhaps abort in the future
             datadog_increment('token_validation_timeout');
-            return;
+            return null;
         }
 
-        $validationResult = $result[1];
-
-        if ($validationResult !== 'success') {
-            abort(422, $validationResult);
-        }
+        return $result[1];
     }
 
     private static function getKey(Build $build): string

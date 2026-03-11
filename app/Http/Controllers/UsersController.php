@@ -1050,7 +1050,11 @@ class UsersController extends Controller
             }
 
             if ($clientTokenData !== null) {
-                ClientCheck::validateToken($clientTokenData);
+                $validationResult = ClientCheck::validateToken($clientTokenData);
+
+                if ($validationResult !== null && $validationResult !== ClientCheck::SUCCESS) {
+                    abort(422, $validationResult);
+                }
             }
 
             $registration->save();

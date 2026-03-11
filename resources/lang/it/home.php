@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Accedi per cercare squadre',
             'more_simple' => 'Vedi più risultati di ricerca per squadra',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Diretta streaming in evidenza',
         ],
         'show' => [
             'admin' => [

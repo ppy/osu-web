@@ -158,10 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited espacio disponible|:count_delimited espacios disponibles',
-            'first_places' => '',
+            'first_places' => 'Primeros lugares',
             'leader' => 'Líder del equipo',
             'rank' => 'Puesto',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Mapas clasificados',
         ],
     ],
 

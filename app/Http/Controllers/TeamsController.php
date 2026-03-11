@@ -140,7 +140,13 @@ class TeamsController extends Controller
      *
      * ### Response format
      *
-     * Returns the [TeamExtended](#teamextended) object.
+     * Returns the [TeamExtended](#teamextended) object. On both the `leader` and `members` fields, the following
+     * [optional attributes on User](#user-optionalattributes) are included:
+     *
+     * - country
+     * - cover
+     * - groups
+     * - team
      *
      * @urlParam team string required Id or `@`-prefixed shortname of the team. Example: `1`.
      * @urlParam mode string [Ruleset](#ruleset). Default ruleset will be used if not specified. Example: `osu`.
@@ -170,10 +176,23 @@ class TeamsController extends Controller
             return ujs_redirect(route('teams.show', compact('team', 'ruleset')));
         }
 
-        $team->loadMissing(prefix_strings('members.user.', UserCompactTransformer::CARD_INCLUDES_PRELOAD));
+        $team->loadMissing(prefix_strings(
+            'members.user.',
+            array_diff(UserCompactTransformer::CARD_INCLUDES_PRELOAD, ['team']),
+        ));
 
         if (is_api_request()) {
-            return response()->json(json_item($team, new TeamExtendedTransformer()->setRulesetId($rulesetId)));
+            foreach ($team->members as $member) {
+                $member->user?->setRelation('team', $team);
+            }
+            return response()->json(json_item(
+                $team,
+                new TeamExtendedTransformer()->setRulesetId($rulesetId),
+                [
+                    ...prefix_strings('leader.', UserCompactTransformer::CARD_INCLUDES),
+                    ...prefix_strings('members.', UserCompactTransformer::CARD_INCLUDES),
+                ],
+            ));
         } else {
             return ext_view('teams.show', [
                 'extraStatistics' => $team->extraStatistics($rulesetId),

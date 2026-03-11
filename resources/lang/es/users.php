@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Repeticiones vistas',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Repeticiones más vistas por otros',
                 ],
             ],
             'kudosu' => [

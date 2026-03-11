@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Слишком большая продолжительность.',
             'name_too_long' => 'Слишком длинное название комнаты.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

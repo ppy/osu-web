@@ -43,7 +43,7 @@ class ContestEntriesController extends Controller
             $includes[] = 'judge_votes.user';
         }
 
-        $entries = $contest->entriesByType(null)->loadMissing($relationships);
+        $entries = $contest->entriesWithScore()->loadMissing($relationships);
         foreach ($entries as $entry) {
             $entry->setRelation('contest', $contest);
         }
