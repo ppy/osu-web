@@ -647,6 +647,10 @@ class Room extends Model
             'auto_skip:bool',
         ], ['null_missing' => true]);
 
+        if ($params['name'] === null) {
+            throw new InvariantException("field 'name' is required");
+        }
+
         $this->fill([
             'max_attempts' => $params['max_attempts'],
             'name' => app('chat-filters')->filter($params['name']),
