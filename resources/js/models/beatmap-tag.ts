@@ -36,7 +36,7 @@ export default class BeatmapTag {
     this.tagName = split[1];
   }
 
-  matchesFullName(match: string) {
+  matchesName(match: string) {
     return this.nameLowercase.includes(match.toLowerCase());
   }
 

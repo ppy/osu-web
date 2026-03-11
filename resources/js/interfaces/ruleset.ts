@@ -8,7 +8,6 @@ export const rulesetIdToName = {
   3: 'mania',
 } as const;
 export const rulesets = Object.values(rulesetIdToName);
-export const rulesetIds = Object.keys(rulesetIdToName).map((id) => parseInt(id, 10));
 
 export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
   if ((rulesets as readonly string[]).includes(maybeRuleset)) {

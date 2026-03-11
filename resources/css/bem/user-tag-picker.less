@@ -35,7 +35,11 @@
     border: none;
 
     background-color: hsl(var(--hsl-b5));
-    font-size: 14px;
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: @font-size--title-small;
+    }
   }
 
   &__scroll-area {

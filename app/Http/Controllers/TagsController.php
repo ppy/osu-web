@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Auth\AuthenticationException;
-
 class TagsController extends Controller
 {
     public function __construct()
@@ -20,9 +18,7 @@ class TagsController extends Controller
 
     public function index()
     {
-        if (!is_api_request() && priv_check('BeatmapsetAdvancedSearch')->can() === false) {
-            throw new AuthenticationException('User is not logged in.');
-        }
+        priv_check('BeatmapsetAdvancedSearch')->ensureCan();
 
         return [
             'tags' => app('tags')->json(),

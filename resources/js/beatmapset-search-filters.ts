@@ -55,7 +55,7 @@ export class BeatmapsetSearchFilters {
   @observable nsfw: FilterValueType = null;
   @observable played: FilterValueType = null;
   @observable query: FilterValueType = null;
-  @observable queryRaw: FilterValueType = null;
+  @observable queryRaw: string = '';
   @observable rank: FilterValueType = null;
   @observable sort: FilterValueType = null;
   @observable status: FilterValueType = null;
@@ -97,10 +97,12 @@ export class BeatmapsetSearchFilters {
       this[key] = value === this.getDefault(key) ? null : value;
     }
 
+    this.queryRaw = this.query ?? '';
+
     makeObservable(this);
 
     intercept(this, 'query', (change) => {
-      this.queryRaw = change.newValue;
+      this.queryRaw = change.newValue ?? '';
       change.newValue = presence((change.newValue)?.trim()) ?? null;
 
       return change;
@@ -142,9 +144,12 @@ export class BeatmapsetSearchFilters {
     const currentQuery = this.query;
     const tagString = tag.toQuery();
 
+    // this appends a space at the end of the newly added tag
+    // so that the user may immediately type in new stuff into
+    // the searchbox
     const newQuery = currentQuery !== null
-      ? currentQuery + ` ${tagString}`
-      : tagString;
+      ? `${currentQuery} ${tagString} `
+      : `${tagString} `;
 
     this.update('query', newQuery);
   }

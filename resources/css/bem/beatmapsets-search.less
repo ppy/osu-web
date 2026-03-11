@@ -94,13 +94,12 @@
       cursor: pointer;
 
       &:hover {
-        color: hsl(var(--hsl-l3));
+        color: hsl(var(--hsl-c1));
       }
     }
 
-    &--active,
-    &--active:hover {
-      color: hsl(var(--hsl-h1));
+    &--active {
+      color: hsl(var(--hsl-c1));
     }
   }
 
@@ -129,8 +128,6 @@
     background-color: hsl(var(--hsl-b2));
 
     display: flex;
-    flex-direction: row;
-    justify-content: stretch;
 
     &:has(.@{_top}__input:focus) {
       box-shadow: 0 0 10px hsl(var(--hsl-l1));

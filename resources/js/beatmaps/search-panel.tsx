@@ -60,7 +60,7 @@ export class SearchPanel extends React.Component<Props> {
 
   @computed
   private get queryRaw() {
-    return this.controller.filters.queryRaw ?? '';
+    return this.controller.filters.queryRaw;
   }
 
   constructor(props: Props) {
