@@ -689,7 +689,7 @@ class Room extends Model
         $this->assertValidStartGame();
 
         if (!is_array($params['playlist'])) {
-            throw new InvariantException("field 'playlist' must an an array");
+            throw new InvariantException("field 'playlist' must be an array");
         }
 
         $playlistItems = [];
