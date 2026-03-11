@@ -573,7 +573,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return storage_disk('beatmapset')->put(
             "preview/{$this->getKey()}.mp3",
             $preview,
-            ['Content-Type' => 'audio/ogg'],
         );
     }
 
