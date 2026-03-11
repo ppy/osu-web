@@ -565,15 +565,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function regenerateAudioPreview(): bool
     {
         $preview = $this->archive()->generateAudioPreview();
+        $storage = storage_disk('beatmapset');
+        $path = "preview/{$this->getKey()}.mp3";
 
         if ($preview === null) {
+            $storage->delete($path);
+
             return false;
         }
 
-        $ret = storage_disk('beatmapset')->put(
-            "preview/{$this->getKey()}.mp3",
-            $preview,
-        );
+        $ret = $storage->put($path, $preview);
 
         if ($ret) {
             cache_proxy_purge($this->previewUrl());
