@@ -139,7 +139,8 @@ class BeatmapsetArchive
     {
         return $this->osuFileList ??= array_values(array_unique([
             // use db order
-            ...($this->beatmapset?->beatmaps->pluck('filename') ?? []),
+            // filename column in beatmaps table is nullable
+            ...array_reject_null($this->beatmapset?->beatmaps->pluck('filename') ?? []),
             ...preg_grep('/\.osu$/i', $this->fileList()),
         ]));
     }
