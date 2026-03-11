@@ -171,44 +171,28 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderBackground() {
-    let background: React.ReactNode;
-    let backgroundLink: React.ReactNode;
-
-    const overlayCssClass = classWithModifiers(
+    const overlay = (<div className={classWithModifiers(
       'user-card__background-overlay',
-      this.isOnline ? ['online'] : [],
-    );
+      { online: this.isOnline },
+    )} />);
 
-    if (this.user.cover?.url != null) {
-      let backgroundCssClass = 'user-card__background';
-      if (!this.backgroundLoaded) {
-        backgroundCssClass += ' user-card__background--loading';
-      }
+    const background = this.user.cover?.url == null
+      ? overlay
+      : (<>
+        <img
+          className={classWithModifiers('user-card__background', { loading: !this.backgroundLoaded })}
+          onLoad={this.onBackgroundLoad}
+          src={this.user.cover.url}
+        />
+        {overlay}
+      </>);
 
-      background = (
-        <>
-          <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
-          <div className={overlayCssClass} />
-        </>
-      );
-    } else {
-      background = <div className={overlayCssClass} />;
-    }
-
-    if (this.isUserVisible) {
-      backgroundLink = (
-        <a
-          className='user-card__background-container'
-          href={this.url}
-        >
+    return this.isUserVisible
+      ? (
+        <a className='user-card__background-container' href={this.url}>
           {background}
         </a>
-      );
-    } else {
-      backgroundLink = background;
-    }
-
-    return backgroundLink;
+      ) : background;
   }
 
   renderIcons() {
