@@ -6,7 +6,7 @@ import FriendButton from 'components/friend-button';
 import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -67,17 +67,14 @@ export class UserCard extends React.PureComponent<Props, State> {
     username: trans('users.card.loading'),
   };
 
-  state: Readonly<State> = {
-    avatarLoaded: false,
-    backgroundLoaded: false,
-  };
-
+  @observable private avatarLoaded = false;
+  @observable private backgroundLoaded = false;
   private readonly popupMenuState = new PopupMenuState();
   private url?: string;
 
   private get canMessage() {
     return !this.isSelf
-      && _.find(core.currentUser?.blocks ?? [], { target_id: this.user.id }) == null;
+      && !core.currentUserModel.blocks.has(this.user.id);
   }
 
   private get isOnline() {
@@ -104,13 +101,10 @@ export class UserCard extends React.PureComponent<Props, State> {
     return this.props.user || UserCard.userLoading;
   }
 
-  onAvatarLoad = () => {
-    this.setState({ avatarLoaded: true });
-  };
-
-  onBackgroundLoad = () => {
-    this.setState({ backgroundLoaded: true });
-  };
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
 
   render() {
     if (this.props.mode === 'brick') {
@@ -156,7 +150,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderAvatar() {
-    const modifiers = { loaded: this.state.avatarLoaded };
+    const modifiers = { loaded: this.avatarLoaded };
     const hasAvatar = present(this.user.avatar_url) && !this.isUserNotFound;
 
     return (
@@ -187,7 +181,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     if (this.user.cover?.url != null) {
       let backgroundCssClass = 'user-card__background';
-      if (!this.state.backgroundLoaded) {
+      if (!this.backgroundLoaded) {
         backgroundCssClass += ' user-card__background--loading';
       }
 
@@ -344,6 +338,16 @@ export class UserCard extends React.PureComponent<Props, State> {
       </div>
     );
   }
+
+  @action
+  private readonly onAvatarLoad = () => {
+    this.avatarLoaded = true;
+  };
+
+  @action
+  private readonly onBackgroundLoad = () => {
+    this.backgroundLoaded = true;
+  };
 
   private readonly renderMenuItems = () => (
     <div className='simple-menu'>
