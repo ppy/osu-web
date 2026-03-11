@@ -115,26 +115,23 @@ export class Discussions extends React.Component<Props> {
 
   render() {
     return (
-      <div className='osu-page osu-page--small osu-page--full'>
-        <div className={`${bn} js-beatmap-discussions`}>
-          <div className='page-title'>
-            {trans('beatmaps.discussions.title')}
-          </div>
-          <div className={`${bn}__toolbar`}>
-            <div className={`${bn}__toolbar-content ${bn}__toolbar-content--left`}>
-              <div className={`${bn}__toolbar-item`}>
-                {this.renderSortOptions()}
-              </div>
-            </div>
-            <div className={`${bn}__toolbar-content ${bn}__toolbar-content--right`}>
-              {this.renderShowDeletedToggle()}
-              {this.renderExpandCollapseAllButton('collapse')}
-              {this.renderExpandCollapseAllButton('expand')}
-            </div>
-          </div>
-
-          {this.renderDiscussions()}
+      <div className={`${bn} js-beatmap-discussions`}>
+        <div className='page-title'>
+          {trans('beatmaps.discussions.title')}
         </div>
+        <div className={`${bn}__toolbar`}>
+          <div className={`${bn}__toolbar-content ${bn}__toolbar-content--left`}>
+            <div className={`${bn}__toolbar-item`}>
+              {this.renderSortOptions()}
+            </div>
+          </div>
+          <div className={`${bn}__toolbar-content ${bn}__toolbar-content--right`}>
+            {this.renderShowDeletedToggle()}
+            {this.renderExpandCollapseAllButton('collapse')}
+            {this.renderExpandCollapseAllButton('expand')}
+          </div>
+        </div>
+        {this.renderDiscussions()}
       </div>
     );
   }

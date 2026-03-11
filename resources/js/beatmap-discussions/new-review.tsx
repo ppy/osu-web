@@ -81,28 +81,26 @@ export default class NewReview extends React.Component<Props> {
       <div className={classWithModifiers(floatClass, { pinned: this.pinned })} style={{ top: this.cssTop }}>
         <div className={`${floatClass}__floatable`}>
           <div ref={this.props.innerRef} className={`${floatClass}__content`}>
-            <div className='osu-page osu-page--small'>
-              <div className='beatmap-discussion-new'>
-                <div className='page-title'>
-                  {trans('beatmaps.discussions.review.new')}
-                  <span className='page-title__button'>
-                    <span
-                      className={classWithModifiers('btn-circle', { activated: this.pinned })}
-                      onClick={this.toggleSticky}
-                      title={trans(`beatmaps.discussions.new.${this.pinned ? 'unpin' : 'pin'}`)}
-                    >
-                      <span className='btn-circle__content'><i className='fas fa-thumbtack' /></span>
-                    </span>
+            <div className='beatmap-discussion-new'>
+              <div className='page-title'>
+                {trans('beatmaps.discussions.review.new')}
+                <span className='page-title__button'>
+                  <span
+                    className={classWithModifiers('btn-circle', { activated: this.pinned })}
+                    onClick={this.toggleSticky}
+                    title={trans(`beatmaps.discussions.new.${this.pinned ? 'unpin' : 'pin'}`)}
+                  >
+                    <span className='btn-circle__content'><i className='fas fa-thumbtack' /></span>
                   </span>
-                </div>
-                {placeholder == null ? (
-                  <Editor
-                    discussionsState={this.props.discussionsState}
-                    onFocus={this.handleFocus}
-                    store={this.props.store}
-                  />
-                ) : <div className='beatmap-discussion-new__login-required'>{placeholder}</div>}
+                </span>
               </div>
+              {placeholder == null ? (
+                <Editor
+                  discussionsState={this.props.discussionsState}
+                  onFocus={this.handleFocus}
+                  store={this.props.store}
+                />
+              ) : <div className='beatmap-discussion-new__login-required'>{placeholder}</div>}
             </div>
           </div>
         </div>
