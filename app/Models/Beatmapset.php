@@ -500,7 +500,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             // ignore errors
         }
 
-        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+        $this->update(['cover_updated_at' => null]);
     }
 
     public function regenerateCovers(?array $sizesToRegenerate = null)
@@ -557,9 +557,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                 $this->storeCover("$size.jpg", get_stream_filename($resized));
             }
-        }
 
-        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+            $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+        }
     }
 
     public function regenerateAudioPreview(): bool
