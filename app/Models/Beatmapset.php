@@ -484,7 +484,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function previewURL()
     {
-        return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
+        return "https://b.ppy.sh/preview/{$this->getKey()}.mp3";
     }
 
     public function removeCover($targetFilename): void
