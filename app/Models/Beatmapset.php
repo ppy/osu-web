@@ -570,10 +570,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             return false;
         }
 
-        return storage_disk('beatmapset')->put(
+        $ret = storage_disk('beatmapset')->put(
             "preview/{$this->getKey()}.mp3",
             $preview,
         );
+
+        if ($ret) {
+            cache_proxy_purge($this->previewUrl());
+        }
+
+        return $ret;
     }
 
     public function allCoverImagesPresent()
