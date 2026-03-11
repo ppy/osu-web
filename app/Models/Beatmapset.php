@@ -482,7 +482,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->download_disabled || $this->download_disabled_url !== null;
     }
 
-    public function previewURL()
+    public function previewUrl(): string
     {
         return "https://b.ppy.sh/preview/{$this->getKey()}.mp3";
     }
