@@ -4,12 +4,12 @@
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { rulesetIdToName } from 'interfaces/ruleset';
+import { rulesetNames } from 'interfaces/ruleset';
 import { ScoreReplayStatsJsonForUser } from 'interfaces/score-replay-stats-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
+import { shouldShowPp } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -38,7 +38,7 @@ export default function ScoreReplayStatsEntry(props: Props) {
         <div className='play-detail__detail'>
           <a
             className='play-detail__title u-ellipsis-overflow'
-            href={beatmapUrl(beatmap, rulesetName(score.ruleset_id))}
+            href={beatmapUrl(beatmap, rulesetNames[score.ruleset_id])}
           >
             {getTitle(beatmapset)}
             {' '}
@@ -48,7 +48,7 @@ export default function ScoreReplayStatsEntry(props: Props) {
           </a>
           <div className='play-detail__beatmap-and-time'>
             <span className='play-detail__beatmap'>
-              <span className={`fal fa-extra-mode-${rulesetIdToName[score.ruleset_id]}`} />
+              <span className={`fal fa-extra-mode-${rulesetNames[score.ruleset_id]}`} />
               {' '}
               {beatmap.version}
             </span>

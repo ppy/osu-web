@@ -5,7 +5,7 @@ import FlagCountry from 'components/flag-country';
 import Mods from 'components/mods';
 import UserLink from 'components/user-link';
 import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
-import { rulesetIdToName } from 'interfaces/ruleset';
+import { rulesetNames } from 'interfaces/ruleset';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -32,7 +32,7 @@ function renderVersion(props: Props) {
   return (
     <a href={route('beatmaps.show', { beatmap: props.score.beatmap_id })}>
       <span
-        className={`fal fa-extra-mode-${rulesetIdToName[props.score.ruleset_id]}`}
+        className={`fal fa-extra-mode-${rulesetNames[props.score.ruleset_id]}`}
       /> {version}
     </a>
   );
@@ -57,7 +57,7 @@ export default observer(function Score(props: Props) {
               className='mp-history-player-score__country-flag'
               href={route('rankings', {
                 country: user.country?.code,
-                mode: rulesetIdToName[props.score.ruleset_id],
+                mode: rulesetNames[props.score.ruleset_id],
                 type: 'performance',
               })}
             >

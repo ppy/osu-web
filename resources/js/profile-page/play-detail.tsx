@@ -4,11 +4,12 @@
 import Mods from 'components/mods';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
+import { rulesetNames } from 'interfaces/ruleset';
 import { ScoreJsonForUser } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
+import { shouldShowPp } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -65,7 +66,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           <div className={`${bn}__detail`}>
             <a
               className={`${bn}__title u-ellipsis-overflow`}
-              href={beatmapUrl(beatmap, rulesetName(score.ruleset_id))}
+              href={beatmapUrl(beatmap, rulesetNames[score.ruleset_id])}
             >
               {getTitle(beatmapset)}
               {' '}
