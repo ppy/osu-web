@@ -6,6 +6,7 @@ import { action, computed, intercept, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import { presence, present } from 'utils/string';
 import { updateQueryString } from 'utils/url';
+import BeatmapTag from './models/beatmap-tag';
 
 export const charToKey: Record<string, FilterKey> = {
   c: 'general',
@@ -54,6 +55,7 @@ export class BeatmapsetSearchFilters {
   @observable nsfw: FilterValueType = null;
   @observable played: FilterValueType = null;
   @observable query: FilterValueType = null;
+  @observable queryRaw: string = '';
   @observable rank: FilterValueType = null;
   @observable sort: FilterValueType = null;
   @observable status: FilterValueType = null;
@@ -95,9 +97,12 @@ export class BeatmapsetSearchFilters {
       this[key] = value === this.getDefault(key) ? null : value;
     }
 
+    this.queryRaw = this.query ?? '';
+
     makeObservable(this);
 
     intercept(this, 'query', (change) => {
+      this.queryRaw = change.newValue ?? '';
       change.newValue = presence((change.newValue)?.trim()) ?? null;
 
       return change;
@@ -132,6 +137,36 @@ export class BeatmapsetSearchFilters {
 
   selectedValue(key: FilterKey) {
     return this[key] ?? this.getDefault(key);
+  }
+
+  @action
+  tagAdd(tag: BeatmapTag) {
+    const currentQuery = this.query;
+    const tagString = tag.toQuery();
+
+    // this appends a space at the end of the newly added tag
+    // so that the user may immediately type in new stuff into
+    // the searchbox
+    const newQuery = currentQuery !== null
+      ? `${currentQuery} ${tagString} `
+      : `${tagString} `;
+
+    this.update('query', newQuery);
+  }
+
+  @action
+  tagRemove(tag: BeatmapTag) {
+    const currentQuery = this.query;
+
+    if (currentQuery === null) {
+      return;
+    }
+
+    const newQuery = currentQuery
+      .replace(tag.toQuery(), '')
+      .replace('  ', ' ')
+      .trim();
+    this.update('query', newQuery);
   }
 
   toKeyString() {
