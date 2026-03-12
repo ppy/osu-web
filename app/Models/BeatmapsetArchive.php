@@ -87,9 +87,16 @@ class BeatmapsetArchive
         $fadeOut = $duration - 1000;
 
         $filter = implode(',', [
-            // unify output to 44.1kHz stereo
+            // unify output to stereo
+            // resample here for correct loudnorm operation
+            'aresample=resampler=soxr:ochl=stereo',
+            // TODO: two-pass normalisation
+            // It requires ffmpeg release after 2026-02-20 for saner output parsing.
+            // Reference: https://code.ffmpeg.org/FFmpeg/FFmpeg/pulls/21766
+            'loudnorm=i=-14',
+            // unify output to 44.1kHz (loudnorm above resamples to 192kHz)
             // note that vorbis doesn't have bit depth
-            'aresample=osr=44100:ochl=stereo',
+            'aresample=resampler=soxr:osr=44100',
             "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
             "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
         ]);
@@ -139,7 +146,8 @@ class BeatmapsetArchive
     {
         return $this->osuFileList ??= array_values(array_unique([
             // use db order
-            ...($this->beatmapset?->beatmaps->pluck('filename') ?? []),
+            // filename column in beatmaps table is nullable
+            ...array_reject_null($this->beatmapset?->beatmaps->pluck('filename') ?? []),
             ...preg_grep('/\.osu$/i', $this->fileList()),
         ]));
     }
