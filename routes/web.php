@@ -55,6 +55,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
             Route::post('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
+        Route::resource('tags', 'TagsController', ['only' => ['index']]);
     });
 
     Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
