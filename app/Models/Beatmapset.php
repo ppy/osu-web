@@ -8,6 +8,7 @@ namespace App\Models;
 use App\Enums\Ruleset;
 use App\Exceptions\ImageProcessorServiceException;
 use App\Exceptions\InvariantException;
+use App\Interfaces\CommentableInterface;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsDocumentUnique;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
@@ -23,7 +24,6 @@ use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Beatmapset\BeatmapsetMainRuleset;
 use App\Libraries\Beatmapset\NominateBeatmapset;
-use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageUrl;
@@ -113,7 +113,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
+class Beatmapset extends Model implements AfterCommit, CommentableInterface, Indexable, Traits\ReportableInterface
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 

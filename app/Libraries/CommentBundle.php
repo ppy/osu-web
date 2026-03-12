@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Interfaces\CommentableInterface;
 use App\Models\Comment;
 use App\Models\CommentVote;
 use App\Models\User;
@@ -38,7 +39,7 @@ class CommentBundle
     }
 
 
-    public function __construct(private ?Commentable $commentable, array $options = [])
+    public function __construct(private ?CommentableInterface $commentable, array $options = [])
     {
         $this->user = auth()->user();
 
