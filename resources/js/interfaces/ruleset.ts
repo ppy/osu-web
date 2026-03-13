@@ -1,16 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-export const rulesetIdToName = {
-  0: 'osu',
-  1: 'taiko',
-  2: 'fruits',
-  3: 'mania',
+import { invert } from 'lodash';
+
+export const rulesetIds = {
+  fruits: 2,
+  mania: 3,
+  osu: 0,
+  taiko: 1,
 } as const;
-export const rulesets = Object.values(rulesetIdToName);
+
+export const rulesetNames = invert(rulesetIds) as Record<RulesetId, Ruleset>;
+export const rulesets = Object.values(rulesetNames);
 
 export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
-  if ((rulesets as readonly string[]).includes(maybeRuleset)) {
+  if (maybeRuleset in rulesetIds) {
     return maybeRuleset as Ruleset;
   }
 }
@@ -20,13 +24,13 @@ export function ensureRulesetId(maybeRulesetId: number | string): RulesetId | un
     maybeRulesetId = parseInt(maybeRulesetId, 10);
   }
 
-  if (rulesetIdToName[maybeRulesetId as RulesetId] != null) {
+  if (maybeRulesetId in rulesetNames) {
     return maybeRulesetId as RulesetId;
   }
 }
 
-export type RulesetId = keyof typeof rulesetIdToName;
-type Ruleset = typeof rulesetIdToName[RulesetId];
+type Ruleset = keyof typeof rulesetIds;
+export type RulesetId = typeof rulesetIds[Ruleset];
 
 export const rulesetVariantIdToName = {
   0: '',

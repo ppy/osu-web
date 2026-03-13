@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { rulesetIdToName, rulesets } from 'interfaces/ruleset';
+import { rulesetNames, rulesets } from 'interfaces/ruleset';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import BeatmapTag from 'models/beatmap-tag';
@@ -68,8 +68,8 @@ const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
   return (<div className={classWithModifiers('user-tag-picker__tag', { active })} onClick={onClick}>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.tagName}</span>
     <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>
-      {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((ruleset) => (<React.Fragment key={ruleset}>
-        <span className={`fal fa-extra-mode-${rulesetIdToName[ruleset]}`} />{' '}
+      {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((rulesetId) => (<React.Fragment key={rulesetId}>
+        <span className={`fal fa-extra-mode-${rulesetNames[rulesetId]}`} />{' '}
       </React.Fragment>))}
       {tag.description}
     </span>
