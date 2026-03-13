@@ -31,7 +31,7 @@ class AvatarHelper
             $entry = $id.'_'.time().'.'.$processor->ext();
         }
 
-        static::purgeCache($id);
+        cache_proxy_purge(StorageUrl::make(static::DISK, (string) $id));
 
         return $user->update(['user_avatar' => $entry ?? '']);
     }
@@ -43,34 +43,5 @@ class AvatarHelper
         return present($value)
             ? StorageUrl::make(static::DISK, strtr($value, '_', '?'))
             : $GLOBALS['cfg']['osu']['avatar']['default'];
-    }
-
-    private static function purgeCache(int $id): void
-    {
-        $prefix = presence($GLOBALS['cfg']['osu']['avatar']['cache_purge_prefix']);
-
-        if ($prefix === null) {
-            return;
-        }
-
-        $method = $GLOBALS['cfg']['osu']['avatar']['cache_purge_method'] ?? 'GET';
-        $auth = $GLOBALS['cfg']['osu']['avatar']['cache_purge_authorization_key'];
-        $ctx = [
-            'http' => [
-                'method' => $method,
-                'header' => present($auth) ? "Authorization: {$auth}" : null,
-            ],
-        ];
-        $suffix = $method === 'GET' ? '?'.time() : ''; // Bypass CloudFlare cache if using GET
-        $url = "{$prefix}{$id}{$suffix}";
-
-        try {
-            file_get_contents($url, false, stream_context_create($ctx));
-        } catch (\ErrorException $e) {
-            // ignores 404 errors, throws everything else
-            if (!ends_with($e->getMessage(), "404 Not Found\r\n")) {
-                throw $e;
-            }
-        }
     }
 }
