@@ -1981,7 +1981,7 @@ function section_to_hue_map($section): int
         'user' => 'pink',
     ];
 
-    return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
+    return $colourToHue[$sectionMapping[$section] ?? 'pink'];
 }
 
 function search_error_message(?Exception $e): ?string
