@@ -120,6 +120,25 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
     return $data['value'] ?? $default;
 }
 
+function cache_proxy_purge(string $url): void
+{
+    $authKey = $GLOBALS['cfg']['osu']['cache_proxy']['purge_authorization_key'];
+
+    if (!present($authKey)) {
+        return;
+    }
+
+    try {
+        (new GuzzleHttp\Client())->request('DELETE', $url, [
+            'headers' => ['authorization' => $authKey],
+        ])->getBody()->getContents();
+    } catch (\Throwable $e) {
+        log_error(new App\Exceptions\CacheProxyPurgeException(previous: $e), [
+            'url' => $url,
+        ]);
+    }
+}
+
 /**
  * Like Cache::remember but always save for one month or 10 * $seconds (whichever is longer)
  * and return old value if failed getting the value after it expires.
