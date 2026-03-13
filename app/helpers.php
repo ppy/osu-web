@@ -1490,35 +1490,36 @@ function fast_imagesize($url, ?string $logErrorId = null)
     return null_if_false(Cache::remember(
         "imageSize:{$url}",
         $oneMonthInSeconds,
-        function () use ($logErrorId, $url) {
-            $curl = curl_init($url);
-            curl_setopt_array($curl, [
-                CURLOPT_HTTPHEADER => [
-                    'Range: bytes=0-32768',
-                ],
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_MAXREDIRS => 5,
-                CURLOPT_TIMEOUT => 10,
-            ]);
-            $data = curl_exec($curl);
-
-            $ret = read_image_properties_from_string($data);
-
-            if ($ret === null && $logErrorId !== null) {
-                log_error(new FastImagesizeFetchException(), [
-                    'curl_error_code' => curl_errno($curl),
-                    'curl_error_message' => presence(curl_error($curl)) ?? 'ok',
-                    'curl_status_code' => curl_getinfo($curl, CURLINFO_HTTP_CODE),
-                    'error_id' => $logErrorId,
-                    'url' => $url,
-                ]);
-            }
-
-            // null isn't cached
-            return $ret ?? false;
-        },
+        // null can't be cached
+        fn () => (imagesize($url, $logErrorId) ?? false),
     ));
+}
+
+function imagesize(string $url, ?string $logErrorId = null): ?array
+{
+    try {
+        $data = (new GuzzleHttp\Client())->request('GET', $url, [
+            'headers' => ['range' => 'bytes=0-32768'],
+            'timeout' => 10,
+        ])->getBody()->getContents();
+
+        $ret = read_image_properties_from_string($data);
+    } catch (\Throwable $e) {
+        // ignore (or log) error and continue
+    }
+
+    if (isset($ret)) {
+        return $ret;
+    }
+
+    if ($logErrorId !== null) {
+        log_error(new FastImagesizeFetchException(previous: $e ?? null), [
+            'error_id' => $logErrorId,
+            'url' => $url,
+        ]);
+    }
+
+    return null;
 }
 
 function get_arr($input, $callback = null)

@@ -15,6 +15,16 @@ export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
   }
 }
 
+export function ensureRulesetId(maybeRulesetId: number | string): RulesetId | undefined {
+  if (typeof maybeRulesetId === 'string') {
+    maybeRulesetId = parseInt(maybeRulesetId, 10);
+  }
+
+  if (rulesetIdToName[maybeRulesetId as RulesetId] != null) {
+    return maybeRulesetId as RulesetId;
+  }
+}
+
 export type RulesetId = keyof typeof rulesetIdToName;
 type Ruleset = typeof rulesetIdToName[RulesetId];
 
