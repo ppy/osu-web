@@ -14,7 +14,7 @@ export const rulesetNames = invert(rulesetIds) as Record<RulesetId, Ruleset>;
 export const rulesets = Object.values(rulesetNames);
 
 export function ensureRuleset(maybeRuleset: string): Ruleset | undefined {
-  if (rulesetIds[maybeRuleset as Ruleset] != null) {
+  if (maybeRuleset in rulesetIds) {
     return maybeRuleset as Ruleset;
   }
 }
@@ -24,7 +24,7 @@ export function ensureRulesetId(maybeRulesetId: number | string): RulesetId | un
     maybeRulesetId = parseInt(maybeRulesetId, 10);
   }
 
-  if (rulesetNames[maybeRulesetId as RulesetId] != null) {
+  if (maybeRulesetId in rulesetNames) {
     return maybeRulesetId as RulesetId;
   }
 }
