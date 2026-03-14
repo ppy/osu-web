@@ -40,7 +40,7 @@ export default class UserTagPickerController {
       ? this.tags.filter((tag) => tag.rulesetIds.length === 0 || tag.rulesetIds.includes(rulesetId))
       : this.tags;
 
-    const queried = filtered.filter((tag) => tag.matchesName(this.query));
+    const queried = filtered.filter((tag) => tag.match(this.query));
 
     const grouped = groupBy(queried, (tag) => tag.categoryName);
 
