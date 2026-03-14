@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { invert } from 'lodash';
-import { action, computed, intercept, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
 import { presence, present } from 'utils/string';
 import { updateQueryString } from 'utils/url';
@@ -100,13 +100,6 @@ export class BeatmapsetSearchFilters {
     this.queryRaw = this.query ?? '';
 
     makeObservable(this);
-
-    intercept(this, 'query', (change) => {
-      this.queryRaw = change.newValue ?? '';
-      change.newValue = presence((change.newValue)?.trim()) ?? null;
-
-      return change;
-    });
   }
 
   getDefault(key: FilterKey) {
@@ -175,6 +168,10 @@ export class BeatmapsetSearchFilters {
 
   @action
   update(key: FilterKey, value: FilterValueType) {
+    if (key === 'query') {
+      this.queryRaw = value ?? '';
+      value = presence(value?.trim());
+    }
     const oldValue = this[key];
     if (value === oldValue) return;
     if (changesResetSorts.includes(key)) {
