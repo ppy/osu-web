@@ -92,12 +92,11 @@ export class BeatmapsetSearchFilters {
 
   constructor(url: string) {
     const filters = filtersFromUrl(url);
+    this.queryRaw = filters.query ?? '';
     for (const key of keyNames) {
       const value = filters[key] ?? null;
-      this[key] = value === this.getDefault(key) ? null : value;
+      this[key] = this.sanitiseValue(key, value);
     }
-
-    this.queryRaw = this.query ?? '';
 
     makeObservable(this);
   }
@@ -170,11 +169,8 @@ export class BeatmapsetSearchFilters {
   update(key: FilterKey, value: FilterValueType) {
     if (key === 'query') {
       this.queryRaw = value ?? '';
-      value = presence(value?.trim());
     }
-    if (value === this.getDefault(key)) {
-      value = null;
-    }
+    value = this.sanitiseValue(key, value);
 
     if (value === this[key]) return;
     if (changesResetSorts.includes(key)) {
@@ -182,5 +178,15 @@ export class BeatmapsetSearchFilters {
     }
 
     this[key] = value;
+  }
+
+  private sanitiseValue(key: FilterKey, value: FilterValueType) {
+    if (key === 'query') {
+      value = presence(value?.trim());
+    }
+
+    return value === this.getDefault(key)
+      ? null
+      : value;
   }
 }
