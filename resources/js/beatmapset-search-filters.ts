@@ -172,12 +172,15 @@ export class BeatmapsetSearchFilters {
       this.queryRaw = value ?? '';
       value = presence(value?.trim());
     }
-    const oldValue = this[key];
-    if (value === oldValue) return;
+    if (value === this.getDefault(key)) {
+      value = null;
+    }
+
+    if (value === this[key]) return;
     if (changesResetSorts.includes(key)) {
       this.sort = null;
     }
 
-    this[key] = value === this.getDefault(key) ? null : value;
+    this[key] = value;
   }
 }
