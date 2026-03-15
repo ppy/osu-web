@@ -119,10 +119,26 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
 
             <div className={`${bn}__pp`}>
               {shouldShowPp(beatmap) ? (
-                <PpValue
-                  score={score}
-                  suffix={<span className={`${bn}__pp-unit`}>pp</span>}
-                />
+                <>
+                  <PpValue
+                    score={score}
+                    suffix={<span className={`${bn}__pp-unit`}>pp</span>}
+                  />
+                  {score.metadata != null && (
+                    <>
+                      {score.metadata.pp_delta !== 0 && (
+                        <div className={classWithModifiers(`${bn}__pp-delta`, score.metadata.pp_delta > 0 ? 'up' : 'down')}>
+                          {score.metadata.pp_delta > 0 ? '+' : ''}{formatNumber(Math.round(score.metadata.pp_delta))}pp
+                        </div>
+                      )}
+                      {score.metadata.rank_delta !== 0 && (
+                        <div className={classWithModifiers(`${bn}__rank-delta`, score.metadata.rank_delta < 0 ? 'up' : 'down')}>
+                          {formatNumber(Math.abs(score.metadata.rank_delta))}
+                        </div>
+                      )}
+                    </>
+                  )}
+                </>
               ) : (
                 <span title={trans('users.show.extra.top_ranks.not_ranked')}>
                   {(beatmap.status === 'loved') ? (

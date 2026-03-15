@@ -22,6 +22,7 @@ use App\Models\Count;
 use App\Models\Model;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Score as LegacyScore;
+use App\Models\ScoreMetadata;
 use App\Models\ScoreToken;
 use App\Models\Traits;
 use App\Models\User;
@@ -164,6 +165,11 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->morphTo(__FUNCTION__, 'legacy_score_type', 'legacy_best_id');
     }
 
+    public function metadata()
+    {
+        return $this->hasOne(ScoreMetadata::class, 'score_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -286,6 +292,7 @@ class Score extends Model implements Traits\ReportableInterface
             'build',
             'legacyReplayViewCount',
             'legacyScore',
+            'metadata',
             'performance',
             'processHistory',
             'reportedIn',

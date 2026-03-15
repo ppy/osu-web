@@ -190,6 +190,7 @@
 
     @media @desktop {
       .center-content();
+      flex-direction: column;
       position: relative;
       right: auto;
       bottom: auto;
@@ -216,6 +217,38 @@
 
     &--watch-count {
       --desktop-width: 130px; // 5 digits
+    }
+  }
+
+  &__pp-delta {
+    font-size: @font-size--normal;
+
+    &--up {
+      color: hsl(var(--hsl-lime-1));
+    }
+
+    &--down {
+      color: hsl(var(--hsl-red-1));
+    }
+  }
+
+  &__rank-delta {
+    font-size: @font-size--normal;
+
+    &::before {
+      .fas();
+      .fa-fw();
+      content: var(--rank-delta-icon);
+    }
+
+    &--up {
+      color: hsl(var(--hsl-lime-1));
+      --rank-delta-icon: @fa-var-arrow-up;
+    }
+
+    &--down {
+      color: hsl(var(--hsl-red-1));
+      --rank-delta-icon: @fa-var-arrow-down;
     }
   }
 
