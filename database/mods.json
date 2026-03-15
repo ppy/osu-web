@@ -1,3 +1,5 @@
+/home/runner/work/osu/osu/osu/osu.Game/osu.Game.csproj : warning NU1903: Package 'AutoMapper' 13.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x [/home/runner/work/osu/osu/osu-tools/PerformanceCalculator/PerformanceCalculator.csproj]
+/home/runner/work/osu/osu/osu/osu.Game/osu.Game.csproj : warning NU1903: Package 'AutoMapper' 13.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x
 [
   {
     "Name": "osu",
