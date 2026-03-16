@@ -44,7 +44,9 @@ export default class BeatmapTag {
     }
 
     for (const item of queryParts) {
-      if (!this.nameLowercase.includes(item) && !this.descriptionLowercase.includes(item)) {
+      const itemLowercase = item.toLowerCase();
+
+      if (!this.nameLowercase.includes(itemLowercase) && !this.descriptionLowercase.includes(itemLowercase)) {
         return false;
       }
     }
