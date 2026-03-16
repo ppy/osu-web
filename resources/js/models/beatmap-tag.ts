@@ -38,10 +38,12 @@ export default class BeatmapTag {
     this.tagName = split[1];
   }
 
-  match(match: string) {
-    const split = match.toLowerCase().split(/\s+/);
+  match(queryParts: string[], rulesetId?: RulesetId) {
+    if (rulesetId != null && this.rulesetIds.length > 0 && !this.rulesetIds.includes(rulesetId)) {
+      return false;
+    }
 
-    for (const item of split) {
+    for (const item of queryParts) {
       if (!this.nameLowercase.includes(item) && !this.descriptionLowercase.includes(item)) {
         return false;
       }
