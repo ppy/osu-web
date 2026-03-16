@@ -5,7 +5,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { accuracy, rank, rankCutoffs } from 'utils/score-helper';
+import { rank } from 'utils/score-helper';
 import Buttons from './buttons';
 import Dial from './dial';
 import Player from './player';
@@ -29,7 +29,7 @@ export default function Info({ score }: Props) {
       <div className='score-info__item score-info__item--dial'>
         {score.legacy_score_id != null
           ? <div className={classWithModifiers('legacy-rank', rank(score))} />
-          : <Dial accuracy={accuracy(score)} rank={rank(score)} rankCutoffs={rankCutoffs(score)} />
+          : <Dial score={score} />
         }
       </div>
 
