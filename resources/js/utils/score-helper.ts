@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Rank from 'interfaces/rank';
 import Ruleset, { rulesetIds, rulesetNames } from 'interfaces/ruleset';
 import ScoreJson, { ScoreStatisticsAttribute } from 'interfaces/score-json';
 import ScoreModJson from 'interfaces/score-mod-json';
@@ -147,6 +148,19 @@ export function rank(score: ScoreJson) {
     ? legacyAccuracyAndRank(score).rank
     : score.rank;
 }
+
+// the index of absolute cutoffs array for maximum accuracy of the rank
+export  const rankCutoffIndex: Record<Rank, number> = {
+  A: 4,
+  B: 3,
+  C: 2,
+  D: 1,
+  F: 0,
+  S: 5,
+  SH: 5,
+  X: 6,
+  XH: 6,
+};
 
 // for SS, use minimum accuracy of 0.99 (any less and it's too small)
 // actual array is reversed as it's rendered from D to SS clockwise

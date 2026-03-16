@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 import Rank from 'interfaces/rank';
 import ScoreJson from 'interfaces/score-json';
 import * as React from 'react';
-import { accuracy, rank, rankCutoffs, rankAbsoluteCutoffs } from 'utils/score-helper';
+import { accuracy, rank, rankCutoffIndex, rankCutoffs, rankAbsoluteCutoffs } from 'utils/score-helper';
 
 const displayRank: Record<Rank, string> = {
   A: 'A',
@@ -19,25 +19,12 @@ const displayRank: Record<Rank, string> = {
   XH: 'SS',
 };
 
-// the index for maximum accuracy of the rank
-const cutoffIndex: Record<Rank, number> = {
-  A: 4,
-  B: 3,
-  C: 2,
-  D: 1,
-  F: 0,
-  S: 5,
-  SH: 5,
-  X: 6,
-  XH: 6,
-};
-
 export default function Dial({ score }: { score: ScoreJson }) {
   const scoreAccuracy = accuracy(score);
   const scoreRank = rank(score);
   const scoreRankCutoffs = rankCutoffs(score);
   const scoreRankAbsoluteCutoffs = rankAbsoluteCutoffs(score);
-  const displayAccuracy = Math.min(scoreAccuracy, scoreRankAbsoluteCutoffs[cutoffIndex[scoreRank]] ?? 1);
+  const displayAccuracy = Math.min(scoreAccuracy, scoreRankAbsoluteCutoffs[rankCutoffIndex[scoreRank]] ?? 1);
 
   const arc = d3.arc();
   const pie = d3.pie().sortValues(null);
