@@ -7,7 +7,7 @@ import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store'
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { usernameSortAscending } from 'models/user';
+import { deletedUser, usernameSortAscending } from 'models/user';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
@@ -37,6 +37,7 @@ export class UserFilter extends React.Component<Props> {
     return this.props.discussionsState.beatmapset.user_id;
   }
 
+  // TODO: add actual multi user selection.
   @computed
   private get options() {
     const usersWithDicussions = new Map<number, UserJson>();
@@ -59,12 +60,12 @@ export class UserFilter extends React.Component<Props> {
 
   @computed
   private get text() {
-    if (this.props.discussionsState.selectedUser == null) {
+    if (this.props.discussionsState.selectedUserIds.size === 0) {
       return trans('beatmap_discussions.user_filter.label');
     }
 
-    const style = groupColour(this.getGroup(this.props.discussionsState.selectedUser));
-    return <span className='u-group-colour u-ellipsis-overflow' style={style}>{this.props.discussionsState.selectedUser.username}</span>;
+    const user = this.props.discussionsState.selectedUsers[0] ?? deletedUser;
+    return <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>;
   }
 
   @computed
@@ -84,7 +85,7 @@ export class UserFilter extends React.Component<Props> {
         modifiers='beatmap-discussions-user-filter'
         onSelect={this.handleSelect}
         options={this.options}
-        selected={this.props.discussionsState.selectedUserId}
+        selected={this.props.discussionsState.selectedUserIds}
       >
         {this.text}
       </SelectOptions>
@@ -99,8 +100,11 @@ export class UserFilter extends React.Component<Props> {
 
   @action
   private readonly handleSelect = (id?: string) => {
-    const userId = getInt(id) ?? null;
-    this.props.discussionsState.selectedUserId = userId;
+    const userId = getInt(id);
+    this.props.discussionsState.selectedUserIds.clear();
+    if (userId != null) {
+      this.props.discussionsState.selectedUserIds.add(userId);
+    }
   };
 
   private isOwner(user?: Option): boolean {
@@ -108,19 +112,20 @@ export class UserFilter extends React.Component<Props> {
   }
 
   private readonly mapUserProperties = (user: Option) => {
-    const group = this.getGroup(user);
-    const style = groupColour(group);
-
     const urlOptions = structuredClone(this.urlOptions);
     // means it doesn't work on non-beatmapset discussion paths
     if (urlOptions != null) {
-      urlOptions.user = user.id ?? undefined;
+      urlOptions.users = user.id != null ? [user.id] : undefined;
     }
 
     return {
       href: urlOptions != null ? makeUrl(urlOptions) : '#',
       id: user.id,
-      text: <span className='u-group-colour u-ellipsis-overflow' style={style}>{user.username}</span>,
+      text: <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>,
     };
   };
+
+  private styleForUser(user: Option) {
+    return groupColour(this.getGroup(user));
+  }
 }

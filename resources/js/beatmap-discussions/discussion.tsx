@@ -103,8 +103,24 @@ export class Discussion extends React.Component<Props> {
     return this.props.discussionsState?.showDeleted ?? true;
   }
 
+  @computed
+  private get replies() {
+    return this.props.discussionsState != null ? this.props.discussion.posts.slice(1) : [];
+  }
+
   private get users() {
     return this.props.store.users;
+  }
+
+  @computed
+  private get visibleReplies() {
+    if (this.props.discussionsState == null
+      || this.props.discussionsState.selectedUserIds.size === 0
+      || this.props.discussionsState.showOtherReplies) {
+      return this.replies;
+    }
+    // always include system posts for the markers and state changes
+    return this.replies.filter((post) => post.system || this.props.discussionsState?.selectedUserIds.has(post.user_id));
   }
 
   constructor(props: Props) {
@@ -272,10 +288,12 @@ export class Discussion extends React.Component<Props> {
       cssClasses += ' hidden';
     }
 
+    const hiddenReplies = this.replies.length - this.visibleReplies.length;
     return (
       <div className={cssClasses}>
         <div className={`${bn}__replies`}>
-          {this.props.discussion.posts.slice(1).map(this.renderReply)}
+          {hiddenReplies > 0 && <div className={`${bn}__info`}>{`${hiddenReplies} replies are hidden.`}</div>}
+          {this.visibleReplies.map(this.renderReply)}
         </div>
         {this.props.discussionsState != null && this.canBeRepliedTo && (
           <NewReply
