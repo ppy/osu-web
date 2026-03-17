@@ -54,7 +54,7 @@ export default class UserPreferences {
   setUser(user?: CurrentUserJson) {
     this.user = user;
 
-    if (!this.updatingOptions) {
+    if (this.user != null && !this.updatingOptions) {
       this.current = user?.user_preferences ?? defaultUserPreferencesJson();
       this.updateStorage();
     }
