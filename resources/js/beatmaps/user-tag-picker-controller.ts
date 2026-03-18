@@ -34,15 +34,10 @@ export default class UserTagPickerController {
 
   @computed
   get groups() {
-    const rulesetId = this.rulesetId;
+    const querySplit = this.query.trim().toLowerCase().split(/\s+/);
 
-    const filtered = rulesetId != null
-      ? this.tags.filter((tag) => tag.rulesetIds.length === 0 || tag.rulesetIds.includes(rulesetId))
-      : this.tags;
-
-    const queried = filtered.filter((tag) => tag.matchesName(this.query));
-
-    const grouped = groupBy(queried, (tag) => tag.categoryName);
+    const filtered = this.tags.filter((tag) => tag.match(querySplit, this.rulesetId));
+    const grouped = groupBy(filtered, (tag) => tag.categoryName);
 
     return Object.entries(grouped).map(([name, tags]) => ({ name, tags }));
   }
