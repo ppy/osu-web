@@ -22,7 +22,6 @@ use App\Models\ScoreToken;
 use App\Models\User;
 use Artisan;
 use Carbon\CarbonInterface;
-use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -36,7 +35,7 @@ use ReflectionProperty;
 
 class TestCase extends BaseTestCase
 {
-    use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
+    use CreatesApplication, DatabaseTransactions;
 
     protected $connectionsToTransact = [
         'mysql',
