@@ -2,9 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import NotificationJson from 'interfaces/notification-json';
-import { camelCase, forEach } from 'lodash';
 import { computed, makeObservable, observable } from 'mobx';
-import NotificationDetails, { newEmptyNotificationDetails } from 'models/notification-details';
 import { Name } from 'models/notification-type';
 import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
@@ -17,7 +15,7 @@ import { presence } from 'utils/string';
 
 export default class Notification implements NotificationReadable, NotificationDeletable {
   createdAtJson?: string;
-  details: NotificationDetails = newEmptyNotificationDetails();
+  details: NotificationJson['details'] = {};
   @observable isDeleting = false;
   @observable isMarkingAsRead = false;
   @observable isRead = false;
@@ -42,12 +40,18 @@ export default class Notification implements NotificationReadable, NotificationD
   }
 
   get formattedDetails() {
+    const ret = {
+      ...this.details,
+      embeds: undefined,
+      reply_to: undefined,
+    };
+
     if (this.name !== 'news_post_new') {
-      return this.details;
+      return ret;
     }
 
     return {
-      ...this.details,
+      ...ret,
       series: trans(`news.series.${this.details.series}`),
     };
   }
@@ -67,10 +71,10 @@ export default class Notification implements NotificationReadable, NotificationD
 
   @computed get title() {
     if (core.userPreferences.get('beatmapset_title_show_original')) {
-      return presence(this.details.titleUnicode) ?? this.details.title;
+      return presence(this.details.title_unicode) ?? this.details.title ?? '';
     }
 
-    return this.details.title;
+    return this.details.title ?? '';
   }
 
   constructor(readonly id: number, readonly objectType: Name) {
@@ -89,12 +93,8 @@ export default class Notification implements NotificationReadable, NotificationD
     this.objectId = json.object_id;
     this.sourceUserId = json.source_user_id;
 
-    this.details = newEmptyNotificationDetails();
-
-    if (typeof json.details === 'object') {
-      forEach(json.details, (value, key) => {
-        this.details[camelCase(key)] = value;
-      });
+    if (json.details != null) {
+      this.details = { ...this.details, ...json.details };
 
       if (json.name === 'comment_new' && json.details.reply_to?.user_id === core.currentUser?.id) {
         this.name = 'comment_reply';
