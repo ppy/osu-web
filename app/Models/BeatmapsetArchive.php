@@ -68,16 +68,27 @@ class BeatmapsetArchive
         }
     }
 
-    private static function convertAudioForPreview(string $audioFile, int $previewTime): ?string
+    private static function convertAudioForPreview(string $audioFile, ?int $previewTime): ?string
     {
         $srcFile = tmpfile();
         fwrite($srcFile, $audioFile);
         $srcFilename = get_stream_filename($srcFile);
+        $srcFilenameEscaped = escapeshellarg($srcFilename);
         $dstFile = tmpfile();
         $dstFilename = get_stream_filename($dstFile);
 
         $duration = 10000;
-        $previewTime = max($previewTime, 0);
+        if ($previewTime === null || $previewTime < 0) {
+            $srcDuration = (float) exec(implode(' ', [
+                'timeout 10s',
+                'ffprobe',
+                '-loglevel quiet',
+                "-i {$srcFilenameEscaped}",
+                '-show_entries format=duration',
+                '-of csv=p=0',
+            ]));
+            $previewTime = 0.4 * $srcDuration * 100;
+        }
 
         $fadeInExtension = min($previewTime, 100);
         $fadeIn = $fadeInExtension + 100;
@@ -108,7 +119,7 @@ class BeatmapsetArchive
             '-nostdin',
             "-ss {$previewTime}ms",
             "-t {$duration}ms",
-            '-i '.escapeshellarg($srcFilename),
+            "-i {$srcFilenameEscaped}",
             "-af {$filter}",
             '-map 0:a', // strip out non-audio streams
             '-map_metadata -1', // strip out metadata
@@ -176,10 +187,10 @@ class BeatmapsetArchive
             $previewTime = $parsedFile->previewTime;
             $audioFilename = $parsedFile->audioFilename;
 
-            if (isset($audioFilename, $previewTime)) {
+            if (isset($audioFilename)) {
                 $audioFile = $this->readFile($audioFilename);
 
-                if ($audioFile !== null) {
+                if ($audioFile !== false) {
                     return static::convertAudioForPreview($audioFile, $previewTime);
                 }
             }
