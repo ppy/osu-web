@@ -6,8 +6,10 @@
 namespace App\Models\Chat;
 
 use App\Jobs\Notifications\ChannelAnnouncement;
+use App\Jobs\Notifications\ChannelMention;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Jobs\Notifications\ChannelTeam;
+use App\Libraries\UsernameValidation;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
@@ -112,7 +114,8 @@ class Message extends Model implements ReportableInterface
             return;
         }
 
-        $class = match ($this->channel->type) {
+        $channelType = $this->channel->type;
+        $class = match ($channelType) {
             Channel::TYPES['announce'] => ChannelAnnouncement::class,
             Channel::TYPES['pm'] => ChannelMessage::class,
             Channel::TYPES['team'] => ChannelTeam::class,
@@ -122,11 +125,29 @@ class Message extends Model implements ReportableInterface
         if ($class !== null) {
             new $class($this, $this->sender)->dispatch();
         }
+
+        if ($channelType === Channel::TYPES['public'] && $this->mayContainMention()) {
+            new ChannelMention($this, $this->sender)->dispatch();
+        }
     }
 
     public function isUserCommand(): bool
     {
-        return preg_match('/^![^ !]/', $this->content) === 1;
+        return preg_match('/^![^ !]/', $this->content ?? '') === 1;
+    }
+
+    public function mayContainMention(): bool
+    {
+        return strpos($this->content, '@') !== false;
+    }
+
+    public function mention()
+    {
+        static $chars = UsernameValidation::ALLOWED_CHARACTERS;
+
+        preg_match("/(?<=^|\s|'|\"|,|\.|\/)(?:@([{$chars}]+))/", $this->content, $ret);
+
+        return $ret[1] ?? null;
     }
 
     public function reportableAdditionalInfo(): ?string

@@ -15,6 +15,7 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
+use App\Models\UserNotificationOption;
 use Event;
 use Exception;
 use Mail;
@@ -154,6 +155,35 @@ class ChatTest extends TestCase
         }
 
         Chat::sendMessage($sender, $channel, 'test', false);
+    }
+
+    public function testSendMessageMentionNotifiesUser(): void
+    {
+        \Event::fake();
+        \Mail::fake();
+
+        $sender = User::factory()->create();
+        $mention = User::factory()->create();
+        $mention->notificationOptions()->create([
+            'name' => UserNotificationOption::CHANNEL_MENTION,
+            'details' => [
+                'mail' => true,
+                'push' => true,
+            ],
+        ]);
+        $mentionUsername = strtr($mention->username, [' ' => '_']);
+
+        $channel = Channel::factory()->type('public')->create();
+        $channel->addUser($sender);
+        $channel->addUser($mention);
+
+        $sender->markSessionVerified();
+
+        Chat::sendMessage($sender, $channel, "hello @{$mentionUsername}!", false);
+        $this->artisan('notifications:send-mail');
+
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
+        Mail::assertSent(UserNotificationDigest::class);
     }
 
     public function testSendPM()

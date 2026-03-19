@@ -17,6 +17,10 @@ use Illuminate\Support\Collection;
 
 class UsernameValidation
 {
+    // also note that totp key generator forbids `:` in username
+    const ALLOWED_CHARACTERS = 'A-Za-z0-9-\[\]_';
+    const ALLOWED_CHARACTERS_WITH_SPACE = self::ALLOWED_CHARACTERS.' ';
+
     public static function allowedName(string $username): bool
     {
         foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
@@ -75,7 +79,7 @@ class UsernameValidation
         }
 
         // also note that totp key generator forbids `:` in username
-        if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
+        if (strpos($username, '  ') !== false || !preg_match('#^['.static::ALLOWED_CHARACTERS_WITH_SPACE.']+$#u', $username)) {
             $errors->add('username', '.username_invalid_characters');
         }
 
