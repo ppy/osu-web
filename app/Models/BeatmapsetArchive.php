@@ -190,7 +190,7 @@ class BeatmapsetArchive
             if (isset($audioFilename)) {
                 $audioFile = $this->readFile($audioFilename);
 
-                if ($audioFile !== null) {
+                if ($audioFile !== false) {
                     return static::convertAudioForPreview($audioFile, $previewTime);
                 }
             }
