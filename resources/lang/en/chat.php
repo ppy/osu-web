@@ -58,12 +58,6 @@ return [
         'send' => 'Send',
     ],
 
-    'no-conversations' => [
-        'howto' => "Start conversations from a user's profile or a usercard popup.",
-        'lazer' => 'Public channels you join via <a href=":link">osu!lazer</a> will also be visible here.',
-        'title' => 'no conversations yet',
-    ],
-
     'join_channels' => [
         'loading' => 'Loading channel list...',
     ],
