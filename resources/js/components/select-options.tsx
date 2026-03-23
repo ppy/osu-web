@@ -1,44 +1,33 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, autorun, makeObservable, observable } from 'mobx';
+import { action, autorun, isObservableSet, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, Modifiers, ModifiersExtended } from 'utils/css';
 
 const bn = 'select-options';
 
-export interface Option {
-  id: string | number | null;
-  text: string | React.ReactNode;
+interface RenderableOption<T> {
+  children: string | React.ReactNode;
+  href: string;
+  id: T | null;
 }
 
-export interface OptionRenderProps<T extends Option> {
-  children: React.ReactNode;
-  cssClasses: string;
-  onClick: (event: React.MouseEvent) => void;
-  option: T;
-}
-
-interface ComponentOptionRenderProps<T extends Option> {
-  children: OptionRenderProps<T>['children'];
-  onClick: OptionRenderProps<T>['onClick'];
-  option: OptionRenderProps<T>['option'];
-  selected?: boolean;
-}
-
-interface Props<T extends Option> {
+interface Props<T> {
   blackout: boolean;
+  href: string;
   modifiers?: Modifiers;
-  onChange: (option: T) => void;
-  options: T[];
-  renderOption?(props: OptionRenderProps<T>): React.ReactNode;
-  selected: T;
+  // the callback should return the display state the selector should go into after the click, or undefined for the default.
+  // the typing of id is to match dataset, so the component doesn't handle the parsing.
+  onSelect?: (id?: string) => boolean | void;
+  options: Iterable<RenderableOption<T>>;
+  selected: RenderableOption<T>['id'] | Set<RenderableOption<T>['id']>;
 }
 
 @observer
-export default class SelectOptions<T extends Option> extends React.Component<Props<T>> {
+export default class SelectOptions<T extends string | number> extends React.PureComponent<React.PropsWithChildren<Props<T>>> {
   static readonly defaultProps = { blackout: true };
 
   private readonly ref = React.createRef<HTMLDivElement>();
@@ -71,23 +60,16 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
     return (
       <div ref={this.ref} className={className}>
         <div className={`${bn}__select`}>
-          {this.renderOption({
-            children: (
-              <>
-                {this.renderText(this.props.selected.text)}
-
-                <div className={`${bn}__decoration`}>
-                  <span className='fas fa-chevron-down' />
-                </div>
-              </>
-            ),
-            onClick: this.toggleSelector,
-            option: this.props.selected,
-          })}
+          <a className={`${bn}__option`} href={this.props.href} onClick={this.toggleSelector}>
+            {this.renderText(this.props.children)}
+            <div className={`${bn}__decoration`}>
+              <span className='fas fa-chevron-down' />
+            </div>
+          </a>
         </div>
 
         <div className={`${bn}__selector`}>
-          {this.renderOptions()}
+          {[...this.renderOptions()]}
         </div>
       </div>
     );
@@ -102,50 +84,47 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
   };
 
   @action
-  private readonly optionSelected = (event: React.MouseEvent, option: T) => {
+  private readonly optionSelected = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (event.button !== 0) return;
-
     event.preventDefault();
-    this.showingSelector = false;
-    this.props.onChange?.(option);
+
+    const id = event.currentTarget.dataset.id;
+    this.showingSelector = this.props.onSelect?.(id) ?? false;
+    if (this.showingSelector) {
+      event.currentTarget.blur(); // deactivate element is selector if still open.
+    }
   };
 
-  private renderOption({ children, onClick, option, selected = false }: ComponentOptionRenderProps<T>) {
-    const cssClasses = classWithModifiers(`${bn}__option`, { selected });
-
-    if (this.props.renderOption != null) {
-      return this.props.renderOption({ children, cssClasses, onClick, option });
-    }
-
+  private renderOption(option: RenderableOption<T>, modifiers?: ModifiersExtended) {
     return (
       <a
         key={option.id}
-        className={cssClasses}
-        href='#'
-        onClick={onClick}
+        className={classWithModifiers(`${bn}__option`, modifiers)}
+        data-id={option.id ?? undefined}
+        href={option.href}
+        onClick={this.optionSelected}
       >
-        {children}
+        {this.renderText(option.children)}
       </a>
     );
   }
 
-  private renderOptions() {
-    return this.props.options.map((option) => this.renderOption({
-      children: this.renderText(option.text),
-      onClick: (event: React.MouseEvent) => {
-        this.optionSelected(event, option);
-      },
-      option,
-      selected: this.props.selected?.id === option.id,
-    }));
+  private *renderOptions() {
+    for (const option of this.props.options) {
+      const selected = this.props.selected instanceof Set || isObservableSet(this.props.selected)
+        ? this.props.selected.has(option.id)
+        : this.props.selected === option.id;
+
+      yield this.renderOption(option, { selected });
+    }
   }
 
-  private renderText(text: T['text']) {
-    return typeof text === 'string' ? (
+  private renderText(children: RenderableOption<T>['children']) {
+    return typeof children === 'string' ? (
       <div className='u-ellipsis-overflow'>
-        {text}
+        {children}
       </div>
-    ) : text;
+    ) : children;
   }
 
   @action

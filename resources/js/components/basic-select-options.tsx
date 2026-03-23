@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import SelectOptions from 'components/select-options';
 import Ruleset from 'interfaces/ruleset';
 import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
@@ -24,31 +24,42 @@ type Props = PropsBase & ({
   type: 'matchmaking';
 });
 
+// TODO: stricter typing; require only one of string or number at a time, not both.
 export default class BasicSelectOptions extends React.PureComponent<Props> {
+  private get options() {
+    return this.props.items.map((item) => ({
+      children: item.text,
+      href: this.href(item.id),
+      id: item.id,
+    }));
+  }
+
   render() {
     return (
       <SelectOptions
+        href={this.href(this.props.currentItem.id)}
         modifiers={this.props.modifiers}
-        onChange={this.handleChange}
-        options={this.props.items}
-        renderOption={this.renderOption}
-        selected={this.props.currentItem}
-      />
+        onSelect={this.handleSelect}
+        options={this.options}
+        selected={this.props.currentItem.id}
+      >
+        {this.props.currentItem.text}
+      </SelectOptions>
     );
   }
 
-  private readonly handleChange = (option: SelectOptionJson) => {
-    navigate(this.href(option.id));
+  private readonly handleSelect = (id?: string) => {
+    navigate(this.href(id));
   };
 
-  private href(id: number | null) {
+  private href(id?: string | number) {
     switch (this.props.type) {
       case 'daily_challenge':
         return route('daily-challenge.show', { daily_challenge: id ?? fail('missing id parameter') });
       case 'download':
         return route('download', { platform: id });
       case 'matchmaking':
-        return route('rankings.matchmaking', { mode: this.props.ruleset, pool: id ?? undefined });
+        return route('rankings.matchmaking', { mode: this.props.ruleset, pool: id });
       case 'multiplayer':
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
       case 'seasons':
@@ -57,15 +68,4 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
         return updateQueryString(null, { spotlight: id?.toString() });
     }
   }
-
-  private readonly renderOption = (props: OptionRenderProps<SelectOptionJson>) => (
-    <a
-      key={props.option.id}
-      className={props.cssClasses}
-      href={this.href(props.option.id)}
-      onClick={props.onClick}
-    >
-      {props.children}
-    </a>
-  );
 }

@@ -16,6 +16,10 @@ import StringWithComponent from './string-with-component';
 const bn = 'report-form';
 const maxLength = 2000;
 
+function isValidReportType(value: unknown): value is ReportType {
+  return typeof value === 'string' && value in availableOptions;
+}
+
 export function showReportForm(params: { reportableId: string; reportableType: ReportableType; username: string }) {
   const root = document.createElement('div');
 
@@ -26,7 +30,6 @@ export function showReportForm(params: { reportableId: string; reportableType: R
     username={params.username}
   />, root);
 }
-
 
 type GroupKey =
   | 'beatmapset'
@@ -63,6 +66,8 @@ const availableOptions = {
 } as const;
 /* eslint-enable sort-keys */
 
+type ReportType = keyof typeof availableOptions;
+
 const reasons = {
   beatmapset: ['UnwantedContent', 'CopyrightInfringement', 'Other'],
   post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
@@ -71,7 +76,7 @@ const reasons = {
   user: ['Cheating', 'MultipleAccounts', 'InappropriateChat', 'UnwantedContent', 'Other'],
 } as const;
 
-const availableOptionsByGroupKey: Partial<Record<GroupKey, readonly (keyof typeof availableOptions)[]>> = {
+const availableOptionsByGroupKey: Partial<Record<GroupKey, readonly ReportType[]>> = {
   beatmapset: reasons.beatmapset,
   beatmapset_discussion_post: reasons.post,
   comment: reasons.post,
@@ -89,17 +94,12 @@ interface Props {
   username: string;
 }
 
-interface ReportOption {
-  id: string;
-  text: string;
-}
-
 @observer
 export default class ReportForm extends React.Component<Props> {
   @observable private comments = '';
   @observable private completed = false;
   @observable private disabled = false;
-  @observable private selectedReason = this.options[0];
+  @observable private selectedReasonKey = this.options[0].id;
   private timeout: number | undefined;
 
   private get canSubmit() {
@@ -111,16 +111,18 @@ export default class ReportForm extends React.Component<Props> {
   }
 
   private get isDmca() {
-    return this.selectedReason.id === 'CopyrightInfringement';
+    return this.selectedReasonKey === 'CopyrightInfringement';
   }
 
   @computed
   private get options() {
     const options = availableOptionsByGroupKey[this.groupKey]
-      ?? Object.keys(availableOptions) as (keyof typeof availableOptions)[];
+      ?? Object.keys(availableOptions) as ReportType[];
 
     return options.map((option) => ({
-      id: option as string, text: availableOptions[option],
+      children: availableOptions[option],
+      href: '#',
+      id: option,
     }));
   }
 
@@ -171,8 +173,9 @@ export default class ReportForm extends React.Component<Props> {
   };
 
   @action
-  private readonly handleReasonChange = (option: ReportOption) => {
-    this.selectedReason = option;
+  private readonly handleReasonChange = (id?: string) => {
+    if (!isValidReportType(id)) return;
+    this.selectedReasonKey = id;
   };
 
   @action
@@ -181,7 +184,7 @@ export default class ReportForm extends React.Component<Props> {
 
     const data = {
       comments: this.comments,
-      reason: this.selectedReason.id,
+      reason: this.selectedReasonKey,
       reportable_id: this.props.reportableId,
       reportable_type: this.props.reportableType,
     };
@@ -234,11 +237,14 @@ export default class ReportForm extends React.Component<Props> {
             <div className={`${bn}__row`}>
               <SelectOptions
                 blackout={false}
+                href='#'
                 modifiers='report'
-                onChange={this.handleReasonChange}
+                onSelect={this.handleReasonChange}
                 options={this.options}
-                selected={this.selectedReason}
-              />
+                selected={this.selectedReasonKey}
+              >
+                {availableOptions[this.selectedReasonKey]}
+              </SelectOptions>
             </div>
           </>
         )}
