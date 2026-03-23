@@ -797,7 +797,7 @@ class Room extends Model
 
     public function topScores()
     {
-        return $this->userHighScores()->forRanking()->with(['user.country', 'user.team']);
+        return $this->userHighScores()->forRanking()->with(['user.country', 'user.cover', 'user.team']);
     }
 
     private function assertHostRoomAllowance()
