@@ -7,6 +7,7 @@ import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -42,6 +43,7 @@ interface State {
   backgroundLoaded: boolean;
 }
 
+@observer
 export class UserCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     activated: false,
@@ -70,6 +72,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     backgroundLoaded: false,
   };
 
+  private readonly popupMenuState = new PopupMenuState();
   private url?: string;
 
   private get canMessage() {
@@ -123,7 +126,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       this.props.modifiers,
       this.props.mode,
       // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
-      this.props.activated ? 'active' : 'highlightable',
+      this.popupMenuState.active || this.props.activated ? 'active' : 'highlightable',
     );
 
     this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
@@ -285,50 +288,15 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderMenuButton() {
-    if (this.isSelf) {
-      return null;
-    }
-
-    const items = (state: PopupMenuState) => (
-      <div className='simple-menu'>
-        {this.canMessage && (
-          <a
-            className='simple-menu__item js-login-required--click'
-            href={route('messages.users.show', { user: this.user.id })}
-            onClick={state.dismiss}
-          >
-            <span className='fas fa-envelope' />
-            {` ${trans('users.card.send_message')}`}
-          </a>
-        )}
-
-        <a
-          className='simple-menu__item'
-          href={giftSupporterTagUrl(this.user)}
-          onClick={state.dismiss}
-        >
-          <span className='fas fa-gift' />
-          {` ${trans('users.card.gift_supporter')}`}
-        </a>
-
-        <BlockButton modifiers='inline' onClick={state.dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
-
-        <ReportReportable
-          className='simple-menu__item'
-          icon
-          onFormOpen={state.dismiss}
-          reportableId={this.props.reportable?.id ?? this.user.id.toString()}
-          reportableType={this.props.reportable?.type ?? 'user'}
-          user={this.user}
-        />
-      </div>
-    );
-
-    return (
-      <div className='user-card__icon user-card__icon--menu'>
-        <PopupMenuPersistent>{items}</PopupMenuPersistent>
-      </div>
-    );
+    return this.isSelf
+      ? null
+      : (
+        <div className='user-card__icon user-card__icon--menu'>
+          <PopupMenuPersistent state={this.popupMenuState}>
+            {this.renderMenuItems}
+          </PopupMenuPersistent>
+        </div>
+      );
   }
 
   renderStatusBar() {
@@ -376,6 +344,46 @@ export class UserCard extends React.PureComponent<Props, State> {
       </div>
     );
   }
+
+  private readonly renderMenuItems = () => (
+    <div className='simple-menu'>
+      {this.canMessage && (
+        <a
+          className='simple-menu__item js-login-required--click'
+          href={route('messages.users.show', { user: this.user.id })}
+          onClick={this.popupMenuState.dismiss}
+        >
+          <span className='fas fa-envelope' />
+          {` ${trans('users.card.send_message')}`}
+        </a>
+      )}
+
+      <a
+        className='simple-menu__item'
+        href={giftSupporterTagUrl(this.user)}
+        onClick={this.popupMenuState.dismiss}
+      >
+        <span className='fas fa-gift' />
+        {` ${trans('users.card.gift_supporter')}`}
+      </a>
+
+      <BlockButton
+        modifiers='inline'
+        onClick={this.popupMenuState.dismiss}
+        userId={this.user.id}
+        wrapperClass='simple-menu__item'
+      />
+
+      <ReportReportable
+        className='simple-menu__item'
+        icon
+        onFormOpen={this.popupMenuState.dismiss}
+        reportableId={this.props.reportable?.id ?? this.user.id.toString()}
+        reportableType={this.props.reportable?.type ?? 'user'}
+        user={this.user}
+      />
+    </div>
+  );
 
   private renderUsername() {
     const displayName = this.user.is_deleted ? trans('users.deleted') : this.user.username;
