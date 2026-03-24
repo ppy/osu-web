@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Played by',
+            'played_on' => 'Played on',
             'submitted_on' => 'Submitted on',
 
             'rank' => [

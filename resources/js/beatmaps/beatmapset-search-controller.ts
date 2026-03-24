@@ -154,6 +154,7 @@ export class BeatmapsetSearchController {
 
   @action
   private readonly filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {
+    if (change.name === 'queryRaw') return;
     if (change.type === 'update' && change.oldValue === change.newValue) return;
 
     this.searchStatus.state = 'input';
