@@ -21,9 +21,7 @@ interface Props {
 @observer
 export default class Table extends React.Component<Props> {
   @observable activeKey: number | null = null;
-  private readonly containerContextValue: {
-    activeKeyDidChange: typeof this.activeKeyDidChange;
-  };
+  private readonly containerContextValue;
 
   @computed
   get showPp() {

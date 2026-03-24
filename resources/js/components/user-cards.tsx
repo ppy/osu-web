@@ -2,8 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
-import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
+import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { UserCard, ViewMode } from './user-card';
 
@@ -13,22 +15,29 @@ interface Props {
   viewMode: ViewMode;
 }
 
+@observer
 export class UserCards extends React.PureComponent<Props> {
-  readonly activeKeyDidChange = activeKeyDidChange.bind(this);
-  readonly state: ActiveKeyState = {};
+  @observable activeKey: number | null = null;
+  private readonly containerContextValue;
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
+  }
 
   render() {
     const classMods = {
-      'menu-active': this.state.activeKey != null,
+      'menu-active': this.activeKey != null,
       [this.props.viewMode]: true,
     };
 
     return (
-      <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+      <ContainerContext.Provider value={this.containerContextValue}>
         <div className={classWithModifiers('user-cards', classMods)}>
           {
             this.props.users.map((user) => {
-              const activated = this.state.activeKey === user.id;
+              const activated = this.activeKey === user.id;
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>
@@ -46,4 +55,9 @@ export class UserCards extends React.PureComponent<Props> {
       </ContainerContext.Provider>
     );
   }
+
+  @action
+  private readonly activeKeyDidChange = (key: number | null) => {
+    this.activeKey = key;
+  };
 }

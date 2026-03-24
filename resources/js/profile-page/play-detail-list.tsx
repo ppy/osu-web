@@ -44,9 +44,7 @@ interface Props {
 @observer
 export default class PlayDetailList extends React.Component<Props> {
   @observable activeKey: number | null = null;
-  private readonly containerContextValue: {
-    activeKeyDidChange: (key: number | null) => void;
-  };
+  private readonly containerContextValue;
   private readonly listRef = React.createRef<HTMLDivElement>();
 
   @computed
