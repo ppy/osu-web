@@ -8,7 +8,7 @@ import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
-import { rulesetIdToName } from 'interfaces/ruleset';
+import { rulesetNames } from 'interfaces/ruleset';
 import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -106,7 +106,7 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: ScoreJson }) {
           {beatmapset != null ? getTitle(beatmapset) : trans('beatmapsets.cover.deleted')}
         </div>
         <div className='wrapped__summary-list-item-value'>
-          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />
+          <span className={`fal fa-extra-mode-${rulesetNames[props.play.ruleset_id]}`} />
           <span title={formatNumber(props.play.pp ?? 0)}>
             {formatNumber(Math.round(props.play.pp ?? 0))}pp
           </span>
@@ -796,7 +796,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
                   </span>
                 </div>
                 <div className={classWithModifiers('wrapped__text', ['beatmap-line', 'bottom'])}>
-                  <span className={`fal fa-extra-mode-${rulesetIdToName[selectedItem.ruleset_id]}`} />
+                  <span className={`fal fa-extra-mode-${rulesetNames[selectedItem.ruleset_id]}`} />
                   <span className='wrapped__difficulty-badge'>
                     <DifficultyBadge rating={selectedBeatmap.difficulty_rating} />
                   </span>

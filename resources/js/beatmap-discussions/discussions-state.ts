@@ -19,6 +19,7 @@ import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
 import DiscussionMode, { discussionModes } from './discussion-mode';
 import DiscussionPage, { isDiscussionPage } from './discussion-page';
+import Sort from './sort';
 
 const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
@@ -69,6 +70,12 @@ export default class DiscussionsState {
   @observable selectedNominatedRulesets: Ruleset[] = [];
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
+  @observable sort: Record<DiscussionMode, Sort> = {
+    general: 'updated_at',
+    generalAll: 'updated_at',
+    reviews: 'updated_at',
+    timeline: 'timeline',
+  };
 
   private previousFilter: Filter = 'total';
   private previousPage: DiscussionPage = 'general';
@@ -85,6 +92,13 @@ export default class DiscussionsState {
     }
 
     return beatmap;
+  }
+
+  @computed
+  get currentSort() {
+    return this.currentPage === 'events'
+      ? 'timeline' // returning any valid mode is fine.
+      : this.sort[this.currentPage];
   }
 
   /**

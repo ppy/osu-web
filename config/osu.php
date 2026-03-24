@@ -34,9 +34,6 @@ return [
     ],
 
     'avatar' => [
-        'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
-        'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
-        'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
     ],
 
@@ -88,6 +85,9 @@ return [
         'upload_bonus_per_ranked_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_SUPPORTER')) ?? 1,
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
+    ],
+    'cache_proxy' => [
+        'purge_authorization_key' => env('CACHE_PROXY_PURGE_AUTHORIZATION_KEY'),
     ],
     'camo' => [
         'key' => presence(env('CAMO_KEY')),
