@@ -2,11 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
-import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, isModifiersEqual, mergeModifiers, Modifiers } from 'utils/css';
 import { UserCard, ViewMode } from './user-card';
 
 interface Props {
@@ -19,11 +19,24 @@ interface Props {
 export class UserCards extends React.PureComponent<Props> {
   @observable activeKey: number | null = null;
   private readonly containerContextValue;
+  @observable private observableModifiers = this.props.modifiers;
+
+  @computed
+  private get modifiers() {
+    return mergeModifiers('has-outline', this.observableModifiers);
+  }
 
   constructor(props: Props) {
     super(props);
     makeObservable(this);
     this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
+  }
+
+  @action
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (!isModifiersEqual(prevProps.modifiers, this.props.modifiers)) {
+      this.observableModifiers = this.props.modifiers;
+    }
   }
 
   render() {
@@ -44,7 +57,7 @@ export class UserCards extends React.PureComponent<Props> {
                   <UserCard
                     activated={activated}
                     mode={this.props.viewMode}
-                    modifiers={mergeModifiers('has-outline', this.props.modifiers)}
+                    modifiers={this.modifiers}
                     user={user}
                   />
                 </KeyContext.Provider>
