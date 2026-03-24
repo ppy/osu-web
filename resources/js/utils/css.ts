@@ -53,6 +53,12 @@ export function mergeModifiers(...modifiersArray: ModifiersExtended[]) {
   return [...modifiersToStrings(modifiersArray)].join(' ');
 }
 
+export function isModifiersEqual(a: Modifiers, b: Modifiers) {
+  const flatA = mergeModifiers(a);
+  const flatB = mergeModifiers(b);
+  return flatA.length === flatB.length && flatA.every((mod, index) => mod === flatB[index]);
+}
+
 export function urlPresence(url?: string | null) {
   // Wrapping the string with quotes and escaping the used quotes inside
   // is sufficient. Use double quote as it's easy to figure out with
