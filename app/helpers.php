@@ -120,6 +120,25 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
     return $data['value'] ?? $default;
 }
 
+function cache_proxy_purge(string $url): void
+{
+    $authKey = $GLOBALS['cfg']['osu']['cache_proxy']['purge_authorization_key'];
+
+    if (!present($authKey)) {
+        return;
+    }
+
+    try {
+        (new GuzzleHttp\Client())->request('DELETE', $url, [
+            'headers' => ['authorization' => $authKey],
+        ])->getBody()->getContents();
+    } catch (\Throwable $e) {
+        log_error(new App\Exceptions\CacheProxyPurgeException(previous: $e), [
+            'url' => $url,
+        ]);
+    }
+}
+
 /**
  * Like Cache::remember but always save for one month or 10 * $seconds (whichever is longer)
  * and return old value if failed getting the value after it expires.
@@ -1471,35 +1490,36 @@ function fast_imagesize($url, ?string $logErrorId = null)
     return null_if_false(Cache::remember(
         "imageSize:{$url}",
         $oneMonthInSeconds,
-        function () use ($logErrorId, $url) {
-            $curl = curl_init($url);
-            curl_setopt_array($curl, [
-                CURLOPT_HTTPHEADER => [
-                    'Range: bytes=0-32768',
-                ],
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_MAXREDIRS => 5,
-                CURLOPT_TIMEOUT => 10,
-            ]);
-            $data = curl_exec($curl);
-
-            $ret = read_image_properties_from_string($data);
-
-            if ($ret === null && $logErrorId !== null) {
-                log_error(new FastImagesizeFetchException(), [
-                    'curl_error_code' => curl_errno($curl),
-                    'curl_error_message' => presence(curl_error($curl)) ?? 'ok',
-                    'curl_status_code' => curl_getinfo($curl, CURLINFO_HTTP_CODE),
-                    'error_id' => $logErrorId,
-                    'url' => $url,
-                ]);
-            }
-
-            // null isn't cached
-            return $ret ?? false;
-        },
+        // null can't be cached
+        fn () => (imagesize($url, $logErrorId) ?? false),
     ));
+}
+
+function imagesize(string $url, ?string $logErrorId = null): ?array
+{
+    try {
+        $data = (new GuzzleHttp\Client())->request('GET', $url, [
+            'headers' => ['range' => 'bytes=0-32768'],
+            'timeout' => 10,
+        ])->getBody()->getContents();
+
+        $ret = read_image_properties_from_string($data);
+    } catch (\Throwable $e) {
+        // ignore (or log) error and continue
+    }
+
+    if (isset($ret)) {
+        return $ret;
+    }
+
+    if ($logErrorId !== null) {
+        log_error(new FastImagesizeFetchException(previous: $e ?? null), [
+            'error_id' => $logErrorId,
+            'url' => $url,
+        ]);
+    }
+
+    return null;
 }
 
 function get_arr($input, $callback = null)
@@ -1980,7 +2000,7 @@ function section_to_hue_map($section): int
         'user' => 'pink',
     ];
 
-    return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
+    return $colourToHue[$sectionMapping[$section] ?? 'pink'];
 }
 
 function search_error_message(?Exception $e): ?string

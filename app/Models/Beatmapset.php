@@ -482,9 +482,9 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return $this->download_disabled || $this->download_disabled_url !== null;
     }
 
-    public function previewURL()
+    public function previewUrl(): string
     {
-        return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
+        return "https://b.ppy.sh/preview/{$this->getKey()}.mp3";
     }
 
     public function removeCover($targetFilename): void
@@ -564,17 +564,30 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
 
     public function regenerateAudioPreview(): bool
     {
+        $storage = storage_disk('beatmapset');
+        $path = "preview/{$this->getKey()}.mp3";
+
+        if ($this->download_disabled) {
+            $storage->delete($path);
+
+            return true;
+        }
+
         $preview = $this->archive()->generateAudioPreview();
 
         if ($preview === null) {
+            $storage->delete($path);
+
             return false;
         }
 
-        return storage_disk('beatmapset')->put(
-            "preview/{$this->getKey()}.mp3",
-            $preview,
-            ['Content-Type' => 'audio/ogg'],
-        );
+        $ret = $storage->put($path, $preview);
+
+        if ($ret) {
+            cache_proxy_purge($this->previewUrl());
+        }
+
+        return $ret;
     }
 
     public function allCoverImagesPresent()

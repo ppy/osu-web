@@ -68,16 +68,27 @@ class BeatmapsetArchive
         }
     }
 
-    private static function convertAudioForPreview(string $audioFile, int $previewTime): ?string
+    private static function convertAudioForPreview(string $audioFile, ?int $previewTime): ?string
     {
         $srcFile = tmpfile();
         fwrite($srcFile, $audioFile);
         $srcFilename = get_stream_filename($srcFile);
+        $srcFilenameEscaped = escapeshellarg($srcFilename);
         $dstFile = tmpfile();
         $dstFilename = get_stream_filename($dstFile);
 
         $duration = 10000;
-        $previewTime = max($previewTime, 0);
+        if ($previewTime === null || $previewTime < 0) {
+            $srcDuration = (float) exec(implode(' ', [
+                'timeout 10s',
+                'ffprobe',
+                '-loglevel quiet',
+                "-i {$srcFilenameEscaped}",
+                '-show_entries format=duration',
+                '-of csv=p=0',
+            ]));
+            $previewTime = 0.4 * $srcDuration * 100;
+        }
 
         $fadeInExtension = min($previewTime, 100);
         $fadeIn = $fadeInExtension + 100;
@@ -87,9 +98,16 @@ class BeatmapsetArchive
         $fadeOut = $duration - 1000;
 
         $filter = implode(',', [
-            // unify output to 44.1kHz stereo
+            // unify output to stereo
+            // resample here for correct loudnorm operation
+            'aresample=resampler=soxr:ochl=stereo',
+            // TODO: two-pass normalisation
+            // It requires ffmpeg release after 2026-02-20 for saner output parsing.
+            // Reference: https://code.ffmpeg.org/FFmpeg/FFmpeg/pulls/21766
+            'loudnorm=i=-14',
+            // unify output to 44.1kHz (loudnorm above resamples to 192kHz)
             // note that vorbis doesn't have bit depth
-            'aresample=osr=44100:ochl=stereo',
+            'aresample=resampler=soxr:osr=44100',
             "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
             "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
         ]);
@@ -101,7 +119,7 @@ class BeatmapsetArchive
             '-nostdin',
             "-ss {$previewTime}ms",
             "-t {$duration}ms",
-            '-i '.escapeshellarg($srcFilename),
+            "-i {$srcFilenameEscaped}",
             "-af {$filter}",
             '-map 0:a', // strip out non-audio streams
             '-map_metadata -1', // strip out metadata
@@ -169,10 +187,10 @@ class BeatmapsetArchive
             $previewTime = $parsedFile->previewTime;
             $audioFilename = $parsedFile->audioFilename;
 
-            if (isset($audioFilename, $previewTime)) {
+            if (isset($audioFilename)) {
                 $audioFile = $this->readFile($audioFilename);
 
-                if ($audioFile !== null) {
+                if ($audioFile !== false) {
                     return static::convertAudioForPreview($audioFile, $previewTime);
                 }
             }

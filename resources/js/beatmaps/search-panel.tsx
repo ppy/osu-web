@@ -3,9 +3,11 @@
 
 import { FilterKey } from 'beatmapset-search-filters';
 import BeatmapsetCover from 'components/beatmapset-cover';
+import PopupMenu from 'components/popup-menu';
+import PopupMenuState from 'components/popup-menu-state';
 import Portal from 'components/portal';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -14,6 +16,7 @@ import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
+import UserTagPicker from './user-tag-picker';
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -47,11 +50,17 @@ const Filter = observer(({ multiselect = false, name, options, grid = false }: F
 export class SearchPanel extends React.Component<Props> {
   private readonly inputRef = React.createRef<HTMLInputElement>();
   private readonly pinnedInputRef = React.createRef<HTMLInputElement>();
-  @observable private query = this.controller.filters.query ?? '';
+
+  private readonly tagPopupMenuState = new PopupMenuState();
 
   @computed
   private get controller() {
     return core.beatmapsetSearchController;
+  }
+
+  @computed
+  private get queryRaw() {
+    return this.controller.filters.queryRaw;
   }
 
   constructor(props: Props) {
@@ -99,8 +108,7 @@ export class SearchPanel extends React.Component<Props> {
 
   @action
   private readonly onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.query = event.currentTarget.value;
-    this.controller.filters.update('query', this.query);
+    this.controller.filters.update('query', event.target.value);
   };
 
   // TODO: deprecated event. Update to onbeforeinput once safari adds it on normal enter
@@ -166,7 +174,7 @@ export class SearchPanel extends React.Component<Props> {
             onKeyPress={this.onKeyPress}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
-            value={this.query}
+            value={this.queryRaw}
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
@@ -198,8 +206,19 @@ export class SearchPanel extends React.Component<Props> {
             onKeyPress={this.onKeyPress}
             placeholder={trans('beatmaps.listing.search.prompt')}
             type='search'
-            value={this.query}
+            value={this.queryRaw}
           />
+          <button
+            ref={this.tagPopupMenuState.setButtonRef}
+            className={classWithModifiers('beatmapsets-search__icon', { active: this.tagPopupMenuState.active, tags: true })}
+            onClick={this.tagPopupMenuState.toggle}
+            title={trans('beatmaps.listing.search.tag_picker.tooltip')}
+          >
+            <i className='fas fa-tag' />
+          </button>
+          <PopupMenu direction='left' skipButton state={this.tagPopupMenuState}>
+            {() => <UserTagPicker />}
+          </PopupMenu>
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
           </div>

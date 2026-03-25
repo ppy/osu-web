@@ -108,6 +108,10 @@ class Message extends Model implements ReportableInterface
 
     public function dispatchNotification(): void
     {
+        if ($this->isUserCommand()) {
+            return;
+        }
+
         $class = match ($this->channel->type) {
             Channel::TYPES['announce'] => ChannelAnnouncement::class,
             Channel::TYPES['pm'] => ChannelMessage::class,
