@@ -5,7 +5,7 @@
 
 namespace App\Models;
 
-use App\Libraries\Commentable;
+use App\Interfaces\CommentableInterface;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
 
@@ -27,7 +27,7 @@ use Carbon\Carbon;
  * @property int $users
  * @property string|null $version
  */
-class Build extends Model implements Commentable
+class Build extends Model implements CommentableInterface
 {
     use Memoizes;
     use Traits\CommentableDefaults;
