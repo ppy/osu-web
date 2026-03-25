@@ -20,4 +20,4 @@ export const ContainerContext = createContext<ContainerContextValue>({
   activeKeyDidChange: (_key: any) => { /* do nothing */},
 });
 
-export const KeyContext = createContext<any>(null);
+export const KeyContext = createContext<Key | null | undefined>(null);
