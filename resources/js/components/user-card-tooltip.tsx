@@ -4,12 +4,14 @@
 import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import * as _ from 'lodash';
+import { action, makeObservable, observable, runInAction } from 'mobx';
+import { observer } from 'mobx-react';
 import { userNotFoundJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
+import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { qtipPosition, PositionAt } from 'utils/qtip-helper';
 import { presence } from 'utils/string';
@@ -21,13 +23,9 @@ interface Props {
   lookup: string;
 }
 
-interface State extends ActiveKeyState {
-  user?: UserJson;
-}
-
 const userCardTooltipClass = 'qtip--user-card';
 let inCard = false;
-let tooltipWithActiveMenu: any;
+let tooltipWithActiveMenu: string | null = null;
 
 function createTooltipOptions(card: HTMLElement) {
   const at = (card.dataset.tooltipPosition ?? 'right center') as PositionAt;
@@ -197,9 +195,11 @@ export function startListening() {
 /**
  * This component's job is to get the data and bootstrap the actual UserCard component for tooltips.
  */
-export class UserCardTooltip extends React.PureComponent<Props, State> {
-  state: Readonly<State> = {};
-  private readonly contextActiveKeyDidChange = contextActiveKeyDidChange.bind(this);
+@observer
+export class UserCardTooltip extends React.PureComponent<Props> {
+  @observable activeKey: string | null = null;
+  @observable private readonly containerContextValue;
+  @observable private user?: UserJson;
 
   private get reportable() {
     const dataString = this.props.container.dataset.reportable;
@@ -209,28 +209,32 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
       : JSON.parse(dataString) as Reportable;
   }
 
-  componentDidMount() {
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
+
     const currentUser = core.currentUser;
     if (currentUser != null && this.props.lookup === currentUser.id.toString()) {
-      this.setState({ user: currentUser });
+      this.user = currentUser;
     } else {
-      apiLookupUsers([this.props.lookup]).done((response) => {
-        this.setState({ user: response.users[0] ?? userNotFoundJson });
-      });
+      apiLookupUsers([this.props.lookup]).done((response) => runInAction(() => {
+        this.user = response.users[0] ?? userNotFoundJson;
+      }));
     }
   }
 
   render() {
-    const activated = this.state.activeKey === this.props.lookup;
+    const activated = this.activeKey === this.props.lookup;
 
     return (
       <TooltipContext.Provider value={this.props.container}>
-        <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+        <ContainerContext.Provider value={this.containerContextValue}>
           <KeyContext.Provider value={this.props.lookup}>
             <UserCard
               activated={activated}
               reportable={this.reportable}
-              user={this.state.user}
+              user={this.user}
             />
           </KeyContext.Provider>
         </ContainerContext.Provider>
@@ -238,11 +242,10 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
     );
   }
 
-  private readonly activeKeyDidChange = (key: any) => {
+  @action
+  private readonly activeKeyDidChange = (key: string | null) => {
     tooltipWithActiveMenu = key;
-    this.contextActiveKeyDidChange(key);
-    // close the tooltip if cursor is known to be not within the card
-    // when the menu closes.
+    this.activeKey = key;
     if (key == null && !inCard) {
       $(`.${userCardTooltipClass}`).qtip('hide');
     }
