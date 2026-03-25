@@ -200,6 +200,7 @@ export class UserCardTooltip extends React.PureComponent<Props> {
   @observable activeKey: string | null = null;
   @observable private readonly containerContextValue;
   @observable private user?: UserJson;
+  private xhr?;
 
   private get reportable() {
     const dataString = this.props.container.dataset.reportable;
@@ -218,10 +219,18 @@ export class UserCardTooltip extends React.PureComponent<Props> {
     if (currentUser != null && this.props.lookup === currentUser.id.toString()) {
       this.user = currentUser;
     } else {
-      apiLookupUsers([this.props.lookup]).done((response) => runInAction(() => {
-        this.user = response.users[0] ?? userNotFoundJson;
-      }));
+      this.xhr = apiLookupUsers([this.props.lookup])
+        .done((response) => runInAction(() => {
+          this.user = response.users[0] ?? userNotFoundJson;
+        }))
+        .always(() => {
+          this.xhr = undefined;
+        });
     }
+  }
+
+  componentWillUnmount() {
+    this.xhr?.abort();
   }
 
   render() {
