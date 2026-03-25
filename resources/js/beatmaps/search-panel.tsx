@@ -36,7 +36,7 @@ const Filter = observer(({ multiselect = false, name, options, grid = false }: F
 
   return (
     <SearchFilter
-      modifiers={{ grid }}
+      modifiers={grid ? 'grid' : null}
       multiselect={multiselect}
       name={name}
       options={options}

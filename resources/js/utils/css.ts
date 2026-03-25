@@ -2,35 +2,45 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GroupJson from 'interfaces/group-json';
-import { forEach } from 'lodash';
 import { present } from './string';
 
-export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>> | string | null | undefined;
+export type Modifiers = string | null | undefined;
 
-const eachModifier = (modifiersArray: Modifiers[], callback: (modifier: string) => void) => {
-  modifiersArray.forEach((modifiers) => {
-    if (Array.isArray(modifiers)) {
-      modifiers.forEach((modifier) => {
-        if (modifier != null) {
-          callback(modifier);
-        }
-      });
-    } else if (typeof modifiers === 'string') {
-      callback(modifiers);
-    } else {
-      forEach(modifiers, (isActive, modifier) => {
-        if (isActive) {
-          callback(modifier);
-        }
-      });
+export type ModifiersExtended = (Modifiers)[] | Partial<Record<string, boolean | null | undefined>> | Modifiers;
+
+function* modifiersToStrings(modifiersArray: ModifiersExtended[]) {
+  for (const modifiers of modifiersArray) {
+    if (modifiers == null) {
+      continue;
     }
-  });
-};
+    if (Array.isArray(modifiers)) {
+      for (const modifier of modifiers) {
+        if (modifier != null) {
+          yield modifier;
+        }
+      }
+    } else if (typeof modifiers === 'string') {
+      yield modifiers;
+    } else {
+      for (const [modifier, isActive] of Object.entries(modifiers)) {
+        if (isActive) {
+          yield modifier;
+        }
+      }
+    }
+  }
+}
 
-export function classWithModifiers(className: string, ...modifiersArray: Modifiers[]) {
+export function classWithModifiers(className: string, ...modifiersArray: ModifiersExtended[]) {
   let ret = className;
 
-  eachModifier(modifiersArray, (m) => ret += ` ${className}--${m}`);
+  for (const modifier of modifiersToStrings(modifiersArray)) {
+    for (const m of modifier.split(' ')) {
+      if (m !== '') {
+        ret += ` ${className}--${m}`;
+      }
+    }
+  }
 
   return ret;
 }
@@ -39,12 +49,8 @@ export function groupColour(group?: GroupJson | null) {
   return { '--group-colour': group?.colour ?? 'initial' };
 }
 
-export function mergeModifiers(...modifiersArray: Modifiers[]) {
-  const ret: string[] = [];
-
-  eachModifier(modifiersArray, (m) => ret.push(m));
-
-  return ret;
+export function mergeModifiers(...modifiersArray: ModifiersExtended[]) {
+  return [...modifiersToStrings(modifiersArray)].join(' ');
 }
 
 export function urlPresence(url?: string | null) {

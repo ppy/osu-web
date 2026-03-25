@@ -143,7 +143,7 @@ export default class ItemGroup extends React.Component<Props, State> {
         direction='up'
         hasMore
         label={trans('common.buttons.show_less')}
-        modifiers={['notification-group']}
+        modifiers='notification-group'
       />
     );
   }
@@ -159,7 +159,7 @@ export default class ItemGroup extends React.Component<Props, State> {
         callback={this.handleShowMore}
         hasMore={stack.cursor != null}
         loading={stack.isLoading}
-        modifiers={['notification-group']}
+        modifiers='notification-group'
       />
     );
   }

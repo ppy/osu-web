@@ -24,7 +24,7 @@ export function LandingNews({ posts }: { posts: PostJson[] }) {
               hasMore
               label={trans('home.landing.see_more_news')}
               loading={false}
-              modifiers={['no-icon']}
+              modifiers='no-icon'
               url={route('news.index')}
             />
           </div>

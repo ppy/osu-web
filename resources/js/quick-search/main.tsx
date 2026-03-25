@@ -252,7 +252,7 @@ interface Props {
             onMouseLeave={this.onMouseLeave}
           >
             <Team
-              modifiers={{ active: this.boxIsActive('team', idx) }}
+              modifiers={this.boxIsActive('team', idx) ? 'active' : null}
               team={team}
             />
           </div>
