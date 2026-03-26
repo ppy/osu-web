@@ -6,7 +6,7 @@ import { present } from './string';
 
 export type Modifiers = string | null | undefined;
 
-export type ModifiersExtended = (Modifiers)[] | Partial<Record<string, boolean | null | undefined>> | Modifiers;
+export type ModifiersExtended = Modifiers[] | Partial<Record<string, boolean | null | undefined>> | Modifiers;
 
 function* modifiersToStrings(modifiersArray: ModifiersExtended[]) {
   for (const modifiers of modifiersArray) {
