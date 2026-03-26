@@ -6,7 +6,7 @@ import CommentModel from 'models/comment';
 import { canModerateComments } from 'models/comment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import Comment from './comment';
@@ -91,7 +91,7 @@ export default class Comments extends React.Component<Props> {
               <CommentShowMore
                 comments={topLevelComments}
                 controller={this.controller}
-                modifiers={`top ${this.props.modifiers}`}
+                modifiers={mergeModifiers('top', this.props.modifiers)}
                 top
                 total={this.controller.state.topLevelCount}
               />

@@ -4,7 +4,7 @@
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { UserCard, ViewMode } from './user-card';
 
 interface Props {
@@ -35,7 +35,7 @@ export class UserCards extends React.PureComponent<Props> {
                   <UserCard
                     activated={activated}
                     mode={this.props.viewMode}
-                    modifiers={`has-outline ${this.props.modifiers}`}
+                    modifiers={mergeModifiers('has-outline', this.props.modifiers)}
                     user={user}
                   />
                 </KeyContext.Provider>
