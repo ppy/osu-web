@@ -564,7 +564,7 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
 
     public function regenerateAudioPreview(): bool
     {
-        $storage = storage_disk('beatmapset');
+        $storage = storage_disk('preview');
         $path = "preview/{$this->getKey()}.mp3";
 
         if ($this->download_disabled) {
