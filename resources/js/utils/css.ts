@@ -23,7 +23,7 @@ function* modifiersToStrings(modifiersArray: ModifiersExtended[]) {
       yield modifiers;
     } else {
       for (const [modifier, isActive] of Object.entries(modifiers)) {
-        if (isActive) {
+        if (isActive === true) {
           yield modifier;
         }
       }
