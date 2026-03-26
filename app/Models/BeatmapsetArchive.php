@@ -12,6 +12,9 @@ use App\Libraries\BeatmapFile;
 
 class BeatmapsetArchive
 {
+    // unify output to 44.1kHz stereo
+    private const RESAMPLE_FILTER = 'aresample=resampler=soxr:osr=44100:ochl=stereo';
+
     private $errorCode;
     private $fileList;
     private array $osuFileList;
@@ -72,10 +75,7 @@ class BeatmapsetArchive
     {
         $srcFile = tmpfile();
         fwrite($srcFile, $audioFile);
-        $srcFilename = get_stream_filename($srcFile);
-        $srcFilenameEscaped = escapeshellarg($srcFilename);
-        $dstFile = tmpfile();
-        $dstFilename = get_stream_filename($dstFile);
+        $srcFilenameEscaped = escapeshellarg(get_stream_filename($srcFile));
 
         $duration = 10000;
         if ($previewTime === null || $previewTime < 0) {
@@ -87,7 +87,7 @@ class BeatmapsetArchive
                 '-show_entries format=duration',
                 '-of csv=p=0',
             ]));
-            $previewTime = 0.4 * $srcDuration * 100;
+            $previewTime = 0.4 * $srcDuration * 1000;
         }
 
         $fadeInExtension = min($previewTime, 100);
@@ -97,26 +97,32 @@ class BeatmapsetArchive
 
         $fadeOut = $duration - 1000;
 
+        $normOffset = 90_000;
+        $loudnorm = static::getAudioLoudnormFilter(
+            $srcFilenameEscaped,
+            max($previewTime - $normOffset, 0),
+            ($normOffset * 2) + $duration,
+        );
+
+        if ($loudnorm === null) {
+            return null;
+        }
+
         $filter = implode(',', [
-            // unify output to stereo
-            // resample here for correct loudnorm operation
-            'aresample=resampler=soxr:ochl=stereo',
-            // TODO: two-pass normalisation
-            // It requires ffmpeg release after 2026-02-20 for saner output parsing.
-            // Reference: https://code.ffmpeg.org/FFmpeg/FFmpeg/pulls/21766
-            'loudnorm=i=-14',
-            // unify output to 44.1kHz (loudnorm above resamples to 192kHz)
-            // note that vorbis doesn't have bit depth
-            'aresample=resampler=soxr:osr=44100',
+            static::RESAMPLE_FILTER,
+            $loudnorm,
             "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
             "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
+
         ]);
 
+        $dstFile = tmpfile();
+        $dstFilename = get_stream_filename($dstFile);
         exec(implode(' ', [
             'timeout 20s',
             'ffmpeg',
-            '-loglevel quiet',
             '-nostdin',
+            '-loglevel quiet',
             "-ss {$previewTime}ms",
             "-t {$duration}ms",
             "-i {$srcFilenameEscaped}",
@@ -130,6 +136,83 @@ class BeatmapsetArchive
         ]));
 
         return presence(file_get_contents($dstFilename));
+    }
+
+    private static function getAudioLoudnormFilter(string $srcEscaped, float $start, float $duration): ?string
+    {
+        exec(implode(' ', [
+            'timeout 20s',
+            'ffmpeg',
+            '-hide_banner',
+            '-nostdin',
+            "-ss {$start}ms",
+            "-t {$duration}ms",
+            "-i {$srcEscaped}",
+            '-af '.static::RESAMPLE_FILTER,
+            '-af loudnorm=i=-14:print_format=json',
+            '-f null',
+            '-',
+            '2>&1',
+        ]), $output);
+
+        // TODO: replace with proper json output in newer ffmpeg (8.1+)
+        // Reference: https://code.ffmpeg.org/FFmpeg/FFmpeg/pulls/21766
+        $json = '';
+        $foundJson = false;
+        foreach ($output as $line) {
+            if ($foundJson) {
+                $json .= $line;
+                if ($line === '}') {
+                    break;
+                }
+            } else {
+                if (str_contains($line, '[Parsed_loudnorm_')) {
+                    $foundJson = true;
+                }
+            }
+        }
+
+        $stats = json_decode($json, true);
+
+        if ($stats === null) {
+            return null;
+        }
+
+        // taken from https://slhck.info/ffmpeg-normalize/usage/presets/
+        // which is basically ffmpeg defaults with i=-14.
+        $i = -14;
+        $lra = 7;
+        $tp = -2;
+        $offset = \Number::clamp((float) $stats['target_offset'], -99, 99);
+
+        $measuredI = (float) $stats['input_i'];
+        $measuredLra = (float) $stats['input_lra'];
+        $measuredTp = (float) $stats['input_tp'];
+        $measuredThresh = (float) $stats['input_thresh'];
+
+        // matches the behavior of the flags
+        // - auto-lower-loudness-target
+        //   reference: https://github.com/slhck/ffmpeg-normalize/blob/589ed776e627bbe093cd232a14743d1905969796/src/ffmpeg_normalize/_streams.py#L545
+        // - keep-lra-above-loudness-range-target
+        //   reference: https://github.com/slhck/ffmpeg-normalize/blob/589ed776e627bbe093cd232a14743d1905969796/src/ffmpeg_normalize/_streams.py#L508
+        $lra = max($measuredLra, $lra);
+        $safeI = $measuredI - $measuredTp + $tp - 0.1;
+        $i = min($safeI, $i);
+
+        return 'loudnorm='.implode(':', [
+            "i={$i}",
+            "lra={$lra}",
+            "tp={$tp}",
+
+            "measured_i={$measuredI}",
+            "measured_lra={$measuredLra}",
+            "measured_tp={$measuredTp}",
+            "measured_thresh={$measuredThresh}",
+
+            "offset={$offset}",
+
+            'linear=true',
+        ]);
     }
 
     public function __destruct()
