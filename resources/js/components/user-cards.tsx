@@ -5,7 +5,7 @@ import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { ContainerContext, KeyContext } from 'stateful-activation-context';
+import { ActiveKeyState, ContainerContext, KeyContext } from 'stateful-activation-context';
 import { classWithModifiers, isModifiersEqual, mergeModifiers, Modifiers } from 'utils/css';
 import { UserCard, ViewMode } from './user-card';
 
@@ -17,8 +17,7 @@ interface Props {
 
 @observer
 export class UserCards extends React.PureComponent<Props> {
-  @observable activeKey: number | null = null;
-  private readonly containerContextValue;
+  @observable private readonly activeKeyState = new ActiveKeyState<number>();
   @observable private observableModifiers = this.props.modifiers;
 
   @computed
@@ -29,7 +28,6 @@ export class UserCards extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
     makeObservable(this);
-    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
   }
 
   @action
@@ -41,16 +39,16 @@ export class UserCards extends React.PureComponent<Props> {
 
   render() {
     const classMods = {
-      'menu-active': this.activeKey != null,
+      'menu-active': this.activeKeyState.value != null,
       [this.props.viewMode]: true,
     };
 
     return (
-      <ContainerContext.Provider value={this.containerContextValue}>
+      <ContainerContext.Provider value={this.activeKeyState}>
         <div className={classWithModifiers('user-cards', classMods)}>
           {
             this.props.users.map((user) => {
-              const activated = this.activeKey === user.id;
+              const activated = this.activeKeyState.value === user.id;
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>
@@ -68,9 +66,4 @@ export class UserCards extends React.PureComponent<Props> {
       </ContainerContext.Provider>
     );
   }
-
-  @action
-  private readonly activeKeyDidChange = (key: number | null) => {
-    this.activeKey = key;
-  };
 }

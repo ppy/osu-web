@@ -4,14 +4,14 @@
 import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import * as _ from 'lodash';
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { autorun, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { userNotFoundJson } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { ContainerContext, KeyContext } from 'stateful-activation-context';
+import { ActiveKeyState, ContainerContext, KeyContext } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { qtipPosition, PositionAt } from 'utils/qtip-helper';
 import { presence } from 'utils/string';
@@ -197,8 +197,8 @@ export function startListening() {
  */
 @observer
 export class UserCardTooltip extends React.PureComponent<Props> {
-  @observable activeKey: string | null = null;
-  @observable private readonly containerContextValue;
+  @observable private readonly activeKeyState = new ActiveKeyState<string>();
+  private readonly disposer?: () => void;
   @observable private user?: UserJson;
   private xhr?;
 
@@ -213,7 +213,6 @@ export class UserCardTooltip extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
     makeObservable(this);
-    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
 
     const currentUser = core.currentUser;
     if (currentUser != null && this.props.lookup === currentUser.id.toString()) {
@@ -227,18 +226,26 @@ export class UserCardTooltip extends React.PureComponent<Props> {
           this.xhr = undefined;
         });
     }
+
+    this.disposer = autorun(() => {
+      tooltipWithActiveMenu = this.activeKeyState.value;
+      if (this.activeKeyState.value == null && !inCard) {
+        $(`.${userCardTooltipClass}`).qtip('hide');
+      }
+    });
   }
 
   componentWillUnmount() {
     this.xhr?.abort();
+    this.disposer?.();
   }
 
   render() {
-    const activated = this.activeKey === this.props.lookup;
+    const activated = this.activeKeyState.value === this.props.lookup;
 
     return (
       <TooltipContext.Provider value={this.props.container}>
-        <ContainerContext.Provider value={this.containerContextValue}>
+        <ContainerContext.Provider value={this.activeKeyState}>
           <KeyContext.Provider value={this.props.lookup}>
             <UserCard
               activated={activated}
@@ -250,13 +257,4 @@ export class UserCardTooltip extends React.PureComponent<Props> {
       </TooltipContext.Provider>
     );
   }
-
-  @action
-  private readonly activeKeyDidChange = (key: string | null) => {
-    tooltipWithActiveMenu = key;
-    this.activeKey = key;
-    if (key == null && !inCard) {
-      $(`.${userCardTooltipClass}`).qtip('hide');
-    }
-  };
 }

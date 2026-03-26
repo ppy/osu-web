@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, computed, observable, makeObservable } from 'mobx';
+import { computed, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { ContainerContext, KeyContext } from 'stateful-activation-context';
+import { ActiveKeyState, ContainerContext, KeyContext } from 'stateful-activation-context';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -20,8 +20,7 @@ interface Props {
 
 @observer
 export default class Table extends React.Component<Props> {
-  @observable activeKey: number | null = null;
-  private readonly containerContextValue;
+  @observable private readonly activeKeyState = new ActiveKeyState<number>();
 
   @computed
   get showPp() {
@@ -32,14 +31,12 @@ export default class Table extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
-
-    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
   }
 
   render() {
     return (
-      <ContainerContext.Provider value={this.containerContextValue}>
-        <div className={classWithModifiers(bn, { 'menu-active': this.activeKey != null })}>
+      <ContainerContext.Provider value={this.activeKeyState}>
+        <div className={classWithModifiers(bn, { 'menu-active': this.activeKeyState.value != null })}>
           <table className={`${bn}__table`}>
             <thead>
               <tr>
@@ -88,7 +85,7 @@ export default class Table extends React.Component<Props> {
               {this.props.controller.data.scores.map((score, index) => (
                 <KeyContext.Provider key={index} value={index}>
                   <TableRow
-                    activated={this.activeKey === index}
+                    activated={this.activeKeyState.value === index}
                     beatmap={this.props.controller.beatmap}
                     highlightFriends={this.props.controller.currentType !== 'friend'}
                     index={index}
@@ -103,9 +100,4 @@ export default class Table extends React.Component<Props> {
       </ContainerContext.Provider>
     );
   }
-
-  @action
-  private readonly activeKeyDidChange = (key: number | null) => {
-    this.activeKey = key;
-  };
 }
