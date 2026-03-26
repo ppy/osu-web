@@ -4,11 +4,11 @@
 import { Spinner } from 'components/spinner';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   isMarkingAsRead: boolean;
-  modifiers: string[];
+  modifiers: Modifiers;
   onMarkAsRead?: () => void;
   text?: string;
 }

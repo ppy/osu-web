@@ -50,7 +50,7 @@ export default class ItemGroup extends React.Component<Props, State> {
           item={item}
           markRead={this.handleMarkAsRead}
           message={formatMessageGroup(item)}
-          modifiers={['group']}
+          modifiers='group'
           url={urlGroup(item)}
           withCategory
           withCoverImage
