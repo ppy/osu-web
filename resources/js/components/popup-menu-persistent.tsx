@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import PopupMenu, { Props } from 'components/popup-menu';
-import { runInAction } from 'mobx';
 import * as React from 'react';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
 
@@ -14,9 +13,9 @@ export function PopupMenuPersistent(props: Props) {
   const container = React.useContext(ContainerContext);
   const key = React.useContext(KeyContext);
 
-  const onHide = React.useCallback(() => runInAction(() => container.value = null), [container]);
-  const onShow = React.useCallback(() => runInAction(() => container.value = key), [container, key]);
-  React.useEffect(() => () => void runInAction(() => container.value = null), [container]);
+  const onHide = React.useCallback(() => container.setValue(null), [container]);
+  const onShow = React.useCallback(() => () => container.setValue(key), [container, key]);
+  React.useEffect(() => () => container.setValue(null), [container]);
 
   return <PopupMenu onHide={onHide} onShow={onShow} {...props} />;
 }
