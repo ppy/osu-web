@@ -5,7 +5,7 @@ import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import AchievementJson from 'interfaces/achievement-json';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transChoice } from 'utils/lang';
 import AchievementBadgeIcon from './achievement-badge-icon';
@@ -52,10 +52,10 @@ export default function AchievementBadgePopup({ achievedAt, achievement }: Props
         <div className='tooltip-achievement__badge'>
           <AchievementBadgeIcon
             achievement={achievement}
-            modifiers={{
+            modifiers={mergeModifiers({
               'dynamic-height': true,
               locked: achievedAt == null,
-            }}
+            })}
           />
         </div>
 

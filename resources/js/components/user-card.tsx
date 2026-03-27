@@ -150,7 +150,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderAvatar() {
-    const modifiers = { loaded: this.avatarLoaded };
+    const modifiers = this.avatarLoaded ? 'loaded' : null;
     const hasAvatar = present(this.user.avatar_url) && !this.isUserNotFound;
 
     return (
@@ -230,7 +230,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             </div>
             {!this.user.is_bot && (
               <div className='user-card__icon'>
-                <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
+                <FollowUserMappingButton modifiers='user-card' userId={this.user.id} />
               </div>
             )}
           </>
@@ -258,7 +258,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
         {!this.user.is_bot && (
           <div className='user-card__icon'>
-            <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
+            <FollowUserMappingButton modifiers='user-list' userId={this.user.id} />
           </div>
         )}
       </div>
