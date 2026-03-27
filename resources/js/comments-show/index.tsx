@@ -36,7 +36,7 @@ export default class CommentsShow extends React.Component<Props> {
         controller={this.controller}
         depth={0}
         linkParent
-        modifiers={['dark', 'single']}
+        modifiers='dark single'
         showCommentableMeta
         showToolbar
       />

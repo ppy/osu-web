@@ -79,6 +79,7 @@ class BeatmapsetArchive
 
         $duration = 10000;
         if ($previewTime === null || $previewTime < 0) {
+            // the output is in seconds
             $srcDuration = (float) exec(implode(' ', [
                 'timeout 10s',
                 'ffprobe',
@@ -87,7 +88,7 @@ class BeatmapsetArchive
                 '-show_entries format=duration',
                 '-of csv=p=0',
             ]));
-            $previewTime = 0.4 * $srcDuration * 100;
+            $previewTime = 0.4 * $srcDuration * 1000;
         }
 
         $fadeInExtension = min($previewTime, 100);

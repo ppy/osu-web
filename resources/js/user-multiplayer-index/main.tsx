@@ -34,7 +34,7 @@ export default function Main(props: Props) {
         backgroundImage={props.user.cover.url}
         links={headerLinks(props.user, props.typeGroup)}
         // add space for warning banner when user is blocked
-        modifiers={{ restricted: core.currentUserModel.blocks.has(props.user.id) || props.user.is_restricted }}
+        modifiers={core.currentUserModel.blocks.has(props.user.id) || props.user.is_restricted ? 'restricted' : null}
         theme='users'
       />
 
