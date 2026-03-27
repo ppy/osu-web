@@ -185,10 +185,10 @@ class BeatmapsetArchive
         $tp = -2;
         $offset = \Number::clamp((float) $stats['target_offset'], -99, 99);
 
-        $measuredI = (float) $stats['input_i'];
-        $measuredLra = (float) $stats['input_lra'];
-        $measuredTp = (float) $stats['input_tp'];
-        $measuredThresh = (float) $stats['input_thresh'];
+        $measuredI = \Number::clamp((float) $stats['input_i'], -99, 0);
+        $measuredLra = \Number::clamp((float) $stats['input_lra'], 1, 50);
+        $measuredTp = \Number::clamp((float) $stats['input_tp'], -99, 99);
+        $measuredThresh = \Number::clamp((float) $stats['input_thresh'], -99, 0);
 
         // matches the behavior of the flags
         // - auto-lower-loudness-target
