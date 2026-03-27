@@ -114,7 +114,6 @@ class BeatmapsetArchive
             $loudnorm,
             "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
             "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
-
         ]);
 
         $dstFile = tmpfile();
