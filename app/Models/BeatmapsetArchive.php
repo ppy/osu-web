@@ -79,6 +79,7 @@ class BeatmapsetArchive
 
         $duration = 10000;
         if ($previewTime === null || $previewTime < 0) {
+            // the output is in seconds
             $srcDuration = (float) exec(implode(' ', [
                 'timeout 10s',
                 'ffprobe',
