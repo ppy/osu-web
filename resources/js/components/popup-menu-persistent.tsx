@@ -14,7 +14,7 @@ export function PopupMenuPersistent(props: Props) {
   const key = React.useContext(KeyContext);
 
   const onHide = React.useCallback(() => container.setValue(null), [container]);
-  const onShow = React.useCallback(() => () => container.setValue(key), [container, key]);
+  const onShow = React.useCallback(() => container.setValue(key), [container, key]);
   React.useEffect(() => () => container.setValue(null), [container]);
 
   return <PopupMenu onHide={onHide} onShow={onShow} {...props} />;
