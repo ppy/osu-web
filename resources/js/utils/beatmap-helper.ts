@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
+import BeatmapExtendedJson, { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import Ruleset, { rulesetNames, rulesets } from 'interfaces/ruleset';
@@ -37,7 +37,7 @@ interface FindDefaultParams<T> {
   mode?: Ruleset;
 }
 
-export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
+export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
@@ -57,10 +57,13 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
 
   if (params.group == null) return null;
 
-  const findModes = params.mode == null ? userModes() : [params.mode];
+  if (params.mode != null) {
+    return findDefault({ items: params.group.get(params.mode) ?? [], mode: params.mode });
+  }
 
-  for (const m of findModes) {
-    const beatmap = findDefault({ items: params.group.get(m) ?? [], mode: m });
+  for (const findRuleset of userModes()) {
+    const beatmaps = (params.group.get(findRuleset) ?? []).filter((b) => !('convert' in b) || b.convert !== true);
+    const beatmap = findDefault({ items: beatmaps, mode: findRuleset });
 
     if (beatmap != null) return beatmap;
   }
