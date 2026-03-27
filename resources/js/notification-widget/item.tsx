@@ -21,7 +21,7 @@ interface Props {
   item: Notification;
   markRead?: () => void;
   message: string;
-  modifiers: Modifiers;
+  modifiers?: Modifiers;
   url?: string;
   withCategory: boolean;
   withCoverImage: boolean;

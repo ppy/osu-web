@@ -8,17 +8,13 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   isMarkingAsRead: boolean;
-  modifiers: Modifiers;
+  modifiers?: Modifiers;
   onMarkAsRead?: () => void;
   text?: string;
 }
 
 @observer
 export default class NotificationReadButton extends React.Component<Props> {
-  static defaultProps = {
-    modifiers: [],
-  };
-
   render() {
     if (this.props.isMarkingAsRead) {
       return (

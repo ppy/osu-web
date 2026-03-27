@@ -138,7 +138,7 @@ interface Props {
           >
             <Beatmapset
               beatmapset={beatmapset}
-              modifiers={this.boxIsActive('beatmapset', idx) ? ['active'] : []}
+              modifiers={this.boxIsActive('beatmapset', idx) ? 'active' : null}
             />
           </div>
         ))}
