@@ -20,7 +20,7 @@ interface Props {
   sidebarMeta: NewsSidebarMetaJson;
 }
 
-function NavPost({ post, subtitle, modifiers }: { modifiers: Modifiers; post?: NewsPostJson; subtitle: string }) {
+function NavPost({ post, subtitle, modifiers }: { modifiers?: Modifiers; post?: NewsPostJson; subtitle: string }) {
   if (post == null) {
     return null;
   }
@@ -69,7 +69,7 @@ export default class Main extends React.Component<Props> {
 
             <div className='wiki-page__content'>
               <div className='news-show'>
-                <PostItem modifiers={['show']} post={this.props.post} />
+                <PostItem modifiers='show' post={this.props.post} />
 
                 <div className='news-show__info'>
                   <h1 className='news-show__title'>{this.props.post.title}</h1>

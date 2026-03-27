@@ -14,10 +14,10 @@ export function LandingNews({ posts }: { posts: PostJson[] }) {
       {posts.length > 0 &&
         <>
           <div className='landing-news__posts'>
-            {<PostItem modifiers={['landing', 'hover']} post={posts[0]} />}
+            {<PostItem modifiers='landing hover' post={posts[0]} />}
           </div>
           <div className='landing-news__posts'>
-            {_.slice(posts, 1).map((post: PostJson, i: number) => <PostItem key={i} modifiers={['landing', 'hover']} post={post} />)}
+            {_.slice(posts, 1).map((post: PostJson, i: number) => <PostItem key={i} modifiers='landing hover' post={post} />)}
           </div>
           <div className='landing-news__link'>
             <ShowMoreLink
