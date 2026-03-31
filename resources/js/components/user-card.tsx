@@ -6,7 +6,8 @@ import FriendButton from 'components/friend-button';
 import Reportable from 'interfaces/reportable';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -42,6 +43,7 @@ interface State {
   backgroundLoaded: boolean;
 }
 
+@observer
 export class UserCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     activated: false,
@@ -65,16 +67,14 @@ export class UserCard extends React.PureComponent<Props, State> {
     username: trans('users.card.loading'),
   };
 
-  state: Readonly<State> = {
-    avatarLoaded: false,
-    backgroundLoaded: false,
-  };
-
+  @observable private avatarLoaded = false;
+  @observable private backgroundLoaded = false;
+  private readonly popupMenuState = new PopupMenuState();
   private url?: string;
 
   private get canMessage() {
     return !this.isSelf
-      && _.find(core.currentUser?.blocks ?? [], { target_id: this.user.id }) == null;
+      && !core.currentUserModel.blocks.has(this.user.id);
   }
 
   private get isOnline() {
@@ -101,13 +101,10 @@ export class UserCard extends React.PureComponent<Props, State> {
     return this.props.user || UserCard.userLoading;
   }
 
-  onAvatarLoad = () => {
-    this.setState({ avatarLoaded: true });
-  };
-
-  onBackgroundLoad = () => {
-    this.setState({ backgroundLoaded: true });
-  };
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
 
   render() {
     if (this.props.mode === 'brick') {
@@ -123,7 +120,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       this.props.modifiers,
       this.props.mode,
       // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
-      this.props.activated ? 'active' : 'highlightable',
+      this.popupMenuState.active || this.props.activated ? 'active' : 'highlightable',
     );
 
     this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
@@ -153,7 +150,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderAvatar() {
-    const modifiers = { loaded: this.state.avatarLoaded };
+    const modifiers = this.avatarLoaded ? 'loaded' : null;
     const hasAvatar = present(this.user.avatar_url) && !this.isUserNotFound;
 
     return (
@@ -174,44 +171,28 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderBackground() {
-    let background: React.ReactNode;
-    let backgroundLink: React.ReactNode;
-
-    const overlayCssClass = classWithModifiers(
+    const overlay = (<div className={classWithModifiers(
       'user-card__background-overlay',
-      this.isOnline ? ['online'] : [],
-    );
+      { online: this.isOnline },
+    )} />);
 
-    if (this.user.cover?.url != null) {
-      let backgroundCssClass = 'user-card__background';
-      if (!this.state.backgroundLoaded) {
-        backgroundCssClass += ' user-card__background--loading';
-      }
+    const background = this.user.cover?.url == null
+      ? overlay
+      : (<>
+        <img
+          className={classWithModifiers('user-card__background', { loading: !this.backgroundLoaded })}
+          onLoad={this.onBackgroundLoad}
+          src={this.user.cover.url}
+        />
+        {overlay}
+      </>);
 
-      background = (
-        <>
-          <img className={backgroundCssClass} onLoad={this.onBackgroundLoad} src={this.user.cover.url} />
-          <div className={overlayCssClass} />
-        </>
-      );
-    } else {
-      background = <div className={overlayCssClass} />;
-    }
-
-    if (this.isUserVisible) {
-      backgroundLink = (
-        <a
-          className='user-card__background-container'
-          href={this.url}
-        >
+    return this.isUserVisible
+      ? (
+        <a className='user-card__background-container' href={this.url}>
           {background}
         </a>
-      );
-    } else {
-      backgroundLink = background;
-    }
-
-    return backgroundLink;
+      ) : background;
   }
 
   renderIcons() {
@@ -249,7 +230,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             </div>
             {!this.user.is_bot && (
               <div className='user-card__icon'>
-                <FollowUserMappingButton modifiers={['user-card']} userId={this.user.id} />
+                <FollowUserMappingButton modifiers='user-card' userId={this.user.id} />
               </div>
             )}
           </>
@@ -277,7 +258,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
         {!this.user.is_bot && (
           <div className='user-card__icon'>
-            <FollowUserMappingButton modifiers={['user-list']} userId={this.user.id} />
+            <FollowUserMappingButton modifiers='user-list' userId={this.user.id} />
           </div>
         )}
       </div>
@@ -285,50 +266,15 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderMenuButton() {
-    if (this.isSelf) {
-      return null;
-    }
-
-    const items = (state: PopupMenuState) => (
-      <div className='simple-menu'>
-        {this.canMessage && (
-          <a
-            className='simple-menu__item js-login-required--click'
-            href={route('messages.users.show', { user: this.user.id })}
-            onClick={state.dismiss}
-          >
-            <span className='fas fa-envelope' />
-            {` ${trans('users.card.send_message')}`}
-          </a>
-        )}
-
-        <a
-          className='simple-menu__item'
-          href={giftSupporterTagUrl(this.user)}
-          onClick={state.dismiss}
-        >
-          <span className='fas fa-gift' />
-          {` ${trans('users.card.gift_supporter')}`}
-        </a>
-
-        <BlockButton modifiers='inline' onClick={state.dismiss} userId={this.user.id} wrapperClass='simple-menu__item' />
-
-        <ReportReportable
-          className='simple-menu__item'
-          icon
-          onFormOpen={state.dismiss}
-          reportableId={this.props.reportable?.id ?? this.user.id.toString()}
-          reportableType={this.props.reportable?.type ?? 'user'}
-          user={this.user}
-        />
-      </div>
-    );
-
-    return (
-      <div className='user-card__icon user-card__icon--menu'>
-        <PopupMenuPersistent>{items}</PopupMenuPersistent>
-      </div>
-    );
+    return this.isSelf
+      ? null
+      : (
+        <div className='user-card__icon user-card__icon--menu'>
+          <PopupMenuPersistent state={this.popupMenuState}>
+            {this.renderMenuItems}
+          </PopupMenuPersistent>
+        </div>
+      );
   }
 
   renderStatusBar() {
@@ -376,6 +322,56 @@ export class UserCard extends React.PureComponent<Props, State> {
       </div>
     );
   }
+
+  @action
+  private readonly onAvatarLoad = () => {
+    this.avatarLoaded = true;
+  };
+
+  @action
+  private readonly onBackgroundLoad = () => {
+    this.backgroundLoaded = true;
+  };
+
+  private readonly renderMenuItems = () => (
+    <div className='simple-menu'>
+      {this.canMessage && (
+        <a
+          className='simple-menu__item js-login-required--click'
+          href={route('messages.users.show', { user: this.user.id })}
+          onClick={this.popupMenuState.dismiss}
+        >
+          <span className='fas fa-envelope' />
+          {` ${trans('users.card.send_message')}`}
+        </a>
+      )}
+
+      <a
+        className='simple-menu__item'
+        href={giftSupporterTagUrl(this.user)}
+        onClick={this.popupMenuState.dismiss}
+      >
+        <span className='fas fa-gift' />
+        {` ${trans('users.card.gift_supporter')}`}
+      </a>
+
+      <BlockButton
+        modifiers='inline'
+        onClick={this.popupMenuState.dismiss}
+        userId={this.user.id}
+        wrapperClass='simple-menu__item'
+      />
+
+      <ReportReportable
+        className='simple-menu__item'
+        icon
+        onFormOpen={this.popupMenuState.dismiss}
+        reportableId={this.props.reportable?.id ?? this.user.id.toString()}
+        reportableType={this.props.reportable?.type ?? 'user'}
+        user={this.user}
+      />
+    </div>
+  );
 
   private renderUsername() {
     const displayName = this.user.is_deleted ? trans('users.deleted') : this.user.username;

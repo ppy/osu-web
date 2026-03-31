@@ -45,6 +45,9 @@ export default class MainView extends React.Component<Record<string, never>> {
   componentDidMount() {
     runInAction(() => {
       core.dataStore.chatState.viewsMounted.add(this);
+      if (core.dataStore.channelStore.channels.size === 0 && core.dataStore.chatState.selectedChannelOrType == null) {
+        core.dataStore.chatState.selectChannel('join');
+      }
     });
   }
 
@@ -59,7 +62,7 @@ export default class MainView extends React.Component<Record<string, never>> {
       <>
         <HeaderV4 theme='chat' />
         <div className='chat osu-page osu-page--chat'>
-          {core.dataStore.channelStore.channels.size > 0 && <ConversationList />}
+          <ConversationList />
           <ConversationPanel />
         </div>
       </>

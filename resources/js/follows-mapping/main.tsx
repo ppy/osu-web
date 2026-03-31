@@ -74,7 +74,7 @@ export default class Main extends React.PureComponent<Props> {
         </div>
 
         <div className='follows-table__data follows-table__data--toggle'>
-          <FollowToggle follow={follow} modifiers={['follow']} />
+          <FollowToggle follow={follow} modifiers='follow' />
         </div>
       </div>
     );

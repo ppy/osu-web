@@ -34,9 +34,6 @@ return [
     ],
 
     'avatar' => [
-        'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
-        'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
-        'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
     ],
 
@@ -88,6 +85,9 @@ return [
         'upload_bonus_per_ranked_supporter' => get_int(env('BEATMAPSET_UPLOAD_BONUS_PER_RANKED_SUPPORTER')) ?? 1,
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
+    ],
+    'cache_proxy' => [
+        'purge_authorization_key' => env('CACHE_PROXY_PURGE_AUTHORIZATION_KEY'),
     ],
     'camo' => [
         'key' => presence(env('CAMO_KEY')),
@@ -276,7 +276,7 @@ return [
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
         'max_multiplayer_duration' => get_int(env('USER_MAX_MULTIPLAYER_DURATION')) ?? 14,
         // see https://github.com/ppy/osu/pull/16024/files#diff-d5f8d0eb0eac5cfd6d2f486d34c4168e036b83b622c7a3c5bfce5205d67bf52bR327-R330
-        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
+        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 93,
         'max_playlists' => get_int(env('USER_MAX_PLAYLISTS')) ?? 1,
         'max_playlists_supporter' => get_int(env('USER_MAX_PLAYLISTS_SUPPORTER')) ?? 5,
         'max_items_in_playlist' => get_int(env('USER_MAX_ITEMS_IN_PLAYLIST')) ?? 256,

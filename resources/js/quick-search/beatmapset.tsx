@@ -6,10 +6,10 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
-export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJson; modifiers?: string[] }) {
+export default function Beatmapset({ beatmapset, modifiers }: { beatmapset: BeatmapsetJson; modifiers?: Modifiers }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
 
   return (

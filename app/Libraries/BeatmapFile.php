@@ -7,53 +7,82 @@ namespace App\Libraries;
 
 class BeatmapFile
 {
-    public static function findBackground(string $content): ?string
+    private const SECTIONS = [
+        'Events' => '[Events]',
+        'General' => '[General]',
+        'HitObjects' => '[HitObjects]',
+    ];
+
+    public ?string $audioFilename = null;
+    public ?string $backgroundImage = null;
+    public ?int $previewTime = null; // in ms
+
+    public function __construct(string $content)
+    {
+        $this->parse($content);
+    }
+
+    private function parse(string $content): void
     {
         // strip utf8 bom
         $content = strip_utf8_bom($content);
 
         // check file 'header'
         if (!str_starts_with($content, 'osu file format v')) {
-            return null;
+            return;
         }
 
-        $matching = false;
+        $section = '';
         $lines = explode("\n", $content);
         foreach ($lines as $line) {
             $line = trim($line);
 
-            if ($matching) {
-                $parts = explode(',', $line);
-                // Background Image, e.g.:
-                // 0,0,"bg.jpg",0,0
-                if (count($parts) > 2 && $parts[0] === '0') {
-                    $imageFilename = $parts[2];
-                    break;
+            if ($section === static::SECTIONS['Events']) {
+                if (!isset($backgroundImage)) {
+                    $parts = explode(',', $line);
+                    // Background Image, e.g.:
+                    // 0,0,"bg.jpg",0,0
+                    if (count($parts) > 2 && $parts[0] === '0') {
+                        $backgroundImage = $parts[2];
+                        continue;
+                    }
+                    if (count($parts) > 2 && ($parts[0] === '4' || $parts[0] === 'Sprite')) {
+                        // Storyboard Layer (for when BG isn't defined, e.g. old beatmap)
+                        // This *should* appear after the above BG in a valid .osu file, e.g.:
+                        // 4,0,0,"evangelion_20_640.jpg",0,0
+                        $backgroundImage = $parts[3];
+                        continue;
+                    }
                 }
-                // Storyboard Layer (for when BG isn't defined, e.g. old beatmap)
-                // This *should* appear after the above BG in a valid .osu file, e.g.:
-                // 4,0,0,"evangelion_20_640.jpg",0,0
-                if (count($parts) > 2 && ($parts[0] === '4' || $parts[0] === 'Sprite')) {
-                    $imageFilename = $parts[3];
-                    break;
+            } elseif ($section === static::SECTIONS['General']) {
+                if (!isset($this->audioFilename) && str_starts_with($line, 'AudioFilename:')) {
+                    static $audioFilenameKeyLength = strlen('AudioFilename:');
+                    $this->audioFilename = trim(substr($line, $audioFilenameKeyLength));
+                    continue;
+                }
+                if (!isset($this->previewTime) && str_starts_with($line, 'PreviewTime:')) {
+                    static $previewTimeKeyLength = strlen('PreviewTime:');
+                    $this->previewTime = intval(trim(substr($line, $previewTimeKeyLength)));
+                    continue;
                 }
             }
 
-            if ($line === '[Events]') {
-                $matching = true;
-            }
-
-            if ($line === '[HitObjects]') {
+            if ($line === static::SECTIONS['General']) {
+                $section = static::SECTIONS['General'];
+            } elseif ($line === static::SECTIONS['Events']) {
+                $section = static::SECTIONS['Events'];
+            } elseif ($line === static::SECTIONS['HitObjects']) {
                 // Too far, give up
                 break;
             }
         }
 
-        return isset($imageFilename)
-            ? strtr($imageFilename, [
+        if (isset($backgroundImage)) {
+            $this->backgroundImage = strtr($backgroundImage, [
                 '"' => '',
                 // older beatmaps may not have sanitized paths
                 '\\' => '/',
-            ]) : null;
+            ]);
+        }
     }
 }

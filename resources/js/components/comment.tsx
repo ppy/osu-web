@@ -37,7 +37,7 @@ interface Props {
   depth: number;
   expandReplies?: boolean;
   linkParent: boolean;
-  modifiers: Modifiers;
+  modifiers?: Modifiers;
   showCommentableMeta: boolean;
   showToolbar: boolean;
 }

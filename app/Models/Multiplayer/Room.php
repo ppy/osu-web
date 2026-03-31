@@ -647,6 +647,10 @@ class Room extends Model
             'auto_skip:bool',
         ], ['null_missing' => true]);
 
+        if ($params['name'] === null) {
+            throw new InvariantException("field 'name' is required");
+        }
+
         $this->fill([
             'max_attempts' => $params['max_attempts'],
             'name' => app('chat-filters')->filter($params['name']),
@@ -689,7 +693,7 @@ class Room extends Model
         $this->assertValidStartGame();
 
         if (!is_array($params['playlist'])) {
-            throw new InvariantException("field 'playlist' must an an array");
+            throw new InvariantException("field 'playlist' must be an array");
         }
 
         $playlistItems = [];

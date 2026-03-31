@@ -6,9 +6,9 @@
 namespace App\Models;
 
 use App\Enums\Ruleset;
-use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\ImageProcessorServiceException;
 use App\Exceptions\InvariantException;
+use App\Interfaces\CommentableInterface;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsDocumentUnique;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
@@ -24,7 +24,6 @@ use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Beatmapset\BeatmapsetMainRuleset;
 use App\Libraries\Beatmapset\NominateBeatmapset;
-use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageUrl;
@@ -114,7 +113,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
+class Beatmapset extends Model implements AfterCommit, CommentableInterface, Indexable, Traits\ReportableInterface
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
@@ -454,6 +453,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $urls;
     }
 
+    public function archive(): ?BeatmapsetArchive
+    {
+        return $this->memoize(__FUNCTION__, fn () => BeatmapsetArchive::fetch($this));
+    }
+
     public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
         $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
@@ -478,9 +482,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->download_disabled || $this->download_disabled_url !== null;
     }
 
-    public function previewURL()
+    public function previewUrl(): string
     {
-        return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
+        return "https://b.ppy.sh/preview/{$this->getKey()}.mp3";
     }
 
     public function removeCover($targetFilename): void
@@ -496,46 +500,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             // ignore errors
         }
 
-        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
-    }
-
-    public function fetchBeatmapsetArchive()
-    {
-        $oszFile = tmpfile();
-        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
-            ?? throw new \Exception('no available mirror');
-        $url = $mirror->generateURL($this, true);
-
-        if ($url === false) {
-            return false;
-        }
-
-        $curl = curl_init($url);
-        curl_setopt_array($curl, [
-            CURLOPT_FILE => $oszFile,
-            CURLOPT_TIMEOUT => 30,
-        ]);
-        curl_exec($curl);
-
-        if (curl_errno($curl) > 0) {
-            throw new BeatmapProcessorException('Failed downloading osz: '.curl_error($curl));
-        }
-
-        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        // archive file is gone, nothing to do for now
-        if ($statusCode === 302) {
-            return false;
-        }
-        if ($statusCode !== 200) {
-            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
-        }
-
-        try {
-            return new BeatmapsetArchive(get_stream_filename($oszFile));
-        } catch (BeatmapProcessorException $e) {
-            // zip file is broken, nothing to do for now
-            return false;
-        }
+        $this->update(['cover_updated_at' => null]);
     }
 
     public function regenerateCovers(?array $sizesToRegenerate = null)
@@ -544,8 +509,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $sizesToRegenerate = static::coverSizes();
         }
 
-        $osz = $this->fetchBeatmapsetArchive();
-        if ($osz === false) {
+        $osz = $this->archive();
+        if ($osz === null) {
             return false;
         }
 
@@ -592,9 +557,37 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                 $this->storeCover("$size.jpg", get_stream_filename($resized));
             }
+
+            $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+        }
+    }
+
+    public function regenerateAudioPreview(): bool
+    {
+        $storage = storage_disk('beatmapset');
+        $path = "preview/{$this->getKey()}.mp3";
+
+        if ($this->download_disabled) {
+            $storage->delete($path);
+
+            return true;
         }
 
-        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+        $preview = $this->archive()->generateAudioPreview();
+
+        if ($preview === null) {
+            $storage->delete($path);
+
+            return false;
+        }
+
+        $ret = $storage->put($path, $preview);
+
+        if ($ret) {
+            cache_proxy_purge($this->previewUrl());
+        }
+
+        return $ret;
     }
 
     public function allCoverImagesPresent()

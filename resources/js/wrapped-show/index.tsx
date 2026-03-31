@@ -8,7 +8,7 @@ import FlagCountry from 'components/flag-country';
 import Mod from 'components/mod';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
-import { rulesetIdToName } from 'interfaces/ruleset';
+import { rulesetNames } from 'interfaces/ruleset';
 import ScoreJson from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -106,7 +106,7 @@ function TopPlay(props: { beatmap?: BeatmapForWrappedJson; play: ScoreJson }) {
           {beatmapset != null ? getTitle(beatmapset) : trans('beatmapsets.cover.deleted')}
         </div>
         <div className='wrapped__summary-list-item-value'>
-          <span className={`fal fa-extra-mode-${rulesetIdToName[props.play.ruleset_id]}`} />
+          <span className={`fal fa-extra-mode-${rulesetNames[props.play.ruleset_id]}`} />
           <span title={formatNumber(props.play.pp ?? 0)}>
             {formatNumber(Math.round(props.play.pp ?? 0))}pp
           </span>
@@ -590,7 +590,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
           />
           {this.isSummaryPage && (
             <span className='wrapped__user-flag'>
-              <FlagCountry country={this.user.country} modifiers={['flat', 'large']} />
+              <FlagCountry country={this.user.country} modifiers='flat large' />
             </span>
           )}
           <a
@@ -726,12 +726,12 @@ export default class WrappedShow extends React.Component<WrappedData> {
           <WrappedStat modifiers='fancy' skippable title='Daily challenge streak' value={summary.daily_challenge.highest_streak} />
         </div>
         <div className='wrapped__bottom-stats'>
-          <WrappedStatItems modifiers={['fancy', 'summary']} title='Your favourite mappers'>
+          <WrappedStatItems modifiers='fancy summary' title='Your favourite mappers'>
             {summary.favourite_mappers.map((value) =>
               <FavouriteMapper key={value.mapper_id} mapper={value} user={this.users.get(value.mapper_id)} />,
             )}
           </WrappedStatItems>
-          <WrappedStatItems modifiers={['fancy', 'summary']} title='Your top plays'>
+          <WrappedStatItems modifiers='fancy summary' title='Your top plays'>
             {summary.top_plays.map((value) => <TopPlay key={value.id} beatmap={this.beatmaps.get(value.beatmap_id)} play={value} />)}
           </WrappedStatItems>
         </div>
@@ -796,7 +796,7 @@ export default class WrappedShow extends React.Component<WrappedData> {
                   </span>
                 </div>
                 <div className={classWithModifiers('wrapped__text', ['beatmap-line', 'bottom'])}>
-                  <span className={`fal fa-extra-mode-${rulesetIdToName[selectedItem.ruleset_id]}`} />
+                  <span className={`fal fa-extra-mode-${rulesetNames[selectedItem.ruleset_id]}`} />
                   <span className='wrapped__difficulty-badge'>
                     <DifficultyBadge rating={selectedBeatmap.difficulty_rating} />
                   </span>

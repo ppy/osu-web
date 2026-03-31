@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Ruleset from 'interfaces/ruleset';
+import Rank from 'interfaces/rank';
+import Ruleset, { rulesetIds, rulesetNames } from 'interfaces/ruleset';
 import ScoreJson, { ScoreStatisticsAttribute } from 'interfaces/score-json';
 import ScoreModJson from 'interfaces/score-mod-json';
 import modNames from 'mod-names.json';
 import core from 'osu-core-singleton';
-import { rulesetName } from './beatmap-helper';
 import { trans } from './lang';
 import { legacyAccuracyAndRank } from './legacy-score-helper';
 
@@ -133,7 +133,7 @@ export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = 
 };
 
 export function calculateStatisticsFor(score: ScoreJson, type: ScoreDisplayType): ScoreStatistic[] {
-  return scoreStatisticsMapping[rulesetName(score.ruleset_id)]
+  return scoreStatisticsMapping[rulesetNames[score.ruleset_id]]
     .filter((mapping) => mapping.relevantTypes.includes(type))
     .map((mapping) => ({
       basic: mapping.basic,
@@ -149,59 +149,55 @@ export function rank(score: ScoreJson) {
     : score.rank;
 }
 
-export function rankCutoffs(score: ScoreJson): number[] {
-  // for SS, use minimum accuracy of 0.99 (any less and it's too small)
-  // actual array is reversed as it's rendered from D to SS clockwise
+// the index of absolute cutoffs array for maximum accuracy of the rank
+export  const rankCutoffIndex: Record<Rank, number> = {
+  A: 4,
+  B: 3,
+  C: 2,
+  D: 1,
+  F: 0,
+  S: 5,
+  SH: 5,
+  X: 6,
+  XH: 6,
+};
 
-  let absoluteCutoffs: number[] = [];
-  const ruleset = rulesetName(score.ruleset_id);
+// for SS, use minimum accuracy of 0.99 (any less and it's too small)
+// actual array is reversed as it's rendered from D to SS clockwise
+const rankAbsoluteCutoffsBase = {
+  current: {
+    // cross-reference: https://github.com/ppy/osu/blob/b658d9a681a04101900d5ce6c5b84d56320e08e7/osu.Game.Rulesets.Catch/Scoring/CatchScoreProcessor.cs#L108-L135
+    [rulesetIds.fruits]: [0, 0.85, 0.9, 0.94, 0.98, 0.99, 1],
+    // cross-reference: https://github.com/ppy/osu/blob/b658d9a681a04101900d5ce6c5b84d56320e08e7/osu.Game/Rulesets/Scoring/ScoreProcessor.cs#L541-L572
+    // (the same for all three)
+    [rulesetIds.mania]: [0, 0.7, 0.8, 0.9, 0.95, 0.99, 1],
+    [rulesetIds.osu]: [0, 0.7, 0.8, 0.9, 0.95, 0.99, 1],
+    [rulesetIds.taiko]: [0, 0.7, 0.8, 0.9, 0.95, 0.99, 1],
+  },
+  legacy: {
+    [rulesetIds.fruits]: [0, 0.8501, 0.9001, 0.9401, 0.9801, 0.99, 1],
+    [rulesetIds.mania]: [0, 0.7, 0.8, 0.9, 0.95, 0.99, 1],
+    // S: (0.9 * 300 + 0.1 * 100) / 300 = 0.933
+    // A: (0.8 * 300 + 0.2 * 100) / 300 = 0.867
+    // B: (0.7 * 300 + 0.3 * 100) / 300 = 0.8
+    [rulesetIds.osu]: [0, 0.6, 0.8, 0.867, 0.933, 0.99, 1],
+    // S: (0.9 * 300 + 0.1 * 50) / 300 = 0.917
+    // A: (0.8 * 300 + 0.2 * 50) / 300 = 0.833
+    // B: (0.7 * 300 + 0.3 * 50) / 300 = 0.75
+    [rulesetIds.taiko]: [0, 0.6, 0.75, 0.833, 0.917, 0.99, 1],
+  },
+};
 
-  if (shouldReturnLegacyValue(score)) {
-    switch (ruleset) {
-      case 'fruits':
-        absoluteCutoffs = [0, 0.8501, 0.9001, 0.9401, 0.9801, 0.99, 1];
-        break;
+export function rankAbsoluteCutoffs(score: ScoreJson) {
+  const scoreType = shouldReturnLegacyValue(score) ? 'legacy' : 'current';
 
-      case 'mania':
-        absoluteCutoffs = [0, 0.7, 0.8, 0.9, 0.95, 0.99, 1];
-        break;
-
-      case 'osu':
-        // S: (0.9 * 300 + 0.1 * 100) / 300 = 0.933
-        // A: (0.8 * 300 + 0.2 * 100) / 300 = 0.867
-        // B: (0.7 * 300 + 0.3 * 100) / 300 = 0.8
-        absoluteCutoffs = [0, 0.6, 0.8, 0.867, 0.933, 0.99, 1];
-        break;
-
-      case 'taiko':
-        // S: (0.9 * 300 + 0.1 * 50) / 300 = 0.917
-        // A: (0.8 * 300 + 0.2 * 50) / 300 = 0.833
-        // B: (0.7 * 300 + 0.3 * 50) / 300 = 0.75
-        absoluteCutoffs = [0, 0.6, 0.75, 0.833, 0.917, 0.99, 1];
-        break;
-    }
-  } else {
-    switch (ruleset) {
-      case 'fruits':
-        // cross-reference: https://github.com/ppy/osu/blob/b658d9a681a04101900d5ce6c5b84d56320e08e7/osu.Game.Rulesets.Catch/Scoring/CatchScoreProcessor.cs#L108-L135
-        absoluteCutoffs = [0, 0.85, 0.9, 0.94, 0.98, 0.99, 1];
-        break;
-
-      case 'mania':
-      case 'osu':
-      case 'taiko':
-        // cross-reference: https://github.com/ppy/osu/blob/b658d9a681a04101900d5ce6c5b84d56320e08e7/osu.Game/Rulesets/Scoring/ScoreProcessor.cs#L541-L572
-        absoluteCutoffs = [0, 0.7, 0.8, 0.9, 0.95, 0.99, 1];
-        break;
-    }
-  }
-
-  return differenceBetweenConsecutiveElements(absoluteCutoffs);
+  return rankAbsoluteCutoffsBase[scoreType][score.ruleset_id];
 }
 
-function differenceBetweenConsecutiveElements(arr: number[]): number[] {
-  const result = [];
+export function rankCutoffs(score: ScoreJson): number[] {
+  const arr = rankAbsoluteCutoffs(score);
 
+  const result = [];
   for (let i = 1; i < arr.length; ++i) {
     result.push(arr[i] - arr[i - 1]);
   }

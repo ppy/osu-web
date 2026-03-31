@@ -12,22 +12,24 @@ describe('BeatmapsetSearchFilters', () => {
     });
 
     it('should remove leading whitespace', () => {
-      subject.query = '  whee 12 ああ';
+      subject.update('query', '  whee 12 ああ');
 
       expect(subject.query).toBe('whee 12 ああ');
+      expect(subject.queryRaw).toBe('  whee 12 ああ');
     });
 
     it('should remove trailing whitespace', () => {
-      subject.query = 'whee 12 ああ  ';
+      subject.update('query', 'whee 12 ああ  ');
 
       expect(subject.query).toBe('whee 12 ああ');
+      expect(subject.queryRaw).toBe('whee 12 ああ  ');
     });
 
     it('should treat empty string as null', () => {
-      subject.query = '';
+      subject.update('query', '');
 
-      // type inference was a bit _too_ smart.
-      expect(subject.query as string | null).toBe(null);
+      expect(subject.query).toBe(null);
+      expect(subject.queryRaw).toBe('');
     });
   });
 
