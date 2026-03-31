@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Durasi pertandingan terlalu lama.',
             'name_too_long' => 'Nama ruangan terlalu panjang.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Terlalu banyak item playlist.',
         ],
 
         'status' => [

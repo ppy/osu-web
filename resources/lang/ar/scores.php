@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'لُعِبَت بواسطة',
+            'played_on' => '',
             'submitted_on' => 'تم تقديمه في',
 
             'rank' => [

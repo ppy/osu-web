@@ -14,30 +14,30 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
-        'hide_judged' => '',
-        'nav_title' => '',
-        'no_current_vote' => '',
-        'update' => '',
+        'comments' => 'kommentarer',
+        'hide_judged' => 'skjul bedømte indlæg',
+        'nav_title' => 'bedøm',
+        'no_current_vote' => 'du har ikke stemt endnu.',
+        'update' => 'opdatér',
         'validation' => [
-            'missing_score' => '',
-            'contest_vote_judged' => '',
+            'missing_score' => 'mangler score',
+            'contest_vote_judged' => 'kan ikke stemme i bedømte konkurrencer',
         ],
-        'voted' => '',
+        'voted' => 'Du har allerede stemt på dette indlæg.',
     ],
 
     'judge_results' => [
-        '_' => '',
-        'creator' => '',
-        'score' => '',
-        'score_std' => '',
-        'total_score' => '',
-        'total_score_std' => '',
+        '_' => 'Bedømmer resultater',
+        'creator' => 'kreatør',
+        'score' => 'Score',
+        'score_std' => 'Standardiseret Score',
+        'total_score' => 'samlet score',
+        'total_score_std' => 'total samlet score',
     ],
 
     'voting' => [
-        'judge_link' => '',
-        'judged_notice' => '',
+        'judge_link' => 'Du er dommeren af denne konkurrence. Bedøm indlæg her!',
+        'judged_notice' => 'Denne konkurrence benytter bedømmelsessystemet, dommerne behandler i øjeblikket indlæggene.',
         'login_required' => 'Log venligst ind for at stemme.',
         'over' => 'Afstemning for denne konkurrence er slut',
         'show_voted_only' => 'Vis stemmer',
@@ -69,12 +69,12 @@ return [
         'silenced_or_restricted' => 'Du kan ikke deltage i konkurrencer, når du er mutet eller begrænset.',
         'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
         'drop_here' => 'Aflever dit bidrag her',
-        'allowed_extensions' => '',
-        'max_size' => '',
-        'required_dimensions' => '',
+        'allowed_extensions' => ':types filer er accepteret',
+        'max_size' => 'Maks. størrelse. :limit',
+        'required_dimensions' => 'Dimensioner skal være :widthx:height',
         'download' => 'Download .osz',
-        'wrong_file_type' => '',
-        'wrong_dimensions' => '',
+        'wrong_file_type' => 'Kun :types filer er accepteret i denne konkurrence.',
+        'wrong_dimensions' => 'Indlæg i denne konkurrence skal være :widthx:height',
         'too_big' => 'Bidrag til denne konkurrence kan maks være op til :limit.',
     ],
 
@@ -86,7 +86,7 @@ return [
         'list' => 'stemmer',
         'count' => ':count stemme|:count stemmer',
         'points' => ':count point|:count point',
-        'points_float' => '',
+        'points_float' => ':points point',
     ],
 
     'dates' => [
@@ -107,7 +107,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Vis info og indlæg',
         ],
     ],
 ];

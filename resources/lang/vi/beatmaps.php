@@ -245,7 +245,7 @@ return [
             'prompt' => 'nhập từ khóa...',
             'login_required' => 'Đăng nhập để tìm kiếm.',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Số lượng top rank và kết quả hiển thị trên trang này dựa trên các điểm số “chuẩn hoá” cao nhất của bạn (còn gọi là “lazer”) trên beatmap.',
             'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Lọc theo :filters cần một :link đang hoạt động',
                 'link_text' => 'osu!supporter tag',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

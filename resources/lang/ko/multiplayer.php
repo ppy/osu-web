@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => '기간이 너무 깁니다.',
             'name_too_long' => '방 이름이 너무 깁니다.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => '플레이리스트 항목이 너무 많습니다.',
         ],
 
         'status' => [

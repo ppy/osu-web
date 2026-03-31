@@ -276,6 +276,10 @@ return [
                 '_' => 'تصفية بحسب :filters تحتاج الى تفعيل :link',
                 'link_text' => 'شارة osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

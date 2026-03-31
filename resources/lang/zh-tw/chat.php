@@ -58,12 +58,6 @@ return [
         'send' => '發送',
     ],
 
-    'no-conversations' => [
-        'howto' => "在使用者個人資料或卡片的彈出方塊上點擊信封圖案以開始聊天。",
-        'lazer' => '您通過 <a href=":link">osu! lazer</a> 加入的公開頻道也會顯示在這裡。',
-        'title' => '還沒有聊天過',
-    ],
-
     'join_channels' => [
         'loading' => '正在載入頻道清單...',
     ],

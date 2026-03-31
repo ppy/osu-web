@@ -58,12 +58,6 @@ return [
         'send' => 'Stuur',
     ],
 
-    'no-conversations' => [
-        'howto' => "Start gesprekken vanuit het profiel van een gebruiker of een pop-up usercard.",
-        'lazer' => 'Publieke kanalen die je kan joinen via <a href=":link">osu!lazer</a> zullen hier ook zichtbaar zijn.',
-        'title' => 'nog geen gesprekken',
-    ],
-
     'join_channels' => [
         'loading' => '',
     ],

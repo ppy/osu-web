@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'authorise' => 'Autoriser',
         'authorising' => 'Autoriserer...',
-        'back' => '',
+        'back' => 'Tilbage',
         'back_to_previous' => 'Vend tilbage til tidligere position',
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
@@ -39,7 +39,7 @@ return [
         'pin' => 'fastgør',
         'post' => 'Slå op',
         'read_more' => 'læs mere',
-        'refresh' => '',
+        'refresh' => 'Genindlæs',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og Genåben',
         'reply_resolve' => 'Svar og Markér som Løst',
@@ -76,7 +76,7 @@ return [
         'minutes' => ':count minut|:count minutter',
         'months' => ':count måned|:count måneder',
         'notifications' => ':count_delimited notifikation|:count_delimited notifikationer',
-        'player' => '',
+        'player' => ':count_delimited spiller|:count_delimited spillere',
         'plus_others' => '+ :count_delimited andre!|+ :count_delimited andre!',
         'post' => ':count_delimited opslag|:count_delimited opslag',
         'second_short_unit' => 'sek',
@@ -95,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'm',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'å',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

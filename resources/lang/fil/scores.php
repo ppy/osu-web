@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Laro ni',
+            'played_on' => '',
             'submitted_on' => 'Sinumite noong',
 
             'rank' => [

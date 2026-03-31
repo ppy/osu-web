@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Tạo và quản lý phòng chơi nhiều người thay bạn.',
         ],
 
         'public' => 'Đọc dữ liệu công khai thay mặt bạn.',

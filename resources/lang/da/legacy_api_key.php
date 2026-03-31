@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Ny Legacy API-nøgle',
+    'none' => 'Ingen nøgle.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentation er tilgængelig på :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Opret Nøgle',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Skjul Nøgle',
+        'show' => 'Vis Nøgle',
+        'delete' => 'Slet',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Give ikke denne til andre.',
+        'line2' => "Det er det samme som at give din adgangskode.",
+        'line3' => 'Din konto kan være kompromitteret.',
     ],
 ];

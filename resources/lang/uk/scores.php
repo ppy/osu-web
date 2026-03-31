@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Гравець',
+            'played_on' => '',
             'submitted_on' => 'Поставлено',
 
             'rank' => [

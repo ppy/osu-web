@@ -276,6 +276,10 @@ return [
                 '_' => 'סינון לפי :filters דורש :link פעיל',
                 'link_text' => 'תג osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

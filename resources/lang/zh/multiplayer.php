@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => '持续时间过长。',
             'name_too_long' => '房间名称过长。',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => '歌单内项目数量过多。',
         ],
 
         'status' => [

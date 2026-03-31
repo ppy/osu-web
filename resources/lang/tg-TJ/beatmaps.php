@@ -276,6 +276,10 @@ return [
                 '_' => '',
                 'link_text' => '',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

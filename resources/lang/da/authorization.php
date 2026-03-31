@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Dette beatmap er lukket låst for diskussion.',
 
         'metadata' => [
             'nominated' => 'Du kan ikke ændre metadata for et nomineret map. Kontakt et BAT- eller NAT-medlem, hvis du mener, at det er angivet forkert.',
@@ -71,7 +71,7 @@ return [
         'friends_only' => 'Brugeren blokerer beskeder fra folk der ikke er på deres venneliste.',
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
-        'no_announce' => '',
+        'no_announce' => 'Du har ikke tilladelse til indlægge annonceringer.',
         'receive_friends_only' => 'Brugeren kan muligvis ikke svare, fordi du kun accepterer beskeder fra folk på din venneliste.',
         'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
         'silenced' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
@@ -87,7 +87,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => '',
+        'judging_not_active' => 'Bedømmelse for denne konkurrence er ikke aktiv.',
         'voting_over' => 'Du kan ikke ændre din stemme efter stemmeperioden for denne konkurrence er slut.',
 
         'entry' => [
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Kan ikke redigere slettede opslag.',
                 'locked' => 'Dette opslag er låst fra at blive redigeret.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendigt.',
-                'no_permission' => '',
+                'no_permission' => 'Ingen tilladelse til at redigere.',
                 'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
                 'topic_locked' => 'Kan ikke redigere opslag fra låste emner.',
             ],
@@ -197,17 +197,17 @@ return [
             'store' => [
                 'already_member' => "Du er allerede en del a holdet.",
                 'already_other_member' => "Du er allerede en del af et andet hold.",
-                'currently_applying' => '',
-                'team_closed' => '',
-                'team_full' => "",
+                'currently_applying' => 'Du har en afventende holdtildmeldingsanmodning.',
+                'team_closed' => 'Holdet modtager i øjeblikket ikke tilmeldningsanmodninger.',
+                'team_full' => "Holdet er fuldt og kan ikke acceptere flere medlemmer.",
             ],
         ],
         'part' => [
-            'is_leader' => "",
-            'not_member' => '',
+            'is_leader' => "Holdlederen kan ikke forlade holdet.",
+            'not_member' => 'Ikke et medlem af holdet.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!support tag er påkrævet for at oprette et hold.',
         ],
     ],
 
@@ -220,7 +220,7 @@ return [
             ],
         ],
         'update_email' => [
-            'locked' => '',
+            'locked' => 'email-adresse er låst',
         ],
     ],
 ];

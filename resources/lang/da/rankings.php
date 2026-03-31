@@ -10,12 +10,12 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'Sværhedsgrad',
+        'top_10p' => 'Top 10% Score',
+        'top_50p' => 'Top 50% Score',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Ingen daglig udfordring på den angivne dato endnu!',
+            'past' => 'Ingen daglig udfordring på den angivne dato!',
         ],
     ],
 
@@ -28,58 +28,58 @@ return [
     ],
 
     'kudosu' => [
-        'total' => '',
-        'available' => '',
-        'used' => '',
+        'total' => 'Opnået',
+        'available' => 'Tilgængelig',
+        'used' => 'Brugt',
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Afspilninger',
+        'points' => 'Point',
+        'provisional' => 'Ikke nok kampe spillet til præcist at bestemme vurdering',
+        'rating' => 'Vurdering',
+        'wins' => 'Sejre',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Rum Navn',
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Denne bruger har mindre end 30 dages nylig rangeringshistorik.',
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Data beregnes...',
+        'last_updated' => 'Senest opdateret',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlights (gamle)',
+        'featured' => 'fremhævet',
+        'season_room' => 'sæson rum',
+        'seasons' => 'sæsoner',
     ],
 
     'type' => [
         'country' => 'Land',
-        'daily_challenge' => '',
-        'global' => '',
-        'kudosu' => '',
-        'matchmaking' => '',
-        'playlists' => '',
-        'team' => '',
-        'top_plays' => '',
+        'daily_challenge' => 'daglig udfordring',
+        'global' => 'global',
+        'kudosu' => 'kudosu',
+        'matchmaking' => 'hurtigt spil',
+        'playlists' => 'spillelister',
+        'team' => 'hold',
+        'top_plays' => 'top spil',
     ],
 
     'seasons' => [
         'empty' => 'Der er ingen rum i denne sæson endnu.',
         'ongoing' => 'Denne sæson er stadig i gang (der vil være flere playlister tilføjet).',
         'room_count' => 'Playlist-antal',
-        'summary' => '',
+        'summary' => 'Vis Sæson Oversigt',
         'url' => 'Vis flere oplysninger om den sæson.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'der er ikke nok scorings-faktorer til korreket beregning',
         ],
     ],
 
@@ -94,8 +94,8 @@ return [
         'accuracy' => 'Præcision',
         'active_users' => 'Aktive Brugere',
         'country' => 'Land',
-        'division' => '',
-        'members' => '',
+        'division' => 'Inddeling',
+        'members' => 'Medlemmer',
         'play_count' => 'Antal Gange Spillet',
         'performance' => 'Præstation',
         'total_score' => 'Total Score',

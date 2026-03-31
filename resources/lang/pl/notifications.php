@@ -220,7 +220,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Aktualności',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
