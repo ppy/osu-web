@@ -159,11 +159,11 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'first_places' => '',
+            'empty_slots' => ':count_delimited yer mevcut|:count_delimited yer mevcut',
+            'first_places' => 'İlk sıralar',
             'leader' => 'Takım Lideri',
             'rank' => 'Sıralama',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Derecelendirilmiş beatmapler',
         ],
     ],
 

@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'שוחק על ידי',
+            'played_on' => '',
             'submitted_on' => 'נשלח ב',
 
             'rank' => [

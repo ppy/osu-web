@@ -276,6 +276,10 @@ return [
                 '_' => 'Filtrování podle :filters vyžaduje aktivní :link',
                 'link_text' => 'osu!supporter tag',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

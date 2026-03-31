@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Jucat de',
+            'played_on' => '',
             'submitted_on' => 'Trimis pe',
 
             'rank' => [

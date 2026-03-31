@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Replay Đã Xem',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Replay được xem nhiều nhất',
                 ],
             ],
             'kudosu' => [
@@ -512,8 +512,8 @@ return [
             'total_score' => 'Tổng điểm',
         ],
         'stats' => [
-            'hit_accuracy' => 'Độ Chính Xác',
-            'hits_per_play' => 'Số lần nhấn mỗi khi chơi',
+            'hit_accuracy' => 'Độ bấm chính xác',
+            'hits_per_play' => 'Số lần bấm mỗi khi chơi',
             'level' => 'Level :level',
             'level_progress' => 'Tiến độ qua level tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',
@@ -523,7 +523,7 @@ return [
             'ranked_score' => 'Điểm Được Xếp Hạng',
             'replays_watched_by_others' => 'Replay Được Xem',
             'score_ranks' => 'Thứ hạng điểm',
-            'total_hits' => 'Tổng Lần Bấm',
+            'total_hits' => 'Tổng lần bấm',
             'total_score' => 'Tổng điểm',
             // modding stats
             'graveyard_beatmapset_count' => 'Các beatmap bị đắp mộ',

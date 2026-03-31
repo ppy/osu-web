@@ -58,12 +58,6 @@ return [
         'send' => 'Kirim',
     ],
 
-    'no-conversations' => [
-        'howto' => "Mulailah percakapan baru dari halaman profil atau kartu pop-up pengguna.",
-        'lazer' => 'Kanal percakapan publik yang kamu buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
-        'title' => 'belum ada percakapan',
-    ],
-
     'join_channels' => [
         'loading' => 'Memuat daftar kanal percakapan...',
     ],

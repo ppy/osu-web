@@ -276,6 +276,10 @@ return [
                 '_' => 'Ang pag fi-filter ng :filters ay nag re-require ng aktibong :link',
                 'link_text' => 'osu!supporter tag',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

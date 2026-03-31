@@ -276,6 +276,10 @@ return [
                 '_' => 'Филтеровање по :filters захтева да имате активну :link',
                 'link_text' => 'osu!supporter претплату',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

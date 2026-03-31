@@ -58,12 +58,6 @@ return [
         'send' => 'Wyślij',
     ],
 
-    'no-conversations' => [
-        'howto' => "Rozpocznij konwersację poprzez profil lub kartę użytkownika.",
-        'lazer' => 'Publiczne kanały, do których dołączysz poprzez <a href=":link">osu!lazer</a>, również będą tutaj widoczne.',
-        'title' => 'brak konwersacji',
-    ],
-
     'join_channels' => [
         'loading' => 'Ładowanie listy kanałów...',
     ],

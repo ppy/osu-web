@@ -106,7 +106,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'mostrar mapes amb fons d\'anime',
         'beatmapset_show_nsfw' => 'oculta els avisos per al contingut explícit en mapes',
         'beatmapset_title_show_original' => 'mostra les metadades del mapa en l\'idioma original',
         'title' => 'Opcions',

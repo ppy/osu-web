@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Dimain oleh',
+            'played_on' => '',
             'submitted_on' => 'Diserahkan pada',
 
             'rank' => [

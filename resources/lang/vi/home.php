@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Đăng nhập để tìm đội',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm đội',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Livestream nổi bật',
         ],
         'show' => [
             'admin' => [

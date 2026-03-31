@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Gracz',
+            'played_on' => '',
             'submitted_on' => 'Data przesłania',
 
             'rank' => [

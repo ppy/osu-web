@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Játékos',
+            'played_on' => '',
             'submitted_on' => 'Beküldve',
 
             'rank' => [

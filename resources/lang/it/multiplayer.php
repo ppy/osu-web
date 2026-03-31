@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'La durata è troppo lunga.',
             'name_too_long' => 'Il nome della stanza è troppo lungo.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Troppi elementi in playlist.',
         ],
 
         'status' => [

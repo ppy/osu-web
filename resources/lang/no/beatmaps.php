@@ -277,6 +277,10 @@ return [
                 '_' => 'Filtrering ved bruk av :filters krever en aktiv :link',
                 'link_text' => 'osu!supporter tag',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

@@ -158,10 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited 슬롯 가능|:count_delimited 슬롯들 가능',
-            'first_places' => '',
+            'first_places' => '1위 달성 맵',
             'leader' => '팀장',
             'rank' => '순위',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => '랭크된 비트맵 수',
         ],
     ],
 
