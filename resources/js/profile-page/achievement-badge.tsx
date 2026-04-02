@@ -13,7 +13,7 @@ import AchievementBadgePopup from './achievement-badge-popup';
 interface Props {
   achievedAt?: string;
   achievement: AchievementJson;
-  modifiers: Modifiers;
+  modifiers?: Modifiers;
 }
 
 export default class AchievementBadge extends React.PureComponent<Props> {

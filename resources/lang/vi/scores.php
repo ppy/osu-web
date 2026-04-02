@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Chơi bởi',
+            'played_on' => '',
             'submitted_on' => 'Tải lên',
 
             'rank' => [

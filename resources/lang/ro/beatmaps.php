@@ -276,6 +276,10 @@ return [
                 '_' => 'Ai nevoie de un :link activ pentru a filtra prin :filters',
                 'link_text' => 'status de suporter osu!',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

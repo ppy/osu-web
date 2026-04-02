@@ -27,7 +27,7 @@ return [
         'title' => 'ค้นหา',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'ดูผลลัพธ์การค้นหาเพลงศิลปินเด่นเพิ่มเติม',
         ],
         'beatmapset' => [
             'login_required' => 'เข้าสู่ระบบเพื่อค้นหาบีทแมพ',
@@ -54,17 +54,17 @@ return [
 
         'mode' => [
             'all' => 'ทั้งหมด',
-            'artist_track' => '',
+            'artist_track' => 'เพลงศิลปินเด่น',
             'beatmapset' => 'บีทแมพ',
             'forum_post' => 'ฟอรั่ม',
-            'team' => '',
+            'team' => 'ทีม',
             'user' => 'ผู้เล่น',
             'wiki_page' => 'วิกิ',
         ],
 
         'team' => [
-            'login_required' => '',
-            'more_simple' => '',
+            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาทีม',
+            'more_simple' => 'ดูผลการค้นหาทีมเพิ่มเติม',
         ],
 
         'user' => [
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'ตรวจสอบหน้านี้สำหรับข้อมูลเพิ่มเติม',
-        'download' => '',
+        'download' => 'ดาวน์โหลด',
         'for_os' => 'สำหรับ :os',
         'macos-fallback' => 'ผู้ใช้ macOS',
         'mirror' => 'สำรอง',
@@ -92,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version หรือสูงกว่า',
         'other_os' => 'แพลตฟอร์มอื่นๆ',
         'quick_start_guide' => 'คู่มือการใช้งานเริ่มต้น',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'หากคุณกำลังหา osu! แบบเก่าอยู่',
+        'tagline_1' => 'งั้นก็',
+        'tagline_2' => 'มาเริ่มกันเลย!',
         'video-guide' => 'ไกด์วิดิโอ',
 
         'help' => [
@@ -141,11 +141,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'บีทแมพชาเลนจ์ประจำวัน',
             'new' => 'บีทแมพจัดอันดับใหม่ล่าสุด',
             'popular' => 'บีทแมพยอดฮิต',
             'by_user' => 'โดย :user',
-            'resets' => '',
+            'resets' => 'รีเซ็ต :ends',
         ],
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',
@@ -153,11 +153,11 @@ return [
             'store' => 'osu!ร้านค้า',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'ไลฟ์สตรีมแนะนำ',
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'เปิดคอลโซลผู้ดูแล',
             ],
         ],
     ],

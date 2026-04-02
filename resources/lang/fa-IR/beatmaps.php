@@ -276,6 +276,10 @@ return [
                 '_' => 'صافی کردن با :filters نیازمند :link فعال است',
                 'link_text' => 'تگ osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

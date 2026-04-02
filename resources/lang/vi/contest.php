@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => 'Cạnh tranh bằng nhiều cách khác nhau hơn là chỉ bấm vòng tròn.',
+        'small' => 'Cạnh tranh bằng nhiều cách khác nhau hơn là chỉ bấm nốt tròn.',
         'large' => 'Cuộc Thi Cộng Đồng',
     ],
 
@@ -58,7 +58,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Phải chơi hết tất cả beatmap trong playlist cụ thể trước khi bình chọn',
+                'incomplete_play' => 'Phải chơi hết tất cả beatmap trong danh sách phát cụ thể trước khi bình chọn',
             ],
         ],
     ],
@@ -69,11 +69,11 @@ return [
         'silenced_or_restricted' => 'Bạn không thể tham gia cuộc thi trong khi bị hạn chế hoặc bị im lặng.',
         'preparation' => 'Chúng tôi đang chuẩn bị cho cuộc thi này. Xin hãy kiên nhẫn chờ đợi!',
         'drop_here' => 'Thả bài dự thi của bạn vào đây',
-        'allowed_extensions' => '',
-        'max_size' => '',
-        'required_dimensions' => '',
+        'allowed_extensions' => 'Chấp nhận tệp :types',
+        'max_size' => 'Dung lượng tối đa: :limit',
+        'required_dimensions' => 'Kích thước phải là :widthx:height',
         'download' => 'Tải xuống .osz',
-        'wrong_file_type' => '',
+        'wrong_file_type' => 'Cuộc thi này chỉ chấp nhận tệp :types.',
         'wrong_dimensions' => 'Bài dự thi cho cuộc thi này phải có :widthx:height',
         'too_big' => 'Số bài dự thi cho cuộc thi này tối đa là :limit.',
     ],

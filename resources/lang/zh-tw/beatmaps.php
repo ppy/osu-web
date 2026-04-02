@@ -276,6 +276,10 @@ return [
                 '_' => '使用 :filters 進行篩選需要有效的 :link',
                 'link_text' => 'osu! 贊助者標籤',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

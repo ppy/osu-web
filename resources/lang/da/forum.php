@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Fora',
         'latest_post' => 'Seneste Opslag',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'skrevet af :username i :forum',
 
         'actions' => [
             'destroy' => 'Slet opslag',
@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
-        'go_to_unread' => '',
+        'go_to_unread' => 'se første uløste indlæg',
         'has_replied' => 'Du har besvaret dette emne',
         'in_forum' => 'i :forum',
         'latest_post' => ':when af :user',

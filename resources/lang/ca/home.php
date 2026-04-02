@@ -153,7 +153,7 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Directes destacats',
         ],
         'show' => [
             'admin' => [

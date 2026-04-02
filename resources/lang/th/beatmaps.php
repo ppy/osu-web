@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'รูลเซ็ตที่เลือกไม่ถูกต้อง',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'มีผู้มีส่วนร่วมมากเกินไป',
     ],
 
     'discussion-votes' => [
@@ -24,7 +24,7 @@ return [
         'deny_kudosu' => 'ปฏิเสธการให้ kudosu',
         'edit' => 'แก้ไข',
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
-        'guest' => 'ความยากของผู้มาเยี่ยมโดย :user',
+        'guest' => 'ระดับความยากโดย :user',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ kudosu',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน',
@@ -160,7 +160,7 @@ return [
         'status-messages' => [
             'approved' => 'บีทแมพนี้ถูกอนุมัติในวันที่ :date',
             'graveyard' => "บีทแมพนี้ไม่ถูกอัปเดตตั้งแต่ :date และน่าจะถูกละทิ้งโดยผู้ทำแมพไปแล้ว",
-            'loved' => 'บีทแมพนี้ถูก Loved ในวันที่ :date',
+            'loved' => 'บีทแมพนี้ถูกเพิ่มในเลิฟด์ในวันที่ :date',
             'ranked' => 'บีทแมพนี้ถูกจัดอันดับในวันที่ :date',
             'wip' => 'บีทแมพนี้ถูกทำเครื่องหมายไว้ว่าอยู่ในระหว่างการทำ',
         ],
@@ -206,14 +206,14 @@ return [
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
         'love' => 'ชอบ',
-        'love_choose' => 'เลือกระดับความยากสำหรับ Loved',
+        'love_choose' => 'เลือกระดับความยากสำหรับเลิฟด์',
         'love_confirm' => 'ชอบบีทแมพนี้หรือ?',
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อบีทแมพนี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
         'not_enough_hype' => "ไม่มี Hype เพียงพอ",
-        'remove_from_loved' => 'ถูกนำออกจาก Loved',
-        'remove_from_loved_prompt' => 'เหตุผลในการถูกออกจาก Loved',
+        'remove_from_loved' => 'ถูกนำออกจากเลิฟด์',
+        'remove_from_loved_prompt' => 'เหตุผลที่นำออกจากเลิฟด์',
         'required_text' => 'การเสนอชื่อ: :current/:required',
         'reset_message_deleted' => 'ถูกลบไปแล้ว',
         'title' => 'ข้อมูลการเสนอชื่อ',
@@ -245,7 +245,7 @@ return [
             'prompt' => 'พิมพ์คำสำคัญ...',
             'login_required' => 'ลงชื่อเข้าใช้เพื่อค้นหา',
             'options' => 'ตัวเลือกการค้นหาเพิ่มเติม',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'จำนวนแรงค์สูงสุดและผลลัพธ์ในหน้านี้ขึ้นอยู่กับ "คะแนน Standardized" (หรือก็คือ "คะแนน lazer") ที่คุณทำได้',
             'supporter_filter' => 'การกรองด้วย :filters จำเป็นต้องมีแท็กผู้สนับสนุนที่ทำงานอยู่',
             'not-found' => 'ไม่มีผลการค้นหา',
             'not-found-quote' => '... ไม่อ่ะ ไม่เจออะไรเลย',
@@ -276,6 +276,10 @@ return [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
                 'link_text' => 'แท็กผู้สนับสนุน osu!',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [
@@ -283,7 +287,7 @@ return [
         'featured_artists' => 'ศิลปินโดดเด่น',
         'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
-        'spotlights' => 'บีทแมพที่โดดเด่น',
+        'spotlights' => 'บีทแมพสปอตไลท์',
     ],
     'mode' => [
         'all' => 'ทั้งหมด',

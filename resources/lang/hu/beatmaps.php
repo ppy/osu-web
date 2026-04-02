@@ -276,6 +276,10 @@ return [
                 '_' => ':filters általi szűrés aktív :link-et igényel',
                 'link_text' => 'osu!supporter cím',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

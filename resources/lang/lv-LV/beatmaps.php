@@ -276,6 +276,10 @@ return [
                 '_' => 'Filtrēšanai pēc :filters ir nepieciešams aktīvs :link',
                 'link_text' => 'osu!atbalstītāja piekariņš',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

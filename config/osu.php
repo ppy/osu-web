@@ -276,7 +276,7 @@ return [
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
         'max_multiplayer_duration' => get_int(env('USER_MAX_MULTIPLAYER_DURATION')) ?? 14,
         // see https://github.com/ppy/osu/pull/16024/files#diff-d5f8d0eb0eac5cfd6d2f486d34c4168e036b83b622c7a3c5bfce5205d67bf52bR327-R330
-        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
+        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 93,
         'max_playlists' => get_int(env('USER_MAX_PLAYLISTS')) ?? 1,
         'max_playlists_supporter' => get_int(env('USER_MAX_PLAYLISTS_SUPPORTER')) ?? 5,
         'max_items_in_playlist' => get_int(env('USER_MAX_ITEMS_IN_PLAYLIST')) ?? 256,

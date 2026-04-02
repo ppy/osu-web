@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'authorise' => 'อนุญาต',
         'authorising' => 'กำลังอนุญาต...',
-        'back' => '',
+        'back' => 'กลับ',
         'back_to_previous' => 'กลับไปยังตำแหน่งก่อนหน้านี้',
         'back_to_top' => 'กลับไปด้านบน',
         'cancel' => 'ยกเลิก',
@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count_delimited เดือน|:count_delimited เดือน',
         'notifications' => ':count_delimited การแจ้งเตือน|:count_delimited การแจ้งเตือนทั้งหมด',
-        'player' => '',
+        'player' => ':count_delimited คน|:count_delimited คน',
         'plus_others' => '+ :count_delimited อัน!|+ :count_delimited อัน!',
         'post' => ':count_delimited โพสต์|:count_delimited โพสต์',
         'second_short_unit' => 'วินาที|วินาที',
@@ -95,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'เดือน',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'ปี',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

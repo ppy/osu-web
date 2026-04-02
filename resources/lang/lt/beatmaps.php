@@ -276,6 +276,10 @@ return [
                 '_' => 'Rūšiavimas pagal :filters reikalauja aktyvios :link',
                 'link_text' => 'osu!rėmėjo žymos',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [
