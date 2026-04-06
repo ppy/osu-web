@@ -98,23 +98,26 @@ class BeatmapsetArchive
 
         $fadeOut = $duration - 1000;
 
-        $normOffset = 90_000;
-        $loudnorm = static::getAudioLoudnormFilter(
-            $srcFilenameEscaped,
-            max($previewTime - $normOffset, 0),
-            ($normOffset * 2) + $duration,
-        );
+        // disabled due to being usually too quiet for client
+        if (false) {
+            $normOffset = 90_000;
+            $loudnorm = static::getAudioLoudnormFilter(
+                $srcFilenameEscaped,
+                max($previewTime - $normOffset, 0),
+                ($normOffset * 2) + $duration,
+            );
 
-        if ($loudnorm === null) {
-            return null;
+            if ($loudnorm === null) {
+                return null;
+            }
         }
 
-        $filter = implode(',', [
+        $filter = implode(',', array_reject_null([
             static::RESAMPLE_FILTER,
-            $loudnorm,
+            $loudnorm ?? null,
             "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
             "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
-        ]);
+        ]));
 
         $dstFile = tmpfile();
         $dstFilename = get_stream_filename($dstFile);
