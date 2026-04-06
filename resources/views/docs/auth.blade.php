@@ -503,7 +503,7 @@ $scopeDescriptions = [
     'friends.read' => 'Allows reading of the user\'s friend list.',
     'group_permissions' => "Allows `delegate` tokens to inherit the Resource Owner's group permissions in some cases.",
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
-    'multiplayer.write_manage' => "Allows creating and managing multiplayer rooms on a user's behalf. (Under active development, documentation to be added later)",
+    'multiplayer.write_manage' => "Allows creating and managing multiplayer rooms on a user's behalf. This is a separate SignalR-based API; see [documentation](https://ppy.sh/osu-server-spectator/referee-hub-api.html).",
     'public' => 'Allows reading of publicly available data on behalf of the user.',
 ];
 @endphp
