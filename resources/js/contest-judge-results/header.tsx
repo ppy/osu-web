@@ -19,9 +19,9 @@ interface Props {
 
 function entryToOption(entry: ContestEntryJsonForResults) {
   return {
-    children: <OptionText entry={entry} />,
     href: route('contests.entries.judge-results', { contest: entry.contest_id, contest_entry: entry.id }),
     id: entry.id,
+    text: <OptionText entry={entry} />,
   };
 }
 
@@ -47,9 +47,8 @@ export default class Header extends React.PureComponent<Props> {
           modifiers='ranking'
           options={this.options}
           selected={this.props.entry.id}
-        >
-          <OptionText entry={this.props.entry} />
-        </SelectOptions>
+          text={<OptionText entry={this.props.entry} />}
+        />
 
         <div className='contest-judge-results-header__values'>
           {totalScoreStd != null && (

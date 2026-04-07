@@ -120,9 +120,9 @@ export default class ReportForm extends React.Component<Props> {
       ?? Object.keys(availableOptions) as ReportType[];
 
     return options.map((option) => ({
-      children: availableOptions[option],
       href: '#',
       id: option,
+      text: availableOptions[option],
     }));
   }
 
@@ -242,9 +242,8 @@ export default class ReportForm extends React.Component<Props> {
                 onSelect={this.handleReasonChange}
                 options={this.options}
                 selected={this.selectedReasonKey}
-              >
-                {availableOptions[this.selectedReasonKey]}
-              </SelectOptions>
+                text={availableOptions[this.selectedReasonKey]}
+              />
             </div>
           </>
         )}

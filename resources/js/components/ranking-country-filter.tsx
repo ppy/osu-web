@@ -24,7 +24,7 @@ const allCountries = { id: null, text: trans('rankings.countries.all') };
 @observer
 export default class RankingFilter extends React.Component<Props> {
   @computed
-  private get items() {
+  private get options() {
     const ordered = [allCountries, ...this.props.items.sort((a, b) => {
       // prioritizes current user's country
       if (core.currentUser?.country_code === a.id) return -1;
@@ -34,9 +34,9 @@ export default class RankingFilter extends React.Component<Props> {
     })];
 
     return ordered.map((option) => ({
-      children: option.text,
       href: this.href(option.id),
       id: option.id,
+      text: option.text,
     }));
   }
 
@@ -57,11 +57,10 @@ export default class RankingFilter extends React.Component<Props> {
         <SelectOptions
           href={this.href(currentItem.id)}
           modifiers='ranking'
-          options={this.items}
+          options={this.options}
           selected={currentItem.id}
-        >
-          {currentItem.text}
-        </SelectOptions>
+          text={currentItem.text}
+        />
       </div>
     );
   }

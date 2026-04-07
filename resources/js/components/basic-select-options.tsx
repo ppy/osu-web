@@ -27,9 +27,9 @@ type Props = PropsBase & ({
 export default class BasicSelectOptions extends React.PureComponent<Props> {
   private get options() {
     return this.props.items.map((item) => ({
-      children: item.text,
       href: this.href(item.id),
       id: item.id,
+      text: item.text,
     }));
   }
 
@@ -40,9 +40,8 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
         modifiers={this.props.modifiers}
         options={this.options}
         selected={this.props.currentItem.id}
-      >
-        {this.props.currentItem.text}
-      </SelectOptions>
+        text={this.props.currentItem.text}
+      />
     );
   }
 

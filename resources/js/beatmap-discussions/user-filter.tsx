@@ -85,9 +85,8 @@ export class UserFilter extends React.Component<Props> {
         onSelect={this.handleSelect}
         options={this.options}
         selected={this.props.discussionsState.selectedUserId}
-      >
-        {this.text}
-      </SelectOptions>
+        text={this.text}
+      />
     );
   }
 
@@ -118,9 +117,9 @@ export class UserFilter extends React.Component<Props> {
     }
 
     return {
-      children: <span className='u-group-colour u-ellipsis-overflow' style={style}>{user.username}</span>,
       href: urlOptions != null ? makeUrl(urlOptions) : '#',
       id: user.id,
+      text: <span className='u-group-colour u-ellipsis-overflow' style={style}>{user.username}</span>,
     };
   };
 }

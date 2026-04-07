@@ -10,13 +10,14 @@ import { classWithModifiers, Modifiers, ModifiersExtended } from 'utils/css';
 const bn = 'select-options';
 
 interface RenderableOption<T> {
-  children: string | React.ReactNode;
   href: string;
   id: T | null;
+  text: React.ReactNode;
 }
 
 interface Props<T> {
   blackout: boolean;
+
   href: string;
   modifiers?: Modifiers;
   // the callback should return the display state the selector should go into after the click, or undefined for the default.
@@ -24,10 +25,11 @@ interface Props<T> {
   onSelect?: (id?: string) => boolean | void;
   options: Iterable<RenderableOption<T>>;
   selected: RenderableOption<T>['id'] | Set<RenderableOption<T>['id']>;
+  text: React.ReactNode;
 }
 
 @observer
-export default class SelectOptions<T extends string | number> extends React.PureComponent<React.PropsWithChildren<Props<T>>> {
+export default class SelectOptions<T extends string | number> extends React.PureComponent<Props<T>> {
   static readonly defaultProps = { blackout: true };
 
   private readonly ref = React.createRef<HTMLDivElement>();
@@ -61,7 +63,7 @@ export default class SelectOptions<T extends string | number> extends React.Pure
       <div ref={this.ref} className={className}>
         <div className={`${bn}__select`}>
           <a className={`${bn}__option`} href={this.props.href} onClick={this.toggleSelector}>
-            {this.renderText(this.props.children)}
+            {this.renderText(this.props.text)}
             <div className={`${bn}__decoration`}>
               <span className='fas fa-chevron-down' />
             </div>
@@ -105,7 +107,7 @@ export default class SelectOptions<T extends string | number> extends React.Pure
         href={option.href}
         onClick={this.optionSelected}
       >
-        {this.renderText(option.children)}
+        {this.renderText(option.text)}
       </a>
     );
   }
@@ -120,12 +122,12 @@ export default class SelectOptions<T extends string | number> extends React.Pure
     }
   }
 
-  private renderText(children: RenderableOption<T>['children']) {
-    return typeof children === 'string' ? (
+  private renderText(text: RenderableOption<T>['text']) {
+    return typeof text === 'string' ? (
       <div className='u-ellipsis-overflow'>
-        {children}
+        {text}
       </div>
-    ) : children;
+    ) : text;
   }
 
   @action
