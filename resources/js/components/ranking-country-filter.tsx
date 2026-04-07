@@ -7,7 +7,6 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
-import { navigate } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 
 interface CountryOption {
@@ -58,7 +57,6 @@ export default class RankingFilter extends React.Component<Props> {
         <SelectOptions
           href={this.href(currentItem.id)}
           modifiers='ranking'
-          onSelect={this.handleSelect}
           options={this.items}
           selected={currentItem.id}
         >
@@ -67,10 +65,6 @@ export default class RankingFilter extends React.Component<Props> {
       </div>
     );
   }
-
-  private readonly handleSelect = (id?: string) => {
-    navigate(this.href(id));
-  };
 
   private href(id?: string | null) {
     return updateQueryString(null, { country: id, page: null });

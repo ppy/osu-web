@@ -8,7 +8,6 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
 import { fail } from 'utils/fail';
-import { navigate } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 
 interface PropsBase {
@@ -39,7 +38,6 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
       <SelectOptions
         href={this.href(this.props.currentItem.id)}
         modifiers={this.props.modifiers}
-        onSelect={this.handleSelect}
         options={this.options}
         selected={this.props.currentItem.id}
       >
@@ -47,10 +45,6 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
       </SelectOptions>
     );
   }
-
-  private readonly handleSelect = (id?: string) => {
-    navigate(this.href(id));
-  };
 
   private href(id?: string | number) {
     switch (this.props.type) {

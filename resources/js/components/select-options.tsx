@@ -86,12 +86,13 @@ export default class SelectOptions<T extends string | number> extends React.Pure
   @action
   private readonly optionSelected = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (event.button !== 0) return;
-    event.preventDefault();
-
-    const id = event.currentTarget.dataset.id;
-    this.showingSelector = this.props.onSelect?.(id) ?? false;
-    if (this.showingSelector) {
-      event.currentTarget.blur(); // deactivate element is selector if still open.
+    if (this.props.onSelect != null) {
+      event.preventDefault();
+      const id = event.currentTarget.dataset.id;
+      this.showingSelector = this.props.onSelect(id) ?? false;
+      if (this.showingSelector) {
+        event.currentTarget.blur(); // deactivate element is selector if still open.
+      }
     }
   };
 

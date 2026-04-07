@@ -10,8 +10,6 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { getInt } from 'utils/math';
-import { navigate } from 'utils/turbolinks';
 
 interface Props {
   contest: ContestJsonForResults;
@@ -47,7 +45,6 @@ export default class Header extends React.PureComponent<Props> {
         <SelectOptions
           href={this.href(this.props.entry.id)}
           modifiers='ranking'
-          onSelect={this.handleSelect}
           options={this.options}
           selected={this.props.entry.id}
         >
@@ -80,10 +77,6 @@ export default class Header extends React.PureComponent<Props> {
       </div>
     );
   }
-
-  private readonly handleSelect = (id?: string) => {
-    navigate(this.href(getInt(id)));
-  };
 
   private href(entryId?: number) {
     return route('contests.entries.judge-results', { contest: this.props.contest.id, contest_entry: entryId });
