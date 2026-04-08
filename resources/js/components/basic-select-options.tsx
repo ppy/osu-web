@@ -27,9 +27,8 @@ type Props = PropsBase & ({
 export default class BasicSelectOptions extends React.PureComponent<Props> {
   private get options() {
     return this.props.items.map((item) => ({
+      ...item,
       href: this.href(item.id),
-      id: item.id,
-      text: item.text,
     }));
   }
 
