@@ -11,7 +11,7 @@ const bn = 'select-options';
 
 export interface Option {
   id: string | number | null;
-  text: string | React.ReactNode;
+  text: React.ReactNode;
 }
 
 export interface OptionRenderProps<T extends Option> {
