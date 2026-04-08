@@ -85,8 +85,9 @@ export class UserFilter extends React.Component<Props> {
         onSelect={this.handleSelect}
         options={this.options}
         selected={this.props.discussionsState.selectedUserId}
-        text={this.text}
-      />
+      >
+        {this.text}
+      </SelectOptions>
     );
   }
 

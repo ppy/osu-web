@@ -17,7 +17,7 @@ interface RenderableOption<T> {
 
 interface Props<T> {
   blackout: boolean;
-
+  children: React.ReactNode;
   href: string;
   modifiers?: Modifiers;
   // the callback should return the display state the selector should go into after the click, or undefined for the default.
@@ -25,7 +25,6 @@ interface Props<T> {
   onSelect?: (id?: string) => boolean | void;
   options: Iterable<RenderableOption<T>>;
   selected: RenderableOption<T>['id'] | Set<RenderableOption<T>['id']>;
-  text: React.ReactNode;
 }
 
 @observer
@@ -63,7 +62,7 @@ export default class SelectOptions<T extends string | number> extends React.Pure
       <div ref={this.ref} className={className}>
         <div className={`${bn}__select`}>
           <a className={`${bn}__option`} href={this.props.href} onClick={this.toggleSelector}>
-            {this.renderText(this.props.text)}
+            {this.renderText(this.props.children)}
             <div className={`${bn}__decoration`}>
               <span className='fas fa-chevron-down' />
             </div>

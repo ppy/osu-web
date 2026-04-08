@@ -242,8 +242,9 @@ export default class ReportForm extends React.Component<Props> {
                 onSelect={this.handleReasonChange}
                 options={this.options}
                 selected={this.selectedReasonKey}
-                text={availableOptions[this.selectedReasonKey]}
-              />
+              >
+                {availableOptions[this.selectedReasonKey]}
+              </SelectOptions>
             </div>
           </>
         )}

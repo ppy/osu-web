@@ -47,8 +47,9 @@ export default class Header extends React.PureComponent<Props> {
           modifiers='ranking'
           options={this.options}
           selected={this.props.entry.id}
-          text={<OptionText entry={this.props.entry} />}
-        />
+        >
+          <OptionText entry={this.props.entry} />
+        </SelectOptions>
 
         <div className='contest-judge-results-header__values'>
           {totalScoreStd != null && (

@@ -39,8 +39,9 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
         modifiers={this.props.modifiers}
         options={this.options}
         selected={this.props.currentItem.id}
-        text={this.props.currentItem.text}
-      />
+      >
+        {this.props.currentItem.text}
+      </SelectOptions>
     );
   }
 

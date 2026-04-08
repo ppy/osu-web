@@ -59,8 +59,9 @@ export default class RankingFilter extends React.Component<Props> {
           modifiers='ranking'
           options={this.options}
           selected={currentItem.id}
-          text={currentItem.text}
-        />
+        >
+          {currentItem.text}
+        </SelectOptions>
       </div>
     );
   }
