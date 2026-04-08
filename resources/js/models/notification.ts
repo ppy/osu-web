@@ -93,12 +93,10 @@ export default class Notification implements NotificationReadable, NotificationD
     this.objectId = json.object_id;
     this.sourceUserId = json.source_user_id;
 
-    if (json.details != null) {
-      this.details = { ...this.details, ...json.details };
+    this.details = { ...this.details, ...json.details };
 
-      if (json.name === 'comment_new' && json.details.reply_to?.user_id === core.currentUser?.id) {
-        this.name = 'comment_reply';
-      }
+    if (json.name === 'comment_new' && json.details.reply_to?.user_id === core.currentUser?.id) {
+      this.name = 'comment_reply';
     }
 
     return this;
