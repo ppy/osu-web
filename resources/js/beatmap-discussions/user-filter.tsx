@@ -64,7 +64,7 @@ export class UserFilter extends React.Component<Props> {
     }
 
     const style = groupColour(this.getGroup(this.props.discussionsState.selectedUser));
-    return <span className='u-group-colour u-ellipsis-overflow' style={style}>{this.props.discussionsState.selectedUser?.username}</span>;
+    return <span className='u-group-colour u-ellipsis-overflow' style={style}>{this.props.discussionsState.selectedUser.username}</span>;
   }
 
   @computed

@@ -113,8 +113,9 @@ export default class SelectOptions<T extends string | number> extends React.Pure
   }
 
   private *renderOptions() {
+    const isSet = this.props.selected instanceof Set || isObservableSet(this.props.selected);
     for (const option of this.props.options) {
-      const selected = this.props.selected instanceof Set || isObservableSet(this.props.selected)
+      const selected = isSet
         ? this.props.selected.has(option.id)
         : this.props.selected === option.id;
 
