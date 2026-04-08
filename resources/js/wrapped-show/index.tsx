@@ -124,7 +124,7 @@ interface WrappedStatProps {
   skippable?: boolean;
   title: string;
   tooltip?: string;
-  value: number | string | React.ReactNode;
+  value: React.ReactNode;
 }
 
 function WrappedStat(props: WrappedStatProps) {
