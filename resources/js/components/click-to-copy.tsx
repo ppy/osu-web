@@ -7,7 +7,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   className?: string;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode;
   showIcon: boolean;
   tooltipPosition?: string;
   value: string;
