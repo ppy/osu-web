@@ -31,11 +31,13 @@ const difficultyTextColourSpectrum = d3.scaleLinear<string>()
   .range(['#F6F05C', '#FF8068', '#FF4E6F', '#C645B8', '#6563DE', '#18158E'])
   .interpolate(d3.interpolateRgb.gamma(2.2));
 
-interface FindDefaultParams<T> {
-  group?: Map<Ruleset, T[]>;
-  items?: T[];
+type FindDefaultParams<T> = {
+  group: Map<Ruleset, T[]>;
+  items?: undefined;
+} | {
+  items: T[];
   ruleset?: Ruleset;
-}
+};
 
 export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
@@ -53,12 +55,6 @@ export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params:
     }
 
     return currentItem ?? _.last(params.items) ?? null;
-  }
-
-  if (params.group == null) return null;
-
-  if (params.ruleset != null) {
-    return findDefault({ items: params.group.get(params.ruleset) ?? [], ruleset: params.ruleset });
   }
 
   for (const findRuleset of userModes()) {
