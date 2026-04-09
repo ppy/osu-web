@@ -41,6 +41,8 @@ type FindDefaultParams<T> = {
 
 export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
+    if (params.items.length === 0) return null;
+
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
     const targetDiff = userRecommendedDifficulty(params.ruleset ?? rulesetNames[0]);
@@ -54,7 +56,7 @@ export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params:
       }
     }
 
-    return currentItem ?? _.last(params.items) ?? null;
+    return currentItem ?? params.items[params.items.length - 1];
   }
 
   for (const findRuleset of userModes()) {
