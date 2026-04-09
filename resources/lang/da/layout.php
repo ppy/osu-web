@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskussion',
-            'versions' => '',
+            'versions' => 'versionshistorik',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'playlister',
-            'quickplay' => '',
+            'quickplay' => 'hurtigt spil',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],
@@ -115,7 +115,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privatliv',
-            'rules' => '',
+            'rules' => 'Regler',
             'server_status' => 'Server Status',
             'source_code' => 'Kildekode',
             'terms' => 'Betingelser for Brug',
@@ -198,13 +198,13 @@ return [
             'account-edit' => 'Indstillinger',
             'follows' => 'Overvågningsliste',
             'friends' => 'Venner',
-            'legacy_score_only_toggle' => '',
-            'legacy_score_only_toggle_tooltip' => '',
+            'legacy_score_only_toggle' => 'Lazer tilstand',
+            'legacy_score_only_toggle_tooltip' => 'Lazer tilstand viser scores sat fra lazer med en ny scoringsalgoritme',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
-            'team' => '',
+            'scoring_mode_toggle' => 'Klassisk scoring',
+            'scoring_mode_toggle_tooltip' => 'Justér scoreværdier til at føles mere som klassisk scoring med uden begrænsning',
+            'team' => 'Mit Hold',
         ],
     ],
 

@@ -115,13 +115,12 @@ export default class Medals extends React.Component<ExtraPageProps> {
                 {[...groupedAchievements.entries()].map(([ordering, orderedAchievements]) => (
                   <div key={ordering} className='medals-group__medals'>
                     {orderedAchievements.map((ua) => (
-                      <div key={ua.achievement.id} className='medals-group__medal'>
-                        <AchievementBadge
-                          achievedAt={ua.userAchievement?.achieved_at}
-                          achievement={ua.achievement}
-                          modifiers='listing'
-                        />
-                      </div>
+                      <AchievementBadge
+                        key={ua.achievement.id}
+                        achievedAt={ua.userAchievement?.achieved_at}
+                        achievement={ua.achievement}
+                        modifiers='listing'
+                      />
                     ))}
                   </div>
                 ))}

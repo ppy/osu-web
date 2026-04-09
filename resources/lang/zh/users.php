@@ -92,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '成员按游戏模式筛选',
+        'by_game_mode' => '按游戏模式筛选成员',
     ],
 
     'force_reactivation' => [

@@ -35,15 +35,15 @@ Belirtilen tarihte günlük meydan okuma yok!',
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Oynamalar',
+        'points' => 'Puan',
+        'provisional' => 'Dereceyi tam olarak belirlemek için yeterli maç oynanmadı',
+        'rating' => 'Derece',
+        'wins' => 'Kazanmalar',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Oda Adı',
     ],
 
     'performance' => [
@@ -52,14 +52,14 @@ Belirtilen tarihte günlük meydan okuma yok!',
 
     'top_plays' => [
         'empty' => 'Veriler hesaplanıyor...',
-        'last_updated' => '',
+        'last_updated' => 'Son güncelleme',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlights (eski)',
+        'featured' => 'öne çıkan',
+        'season_room' => 'sezon odası',
+        'seasons' => 'sezonlar',
     ],
 
     'type' => [
@@ -67,17 +67,17 @@ Belirtilen tarihte günlük meydan okuma yok!',
         'daily_challenge' => 'günlük meydan okuma',
         'global' => 'küresel',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'quick play',
+        'playlists' => 'çalma listeleri',
         'team' => 'takım',
-        'top_plays' => '',
+        'top_plays' => 'En iyi skorlar',
     ],
 
     'seasons' => [
         'empty' => 'Bu sezonda henüz oda bulunmamaktadır.',
         'ongoing' => 'Bu sezon hala devam etmektedir (daha fazla çalma listesi eklenecektir).',
         'room_count' => 'Oynatma listesi sayısı',
-        'summary' => '',
+        'summary' => 'Sezon Özetini Görüntüle',
         'url' => 'Bu sezon hakkında daha fazla bilgi görüntüleyin.',
         'validation' => [
             'not_enough_factors' => 'düzgün hesaplama için yeterince skor faktörü yok',

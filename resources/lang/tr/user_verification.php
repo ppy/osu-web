@@ -41,7 +41,7 @@ return [
         'retries_exceeded' => 'Hatalı doğrulama kodu. Tekrar deneme sınırı aşıldı, yeni doğrulama e-postası gönderildi.',
         'reissued' => 'Doğrulama kodu yeniden verildi, yeni e-posta gönderildi.',
         'totp_used_key' => 'Doğrulama kodu zaten kullanıldı. Lütfen bekleyin ve yeni bir tane kullanın.',
-        'totp_gone' => '',
+        'totp_gone' => 'Doğrulama anahtarı kaldırıldı, e-posta doğrulamasına geçiliyor. Doğrulama e-postası gönderildi.',
         'unknown' => 'Bilinmeyen hata oluştu, yeni doğrulama e-postası gönderildi.',
     ],
 ];

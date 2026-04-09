@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Одиграно од стране',
+            'played_on' => '',
             'submitted_on' => 'Постављено на',
 
             'rank' => [

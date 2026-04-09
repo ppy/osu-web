@@ -48,7 +48,7 @@
         "fields": {
           "autocomplete": {
             "analyzer": "autocomplete",
-            "search_analyzer": "autocomplete_search",
+            "search_analyzer": "standard",
             "type": "text"
           },
           "keyword": {
@@ -72,9 +72,6 @@
               "lowercase"
             ],
             "tokenizer": "autocomplete"
-          },
-          "autocomplete_search": {
-            "tokenizer": "lowercase"
           }
         },
         "tokenizer": {

@@ -11,11 +11,11 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'ระดับความยาก',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'คะแนน Top 10%',
+        'top_50p' => 'คะแนน Top 50%',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'ยังไม่มีชาเลนจ์ประจำวัน!',
+            'past' => 'ตอนนั้นไม่มีชาเลนจ์ประจำวัน!',
         ],
     ],
 
@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'จำนวนการเล่น',
+        'points' => 'แต้ม',
+        'provisional' => 'ยังเล่นไม่พอที่จะคำนวณเรตติ้ง',
+        'rating' => 'เรตติ้ง',
+        'wins' => 'ชัยชนะ',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'ชื่อห้อง',
     ],
 
     'performance' => [
@@ -50,36 +50,36 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'ข้อมูลกำลังถูกคำนวณ...',
+        'last_updated' => 'อัปเดตล่าสุด',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'สปอตไลท์ (เก่า)',
+        'featured' => 'แนะนำ',
+        'season_room' => 'ห้องซีซั่น',
+        'seasons' => 'ซีซั่น',
     ],
 
     'type' => [
         'country' => 'ประเทศ',
         'daily_challenge' => 'ชาเลนจ์ประจำวัน',
-        'global' => '',
+        'global' => 'โดยรวม',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'ควิกเพลย์',
+        'playlists' => 'เพลย์ลิสต์',
         'team' => 'ทีม',
-        'top_plays' => '',
+        'top_plays' => 'ท็อปเพลย์',
     ],
 
     'seasons' => [
         'empty' => 'ยังไม่มีห้องในซีซั่นนี้',
         'ongoing' => 'ซีซั่นนี้ยังคงดำเนินต่อไป (จะมีการเพิ่มเพลย์ลิสต์เพิ่มเติม)',
         'room_count' => 'จำนวนเพลย์ลิสต์',
-        'summary' => '',
+        'summary' => 'ดูสรุปซีซั่น',
         'url' => 'แสดงข้อมูลเพิ่มเติมในซีซั่นนั้น',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'ยังไม่มีปัจจัยคะแนนมากพอที่จะคำนวณได้อย่างถูกต้อง',
         ],
     ],
 
@@ -94,8 +94,8 @@ return [
         'accuracy' => 'ความแม่นยำ',
         'active_users' => 'จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่',
         'country' => 'ประเทศ',
-        'division' => '',
-        'members' => '',
+        'division' => 'ดิวิชั่น',
+        'members' => 'สมาชิก',
         'play_count' => 'จำนวนครั้งที่เล่น',
         'performance' => 'ประสิทธิภาพ​',
         'total_score' => 'คะแนนรวมทั้งหมด',

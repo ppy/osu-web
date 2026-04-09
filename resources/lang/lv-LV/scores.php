@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Spēlēja',
+            'played_on' => '',
             'submitted_on' => 'Iesūtīja',
 
             'rank' => [

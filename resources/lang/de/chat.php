@@ -58,12 +58,6 @@ return [
         'send' => 'Senden',
     ],
 
-    'no-conversations' => [
-        'howto' => "Starte eine Unterhaltung von einem User-Profil oder einem Usercard-Pop-up.",
-        'lazer' => 'Öffentliche Channel, welche du mit <a href=":link">osu!lazer</a> betrittst, werden hier auch sichtbar sein.',
-        'title' => 'noch keine Unterhaltungen',
-    ],
-
     'join_channels' => [
         'loading' => 'Channel werden geladen...',
     ],

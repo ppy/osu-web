@@ -276,6 +276,10 @@ return [
                 '_' => ':filters бойынша сүзу үшін белсенді :link қажет',
                 'link_text' => 'osu!supporter тегі',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

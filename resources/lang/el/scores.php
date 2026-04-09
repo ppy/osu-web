@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Παίχτηκε από',
+            'played_on' => '',
             'submitted_on' => 'Υποβλήθηκε στις',
 
             'rank' => [

@@ -335,7 +335,7 @@ return [
                     'count_label' => '리플레이 재생 횟수',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => '가장 많이 시청한 리플레이',
                 ],
             ],
             'kudosu' => [

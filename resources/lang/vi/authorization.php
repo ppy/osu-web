@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Bạn phải chọn thể loại nhạc và ngôn ngữ trước khi nominating.',
         ],
         'resolve' => [
-            'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
+            'not_owner' => 'Chỉ có chủ thớt và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
         ],
 
         'store' => [
@@ -127,7 +127,7 @@ return [
         'topic' => [
             'reply' => [
                 'double_post' => 'Vui lòng chỉnh sửa bài đăng cuối cùng của bạn thay vì đăng thêm lần nữa.',
-                'locked' => 'Không thể trả lời một luồng bị khóa.',
+                'locked' => 'Không thể trả lời một thớt bị khóa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
                 'no_permission' => 'Không có quyền trả lời.',
 

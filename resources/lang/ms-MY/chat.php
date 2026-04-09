@@ -58,12 +58,6 @@ return [
         'send' => 'Kirim',
     ],
 
-    'no-conversations' => [
-        'howto' => "Mula berbual dari profil pengguna atau kad pengguna timbul.",
-        'lazer' => 'Saluran awam yang anda masuki melalui <a href=":link">osu!lazer</a> juga akan tampak di sini.',
-        'title' => 'tiada perbualan lagi',
-    ],
-
     'join_channels' => [
         'loading' => 'Memuatkan senarai saluran...',
     ],

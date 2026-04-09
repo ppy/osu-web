@@ -41,21 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => 'ผู้เสนอชื่อผู้คุมไม่สามารถเสนอชื่อชุดกฎหลายชุดได้',
-        'full_nomination_required' => 'คุณต้องเป็นผู้ที่มีสิทธิ์ในการเสนอชื่อในฐานะผู้ที่เสนอชื่อในระดับสูงสุดเพื่อเสนอชื่อในกฎระเบียบ',
+        'bng_limited_too_many_rulesets' => 'Probationary nominators cannot nominate multiple rulesets.',
+        'full_nomination_required' => 'You must be a full nominator to perform the final nomination of a ruleset.',
         'hybrid_requires_modes' => 'บีตแมปแบบไฮบริดจำเป็นให้คุณต้องเลือกโหมดการเล่นอย่างน้อยหนึ่งโหมดเพื่อเสนอชื่อเข้าชิง',
         'incorrect_mode' => 'คุณไม่มีสิทธิในการเสนอชื่อในโหมด :mode',
         'invalid_limited_nomination' => 'บีทแมพนี้มีการเสนอชื่อที่ไม่ถูกต้องและไม่สามารถผ่านการคัดเลือกในสถานะนี้ได้',
-        'invalid_ruleset' => 'การเสนอชื่อนี้มีรูเล็ตเซตที่ไม่ถูกต้อง',
+        'invalid_ruleset' => 'การเสนอชื่อนี้มีรูลเซ็ตที่ไม่ถูกต้อง',
         'too_many' => 'ความต้องการเสนอชื่อได้สำเร็จแล้ว',
-        'too_many_non_main_ruleset' => 'ข้อกำหนดการเสนอชื่อสำหรับ ruleset ที่ไม่ใช่หลักได้ถูกทำครบแล้ว',
+        'too_many_non_main_ruleset' => 'ข้อกำหนดการเสนอชื่อสำหรับรูลเซ็ตที่ไม่ใช่รูลเซ็ตหลักได้ถูกทำครบแล้ว',
 
         'dialog' => [
             'confirmation' => 'คุณแน่ใจที่จะเสนอชื่อแมพนี้ใช่ไหม',
             'different_nominator_warning' => 'การผ่านคุณสมบัติบีทแมพนี้กับโนมิเนเตอร์ที่แตกต่างกันจะรีเซ็ตตำแหน่งในคิวการตรวจสอบคุณสมบัติ',
             'header' => 'เสนอชื่อบีทแมพ',
             'hybrid_warning' => 'โน้ต: คุณสามารถเสนอชื่อได้เพียงแค่ครั้งเดียว ดังนั้นโปรดตรวจสอบให้แน่ใจว่าคุณเสนอชื่อในเกมโหมดทั้งหมดที่คุณต้องการจะเสนอชื่อ',
-            'current_main_ruleset' => 'Ruleset ตอนนี้คือ: :ruleset',
+            'current_main_ruleset' => 'รูลเซ็ตในตอนนี้คือ: :ruleset',
             'which_modes' => 'เสนอชื่อให้โหมดไหน',
         ],
     ],
@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'ดูภาพปกขนาดเต็ม',
-            'page' => '',
+            'page' => 'ดูหน้าผู้ดูแล',
         ],
 
         'deleted_banner' => [
@@ -102,7 +102,7 @@ return [
 
         'details_date' => [
             'approved' => 'อนุมัติ :timeago',
-            'loved' => 'รักแล้ว :timeago',
+            'loved' => 'เลิฟด์เมื่อ :timeago',
             'qualified' => 'ผ่านการรับรอง :timeago',
             'ranked' => 'จัดอันดับแล้วเมื่อ :timeago',
             'submitted' => 'ส่งเมื่อ :timeago',
@@ -141,18 +141,18 @@ return [
             'description' => 'คำอธิบาย',
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
-            'mapper_tags' => '',
+            'mapper_tags' => 'แท็กผู้สร้างบีทแมพ',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
             'nominators' => 'ผู้เสนอชื่อ',
             'nsfw' => 'เนื้อหาไม่เหมาะสม',
             'offset' => 'ออฟเซ็ตออนไลน์',
-            'pack_tags' => '',
+            'pack_tags' => 'แพ็กบีทแมพ',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
             'storyboard' => 'บีทแมพนี้มี storyboard',
             'success-rate' => 'อัตราการผ่าน',
-            'success_rate_plays' => '',
-            'user_tags' => '',
+            'success_rate_plays' => ':passes/:count_delimited ครั้งที่เล่น|:passes/:count_delimited ครั้งที่เล่น',
+            'user_tags' => 'แทกผู้ใช้',
             'video' => 'บีทแมพนี้มีวิดีโอ',
         ],
 
@@ -175,7 +175,7 @@ return [
             'global' => 'อันดับโลก',
             'supporter-link' => 'คลิก <a href=":link">ที่นี่</a> เพื่อดูสิทธิประโยชน์ทั้งหมดที่คุณจะได้รับ!',
             'supporter-only' => 'คุณต้องเป็นผู้สนับสนุนเพื่อเข้าถึงการจัดอันดับเพื่อนและประเทศ!',
-            'team' => '',
+            'team' => 'อันดับทีม',
             'title' => 'กระดานคะแนน',
 
             'headers' => [
@@ -193,11 +193,11 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'ยังไม่มีใครในประเทศของคุณที่ทำคะแนนบนแมพนี้ได้!',
-                'friend' => 'ยังไม่มีใครในเพือนของคุณที่ทำคะแนนบนแมพนี้ได้!',
-                'global' => 'ยังไม่มีคะแนน บางทีคุณอาจจะลองทำดูนะ',
+                'country' => 'แมพนี้ยังไม่มีใครในประเทศทำคะแนนเลย!',
+                'friend' => 'แมพนี้ยังไม่มีเพื่อนทำคะแนนเลย!',
+                'global' => 'ตอนนี้ยังไม่มีคะแนน ลองทำคำแนนได้นะ',
                 'loading' => 'กำลังโหลดคะแนน...',
-                'team' => '',
+                'team' => 'แมพนี้ยังไม่มีใครในทีมทำคะแนนเลย!',
                 'unranked' => 'บีทแมพที่ไม่ได้จัดอันดับ',
             ],
             'score' => [
@@ -211,29 +211,29 @@ return [
         ],
 
         'stats' => [
-            'cs' => 'ขนาดวงกลม',
+            'cs' => 'ขนาดเซอร์เคิล',
             'cs-mania' => 'จำนวนคีย์',
             'drain' => 'การลด HP',
             'accuracy' => 'ความแม่นยำ',
             'ar' => 'อัตราการเข้าใกล้',
             'stars' => 'ระดับความยาก',
-            'total_length' => 'ความยาว (ความยาวสาย: :hit_length)',
+            'total_length' => 'ความยาว (ความยาว Drain: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'จำนวนวงกลม',
+            'count_circles' => 'จำนวนเซอร์เคิล',
             'count_sliders' => 'จำนวนสไลเดอร์',
             'offset' => 'ออฟเซ็ตออนไลน์: :offset',
             'user-rating' => 'คะแนน',
             'rating-spread' => 'การกระจายคะแนนโหวต',
             'nominations' => 'การเสนอชื่อ',
             'playcount' => 'จำนวนครั้งที่เล่น',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'รายการโปรด',
+            'no_favourites' => 'ยังไม่มีรายการโปรด',
         ],
 
         'status' => [
             'ranked' => 'จัดอันดับแล้ว',
             'approved' => 'อนุมัติ',
-            'loved' => 'ชื่นชอบ',
+            'loved' => 'เลิฟด์',
             'qualified' => 'ผ่านการรับรอง',
             'wip' => 'WIP',
             'pending' => 'อยู่ระหว่างดำเนินการ',
@@ -242,6 +242,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => 'สปอร์ตไลท์',
+        'label' => 'สปอตไลท์',
     ],
 ];

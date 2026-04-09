@@ -276,6 +276,10 @@ return [
                 '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
                 'link_text' => 'osu!tukijamerkki',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

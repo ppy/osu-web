@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Deaktivér Valgte',
+        'batch_enable' => 'Aktivér Valgte',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Deaktivér',
+            'enable' => 'Aktivér',
+            'items' => ':count_delimited cover|:count_delimited covers',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Filer',
+            'submit' => 'Gem',
+            'title' => 'Tilføj Ny',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Klik på for deaktivere',
+            'click_to_enable' => 'Klik for at aktivere',
+            'enabled' => 'Aktiveret',
+            'disabled' => 'Deaktiveret',
+            'image_store' => 'Angiv Billede',
+            'image_update' => 'Erstat Billede',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Der opstod en fejl under oprettelse af cover :error',
+        'ok' => 'Covers oprettet',
     ],
 ];

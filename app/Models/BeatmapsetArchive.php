@@ -98,23 +98,26 @@ class BeatmapsetArchive
 
         $fadeOut = $duration - 1000;
 
-        $normOffset = 90_000;
-        $loudnorm = static::getAudioLoudnormFilter(
-            $srcFilenameEscaped,
-            max($previewTime - $normOffset, 0),
-            ($normOffset * 2) + $duration,
-        );
+        // disabled due to being usually too quiet for client
+        if (false) {
+            $normOffset = 90_000;
+            $loudnorm = static::getAudioLoudnormFilter(
+                $srcFilenameEscaped,
+                max($previewTime - $normOffset, 0),
+                ($normOffset * 2) + $duration,
+            );
 
-        if ($loudnorm === null) {
-            return null;
+            if ($loudnorm === null) {
+                return null;
+            }
         }
 
-        $filter = implode(',', [
+        $filter = implode(',', array_reject_null([
             static::RESAMPLE_FILTER,
-            $loudnorm,
+            $loudnorm ?? null,
             "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
             "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
-        ]);
+        ]));
 
         $dstFile = tmpfile();
         $dstFilename = get_stream_filename($dstFile);
@@ -185,10 +188,10 @@ class BeatmapsetArchive
         $tp = -2;
         $offset = \Number::clamp((float) $stats['target_offset'], -99, 99);
 
-        $measuredI = (float) $stats['input_i'];
-        $measuredLra = (float) $stats['input_lra'];
-        $measuredTp = (float) $stats['input_tp'];
-        $measuredThresh = (float) $stats['input_thresh'];
+        $measuredI = \Number::clamp((float) $stats['input_i'], -99, 0);
+        $measuredLra = \Number::clamp((float) $stats['input_lra'], 1, 50);
+        $measuredTp = \Number::clamp((float) $stats['input_tp'], -99, 99);
+        $measuredThresh = \Number::clamp((float) $stats['input_thresh'], -99, 0);
 
         // matches the behavior of the flags
         // - auto-lower-loudness-target

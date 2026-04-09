@@ -57,13 +57,13 @@ return [
             'artist_track' => '',
             'beatmapset' => 'beatmap',
             'forum_post' => 'foorumi',
-            'team' => '',
+            'team' => 'tiimi',
             'user' => 'pelaaja',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Kirjaudu sisään etsiäksesi tiimejä',
             'more_simple' => '',
         ],
 
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'lisätietoja saat täältä',
-        'download' => '',
+        'download' => 'Lataa',
         'for_os' => 'käyttöjärjestelmälle: :os',
         'macos-fallback' => 'macOS-käyttäjät',
         'mirror' => 'vaihtoehtoinen lataus',

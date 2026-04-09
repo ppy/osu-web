@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Til kassen',
-        'empty_cart' => '',
+        'empty_cart' => 'Fjern alle varer fra indkøbskurven',
         'info' => ':count_delimited vare i kurven ($:subtotal)|:count_delimited varer i kurven ($:subtotal)',
         'more_goodies' => 'Jeg ønsker at tjekke flere goodies ud før jeg færdiggører ordren',
         'shipping_fees' => 'fragt gebyrer',
@@ -49,38 +49,38 @@ return [
     ],
 
     'discount' => 'spar :percent%',
-    'free' => '',
+    'free' => 'gratis!',
 
     'invoice' => [
-        'contact' => '',
-        'date' => '',
+        'contact' => 'Kontakt:',
+        'date' => 'Dato:',
         'echeck_delay' => 'Siden du betalte med en eCheck, vent venligst op til 10 ekstra dage for at betalingen kommer igennem med PayPal!',
-        'echeck_denied' => '',
-        'hide_from_activity' => '',
-        'sent_via' => '',
-        'shipping_to' => '',
-        'title' => '',
+        'echeck_denied' => 'eCheck betalingen blev afvist af PayPal.',
+        'hide_from_activity' => 'osu!supporter tags i denne rækkefølge vises ikke i dine seneste aktiviteter.',
+        'sent_via' => 'Sent Vha:',
+        'shipping_to' => 'Levering Til:',
+        'title' => 'Faktura',
         'title_compact' => 'faktura',
 
         'status' => [
             'cancelled' => [
-                'title' => '',
+                'title' => 'Din order er blevet annulleret',
                 'line_1' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Hvis du ikke har anmodet om afslysning, bedes du kontakte :link med dit ordrenummer(# :order_number).",
+                    'link_text' => 'osu!store support',
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Din ordre er blevet leveret! Vi håber, du nyder det!',
                 'line_1' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Hvis du har problemer med dit køb, bedes du kontakte :link.',
+                    'link_text' => 'osu!store support',
                 ],
             ],
             'prepared' => [
-                'title' => '',
-                'line_1' => '',
-                'line_2' => '',
+                'title' => 'Din ordre forberedes!',
+                'line_1' => 'Vent venligst lidt længere, før den bliver afsendt. Sporingsoplysninger vises her, når ordren er behandlet og sendt. Dette kan tage op til 5 dage (men normalt mindre) afhængigt af hvor travlt vi har.',
+                'line_2' => 'Vi sender alle ordrer fra Japan ved hjælp af en række forskellige forsendelsesydelser afhængigt af vægt og værdi. Dette område opdateres med detaljer, så snart vi har afsendt ordren.',
             ],
             'processing' => [
                 'title' => 'Din betaling er endnu ikke blevet bekræftet!',
@@ -91,11 +91,11 @@ return [
                 ],
             ],
             'shipped' => [
-                'title' => '',
-                'tracking_details' => '',
+                'title' => 'Din ordre er blevet afsendt!',
+                'tracking_details' => 'Sporingsdetaljer følger:',
                 'no_tracking_details' => [
-                    '_' => "",
-                    'link_text' => '',
+                    '_' => "Vi har ikke nogle sporingsdetaljer eftersom vi har sendt din pakke via Air Mail, men du kan forvente at modtage den inden for 1-3 uger. I Europa kan toldvæsnet sommetider forsinke ordren - dette er uden for vores kontrol. Hvis du har nogle bekymringer, bedes du besvare den ordrebekræftelse du har modtager (eller :link).",
+                    'link_text' => 'send os en mail',
                 ],
             ],
         ],
@@ -109,18 +109,18 @@ return [
         'no_orders' => 'Ingen ordrer til at se.',
         'paid_on' => 'Ordre placeret :date',
         'resume' => 'Fortsæt Til Kassen',
-        'shipping_and_handling' => '',
+        'shipping_and_handling' => 'Levering & Håndtering',
         'shopify_expired' => 'Checkout linket for denne ordre er udløbet.',
-        'subtotal' => '',
-        'total' => '',
+        'subtotal' => 'Samlet',
+        'total' => 'I alt',
 
         'details' => [
-            'order_number' => '',
-            'payment_terms' => '',
-            'salesperson' => '',
-            'shipping_method' => '',
-            'shipping_terms' => '',
-            'title' => '',
+            'order_number' => 'Ordrenummer',
+            'payment_terms' => 'Betalingsbetingelser',
+            'salesperson' => 'Sælger',
+            'shipping_method' => 'Forsendelsesmetode',
+            'shipping_terms' => 'Forsendelsesbetingelser',
+            'title' => 'Ordredetaljer',
         ],
 
         'item' => [
@@ -152,14 +152,14 @@ return [
             'paid' => 'Betalt',
             'processing' => 'Afventer bekræftelse',
             'shipped' => 'På vej',
-            'title' => '',
+            'title' => 'Ordrestatus',
         ],
 
         'thanks' => [
-            'title' => '',
+            'title' => 'Tak for din ordre!',
             'line_1' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Du vil modtage en bekræftelses-e-mail snart. Hvis du har nogle forespørgsler, kontakt :link!',
+                'link_text' => 'kontakt os',
             ],
         ],
     ],
@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Lig i Indkøbskurven',
         'notify' => 'Giv mig besked, når varen er tilgængelig igen!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Udsolgt',
 
         'notification_success' => 'du vil modtage en besked når varen er på lager igen. klik :link for at annullere',
         'notification_remove_text' => 'here',
@@ -195,9 +195,9 @@ return [
     'username_change' => [
         'check' => 'Skriv et brugernavn for at tjekke om det er tilgængelig!',
         'checking' => 'Tjekker om navnet :username er tilgængelig...',
-        'placeholder' => '',
-        'label' => '',
-        'current' => '',
+        'placeholder' => 'Anmodet Brugernavn',
+        'label' => 'Nyt Brugernavn',
+        'current' => 'Dit nuværenve brugernavn er ":username".',
 
         'require_login' => [
             '_' => 'Du skal være :link for at ændre dit brugernavn!',

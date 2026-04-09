@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '以您的身分創建並管理多人房間。',
+            'write_manage' => '代表你建立並管理多人遊戲房間。',
         ],
 
         'public' => '以您的身分讀取公開資料。',
