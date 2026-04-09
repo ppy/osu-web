@@ -34,14 +34,14 @@ const difficultyTextColourSpectrum = d3.scaleLinear<string>()
 interface FindDefaultParams<T> {
   group?: Map<Ruleset, T[]>;
   items?: T[];
-  mode?: Ruleset;
+  ruleset?: Ruleset;
 }
 
 export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.mode ?? rulesetNames[0]);
+    const targetDiff = userRecommendedDifficulty(params.ruleset ?? rulesetNames[0]);
 
     for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
@@ -57,13 +57,13 @@ export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params:
 
   if (params.group == null) return null;
 
-  if (params.mode != null) {
-    return findDefault({ items: params.group.get(params.mode) ?? [], mode: params.mode });
+  if (params.ruleset != null) {
+    return findDefault({ items: params.group.get(params.ruleset) ?? [], ruleset: params.ruleset });
   }
 
   for (const findRuleset of userModes()) {
     const beatmaps = (params.group.get(findRuleset) ?? []).filter((b) => !('convert' in b) || b.convert !== true);
-    const beatmap = findDefault({ items: beatmaps, mode: findRuleset });
+    const beatmap = findDefault({ items: beatmaps, ruleset: findRuleset });
 
     if (beatmap != null) return beatmap;
   }
