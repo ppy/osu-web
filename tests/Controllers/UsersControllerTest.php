@@ -8,7 +8,6 @@ namespace Tests\Controllers;
 use App\Models\Achievement;
 use App\Models\Country;
 use App\Models\User;
-use App\Models\UserAchievement;
 use Tests\TestCase;
 
 class UsersControllerTest extends TestCase
@@ -308,7 +307,7 @@ class UsersControllerTest extends TestCase
         $user = User::factory()->create();
         $achievement = Achievement::factory()->create([
             'client_side' => true,
-            'enabled' => true
+            'enabled' => true,
         ]);
 
         $this->actAsScopedUser($user);
@@ -324,7 +323,7 @@ class UsersControllerTest extends TestCase
         $user = User::factory()->create();
         $achievement = Achievement::factory()->create([
             'client_side' => false,
-            'enabled' => true
+            'enabled' => true,
         ]);
 
         $this->actAsScopedUser($user);
@@ -340,7 +339,7 @@ class UsersControllerTest extends TestCase
         $user = User::factory()->create();
         $achievement = Achievement::factory()->create([
             'client_side' => true,
-            'enabled' => false
+            'enabled' => false,
         ]);
 
         $this->actAsScopedUser($user);
@@ -356,7 +355,7 @@ class UsersControllerTest extends TestCase
         $user = User::factory()->restricted()->create();
         $achievement = Achievement::factory()->create([
             'client_side' => true,
-            'enabled' => true
+            'enabled' => true,
         ]);
 
         $this->actAsScopedUser($user);
