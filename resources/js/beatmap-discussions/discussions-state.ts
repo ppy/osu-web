@@ -490,7 +490,7 @@ export default class DiscussionsState {
 
   @action
   changeGameMode(mode: Ruleset) {
-    const beatmap = findDefault({ items: this.groupedBeatmaps.get(mode) });
+    const beatmap = findDefault({ items: this.groupedBeatmaps.get(mode) ?? [] });
     if (beatmap != null) {
       this.currentBeatmapId = beatmap.id;
     }

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
+import BeatmapExtendedJson, { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import Ruleset, { rulesetNames, rulesets } from 'interfaces/ruleset';
@@ -31,17 +31,19 @@ const difficultyTextColourSpectrum = d3.scaleLinear<string>()
   .range(['#F6F05C', '#FF8068', '#FF4E6F', '#C645B8', '#6563DE', '#18158E'])
   .interpolate(d3.interpolateRgb.gamma(2.2));
 
-interface FindDefaultParams<T> {
-  group?: Map<Ruleset, T[]>;
-  items?: T[];
-  mode?: Ruleset;
-}
+type FindDefaultParams<T> = {
+  group: Map<Ruleset, T[]>;
+  items?: undefined;
+} | {
+  items: T[];
+  ruleset?: Ruleset;
+};
 
-export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
+export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.mode ?? rulesetNames[0]);
+    const targetDiff = userRecommendedDifficulty(params.ruleset ?? rulesetNames[0]);
 
     for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
@@ -55,12 +57,9 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
     return currentItem ?? _.last(params.items) ?? null;
   }
 
-  if (params.group == null) return null;
-
-  const findModes = params.mode == null ? userModes() : [params.mode];
-
-  for (const m of findModes) {
-    const beatmap = findDefault({ items: params.group.get(m) ?? [], mode: m });
+  for (const findRuleset of userModes()) {
+    const beatmaps = (params.group.get(findRuleset) ?? []).filter((b) => !('convert' in b) || b.convert !== true);
+    const beatmap = findDefault({ items: beatmaps, ruleset: findRuleset });
 
     if (beatmap != null) return beatmap;
   }
