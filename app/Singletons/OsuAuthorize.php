@@ -104,6 +104,17 @@ class OsuAuthorize
         return $auth;
     }
 
+    public function checkAchievementUnlock(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isRestricted()) {
+            return 'restricted';
+        }
+
+        return 'ok';
+    }
+
     public function checkBeatmapShow(?User $user, Beatmap $beatmap): string
     {
         if (!$beatmap->trashed()) {
