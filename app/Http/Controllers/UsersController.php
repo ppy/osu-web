@@ -700,6 +700,8 @@ class UsersController extends Controller
 
     public function unlockClientSideAchievement($achievementId)
     {
+        priv_check('AchievementUnlock')->ensureCan();
+
         $user = \Auth::user();
         $request = \Request::instance();
         $achievement = app('medals')->byIdOrFail($achievementId);
