@@ -893,11 +893,11 @@ class UsersController extends Controller
                 break;
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
-                $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'metadata'];
                 $query = $this->user->soloScores()
                     ->recent($this->mode, $options['includeFails'] ?? false)
                     ->reorderBy('ended_at', 'desc')
-                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'metadata']);
                 $userRelationColumn = 'user';
                 break;
         }
