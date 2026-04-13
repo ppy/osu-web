@@ -13,7 +13,7 @@ import * as React from 'react';
 import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
 import DiscussionsState from './discussions-state';
@@ -292,7 +292,7 @@ export class Discussion extends React.Component<Props> {
     return (
       <div className={cssClasses}>
         <div className={`${bn}__replies`}>
-          {hiddenReplies > 0 && <div className={`${bn}__info`}>{`${hiddenReplies} replies are hidden.`}</div>}
+          {hiddenReplies > 0 && <div className={`${bn}__info`}>{transChoice('beatmap_discussions.hidden_replies', hiddenReplies)}</div>}
           {this.visibleReplies.map(this.renderReply)}
         </div>
         {this.props.discussionsState != null && this.canBeRepliedTo && (
