@@ -176,7 +176,7 @@ class ScoresControllerTest extends TestCase
         // fake all the replay disks
         $type = $GLOBALS['cfg']['filesystems']['default'];
         $disks = [
-            "{$type}-solo-replay",
+            "{$type}-replay",
             ...prefix_strings("{$type}-legacy-replay-", array_keys(Beatmap::MODES)),
         ];
         foreach ($disks as $disk) {
