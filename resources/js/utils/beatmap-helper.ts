@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 import BeatmapExtendedJson, { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import Ruleset, { rulesetNames, rulesets } from 'interfaces/ruleset';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
@@ -36,14 +36,15 @@ type FindDefaultParams<T> = {
   items?: undefined;
 } | {
   items: T[];
-  ruleset?: Ruleset;
 };
 
 export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
+    if (params.items.length === 0) return null;
+
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.ruleset ?? rulesetNames[0]);
+    const targetDiff = userRecommendedDifficulty(params.items[0].mode);
 
     for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
@@ -54,12 +55,12 @@ export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params:
       }
     }
 
-    return currentItem ?? _.last(params.items) ?? null;
+    return currentItem ?? params.items[params.items.length - 1];
   }
 
   for (const findRuleset of userModes()) {
     const beatmaps = (params.group.get(findRuleset) ?? []).filter((b) => !('convert' in b) || b.convert !== true);
-    const beatmap = findDefault({ items: beatmaps, ruleset: findRuleset });
+    const beatmap = findDefault({ items: beatmaps });
 
     if (beatmap != null) return beatmap;
   }
