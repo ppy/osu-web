@@ -342,10 +342,9 @@ export default class DiscussionsState {
     return null;
   }
 
-  // TODO: maybe get rid of this and use the ids directly?
   @computed
   get selectedUsers() {
-    return [...this.selectedUserIds].map((id) => this.store.users.get(id)).filter((user): user is UserJson => user != null);
+    return [...this.selectedUsersGenerator()];
   }
 
   @computed
@@ -600,6 +599,15 @@ export default class DiscussionsState {
 
     if (options.watching != null) {
       this.beatmapset.current_user_attributes.is_watching = options.watching;
+    }
+  }
+
+  private *selectedUsersGenerator() {
+    for (const userId of this.selectedUserIds) {
+      const user = this.store.users.get(userId);
+      if (user != null) {
+        yield user;
+      }
     }
   }
 }

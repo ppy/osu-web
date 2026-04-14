@@ -7,7 +7,7 @@ import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store'
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser, usernameSortAscending } from 'models/user';
+import { usernameSortAscending } from 'models/user';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
@@ -64,7 +64,7 @@ export class UserFilter extends React.Component<Props> {
       return trans('beatmap_discussions.user_filter.label');
     }
 
-    const user = this.props.discussionsState.selectedUsers[0] ?? deletedUser;
+    const user = this.props.discussionsState.selectedUsers[0];
     return <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>;
   }
 
