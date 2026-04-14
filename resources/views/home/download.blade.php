@@ -12,8 +12,7 @@
     <div class="download-page">
         <div class="download-page__header">
             <div class="download-page__banner">
-                <video class="download-page__banner-video" autoplay muted loop playsinline>
-                    <source src="https://assets.ppy.sh/media/festive.mp4" type="video/mp4" />
+                <video class="download-page__banner-video" src="https://assets.ppy.sh/media/festive.mp4" autoplay muted loop playsinline>
                 </video>
                 <div class="download-page__banner-content download-page__banner-content--main">
                     <div class="download-page__tagline">
