@@ -81,9 +81,7 @@ export default class TypeFilters extends React.Component<Props> {
   private readonly setFilter = (event: React.SyntheticEvent<HTMLElement>) => {
     event.preventDefault();
     event.currentTarget.blur(); // to unfocus re-selected filter
-    const type = event.currentTarget.dataset.type;
-    const nextFilter = type === this.props.discussionsState.currentFilter ? 'total' : type;
-    this.props.discussionsState.changeFilter(nextFilter);
+    this.props.discussionsState.changeFilter(event.currentTarget.dataset.type);
   };
 }
 
