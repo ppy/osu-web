@@ -236,7 +236,8 @@ export function makeUrl(options: MakeUrlOptions) {
   }
 
   if (users != null) {
-    for (const userId of users) {
+    const sortedUniqueUsers = [...new Set(users)].sort((a, b) => a - b);
+    for (const userId of sortedUniqueUsers) {
       value.searchParams.append('users[]', userId.toString());
     }
   }
@@ -302,11 +303,11 @@ export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDisc
   }
 
   const beatmapId = getInt(beatmapIdString);
-  const users = url.searchParams.getAll('users[]').map(getInt).filter(Number.isFinite) as number[];
+  const users = new Set(url.searchParams.getAll('users[]').map(getInt).filter(Number.isFinite) as number[]);
   // TODO: remove compatibility for existing url params
   const user = getInt(url.searchParams.get('user'));
   if (user != null) {
-    users.push(user);
+    users.add(user);
   }
 
   const ret: ParsedUrlParams = {

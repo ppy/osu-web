@@ -60,7 +60,8 @@ export class UserFilter extends React.Component<Props> {
 
   @computed
   private get text() {
-    if (this.props.discussionsState.selectedUserIds.size === 0) {
+    const selectedUsers = this.props.discussionsState.selectedUsers;
+    if (selectedUsers.length === 0) {
       return trans('beatmap_discussions.user_filter.label');
     }
 
