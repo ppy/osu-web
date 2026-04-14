@@ -67,9 +67,9 @@ export default class DiscussionsState {
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
+  @observable repliesIncludeSelectedUsers = false;
   @observable selectedNominatedRulesets: Ruleset[] = [];
   @observable readonly selectedUserIds = new Set<number>();
-  @observable selectedUserIncludeReplies = false;
   @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
   @observable showOtherReplies = true;
   @observable sort: Record<DiscussionMode, Sort> = {
@@ -223,7 +223,7 @@ export default class DiscussionsState {
     for (const mode of discussionModes) {
       value[mode] = this.discussionsByMode[mode].filter(
         (discussion) => this.selectedUserIds.has(discussion.user_id)
-        || this.selectedUserIncludeReplies && discussion.posts?.some((post) => this.selectedUserIds.has(post.user_id)),
+        || this.repliesIncludeSelectedUsers && discussion.posts?.some((post) => this.selectedUserIds.has(post.user_id)),
       );
     }
 
