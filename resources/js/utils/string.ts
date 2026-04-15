@@ -5,6 +5,6 @@ export function presence(value?: string | null) {
   return value != null && value !== '' ? value : null;
 }
 
-export function present(value?: string | null) {
+export function present(value?: string | null): value is NonNullable<typeof value> {
   return presence(value) != null;
 }
