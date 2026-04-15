@@ -37,6 +37,6 @@ class ReplayFile implements ScoreReplayFileInterface
 
     private function storage(): Filesystem
     {
-        return storage_disk('solo-replay');
+        return storage_disk('replay');
     }
 }
