@@ -7,7 +7,36 @@ import { NotificationIdentityJson } from 'notifications/notification-identity';
 
 export default interface NotificationJson {
   created_at?: string;
-  details: any;
+  details: {
+    achievement_id?: number;
+    achievement_mode?: string;
+    beatmap_id?: number;
+    beatmapset_id?: number;
+    comment_id?: number;
+    content?: string;
+    cover_url?: string;
+    description?: string;
+    discussion_id?: number;
+    embeds?: {
+      praises: number;
+      problems: number;
+      suggestions: number;
+    };
+    name?: string;
+    news_post_id?: number;
+    post_id?: number;
+    reply_to?: {
+      user_id: number;
+    };
+    series?: string;
+    slug?: string;
+    title?: string;
+    title_unicode?: string;
+    type?: string;
+    user_id?: number;
+    username?: string;
+    version?: string;
+  };
   id: number;
   is_read: boolean;
   name: string;
