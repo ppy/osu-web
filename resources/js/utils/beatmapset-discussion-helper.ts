@@ -181,7 +181,6 @@ export function makeUrl(options: MakeUrlOptions) {
     discussion,
     filter,
     post,
-    user,
     users,
   } = options;
 
@@ -229,10 +228,6 @@ export function makeUrl(options: MakeUrlOptions) {
     if (postId != null) {
       value.hash += `/${postId}`;
     }
-  }
-
-  if (user != null) {
-    value.searchParams.set('user', user.toString());
   }
 
   if (users != null) {
