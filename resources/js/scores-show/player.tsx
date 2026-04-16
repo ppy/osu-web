@@ -7,7 +7,7 @@ import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import { displayMods } from 'utils/score-helper';
 
 interface Props {
@@ -55,7 +55,7 @@ export default function Player(props: Props) {
           {trans('scores.show.player.watched')}
         </span>
         <strong>
-          {props.score.replay_views} times
+          {transChoice('scores.show.player.watched_count', props.score.replay_views)}
         </strong>
         <span>
           {trans('scores.show.player.submitted_on')}

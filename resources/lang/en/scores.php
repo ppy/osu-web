@@ -15,13 +15,13 @@ return [
         'player' => [
             'by' => 'Played by',
             'submitted_on' => 'Submitted on',
+            'watched' => 'Watched',
+            'watched_count' => ':count_delimited time|:count_delimited times',
 
             'rank' => [
                 'country' => 'Country Rank',
                 'global' => 'Global Rank',
             ],
-
-            'watched' => 'Watched',
         ],
     ],
 
