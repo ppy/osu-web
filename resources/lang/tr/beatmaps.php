@@ -276,6 +276,10 @@ return [
                 '_' => ':filters ile filtrelemek için aktif bir :link gerekli',
                 'link_text' => 'osu!supporter etiketi',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

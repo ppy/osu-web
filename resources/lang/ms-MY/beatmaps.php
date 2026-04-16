@@ -276,6 +276,10 @@ return [
                 '_' => 'Tapisan menggunakan :filters memerlukan :link yang giat',
                 'link_text' => 'tag osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

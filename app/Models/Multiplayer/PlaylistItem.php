@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int|null $ruleset_id
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property \Carbon\Carbon|null $updated_at
- * @property bool expired
+ * @property bool $expired
  * @property \Carbon\Carbon|null $played_at
  */
 class PlaylistItem extends Model

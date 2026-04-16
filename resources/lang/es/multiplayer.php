@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'La duración es demasiado larga.',
             'name_too_long' => 'El nombre de la sala es demasiado largo.',
+            'too_many_playlist_items' => 'Hay demasiados elementos en la lista de juego actual.',
         ],
 
         'status' => [

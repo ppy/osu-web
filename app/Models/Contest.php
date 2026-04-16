@@ -7,7 +7,6 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Traits\Memoizes;
-use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Exception;
@@ -146,6 +145,19 @@ class Contest extends Model
         }
 
         $this->resetCache();
+    }
+
+    public function entriesWithScore(): Collection
+    {
+        $entries = \Cache::remember(
+            $this->entriesWithScoresCacheKey(),
+            300,
+            fn () => $this->entries()->withScore($this)->get()
+        );
+
+        $this->setRelation('entries', $entries);
+
+        return $entries;
     }
 
     public function isBestOf(): bool
@@ -319,80 +331,53 @@ class Contest extends Model
         }
     }
 
-    public function entriesByType(?User $user)
+    public function defaultJson(?User $user = null)
     {
-        if ($this->show_votes) {
-            return \Cache::remember(
-                $this->entriesWithScoresCacheKey(),
-                300,
-                fn () => $this->entries()->withScore($this)->get()
-            );
-        }
-
-        $query = $this->entries();
-
-        if ($this->isBestOf()) {
-            if ($user === null) {
-                return [];
-            }
-
-            $options = $this->getExtraOptions()['best_of'];
-            $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
-        }
-
-        return $query->get();
-    }
-
-    public function defaultJson($user = null)
-    {
+        $transformer = new ContestTransformer();
         $includes = [];
         $preloads = ['contest'];
 
-        if ($this->type === 'art') {
-            $includes[] = 'artMeta';
-        }
-
         $showVotes = $this->show_votes;
         if ($showVotes) {
-            $includes[] = 'results';
+            $includes[] = 'users_voted_count';
         }
+
         if ($this->showEntryUser()) {
-            $includes[] = 'user';
             $preloads[] = 'user';
         }
 
-        $contestJson = json_item(
-            $this,
-            new ContestTransformer(),
-            $showVotes ? ['users_voted_count'] : null,
-        );
         if ($this->isVotingStarted()) {
-            $contestJson['entries'] = json_collection(
-                $this->entriesByType($user)->loadMissing($preloads),
-                new ContestEntryTransformer(),
-                $includes,
-            );
-        }
-
-        if (!empty($contestJson['entries'])) {
             if (!$showVotes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
-                    usort($contestJson['entries'], function ($a, $b) {
-                        return strnatcasecmp($a['title'], $b['title']);
-                    });
+                    $transformer->sort = ContestTransformer::SORT_ALPHA;
                 } else {
                     // We want the results to appear randomized to the user but be
                     // deterministic (i.e. we don't want the rows shuffling each time
                     // the user votes), so we seed based on user_id (when logged in)
-                    $seed = $user ? $user->user_id : time();
-                    seeded_shuffle($contestJson['entries'], $seed);
+                    $transformer->sort = ContestTransformer::SORT_SHUFFLE;
+                    $transformer->seed = $user?->getKey() ?? time();
                 }
+            }
+
+            $includes[] = 'entries';
+            if ($this->type === 'art') {
+                $includes[] = 'entries.artMeta';
+            }
+            if ($showVotes) {
+                $includes[] = 'entries.results';
+            }
+            if ($this->showEntryUser()) {
+                $includes[] = 'entries.user';
             }
         }
 
+        // load relation and preloads.
+        $entries = $showVotes ? $this->entriesWithScore() : $this->entriesForUser($user);
+        $entries->loadMissing($preloads);
+
         return json_encode([
-            'contest' => $contestJson,
+            'contest' => json_item($this, $transformer, $includes),
             'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
         ]);
     }
@@ -472,6 +457,26 @@ class Contest extends Model
     public function showEntryUser(): bool
     {
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
+    }
+
+    private function entriesForUser(?User $user): Collection
+    {
+        $query = $this->entries();
+
+        if ($this->isBestOf()) {
+            if ($user === null) {
+                $query->none();
+            } else {
+                $options = $this->getExtraOptions()['best_of'];
+                $query->forBestOf($user, $options['mode'] ?? 'osu', $options['variant'] ?? null);
+            }
+        }
+
+        $entries = $query->get();
+        // not sure if good idea to set the relation to a filtered query...
+        $this->setRelation('entries', $entries);
+
+        return $entries;
     }
 
     private function entriesWithScoresCacheKey(): string

@@ -245,7 +245,7 @@ return [
             'prompt' => 'Stichwörter eingeben...',
             'login_required' => 'Melde dich an, um zu suchen.',
             'options' => 'Mehr Suchoptionen',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Die Anzahl der Top-Platzierungen und die Ergebnisse, die auf dieser Seite angezeigt werden, basieren auf Beatmaps mit deinen besten "standardisierten" Scores (also aus lazer).',
             'supporter_filter' => 'Um nach :filters zu filtern, benötigt es ein aktives osu!supporter-Tag',
             'not-found' => 'keine Ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Du benötigst ein aktives :link, um nach :filters zu filtern',
                 'link_text' => 'osu!supporter-Tag',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

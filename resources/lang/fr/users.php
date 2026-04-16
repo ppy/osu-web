@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Replays regardés',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Rediffusions les plus regardées',
                 ],
             ],
             'kudosu' => [

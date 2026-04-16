@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Liian pitkä aika.',
             'name_too_long' => 'Huoneen nimi on liian pitkä.',
+            'too_many_playlist_items' => 'Liian monta rytmikarttaa soittolistalla.',
         ],
 
         'status' => [

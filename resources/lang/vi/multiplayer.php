@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Thời lượng quá dài. ',
             'name_too_long' => 'Tên phòng quá dài.',
+            'too_many_playlist_items' => 'Quá nhiều mục trong danh sách phát.',
         ],
 
         'status' => [

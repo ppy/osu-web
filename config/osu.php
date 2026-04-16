@@ -34,9 +34,6 @@ return [
     ],
 
     'avatar' => [
-        'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
-        'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
-        'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest@2x.png'),
     ],
 
@@ -89,6 +86,9 @@ return [
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
+    'cache_proxy' => [
+        'purge_authorization_key' => env('CACHE_PROXY_PURGE_AUTHORIZATION_KEY'),
+    ],
     'camo' => [
         'key' => presence(env('CAMO_KEY')),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
@@ -118,6 +118,7 @@ return [
         'token_keys' => $clientTokenKeys,
         'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
         'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
+        'token_validation_timeout' => get_float(env('CLIENT_TOKEN_VALIDATION_TIMEOUT')) ?? 0.05,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
@@ -230,6 +231,7 @@ return [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
+        'download_video' => env('OSU_URL_DOWNLOAD_VIDEO', 'https://assets.ppy.sh/media/festive.mp4'),
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
         'lazer_dl.android' => presence(env('OSU_URL_LAZER_ANDROID')) ?? 'https://github.com/ppy/osu/releases/latest/download/sh.ppy.osulazer.apk',
@@ -275,9 +277,10 @@ return [
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
         'max_multiplayer_duration' => get_int(env('USER_MAX_MULTIPLAYER_DURATION')) ?? 14,
         // see https://github.com/ppy/osu/pull/16024/files#diff-d5f8d0eb0eac5cfd6d2f486d34c4168e036b83b622c7a3c5bfce5205d67bf52bR327-R330
-        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 63,
+        'max_multiplayer_duration_supporter' => get_int(env('USER_MAX_MULTIPLAYER_DURATION_SUPPORTER')) ?? 93,
         'max_playlists' => get_int(env('USER_MAX_PLAYLISTS')) ?? 1,
         'max_playlists_supporter' => get_int(env('USER_MAX_PLAYLISTS_SUPPORTER')) ?? 5,
+        'max_items_in_playlist' => get_int(env('USER_MAX_ITEMS_IN_PLAYLIST')) ?? 256,
         'max_tournament_rooms' => get_int(env('USER_MAX_TOURNAMENT_ROOMS')) ?? 4,
         'max_tournament_rooms_bot' => get_int(env('USER_MAX_TOURNAMENT_ROOMS_BOT')) ?? 50,
         'max_score_pins' => get_int(env('USER_MAX_SCORE_PINS')) ?? 10,

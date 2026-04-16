@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Per ilga trūkmė.',
             'name_too_long' => 'Kambario pavadinimas per ilgas',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

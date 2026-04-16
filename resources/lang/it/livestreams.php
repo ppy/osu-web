@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => 'Sei sicuro di voler promuovere questa trasmissione in diretta?',
-        'unpin' => "Sei sicuro di voler rimuovere la promozione di questa trasmissione in diretta?",
+        'pin' => 'Sei sicuro di voler promuovere questa trasmissione in diretta alla pagina iniziale?',
+        'unpin' => "Sei sicuro di voler rimuovere la promozione di questa trasmissione in diretta dalla pagina iniziale?",
     ],
 
     'top-headers' => [

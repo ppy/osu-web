@@ -27,7 +27,7 @@ return [
         'title' => 'Søg',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Se flere søgeresultater for sange af fremhævede kunstnere',
         ],
         'beatmapset' => [
             'login_required' => 'Log ind for at søge efter brugere
@@ -55,17 +55,17 @@ return [
 
         'mode' => [
             'all' => 'alt',
-            'artist_track' => '',
+            'artist_track' => 'fremhævet kunster spor',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'hold',
             'user' => 'bruger',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'login_required' => '',
-            'more_simple' => '',
+            'login_required' => 'Log ind for at søge efter hold',
+            'more_simple' => 'Vis flere hold søgeresultater',
         ],
 
         'user' => [
@@ -86,7 +86,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'tjek denne side for mere information',
-        'download' => '',
+        'download' => 'Hent',
         'for_os' => 'for :os',
         'macos-fallback' => 'macOS brugere',
         'mirror' => 'mirror',
@@ -143,7 +143,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Daglige Udfordring Beatmap',
             'new' => 'Nye Rangerede Beatmaps',
             'popular' => 'Populære Beatmaps',
             'by_user' => 'af :user',
@@ -155,11 +155,11 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Fremhævet Livestream',
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Åbn administratorkonsol',
             ],
         ],
     ],

@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Obejrzane powtórki:',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Najczęściej Oglądane Powtórki',
                 ],
             ],
             'kudosu' => [

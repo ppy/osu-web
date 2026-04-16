@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => '玩家',
+            'played_on' => '',
             'submitted_on' => '达成时间',
 
             'rank' => [

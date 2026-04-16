@@ -90,17 +90,23 @@ return [
             'base_url' => "{$appUrl}/uploads/central",
         ],
 
+        'local-preview' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/preview'),
+            'visibility' => 'private',
+        ],
+
+        'local-replay' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/replay'),
+            'base_url' => "{$appUrl}/uploads/replay",
+            'visibility' => 'public',
+        ],
+
         'local-screenshot' => [
             'driver' => 'local',
             'root' => public_path('uploads/screenshot'),
             'visibility' => 'private',
-        ],
-
-        'local-solo-replay' => [
-            'driver' => 'local',
-            'root' => public_path('uploads/solo-replay'),
-            'base_url' => "{$appUrl}/uploads/solo-replay",
-            'visibility' => 'public',
         ],
 
         's3' => [
@@ -124,15 +130,21 @@ return [
             'region' => env('S3_CENTRAL_BUCKET_REGION'),
         ],
 
+        's3-preview' => [
+            ...$s3Default,
+            'bucket' => presence(env('S3_PREVIEW_BUCKET')) ?? 'previews',
+            'visibility' => 'private',
+        ],
+
+        's3-replay' => [
+            ...$s3Default,
+            'bucket' => presence(env('S3_REPLAY_BUCKET')) ?? 'replays',
+        ],
+
         's3-screenshot' => [
             ...$s3Default,
             'bucket' => presence(env('S3_SCREENSHOT_BUCKET')) ?? 'screenshots',
             'visibility' => 'private',
-        ],
-
-        's3-solo-replay' => [
-            ...$s3Default,
-            'bucket' => presence(env('S3_SOLO_REPLAY_BUCKET')) ?? 'solo-scores-replays',
         ],
     ],
 

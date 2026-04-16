@@ -276,6 +276,10 @@ return [
                 '_' => 'Filtriranje po :filters je potreben aktivni :link',
                 'link_text' => 'osu!supporter značka',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

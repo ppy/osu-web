@@ -6,7 +6,7 @@ import StringWithComponent from 'components/string-with-component';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
@@ -18,7 +18,7 @@ import Worker from './worker';
 
 
 interface Props {
-  modifiers?: string[];
+  modifiers?: Modifiers;
   onClose?: () => void;
   worker: Worker;
 }
@@ -138,7 +138,7 @@ interface Props {
           >
             <Beatmapset
               beatmapset={beatmapset}
-              modifiers={this.boxIsActive('beatmapset', idx) ? ['active'] : []}
+              modifiers={this.boxIsActive('beatmapset', idx) ? 'active' : null}
             />
           </div>
         ))}
@@ -252,7 +252,7 @@ interface Props {
             onMouseLeave={this.onMouseLeave}
           >
             <Team
-              modifiers={{ active: this.boxIsActive('team', idx) }}
+              modifiers={this.boxIsActive('team', idx) ? 'active' : null}
               team={team}
             />
           </div>
@@ -298,7 +298,7 @@ interface Props {
             onMouseLeave={this.onMouseLeave}
           >
             <User
-              modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
+              modifiers={this.boxIsActive('user', idx) ? 'active' : null}
               user={user}
             />
           </div>

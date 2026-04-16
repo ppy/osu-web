@@ -334,7 +334,7 @@ return [
                     'count_label' => '重播觀看次數',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => '觀看最多次的重播',
                 ],
             ],
             'kudosu' => [

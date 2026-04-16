@@ -63,6 +63,12 @@ export default function Player(props: Props) {
         <strong>
           {moment(props.score.ended_at).format('LLL')}
         </strong>
+        <span>
+          {trans('scores.show.player.played_on')}
+        </span>
+        <strong>
+          {props.score.legacy_score_id == null ? 'Lazer' : 'Stable'}
+        </strong>
       </div>
 
       <div className='score-player__row score-player__row--rank'>

@@ -2664,6 +2664,20 @@
         "AlwaysValidForSubmission": false
       },
       {
+        "Acronym": "SY",
+        "Name": "Synesthesia",
+        "Description": "Colours hit objects based on the rhythm.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForFreestyleAsRequiredMod": false,
+        "ValidForMultiplayerAsFreeMod": true,
+        "AlwaysValidForSubmission": false
+      },
+      {
         "Acronym": "SV2",
         "Name": "Score V2",
         "Description": "Score set on earlier osu! versions with the V2 scoring algorithm active.",

@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Oynayan:',
+            'played_on' => '',
             'submitted_on' => 'Gönderilme:',
 
             'rank' => [

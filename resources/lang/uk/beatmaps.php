@@ -245,7 +245,7 @@ return [
             'prompt' => 'почніть вводити ключові слова...',
             'login_required' => 'Увійдіть, для використання пошуку.',
             'options' => 'Більше параметрів пошуку',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Кількість бітмап та здобуті рейтинги, показані на цій сторінці, базуються на ваших найкращих "стандартизованих" (тобто "lazer") результатах бітмап.',
             'supporter_filter' => 'Фільтрація по :filters потребує наявності тегу osu!supporter',
             'not-found' => 'немає результатів',
             'not-found-quote' => '... на жаль, нічого немає.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Сортування за :filters вимагає :link',
                 'link_text' => 'тег osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

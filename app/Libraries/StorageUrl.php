@@ -11,7 +11,7 @@ class StorageUrl
 {
     public static function make(?string $diskName, string $path): string
     {
-        $diskName ??= $GLOBALS['cfg']['filesystems']['default'];
+        $diskName = $GLOBALS['cfg']['filesystems']['default'].($diskName === null ? '' : "-{$diskName}");
         $baseUrl = $GLOBALS['cfg']['filesystems']['disks'][$diskName]['base_url'];
 
         return "{$baseUrl}/{$path}";

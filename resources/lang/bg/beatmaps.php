@@ -276,6 +276,10 @@ return [
                 '_' => 'Подреждане по :filters изисква активен :link',
                 'link_text' => 'osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

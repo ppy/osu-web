@@ -9,11 +9,11 @@ return [
         'all_scope_no_mix' => '* ist mit anderen Typen nicht gültig',
         'client_missing_owner' => 'Der Anwendung fehlt der Besitzer.',
         'client_unauthorized' => 'Die Anwendung ist nicht autorisiert.',
-        'delegate_bot_only' => 'Delegation mit Client-Zugangsdaten ist nur für Chat-Bots verfügbar.',
+        'delegate_bot_only' => 'Delegation mit Client-Zugangsdaten ist nur für Bots verfügbar.',
         'client_credentials_only' => 'Diese Berechtigung ist nur für Token des Typs "client_credentials" gültig.',
         'delegate_invalid_combination' => 'Die Delegation wird für diese Typen nicht unterstützt.',
         'delegate_required' => 'Typ "delegate" ist erforderlich.',
         'empty' => 'Tokens ohne Typen sind nicht gültig.',
-        'bot_only' => 'Dieser Typ ist nur für Chat-Bots oder eigene Anwendungen verfügbar.',
+        'bot_only' => 'Dieser Typ ist nur für Bots oder eigene Anwendungen verfügbar.',
     ],
 ];

@@ -43,13 +43,11 @@ class UserRegistrationTest extends TestCase
         $thrown = $this->runSubject($reg);
 
         $this->assertTrue($thrown);
-        $this->assertArraySubset(
-            $reg->user()->validationErrors()->all(),
-            [
-                'username' => [osu_trans('model_validation.required', [
-                    'attribute' => osu_trans('model_validation.user.attributes.username'),
-                ])],
-            ]
+        $this->assertContains(
+            osu_trans('model_validation.required', [
+                'attribute' => osu_trans('model_validation.user.attributes.username'),
+            ]),
+            $reg->user()->validationErrors()->all()['username'],
         );
         $this->assertSame($origCount, User::count());
     }
@@ -64,13 +62,11 @@ class UserRegistrationTest extends TestCase
         $thrown = $this->runSubject($reg);
 
         $this->assertTrue($thrown);
-        $this->assertArraySubset(
-            $reg->user()->validationErrors()->all(),
-            [
-                'user_email' => [osu_trans('model_validation.required', [
-                    'attribute' => osu_trans('model_validation.user.attributes.user_email'),
-                ])],
-            ]
+        $this->assertContains(
+            osu_trans('model_validation.required', [
+                'attribute' => osu_trans('model_validation.user.attributes.user_email'),
+            ]),
+            $reg->user()->validationErrors()->all()['user_email'],
         );
         $this->assertSame($origCount, User::count());
     }
@@ -85,13 +81,11 @@ class UserRegistrationTest extends TestCase
         $thrown = $this->runSubject($reg);
 
         $this->assertTrue($thrown);
-        $this->assertArraySubset(
-            $reg->user()->validationErrors()->all(),
-            [
-                'password' => [osu_trans('model_validation.required', [
-                    'attribute' => osu_trans('model_validation.user.attributes.password'),
-                ])],
-            ]
+        $this->assertContains(
+            osu_trans('model_validation.required', [
+                'attribute' => osu_trans('model_validation.user.attributes.password'),
+            ]),
+            $reg->user()->validationErrors()->all()['password'],
         );
         $this->assertSame($origCount, User::count());
     }

@@ -337,7 +337,7 @@ CAPTCHA認証を成功させてから再試行してください。
                     'count_label' => 'リプレイ再生回数',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => '最も視聴されたリプレイ',
                 ],
             ],
             'kudosu' => [

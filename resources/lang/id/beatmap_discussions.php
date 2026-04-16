@@ -7,7 +7,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Kamu harus masuk untuk menyunting.',
-            'system_generated' => 'Postingan yang dihasilkan oleh sistem tidak dapat disunting.',
+            'system_generated' => 'Postingan yang dihasilkan oleh sistem tidak bisa disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
@@ -17,13 +17,13 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'telah dihapus',
+        'deleted_beatmap' => 'dihapus',
         'none_found' => 'Tidak ada topik diskusi yang sesuai dengan kriteria pencarian.',
         'title' => 'Diskusi Beatmap',
 
         'form' => [
             '_' => 'Cari',
-            'deleted' => 'Sertakan diskusi yang telah dihapus',
+            'deleted' => 'Sertakan topik diskusi yang sudah dihapus',
             'mode' => 'Mode beatmap',
             'only_unresolved' => 'Tampilkan hanya topik diskusi yang belum terjawab',
             'show_review_embeds' => 'Tampilkan pos ulasan',
@@ -55,7 +55,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Tidak ada satu pun dari postingan ini yang membahas masalah saya',
-        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Silakan periksa apakah masalah yang ingin kamu angkat telah dibahas oleh pengguna lain sebelumnya.',
+        'notice' => 'Terdapat postingan lain di sekitar :timestamp (:existing_timestamps). Silakan periksa apakah masalah yang ingin kamu angkat sudah dibahas sebelumnya.',
         'unsaved' => ':count pada kajian ini',
     ],
 
@@ -81,7 +81,7 @@ return [
     ],
 
     'review' => [
-        'block_count' => ':used / :max blok telah digunakan',
+        'block_count' => ':used / :max blok digunakan',
         'go_to_parent' => 'Lihat Kajian',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
@@ -92,13 +92,13 @@ return [
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
             'minimum_issues' => 'kajian harus mengandung setidaknya :count masalah|kajian harus mengandung setidaknya :count masalah',
             'missing_text' => 'blok tidak mengandung teks',
-            'too_many_blocks' => 'kajian hanya dapat mengandung :count paragraf/masalah|kajian hanya dapat mengandung hingga :count paragraf/masalah',
+            'too_many_blocks' => 'kajian hanya bisa mengandung :count paragraf/masalah|kajian hanya bisa mengandung hingga :count paragraf/masalah',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Ditandai sebagai telah terjawab oleh :user',
+            'true' => 'Ditandai sebagai terjawab oleh :user',
             'false' => 'Dibuka kembali oleh :user',
         ],
     ],

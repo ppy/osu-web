@@ -6,7 +6,7 @@
     use App\Transformers\UserCompactTransformer;
 @endphp
 <div class="js-react"
-    data-modifiers="{{ json_encode(['search']) }}"
+    data-modifiers="search"
     data-react="user-cards"
     data-users="{{ json_encode(json_collection(
         $search->data(),

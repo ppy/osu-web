@@ -58,12 +58,6 @@ return [
         'send' => 'Envoyer',
     ],
 
-    'no-conversations' => [
-        'howto' => "Commencez à discuter depuis un profil utilisateur ou un popup de carte utilisateur.",
-        'lazer' => 'Les canaux de discussion que vous rejoignez via <a href=":link">osu!lazer</a> seront aussi visibles ici.',
-        'title' => 'aucune conversation',
-    ],
-
     'join_channels' => [
         'loading' => 'Chargement de la liste des canaux...',
     ],

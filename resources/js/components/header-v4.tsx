@@ -122,32 +122,25 @@ export default class HeaderV4 extends React.Component<Props> {
   }
 
   private renderLinks() {
-    const items = this.props.links.map((link) => {
-      const linkModifiers = [];
-      if (link.active) {
-        linkModifiers.push('active');
-      }
-
-      return (
-        <li key={`${link.url}-${link.title}`} className='header-nav-v4__item'>
-          <a
-            className={classWithModifiers('header-nav-v4__link', linkModifiers)}
-            href={link.url}
-            onClick={this.props.onLinkClick}
-            {...link.data}
-          >
-            <span className='fake-bold' data-content={link.title}>
-              {link.title}
+    const items = this.props.links.map((link) => (
+      <li key={`${link.url}-${link.title}`} className='header-nav-v4__item'>
+        <a
+          className={classWithModifiers('header-nav-v4__link', { active: link.active })}
+          href={link.url}
+          onClick={this.props.onLinkClick}
+          {...link.data}
+        >
+          <span className='fake-bold' data-content={link.title}>
+            {link.title}
+          </span>
+          {link.count != null && (
+            <span className="header-nav-item-count">
+              {formatNumber(link.count)}
             </span>
-            {link.count != null && (
-              <span className="header-nav-item-count">
-                {formatNumber(link.count)}
-              </span>
-            )}
-          </a>
-        </li>
-      );
-    });
+          )}
+        </a>
+      </li>
+    ));
 
     const List = this.props.linksBreadcrumb ? 'ol' : 'ul';
 
@@ -170,33 +163,26 @@ export default class HeaderV4 extends React.Component<Props> {
       return null;
     }
 
-    let activeLink: HeaderLink = this.props.links[0];
-    const items = this.props.links.map((link) => {
-      const linkModifiers = [];
-      if (link.active) {
-        linkModifiers.push('active');
-        activeLink = link;
-      }
+    const activeLink = this.props.links.find((link) => link.active) ?? this.props.links[0];
 
-      return (
-        <li key={`${link.url}-${link.title}`}>
-          <a
-            className='header-nav-mobile__item js-click-menu--close'
-            href={link.url}
-            onClick={this.props.onLinkClick}
-            {...link.data}
-          >
-            {link.title}
-            {' '}
-            {link.count != null && (
-              <span className="header-nav-item-count">
-                {formatNumber(link.count)}
-              </span>
-            )}
-          </a>
-        </li>
-      );
-    });
+    const items = this.props.links.map((link) => (
+      <li key={`${link.url}-${link.title}`}>
+        <a
+          className='header-nav-mobile__item js-click-menu--close'
+          href={link.url}
+          onClick={this.props.onLinkClick}
+          {...link.data}
+        >
+          {link.title}
+          {' '}
+          {link.count != null && (
+            <span className="header-nav-item-count">
+              {formatNumber(link.count)}
+            </span>
+          )}
+        </a>
+      </li>
+    ));
 
     return (
       <div className='header-nav-mobile'>

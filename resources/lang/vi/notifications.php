@@ -221,7 +221,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Tin tức',
 
         'beatmapset' => [
             'beatmap_owner_change' => [

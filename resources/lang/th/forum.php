@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'deleted' => 'ลบกระทู้',
         'go_to_latest' => 'ดูโพสต์ล่าสุด',
-        'go_to_unread' => '',
+        'go_to_unread' => 'ดูโพสต์ที่ยังไม่ได้อ่าน',
         'has_replied' => 'คุณได้ตอบกลับการสนทนานี้',
         'in_forum' => 'ใน :forum',
         'latest_post' => ':when โดย :user',
@@ -89,7 +89,7 @@ return [
         'new_topic_login' => 'เข้าสู่ระบบเพื่อตั้งกระทู้ใหม่',
         'post_reply' => 'โพสต์',
         'reply_box_placeholder' => 'พิมพ์ที่นี่เพื่อตอบกลับ',
-        'reply_title_prefix' => 'รี',
+        'reply_title_prefix' => 'Re',
         'started_by' => 'โดย :user',
         'started_by_verbose' => 'เริ่มโดย :user',
 

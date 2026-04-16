@@ -6,22 +6,19 @@
   gap: 20px;
 
   @media @desktop {
-    grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
 
   &__group {
     .default-border-radius();
-    display: inline-flex;
-    flex-direction: column;
+    display: grid;
+    gap: 10px;
   }
 
-  &__medal {
-    min-width: (10px + 70px);
-    height: 76px;
-    width: 25%;
-    margin: 10px 0;
-    display: inline-block;
+  &__medals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
   }
 
   &__title {

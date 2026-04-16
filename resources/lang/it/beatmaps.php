@@ -181,7 +181,7 @@ return [
         'button' => 'Metti hype!',
         'button_done' => 'Hype già messo!',
         'confirm' => "Sei sicuro? Questo utilizzerà uno dei tuoi :n hype rimanenti e non può essere annullato.",
-        'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina e il ranking!',
+        'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina e la classificazione!',
         'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina e la classificazione!',
         'new_time' => "Riceverai un altro hype :new_time.",
         'remaining' => 'Hai ancora :remaining hype rimanenti.',
@@ -224,7 +224,7 @@ return [
             'unresolved_problems' => 'Questa mappa è attualmente bloccata dal lasciare la sezione Qualificata fino alla risoluzione di :problems.',
             'problems' => 'questi problemi',
             'on' => 'il giorno :date',
-            'queue' => 'coda per la classifica',
+            'queue' => 'coda di classificazione',
             'soon' => 'molto vicina',
         ],
 
@@ -245,7 +245,7 @@ return [
             'prompt' => 'scrivi le parole chiave...',
             'login_required' => 'Accedi per effettuare una ricerca.',
             'options' => 'Più opzioni di ricerca',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'I conteggi e i risultati migliori del profilo mostrati in questa pagina sono basati sui migliori punteggi "standardizzati" (noti come di "lazer") nelle beatmap.',
             'supporter_filter' => 'Filtrare per :filters necessita di un tag osu!supporter attivo',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... trovato nulla.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Filtrare tramite :filters necessita di un :link attivo',
                 'link_text' => 'tag osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

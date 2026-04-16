@@ -5,29 +5,29 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'เพลงศิลปินเด่น',
         'beatmapset' => 'บีทแมพ',
         'forum_post' => 'ฟอรั่ม',
         'other' => 'อื่นๆ',
-        'team' => '',
+        'team' => 'ทีม',
         'user' => 'ผู้เล่น',
         'wiki_page' => 'วิกิ',
     ],
 
     'result' => [
         'more' => 'ผลการค้นหาเพิ่มเติมสำหรับ :mode',
-        'title' => 'ผลการค้นหาสำหรับ:mode',
+        'title' => 'ผลการค้นหาสำหรับ :mode',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'ไม่พบผลลัพธ์สำหรับ :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'เพลงศิลปินเด่น',
+            'beatmapset' => 'บีทแมพ',
+            'forum_post' => 'ฟอรั่ม',
+            'other' => 'อื่นๆ',
+            'team' => 'ทีม',
+            'user' => 'ผู้เล่น',
+            'wiki_page' => 'วิกิ',
         ],
     ],
 ];

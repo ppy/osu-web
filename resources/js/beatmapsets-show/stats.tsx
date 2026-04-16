@@ -163,7 +163,7 @@ export default class Stats extends React.Component<Props> {
         <td className='beatmap-stats-table__bar'>
           <Bar
             current={rawValue}
-            modifiers={['beatmap-stats', `beatmap-stats-${label}`]}
+            modifiers={`beatmap-stats beatmap-stats-${label}`}
             total={10}
           />
         </td>

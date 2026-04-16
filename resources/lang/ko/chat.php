@@ -58,12 +58,6 @@ return [
         'send' => '전송',
     ],
 
-    'no-conversations' => [
-        'howto' => "유저의 프로필 혹은 유저 카드 팝업에서 대화를 시작할 수 있습니다.",
-        'lazer' => '<a href=":link">osu!lazer</a>에서 참가하는 공개 채널이 여기서도 보입니다.',
-        'title' => '아직 아무런 대화가 없습니다',
-    ],
-
     'join_channels' => [
         'loading' => '채널 목록 불러오는 중...',
     ],

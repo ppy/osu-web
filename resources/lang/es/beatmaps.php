@@ -245,7 +245,7 @@ return [
             'prompt' => 'escribe en palabras clave...',
             'login_required' => 'Inicia sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Los grados y los resultados que aparecen en esta página se basan en tus puntuaciones «estandarizadas» (también conocidas como puntuaciones de «lazer») más altas en los mapas.',
             'supporter_filter' => 'Filtrar por :filters requiere una etiqueta de osu!supporter activa',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
                 'link_text' => 'etiqueta de osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

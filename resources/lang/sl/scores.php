@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Igral',
+            'played_on' => '',
             'submitted_on' => 'Objavljeno',
 
             'rank' => [

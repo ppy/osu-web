@@ -11,8 +11,8 @@ return [
     'unread_messages' => 'pesan yang belum dibaca',
 
     'cannot_send' => [
-        'channel' => 'Kamu sedang tidak dapat mengirimkan pesan pada kanal percakapan ini.',
-        'user' => 'Kamu sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
+        'channel' => 'Kamu sedang tidak bisa mengirim pesan pada kanal percakapan ini.',
+        'user' => 'Kamu sedang tidak bisa mengirimkan pesan kepada pengguna ini.',
     ],
 
     'channels' => [
@@ -46,22 +46,16 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Tidak ada apa-apa di sini. Mungkin kamu telah meninggalkan kanal percakapan ini, atau kanal yang ingin kamu tuju sudah tidak ada...',
+        'message' => 'Tidak ada apa-apa di sini. Mungkin kamu sudah meninggalkan kanal percakapan ini, atau kanal yang ingin kamu tuju sudah tidak ada...',
         'title' => 'kanal percakapan tidak ditemukan',
     ],
 
     'input' => [
         'create' => 'Buat',
-        'disabled' => 'pesan tidak dapat dikirim...',
+        'disabled' => 'pesan tidak bisa dikirim...',
         'disconnected' => 'Terputus',
         'placeholder' => 'ketik pesan...',
         'send' => 'Kirim',
-    ],
-
-    'no-conversations' => [
-        'howto' => "Mulailah percakapan baru dari halaman profil atau kartu pop-up pengguna.",
-        'lazer' => 'Kanal percakapan publik yang kamu buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
-        'title' => 'belum ada percakapan',
     ],
 
     'join_channels' => [

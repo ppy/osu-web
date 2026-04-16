@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Tak for din igangværende støtte! Indtil videre har du bidraget med i alt :dollars, så du har fortjent "Supporter"-tagget i :duration.',
             'not_yet' => "Du har ikke et supporter-tag endnu :(",
             'valid_until' => 'Dit nuværende supporter-tag gælder indtil den :date!',
             'was_valid_until' => 'Dit supporter-tag var gyldigt til den :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Ud af dine samlede bidrag, har du doneret :dollars værd i tags til :users som har varer :duration. Det er utroligt generøs!',
+                'users' => ':count_delimited anden bruger|:count_delimited andre brugere',
             ],
         ],
     ],
