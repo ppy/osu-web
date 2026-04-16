@@ -17,7 +17,7 @@ _assets() {
 }
 
 _job() {
-    exec ./artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
+    exec ./artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default --tries=3 --timeout=1000
 }
 
 _migrate() {
