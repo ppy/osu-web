@@ -16,6 +16,8 @@ return [
             'by' => 'Played by',
             'played_on' => 'Played on',
             'submitted_on' => 'Submitted on',
+            'watched' => 'Watched',
+            'watched_count' => ':count_delimited time|:count_delimited times',
 
             'rank' => [
                 'country' => 'Country Rank',

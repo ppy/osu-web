@@ -3,12 +3,11 @@
 
 import Notification from 'models/notification';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
-import NotificationDetails from 'models/notification-details';
 import { trans, transArray, transChoice, transExists } from 'utils/lang';
 
 type Replacements = { title: string } & Partial<Record<string, string|number>>;
 
-function formatBeatmapsetReviewCounts(counts: NonNullable<NotificationDetails['embeds']>, replacements: Replacements) {
+function formatBeatmapsetReviewCounts(counts: NonNullable<Notification['details']['embeds']>, replacements: Replacements) {
   const translatedCounts = [];
   for (const type of ['praises', 'problems', 'suggestions'] as const) {
     const count = counts[type];

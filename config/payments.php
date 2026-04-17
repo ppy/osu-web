@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'notification_channel' => env('STORE_NOTIFICATION_CHANNEL'),
     'running_cost' => (int) presence(env('OSU_RUNNING_COST'), 3141592), // arbritary default >_>
     'sandbox' => get_bool(env('PAYMENT_SANDBOX')) ?? false,
 

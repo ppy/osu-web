@@ -356,7 +356,7 @@ class Contest extends Model
                     // deterministic (i.e. we don't want the rows shuffling each time
                     // the user votes), so we seed based on user_id (when logged in)
                     $transformer->sort = ContestTransformer::SORT_SHUFFLE;
-                    $transformer->seed = $user->getKey() ?? time();
+                    $transformer->seed = $user?->getKey() ?? time();
                 }
             }
 
