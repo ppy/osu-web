@@ -141,7 +141,7 @@ class Message extends Model implements ReportableInterface
         return strpos($this->content, '@') !== false;
     }
 
-    public function mention()
+    public function mention(): ?string
     {
         static $chars = UsernameValidation::ALLOWED_CHARACTERS;
 
