@@ -171,19 +171,53 @@ class ChatTest extends TestCase
                 'push' => true,
             ],
         ]);
-        $mentionUsername = strtr($mention->username, [' ' => '_']);
 
         $channel = Channel::factory()->type('public')->create();
         $channel->addUser($sender);
-        $channel->addUser($mention);
 
         $sender->markSessionVerified();
 
+        $mentionUsername = strtr($mention->username, [' ' => '_']);
         Chat::sendMessage($sender, $channel, "hello @{$mentionUsername}!", false);
         $this->artisan('notifications:send-mail');
 
         Event::assertDispatched(NewPrivateNotificationEvent::class);
         Mail::assertSent(UserNotificationDigest::class);
+    }
+
+    public function testSendMessageMentionOnUsernameWithSpaceAsIs(): void
+    {
+        \Event::fake();
+
+        $sender = User::factory()->create();
+        $mention = User::factory()->create(['username' => 'test user']);
+        $channel = Channel::factory()->type('public')->create();
+        $channel->addUser($sender);
+
+        $sender->markSessionVerified();
+
+        Chat::sendMessage($sender, $channel, "hello @{$mention->username}!", false);
+
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
+
+    public function testSendMessageMentionOnUsernameWithSpaceReplaced(): void
+    {
+        \Event::fake();
+
+        $sender = User::factory()->create();
+        $mention = User::factory()->create(['username' => 'test user']);
+
+        $channel = Channel::factory()->type('public')->create();
+        $channel->addUser($sender);
+
+        $sender->markSessionVerified();
+
+        $mentionUsername = strtr($mention->username, [' ' => '_']);
+        Chat::sendMessage($sender, $channel, "hello @{$mentionUsername}!", false);
+        $this->artisan('notifications:send-mail');
+
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
     public function testSendPM()

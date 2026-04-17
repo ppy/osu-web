@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Jobs\Notifications;
 
 use App\Libraries\User\UsernamesForDbLookup;
-use App\Models\Chat\UserChannel;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
@@ -41,12 +40,6 @@ class ChannelMention extends ChannelMessageBase
         $username = $this->message->mention();
         $usernamesForDbLookup = UsernamesForDbLookup::make($username, trimPrefix: true);
 
-        $userId = User::whereIn('username', $usernamesForDbLookup)->pluck('user_id')->first();
-
-        return UserChannel
-            ::where('channel_id', $this->message->channel_id)
-            ->where('user_id', $userId)
-            ->pluck('user_id')
-            ->all();
+        return User::whereIn('username', $usernamesForDbLookup)->pluck('user_id')->all();
     }
 }
