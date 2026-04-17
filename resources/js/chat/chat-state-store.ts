@@ -8,7 +8,7 @@ import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import { supportedChannelTypes } from 'interfaces/chat/channel-json';
+import ChannelJson, { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -32,6 +32,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable canChatAnnounce = false;
   @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
+  @observable offerJoinChannel: ChannelJson | null = null;
   readonly publicChannels = new PublicChannels();
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
@@ -208,6 +209,11 @@ export default class ChatStateStore implements DispatchListener {
       channel_id: null,
       sendto: null,
     }), 'replace');
+  }
+
+  @action
+  setOfferJoinChannel(channel: ChannelJson | null) {
+    this.offerJoinChannel = channel;
   }
 
   @action

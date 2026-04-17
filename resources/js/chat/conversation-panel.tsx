@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BigButton from 'components/big-button';
 import Img2x from 'components/img2x';
 import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
@@ -72,6 +73,28 @@ export default class ConversationPanel extends React.Component<Record<string, ne
       return <ConversationView />;
     }
 
+    const joinChannel = core.dataStore.chatState.offerJoinChannel;
+    if (joinChannel != null) {
+      return (
+        <div className='chat-conversation-panel__no-channel'>
+          <div className='chat-conversation-panel__title'>{joinChannel.name}</div>
+          <div className='chat-conversation-panel__instructions'>
+            {joinChannel.description}
+          </div>
+          <div className='chat-conversation-panel__instructions'>
+            {trans('chat.not_joined.message')}
+          </div>
+          <div className='chat-conversation-panel__instructions'>
+            <BigButton
+              modifiers='rounded-thin'
+              props={{ onClick: this.joinChannel }}
+              text={trans('chat.not_joined.join')}
+            />
+          </div>
+        </div>
+      );
+    }
+
     // requested channel not found
     return (
       <div className='chat-conversation-panel__no-channel'>
@@ -81,4 +104,12 @@ export default class ConversationPanel extends React.Component<Record<string, ne
       </div>
     );
   }
+
+  private readonly joinChannel = () => {
+    const channel = core.dataStore.chatState.offerJoinChannel;
+
+    if (channel == null) return;
+
+    core.dataStore.chatState.addChannel(channel.channel_id);
+  };
 }
