@@ -20,6 +20,8 @@ class UsernameValidation
     // also note that totp key generator forbids `:` in username
     const ALLOWED_CHARACTERS = 'A-Za-z0-9-\[\]_';
     const ALLOWED_CHARACTERS_WITH_SPACE = self::ALLOWED_CHARACTERS.' ';
+    const LENGTH_MIN = 3;
+    const LENGTH_MAX = 15;
 
     public static function allowedName(string $username): bool
     {
@@ -70,11 +72,11 @@ class UsernameValidation
             $errors->add('username', '.username_no_spaces');
         }
 
-        if (strlen($username) < 3) {
+        if (strlen($username) < static::LENGTH_MIN) {
             $errors->add('username', '.username_too_short');
         }
 
-        if (strlen($username) > 15) {
+        if (strlen($username) > static::LENGTH_MAX) {
             $errors->add('username', '.username_too_long');
         }
 

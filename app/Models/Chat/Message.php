@@ -145,9 +145,17 @@ class Message extends Model implements ReportableInterface
     {
         static $chars = UsernameValidation::ALLOWED_CHARACTERS;
 
-        preg_match("/(?<=^|\s|'|\"|,|\.|\/)(?:@([{$chars}]+))/", $this->content, $ret);
+        preg_match("/(?<=^|\s|'|\"|,|\.|\/)(?:@([{$chars}]+))/", $this->content, $match);
 
-        return $ret[1] ?? null;
+        if (isset($match[1])) {
+            $length = strlen($match[1]);
+
+            if ($length >= UsernameValidation::LENGTH_MIN && $length <= UsernameValidation::LENGTH_MAX) {
+                return $match[1];
+            }
+        }
+
+        return null;
     }
 
     public function reportableAdditionalInfo(): ?string
