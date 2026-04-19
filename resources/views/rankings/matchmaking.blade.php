@@ -5,29 +5,34 @@
 @php
     use App\Http\Controllers\Ranking\MatchmakingController;
 
-    $params = ['mode' => $rulesetName];
+    $params = ['poolType' => $pool->type, 'mode' => $rulesetName];
 @endphp
 @extends('rankings.index', [
     'hasPager' => $scores !== null,
     'params' => [...$params, 'type' => 'matchmaking'],
     'rulesetSelectorUrlFn' => fn (string $r): string => route('rankings.matchmaking', [...$params, 'mode' => $r, 'sort' => $sort]),
-    'titlePrepend' => osu_trans('rankings.type.matchmaking').': '.$pool->getDisplayName(),
+    'titlePrepend' => osu_trans("rankings.matchmaking.pool_types.{$pool->type}").': '.$pool->getDisplayName(),
 ])
 
-@if (count($pools) > 1)
-    @section('ranking-header')
-        <div class="osu-page osu-page--ranking-info">
+@section('ranking-header')
+    <div class="osu-page osu-page--ranking-info">
+        @include('rankings._pool_type_selector', compact('params'))
+    </div>
+
+    @if (count($pools) > 1)
+        <div class="osu-page osu-page--ranking-info osu-page--ranking-info-extra">
             @include('objects._basic_select_options', ['selectOptions' => [
                 ...json_options($pool, $pools, fn ($pool) => [
                     'id' => $pool->getKey(),
                     'text' => $pool->getDisplayName(),
                 ]),
+                'poolType' => $pool->type,
                 'ruleset' => $rulesetName,
                 'type' => 'matchmaking',
             ]])
         </div>
-    @endsection
-@endif
+    @endif
+@endsection
 
 @section('scores-header')
     <div class="sort">

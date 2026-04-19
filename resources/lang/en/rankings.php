@@ -34,6 +34,10 @@ return [
     ],
 
     'matchmaking' => [
+        'pool_types' => [
+            'quick_play' => 'quick play',
+            'ranked_play' => 'ranked play',
+        ],
         'plays' => 'Plays',
         'points' => 'Points',
         'provisional' => 'Not enough matches played to accurately determine rating',
@@ -66,7 +70,7 @@ return [
         'daily_challenge' => 'daily challenge',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'matchmaking' => 'quick play',
+        'matchmaking' => 'matchmaking',
         'playlists' => 'playlists',
         'team' => 'team',
         'top_plays' => 'top plays',

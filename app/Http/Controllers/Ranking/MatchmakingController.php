@@ -18,17 +18,27 @@ class MatchmakingController extends Controller
         'rating' => [['rating', 'DESC'], ['total_points', 'DESC']],
     ];
 
-    public function show(?string $rulesetName = null, ?string $poolId = null)
+    public function show(?string $poolType = null, ?string $rulesetName = null, ?string $poolId = null)
     {
+        $poolType ??= MatchmakingPool::TYPES[0];
+
         $rulesetName ??= default_mode();
         $rulesetId = Beatmap::MODES[$rulesetName] ?? abort(422, 'invalid ruleset parameter');
 
-        $poolsQuery = MatchmakingPool::where(['ruleset_id' => $rulesetId])->orderByDesc('active')->orderByDesc('id');
+
+        $poolsQuery = MatchmakingPool::where([
+            'type' => $poolType,
+            'ruleset_id' => $rulesetId,
+        ])->orderByDesc('active')->orderByDesc('id');
 
         if ($poolId === null) {
             $pool = $poolsQuery->firstOrFail();
 
-            return ujs_redirect(route('rankings.matchmaking', ['mode' => $rulesetName, 'pool' => $pool->getKey()]));
+            return ujs_redirect(route('rankings.matchmaking', [
+                'poolType' => $poolType,
+                'mode' => $rulesetName,
+                'pool' => $pool->getKey(),
+            ]));
         }
 
         $pools = $poolsQuery->get();
