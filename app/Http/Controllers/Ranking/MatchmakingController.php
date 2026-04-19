@@ -25,7 +25,6 @@ class MatchmakingController extends Controller
         $rulesetName ??= default_mode();
         $rulesetId = Beatmap::MODES[$rulesetName] ?? abort(422, 'invalid ruleset parameter');
 
-
         $poolsQuery = MatchmakingPool::where([
             'type' => $poolType,
             'ruleset_id' => $rulesetId,
