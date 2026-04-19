@@ -35,25 +35,27 @@
 @endsection
 
 @section('scores-header')
-    <div class="sort">
-        <div class="sort__items">
-            <div class="sort__item sort__item--title">
-                {{ osu_trans('sort._') }}
+    @if ($pool->hasPoints())
+        <div class="sort">
+            <div class="sort__items">
+                <div class="sort__item sort__item--title">
+                    {{ osu_trans('sort._') }}
+                </div>
+                @foreach (MatchmakingController::SORTS as $newSort => $_dbColumns)
+                    <a
+                        class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort === $sort]) }}"
+                        href="{{ route('rankings.matchmaking', [...$params, 'pool' => $pool->getKey(), 'sort' => $newSort]) }}"
+                    >
+                        {{ osu_trans("rankings.matchmaking.{$newSort}") }}
+                    </a>
+                @endforeach
             </div>
-            @foreach (MatchmakingController::SORTS as $newSort => $_dbColumns)
-                <a
-                    class="{{ class_with_modifiers('sort__item', 'button', ['active' => $newSort === $sort]) }}"
-                    href="{{ route('rankings.matchmaking', [...$params, 'pool' => $pool->getKey(), 'sort' => $newSort]) }}"
-                >
-                    {{ osu_trans("rankings.matchmaking.{$newSort}") }}
-                </a>
-            @endforeach
         </div>
-    </div>
+    @endif
 @endsection
 
 @section('scores')
-    <div class="ranking-page-grid ranking-page-grid--matchmaking">
+    <div class="ranking-page-grid ranking-page-grid--{{ $pool->type }}">
         <div class="ranking-page-grid-item ranking-page-grid-item--header">
             <div class="ranking-page-grid-item__content">
                 <div class="ranking-page-grid-item__col">
@@ -66,9 +68,11 @@
                 <div class="ranking-page-grid-item__col">
                     {{ osu_trans('rankings.matchmaking.plays') }}
                 </div>
-                <div class="{{ class_with_modifiers('ranking-page-grid-item__col', ['number-focus' => $sort === 'points']) }}">
-                    {{ osu_trans('rankings.matchmaking.points') }}
-                </div>
+                @if ($pool->hasPoints())
+                    <div class="{{ class_with_modifiers('ranking-page-grid-item__col', ['number-focus' => $sort === 'points']) }}">
+                        {{ osu_trans('rankings.matchmaking.points') }}
+                    </div>
+                @endif
                 <div class="{{ class_with_modifiers('ranking-page-grid-item__col', ['number-focus' => $sort === 'rating']) }}">
                     {{ osu_trans('rankings.matchmaking.rating') }}
                 </div>
@@ -92,12 +96,14 @@
                     <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number">
                         {{ i18n_number_format($score->elo_data['contest_count']) }}
                     </div>
-                    <div class="{{ class_with_modifiers(
-                        'ranking-page-grid-item__col',
-                        $sort === 'points' ? 'number-focus' : 'number',
-                    ) }}">
-                        {{ i18n_number_format($score->total_points) }}
-                    </div>
+                    @if ($pool->hasPoints())
+                        <div class="{{ class_with_modifiers(
+                            'ranking-page-grid-item__col',
+                            $sort === 'points' ? 'number-focus' : 'number',
+                        ) }}">
+                            {{ i18n_number_format($score->total_points) }}
+                        </div>
+                    @endif
                     <div class="{{ class_with_modifiers(
                         'ranking-page-grid-item__col',
                         $sort === 'rating' ? 'number-focus' : 'number',

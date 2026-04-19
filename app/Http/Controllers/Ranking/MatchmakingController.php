@@ -47,7 +47,7 @@ class MatchmakingController extends Controller
         $query = $pool->allUserStats()->with('user.team')->default();
 
         $sort = get_string(request('sort'));
-        if (!array_key_exists($sort, static::SORTS)) {
+        if (!array_key_exists($sort, static::SORTS) || !$pool->hasPoints()) {
             $sort = 'rating';
         }
         foreach (static::SORTS[$sort] as $dbSort) {

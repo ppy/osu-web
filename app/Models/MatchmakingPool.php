@@ -46,4 +46,9 @@ class MatchmakingPool extends Model
 
         return $prefix.$name;
     }
+
+    public function hasPoints(): bool
+    {
+        return $this->type === 'quick_play';
+    }
 }
