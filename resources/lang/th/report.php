@@ -6,41 +6,41 @@
 return [
     'beatmapset' => [
         'button' => 'รายงาน',
-        'title' => 'คุณต้องการรายงานบีทแมพของ :username หรือไม่?',
+        'title' => 'รายงานบีทแมพของ :username หรือไม่?',
     ],
 
     'beatmapset_discussion_post' => [
         'button' => 'รายงาน',
-        'title' => 'รายงานโพสต์ของ :username?',
+        'title' => 'รายงานโพสต์ของ :username หรือไม่?',
     ],
 
     'comment' => [
         'button' => 'รายงาน',
-        'title' => 'รายงานคอมเมนท์ของ :username?',
+        'title' => 'รายงานคอมเมนท์ของ :username หรือไม่?',
     ],
 
     'forum_post' => [
         'button' => 'รายงาน',
-        'title' => 'รายงานโพสต์​ของ :username? ',
+        'title' => 'รายงานโพสต์​ของ :username หรือไม่? ',
     ],
 
     'message' => [
         'button' => 'รายงานข้อความ',
-        'title' => 'รายงานข้อความของ:username?',
+        'title' => 'รายงานข้อความของ :username หรือไม่?',
     ],
 
     'scores' => [
         'button' => 'รายงานผลคะแนน',
-        'title' => 'รรายงานผลคะแนนของ :username?',
+        'title' => 'รายงานผลคะแนนของ :username หรือไม่?',
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'รายงานทีม',
+        'title' => 'รายงานทีมของ :username หรือไม่?',
     ],
 
     'user' => [
         'button' => 'รายงาน',
-        'title' => 'รายงาน :username?',
+        'title' => 'รายงาน :username หรือไม่?',
     ],
 ];

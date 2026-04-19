@@ -26,7 +26,7 @@ return [
             'deleted' => 'Inkluder slettede diskussioner',
             'mode' => 'Beatmap tilstand',
             'only_unresolved' => 'Vis kun uløste diskussioner',
-            'show_review_embeds' => '',
+            'show_review_embeds' => 'Vis anmeldelses-indlæg',
             'types' => 'Meddelelsestyper',
             'username' => 'Brugernavn',
 
@@ -67,10 +67,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Tejkker for nye opdateringer...',
+        'has_updates' => 'Diskussionen har opdateringer, klik her for at genopfriske.',
+        'no_updates' => 'Ingen opdateringer.',
+        'updating' => 'Opdaterer...',
     ],
 
     'reply' => [

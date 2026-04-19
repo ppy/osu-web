@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'reset' => '',
+            'reset' => 'reset',
             'rules' => 'Zorg ervoor dat uw avatar voldoet aan :link. <br/> Dit betekent dat deze <strong> geschikt moet zijn voor alle leeftijden </strong>. d.w.z. geen naaktheid, godslastering of suggestieve inhoud.',
             'rules_link' => 'de community regels',
         ],
@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
         'beatmapset_disqualify' => 'ontvang meldingen voor wanneer beatmaps van de volgende modes zijn gediskwalificeerd',
         'comment_reply' => 'ontvang meldingen voor reacties op uw reacties',
-        'news_post' => '',
+        'news_post' => 'Ontvang meldingen voor nieuwsberichten',
         'title' => 'Meldingen',
         'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
 
@@ -89,12 +89,12 @@ return [
             'beatmap_owner_change' => 'gast moeilijkheid',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privéberichten',
-            'channel_team' => '',
+            'channel_team' => 'Team chat berichten',
             'comment_new' => 'nieuwe reacties',
             'forum_topic_reply' => 'topic antwoord',
             'mail' => 'e-mail',
             'mapping' => 'beatmap mapper',
-            'news_post' => '',
+            'news_post' => 'Nieuws berichten',
             'push' => 'push',
         ],
     ],
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'verberg waarschuwingen voor expliciete inhoud in beatmaps',
         'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
         'title' => 'Opties',
@@ -129,7 +130,7 @@ return [
     'privacy' => [
         'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
         'hide_online' => 'verberg je online aanwezigheid',
-        'hide_online_info' => '',
+        'hide_online_info' => 'Deze maps naar de "verschijnen offline" in osu!lazer',
         'title' => 'Privacy',
     ],
 

@@ -245,6 +245,7 @@ return [
             'prompt' => 'הקלד מילות מפתח...',
             'login_required' => 'התחבר כדי לחפש.',
             'options' => 'אפשרויות חיפוש נוספות',
+            'rank_filter_note' => '',
             'supporter_filter' => 'סינון לפי :filters דורש תג osu!supporter פעיל',
             'not-found' => 'אין תוצאות',
             'not-found-quote' => '... לא, לא נמצא כלום.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'סינון לפי :filters דורש :link פעיל',
                 'link_text' => 'תג osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

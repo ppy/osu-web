@@ -336,6 +336,9 @@ CAPTCHA認証を成功させてから再試行してください。
                     'title' => 'リプレイの再生回数',
                     'count_label' => 'リプレイ再生回数',
                 ],
+                'score_replay_stats' => [
+                    'title' => '最も視聴されたリプレイ',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => '最近のKudosu履歴',
@@ -475,7 +478,7 @@ CAPTCHA認証を成功させてから再試行してください。
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'クイックプレイ',
         ],
 
         'not_found' => [

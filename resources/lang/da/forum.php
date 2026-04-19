@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Fora',
         'latest_post' => 'Seneste Opslag',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
         'posted_at' => 'slået op på :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'skrevet af :username i :forum',
 
         'actions' => [
             'destroy' => 'Slet opslag',
@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
-        'go_to_unread' => '',
+        'go_to_unread' => 'se første uløste indlæg',
         'has_replied' => 'Du har besvaret dette emne',
         'in_forum' => 'i :forum',
         'latest_post' => ':when af :user',
@@ -251,69 +251,6 @@ return [
             'feature_votes' => 'stjerneprioritet',
             'replies' => 'svar',
             'views' => 'visninger',
-        ],
-
-        'issue_tag_added' => [
-            'to_0' => 'Fjern "tilføjet" tag',
-            'to_0_done' => 'Fjern "tilføjet" tag',
-            'to_1' => 'Tilføj "tilføjet" tag',
-            'to_1_done' => 'Tilføj "tilføjet" tag',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Fjern "tildelt" tag',
-            'to_0_done' => 'Fjern "tildelt" tag',
-            'to_1' => 'Tilføj "tildelt" tag',
-            'to_1_done' => 'Tilføj "tildelt" tag',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Fjern "bekræftet" tag',
-            'to_0_done' => 'Fjern "bekræftet" tag',
-            'to_1' => 'Tilføj "bekræftet" tag',
-            'to_1_done' => 'Tilføj "bekræftet" tag',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Fjern "duplikeret" tag',
-            'to_0_done' => 'Fjern "duplikeret" tag',
-            'to_1' => 'Tilføj "duplikeret" tag',
-            'to_1_done' => 'Tilføj "duplikeret" tag',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Fjern "ugyldigt" tag',
-            'to_0_done' => 'Fjern "ugyldigt" tag',
-            'to_1' => 'Tilføj "ugyldigt" tag',
-            'to_1_done' => 'Tilføj "ugyldigt" tag',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Fjern "løst" tag',
-            'to_0_done' => 'Fjern "løst" tag',
-            'to_1' => 'Tilføj "løst" tag',
-            'to_1_done' => 'Tilføj "løst" tag',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
         ],
 
         'lock' => [

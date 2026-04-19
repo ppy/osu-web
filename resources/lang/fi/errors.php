@@ -22,10 +22,6 @@ return [
             'generic' => 'Virhe. Yritä päivittää sivu.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Virheellinen pelimoodi annettu.',
-        'standard_converts_only' => 'Tuloksia valitulle pelimuodolle ei löydy tässä vaikeustasossa.',
-    ],
     'checkout' => [
         'generic' => 'Ostoksesi valmistelussa tapahtui virhe.',
     ],

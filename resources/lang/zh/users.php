@@ -92,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '成员按游戏模式筛选',
+        'by_game_mode' => '按游戏模式筛选成员',
     ],
 
     'force_reactivation' => [
@@ -150,9 +150,9 @@ return [
         'login_link' => '点击登录',
         'login_text' => '登录',
         'username' => '游客',
-        'error' => '登录以继续',
+        'error' => '登录以继续。',
     ],
-    'logout_confirm' => '确定要退出吗？o(TヘTo)',
+    'logout_confirm' => '确定要退出登录吗？o(TヘTo)',
     'report' => [
         'button_text' => '举报',
         'comments' => '附加信息',
@@ -193,12 +193,12 @@ return [
     ],
     'show' => [
         'age' => ':age 岁',
-        'change_avatar' => '点击以更换头像',
+        'change_avatar' => '点击以更换头像！',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册于 :date',
-        'lastvisit' => '最后活跃：:date',
+        'lastvisit' => '最后活跃于 :date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '手滑打错字了？（或者该用户已被封禁）',
         'origin_country' => '来自 :country',
@@ -332,6 +332,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => '回放被观看记录',
                     'count_label' => '回放被观看次数',
+                ],
+                'score_replay_stats' => [
+                    'title' => '被观看次数最多的回放',
                 ],
             ],
             'kudosu' => [

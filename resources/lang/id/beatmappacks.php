@@ -12,7 +12,7 @@ return [
 
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
-            'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas paket yang kamu peroleh ke dalam folder Songs yang terdapat pada direktori osu! milikmu.',
+            'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak konten paket ini ke folder Songs kamu dan osu! akan melakukan sisanya untukmu.',
         ],
     ],
 
@@ -20,11 +20,11 @@ return [
         'created_by' => 'oleh :author',
         'download' => 'Unduh',
         'item' => [
-            'cleared' => 'telah dituntaskan',
+            'cleared' => 'sudah dituntaskan',
             'not_cleared' => 'belum dituntaskan',
         ],
         'no_diff_reduction' => [
-            '_' => ':link tidak dapat digunakan untuk menuntaskan paket ini.',
+            '_' => ':link tidak bisa digunakan untuk menuntaskan paket ini.',
             'link' => 'Mod pengurang kesulitan',
         ],
     ],

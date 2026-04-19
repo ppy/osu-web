@@ -100,6 +100,11 @@ class ContestEntry extends Model
         return $query->orderBy($orderValue, 'desc');
     }
 
+    public function getTitleAttribute()
+    {
+        return $this->contest->unmasked ? $this->name : $this->masked_name;
+    }
+
     public function thumbnail(): ?string
     {
         if (!$this->contest->hasThumbnails()) {

@@ -224,6 +224,7 @@ class ScoresController extends Controller
             'beatmap.owners',
             'beatmapset',
             'rank_global',
+            'replay_views',
         ], $userIncludes));
 
         if (is_json_request()) {

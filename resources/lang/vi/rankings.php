@@ -57,7 +57,7 @@ return [
     'playlists' => [
         'charts' => 'Nổi bật (cũ)',
         'featured' => 'nổi bật',
-        'season_room' => '',
+        'season_room' => 'phòng mùa giải',
         'seasons' => 'mùa',
     ],
 
@@ -74,7 +74,7 @@ return [
 
     'seasons' => [
         'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
-        'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
+        'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều danh sách phát được thêm vào).',
         'room_count' => 'Số danh sách phát',
         'summary' => 'Xem tổng kết mùa',
         'url' => 'Hiện thêm thông tin về mùa đó.',

@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Паглядзець усе вынікі пошуку сярод каманд',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Спампаваць osu!',
             'support' => 'Падтрымаць osu!',
             'store' => 'Крама osu!',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

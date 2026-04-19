@@ -27,7 +27,7 @@ return [
         'title' => 'Søg',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Se flere søgeresultater for sange af fremhævede kunstnere',
         ],
         'beatmapset' => [
             'login_required' => 'Log ind for at søge efter brugere
@@ -47,7 +47,7 @@ return [
             'label' => [
                 'forum' => 'søg i forummerne',
                 'forum_children' => 'inkluder subforummer',
-                'include_deleted' => '',
+                'include_deleted' => 'inkluder slettede opslag',
                 'topic_id' => 'emne #',
                 'username' => 'forfatter',
             ],
@@ -55,16 +55,17 @@ return [
 
         'mode' => [
             'all' => 'alt',
-            'artist_track' => '',
+            'artist_track' => 'fremhævet kunster spor',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'hold',
             'user' => 'bruger',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'login_required' => 'Log ind for at søge efter hold',
+            'more_simple' => 'Vis flere hold søgeresultater',
         ],
 
         'user' => [
@@ -85,17 +86,17 @@ return [
 
     'download' => [
         'action_lazer_info' => 'tjek denne side for mere information',
-        'download' => '',
+        'download' => 'Hent',
         'for_os' => 'for :os',
         'macos-fallback' => 'macOS brugere',
         'mirror' => 'mirror',
         'or' => 'eller',
         'os_version_or_later' => ':os_version eller nyere',
         'other_os' => 'andre platforme',
-        'quick_start_guide' => '',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'quick_start_guide' => 'opstartsvejledning',
+        'stable_text' => 'hvis du leder efter den ældre udgave',
+        'tagline_1' => 'lad os få dig',
+        'tagline_2' => 'i gang!',
         'video-guide' => 'video-guide',
 
         'help' => [
@@ -142,20 +143,23 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Daglige Udfordring Beatmap',
             'new' => 'Nye Rangerede Beatmaps',
             'popular' => 'Populære Beatmaps',
             'by_user' => 'af :user',
-            'resets' => '',
+            'resets' => 'nulstiller :ends',
         ],
         'buttons' => [
             'download' => 'Hent osu!',
             'support' => 'Støt osu!',
             'store' => 'osu!store',
         ],
+        'livestream' => [
+            'title' => 'Fremhævet Livestream',
+        ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Åbn administratorkonsol',
             ],
         ],
     ],

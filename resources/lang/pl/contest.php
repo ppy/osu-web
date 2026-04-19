@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach po tym, jak twoje konto zostało ograniczone lub uciszone.',
         'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
+        'allowed_extensions' => 'przymuje pliki:types',
+        'max_size' => 'Maksymalny rozmiar: :limit',
+        'required_dimensions' => 'Wymiary muszą być :widthx:height',
         'download' => 'Pobierz plik .osz',
-
-        'wrong_type' => [
-            'art' => 'W tym konkursie dozwolone są wyłącznie pliki o rozszerzeniach .jpg i .png.',
-            'beatmap' => 'W tym konkursie dozwolone są wyłącznie pliki o rozszerzeniu .osu.',
-            'music' => 'W tym konkursie dozwolone są wyłącznie pliki o rozszerzeniu .mp3.',
-        ],
-
+        'wrong_file_type' => 'Tylko pliki :types są akceptowalne w tym konkursie',
         'wrong_dimensions' => 'Zgłoszenia do tego konkursu muszą mieć rozdzielczość :widthx:height',
         'too_big' => 'Maksymalny rozmiar pliku ze zgłoszeniem dla tego konkursu to :limit.',
     ],

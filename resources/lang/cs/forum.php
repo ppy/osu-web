@@ -44,8 +44,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Opravdu chcete příspěvek odstranit?',
-        'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
+        'confirm_destroy' => 'Opravdu chceš tento příspěvek odstranit?',
+        'confirm_restore' => 'Opravdu chceš tento příspěvek obnovit?',
         'edited' => 'Naposledy upravil :user :when, upraveno celkem :count_delimited krát.',
         'posted_at' => 'publikováno :when',
         'posted_by_in' => 'zveřejněno uživatelem :username v :forum',
@@ -76,8 +76,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Opravdu odstranit téma?',
-        'confirm_restore' => 'Opravdu checeš obnovit téma?',
+        'confirm_destroy' => 'Opravdu chceš toto téma odstranit?',
+        'confirm_restore' => 'Opravdu chceš toto téma obnovit?',
         'deleted' => 'odstraněné téma',
         'go_to_latest' => 'zobrazit nejnovější příspěvek',
         'go_to_unread' => 'zobrazit první nepřečtený příspěvek',
@@ -251,69 +251,6 @@ return [
             'feature_votes' => 'priorita hvězd',
             'replies' => 'odpovědi',
             'views' => 'zobrazení',
-        ],
-
-        'issue_tag_added' => [
-            'to_0' => 'Odebrat označení "přidáno"',
-            'to_0_done' => 'Odebráno označení "přidáno"',
-            'to_1' => 'Přidat označení "přidáno"',
-            'to_1_done' => 'Přidáno označení "přidáno"',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Odebrat označení "přiděleno"',
-            'to_0_done' => 'Odebráno označení "přiděleno"',
-            'to_1' => 'Přidat označení "přiděleno"',
-            'to_1_done' => 'Přidáno označení "přiděleno"',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Odebrat označení "potvrzeno"',
-            'to_0_done' => 'Odebráno označení "potvrzeno"',
-            'to_1' => 'Přidat označení "potvrzeno"',
-            'to_1_done' => 'Přidáno označení "potrvrzeno"',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Odebrat označení "duplicitní"',
-            'to_0_done' => 'Odebráno označení "duplicitní"',
-            'to_1' => 'Přidat označení "duplicitní"',
-            'to_1_done' => 'Přidáno označení "duplicitní"',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Odebrat označení "neplatný"',
-            'to_0_done' => 'Odebráno označení "neplatný"',
-            'to_1' => 'Přidat označení "neplatný"',
-            'to_1_done' => 'Přidáno označení "neplatný"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Odebrat označení "vyřešeno"',
-            'to_0_done' => 'Odebráno označení "vyřešeno"',
-            'to_1' => 'Přidat oznaění "vyřešeno"',
-            'to_1_done' => 'Přidáno označení "vyřešeno"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Odebrat označení "osu!lazer"',
-            'to_0_done' => 'Odebráno označení "osu!lazer"',
-            'to_1' => 'Přidat označení "osu!lazer"',
-            'to_1_done' => 'Přidáno označení "osu!lazer"',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Odebrat označení "osu!stable"',
-            'to_0_done' => 'Odebráno označení "osu!stable"',
-            'to_1' => 'Přidat označení "osu!stable"',
-            'to_1_done' => 'Přidáno označení "osu!stable"',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Odebrat označení "osu!web"',
-            'to_0_done' => 'Odebráno označení "osu!web"',
-            'to_1' => 'Přidat označení "osu!web"',
-            'to_1_done' => 'Přidáno označení "osu!web"',
         ],
 
         'lock' => [

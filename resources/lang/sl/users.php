@@ -333,6 +333,9 @@ return [
                     'title' => 'Zgodovina gledanih replayev',
                     'count_label' => 'Gledanih replayev',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nedavna zgodovina Kudosu točk',

@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Veuillez saisir le code de votre application d\'authentification.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Vous pouvez également :link.',
+                'link' => 'vous déconnecter',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Si vous ne pouvez pas accéder à votre application, :link.',
+                'link' => 'vous pouvez vous authentifier à l\'aide de votre adresse e-mail',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Code de vérification incorrect.',
         'retries_exceeded' => 'Code de vérification incorrect. Limite de tentatives dépassées, envoi d\'un nouvel e-mail de vérification.',
         'reissued' => 'Un nouveau code de vérification a été généré et envoyé, merci de vérifier votre boîte mail.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'Ce code d\'authentification a déjà été utilisé. Veuillez patienter et en utiliser un nouveau.',
+        'totp_gone' => 'Le jeton d\'authentification a été supprimé, vous devrez désormais vous authentifier par e-mail. Un e-mail de vérification vous a été envoyé.',
         'unknown' => 'Un problème inconnu est survenu, nouvel e-mail de vérification envoyé.',
     ],
 ];

@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => 'Chat mention',
+
+                'public' => [
+                    'channel_mention' => ':username mentioned you in :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'mentioned in :name',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'New team message',
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'News',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'You\'re now guest of beatmap ":title"',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'You\'ve received a new message from :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => ':username mentioned you in :name ":title"',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'There is a new message in team ":name"',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'News ":title" has new comments',
-            ],
-
-            'news_post' => [
-                'news_post_new' => 'News (:series): ":title"',
             ],
         ],
 

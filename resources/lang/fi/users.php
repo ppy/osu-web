@@ -333,6 +333,9 @@ return [
                     'title' => 'Uusintojen katsomishistoria',
                     'count_label' => 'Uusintoja katsottu',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Viimeaikainen kudosuhistoria',

@@ -22,12 +22,12 @@ return [
             '_' => '',
 
             'artist_track' => '',
-            'beatmapset' => '',
+            'beatmapset' => 'Haritalar',
             'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'other' => 'Diğer',
+            'team' => 'Takımlar',
+            'user' => 'Oyuncular',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

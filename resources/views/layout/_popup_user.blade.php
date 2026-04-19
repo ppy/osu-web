@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $currentUser = Auth::user();
+    $currentUser ??= Auth::user();
     $currentUserUrl = route('users.show', ['user' => $currentUser->getKey()]);
 
     $teamId = $currentUser->team?->getKey() ?? $currentUser->teamApplication?->team_id;
@@ -15,8 +15,7 @@
 >
     <a
         href="{{ $currentUserUrl  }}"
-        class="simple-menu__header simple-menu__header--link js-current-user-cover"
-        {!! background_image($currentUser->cover()->url()) !!}
+        class="simple-menu__header simple-menu__header--link u-current-user-cover"
     >
         <img class="simple-menu__header-icon" src="/images/icons/profile.svg" alt="">
         <div class="u-relative">{{ $currentUser->username }}</div>

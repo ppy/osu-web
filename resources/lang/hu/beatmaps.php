@@ -245,6 +245,7 @@ return [
             'prompt' => 'írj kulcsszavakat...',
             'login_required' => 'Jelentkezz be a kereséshez.',
             'options' => 'További Keresési Beállítások',
+            'rank_filter_note' => '',
             'supporter_filter' => ':filters általi szűrés aktív osu!supporter cím-et igényel',
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => ':filters általi szűrés aktív :link-et igényel',
                 'link_text' => 'osu!supporter cím',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'сакриј упозорења за експлицитан садржај у мапама',
         'beatmapset_title_show_original' => 'покажи метаподатке ове мапе на оригиналном језику',
         'title' => 'Опције',

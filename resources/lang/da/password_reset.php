@@ -16,8 +16,10 @@ return [
         'invalid' => 'Uventet fejl i verifikationskode.',
         'is_privileged' => 'Kontakt peppy lulz.',
         'missing_key' => 'Krævet.',
+        'too_many_requests' => 'Anmodning om nulstilling af adgangskode har nået grænsen. Kontakst venligst support for at gendanne konto.',
         'too_many_tries' => 'For mange mislykkede forsøg.',
         'user_not_found' => 'Brugeren eksisterer ikke.',
+        'wait_resend' => 'Vent et øjeblik.',
         'wrong_key' => 'Forkert kode.',
     ],
 
@@ -37,7 +39,7 @@ return [
         'username' => 'Indtast email-adresse eller brugernavn',
 
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Din konto har ikke været brugt i lang tid. For at sikre din kontosikkerhed, skal du nulstille din adgangskode.",
         ],
         'support' => [
             '_' => 'Har du brug for yderligere assistance? Kontakt os via vores :button.',

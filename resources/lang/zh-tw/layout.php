@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => '資訊',
             'discussions' => '討論',
-            'versions' => '',
+            'versions' => '版本紀錄',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => '摸圖',
             'playlists' => '歌單',
-            'quickplay' => '',
+            'quickplay' => '快速遊玩',
             'realtime' => '多人遊戲',
             'show' => '資訊',
         ],

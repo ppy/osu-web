@@ -77,9 +77,9 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map u následujících módů',
-        'beatmapset_disqualify' => 'dostávat notifikace kdy mapy následujících módů jsou diskvalifikované',
-        'comment_reply' => 'dostávat notifikace na odpovědi na vaše komentáře',
+        'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map následujících módů',
+        'beatmapset_disqualify' => 'dostávat oznámení, když beatmapy následujících módů jsou diskvalifikované',
+        'comment_reply' => 'dostávat oznámení na odpovědi k tvým komentářům',
         'news_post' => 'dostávat oznámení na články o novinkách',
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'zobrazovat anime záhlaví beatmap',
         'beatmapset_show_nsfw' => 'skrýt varování před explicitním obsahem v beatmapách',
         'beatmapset_title_show_original' => 'zobrazovat metadata beatmap v původním jazyce',
         'title' => 'Možnosti',
@@ -128,7 +129,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
-        'hide_online' => 'skrýt váš online status',
+        'hide_online' => 'skrýt tvůj online status',
         'hide_online_info' => 'toto je stejné, jako "neviditelný" režim v osu!lazer',
         'title' => 'Soukromí',
     ],

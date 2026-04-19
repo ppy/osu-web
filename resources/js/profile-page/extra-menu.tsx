@@ -25,12 +25,12 @@ export default function ExtraMenu(props: Props) {
       title={trans('common.buttons.show_more_options')}
     >
       <PopupMenu>
-        {(dismiss) => (
+        {(state) => (
           <div className='simple-menu'>
             <a
               className='simple-menu__item'
               href={giftSupporterTagUrl(props.user)}
-              onClick={dismiss}
+              onClick={state.dismiss}
             >
               <span className='fas fa-gift' />
               {` ${trans('users.card.gift_supporter')}`}
@@ -38,14 +38,14 @@ export default function ExtraMenu(props: Props) {
 
             <BlockButton
               modifiers='inline'
-              onClick={dismiss}
+              onClick={state.dismiss}
               userId={props.user.id}
               wrapperClass='simple-menu__item'
             />
             <ReportReportable
               className='simple-menu__item'
               icon
-              onFormOpen={dismiss}
+              onFormOpen={state.dismiss}
               reportableId={props.user.id.toString()}
               reportableType='user'
               user={props.user}

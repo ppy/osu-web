@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Daha fazla takım arama sonucu gör',
         ],
 
@@ -83,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'daha fazla bilgi için bu sayfaya göz atın',
-        'download' => '',
+        'download' => 'İndir',
         'for_os' => ':os için',
         'macos-fallback' => 'macOS kullanıcıları',
         'mirror' => 'alternatif',
@@ -91,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version ve üzeri',
         'other_os' => 'diğer platformlar',
         'quick_start_guide' => 'hızlı başlangıç kılavuzu',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'eski sürümü arıyorsanız',
+        'tagline_1' => 'hadi',
+        'tagline_2' => 'başlayalım!',
         'video-guide' => 'video kılavuzu',
 
         'help' => [
@@ -150,6 +151,9 @@ return [
             'download' => 'osu!\'yu indir',
             'support' => 'osu!\'yu destekle',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

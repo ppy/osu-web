@@ -18,13 +18,9 @@
     .full-size();
     content: "";
     border-radius: inherit;
-    background-image: var(--bg);
+    background-image: image-set(var(--bg) 1x, var(--bg-2x, var(--bg)) 2x);
     background-position: center;
     background-size: cover;
-
-    @media @highdpi {
-      background-image: var(--bg-2x, var(--bg));
-    }
   }
 
   &--full {

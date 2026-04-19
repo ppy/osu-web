@@ -245,6 +245,7 @@ return [
             'prompt' => 'اكتب الكلمات المفتاحية...',
             'login_required' => 'سجل الدخول للبحث.',
             'options' => 'خيارات بحث اكثر',
+            'rank_filter_note' => '',
             'supporter_filter' => 'التصفية بحسب :filters تحتاج الى شارة osu!supporter فعالة',
             'not-found' => 'لا نتائج',
             'not-found-quote' => '... لا, لا يوجد شيء.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'تصفية بحسب :filters تحتاج الى تفعيل :link',
                 'link_text' => 'شارة osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

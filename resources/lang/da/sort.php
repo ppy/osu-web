@@ -32,15 +32,15 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Oprettet',
         'feature_votes' => 'Stjerne prioritet',
         'new' => 'Seneste svar',
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'relevance' => 'Relevans',
+        'name' => 'Navn',
+        'short-name' => 'Kort Navn',
     ],
 
     'users' => [

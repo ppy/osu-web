@@ -2,10 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as d3 from 'd3';
-import { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
+import BeatmapExtendedJson, { isValid as isBeatmapExtendedJson } from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import Ruleset, { rulesetIdToName, rulesets } from 'interfaces/ruleset';
+import Ruleset, { rulesets } from 'interfaces/ruleset';
 import WithBeatmapOwners from 'interfaces/with-beatmap-owners';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
@@ -31,17 +31,20 @@ const difficultyTextColourSpectrum = d3.scaleLinear<string>()
   .range(['#F6F05C', '#FF8068', '#FF4E6F', '#C645B8', '#6563DE', '#18158E'])
   .interpolate(d3.interpolateRgb.gamma(2.2));
 
-interface FindDefaultParams<T> {
-  group?: Map<Ruleset, T[]>;
-  items?: T[];
-  mode?: Ruleset;
-}
+type FindDefaultParams<T> = {
+  group: Map<Ruleset, T[]>;
+  items?: undefined;
+} | {
+  items: T[];
+};
 
-export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
+export function findDefault<T extends BeatmapJson | BeatmapExtendedJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
+    if (params.items.length === 0) return null;
+
     let currentDiffDelta: number | null = null;
     let currentItem: T | null = null;
-    const targetDiff = userRecommendedDifficulty(params.mode ?? rulesetIdToName[0]);
+    const targetDiff = userRecommendedDifficulty(params.items[0].mode);
 
     for (const item of params.items) {
       const diffDelta = Math.abs(item.difficulty_rating - targetDiff);
@@ -52,15 +55,12 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
       }
     }
 
-    return currentItem ?? _.last(params.items) ?? null;
+    return currentItem ?? params.items[params.items.length - 1];
   }
 
-  if (params.group == null) return null;
-
-  const findModes = params.mode == null ? userModes() : [params.mode];
-
-  for (const m of findModes) {
-    const beatmap = findDefault({ items: params.group.get(m) ?? [], mode: m });
+  for (const findRuleset of userModes()) {
+    const beatmaps = (params.group.get(findRuleset) ?? []).filter((b) => !('convert' in b) || b.convert !== true);
+    const beatmap = findDefault({ items: beatmaps });
 
     if (beatmap != null) return beatmap;
   }
@@ -119,21 +119,6 @@ export function hasGuestOwners(beatmap: WithBeatmapOwners<BeatmapJson>, beatmaps
 
 export function isOwner(userId: number, beatmap: WithBeatmapOwners<BeatmapJson>) {
   return beatmap.owners.some((owner) => owner.id === userId);
-}
-
-export function rulesetName(id: number): Ruleset {
-  switch (id) {
-    case 0:
-      return 'osu';
-    case 1:
-      return 'taiko';
-    case 2:
-      return 'fruits';
-    case 3:
-      return 'mania';
-    default:
-      throw new Error('invalid ruleset id passed');
-  }
 }
 
 export function shouldShowPp(beatmap: BeatmapJson) {

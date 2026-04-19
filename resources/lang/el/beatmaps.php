@@ -245,6 +245,7 @@ return [
             'prompt' => 'πληκτρολογήστε λέξεις-κλειδιά...',
             'login_required' => 'Συνδεθείτε για να αναζητήσετε.',
             'options' => 'Περισσότερες Επιλογές Αναζήτησης',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Το φιλτράρισμα βάσει :filters απαιτεί ένα ενεργό osu!supporter tag',
             'not-found' => 'κανένα αποτέλεσμα',
             'not-found-quote' => '... όχι, τίποτα δεν βρέθηκε.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Το φιλτράρισμα κατά :filters απαιτεί ένα ενεργό :link',
                 'link_text' => 'osu!supporter tag',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

@@ -43,19 +43,19 @@
     }
 
     .@{_top}--artists & {
-      .at2x-simple("~@images/headers/featured-artists.jpg");
+      .at2x("~@images/headers/featured-artists.jpg");
     }
 
     .@{_top}--beatmappacks & {
-      .at2x-simple("~@images/headers/beatmappacks.jpg");
+      .at2x("~@images/headers/beatmappacks.jpg");
     }
 
     .@{_top}--changelog & {
-      .at2x-simple("~@images/headers/changelog.jpg");
+      .at2x("~@images/headers/changelog.jpg");
     }
 
     .@{_top}--chat & {
-      .at2x-simple("~@images/headers/chat.jpg");
+      .at2x("~@images/headers/chat.jpg");
       filter: hue-rotate(115deg); // fix colour
 
       &::before {
@@ -68,53 +68,49 @@
     }
 
     .@{_top}--forum & {
-      background-image: var(--forum-cover);
-
-      @media @highdpi {
-        background-image: var(--forum-cover-2x);
-      }
+      .at2x-simple-var(--forum-cover);
     }
 
     .@{_top}--forums-index & {
-      .at2x-simple("~@images/headers/forum-index.jpg");
+      .at2x("~@images/headers/forum-index.jpg");
     }
 
     .@{_top}--help & {
-      .at2x-simple("~@images/headers/wiki.jpg");
+      .at2x("~@images/headers/wiki.jpg");
     }
 
     .@{_top}--mp-history & {
-      .at2x-simple("~@images/headers/mp-history.jpg");
+      .at2x("~@images/headers/mp-history.jpg");
     }
 
     .@{_top}--news & {
-      .at2x-simple("~@images/headers/news.png");
+      .at2x("~@images/headers/news.png");
     }
 
     .@{_top}--password-reset & {
-      .at2x-simple("~@images/headers/password-reset.jpg");
+      .at2x("~@images/headers/password-reset.jpg");
     }
 
     .@{_top}--rankings & {
-      .at2x-simple("~@images/headers/rankings.jpg");
+      .at2x("~@images/headers/rankings.jpg");
     }
 
     .@{_top}--search & {
-      .at2x-simple("~@images/headers/search.jpg");
+      .at2x("~@images/headers/search.jpg");
     }
 
     .@{_top}--store & {
       opacity: 0.7;
-      .at2x-simple("~@images/headers/store.png");
+      .at2x("~@images/headers/store.png");
     }
 
     .@{_top}--supporter & {
       opacity: 0.2;
-      .at2x-simple("~@images/headers/supporter.jpg");
+      .at2x("~@images/headers/supporter.jpg");
     }
 
     .@{_top}--tournaments & {
-      .at2x-simple("~@images/headers/tournament-v2.jpg");
+      .at2x("~@images/headers/tournament-v2.jpg");
     }
 
     .@{_top}--users &,

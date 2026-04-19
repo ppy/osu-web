@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Mostra més resultats de la cerca d\'equip',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Descarrega l\'osu!',
             'support' => 'Dona suport a l\'osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => 'Directes destacats',
         ],
         'show' => [
             'admin' => [

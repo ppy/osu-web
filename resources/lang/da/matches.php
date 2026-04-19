@@ -12,25 +12,25 @@ return [
         'in_progress_spinner_label' => 'kamp i gang',
         'loading-events' => 'Indlæser begivenheder...',
         'winner' => ':team vinder',
-        'winner_by' => '',
+        'winner_by' => ':winner med :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'spillet blev aflyst',
+            'game_aborted_no_user' => 'spillet blev aflyst',
+            'game_completed' => 'spillet er afsluttet',
+            'game_completed_no_user' => 'spillet er afsluttet',
+            'host_changed' => ':user blev vært',
+            'host_changed_no_user' => 'værten blev ændret',
+            'player_joined' => ':user tilsluttede sig kampen',
+            'player_joined_no_user' => 'a spillet tilsluttede sig kampen',
+            'player_kicked' => ':user er blevet sparket ud fra kampen',
+            'player_kicked_no_user' => 'en spiller er blevet sparkert ud fra kampen',
+            'player_left' => ':user forlod kampen',
+            'player_left_no_user' => 'en spiller forlod kampen',
+            'room_created' => ':user oprettede kampe',
+            'room_created_no_user' => 'kampen blev oprettet',
+            'room_disbanded' => 'kampen blev opløst',
+            'room_disbanded_no_user' => 'kampen blev opløst',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Hoved-til-hoved',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Hold VS',
+            'team_versus' => 'Hold VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Freestyle',
 
         'scoring-type' => [
             'score' => 'Højeste Score',

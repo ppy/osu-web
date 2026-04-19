@@ -160,8 +160,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited slot available|:count_delimited slots available',
+            'first_places' => 'First places',
             'leader' => 'Team Leader',
             'rank' => 'Rank',
+            'ranked_beatmapsets' => 'Ranked beatmaps',
         ],
     ],
 

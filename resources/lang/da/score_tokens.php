@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'ugyldig eller manglende beatmap_hash',
+        'submission_disabled' => 'score-indsendelse er deaktiveret',
     ],
 ];

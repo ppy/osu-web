@@ -44,7 +44,10 @@ export default function BeatmapsetCover(props: Props) {
   }
 
   if (props.beatmapset != null && showVisual(props.beatmapset, props.forceShowNsfw)) {
-    style = { ...style, ...cssVar2x(props.beatmapset.covers[props.size]) };
+    const coverUrl = props.beatmapset.covers[props.size];
+    if (!coverUrl.endsWith('?0')) {
+      style = { ...style, ...cssVar2x(coverUrl) };
+    }
   }
 
   return <div className={className} style={style} />;

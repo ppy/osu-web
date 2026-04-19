@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner med :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'spelet avbröts',
+            'game_aborted_no_user' => 'spelet avbröts',
+            'game_completed' => 'spelet har avslutats',
+            'game_completed_no_user' => 'spelet har avslutats',
+            'host_changed' => ':user blev värd',
+            'host_changed_no_user' => 'värden ändrades',
+            'player_joined' => ':user gick med i matchen',
+            'player_joined_no_user' => 'en spelare gick med i matchen',
+            'player_kicked' => ':user har sparkats från matchen',
+            'player_kicked_no_user' => 'en spelare har sparkats från matchen',
+            'player_left' => ':user lämnade matchen',
+            'player_left_no_user' => 'en spelare lämnade matchen',
+            'room_created' => ':user skapade matchen',
+            'room_created_no_user' => 'matchen skapades',
+            'room_disbanded' => 'matchen upplöstes',
+            'room_disbanded_no_user' => 'matchen upplöstes',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Huvud-mot-huvud',
+            'tag_coop' => 'Lag samspel',
+            'tag_team_versus' => 'Lag spel VS',
+            'team_versus' => 'Lag VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Fristil',
 
         'scoring-type' => [
             'score' => 'Högsta poäng',

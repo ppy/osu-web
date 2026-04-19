@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Sæt farten ned, spil mere.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Ingen downloadservere tilgængelige.',
     ],
 
     'featured_artist_badge' => [
@@ -41,21 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
+        'bng_limited_too_many_rulesets' => 'Nye nominatorer kanikke nominere adskillige regelsæt.',
         'full_nomination_required' => 'Du skal være en fuld nominator for at udføre en rulesets sidste nomination.',
         'hybrid_requires_modes' => 'Et hybrid beatmap kræver at du vælger mindst en spilletilstand at nominere til.',
         'incorrect_mode' => 'Du har ikke tilladelse til at nominere for tilstand: :mode',
         'invalid_limited_nomination' => 'Dette beatmap har ugyldige nominationer og kan ikke kvalificeres i denne tilstand.',
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Denne nominering har invalide regesæt.',
         'too_many' => 'Nomineringskravet er allerede opfyldt.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Nomineringskrav for ikke-primære regelsæt allerede opfyldt.',
 
         'dialog' => [
             'confirmation' => 'Er du sikker på du vil nominere dette Beatmap?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Kvalificering af dette beatmap med forskellige nominatorer vil nulstille dets kvalificeringsposition i køen.',
             'header' => 'Nominér Beatmap',
             'hybrid_warning' => 'bemærk: du kan kun nominere én gang, så sørg for at du nominerer til alle spiltilstande, du har til hensigt til',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Det hovedreglsættet er lige nu: :ruleset',
             'which_modes' => 'Nominér for hvilke tilstande?',
         ],
     ],
@@ -68,13 +68,13 @@ return [
         'discussion' => 'Diskussion',
 
         'admin' => [
-            'full_size_cover' => '',
-            'page' => '',
+            'full_size_cover' => 'Vis coverbillede i fuld størrelse',
+            'page' => 'Vis admin side',
         ],
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Dette beatmap er blevet slettet.',
+            'message' => '(kun moderatorer kan se dette)',
         ],
 
         'details' => [
@@ -83,7 +83,7 @@ return [
             'favourite_login' => 'Log ind for at favorisere dette beatmap',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'mapped_by' => 'mappet af :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'gæstesværhedsgrad af :mapper',
             'unfavourite' => 'Fjern dette beatmapset fra dine favoritter',
             'updated_timeago' => 'sidst opdateret :timeago',
 
@@ -141,16 +141,18 @@ return [
             'description' => 'Beskrivelse',
             'genre' => 'Genre',
             'language' => 'Sprog',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Mapper Tags',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
-            'nominators' => '',
+            'nominators' => 'Nominatorer',
             'nsfw' => 'Eksplicit indhold',
             'offset' => 'Online forskydning',
+            'pack_tags' => 'Beatmap Pakker',
             'points-of-failure' => 'Fejl-steder',
             'source' => 'Kilde',
             'storyboard' => 'Dette beatmap indeholder storyboard',
             'success-rate' => 'Succesrate',
-            'user_tags' => '',
+            'success_rate_plays' => ':passes af :count_delimited spil|:passes af :count_delimited spil',
+            'user_tags' => 'Bruger Tags',
             'video' => 'Dette beatmap indeholder video',
         ],
 
@@ -173,7 +175,7 @@ return [
             'global' => 'Global Rang',
             'supporter-link' => 'Klik <a href=":link">here</a> for at se alle de fede fordele du kan få!',
             'supporter-only' => 'Du skal være supporter for at få adgang til venne- og landerangering!',
-            'team' => '',
+            'team' => 'Hold Rangering',
             'title' => 'Scoreboard',
 
             'headers' => [
@@ -195,7 +197,7 @@ return [
                 'friend' => 'Ingen af dine venner har sat en score på dette map endnu!',
                 'global' => 'Ingen scores endnu. Måske skulle du prøve at sætte en?',
                 'loading' => 'Indlæser scores...',
-                'team' => '',
+                'team' => 'Ingen fra dit hold har sat en score på dette map endnu!',
                 'unranked' => 'Ikke-ranked beatmap.',
             ],
             'score' => [
@@ -224,8 +226,8 @@ return [
             'rating-spread' => 'Ratings-distribution',
             'nominations' => 'Nomineringer',
             'playcount' => 'Playcount',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Favoritter',
+            'no_favourites' => 'Ingen favoritter endnu',
         ],
 
         'status' => [

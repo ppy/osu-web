@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskussion',
-            'versions' => '',
+            'versions' => 'versionshistorik',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'spellistor',
-            'quickplay' => '',
+            'quickplay' => 'snabb uppspelning',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],

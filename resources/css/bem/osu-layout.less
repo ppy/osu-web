@@ -24,7 +24,7 @@
     // https://fourword.fourkitchens.com/article/fix-scrolling-performance-css-will-change-property
     // using backface-visibility since IE doesn't have will-change property yet.
     &::before {
-      .at2x("~@images/backgrounds/page-dark.png", 500px, 500px);
+      .at2x("~@images/backgrounds/page-dark.png");
       opacity: 0.25;
       position: fixed;
       backface-visibility: hidden;
@@ -88,7 +88,7 @@
       margin-top: auto;
       margin-bottom: 0;
       flex: none;
-      .at2x("~@images/backgrounds/page-000.png", 500px, 500px);
+      .at2x("~@images/backgrounds/page-000.png");
     }
   }
 }

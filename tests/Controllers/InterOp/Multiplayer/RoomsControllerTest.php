@@ -98,4 +98,80 @@ class RoomsControllerTest extends TestCase
             fn ($url) => $this->post($url, $params),
         )->assertSuccessful();
     }
+
+    public function testUserCanOnlyStoreOneRoomIfNotTournamentMode(): void
+    {
+        $params = [
+            ...static::startRoomParams(),
+            'user_id' => User::factory()->create()->getKey(),
+        ];
+
+        $this->expectCountChange(fn () => Room::count(), 1);
+
+        $this->withInterOpHeader(
+            route('interop.multiplayer.rooms.store'),
+            fn ($url) => $this->post($url, $params),
+        )->assertSuccessful();
+
+        $this->withInterOpHeader(
+            route('interop.multiplayer.rooms.store'),
+            fn ($url) => $this->post($url, $params),
+        )->assertStatus(422);
+    }
+
+    public function testUserCanStoreMoreRoomsIfTournamentMode(): void
+    {
+        $user = User::factory()->create();
+        $params = [
+            ...static::startRoomParams(),
+            'user_id' => $user->getKey(),
+            'tournament_mode' => true,
+        ];
+
+        $maxTournamentRooms = $user->maxTournamentRooms();
+
+        $this->expectCountChange(fn () => Room::count(), $maxTournamentRooms);
+
+        for ($i = 0; $i < $maxTournamentRooms + 1; $i++) {
+            $response = $this->withInterOpHeader(
+                route('interop.multiplayer.rooms.store'),
+                fn($url) => $this->post($url, $params),
+            );
+
+            if ($i < $maxTournamentRooms) {
+                $response->assertSuccessful();
+            } else {
+                $response->assertStatus(422);
+            }
+        }
+    }
+
+    public function testUserCanStoreEvenMoreRoomsIfBot(): void
+    {
+        $normalUser = User::factory()->create();
+        $botUser = User::factory()->withGroup('bot')->create();
+        $params = [
+            ...static::startRoomParams(),
+            'user_id' => $botUser->getKey(),
+            'tournament_mode' => true,
+        ];
+
+        $maxTournamentRoomsForBot = $normalUser->maxTournamentRooms() + 2;
+        config_set('osu.user.max_tournament_rooms_bot', $maxTournamentRoomsForBot);
+
+        $this->expectCountChange(fn () => Room::count(), $maxTournamentRoomsForBot);
+
+        for ($i = 0; $i < $maxTournamentRoomsForBot + 1; $i++) {
+            $response = $this->withInterOpHeader(
+                route('interop.multiplayer.rooms.store'),
+                fn($url) => $this->post($url, $params),
+            );
+
+            if ($i < $maxTournamentRoomsForBot) {
+                $response->assertSuccessful();
+            } else {
+                $response->assertStatus(422);
+            }
+        }
+    }
 }

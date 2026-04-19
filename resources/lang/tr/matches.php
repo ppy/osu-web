@@ -19,7 +19,7 @@ return [
             'game_aborted_no_user' => 'oyun iptal edildi',
             'game_completed' => 'oyun sona erdi',
             'game_completed_no_user' => 'oyun sona erdi',
-            'host_changed' => '',
+            'host_changed' => ':user odanın sahibi oldu',
             'host_changed_no_user' => 'oda sahibi değişti',
             'player_joined' => ':user oyuna katıldı',
             'player_joined_no_user' => 'bir oyuncu oyuna katıldı',

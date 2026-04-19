@@ -1,14 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
+import { rulesetNames } from 'interfaces/ruleset';
 import { ScoreJsonForUser } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
+import { shouldShowPp } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -65,7 +66,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           <div className={`${bn}__detail`}>
             <a
               className={`${bn}__title u-ellipsis-overflow`}
-              href={beatmapUrl(beatmap, rulesetName(score.ruleset_id))}
+              href={beatmapUrl(beatmap, rulesetNames[score.ruleset_id])}
             >
               {getTitle(beatmapset)}
               {' '}
@@ -92,7 +93,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             <div className={`${bn}__score-detail-top-right`}>
               <div className={`${bn}__accuracy-and-weighted-pp`}>
                 <span className={`${bn}__accuracy`}>
-                  {formatNumber(accuracy(score) * 100, 2)}%
+                  {formatNumber(accuracy(score), 2, { style: 'percent' })}
                 </span>
                 {scoreWeight != null && (
                   <span className={`${bn}__weighted-pp`}>
@@ -104,7 +105,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
                   {trans('users.show.extra.top_ranks.pp_weight', {
-                    percentage: `${formatNumber(Math.round(scoreWeight.percentage))}%`,
+                    percentage: `${formatNumber(scoreWeight.percentage / 100, 0, { style: 'percent' })}`,
                   })}
                 </div>
               )}
@@ -113,7 +114,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
 
           <div className={`${bn}__mods-pp`}>
             <div className={`${bn}__mods`}>
-              {displayMods(score, false).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+              <Mods mods={displayMods(score, false)} />
             </div>
 
             <div className={`${bn}__pp`}>

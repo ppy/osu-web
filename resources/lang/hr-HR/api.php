@@ -31,6 +31,10 @@ return [
             'read' => 'Vidjeti koga pratiš.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Čitati javne podatke u tvoje ime.',
     ],
 ];

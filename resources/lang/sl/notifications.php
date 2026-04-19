@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Sedaj si gost beatmape z naslovom ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Novica ":title" ima nove komentarje',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

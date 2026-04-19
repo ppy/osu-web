@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Ne možeš sudjelovati u natjecanjima dok si ograničen ili utišan/a.',
         'preparation' => 'Trenutno pripremamo ovaj natječaj. Molimo te da strpljivo pričekaš!',
         'drop_here' => 'Ispusti svou prijavu ovdje',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Preuzmi .osz',
-
-        'wrong_type' => [
-            'art' => 'Za ovo natjecanje prihvaćaju se samo .jpg i .png datoteke.',
-            'beatmap' => 'Za ovo natjecanje prihvaćaju se samo .osu datoteke.',
-            'music' => 'Za ovo natjecanje prihvaćaju se samo .mp3 datoteke.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '',
         'too_big' => 'Prijave za ovo natjecanje mogu biti samo do :limit.',
     ],

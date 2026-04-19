@@ -333,6 +333,9 @@ return [
                     'title' => 'Kijkgeschiedenis Replays',
                     'count_label' => 'Aantal Replays Bekeken',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Recente Kudosu Geschiedenis',

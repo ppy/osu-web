@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => 'เพิ่มผู้ใช้งานสู่ทีม',
+            'ok' => 'เพิ่มผู้ใช้เข้าสู่ทีมสำเร็จ',
         ],
         'destroy' => [
             'ok' => 'ยกเลิกการขอเข้าร่วมแล้ว',
@@ -20,26 +20,26 @@ return [
     ],
 
     'card' => [
-        'members' => ':count_delimited สมาชิก|:count_delimited สมาชิก',
+        'members' => ':count_delimited คน|:count_delimited คน',
     ],
 
     'create' => [
         'submit' => 'สร้างทีม',
 
         'form' => [
-            'name_help' => '',
+            'name_help' => 'ชื่อทีมของคุณ ตอนนี้ไม่สามารถเปลี่ยนได้',
             'short_name_help' => 'สูงสุด 4 ตัวอักษร',
             'title' => "ตั้งทีมใหม่กันเถอะ!",
         ],
 
         'intro' => [
-            'description' => "",
+            'description' => "เล่นกับเพื่อน จะเพื่อนเก่าหรือเพื่อนใหม่ ตอนนี้คุณยังไม่มีทีมอยู่ จะเข้าร่วมทีมคนอื่นจากหน้าทีมของพวกเขา หรือสร้างทีมใหม่ได้จากหน้านี้ก็ได้",
             'title' => 'ทีม!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'ลบทีมออกแล้ว',
     ],
 
     'edit' => [
@@ -62,87 +62,87 @@ return [
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
+            'application_help' => 'อนุญาตให้มีคนขอเข้าทีม',
+            'default_ruleset_help' => 'รูลเซ็ตที่จะถูกเลือกเมื่อดูหน้าทีม',
+            'flag_help' => 'ขนาดสูงสุด :widthx:height',
+            'header_help' => 'ขนาดสูงสุด :widthx:height',
             'title' => 'การตั้งค่าทีม',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'ไม่รับคนเข้าทีม',
+                'state_1' => 'รับคนเข้าทีม',
             ],
         ],
     ],
 
     'header_links' => [
         'edit' => 'การตั้งค่า',
-        'leaderboard' => '',
-        'show' => '',
+        'leaderboard' => 'กระดานผู้นำ',
+        'show' => 'ข้อมูล',
 
         'members' => [
-            'index' => '',
+            'index' => 'จัดการสมาชิก',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'อันดับโลก',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'ลบสมาชิกทีมสำเร็จ',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'จัดการสมาชิก',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'accept_confirm' => 'เพิ่มผู้ใช้ :user เข้าสู่ทีมหรือไม่?',
+                'created_at' => 'วันที่ขอเข้าทีม',
+                'empty' => 'ไม่มีคำขอเข้าทีม',
+                'empty_slots' => 'ที่ว่าง',
+                'empty_slots_overflow' => 'เกิน :count_delimited คน|เกิน :count_delimited คน',
+                'reject_confirm' => 'ปฏิเสธคำขอเข้าทีมจากผู้ใช้ :user หรือไม่?',
+                'title' => 'คำขอเข้าร่วม',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'joined_at' => 'วันที่เข้าทีม',
+                'remove' => 'ลบออก',
+                'remove_confirm' => 'ลบผู้ใช้ :user ออกจากทีมหรือไม่',
+                'set_leader' => 'มอบตำแหน่งหัวหน้าทีม',
+                'set_leader_confirm' => 'มอบตำแหน่งหัวหน้าทีมให้กับผู้ใช้ :user หรือไม่?',
+                'status' => 'สถานะ',
+                'title' => 'สมาชิกในตอนนี้',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'ออฟไลน์',
+                'status_1' => 'ออนไลน์',
             ],
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'ผู้ใช้ :user กลายเป็นหัวหน้าทีมแล้ว',
         ],
     ],
 
     'part' => [
-        'ok' => 'ออกจากทีม ;_;',
+        'ok' => 'ออกจากทีมไปแล้ว ;_;',
     ],
 
     'show' => [
         'bar' => [
             'chat' => 'แชททีม',
             'destroy' => 'ยุบทีม',
-            'join' => '',
-            'join_cancel' => '',
+            'join' => 'ขอเข้าร่วม',
+            'join_cancel' => 'ยกเลิกการเข้าร่วม',
             'part' => 'ออกจากทีม',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'วันที่ก่อตั้ง',
         ],
 
         'members' => [
@@ -151,15 +151,17 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'เกี่ยวกับเรา!',
+            'info' => 'ข้อมูล',
+            'members' => 'สมาชิก',
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => 'ว่าง :count_delimited ที่|ว่าง :count_delimited ที่',
+            'first_places' => 'ที่หนึ่ง',
             'leader' => 'หัวหน้าทีม',
-            'rank' => '',
+            'rank' => 'อันดับ',
+            'ranked_beatmapsets' => 'บีทแมพที่จัดอันดับแล้ว',
         ],
     ],
 

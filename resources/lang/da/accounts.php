@@ -26,9 +26,9 @@ return [
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
         ],
 
         'password' => [
@@ -64,14 +64,14 @@ return [
     ],
 
     'github_user' => [
-        'info' => "",
+        'info' => "Hvis du er bidragsyder til osu!'s open source repositories, vil en forbindelse til din GitHub konto her forbinde dine bidrag til din osu! profil. GitHub konti uden bidragshistorik til osu! kan ikke tilknyttes.",
         'link' => 'Tilknyt GitHub konto',
         'title' => 'GitHub',
         'unlink' => 'Fjern GitHub konto',
 
         'error' => [
             'already_linked' => 'Denne GitHub konto er allerede tilknyttet en anden bruger.',
-            'no_contribution' => '',
+            'no_contribution' => 'Kan ikke linke GitHub-konto uden bidragshistorik i osu!-repositories.',
             'unverified_email' => 'Venligst bekræft din primære email på GitHub, og efterfølgende prøv at tilknytte din konto igen.',
         ],
     ],
@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'modtag notifikationer for nye problemer på kvalificerede beatmaps for de følgende spileltilstande',
         'beatmapset_disqualify' => 'modtag notifikationer når beatmaps af følgende modes bliver diskvalificeret',
         'comment_reply' => 'modtag notifikationer når der bliver svaret på dine kommentarer',
-        'news_post' => '',
+        'news_post' => 'modtag meddelelser om nyhedsindlæg',
         'title' => 'Notifikationer',
         'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
 
@@ -89,12 +89,12 @@ return [
             'beatmap_owner_change' => 'gæst sværhedsgrad',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privat beskeder',
-            'channel_team' => '',
+            'channel_team' => 'holdchat beskeder',
             'comment_new' => 'nye kommentarer',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'post',
             'mapping' => 'beatmap mapper',
-            'news_post' => '',
+            'news_post' => 'nyhedsindlæg',
             'push' => 'push',
         ],
     ],
@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'vis anime-covers for beatmaps',
         'beatmapset_show_nsfw' => 'skjul advarsler for eksplicit indhold i beatmaps',
         'beatmapset_title_show_original' => 'vis beatmap metadata på originalt sprog',
         'title' => 'Indstillinger',
@@ -129,7 +130,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloker privatbeskeder fra folk der ikke er på din venneliste',
         'hide_online' => 'skjul din online status',
-        'hide_online_info' => '',
+        'hide_online_info' => 'dette mapper til "fremstå offline"-tilstanden i osu!lazer',
         'title' => 'Privatliv',
     ],
 
@@ -151,17 +152,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Godkender-app',
+        'usage_note' => 'Brug godkender-app i stedet for email-bekræftelse. Email-bekræftelse vil stadig være tilgængelig som et tilbagefald.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Fjern',
+            'setup' => 'Tilføje Godkender-app',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'status',
+            'not_set' => 'Ikke konfigureret',
+            'set' => 'Konfigureret',
         ],
     ],
 

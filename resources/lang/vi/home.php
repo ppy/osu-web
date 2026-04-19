@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => 'Đăng nhập để tìm đội',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm đội',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Tải Xuống osu!',
             'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => 'Livestream nổi bật',
         ],
         'show' => [
             'admin' => [

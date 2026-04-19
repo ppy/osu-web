@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => '',
         'preparation' => 'Осы жарыс дайындық үстінде. Күтуіңізді сұраймыз!',
         'drop_here' => 'Өтініміңізді осы жерге тастаңыз',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '.osz жүктеу',
-
-        'wrong_type' => [
-            'art' => 'Осы жарысқа тек .jpg және .png файлдары қабылданады.',
-            'beatmap' => 'Осы жарысқа тек .osu файлдары қабылданады.',
-            'music' => 'Осы жарысқа тек .mp3 файлдары қабылданады.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Файлдың өлшемдері :widthx:height болуы керек',
         'too_big' => 'Файлдардың саны :limit-дейін болуы керек.',
     ],

@@ -75,12 +75,11 @@ class Follow extends Model
     {
         $this->validationErrors()->reset();
 
-        if ($this->notifiable === null) {
-            $this->validationErrors()->add('notifiable', 'required');
-        }
-
         if (!in_array($this->notifiable_type, static::SUBTYPES[$this->subtype] ?? [], true)) {
             $this->validationErrors()->add('subtype', '.invalid');
+        // this requires valid notifiable_type
+        } elseif ($this->notifiable === null) {
+            $this->validationErrors()->add('notifiable', 'required');
         }
 
         return $this->validationErrors()->isEmpty();

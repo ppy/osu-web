@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Afslut',
+        'key' => 'Scan QR-koden med godkendelses-app\'en og indtast bekræftelsesnøglen',
+        'key_copy' => 'Eller klik på dette link for at kopiere nøglen til godkendelses-app\'en',
+        'key_link' => 'Brug dette link, hvis du bruger mobiltelefon',
+        'password' => 'For at konfigurere godkendelses-app\'en skal du angive din nuværende adgangskode',
+        'start' => 'Fortsæt',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Du har ikke godkendelses-app\'en konfigureret.',
+        'ok' => 'Verificering af godkendelses-app fjernet.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Indtast venligst din nuværende adgangskode for at fjerne godkendelses-app\'ens verificering.',
+        'start' => 'Fjern',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Du kan allerede konfigureret godkendelses-app\'en.',
+        'ok' => 'Verificering af godkendelses-app er blevet konfigureret',
+        'restart' => 'Fejl opstod. Genstart venligst processen.',
     ],
 ];

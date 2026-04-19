@@ -174,7 +174,7 @@ return [
 
         'add_to_cart' => 'Afegeix a la cistella',
         'notify' => 'Avisa\'m quan estigui disponible!',
-        'out_of_stock' => 'Exhaurit',
+        'out_of_stock' => 'Esgotat',
 
         'notification_success' => 't\'avisarem quan tinguem noves existències. clica :link per cancel·lar',
         'notification_remove_text' => 'aquí',

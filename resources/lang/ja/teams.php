@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => '残り:count_delimited枠|残り:count_delimited枠',
+            'first_places' => '1位獲得数',
             'leader' => 'チームリーダー',
             'rank' => 'ランキング',
+            'ranked_beatmapsets' => 'Rankedされたビートマップ',
         ],
     ],
 

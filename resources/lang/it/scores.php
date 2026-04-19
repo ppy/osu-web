@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Giocata da',
+            'played_on' => '',
             'submitted_on' => 'Inviato il',
 
             'rank' => [

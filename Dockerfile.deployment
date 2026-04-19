@@ -3,7 +3,8 @@ FROM --platform=$BUILDPLATFORM almalinux:10-minimal as buildenv
 COPY .php-version .node-version /
 
 RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
-    microdnf install -y epel-release && \
+    # shadow-utils is required for build script and frankenphp package install
+    microdnf install -y epel-release shadow-utils && \
     rpm -i https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf module enable -y php-zts:static-$(cat /.php-version) && \
     (curl -fsSL https://rpm.nodesource.com/setup_$(cat /.node-version).x | bash -) && \
@@ -52,10 +53,12 @@ FROM almalinux:10-minimal as runenv
 COPY .php-version /
 
 RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
-    microdnf install -y epel-release && \
+    # shadow-utils is required for build script and frankenphp package install
+    microdnf install -y epel-release shadow-utils && \
     rpm -i https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf module enable -y php-zts:static-$(cat /.php-version) && \
     microdnf install -y \
+      ffmpeg-free \
       frankenphp \
       libjpeg-turbo-utils \
       nginx \

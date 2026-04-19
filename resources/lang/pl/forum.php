@@ -44,8 +44,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Czy na pewno chcesz usunąć post?',
-        'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
+        'confirm_destroy' => 'Czy na pewno chcesz usunąć ten post?',
+        'confirm_restore' => 'Czy na pewno chcesz przywrócić ten post?',
         'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited raz.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.|Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.',
         'posted_at' => 'opublikowane :when',
         'posted_by_in' => 'opublikowane przez :username na forum :forum',
@@ -76,8 +76,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Czy na pewno chcesz usunąć wątek?',
-        'confirm_restore' => 'Czy na pewno chcesz przywrócić wątek?',
+        'confirm_destroy' => 'Czy na pewno chcesz usunąć ten wątek?',
+        'confirm_restore' => 'Czy na pewno chcesz przywrócić ten wątek?',
         'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszy post',
         'go_to_unread' => 'pokaż najstarszy nieprzeczytany post',
@@ -251,69 +251,6 @@ return [
             'feature_votes' => 'priorytet',
             'replies' => 'odpowiedzi',
             'views' => 'wyświetleń',
-        ],
-
-        'issue_tag_added' => [
-            'to_0' => 'Usuń tag „dodane”',
-            'to_0_done' => 'Usunięto tag „dodane”',
-            'to_1' => 'Dodaj tag „dodane”',
-            'to_1_done' => 'Dodano tag „dodane”',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Usuń tag „przypisane”',
-            'to_0_done' => 'Usunięto tag „przypisane”',
-            'to_1' => 'Dodaj tag „przypisane”',
-            'to_1_done' => 'Dodano tag „przypisane”',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Usuń tag „potwierdzone”',
-            'to_0_done' => 'Usunięto tag „potwierdzone”',
-            'to_1' => 'Dodaj tag „potwierdzone”',
-            'to_1_done' => 'Dodano tag „potwierdzone”',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Usuń tag „duplikat”',
-            'to_0_done' => 'Usunięto tag „duplikat”',
-            'to_1' => 'Dodaj tag „duplikat”',
-            'to_1_done' => 'Dodano tag „duplikat”',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Usuń tag „nieprawidłowe”',
-            'to_0_done' => 'Usunięto tag „nieprawidłowe”',
-            'to_1' => 'Dodaj tag „nieprawidłowe”',
-            'to_1_done' => 'Dodano tag „nieprawidłowe”',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Usuń tag „rozwiązane”',
-            'to_0_done' => 'Usunięto tag „rozwiązane”',
-            'to_1' => 'Dodaj tag „rozwiązane”',
-            'to_1_done' => 'Dodano tag „rozwiązane”',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Usuń tag „osu!lazer”',
-            'to_0_done' => 'Usunięto tag „osu!lazer”',
-            'to_1' => 'Dodaj tag „osu!lazer”',
-            'to_1_done' => 'Dodano tag „osu!lazer”',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Usuń tag „osu!stable”',
-            'to_0_done' => 'Usunięto tag „osu!stable”',
-            'to_1' => 'Dodaj tag „osu!stable”',
-            'to_1_done' => 'Dodano tag „osu!stable”',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Usuń tag „strona osu!”',
-            'to_0_done' => 'Usunięto tag „strona osu!”',
-            'to_1' => 'Dodaj tag „strona osu!”',
-            'to_1_done' => 'Dodano tag „strona osu!”',
         ],
 
         'lock' => [

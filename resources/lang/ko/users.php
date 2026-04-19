@@ -334,6 +334,9 @@ return [
                     'title' => '리플레이가 재생된 횟수',
                     'count_label' => '리플레이 재생 횟수',
                 ],
+                'score_replay_stats' => [
+                    'title' => '가장 많이 시청한 리플레이',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => '최근 Kudosu 기록',

@@ -56,7 +56,7 @@ return [
 
     'playlists' => [
         'charts' => '季赛（旧版）',
-        'featured' => '特殊',
+        'featured' => '特辑',
         'season_room' => '季赛房间',
         'seasons' => '季赛',
     ],
@@ -65,7 +65,7 @@ return [
         'country' => '国家/地区',
         'daily_challenge' => '每日挑战',
         'global' => '全球',
-        'kudosu' => 'Kudosu',
+        'kudosu' => 'kudosu',
         'matchmaking' => '快速匹配模式',
         'playlists' => '歌单模式',
         'team' => '战队',

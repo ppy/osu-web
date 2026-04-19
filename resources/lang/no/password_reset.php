@@ -16,8 +16,10 @@ return [
         'invalid' => 'Uventet feil i bekreftelseskoden.',
         'is_privileged' => 'Kontakt peppy lulz.',
         'missing_key' => 'Kreves.',
+        'too_many_requests' => '',
         'too_many_tries' => 'For mange mislykkede påloggingsforsøk.',
         'user_not_found' => 'Forespurt bruker eksisterer ikke.',
+        'wait_resend' => '',
         'wrong_key' => 'Feil kode.',
     ],
 

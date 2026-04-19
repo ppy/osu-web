@@ -8,6 +8,7 @@ export type CommentableMetaJson = {
     can_new_comment_reason: string | null;
   };
   id: number;
+  locked: boolean;
   owner_id: number | null;
   owner_title: string | null;
   title: string;

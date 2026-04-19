@@ -19,7 +19,7 @@
     <div class="osu-page osu-page--generic-compact">
         @if (isset($uri))
             @php
-                $totp = OTPHP\Factory::loadFromProvisioningUri($uri);
+                $totp = OTPHP\Factory::loadFromProvisioningUri($uri, new OTPHP\InternalClock());
             @endphp
             <form
                 action="{{ route('authenticator-app.store') }}"

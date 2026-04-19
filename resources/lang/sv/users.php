@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Aktiv',
+            'ended' => 'Avslutad',
         ],
     ],
 
@@ -168,15 +168,15 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Vänligen rapportera intrång i upphovsrätten genom ett DMCA-anspråk på :mail enligt :policy.',
+                'policy' => 'osu! copyright policy',
             ],
-            'message_2' => '',
+            'message_2' => 'Detta gäller för fall där ljudspår, visuellt innehåll eller innehåll på beatmapnivå används utan rätt tillstånd.',
         ],
 
         'options' => [
             'cheating' => 'Fusk',
-            'copyright_infringement' => '',
+            'copyright_infringement' => 'Upphovsrättsintrång',
             'inappropriate_chat' => 'Olämpligt chattbeteende',
             'insults' => 'Förolämpar mig / andra',
             'multiple_accounts' => 'Använder flera konton',
@@ -333,6 +333,9 @@ return [
                     'title' => 'Repriser sedda av andra',
                     'count_label' => 'Repriser sedda',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Senaste Kudosu-historik',
@@ -400,7 +403,7 @@ return [
                 'show_more' => 'se fler inlägg',
             ],
             'quickplay' => [
-                'title' => '',
+                'title' => 'Snabba spelmatcher',
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
@@ -472,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Snabbspel',
         ],
 
         'not_found' => [
@@ -510,7 +513,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Träffar per spel',
             'level' => 'Nivå :level',
             'level_progress' => 'Framsteg till nästa nivå',
             'maximum_combo' => 'Högsta kombo',

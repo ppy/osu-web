@@ -333,6 +333,9 @@ return [
                     'title' => 'Povijest gledanja repriza',
                     'count_label' => 'Repriza gledano',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nedavna povijest Kudosua',

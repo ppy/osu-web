@@ -58,12 +58,6 @@ return [
         'send' => 'Sūtīt',
     ],
 
-    'no-conversations' => [
-        'howto' => "Sākt sarunas no lietotāja profila vai lietotāja kartes uznirstošā loga.",
-        'lazer' => 'Publiskie kanāli, kuriem pievienojaties, izmantojot <a href=":link">osu!lazer</a>, būs redzami arī šeit.',
-        'title' => 'pagaidām nav sarunu',
-    ],
-
     'join_channels' => [
         'loading' => 'Lādē kanālu sarakstu...',
     ],

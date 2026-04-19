@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'אינך יכול להיכנס לתחרויות כאשר אתה מוגבל או מושתק.',
         'preparation' => 'אנו כרגע מכינים תחרות זאת. נא חכה בסבלנות!',
         'drop_here' => 'זרוק את שליחתך לפה',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'הורד .osz',
-
-        'wrong_type' => [
-            'art' => 'רק קבצי .jpg ו- .png מתקבלים לתחרות זו.',
-            'beatmap' => 'רק קבצי .osu מתקבלים לתחרות זו.',
-            'music' => 'רק קבצי .mp3 מתקבלים לתחרות זו.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => '',
         'too_big' => 'שליחות לתחרות זו יכולות להיות עד :limit.',
     ],

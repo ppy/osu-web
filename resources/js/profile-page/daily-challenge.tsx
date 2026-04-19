@@ -11,6 +11,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
+import { qtipPosition } from 'utils/qtip-helper';
 
 function tier(days: number) {
   const tiers = [
@@ -164,12 +165,8 @@ export default class DailyChallenge extends React.Component<Props> {
       },
       overwrite: false,
       position: {
-        adjust: {
-          scroll: false,
-        },
-        at: 'top left',
-        my: 'bottom left',
-        viewport: $(window),
+        ...qtipPosition('top left'),
+        adjust: { scroll: false },
       },
       show: {
         delay: 200,

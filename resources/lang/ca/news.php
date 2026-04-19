@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title_page' => 'osu!news',
+        'title_page' => 'osu!notícies',
 
         'nav' => [
             'newer' => 'Publicacions més recents',

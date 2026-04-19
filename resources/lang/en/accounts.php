@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private chat messages',
+            'channel_mention' => 'chat mention',
             'channel_team' => 'team chat messages',
             'comment_new' => 'new comments',
             'forum_topic_reply' => 'topic reply',

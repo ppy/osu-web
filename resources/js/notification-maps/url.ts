@@ -58,22 +58,23 @@ export function urlSingular(item: Notification) {
     case 'beatmapset_discussion_qualified_problem':
     case 'beatmapset_discussion_review_new':
       return makeUrl({
-        beatmapId: item.details.beatmapId,
+        beatmapId: item.details.beatmap_id,
         beatmapsetId: item.objectId,
-        discussionId: item.details.discussionId,
-        postId: item.details.postId,
+        discussionId: item.details.discussion_id,
+        postId: item.details.post_id,
       });
     case 'beatmapset_rank':
       return route('beatmapsets.show', { beatmapset: item.objectId });
     case 'channel_announcement':
+    case 'channel_mention':
     case 'channel_message':
     case 'channel_team':
       return route('chat.index', { channel_id: item.objectId });
     case 'comment_new':
     case 'comment_reply':
-      return route('comments.show', { comment: item.details.commentId });
+      return route('comments.show', { comment: item.details.comment_id });
     case 'forum_topic_reply':
-      return route('forum.posts.show', { post: item.details.postId });
+      return route('forum.posts.show', { post: item.details.post_id });
     case 'news_post_new':
       return route('news.show', { news: item.details.slug });
     case 'team_application_accept':
@@ -83,16 +84,16 @@ export function urlSingular(item: Notification) {
     case 'user_achievement_unlock':
       return userAchievementUrl(item);
     case 'user_beatmapset_new':
-      return route('beatmapsets.show', { beatmapset: item.details.beatmapsetId });
+      return route('beatmapsets.show', { beatmapset: item.details.beatmapset_id });
     case 'user_beatmapset_revive':
-      return route('beatmapsets.show', { beatmapset: item.details.beatmapsetId });
+      return route('beatmapsets.show', { beatmapset: item.details.beatmapset_id });
   }
 }
 
 function userAchievementUrl(item: Notification) {
   const params = {
-    mode: item.details.achievementMode ?? undefined,
-    user: item.details.userId,
+    mode: item.details.achievement_mode ?? undefined,
+    user: item.details.user_id,
   };
 
   return `${route('users.show', params)}#medals`;

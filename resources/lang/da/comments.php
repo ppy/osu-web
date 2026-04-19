@@ -11,7 +11,7 @@ return [
     'edited' => 'redigeret :timeago af :user',
     'pinned' => 'fastgjort',
     'empty' => 'Ingen kommentare endnu.',
-    'empty_other' => '',
+    'empty_other' => 'Ingen andre kommentarer endnu.',
     'load_replies' => 'indlæs svar',
     'replies_count' => ':count_delimited svar|:count_delimited svar',
     'title' => 'Kommentarer',
@@ -44,7 +44,7 @@ return [
     ],
 
     'ogp' => [
-        'title' => '',
+        'title' => 'kommentar af :user',
     ],
 
     'placeholder' => [

@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute er påkrævet.',
     'too_long' => ':attribute overskrider maksimal længde - kan højest være op til :limit karakterer.',
-    'url' => '',
+    'url' => 'Indsæt venligst en gyldig URL-adresse.',
     'wrong_confirmation' => 'Bekræftelseskoden matchede ikke.',
 
     'beatmapset_discussion' => [
@@ -110,12 +110,12 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Kun én API-nøgle tildeles hver bruger i øjeblikket.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api-nøgle',
+            'app_name' => 'applikationsnavn',
+            'app_url' => 'applikations-url',
         ],
     ],
 
@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Dette :attribute indeholder ugyldige karakterer.',
+        'used' => 'Dette :attribute valg er allerede anvendt.',
+        'word_not_allowed' => 'Dette :attribute valg er ikke tilladt.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Standard regelsæt',
+            'is_open' => 'Hold tilmelding',
+            'name' => 'Navn',
+            'short_name' => 'Kort navn',
+            'url' => 'URL',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangerede beatmaps kan ikke rapporteres',
         'not_in_channel' => 'Du er ikke i denne kanal.',
-        'in_team' => '',
+        'in_team' => 'Du er en del af holdet.',
         'reason_not_valid' => ':reason er ikke gyldt for denne type anmeldelse.',
         'self' => "Du kan ikke rapportere dig selv!",
     ],

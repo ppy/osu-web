@@ -16,8 +16,10 @@ return [
         'invalid' => 'Odottamaton virhe vahvistuskoodissa.',
         'is_privileged' => 'Ota yhteyttä ylemmän tason ylläpitäjään tilisi palauttamista varten.',
         'missing_key' => 'Vaaditaan.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Liian monta epäonnistunutta yritystä.',
         'user_not_found' => 'Käyttäjää ei ole olemassa.',
+        'wait_resend' => '',
         'wrong_key' => 'Virheellinen koodi.',
     ],
 

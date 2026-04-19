@@ -16,8 +16,10 @@ return [
         'invalid' => 'خطأ غير متوقع في رمز التحقق.',
         'is_privileged' => 'اتصل بـ peppy للنكت.',
         'missing_key' => 'مطلوب.',
+        'too_many_requests' => '',
         'too_many_tries' => 'الكثير من المحاولات الفاشلة.',
         'user_not_found' => 'المستخدم المطلوب غير موجود.',
+        'wait_resend' => '',
         'wrong_key' => 'رمز غير صحيح.',
     ],
 

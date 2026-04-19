@@ -58,12 +58,6 @@ return [
         'send' => 'Skicka',
     ],
 
-    'no-conversations' => [
-        'howto' => "Starta konversationer från en användares profil eller en usercard popup.",
-        'lazer' => 'Offentliga kanaler du går med i via <a href=":link">osu!lazer</a> kommer också att synas här.',
-        'title' => 'inga konversationer ännu',
-    ],
-
     'join_channels' => [
         'loading' => 'Laddar kanallista...',
     ],

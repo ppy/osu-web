@@ -145,7 +145,7 @@ return [
 
             'gifted' => [
                 '_' => 'Av dina totala bidrag har du gett :dollars taggar till :users som täcker :duration. Det är otroligt generöst!',
-                'users' => '',
+                'users' => ':count_delimited övrig användare!|:count_delimited övriga användare',
             ],
         ],
     ],

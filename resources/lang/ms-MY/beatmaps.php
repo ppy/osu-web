@@ -245,6 +245,7 @@ return [
             'prompt' => 'taipkan kata kunci...',
             'login_required' => 'Daftar masuk untuk cari.',
             'options' => 'Pilihan Carian Lain',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Tapisan menggunakan :filters memerlukan tag osu!supporter yang giat',
             'not-found' => 'tiada hasil',
             'not-found-quote' => '... tak, tak jumpa apa-apa.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Tapisan menggunakan :filters memerlukan :link yang giat',
                 'link_text' => 'tag osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

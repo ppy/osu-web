@@ -255,69 +255,6 @@ return [
             'views' => '瀏覽數',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => '移除 "added" 標籤',
-            'to_0_done' => '已移除 "added" 標籤',
-            'to_1' => '新增 "added" 標籤',
-            'to_1_done' => '已新增 "added" 標籤',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '移除 "assigned" 標籤',
-            'to_0_done' => '已移除 "assigned" 標籤',
-            'to_1' => '新增 "assigned" 標籤',
-            'to_1_done' => '已新增 "assigned" 標籤',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '移除 "confirmed" 標籤',
-            'to_0_done' => '已移除 "confirmed" 標籤',
-            'to_1' => '新增 "confirmed" 標籤',
-            'to_1_done' => '已新增 "confirmed" 標籤',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '移除 "duplicate" 標籤',
-            'to_0_done' => '已移除 "duplicate" 標籤',
-            'to_1' => '新增 "duplicate" 標籤',
-            'to_1_done' => '已新增 "duplicate" 標籤',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '移除 "invalid" 標籤',
-            'to_0_done' => '已移除 "invalid" 標籤',
-            'to_1' => '新增 "invalid" 標籤',
-            'to_1_done' => '已新增 "invalid" 標籤',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '移除 "resolved" 標籤',
-            'to_0_done' => '已移除 "resolved" 標籤',
-            'to_1' => '新增 "resolved" 標籤',
-            'to_1_done' => '已新增 "resolved" 標籤',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '移除「osu!lazer」標籤',
-            'to_0_done' => '已移除「osu!lazer」標籤',
-            'to_1' => '加入「osu!lazer」標籤',
-            'to_1_done' => '已加入「osu!lazer」標籤',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '移除「osu!stable」標籤',
-            'to_0_done' => '已移除「osu!stable」標籤',
-            'to_1' => '加入「osu!stable」標籤',
-            'to_1_done' => '已加入「osu!stable」標籤',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '移除「osu!web」標籤',
-            'to_0_done' => '已移除「osu!web」標籤',
-            'to_1' => '加入「osu!web」標籤',
-            'to_1_done' => '已加入「osu!web」標籤',
-        ],
-
         'lock' => [
             'is_locked' => '主題已被鎖定，不能回覆',
             'to_0' => '解鎖主題',

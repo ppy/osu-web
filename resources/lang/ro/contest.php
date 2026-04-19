@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Nu poți participa la concursuri în timp ce ești restricționat sau mut.',
         'preparation' => 'Încă pregătim acest concurs. Te rugăm să aștepți cu răbdare!',
         'drop_here' => 'Trage intrarea ta aici',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Descarcă .osz',
-
-        'wrong_type' => [
-            'art' => 'Numai fișierele de tip .jpg și .png sunt acceptate pentru acest concurs.',
-            'beatmap' => 'Numai fișierele de tip .osu sunt acceptate pentru acest concurs.',
-            'music' => 'Numai fișierele de tip .mp3 sunt acceptate pentru acest concurs.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Intrările pentru acest concurs trebuie să fie :widthx:height',
         'too_big' => 'Întrările pentru acest concurs pot fi numai până la :limit.',
     ],

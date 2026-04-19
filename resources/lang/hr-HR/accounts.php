@@ -106,6 +106,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'sakrij upozorenja za eksplicitni sadržaj u beatmap-ama',
         'beatmapset_title_show_original' => 'prikaži metapodatke beatmap-a na izvornom jeziku',
         'title' => 'Opcije',

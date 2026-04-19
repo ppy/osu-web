@@ -58,7 +58,8 @@ class UserNotificationsCleanup extends Command
             foreach ($notificationIdByUserIds as $userId => $notificationIds) {
                 UserNotification::batchDestroy(
                     $userId,
-                    BatchIdentities::fromParams(['notifications' => $notificationIds])
+                    BatchIdentities::fromParams(['notifications' => $notificationIds]),
+                    true,
                 );
                 $deleted = count($notificationIds);
                 $deletedTotal += $deleted;

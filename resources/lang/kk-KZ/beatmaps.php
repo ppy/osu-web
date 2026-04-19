@@ -245,6 +245,7 @@ return [
             'prompt' => 'кілт сөздерді енгізіңіз...',
             'login_required' => 'Іздеу үшін аккаунтыңызға кіріңіз.',
             'options' => 'Көбірек Іздеу Баптаулары',
+            'rank_filter_note' => '',
             'supporter_filter' => ':filters бойынша сүзу үшін белсенді osu!supporter тегі қажет',
             'not-found' => 'нәтиже жоқ',
             'not-found-quote' => '... өкінішке орай, ештеңе табылмады.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => ':filters бойынша сүзу үшін белсенді :link қажет',
                 'link_text' => 'osu!supporter тегі',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

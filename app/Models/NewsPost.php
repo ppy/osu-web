@@ -6,7 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\Commentable;
+use App\Interfaces\CommentableInterface;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Traits\Memoizes;
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable, Wiki\WikiObject
+class NewsPost extends Model implements CommentableInterface, Wiki\WikiObject
 {
     use Memoizes, Traits\CommentableDefaults, Traits\WithDbCursorHelper;
 

@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Pelaaja',
+            'played_on' => '',
             'submitted_on' => 'Tulos lähetetty',
 
             'rank' => [

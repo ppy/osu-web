@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Spelad av',
+            'played_on' => '',
             'submitted_on' => 'Uppladdat den',
 
             'rank' => [

@@ -6,8 +6,8 @@
 namespace App\Singletons;
 
 use App\Exceptions\AuthorizationCheckException;
+use App\Interfaces\CommentableInterface;
 use App\Libraries\AuthorizationResult;
-use App\Libraries\Commentable;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -102,6 +102,17 @@ class OsuAuthorize
         }
 
         return $auth;
+    }
+
+    public function checkAchievementUnlock(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isRestricted()) {
+            return 'restricted';
+        }
+
+        return 'ok';
     }
 
     public function checkBeatmapShow(?User $user, Beatmap $beatmap): string
@@ -1140,7 +1151,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkCommentStore(?User $user, Commentable $commentable): string
+    public function checkCommentStore(?User $user, CommentableInterface $commentable): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);

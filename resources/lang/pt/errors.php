@@ -22,10 +22,6 @@ return [
             'generic' => 'Ocorreu um erro. Tenta recarregar a página.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Modo especificado inválido.',
-        'standard_converts_only' => 'Não há pontuações disponíveis para o modo solicitado nesta dificuldade de beatmap.',
-    ],
     'checkout' => [
         'generic' => 'Ocorreu um erro ao preparar o teu pagamento.',
     ],

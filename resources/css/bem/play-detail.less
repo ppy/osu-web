@@ -3,11 +3,12 @@
 
 .play-detail {
   @_top: play-detail;
+
+  @_icon-height: 30px;
   @_min-height: 60px;
   @_padding-vertical: 10px;
   @_padding-vertical-desktop: 5px;
   @_padding-horizontal: 20px;
-  @_menu-button-width: (@_padding-horizontal * 2);
 
   --border-radius: 10px;
   --bg: hsl(var(--hsl-b3));
@@ -115,7 +116,7 @@
 
   &__icon {
     width: 60px;
-    min-height: 30px;
+    min-height: @_icon-height;
     flex: none;
     position: relative;
 
@@ -166,18 +167,21 @@
   &__more {
     .center-content();
     position: absolute;
+    top: @_padding-vertical;
     right: 0;
-    top: 0;
-    width: @_menu-button-width;
-    height: @_menu-button-width;
+    width: 40px;
+    height: @_icon-height;
 
     @media @desktop {
+      top: 0;
       left: 100%;
+      width: var(--inner-gutter);
       height: 100%;
     }
   }
 
   &__pp {
+    --desktop-width: 110px;
     align-content: flex-end;
     flex: none;
     font-size: @font-size--title-small-3;
@@ -191,7 +195,7 @@
       bottom: auto;
       padding: @_padding-vertical-desktop @_padding-horizontal
         @_padding-vertical-desktop (@_padding-horizontal + 10px);
-      min-width: 110px;
+      min-width: var(--desktop-width);
       flex: none;
       background: var(--bg);
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
@@ -209,6 +213,10 @@
         clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
       }
     }
+
+    &--watch-count {
+      --desktop-width: 130px; // 5 digits
+    }
   }
 
   &__pp-unit {
@@ -218,9 +226,11 @@
 
   &__score-detail {
     display: flex;
+    align-items: center;
+    height: @_icon-height;
 
     @media @desktop {
-      align-items: center;
+      height: initial;
       padding: @_padding-vertical-desktop 10px;
       background-color: var(--bg-main);
     }

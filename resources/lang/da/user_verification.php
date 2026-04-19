@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Indtast venligst koden fra din godkendelses-app.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Du kan også :link.',
+                'link' => 'log ud',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Hvis du ikke har adgang til din app, :link.',
+                'link' => 'du kan verificere med e-mail i stedet',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Ugyldig bekræftelseskode.',
         'retries_exceeded' => 'Ugyldig bekræftelseskode, og du har brugt for mange forsøg. En ny email med bekræftelseskode er blevet sendt.',
         'reissued' => 'En email med en ny bekræftelseskode er blevet sendt.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'Bekræftelseskode er allerede brugt. Vent venligst og brug en ny.',
+        'totp_gone' => 'Godkendelsestoken er blevet fjernet, skifter til e-mail bekræftelse. Bekræftelsesmail er blevet sendt.',
         'unknown' => 'Der opstod et ukendt problem. En ny email med bekræftelseskode er blevet sendt.',
     ],
 ];

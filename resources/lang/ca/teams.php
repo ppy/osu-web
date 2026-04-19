@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited ranura disponible|:count_delimited ranures disponibles',
+            'first_places' => 'Primeres posicions',
             'leader' => 'Líder de l\'equip',
             'rank' => 'Posició',
+            'ranked_beatmapsets' => 'Mapes classificats',
         ],
     ],
 

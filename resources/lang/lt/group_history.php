@@ -5,15 +5,15 @@
 
 return [
     'none' => '',
-    'view' => '',
+    'view' => 'Peržiūrėti grupės istoriją',
 
     'event' => [
         'actor' => '',
 
         'message' => [
-            'group_add' => '',
-            'group_remove' => '',
-            'group_rename' => '',
+            'group_add' => ':group sukurta.',
+            'group_remove' => ':group ištrinta.',
+            'group_rename' => ':previous_group pervadinta į :group.',
             'user_add' => '',
             'user_add_with_playmodes' => '',
             'user_add_playmodes' => '',
@@ -24,12 +24,12 @@ return [
     ],
 
     'form' => [
-        'group' => '',
-        'group_all' => '',
-        'max_date' => '',
+        'group' => 'Grupė',
+        'group_all' => 'Visos grupės',
+        'max_date' => 'Į',
         'min_date' => '',
-        'user' => '',
-        'user_prompt' => '',
+        'user' => 'Naudotojas',
+        'user_prompt' => 'Slapyvardis arba ID',
     ],
 
     'staff_log' => [

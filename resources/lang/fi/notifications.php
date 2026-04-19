@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Olet nyt vieraana rytmikartassa ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Uutinen ":title" on saanut uusia kommentteja',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

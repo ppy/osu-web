@@ -81,7 +81,7 @@ return [
                 'beatmapset_love_compact' => 'La beatmap è stata promossa tra le amate',
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_nominate_compact' => 'La beatmap è stata nominata',
-                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di raking',
+                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di classificazione',
                 'beatmapset_qualify_compact' => 'La beatmap è entrata nella coda di classificazione',
                 'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Notizie',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Sei diventato ospite della beatmap ":title"',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'La notizia ":title" ha nuovi commenti',
-            ],
-
-            'news_post' => [
-                'news_post_new' => 'Notizie (:series): ":title"',
             ],
         ],
 

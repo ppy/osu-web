@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Ігри',
+        'points' => 'Очки',
+        'provisional' => 'Не вистачає зіграних матчів, щоб визначити рейтинг',
+        'rating' => 'Рейтинг',
+        'wins' => 'Перемоги',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Назва кімнати',
     ],
 
     'performance' => [
@@ -51,25 +51,25 @@ return [
 
     'top_plays' => [
         'empty' => 'Дані підраховуються...',
-        'last_updated' => '',
+        'last_updated' => 'Востаннє оновленно',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'чарти (застаріло)',
+        'featured' => 'вподобані',
+        'season_room' => 'кімната сезону',
+        'seasons' => 'сезони',
     ],
 
     'type' => [
         'country' => 'країни',
         'daily_challenge' => 'щоденний виклик',
-        'global' => 'глобальний',
+        'global' => 'топ світу',
         'kudosu' => 'кудосу',
-        'matchmaking' => '',
-        'playlists' => '',
-        'team' => 'команда',
-        'top_plays' => '',
+        'matchmaking' => 'швидка гра',
+        'playlists' => 'плейлисти',
+        'team' => 'команди',
+        'top_plays' => 'найкращі результати',
     ],
 
     'seasons' => [

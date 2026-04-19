@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Tu tagad esi ":title" ritma-mapes viesis',
@@ -271,10 +273,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Jaunumi ":title" ir komentāri',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

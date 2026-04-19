@@ -245,6 +245,7 @@ return [
             'prompt' => 'kirjoita hakusanoja...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Lisää hakuvaihtoehtoja',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Rajataksesi tunnisteella :filters sinulla on oltava aktiivinen :link',
                 'link_text' => 'osu!tukijamerkki',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

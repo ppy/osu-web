@@ -85,7 +85,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => 'kecocokan',
+            '_' => 'pertandingan',
         ],
         'legal_controller' => [
             '_' => 'informasi',

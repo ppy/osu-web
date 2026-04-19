@@ -30,7 +30,7 @@ return [
             ],
             'mail_fallback' => [
                 '_' => 'Jeżeli nie możesz uzyskać dostępu do aplikacji, :link.',
-                'link' => 'zamiast tego możesz się zweryfikować używając e-maila ',
+                'link' => 'zamiast tego, możesz się zweryfikować używając e-maila ',
             ],
         ],
     ],

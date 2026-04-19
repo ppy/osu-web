@@ -16,6 +16,7 @@ use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Sentry\State\Scope;
 
@@ -117,6 +118,25 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
     }
 
     return $data['value'] ?? $default;
+}
+
+function cache_proxy_purge(string $url): void
+{
+    $authKey = $GLOBALS['cfg']['osu']['cache_proxy']['purge_authorization_key'];
+
+    if (!present($authKey)) {
+        return;
+    }
+
+    try {
+        (new GuzzleHttp\Client())->request('DELETE', $url, [
+            'headers' => ['authorization' => $authKey],
+        ])->getBody()->getContents();
+    } catch (\Throwable $e) {
+        log_error(new App\Exceptions\CacheProxyPurgeException(previous: $e), [
+            'url' => $url,
+        ]);
+    }
 }
 
 /**
@@ -488,6 +508,11 @@ function qr_svg(string $text): string
             new BaconQrCode\Renderer\Image\SvgImageBackEnd()
         ),
     )->writeString($text);
+}
+
+function storage_disk(string $type): Illuminate\Contracts\Filesystem\Filesystem
+{
+    return \Storage::disk("{$GLOBALS['cfg']['filesystems']['default']}-{$type}");
 }
 
 function trim_unicode(?string $value)
@@ -1084,6 +1109,9 @@ function issue_icon($issue)
         'duplicate' => 'fas fa-copy',
         'invalid' => 'far fa-times-circle',
         'resolved' => 'far fa-check-circle',
+        'technical support' => 'fas fa-tools',
+        'question' => 'fas fa-question-circle',
+        'other' => 'fas fa-ellipsis-h',
         default => null,
     };
 
@@ -1462,35 +1490,36 @@ function fast_imagesize($url, ?string $logErrorId = null)
     return null_if_false(Cache::remember(
         "imageSize:{$url}",
         $oneMonthInSeconds,
-        function () use ($logErrorId, $url) {
-            $curl = curl_init($url);
-            curl_setopt_array($curl, [
-                CURLOPT_HTTPHEADER => [
-                    'Range: bytes=0-32768',
-                ],
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_MAXREDIRS => 5,
-                CURLOPT_TIMEOUT => 10,
-            ]);
-            $data = curl_exec($curl);
-
-            $ret = read_image_properties_from_string($data);
-
-            if ($ret === null && $logErrorId !== null) {
-                log_error(new FastImagesizeFetchException(), [
-                    'curl_error_code' => curl_errno($curl),
-                    'curl_error_message' => presence(curl_error($curl)) ?? 'ok',
-                    'curl_status_code' => curl_getinfo($curl, CURLINFO_HTTP_CODE),
-                    'error_id' => $logErrorId,
-                    'url' => $url,
-                ]);
-            }
-
-            // null isn't cached
-            return $ret ?? false;
-        },
+        // null can't be cached
+        fn () => (imagesize($url, $logErrorId) ?? false),
     ));
+}
+
+function imagesize(string $url, ?string $logErrorId = null): ?array
+{
+    try {
+        $data = (new GuzzleHttp\Client())->request('GET', $url, [
+            'headers' => ['range' => 'bytes=0-32768'],
+            'timeout' => 10,
+        ])->getBody()->getContents();
+
+        $ret = read_image_properties_from_string($data);
+    } catch (\Throwable $e) {
+        // ignore (or log) error and continue
+    }
+
+    if (isset($ret)) {
+        return $ret;
+    }
+
+    if ($logErrorId !== null) {
+        log_error(new FastImagesizeFetchException(previous: $e ?? null), [
+            'error_id' => $logErrorId,
+            'url' => $url,
+        ]);
+    }
+
+    return null;
 }
 
 function get_arr($input, $callback = null)
@@ -1862,7 +1891,7 @@ function array_to_graph_json(array $array, string $fieldName): array
 }
 
 // Fisher-Yates
-function seeded_shuffle(array &$items, int $seed = 0)
+function seeded_shuffle(array|Collection &$items, int $seed = 0)
 {
     mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {
@@ -1971,7 +2000,7 @@ function section_to_hue_map($section): int
         'user' => 'pink',
     ];
 
-    return isset($sectionMapping[$section]) ? $colourToHue[$sectionMapping[$section]] : $colourToHue['pink'];
+    return $colourToHue[$sectionMapping[$section] ?? 'pink'];
 }
 
 function search_error_message(?Exception $e): ?string

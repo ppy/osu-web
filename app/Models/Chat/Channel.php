@@ -479,7 +479,6 @@ class Channel extends Model
             $this->unhide();
 
             $message->dispatchNotification();
-
             new ChatMessageEvent($message)->broadcast(true);
         });
 

@@ -12,7 +12,7 @@
     $type = $locals['type'] ?? 'checkbox';
     $value = $locals['value'] ?? null;
 @endphp
-<label class="{{ class_with_modifiers('osu-switch-v2', $modifiers) }}">
+<div class="{{ class_with_modifiers('osu-switch-v2', $modifiers) }}">
     @if ($defaultValue !== null)
         <input
             type="hidden"
@@ -39,4 +39,4 @@
         @endforeach
     />
     <span class="osu-switch-v2__content"></span>
-</label>
+</div>

@@ -16,8 +16,10 @@ return [
         'invalid' => 'Nežinoma klaida patvirtinimo kode.',
         'is_privileged' => 'Dėl paskyros atstatymo susisiek su aukštos padėties administratoriumi.',
         'missing_key' => 'Privaloma.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Per daug nepavykusių bandymų.',
         'user_not_found' => 'Reikalaujamas vartotojas neegzistuoja.',
+        'wait_resend' => '',
         'wrong_key' => 'Neteisingas kodas.',
     ],
 

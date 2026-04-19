@@ -14,6 +14,7 @@ return [
 
         'player' => [
             'by' => 'Odigrao',
+            'played_on' => '',
             'submitted_on' => 'Podneseno na',
 
             'rank' => [

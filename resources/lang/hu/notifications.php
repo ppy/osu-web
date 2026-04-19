@@ -221,6 +221,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Mostantól vendégje vagy ":title" beatmapnek',
@@ -272,10 +274,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Új kommentek jelentek meg itt::title',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

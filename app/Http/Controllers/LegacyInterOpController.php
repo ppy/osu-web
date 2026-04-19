@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\Handler as ExceptionHandler;
 use App\Jobs\EsDocument;
 use App\Jobs\Notifications\ForumTopicReply;
-use App\Jobs\RegenerateBeatmapsetCover;
+use App\Jobs\RegenerateBeatmapsetMedia;
 use App\Libraries\Chat;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
@@ -58,7 +58,7 @@ class LegacyInterOpController extends Controller
         $beatmapset = Beatmapset::withTrashed()->findOrFail($id);
 
         if (!$beatmapset->trashed()) {
-            $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_default');
+            $job = (new RegenerateBeatmapsetMedia($beatmapset))->onQueue('beatmap_default');
             $this->dispatch($job);
         }
 
@@ -256,7 +256,8 @@ class LegacyInterOpController extends Controller
                         $sender,
                         $pmTarget,
                         presence($messageParams['message'] ?? null),
-                        $messageParams['is_action'] ?? null
+                        $messageParams['is_action'] ?? null,
+                        false,
                     );
                 } else {
                     $channel = $channels[$messageParams['target_id']] ?? null;
@@ -268,7 +269,8 @@ class LegacyInterOpController extends Controller
                         $sender,
                         $channel,
                         presence($messageParams['message'] ?? null),
-                        $messageParams['is_action'] ?? false
+                        $messageParams['is_action'] ?? false,
+                        false,
                     );
                 }
 

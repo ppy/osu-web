@@ -22,7 +22,7 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function batchDestroy(int $userId, BatchIdentities $batchIdentities)
+    public static function batchDestroy(int $userId, BatchIdentities $batchIdentities, bool $sync = false)
     {
         $notificationIds = $batchIdentities->getNotificationIds();
         $identities = $batchIdentities->getIdentities();
@@ -60,11 +60,11 @@ class UserNotification extends Model
             $readCount += $unreadCountInitial - $unreadCountCurrent;
         }
 
-        (new NotificationDeleteEvent($userId, [
+        new NotificationDeleteEvent($userId, [
             'notifications' => $identities,
             'read_count' => $readCount,
             'timestamp' => $now,
-        ]))->broadcast();
+        ], $sync)->broadcast();
     }
 
     public static function batchMarkAsRead(User $user, BatchIdentities $batchIdentities)

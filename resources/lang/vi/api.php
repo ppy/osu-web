@@ -31,6 +31,10 @@ return [
             'read' => 'Xem những ai bạn đang theo dõi.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => 'Tạo và quản lý phòng chơi nhiều người thay bạn.',
+        ],
+
         'public' => 'Đọc dữ liệu công khai thay mặt bạn.',
     ],
 ];

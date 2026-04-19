@@ -15,6 +15,7 @@ import Chart, { ChartData } from './chart';
 import ExtraHeader from './extra-header';
 import ExtraPageProps, { HistoricalSection } from './extra-page-props';
 import PlayDetailList from './play-detail-list';
+import ScoreReplayStatsEntry from './score-replay-stats-entry';
 
 type ChartSection = 'monthly_playcounts' | 'replays_watched_counts';
 
@@ -156,6 +157,31 @@ export default class Historical extends React.Component<ExtraPageProps> {
 
             <div className='page-extra__chart'>
               <Chart data={this.replaysWatchedCountsData} labelY={`${trans('users.show.extra.historical.replays_watched_counts.count_label')}`} />
+            </div>
+          </>
+        }
+
+        {this.data.score_replay_stats.count > 0 &&
+          <>
+            <ProfilePageExtraSectionTitle
+              count={this.data.score_replay_stats.count}
+              titleKey='users.show.extra.historical.score_replay_stats.title'
+            />
+            <div className='play-detail-list'>
+              {this.data.score_replay_stats.items.map((stats) => (
+                <ScoreReplayStatsEntry
+                  key={stats.score_id}
+                  stats={stats}
+                  user={this.props.controller.state.user}
+                />
+              ))}
+
+              <ShowMoreLink
+                {...this.data.score_replay_stats.pagination}
+                callback={this.onShowMore}
+                data={'scoreReplayStats' as const}
+                modifiers='profile-page'
+              />
             </div>
           </>
         }

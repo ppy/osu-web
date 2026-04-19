@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited διαθέσιμη υποδοχή|:count_delimited διαθέσιμες υποδοχές',
+            'first_places' => '',
             'leader' => 'Αρχηγός Ομάδας',
             'rank' => 'Κατάταξη',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

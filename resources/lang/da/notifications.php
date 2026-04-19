@@ -14,14 +14,14 @@ return [
     'verifying' => 'Bekræft venligst session for at se notifikationer',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'team' => '',
-        'user' => '',
+        '_' => 'alt',
+        'beatmapset' => 'beatmaps',
+        'build' => 'builds',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheder',
+        'team' => 'hold',
+        'user' => 'profil',
     ],
 
     'filters' => [
@@ -31,7 +31,7 @@ return [
         'channel' => 'chat',
         'forum_topic' => 'forum',
         'news_post' => 'nyheder',
-        'team' => '',
+        'team' => 'hold',
         'user' => 'profil',
     ],
 
@@ -59,9 +59,9 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Diskussion er blevet åbnet',
 
                 'review_count' => [
-                    'praises' => '',
-                    'problems' => '',
-                    'suggestions' => '',
+                    'praises' => ':count_delimited pris|:count_delimited priser',
+                    'problems' => ':count_delimited problem|:count_delimited problemer',
+                    'suggestions' => ':count_delimited forslag|:count_delimited forslag',
                 ],
             ],
 
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Ny holdbesked',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username siger ":title"',
+                    'channel_team_compact' => ':username siger ":title"',
+                    'channel_team_group' => ':username siger ":title"',
                 ],
             ],
         ],
@@ -161,10 +161,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Nyheder (:series:)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -180,17 +180,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Hold tilmeldingsanmodning',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "Du er nu en del af hold :title",
+                'team_application_accept_compact' => "Du er nu en del af hold :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Hold tilmeldings-opdateringer',
 
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_reject' => 'Din anmodning om at deltage i :title er blevet afvist',
+                'team_application_reject_compact' => 'Din anmodning om at deltage i :title er blevet afvist',
+                'team_application_store' => ':title anmodede om at deltage i dit hold',
+                'team_application_store_compact' => ':title anmodede om at deltage i dit hold',
             ],
         ],
 
@@ -220,6 +220,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Nyheder',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Du er nu gæst på beatmap ":title"',
@@ -252,13 +254,13 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Der er en ny meddelelse i ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Du har modtaget en ny besked fra :username',
             ],
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Der er en ny besked i hold ":name"',
             ],
         ],
 
@@ -272,10 +274,6 @@ return [
             'comment' => [
                 'comment_new' => 'Nyheder ":title" har nye kommentarer',
             ],
-
-            'news_post' => [
-                'news_post_new' => '',
-            ],
         ],
 
         'forum_topic' => [
@@ -286,16 +284,16 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
-                'team_application_store' => '',
+                'team_application_accept' => "Du er nu medlem af hold :title",
+                'team_application_reject' => 'Din andmodning om at deltage i hold :title er blevet afvist',
+                'team_application_store' => ':title anmodede om at deltage i dit hold',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har oprettet nye beatmaps',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username har genoplivet beatmaps',
             ],
         ],
     ],

@@ -12,8 +12,6 @@ import ConversationView from './conversation-view';
 import CreateAnnouncement from './create-announcement';
 import JoinChannels from './join-channels';
 
-const lazerLink = 'https://github.com/ppy/osu/releases';
-
 @observer
 export default class ConversationPanel extends React.Component<Record<string, never>> {
   private readonly disposer: ReturnType<typeof autorun>;
@@ -66,7 +64,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
       return <CreateAnnouncement />;
     }
 
-    if (selected === 'join') {
+    if (selected === 'join' || core.dataStore.channelStore.channels.size === 0) {
       return <JoinChannels />;
     }
 
@@ -74,21 +72,12 @@ export default class ConversationPanel extends React.Component<Record<string, ne
       return <ConversationView />;
     }
 
+    // requested channel not found
     return (
       <div className='chat-conversation-panel__no-channel'>
         <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
-        {core.dataStore.channelStore.channels.size > 0 ? (
-          <>
-            <div className='chat-conversation-panel__title'>{trans('chat.not_found.title')}</div>
-            <div className='chat-conversation-panel__instructions'>{trans('chat.not_found.message')}</div>
-          </>
-        ) : (
-          <>
-            <div className='chat-conversation-panel__title'>{trans('chat.no-conversations.title')}</div>
-            <div className='chat-conversation-panel__instructions'>{trans('chat.no-conversations.howto')}</div>
-            <div dangerouslySetInnerHTML={{ __html: trans('chat.no-conversations.lazer', { link: lazerLink }) }} />
-          </>
-        )}
+        <div className='chat-conversation-panel__title'>{trans('chat.not_found.title')}</div>
+        <div className='chat-conversation-panel__instructions'>{trans('chat.not_found.message')}</div>
       </div>
     );
   }
