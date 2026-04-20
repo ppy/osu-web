@@ -257,6 +257,7 @@ export default class ChatStateStore implements DispatchListener {
       // hide overlay before changing channel if we're waiting for a change to remove it from history navigation.
       hideLoadingOverlay();
       this.selectChannel(json.channel_id);
+      this.offerJoinChannel.delete(json.channel_id);
       this.waitAddChannelId = null;
       if (json.type === 'ANNOUNCE') {
         this.createAnnouncement.clear();

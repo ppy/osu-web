@@ -149,6 +149,17 @@ export default class ChannelStore implements DispatchListener {
         .always(() => this.ignoredChannels.delete(channelId));
     }
 
+    // offer joining public channel on navigation
+    if (channel.type === 'PUBLIC') {
+      core.dataStore.chatState.setOfferJoinChannel({
+        channel_id: channel.channelId,
+        description: channel.description,
+        message_length_limit: channel.messageLengthLimit,
+        name: channel.name,
+        type: channel.type,
+      });
+    }
+
     this.channels.delete(channelId);
   }
 
