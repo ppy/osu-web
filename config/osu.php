@@ -182,6 +182,9 @@ return [
     'oauth' => [
         'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS')) ?? 30),
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
+        // Seconds to cache validated bearer tokens. Set to 0 to disable.
+        // Revocations invalidate explicitly; other state changes fall through to TTL.
+        'token_cache_duration' => get_int(env('OAUTH_TOKEN_CACHE_DURATION')) ?? 60,
     ],
     'octane' => [
         'local_cache_expire_second' => get_int(env('OCTANE_LOCAL_CACHE_EXPIRE_SECOND')) ?? 60,

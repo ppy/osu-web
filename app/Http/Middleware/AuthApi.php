@@ -5,6 +5,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\OAuth\TokenCache;
 use App\Libraries\SessionVerification;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
@@ -70,17 +71,8 @@ class AuthApi
         $psrUserId = get_int($psr->getAttribute('oauth_user_id'));
         $psrTokenId = $psr->getAttribute('oauth_access_token_id');
 
-        $client = $this->clients->findActive($psrClientId);
-        if ($client === null) {
-            throw new AuthenticationException('invalid client');
-        }
+        $token = $this->resolveToken($psrTokenId, $psrClientId);
 
-        $token = $client->tokens()->validAt(now())->find($psrTokenId);
-        if ($token === null) {
-            throw new AuthenticationException('invalid token');
-        }
-
-        $token->setRelation('client', $client);
         $token->validate();
 
         // increment hit count for about every 10 hits
@@ -115,6 +107,31 @@ class AuthApi
                 }
             }
         }
+
+        return $token;
+    }
+
+    private function resolveToken($psrTokenId, $psrClientId)
+    {
+        $cached = TokenCache::get((string) $psrTokenId);
+        // Cached token's client_id must match the one the JWT claims; a mismatch
+        // means stale/poisoned cache, so fall through to DB validation.
+        if ($cached !== null && (string) $cached->client_id === (string) $psrClientId) {
+            return $cached;
+        }
+
+        $client = $this->clients->findActive($psrClientId);
+        if ($client === null) {
+            throw new AuthenticationException('invalid client');
+        }
+
+        $token = $client->tokens()->validAt(now())->find($psrTokenId);
+        if ($token === null) {
+            throw new AuthenticationException('invalid token');
+        }
+
+        $token->setRelation('client', $client);
+        TokenCache::put($token);
 
         return $token;
     }

@@ -8,6 +8,7 @@ namespace App\Models\OAuth;
 use App\Events\UserSessionEvent;
 use App\Exceptions\InvalidScopeException;
 use App\Interfaces\SessionVerificationInterface;
+use App\Libraries\OAuth\TokenCache;
 use App\Models\Traits\FasterAttributes;
 use App\Models\Traits\IncrementInstance;
 use App\Models\User;
@@ -144,6 +145,7 @@ class Token extends PassportToken implements SessionVerificationInterface
     public function markVerified(): void
     {
         $this->update(['verified' => true]);
+        TokenCache::forget($this->getKey());
     }
 
     public function revokeRecursive()
@@ -158,8 +160,12 @@ class Token extends PassportToken implements SessionVerificationInterface
     {
         $saved = parent::revoke();
 
-        if ($saved && $this->user_id !== null) {
-            UserSessionEvent::newLogout($this->user_id, [$this->getKeyForEvent()])->broadcast();
+        if ($saved) {
+            TokenCache::forget($this->getKey());
+
+            if ($this->user_id !== null) {
+                UserSessionEvent::newLogout($this->user_id, [$this->getKeyForEvent()])->broadcast();
+            }
         }
 
         return $saved;
@@ -184,6 +190,7 @@ class Token extends PassportToken implements SessionVerificationInterface
     {
         $this->verification_method = $method;
         $this->save();
+        TokenCache::forget($this->getKey());
     }
 
     /**

@@ -6,6 +6,7 @@
 namespace App\Models\OAuth;
 
 use App\Exceptions\InvariantException;
+use App\Libraries\OAuth\TokenCache;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -126,8 +127,10 @@ class Client extends PassportClient
             throw new InvariantException('First party tokens cannot be revoked through this method.');
         }
 
-        $user->getConnection()->transaction(function () use ($user) {
+        $tokenIds = $user->getConnection()->transaction(function () use ($user) {
             $clientTokens = Token::where('user_id', $user->getKey())->where('client_id', $this->id);
+
+            $ids = (clone $clientTokens)->pluck('id');
 
             (clone $clientTokens)->update([
                 'revoked' => true,
@@ -140,7 +143,13 @@ class Client extends PassportClient
                 ->table(DB::raw('oauth_refresh_tokens, (SELECT 1) dummy'))
                 ->whereIn('access_token_id', (clone $clientTokens)->select('id'))
                 ->update(['revoked' => true]);
+
+            return $ids;
         });
+
+        foreach ($tokenIds as $id) {
+            TokenCache::forget($id);
+        }
     }
 
     public function revoke()
@@ -179,8 +188,14 @@ class Client extends PassportClient
 
     private function revokeTokens($timestamp)
     {
+        $tokenIds = $this->tokens()->pluck('id');
+
         $this->tokens()->update(['revoked' => true, 'updated_at' => $timestamp]);
         $this->refreshTokens()->update([(new RefreshToken())->qualifyColumn('revoked') => true]);
         $this->authCodes()->update(['revoked' => true]);
+
+        foreach ($tokenIds as $id) {
+            TokenCache::forget($id);
+        }
     }
 }
