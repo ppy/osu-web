@@ -14,6 +14,14 @@ import ConversationView from './conversation-view';
 import CreateAnnouncement from './create-announcement';
 import JoinChannels from './join-channels';
 
+function handleJoinChannelClick(e: React.MouseEvent<HTMLElement>) {
+  const channelId = getInt(e.currentTarget.dataset.channelId);
+
+  if (channelId == null) return;
+
+  core.dataStore.chatState.addChannel(channelId);
+};
+
 @observer
 export default class ConversationPanel extends React.Component<Record<string, never>> {
   private readonly disposer: ReturnType<typeof autorun>;
@@ -90,7 +98,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
               modifiers='rounded-thin'
               props={{
                 'data-channel-id': joinChannel.channel_id,
-                onClick: this.joinChannel,
+                onClick: handleJoinChannelClick,
               }}
               text={trans('chat.not_joined.join')}
             />
@@ -108,12 +116,4 @@ export default class ConversationPanel extends React.Component<Record<string, ne
       </div>
     );
   }
-
-  private readonly joinChannel = (e: React.MouseEvent<HTMLElement>) => {
-    const channelId = getInt(e.currentTarget.dataset.channelId);
-
-    if (channelId == null) return;
-
-    core.dataStore.chatState.addChannel(channelId);
-  };
 }
