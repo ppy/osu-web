@@ -262,6 +262,12 @@ export default class ChatStateStore implements DispatchListener {
       if (json.type === 'ANNOUNCE') {
         this.createAnnouncement.clear();
       }
+    } else {
+      const offerJoinChannel = this.getOfferJoinChannel();
+      if (offerJoinChannel?.channel_id === json.channel_id) {
+        this.selectChannel(json.channel_id);
+        this.offerJoinChannel.delete(json.channel_id);
+      }
     }
   }
 
