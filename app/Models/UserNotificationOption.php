@@ -28,6 +28,7 @@ class UserNotificationOption extends Model
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const CHANNEL_ANNOUNCEMENT = 'channel_announcement';
+    const CHANNEL_MENTION = 'channel_mention';
     const COMMENT_REPLY = 'comment_reply';
     const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
@@ -43,6 +44,7 @@ class UserNotificationOption extends Model
         Notification::BEATMAP_OWNER_CHANGE,
         self::MAPPING,
         self::BEATMAPSET_MODDING,
+        Notification::CHANNEL_MENTION,
         Notification::CHANNEL_MESSAGE,
         Notification::CHANNEL_TEAM,
         Notification::COMMENT_NEW,

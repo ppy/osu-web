@@ -5,6 +5,7 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Achievement;
 use App\Models\Country;
 use App\Models\User;
 use Tests\TestCase;
@@ -299,6 +300,70 @@ class UsersControllerTest extends TestCase
         $this
             ->get(route('users.show', ['user' => $oldUsername]))
             ->assertRedirect(route('users.show', ['user' => $user2->getKey(), 'mode' => null]));
+    }
+
+    public function testUnlockClientSideAchievement()
+    {
+        $user = User::factory()->create();
+        $achievement = Achievement::factory()->create([
+            'client_side' => true,
+            'enabled' => true,
+        ]);
+
+        $this->actAsScopedUser($user);
+
+        $this->expectCountChange(fn () => $user->userAchievements()->count(), 1);
+        $this
+            ->put(route('api.unlock-client-side-achievement', ['achievementId' => $achievement->getKey()]))
+            ->assertSuccessful();
+    }
+
+    public function testUnlockClientSideAchievementFailsIfAchievementNotClientSide()
+    {
+        $user = User::factory()->create();
+        $achievement = Achievement::factory()->create([
+            'client_side' => false,
+            'enabled' => true,
+        ]);
+
+        $this->actAsScopedUser($user);
+
+        $this->expectCountChange(fn () => $user->userAchievements()->count(), 0);
+        $this
+            ->put(route('api.unlock-client-side-achievement', ['achievementId' => $achievement->getKey()]))
+            ->assertStatus(422);
+    }
+
+    public function testUnlockClientSideAchievementFailsIfAchievementNotEnabled()
+    {
+        $user = User::factory()->create();
+        $achievement = Achievement::factory()->create([
+            'client_side' => true,
+            'enabled' => false,
+        ]);
+
+        $this->actAsScopedUser($user);
+
+        $this->expectCountChange(fn () => $user->userAchievements()->count(), 0);
+        $this
+            ->put(route('api.unlock-client-side-achievement', ['achievementId' => $achievement->getKey()]))
+            ->assertStatus(404);
+    }
+
+    public function testUnlockClientSideAchievementFailsIfUserRestricted()
+    {
+        $user = User::factory()->restricted()->create();
+        $achievement = Achievement::factory()->create([
+            'client_side' => true,
+            'enabled' => true,
+        ]);
+
+        $this->actAsScopedUser($user);
+
+        $this->expectCountChange(fn () => $user->userAchievements()->count(), 0);
+        $this
+            ->put(route('api.unlock-client-side-achievement', ['achievementId' => $achievement->getKey()]))
+            ->assertStatus(403);
     }
 
     public function testUsernameRedirectToId()

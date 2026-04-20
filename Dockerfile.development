@@ -3,7 +3,8 @@ FROM almalinux:10-minimal
 COPY .php-version .node-version /
 
 RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
-    microdnf install -y epel-release && \
+    # shadow-utils is required for build and entrypoint scripts and frankenphp package install
+    microdnf install -y epel-release shadow-utils && \
     rpm -i https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf module enable -y php-zts:static-$(cat /.php-version) && \
     (curl -fsSL https://rpm.nodesource.com/setup_$(cat /.node-version).x | bash -) && \

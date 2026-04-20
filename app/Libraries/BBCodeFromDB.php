@@ -5,6 +5,8 @@
 
 namespace App\Libraries;
 
+use App\Jobs\CacheImagesize;
+
 /*
 * Note that this class doesn't actually parse random bbcode.
 * It only does "second pass" parsing of phpbb-preprocessed bbcode.
@@ -13,12 +15,15 @@ namespace App\Libraries;
 */
 class BBCodeFromDB
 {
+    const IMAGESIZE_MAX_FETCH = 10;
+
     public $text;
     public $uid;
     public $refId;
     public $withGallery;
 
     private array $options;
+    private int $imagesizeFetchCount = 0;
 
     public function __construct($text, $uid = '', $options = [])
     {
@@ -170,7 +175,7 @@ class BBCodeFromDB
                             'loading' => 'lazy',
                             'src' => $imageUrl,
                         ];
-                        $imageSize = fast_imagesize($imageUrl);
+                        $imageSize = $this->imagesize($imageUrl);
                         if ($imageSize !== null) {
                             $imageAttributes['width'] = $imageSize[0];
                             $imageAttributes['height'] = $imageSize[1];
@@ -212,7 +217,7 @@ class BBCodeFromDB
                 'loading' => 'lazy',
             ];
 
-            $imageSize = fast_imagesize($proxiedSrc);
+            $imageSize = $this->imagesize($proxiedSrc);
             if ($imageSize !== null && $imageSize[1] !== 0) {
                 $aspectRatio = round($imageSize[0] / $imageSize[1], 4);
 
@@ -362,6 +367,8 @@ class BBCodeFromDB
 
     public function toHTML()
     {
+        $this->imagesizeFetchCount = 0;
+
         $text = $this->text;
 
         // block
@@ -469,5 +476,22 @@ class BBCodeFromDB
         }
 
         return $text;
+    }
+
+    private function imagesize(string $url): ?array
+    {
+        [$isCached, $size] = fast_imagesize_cache_get($url);
+
+        if (!$isCached) {
+            if ($this->imagesizeFetchCount < static::IMAGESIZE_MAX_FETCH) {
+                $this->imagesizeFetchCount++;
+
+                $size = fast_imagesize_cache_put($url);
+            } else {
+                dispatch(new CacheImagesize($url));
+            }
+        }
+
+        return $size;
     }
 }

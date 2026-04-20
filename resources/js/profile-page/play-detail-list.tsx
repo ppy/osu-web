@@ -5,10 +5,10 @@ import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-
 import ShowMoreLink from 'components/show-more-link';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import { ScoreJsonForUser } from 'interfaces/score-json';
-import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { autorun, computed, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
-import { ContainerContext, KeyContext } from 'stateful-activation-context';
+import { ActiveKeyState, ContainerContext, KeyContext } from 'stateful-activation-context';
 import { classWithModifiers } from 'utils/css';
 import Controller from './controller';
 import { TopScoreSection } from './extra-page-props';
@@ -43,10 +43,7 @@ interface Props {
 
 @observer
 export default class PlayDetailList extends React.Component<Props> {
-  @observable activeKey: number | null = null;
-  private readonly containerContextValue: {
-    activeKeyDidChange: (key: number | null) => void;
-  };
+  @observable private readonly activeKeyState = new ActiveKeyState<number>();
   private readonly listRef = React.createRef<HTMLDivElement>();
 
   @computed
@@ -85,9 +82,6 @@ export default class PlayDetailList extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
-
-    // Do this after makeObservable call to make sure it's the decorated version of the function.
-    this.containerContextValue = { activeKeyDidChange: this.activeKeyDidChange };
   }
 
   componentDidMount() {
@@ -127,12 +121,12 @@ export default class PlayDetailList extends React.Component<Props> {
           titleKey={`users.show.extra.${this.sectionMap.translationKey}.title`}
         />
 
-        <div ref={this.listRef} className={`${classWithModifiers('play-detail-list', { 'menu-active': this.activeKey != null })} u-relative`}>
-          <ContainerContext.Provider value={this.containerContextValue}>
+        <div ref={this.listRef} className={`${classWithModifiers('play-detail-list', { 'menu-active': this.activeKeyState.value != null })} u-relative`}>
+          <ContainerContext.Provider value={this.activeKeyState}>
             {(this.uniqueItems).map((score) => (
               <KeyContext.Provider key={score.id} value={score.id}>
                 <PlayDetail
-                  activated={this.activeKey === score.id}
+                  activated={this.activeKeyState.value === score.id}
                   score={score}
                   showPinSortableHandle={this.withPinSortable}
                   showPpWeight={showPpWeight}
@@ -152,11 +146,6 @@ export default class PlayDetailList extends React.Component<Props> {
       </>
     );
   }
-
-  @action
-  private readonly activeKeyDidChange = (key: number | null) => {
-    this.activeKey = key;
-  };
 
   private readonly onShowMore = () => {
     this.props.controller.apiShowMore(this.props.section);
