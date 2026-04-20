@@ -9,6 +9,7 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import { getInt } from 'utils/math';
 import ConversationView from './conversation-view';
 import CreateAnnouncement from './create-announcement';
 import JoinChannels from './join-channels';
@@ -73,7 +74,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
       return <ConversationView />;
     }
 
-    const joinChannel = core.dataStore.chatState.offerJoinChannel;
+    const joinChannel = core.dataStore.chatState.getOfferJoinChannel();
     if (joinChannel != null) {
       return (
         <div className='chat-conversation-panel__no-channel'>
@@ -87,7 +88,10 @@ export default class ConversationPanel extends React.Component<Record<string, ne
           <div className='chat-conversation-panel__instructions'>
             <BigButton
               modifiers='rounded-thin'
-              props={{ onClick: this.joinChannel }}
+              props={{
+                'data-channel-id': joinChannel.channel_id,
+                onClick: this.joinChannel,
+              }}
               text={trans('chat.not_joined.join')}
             />
           </div>
@@ -105,11 +109,11 @@ export default class ConversationPanel extends React.Component<Record<string, ne
     );
   }
 
-  private readonly joinChannel = () => {
-    const channel = core.dataStore.chatState.offerJoinChannel;
+  private readonly joinChannel = (e: React.MouseEvent<HTMLElement>) => {
+    const channelId = getInt(e.currentTarget.dataset.channelId);
 
-    if (channel == null) return;
+    if (channelId == null) return;
 
-    core.dataStore.chatState.addChannel(channel.channel_id);
+    core.dataStore.chatState.addChannel(channelId);
   };
 }

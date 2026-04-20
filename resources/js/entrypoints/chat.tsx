@@ -87,11 +87,12 @@ core.reactTurbolinks.register('chat', action(() => {
     if (channel === undefined) {
       core.dataStore.chatState.selectFirst();
     } else {
-      if (initial != null) {
-        core.dataStore.chatState.setOfferJoinChannel(initial.current_channel);
-      }
       core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replace');
     }
+  }
+
+  if (initial?.current_channel != null) {
+    core.dataStore.chatState.setOfferJoinChannel(initial.current_channel);
   }
 
   return <MainView />;

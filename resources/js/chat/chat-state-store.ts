@@ -17,7 +17,9 @@ import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import { isJqXHR, onError } from 'utils/ajax';
 import { hideLoadingOverlay } from 'utils/loading-overlay';
+import { getInt } from 'utils/math';
 import { updateHistory } from 'utils/turbolinks';
+import { currentUrlParams } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import ChannelId, { AddChannelType } from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
@@ -32,7 +34,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable canChatAnnounce = false;
   @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
-  @observable offerJoinChannel: ChannelJson | null = null;
+  @observable offerJoinChannel = new Map<number, ChannelJson>();
   readonly publicChannels = new PublicChannels();
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
@@ -159,6 +161,14 @@ export default class ChatStateStore implements DispatchListener {
     }
   }
 
+  getOfferJoinChannel() {
+    const channelId = getInt(currentUrlParams().get('channel_id'));
+
+    return channelId == null
+      ? undefined
+      : this.offerJoinChannel.get(channelId);
+  }
+
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChannelJoinEvent) {
       this.handleChatChannelJoinEvent(event);
@@ -212,8 +222,8 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
-  setOfferJoinChannel(channel: ChannelJson | null) {
-    this.offerJoinChannel = channel;
+  setOfferJoinChannel(channel: ChannelJson) {
+    this.offerJoinChannel.set(channel.channel_id, channel);
   }
 
   @action
