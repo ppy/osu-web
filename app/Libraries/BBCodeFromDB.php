@@ -141,10 +141,10 @@ class BBCodeFromDB
             function ($m) {
                 $unescaped = html_entity_decode_better(BBCodeForDB::extraUnescape($m[1]));
                 $parsed = preg_replace_callback(
-                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\[/imagemap\]\n?#',
+                    '#\[imagemap\]\n\s*(?<imageUrl>https?://.+)\n(?<links>(?:\s*(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\s*\[/imagemap\]\n?#',
                     function ($map) {
                         $links = array_map(
-                            fn ($rawLink) => explode(' ', $rawLink, 6),
+                            fn ($rawLink) => explode(' ', trim($rawLink), 6),
                             explode("\n", $map['links']),
                         );
                         array_pop($links); // remove the empty string from last newline

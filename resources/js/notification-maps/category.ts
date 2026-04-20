@@ -35,6 +35,7 @@ export const nameToCategory: Partial<Record<string, string>> = {
   beatmapset_remove_from_loved: 'beatmapset_state',
   beatmapset_reset_nominations: 'beatmapset_state',
   channel_announcement: 'announcement',
+  channel_mention: 'channel_mention',
   channel_message: 'channel',
   channel_team: 'channel_team',
   comment_new: 'comment',

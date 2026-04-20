@@ -24,12 +24,12 @@ export default class TypeFilters extends React.Component<Props> {
   @computed
   private get discussionCounts() {
     const counts: Partial<Record<Filter, number>> = {};
-    const selectedUserId = this.props.discussionsState.selectedUserId;
+    const selectedUserIds = this.props.discussionsState.selectedUserIds;
 
     for (const type of statTypes) {
       let discussions = this.props.discussionsState.discussionsByFilter[type];
-      if (selectedUserId != null) {
-        discussions = discussions.filter((discussion) => discussion.user_id === selectedUserId);
+      if (selectedUserIds.size > 0) {
+        discussions = discussions.filter((discussion) => selectedUserIds.has(discussion.user_id));
       }
 
       counts[type] = discussions.length;
@@ -80,6 +80,7 @@ export default class TypeFilters extends React.Component<Props> {
 
   private readonly setFilter = (event: React.SyntheticEvent<HTMLElement>) => {
     event.preventDefault();
+    event.currentTarget.blur(); // to unfocus re-selected filter
     this.props.discussionsState.changeFilter(event.currentTarget.dataset.type);
   };
 }

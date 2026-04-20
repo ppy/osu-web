@@ -22,6 +22,7 @@ export default interface NotificationJson {
       problems: number;
       suggestions: number;
     };
+    message_id?: number;
     name?: string;
     news_post_id?: number;
     post_id?: number;
