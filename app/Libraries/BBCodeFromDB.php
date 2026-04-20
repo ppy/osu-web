@@ -43,13 +43,26 @@ class BBCodeFromDB
         }
     }
 
+    public function parseAlignment(string $text): string
+    {
+        $replacements = [];
+        foreach (['centre', 'left', 'right'] as $alignment) {
+            $replacements["[{$alignment}:{$this->uid}]\n"] = "<div class='bbcode__align-{$alignment}'>";
+            $replacements["[{$alignment}:{$this->uid}]"] = "<div class='bbcode__align-{$alignment}'>";
+            $replacements["[/{$alignment}:{$this->uid}]\n"] = '</div>';
+            $replacements["[/{$alignment}:{$this->uid}]"] = '</div>';
+        }
+
+        return strtr($text, $replacements);
+    }
+
     public function parseAudio($text)
     {
         preg_match_all("#\[audio:{$this->uid}\](?<url>[^[]+)\[/audio:{$this->uid}\]#", $text, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
             $proxiedSrc = proxy_media(html_entity_decode_better($match['url']));
-            $tag = '<audio controls="controls" preload="none" src="'.$proxiedSrc.'"></audio>';
+            $tag = '<audio controls="controls" data-modifiers="bbcode" preload="none" src="'.$proxiedSrc.'"></audio>';
 
             $text = str_replace($match[0], $tag, $text);
         }
@@ -80,20 +93,12 @@ class BBCodeFromDB
     {
         $linkText = presence($linkText) ?? 'SPOILER';
 
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><span class='bbcode-spoilerbox__link-icon'></span>{$linkText}</a><div class='js-spoilerbox__body bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><span class='bbcode-spoilerbox__link-icon'></span><span class='bbcode-spoilerbox__link-text'>{$linkText}</span></a><div class='js-spoilerbox__body bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
     {
         return '</div></div>';
-    }
-
-    public function parseCentre($text)
-    {
-        $text = str_replace("[centre:{$this->uid}]", '<center>', $text);
-        $text = str_replace("[/centre:{$this->uid}]", '</center>', $text);
-
-        return $text;
     }
 
     public function parseCode($text)
@@ -378,7 +383,7 @@ class BBCodeFromDB
         // inline
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
-        $text = $this->parseCentre($text);
+        $text = $this->parseAlignment($text);
         $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
@@ -443,7 +448,7 @@ class BBCodeFromDB
         // Don't care if too many characters are stripped;
         // just don't want tags to go into index because they mess up the highlighting.
 
-        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
+        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|left|list|list:o|list:u|notice|profile|quote|right|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
 
         return preg_replace($pattern, '', $text);
     }

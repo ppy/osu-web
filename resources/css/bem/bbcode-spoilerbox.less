@@ -18,8 +18,7 @@
   &__link {
     .reset-input();
     .link-default();
-    text-align: left;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     overflow-wrap: anywhere;
     font-weight: bold;
@@ -35,6 +34,7 @@
     width: @_padding-left;
     display: block;
     flex: none;
+    text-align: left;
 
     &::before {
       .fas();
@@ -43,5 +43,9 @@
       display: inline-block;
       text-align: left;
     }
+  }
+
+  &__link-text {
+    flex: 1;
   }
 }
