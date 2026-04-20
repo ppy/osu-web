@@ -20,7 +20,7 @@ function handleJoinChannelClick(e: React.MouseEvent<HTMLElement>) {
   if (channelId == null) return;
 
   core.dataStore.chatState.addChannel(channelId);
-};
+}
 
 @observer
 export default class ConversationPanel extends React.Component<Record<string, never>> {
