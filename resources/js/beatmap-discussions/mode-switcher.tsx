@@ -14,7 +14,6 @@ import DiscussionsState from './discussions-state';
 
 interface Props {
   discussionsState: DiscussionsState;
-  innerRef: React.RefObject<HTMLDivElement>;
 }
 
 const selectedClassName = 'page-mode-link--is-active';
@@ -45,14 +44,11 @@ export class ModeSwitcher extends React.Component<Props> {
 
   render() {
     return (
-      <>
-        <div className='page-extra-tabs-before' />
-        <div ref={this.props.innerRef} className='page-extra-tabs'>
-          <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
-            {discussionPages.map(this.renderMode)}
-          </ul>
-        </div>
-      </>
+      <div className='page-extra-tabs'>
+        <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
+          {discussionPages.map(this.renderMode)}
+        </ul>
+      </div>
     );
   }
 

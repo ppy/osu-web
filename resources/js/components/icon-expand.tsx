@@ -10,7 +10,7 @@ interface IconProps {
 
 interface Props {
   expand: boolean;
-  parentClass: string;
+  parentClass?: string;
 }
 
 function Icon({ position, icon }: IconProps) {
@@ -23,7 +23,7 @@ function Icon({ position, icon }: IconProps) {
 
 export default function IconExpand({ expand = false, parentClass }: Props) {
   return (
-    <span className={`icon-stack ${parentClass}`}>
+    <span className={`icon-stack ${parentClass ?? ''}`}>
       <span className='icon-stack__base'>
         <i className='fas fa-fw fa-angle-down' />
       </span>
