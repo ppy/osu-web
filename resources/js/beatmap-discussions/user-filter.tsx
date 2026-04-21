@@ -60,13 +60,16 @@ export class UserFilter extends React.Component<Props> {
 
   @computed
   private get text() {
-    const selectedUsers = this.props.discussionsState.selectedUsers;
-    if (selectedUsers.length === 0) {
-      return trans('beatmap_discussions.user_filter.label');
+    switch (this.props.discussionsState.selectedUsers.length) {
+      case 0:
+        return trans('beatmap_discussions.user_filter.label');
+      case 1: {
+        const user = this.props.discussionsState.selectedUsers[0];
+        return <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>;
+      }
+      default:
+        return trans('beatmap_discussions.user_filter.multiple');
     }
-
-    const user = this.props.discussionsState.selectedUsers[0];
-    return <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>;
   }
 
   @computed
@@ -103,10 +106,18 @@ export class UserFilter extends React.Component<Props> {
   @action
   private readonly handleSelect = (id?: string) => {
     const userId = getInt(id);
-    this.props.discussionsState.selectedUserIds.clear();
-    if (userId != null) {
-      this.props.discussionsState.selectedUserIds.add(userId);
+    const selectedUserIds = this.props.discussionsState.selectedUserIds;
+
+    if (userId == null) {
+      selectedUserIds.clear();
+      return false;
+    } else if (selectedUserIds.has(userId)) {
+      selectedUserIds.delete(userId);
+    } else {
+      selectedUserIds.add(userId);
     }
+
+    return true;
   };
 
   private isOwner(user?: Option): boolean {
