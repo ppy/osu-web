@@ -15,4 +15,9 @@ class DeletedUser extends User
     {
         return true;
     }
+
+    public function userGroupsForBadges(): array
+    {
+        return [];
+    }
 }
