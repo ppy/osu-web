@@ -296,6 +296,13 @@ export default class DiscussionsState {
   }
 
   @computed
+  get filtersForCurrentUser() {
+    return core.currentUser?.is_admin ?? false
+      ? filters
+      : filters.filter((filter) => filter !== 'deleted');
+  }
+
+  @computed
   get firstUnresolvedDiscussion() {
     return this.nonDeletedDiscussions.find((discussion) => (
       discussion.can_be_resolved

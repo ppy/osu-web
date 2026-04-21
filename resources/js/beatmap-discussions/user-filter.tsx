@@ -82,6 +82,7 @@ export class UserFilter extends React.Component<Props> {
   render() {
     return (
       <SelectOptions
+        blackout={false} // css sticky elements render on a different stacking context and always get covered by the blackout.
         href={this.props.discussionsState.url}
         modifiers='beatmap-discussions-user-filter'
         onSelect={this.handleSelect}
