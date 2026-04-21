@@ -41,9 +41,6 @@ function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
           {trans('rankings.matchmaking.plays')}
         </div>
         <div className='matchmaking-popup__value'>
-          {trans('rankings.matchmaking.points')}
-        </div>
-        <div className='matchmaking-popup__value'>
           {trans('rankings.matchmaking.rating')}
         </div>
       </div>
@@ -60,9 +57,6 @@ function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
           </div>
           <div className='matchmaking-popup__value'>
             {formatNumber(stats.plays)}
-          </div>
-          <div className='matchmaking-popup__value'>
-            {formatNumber(stats.total_points)}
           </div>
           <div className='matchmaking-popup__value'>
             {formatNumber(stats.rating)}{stats.is_rating_provisional ? '*' : ''}
