@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Collection;
+
 class DeletedUser extends User
 {
     public null $team = null;
@@ -16,8 +18,8 @@ class DeletedUser extends User
         return true;
     }
 
-    public function userGroupsForBadges(): array
+    public function userGroupsForBadges(): Collection
     {
-        return [];
+        return new Collection();
     }
 }
