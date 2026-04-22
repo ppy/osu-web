@@ -115,12 +115,12 @@ export class Discussion extends React.Component<Props> {
   @computed
   private get visibleReplies() {
     if (this.props.discussionsState == null
-      || this.props.discussionsState.selectedUserIds.size === 0
-      || this.props.discussionsState.showOtherReplies) {
+      || this.showDeleted
+      && (this.props.discussionsState.selectedUserIds.size === 0 || this.props.discussionsState.showOtherReplies)) {
       return this.replies;
     }
-    // always include system posts for the markers and state changes
-    return this.replies.filter((post) => post.system || this.props.discussionsState?.selectedUserIds.has(post.user_id));
+
+    return [...this.visibleRepliesGenerator()];
   }
 
   constructor(props: Props) {
@@ -306,7 +306,6 @@ export class Discussion extends React.Component<Props> {
   }
 
   private readonly renderReply = (post: BeatmapsetDiscussionPostJson) => {
-    if (!this.isVisible(post)) return null;
     if (post.system && post.message.type === 'resolved') {
       if (this.lastResolvedState === post.message.value) return null;
       this.lastResolvedState = post.message.value;
@@ -334,5 +333,20 @@ export class Discussion extends React.Component<Props> {
         </div>
       </div>
     );
+  }
+
+  private *visibleRepliesGenerator() {
+    if (this.props.discussionsState == null) {
+      yield* this.replies;
+      return;
+    }
+
+    for (const reply of this.replies) {
+      if (!this.showDeleted && reply.deleted_at != null) continue;
+      // always include non-deleted system posts for the markers and state changes
+      if (reply.system) yield reply;
+      if (!this.props.discussionsState.showOtherReplies && !this.props.discussionsState.selectedUserIds.has(reply.user_id)) continue;
+      yield reply;
+    }
   }
 }
