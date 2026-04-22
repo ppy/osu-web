@@ -19,6 +19,7 @@ interface PropsBase {
 type Props = PropsBase & ({
   type: 'daily_challenge' | 'download' | 'multiplayer' | 'seasons' | 'spotlight';
 } | {
+  poolType: 'ranked_play' | 'quick_play';
   ruleset: Ruleset;
   type: 'matchmaking';
 });
@@ -52,7 +53,7 @@ export default class BasicSelectOptions extends React.PureComponent<Props> {
       case 'download':
         return route('download', { platform: id });
       case 'matchmaking':
-        return route('rankings.matchmaking', { mode: this.props.ruleset, pool: id });
+        return route('rankings.matchmaking', { mode: this.props.ruleset, pool: id, poolType: this.props.poolType });
       case 'multiplayer':
         return route('multiplayer.rooms.show', { room: id ?? 'latest' });
       case 'seasons':

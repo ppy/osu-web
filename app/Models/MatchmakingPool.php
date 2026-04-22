@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class MatchmakingPool extends Model
 {
+    const array TYPES = ['ranked_play', 'quick_play'];
+
     protected $casts = [
         'active' => 'bool',
     ];
@@ -43,5 +45,10 @@ class MatchmakingPool extends Model
             : "[{$variantName}] ";
 
         return $prefix.$name;
+    }
+
+    public function hasPoints(): bool
+    {
+        return $this->type === 'quick_play';
     }
 }

@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
+use App\Models\MatchmakingPool;
 use App\Models\Model;
 use App\Models\Spotlight;
 use App\Models\TeamStatistics;
@@ -64,7 +65,10 @@ class RankingController extends Controller
                 'type' => $params['type'],
             ]),
             'kudosu' => route('rankings.kudosu'),
-            'matchmaking' => route('rankings.matchmaking', ['mode' => $params['mode'] ?? default_mode()]),
+            'matchmaking' => route('rankings.matchmaking', [
+                'poolType' => $params['poolType'] ?? MatchmakingPool::TYPES[0],
+                'mode' => $params['mode'] ?? default_mode(),
+            ]),
             'playlists' => match ($params['list'] ?? 'seasons') {
                 'charts' => route('rankings', [
                     'mode' => $params['mode'] ?? default_mode(),
