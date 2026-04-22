@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
@@ -108,7 +108,7 @@ export default class DiscussionsState {
    */
   @computed
   get discussionsByFilter() {
-    const groups: Record<Filter, BeatmapsetDiscussionJson[]> = {
+    const groups: Record<Filter, BeatmapsetDiscussionJsonForShow[]> = {
       deleted: [],
       hype: [],
       mapperNotes: [],
@@ -120,7 +120,7 @@ export default class DiscussionsState {
     };
 
     const currentUser = core.currentUser;
-    const reviewsWithPending = new Set<BeatmapsetDiscussionJson>();
+    const reviewsWithPending = new Set<BeatmapsetDiscussionJsonForShow>();
 
     for (const discussion of this.discussionForSelectedBeatmap) {
       if (discussion.deleted_at != null) {
@@ -169,7 +169,7 @@ export default class DiscussionsState {
   get discussionsByMode() {
     const discussions = this.discussionsByFilter[this.currentFilter];
 
-    const value: Record<DiscussionMode, BeatmapsetDiscussionJson[]> = {
+    const value: Record<DiscussionMode, BeatmapsetDiscussionJsonForShow[]> = {
       general: [],
       generalAll: [],
       reviews: [],
@@ -213,7 +213,7 @@ export default class DiscussionsState {
       return this.discussionsByMode;
     }
 
-    const value: Record<DiscussionMode, BeatmapsetDiscussionJson[]> = {
+    const value: Record<DiscussionMode, BeatmapsetDiscussionJsonForShow[]> = {
       general: [],
       generalAll: [],
       reviews: [],
