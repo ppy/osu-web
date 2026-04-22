@@ -44,6 +44,10 @@
     color: @osu-colour-c1;
   }
 
+  &--beatmap-discussions {
+    min-width: 60px; // allows up to 3 digits without resizing.
+  }
+
   &--info {
     padding: 10px 0;
     background-color: transparent;
@@ -86,8 +90,8 @@
     font-size: @font-size--small;
     white-space: nowrap;
 
-    .@{top}--beatmap-discussions & {
-      margin-right: 10px;
+    &--beatmap-discussions {
+      margin-right: 0;
     }
 
     .@{top}--info & {
