@@ -47,7 +47,7 @@ class NotificationsBundle
     public function toArray()
     {
         if ($this->objectId && $this->objectType && $this->category) {
-            $this->fillStacks($this->objectType, $this->objectId, $this->category);
+            $this->fillAllStacks([[$this->objectType, $this->objectId, $this->category]]);
         } else {
             $this->fillTypes($this->objectType);
         }
@@ -68,43 +68,67 @@ class NotificationsBundle
         return $response;
     }
 
-    private function fillStacks(string $objectType, int $objectId, string $category)
+    private function fillAllStacks(array $stacks): void
     {
-        $key = static::stackKey($objectType, $objectId, $category);
-        // skip multiple notification names mapped to the same category.
-        if (isset($this->stacks[$key])) {
-            return;
+        foreach ($stacks as $stack) {
+            foreach (Notification::namesInCategory($stack[2]) as $name) {
+                $bindValues[] = $stack[0];
+                $bindValues[] = $stack[1];
+                $bindValues[] = $name;
+                $binds[] = '(?, ?, ?)';
+            }
+        }
+        $bindsString = implode(',', $binds);
+        $cursorString = $this->cursorId === null ? '' : "AND un.notification_id < {$this->cursorId}";
+        $unreadString = $this->unreadOnly ? 'AND un.is_read = 0' : '';
+        $limit = static::PER_STACK_LIMIT;
+        $notifications = Notification::selectRaw(
+            "JSON_ARRAY((
+                SELECT un.id
+                FROM user_notifications un
+                WHERE
+                    un.notification_id = notifications.id
+                    AND un.user_id = {$this->user->getKey()}
+                    AND un.delivery & 1
+                    {$unreadString}
+                    {$cursorString}
+                ORDER BY un.notification_id DESC
+                LIMIT {$limit}
+            )) user_notification_ids",
+        )->whereRaw("(notifiable_type, notifiable_id, name) IN ({$bindsString})", $bindValues)->get();
+
+        $userNotificationIds = [];
+        foreach ($notifications as $notification) {
+            $userNotificationIds = [
+                ...$userNotificationIds,
+                ...array_reject_null(json_decode($notification->getRawAttribute('user_notification_ids'), true)),
+            ];
         }
 
-        $query = $this
-            ->user
-            ->userNotifications()
-            ->hasPushDelivery()
-            ->joinRelation('notification', function ($q) use ($category, $objectId, $objectType) {
-                $q
-                    ->where($q->qualifyColumn('notifiable_type'), $objectType)
-                    ->where($q->qualifyColumn('notifiable_id'), $objectId)
-                    ->whereIn($q->qualifyColumn('name'), Notification::namesInCategory($category))
-                    ->orderByDesc($q->qualifyColumn('created_at'))
-                    ->orderByDesc($q->qualifyColumn('id'));
+        $userNotifications = UserNotification
+            ::with('notification')
+            ->whereIn('id', $userNotificationIds)
+            ->orderByDesc('notification_id')
+            ->orderByDesc('id')
+            ->get();
 
-                if ($this->cursorId !== null) {
-                    $q->where($q->qualifyColumn('id'), '<', $this->cursorId);
+        foreach ($userNotifications as $userNotification) {
+            $notification = $userNotification->notification;
+
+            $objectType = $notification->notifiable_type;
+            $objectId = $notification->notifiable_id;
+            $category = $notification->category;
+
+            $groupedStacks[$objectType][$objectId][$category][] = $userNotification;
+            $this->userNotifications->push($userNotification);
+        }
+        foreach ($groupedStacks as $objectType => $stacksByObjectId) {
+            foreach ($stacksByObjectId as $objectId => $stacksByCategory) {
+                foreach ($stacksByCategory as $category => $stack) {
+                    $key = static::stackKey($objectType, $objectId, $category);
+                    $this->stacks[$key] = $this->stackToJson($stack, $objectType, $objectId, $category);
                 }
-            })
-            ->limit(static::PER_STACK_LIMIT);
-
-        if ($this->unreadOnly) {
-            $query->where($query->qualifyColumn('is_read'), false);
-        }
-        $query->select($query->qualifyColumn('*'));
-
-        $stack = $query->get();
-
-        $json = $this->stackToJson($stack, $objectType, $objectId, $category);
-        if ($json !== null) {
-            $this->stacks[$key] = $json;
-            $this->userNotifications = $this->userNotifications->merge($stack);
+            }
         }
     }
 
@@ -172,9 +196,15 @@ class NotificationsBundle
     {
         $heads = $this->getStackHeads($type);
 
-        $heads->each(function ($row) {
-            $this->fillStacks($row->notifiable_type, $row->notifiable_id, $row->category);
-        });
+        $allStacks = [];
+        foreach ($heads as $head) {
+            $allStacks[] = [
+                $head->notifiable_type,
+                $head->notifiable_id,
+                $head->category,
+            ];
+        }
+        $this->fillAllStacks($allStacks);
 
         $last = $heads->last();
         $cursor = $last !== null ? ['id' => $last->max_id] : null;
@@ -255,14 +285,14 @@ class NotificationsBundle
         }
     }
 
-    private function stackToJson($stack, string $objectType, int $objectId, string $category)
+    private function stackToJson(array $stack, string $objectType, int $objectId, string $category)
     {
-        $last = $stack->last();
+        $last = $stack[array_key_last($stack)];
         if ($last === null) {
             return;
         }
 
-        $cursor = $stack->count() < static::PER_STACK_LIMIT ? null : [
+        $cursor = count($stack) < static::PER_STACK_LIMIT ? null : [
             'id' => $last->notification_id,
         ];
 
