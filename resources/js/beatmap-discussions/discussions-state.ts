@@ -70,7 +70,9 @@ export default class DiscussionsState {
   @observable repliesIncludeSelectedUsers = false;
   @observable selectedNominatedRulesets: Ruleset[] = [];
   @observable readonly selectedUserIds = new Set<number>();
-  @observable showDeleted = true; // this toggle only affects All and deleted discussion filters, other filters don't show deleted
+  // this toggle affects All and deleted discussion filters, and replies;
+  // other filters don't include deleted discussions but they can include deleted replies.
+  @observable showDeleted = true;
   @observable showOtherReplies = true;
   @observable sort: Record<DiscussionMode, Sort> = {
     general: 'updated_at',
