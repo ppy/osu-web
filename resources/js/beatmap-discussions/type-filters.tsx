@@ -66,7 +66,7 @@ export default class TypeFilters extends React.Component<Props> {
         onClick={this.setFilter}
       >
         <div className={`${bn}__content`}>
-          <div className={`${bn}__title`}>
+          <div className={classWithModifiers(`${bn}__title`, 'beatmap-discussions')}>
             {trans(`beatmaps.discussions.stats.${snakeCase(type)}`)}
           </div>
           <div className={`${bn}__count`}>
