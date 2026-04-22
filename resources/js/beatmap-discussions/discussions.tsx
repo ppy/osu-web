@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -40,7 +40,7 @@ export class Discussions extends React.Component<Props> {
 
     const discussions = this.discussionsState.discussionsForSelectedUserByMode[this.discussionsState.currentPage];
 
-    return discussions.slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
+    return discussions.slice().sort((a, b) => {
       const mapperNoteCompare =
         // no sticky for timeline sort
         this.discussionsState.currentSort !== 'timeline'
