@@ -595,6 +595,7 @@ export default class DiscussionsState {
       selectedUserIds: [...this.selectedUserIds],
       showDeleted: this.showDeleted,
       showOtherReplies: this.showOtherReplies,
+      sort: this.sort,
     };
   }
 
