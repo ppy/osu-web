@@ -27,7 +27,6 @@ export default class InputBox extends React.Component<Props> {
     return this.isAnnouncement;
   }
 
-  @computed
   get currentChannel() {
     return core.dataStore.chatState.selectedChannel;
   }
