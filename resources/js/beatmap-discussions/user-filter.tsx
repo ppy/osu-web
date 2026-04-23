@@ -34,7 +34,7 @@ interface Props {
 @observer
 export class UserFilter extends React.Component<Props> {
   private get ownerId() {
-    return this.props.discussionsState.beatmapset.user_id;
+    return this.discussionsState.beatmapset.user_id;
   }
 
   // TODO: add actual multi user selection.
@@ -58,13 +58,17 @@ export class UserFilter extends React.Component<Props> {
     ];
   }
 
+  private get discussionsState() {
+    return this.props.discussionsState;
+  }
+
   @computed
   private get text() {
-    switch (this.props.discussionsState.selectedUsers.length) {
+    switch (this.discussionsState.selectedUsers.length) {
       case 0:
         return trans('beatmap_discussions.user_filter.label');
       case 1: {
-        const user = this.props.discussionsState.selectedUsers[0];
+        const user = this.discussionsState.selectedUsers[0];
         return <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>;
       }
       default:
@@ -74,7 +78,7 @@ export class UserFilter extends React.Component<Props> {
 
   @computed
   private get urlOptions() {
-    return parseUrl(this.props.discussionsState.url);
+    return parseUrl(this.discussionsState.url);
   }
 
   constructor(props: Props) {
@@ -86,11 +90,11 @@ export class UserFilter extends React.Component<Props> {
     return (
       <SelectOptions
         blackout={false} // css sticky elements render on a different stacking context and always get covered by the blackout.
-        href={this.props.discussionsState.url}
+        href={this.discussionsState.url}
         modifiers='beatmap-discussions-user-filter'
         onSelect={this.handleSelect}
         options={this.options}
-        selected={this.props.discussionsState.selectedUserIds}
+        selected={this.discussionsState.selectedUserIds}
       >
         {this.text}
       </SelectOptions>
@@ -106,11 +110,10 @@ export class UserFilter extends React.Component<Props> {
   @action
   private readonly handleSelect = (id?: string) => {
     const userId = getInt(id);
-    const selectedUserIds = this.props.discussionsState.selectedUserIds;
+    const selectedUserIds = this.discussionsState.selectedUserIds;
 
     if (userId == null) {
       selectedUserIds.clear();
-      return false;
     } else if (selectedUserIds.has(userId)) {
       selectedUserIds.delete(userId);
     } else {
@@ -131,13 +134,29 @@ export class UserFilter extends React.Component<Props> {
       urlOptions.users = user.id != null ? [user.id] : undefined;
     }
 
+    const checked = user.id == null
+      ? this.discussionsState.selectedUserIds.size === 0
+      : this.discussionsState.selectedUserIds.has(user.id);
+
     return {
       href: urlOptions != null ? makeUrl(urlOptions) : '#',
       id: user.id,
-      text: <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>,
+      text: (
+        <>
+          <div className='osu-switch-v2'>
+            <input
+              checked={checked}
+              className='osu-switch-v2__input'
+              readOnly
+              type='checkbox'
+            />
+            <span className='osu-switch-v2__content' />
+          </div>
+          <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>
+        </>
+      ),
     };
   };
-
   private styleForUser(user: Option) {
     return groupColour(this.getGroup(user));
   }
