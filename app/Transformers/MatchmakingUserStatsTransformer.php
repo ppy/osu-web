@@ -40,6 +40,6 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
 
     public function includeUser(MatchmakingUserStats $stats): ResourceInterface
     {
-        return $this->item($stats->user, new UserTransformer());
+        return $this->item($stats->user, new UserCompactTransformer());
     }
 }
