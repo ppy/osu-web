@@ -591,8 +591,10 @@ export default class DiscussionsState {
       highlightedDiscussionId: this.highlightedDiscussionId,
       pinnedNewDiscussion: this.pinnedNewDiscussion,
       readPostIds: [...this.readPostIds],
+      repliesIncludeSelectedUsers: this.repliesIncludeSelectedUsers,
       selectedUserIds: [...this.selectedUserIds],
       showDeleted: this.showDeleted,
+      showOtherReplies: this.showOtherReplies,
     };
   }
 
