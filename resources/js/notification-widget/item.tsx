@@ -91,7 +91,7 @@ export default class Item extends React.Component<Props> {
   }
 
   private renderCover() {
-    const coverUrl = this.props.withCoverImage ? this.props.item.details.coverUrl : null;
+    const coverUrl = this.props.withCoverImage ? this.props.item.details.cover_url : null;
 
     return (
       <div

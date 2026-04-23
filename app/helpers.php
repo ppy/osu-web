@@ -1483,16 +1483,33 @@ function json_options(mixed $current, iterable $items, ?callable $transformer = 
     ];
 }
 
-function fast_imagesize($url, ?string $logErrorId = null)
+function fast_imagesize(string $url, ?string $logErrorId = null): ?array
+{
+    $cached = fast_imagesize_cache_get($url);
+
+    return $cached[0]
+        ? $cached[1]
+        : fast_imagesize_cache_put($url, $logErrorId);
+}
+
+function fast_imagesize_cache_get(string $url): array
+{
+    $value = Cache::get("imageSize:{$url}");
+
+    $isCached = $value !== null;
+
+    return [$isCached, null_if_false($value)];
+}
+
+function fast_imagesize_cache_put(string $url, ?string $logErrorId = null): ?array
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
-    return null_if_false(Cache::remember(
-        "imageSize:{$url}",
-        $oneMonthInSeconds,
-        // null can't be cached
-        fn () => (imagesize($url, $logErrorId) ?? false),
-    ));
+    $value = imagesize($url, $logErrorId) ?? false;
+
+    Cache::put("imageSize:{$url}", $value, $oneMonthInSeconds);
+
+    return null_if_false($value);
 }
 
 function imagesize(string $url, ?string $logErrorId = null): ?array

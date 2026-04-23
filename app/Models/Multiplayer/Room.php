@@ -74,12 +74,13 @@ class Room extends Model
     const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
+        'ranked-play' => [self::RANKED_PLAY_TYPE],
         'realtime' => self::REALTIME_STANDARD_TYPES,
-        'quickplay' => self::MATCHMAKING_TYPES,
     ];
 
     const PLAYLIST_TYPE = 'playlists';
-    const MATCHMAKING_TYPES = ['matchmaking', 'ranked_play'];
+    const RANKED_PLAY_TYPE = 'ranked_play';
+    const MATCHMAKING_TYPES = ['matchmaking', self::RANKED_PLAY_TYPE];
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_STANDARD_TYPES = ['head_to_head', 'team_versus'];
     const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, ...self::MATCHMAKING_TYPES];
@@ -370,9 +371,12 @@ class Room extends Model
 
     public function getNameAttribute(?string $value): ?string
     {
-        return $this->isMatchmaking() && $value === 'Unnamed room'
-            ? 'Quick Play Match'
-            : $value;
+        return $value === 'Unnamed room'
+            ? match ($this->type) {
+                'matchmaking' => 'Quick Play Match',
+                'ranked_play' => 'Ranked Play Match',
+                default => $value,
+            } : $value;
     }
 
     public function assertCorrectPassword(?string $password): void

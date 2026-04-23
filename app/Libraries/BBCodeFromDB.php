@@ -5,6 +5,8 @@
 
 namespace App\Libraries;
 
+use App\Jobs\CacheImagesize;
+
 /*
 * Note that this class doesn't actually parse random bbcode.
 * It only does "second pass" parsing of phpbb-preprocessed bbcode.
@@ -13,12 +15,15 @@ namespace App\Libraries;
 */
 class BBCodeFromDB
 {
+    const IMAGESIZE_MAX_FETCH = 10;
+
     public $text;
     public $uid;
     public $refId;
     public $withGallery;
 
     private array $options;
+    private int $imagesizeFetchCount = 0;
 
     public function __construct($text, $uid = '', $options = [])
     {
@@ -38,13 +43,26 @@ class BBCodeFromDB
         }
     }
 
+    public function parseAlignment(string $text): string
+    {
+        $replacements = [];
+        foreach (['centre', 'left', 'right'] as $alignment) {
+            $replacements["[{$alignment}:{$this->uid}]\n"] = "<div class='bbcode__align-{$alignment}'>";
+            $replacements["[{$alignment}:{$this->uid}]"] = "<div class='bbcode__align-{$alignment}'>";
+            $replacements["[/{$alignment}:{$this->uid}]\n"] = '</div>';
+            $replacements["[/{$alignment}:{$this->uid}]"] = '</div>';
+        }
+
+        return strtr($text, $replacements);
+    }
+
     public function parseAudio($text)
     {
         preg_match_all("#\[audio:{$this->uid}\](?<url>[^[]+)\[/audio:{$this->uid}\]#", $text, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
             $proxiedSrc = proxy_media(html_entity_decode_better($match['url']));
-            $tag = '<audio controls="controls" preload="none" src="'.$proxiedSrc.'"></audio>';
+            $tag = '<audio controls="controls" data-modifiers="bbcode" preload="none" src="'.$proxiedSrc.'"></audio>';
 
             $text = str_replace($match[0], $tag, $text);
         }
@@ -75,20 +93,12 @@ class BBCodeFromDB
     {
         $linkText = presence($linkText) ?? 'SPOILER';
 
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><span class='bbcode-spoilerbox__link-icon'></span>{$linkText}</a><div class='js-spoilerbox__body bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><span class='bbcode-spoilerbox__link-icon'></span><span class='bbcode-spoilerbox__link-text'>{$linkText}</span></a><div class='js-spoilerbox__body bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
     {
         return '</div></div>';
-    }
-
-    public function parseCentre($text)
-    {
-        $text = str_replace("[centre:{$this->uid}]", '<center>', $text);
-        $text = str_replace("[/centre:{$this->uid}]", '</center>', $text);
-
-        return $text;
     }
 
     public function parseCode($text)
@@ -136,13 +146,16 @@ class BBCodeFromDB
             function ($m) {
                 $unescaped = html_entity_decode_better(BBCodeForDB::extraUnescape($m[1]));
                 $parsed = preg_replace_callback(
-                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\[/imagemap\]\n?#',
+                    '#\[imagemap\]\n\s*(?<imageUrl>https?://.+)\n(?<links>(?:\s*(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\s*\[/imagemap\]\n?#',
                     function ($map) {
-                        $links = array_map(
-                            fn ($rawLink) => explode(' ', $rawLink, 6),
-                            explode("\n", $map['links']),
+                        $links = array_filter(
+                            array_map(
+                                fn ($rawLink) => explode(' ', trim($rawLink), 6),
+                                explode("\n", $map['links']),
+                            ),
+                            // filter out blank lines
+                            fn ($links) => (count($links) >= 5),
                         );
-                        array_pop($links); // remove the empty string from last newline
 
                         $linksHtml = implode('', array_map(
                             fn ($link) => tag($link[4] === '#' ? 'span' : 'a', [
@@ -165,7 +178,7 @@ class BBCodeFromDB
                             'loading' => 'lazy',
                             'src' => $imageUrl,
                         ];
-                        $imageSize = fast_imagesize($imageUrl);
+                        $imageSize = $this->imagesize($imageUrl);
                         if ($imageSize !== null) {
                             $imageAttributes['width'] = $imageSize[0];
                             $imageAttributes['height'] = $imageSize[1];
@@ -207,7 +220,7 @@ class BBCodeFromDB
                 'loading' => 'lazy',
             ];
 
-            $imageSize = fast_imagesize($proxiedSrc);
+            $imageSize = $this->imagesize($proxiedSrc);
             if ($imageSize !== null && $imageSize[1] !== 0) {
                 $aspectRatio = round($imageSize[0] / $imageSize[1], 4);
 
@@ -357,6 +370,8 @@ class BBCodeFromDB
 
     public function toHTML()
     {
+        $this->imagesizeFetchCount = 0;
+
         $text = $this->text;
 
         // block
@@ -371,7 +386,7 @@ class BBCodeFromDB
         // inline
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
-        $text = $this->parseCentre($text);
+        $text = $this->parseAlignment($text);
         $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
@@ -436,7 +451,7 @@ class BBCodeFromDB
         // Don't care if too many characters are stripped;
         // just don't want tags to go into index because they mess up the highlighting.
 
-        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
+        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|left|list|list:o|list:u|notice|profile|quote|right|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
 
         return preg_replace($pattern, '', $text);
     }
@@ -464,5 +479,22 @@ class BBCodeFromDB
         }
 
         return $text;
+    }
+
+    private function imagesize(string $url): ?array
+    {
+        [$isCached, $size] = fast_imagesize_cache_get($url);
+
+        if (!$isCached) {
+            if ($this->imagesizeFetchCount < static::IMAGESIZE_MAX_FETCH) {
+                $this->imagesizeFetchCount++;
+
+                $size = fast_imagesize_cache_put($url);
+            } else {
+                dispatch(new CacheImagesize($url));
+            }
+        }
+
+        return $size;
     }
 }
