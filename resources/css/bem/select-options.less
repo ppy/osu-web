@@ -49,13 +49,16 @@
 
     --colour: hsl(var(--hsl-c1));
     display: flex;
-    justify-content: space-between;
     padding: var(--option-padding);
     white-space: nowrap;
     color: var(--colour);
 
     &--selected {
       background-color: @osu-colour-b3;
+    }
+
+    &--selector {
+      justify-content: space-between;
     }
 
     .link-hover({
