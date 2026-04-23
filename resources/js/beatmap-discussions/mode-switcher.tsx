@@ -44,11 +44,9 @@ export class ModeSwitcher extends React.Component<Props> {
 
   render() {
     return (
-      <div className='page-extra-tabs'>
-        <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
-          {discussionPages.map(this.renderMode)}
-        </ul>
-      </div>
+      <ul ref={this.scrollerRef} className='page-mode page-mode--sticky-toolbar'>
+        {discussionPages.map(this.renderMode)}
+      </ul>
     );
   }
 
