@@ -16,14 +16,11 @@ const bn = 'beatmapset-discussions-toolbar';
 
 interface Props {
   discussionsState: DiscussionsState;
-  stickTo: React.RefObject<HTMLElement>;
   store: BeatmapsetDiscussionsStore;
 }
 
 @observer
 export default class Toolbar extends React.Component<Props> {
-  private readonly ref = React.createRef<HTMLDivElement>();
-
   private get discussionsState() {
     return this.props.discussionsState;
   }
@@ -42,7 +39,7 @@ export default class Toolbar extends React.Component<Props> {
     const numColumns = this.discussionsState.filtersForCurrentUser.length - 1;
     return (
       <>
-        <div ref={this.ref} className='beatmapset-discussions-toolbar'>
+        <div className='beatmapset-discussions-toolbar'>
           <div
             className='beatmapset-discussions-toolbar__group beatmapset-discussions-toolbar__group--filters'
             style={{ '--num-columns': numColumns } as React.CSSProperties}
