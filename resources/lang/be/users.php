@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Апошнія паведамленні',
                 'show_more' => 'убачыць больш паведамленняў',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

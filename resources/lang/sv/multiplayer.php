@@ -8,7 +8,7 @@ return [
         'active' => 'Inte i någon pågående osu!(laser) :type_group spel!',
         'ended' => 'Inte i någon färdig osu!(laser) :type_group spel ännu!',
         'playlists' => 'spellista',
-        'quickplay' => 'snabbspel',
+        'ranked-play' => '',
         'realtime' => 'flerspelarläge',
     ],
 

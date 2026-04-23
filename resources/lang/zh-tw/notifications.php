@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => '新的團隊訊息',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => '你已收到來自 :username 的訊息',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '戰隊「:name」有新訊息',
             ],

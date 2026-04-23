@@ -404,7 +404,7 @@ return [
                 'title_longer' => 'פוסטים אחרונים',
                 'show_more' => 'ראה עוד פוסטים',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Nytt lagmeddelande',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Du har fått ett nytt meddelande från :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Det finns ett nytt meddelande i laget ":name"',
             ],

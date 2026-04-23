@@ -304,7 +304,7 @@ return [
         'favourites' => 'รายการโปรด',
         'graveyard' => 'สุสาน',
         'leaderboard' => 'สถิติการจัดลำดับ',
-        'loved' => 'Loved',
+        'loved' => 'เลิฟด์',
         'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ',
         'wip' => 'WIP',

@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Недавні пости',
                 'show_more' => 'бачити більше постiв',
             ],
-            'quickplay' => [
-                'title' => 'Матчі Швидкої Гри',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Недавня активність',

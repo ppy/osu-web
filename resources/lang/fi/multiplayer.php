@@ -8,7 +8,7 @@ return [
         'active' => 'Ei tällä hetkellä missään keskeneräisessä osu!(lazer) :type_group pelissä!',
         'ended' => 'Ei vielä missään valmiissa osu!(lazer) :type_group pelissä!',
         'playlists' => 'soittolistoja',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'moninpelejä',
     ],
 

@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modlama',
             'playlists' => 'oynatma listeleri',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'çok oyunculu',
             'show' => 'bilgi',
         ],

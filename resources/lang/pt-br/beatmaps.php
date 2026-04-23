@@ -277,8 +277,8 @@ return [
                 'link_text' => 'osu!supporter tag',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'procurar por tags de usuário',
+                'prompt' => 'digite para pesquisar',
             ],
         ],
     ],

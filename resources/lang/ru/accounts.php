@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'о гостевых сложностях',
             'beatmapset:modding' => 'о новых модах',
             'channel_message' => 'о новых личных сообщениях',
+            'channel_mention' => '',
             'channel_team' => 'о сообщениях в командном чате',
             'comment_new' => 'о новых комментариях',
             'forum_topic_reply' => 'об ответах на форуме',

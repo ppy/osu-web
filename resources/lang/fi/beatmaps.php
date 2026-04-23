@@ -7,7 +7,7 @@ return [
     'invalid_ruleset' => 'Virheellinen pelimuoto valittu.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Liian monta vieraskartoittajaa.',
     ],
 
     'discussion-votes' => [
@@ -245,7 +245,7 @@ return [
             'prompt' => 'kirjoita hakusanoja...',
             'login_required' => 'Kirjaudu sisään hakeaksesi.',
             'options' => 'Lisää hakuvaihtoehtoja',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Profiilin huippusijoitusten määrät ja tällä sivulla näkyvät tulokset perustuvat korkeimpiin ”standardoituihin” (eli ”lazer”) tuloksiisi rytmikartoissa.',
             'supporter_filter' => 'Tunnisteella :filters rajaaminen vaatii aktiivisen osu!supporter-tagin',
             'not-found' => 'ei tuloksia',
             'not-found-quote' => '... mitään ei löytynyt.',
@@ -277,8 +277,8 @@ return [
                 'link_text' => 'osu!tukijamerkki',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'selaa käyttäjätunnisteita',
+                'prompt' => 'kirjoita hakeaksesi',
             ],
         ],
     ],

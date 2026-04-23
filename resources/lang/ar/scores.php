@@ -14,8 +14,10 @@ return [
 
         'player' => [
             'by' => 'لُعِبَت بواسطة',
-            'played_on' => '',
+            'played_on' => 'تم اللعب في',
             'submitted_on' => 'تم تقديمه في',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'ترتيب الدولة',

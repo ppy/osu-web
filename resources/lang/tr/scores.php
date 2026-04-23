@@ -14,8 +14,10 @@ return [
 
         'player' => [
             'by' => 'Oynayan:',
-            'played_on' => '',
+            'played_on' => 'Şurada oynandı',
             'submitted_on' => 'Gönderilme:',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Ülke Sıralaması',

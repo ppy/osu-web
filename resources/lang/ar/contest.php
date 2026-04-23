@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'التعليقات',
         'hide_judged' => 'إخفاء المُدخلات المحكوم عليها',
         'nav_title' => 'تحكيم',
         'no_current_vote' => 'لم تصوت بعد.',
@@ -70,7 +70,7 @@ return [
         'preparation' => 'نحن نقوم حاليا بإعداد هذه المسابقة. الرجاء الانتظار بصبر!',
         'drop_here' => 'ضع مشاركتك هنا',
         'allowed_extensions' => '',
-        'max_size' => '',
+        'max_size' => 'الحجم الأقصى: :limit',
         'required_dimensions' => '',
         'download' => 'تحميل .osz',
         'wrong_file_type' => '',

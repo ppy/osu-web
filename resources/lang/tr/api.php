@@ -24,7 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Sizin adınıza forum konuları ve gönderileri oluşturabilir ve düzenleyebilir.',
-            'write_manage' => '',
+            'write_manage' => 'Senin adına forum konularını ve gönderilerini yönetir.',
         ],
 
         'friends' => [
@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Senin adına çok oyunculu odalar oluşturur ve yönetir.',
         ],
 
         'public' => 'Herkese açık verilerinizi sizin adınıza okuyabilir.',

@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Son Gönderiler',
                 'show_more' => 'daha fazla gönderi gör',
             ],
-            'quickplay' => [
-                'title' => 'Quick Play Maçları',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Son',

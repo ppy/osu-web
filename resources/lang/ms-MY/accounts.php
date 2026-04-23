@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'kesukaran tamu',
             'beatmapset:modding' => 'penyelarasan peta rentak',
             'channel_message' => 'pesanan bualan peribadi',
+            'channel_mention' => '',
             'channel_team' => 'pesanan bualan pasukan',
             'comment_new' => 'komen baharu',
             'forum_topic_reply' => 'balasan tajuk',

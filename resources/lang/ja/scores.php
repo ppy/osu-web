@@ -16,6 +16,8 @@ return [
             'by' => 'プレイ',
             'played_on' => '',
             'submitted_on' => '投稿日',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => '国別ランキング',

@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Neueste Beiträge',
                 'show_more' => 'weitere Beiträge anschauen',
             ],
-            'quickplay' => [
-                'title' => '"Quick Play"-Spiele',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',

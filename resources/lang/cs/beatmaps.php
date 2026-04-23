@@ -277,8 +277,8 @@ return [
                 'link_text' => 'osu!supporter tag',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'procházet označení od uživatelů',
+                'prompt' => 'zadej hledaný výraz',
             ],
         ],
     ],

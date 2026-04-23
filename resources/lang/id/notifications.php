@@ -10,14 +10,14 @@ return [
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'Lihat riwayat notifikasi',
-    'see_channel' => 'Buka jendela chat',
+    'see_channel' => 'buka jendela obrolan',
     'verifying' => 'Silakan verifikasi sesi untuk melihat notifikasi',
 
     'action_type' => [
         '_' => 'semua',
         'beatmapset' => 'beatmap',
         'build' => 'versi rilis',
-        'channel' => 'percakapan',
+        'channel' => 'obrolan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
         'team' => 'tim',
@@ -28,7 +28,7 @@ return [
         '_' => 'semua',
         'beatmapset' => 'beatmap',
         'build' => 'build',
-        'channel' => 'chat',
+        'channel' => 'obrolan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
         'team' => 'tim',
@@ -102,7 +102,7 @@ return [
         ],
 
         'channel' => [
-            '_' => 'Chat',
+            '_' => 'Obrolan',
 
             'announcement' => [
                 '_' => 'Pengumuman baru',
@@ -121,6 +121,16 @@ return [
                     'channel_message' => ':username mengatakan ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'dari :username',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
                 ],
             ],
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Kamu menerima pesan baru dari :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Terdapat pesan baru pada tim ":name"',
             ],

@@ -14,8 +14,10 @@ return [
 
         'player' => [
             'by' => '玩家',
-            'played_on' => '',
+            'played_on' => '游玩于',
             'submitted_on' => '达成时间',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => '地区排名',
@@ -27,7 +29,7 @@ return [
     'status' => [
         'non_best' => '只有个人最好成绩才能获取到表现分（PP）',
         'no_pp' => '该分数没有表现分（PP）',
-        'processing' => '该成绩仍在计算中，即将显示',
+        'processing' => '该成绩将在不久后计算并显示',
         'no_rank' => '该成绩未获得排名（谱面未上架或成绩已标记为删除）',
     ],
 ];

@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'playlist',
-            'quickplay' => 'quick play',
+            'ranked-play' => '',
             'realtime' => 'multigiocatore',
             'show' => 'dettagli',
         ],
@@ -209,7 +209,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Digita per cercare!',
+        'initial' => 'Scrivi per cercare!',
         'retry' => 'Ricerca fallita. Clicca per riprovare.',
     ],
 ];

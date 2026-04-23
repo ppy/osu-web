@@ -16,6 +16,8 @@ return [
             'by' => 'Изигран от',
             'played_on' => '',
             'submitted_on' => 'Публикуван на',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Държавно класиране',

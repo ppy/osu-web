@@ -28,9 +28,9 @@ return [
             'player_left' => ':user eşleşmeyi terk etti',
             'player_left_no_user' => 'bir oyuncu eşleşmeyi terk etti',
             'room_created' => ':user oyunu oluşturdu',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'room_created_no_user' => 'Maç oluşturuldu',
+            'room_disbanded' => 'Maç dağıtıldı',
+            'room_disbanded_no_user' => 'Maç dağıtıldı',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Bire bir',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Takım VS',
+            'team_versus' => 'Takım VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Serbest',
 
         'scoring-type' => [
             'score' => 'En Yüksek Skor',

@@ -8,7 +8,7 @@ return [
         'active' => 'Hiện không có ván osu!(lazer) :type_group: nào đang diễn ra!',
         'ended' => 'Chưa có ván osu!(lazer) :type_group: nào hoàn thành!',
         'playlists' => 'danh sách phát',
-        'quickplay' => 'chơi nhanh',
+        'ranked-play' => '',
         'realtime' => 'nhiều người chơi',
     ],
 

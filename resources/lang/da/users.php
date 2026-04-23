@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Seneste Opslag',
                 'show_more' => 'se flere opslag',
             ],
-            'quickplay' => [
-                'title' => 'Hurtigt Spil Kampe',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Seneste',
