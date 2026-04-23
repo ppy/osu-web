@@ -150,9 +150,8 @@ class BBCodeFromDB
                     function ($map) {
                         $links = array_map(
                             fn ($rawLink) => explode(' ', trim($rawLink), 6),
-                            explode("\n", $map['links']),
+                            explode("\n", trim($map['links'])),
                         );
-                        array_pop($links); // remove the empty string from last newline
 
                         $linksHtml = implode('', array_map(
                             fn ($link) => tag($link[4] === '#' ? 'span' : 'a', [
