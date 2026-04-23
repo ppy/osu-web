@@ -63,6 +63,7 @@ export default class ChatStateStore implements DispatchListener {
     return new Set(this.channelStore.groupedChannels.PUBLIC.map((channel) => channel.channelId));
   }
 
+  @computed
   get selectedChannel() {
     return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
   }
