@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'бийтмап трудност',
             'beatmapset:modding' => 'бийтмап редактор',
             'channel_message' => 'лично съобщение',
+            'channel_mention' => '',
             'channel_team' => 'отборни съобщения',
             'comment_new' => 'нов коментар',
             'forum_topic_reply' => 'отговор на тема',

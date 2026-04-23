@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Posts récents',
                 'show_more' => 'voir plus de posts',
             ],
-            'quickplay' => [
-                'title' => 'Historique des parties rapides',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',

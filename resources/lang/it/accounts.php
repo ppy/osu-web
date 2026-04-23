@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'difficoltà ospite',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
+            'channel_mention' => '',
             'channel_team' => 'messaggi chat di squadra',
             'comment_new' => 'nuovi commenti',
             'forum_topic_reply' => 'risposta al topic',

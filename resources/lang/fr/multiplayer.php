@@ -8,7 +8,7 @@ return [
         'active' => 'Ce joueur n\'est actuellement dans aucune partie :type_group en cours sur osu!(lazer).',
         'ended' => 'Ce joueur n\'a pas encore joué de parties :type_group terminées sur osu!(lazer).',
         'playlists' => 'playlist',
-        'quickplay' => 'partie rapide',
+        'ranked-play' => '',
         'realtime' => 'multijoueur',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'La durée est trop longue.',
             'name_too_long' => 'Le nom de la salle est trop long.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Trop d\'éléments de la playlist.',
         ],
 
         'status' => [

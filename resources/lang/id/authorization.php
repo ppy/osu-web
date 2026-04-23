@@ -69,8 +69,8 @@ return [
     'chat' => [
         'blocked' => 'Kamu tidak bisa mengirim pesan kepada pengguna yang kamu blokir atau memblokir dirimu.',
         'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak berada dalam daftar temannya.',
-        'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
-        'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
+        'moderated' => 'Kanal obrolan ini sedang dimoderasi.',
+        'no_access' => 'Kamu tidak memiliki akses ke kanal obrolan ini.',
         'no_announce' => 'Kamu tidak memiliki izin untuk membuat pengumuman.',
         'receive_friends_only' => 'Pengguna ini mungkin tidak akan bisa membalas karena kamu hanya menerima pesan dari pengguna yang berada dalam daftar temanmu.',
         'restricted' => 'Kamu tidak bisa mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',

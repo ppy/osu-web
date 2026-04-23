@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'ข้อความใหม่ทีม',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'คุณได้รับข้อความจาก :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'มีข้อความใหม่ในทีม ":name"',
             ],

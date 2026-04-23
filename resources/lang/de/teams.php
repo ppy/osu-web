@@ -27,7 +27,7 @@ return [
         'submit' => 'Team erstellen',
 
         'form' => [
-            'name_help' => 'Dein Teamname. Der Name kann später nicht mehr geändert werden.',
+            'name_help' => 'Dein Teamname. Der Name kann derzeit nicht geändert werden.',
             'short_name_help' => 'Maximal 4 Zeichen.',
             'title' => "Ein neues Team anlegen",
         ],

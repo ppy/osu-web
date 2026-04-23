@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'penyelarasan',
             'playlists' => 'senarai main',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'pemain ramai',
             'show' => 'maklumat',
         ],

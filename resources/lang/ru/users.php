@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Недавние посты',
                 'show_more' => 'показать больше постов',
             ],
-            'quickplay' => [
-                'title' => 'Матчи быстрой игры',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Последняя активность',
@@ -498,7 +498,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Всего :link на форуме,',
-            'count' => ':count пост|:count поста|:count постов',
+            'count' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         ],
         'rank' => [
             'country' => 'Рейтинг стран для :mode',

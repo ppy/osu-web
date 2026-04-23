@@ -7,7 +7,7 @@ return [
     'loading_users' => 'memuat pengguna...',
     'talking_in' => 'berbicara di :channel',
     'talking_with' => 'berbicara dengan :name',
-    'title_compact' => 'chat',
+    'title_compact' => 'obrolan',
     'unread_messages' => 'pesan yang belum dibaca',
 
     'cannot_send' => [

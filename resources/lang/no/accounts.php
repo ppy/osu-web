@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'gjeste-kart',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private meldinger',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'nye kommentar',
             'forum_topic_reply' => 'emne svar',

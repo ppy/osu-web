@@ -8,7 +8,7 @@ return [
         'active' => 'Nessuna partita :type_group in corso su osu!(lazer)',
         'ended' => 'Ancora nessuna partita :type_group su osu!(lazer)!',
         'playlists' => 'playlist',
-        'quickplay' => 'quick play',
+        'ranked-play' => '',
         'realtime' => 'multigiocatore',
     ],
 

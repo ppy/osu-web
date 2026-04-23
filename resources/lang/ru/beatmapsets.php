@@ -151,7 +151,7 @@ return [
             'source' => 'Источник',
             'storyboard' => 'Со сторибордом',
             'success-rate' => 'Процент прохождений',
-            'success_rate_plays' => ':passes из :count_delimited игры|:passes из :count_delimited игр',
+            'success_rate_plays' => ':passes из :count_delimited игры|:passes из :count_delimited игр|:passes из :count_delimited игр',
             'user_tags' => 'Теги от игроков',
             'video' => 'С видео',
         ],

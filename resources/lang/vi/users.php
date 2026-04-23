@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Bài viết gần đây',
                 'show_more' => 'xem bài viết khác',
             ],
-            'quickplay' => [
-                'title' => 'Ván chơi nhanh',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',

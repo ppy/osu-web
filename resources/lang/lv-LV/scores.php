@@ -16,6 +16,8 @@ return [
             'by' => 'Spēlēja',
             'played_on' => '',
             'submitted_on' => 'Iesūtīja',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Valsts Vieta',

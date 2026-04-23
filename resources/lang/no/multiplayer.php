@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'spilleliste',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'flerspiller',
     ],
 

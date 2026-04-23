@@ -7,7 +7,8 @@ return [
     'load_failed' => 'تعذر تحميل البيانات.',
     'missing_route' => 'رابط غير صالح أو طريقة طلب غير صحيحة.',
     'no_restricted_access' => 'أنت لست قادراً على تنفيذ هذا الإجراء عندما يكون حسابك في حالة مقيدة.',
-    'param_too_large' => '',
+    'param_too_large' => 'يحتوي الوسيط :name على حد أقصى قدره :count_delimited عنصر
+يحتوي الوسيط :name على حد أقصى قدره :count_delimited عناصر',
     'supporter_only' => 'يجب أن تكون osu!supporter لاستخدام هذه الميزة.',
     'unknown' => 'حدث خطأ غير معروف.',
 
@@ -26,7 +27,7 @@ return [
         'generic' => 'حدث خطأ أثناء اعداد طلبك.',
     ],
     'scores' => [
-        'invalid_id' => '',
+        'invalid_id' => 'معرّف النتيجة غير صالح.',
     ],
     'search' => [
         'default' => 'لم نمتكن من جلب اي نتائج, حاول مجددا لاحقا.',

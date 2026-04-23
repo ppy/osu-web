@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'λίστες αναπαραγωγής',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 

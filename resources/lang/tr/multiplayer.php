@@ -5,10 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Şu anda devam eden hiçbir osu!(lazer) :type_group oyununun içinde değilsin!',
+        'ended' => 'Henüz tamamlanmış hiçbir osu!(lazer) :type_group oyunun yok!',
         'playlists' => 'oynama listesi',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'çok oyunculu',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Süre aşırı uzun.',
             'name_too_long' => 'Oda ismi çok uzun.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Çok fazla playlist öğesi var.',
         ],
 
         'status' => [

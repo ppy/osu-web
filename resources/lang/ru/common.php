@@ -77,7 +77,7 @@ return [
         'months' => ':count_delimited месяц|:count_delimited месяца|:count_delimited месяцев',
         'notifications' => ':count_delimited уведомление|:count_delimited уведомления|:count_delimited уведомлений',
         'player' => ':count_delimited игрок|:count_delimited игрока|:count_delimited игроков',
-        'plus_others' => '+ ещё у :count_delimited другого!|+ ещё у :count_delimited других!',
+        'plus_others' => '+ ещё у :count_delimited другого!|+ ещё у :count_delimited других!|+ ещё у :count_delimited других!',
         'post' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         'second_short_unit' => 'сек',
         'star_priority' => ':count_delimited приоритет|:count_delimited приоритета|:count_delimited приоритетов',

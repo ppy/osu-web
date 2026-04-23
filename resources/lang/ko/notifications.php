@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => '새 팀 메시지',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => ':username 님에게 새로운 메시지를 받았습니다.',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '팀 ":name"에 새로운 메시지가 있습니다.',
             ],

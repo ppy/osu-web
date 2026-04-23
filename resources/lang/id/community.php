@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Unduhan Otomatis',
-                'description' => 'Beatmap akan diunduh secara otomatis pada saat kamu bermain multiplayer, menonton orang lain, atau mengeklik tautan di chat!',
+                'description' => 'Beatmap akan diunduh secara otomatis pada saat kamu bermain multiplayer, menonton orang lain, atau mengeklik tautan di ruang obrolan!',
             ],
 
             'upload_more' => [
@@ -91,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => 'Pesona Kuning Cemerlang',
-                'description' => 'Buat dirimu lebih tersorot dengan nama pengguna yang berwarna kuning merona di dalam kolom chat.',
+                'description' => 'Buat dirimu dikenali di dalam permainan dengan nama obrolan yang berwarna kuning merona.',
             ],
 
             'speedy_downloads' => [
@@ -144,7 +144,7 @@ return [
             'was_valid_until' => 'Tag supporter kamu berlaku hingga tanggal :date.',
 
             'gifted' => [
-                '_' => 'Dari jumlah ini, kamu sudah menghadiahkan tag senilai :dollars kepada :users yang lamanya mencakup :duration. Terima kasih atas kemurahan hatimu!',
+                '_' => 'Dari jumlah ini, kamu sudah menghadiahkan tag senilai :dollars kepada :users yang mencakup :duration. Sungguh dermawan!',
                 'users' => ':count_delimited pengguna lainnya|:count_delimited[ pengguna lainnya',
             ],
         ],

@@ -14,8 +14,10 @@ return [
 
         'player' => [
             'by' => 'Giocata da',
-            'played_on' => '',
+            'played_on' => 'Giocato su',
             'submitted_on' => 'Inviato il',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => ' Classifica Nazionale',

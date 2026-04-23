@@ -5,7 +5,7 @@
 
 return [
     'play_more' => '为何不先玩几局 osu! 呢？',
-    'require_login' => '请先登录。',
+    'require_login' => '请先登录以继续。',
     'require_verification' => '请验证以继续。',
     'restricted' => "账户受限，无法进行该操作。",
     'silenced' => "账户被禁言，无法进行该操作。",
@@ -27,14 +27,14 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '只有谱面作者、提名该谱面的谱面审核成员 (BN)、审核评估团队 (NAT) 成员可以在讨论区发送备注。',
+            'mapper_note_wrong_user' => '只有谱面作者、提名该谱面的谱面审核成员（BN）、审核评估团队（NAT）成员可以在讨论区发送备注。',
         ],
 
         'vote' => [
             'bot' => "不能对机器人的讨论投票",
             'limit_exceeded' => '请稍等后再投票',
             'owner' => "不能为自己的讨论投票！",
-            'wrong_beatmapset_state' => '只能给待定 (Pending) 谱面的讨论投票。',
+            'wrong_beatmapset_state' => '只能给待定 （Pending）谱面的讨论投票。',
         ],
     ],
 
@@ -56,7 +56,7 @@ return [
         'discussion_locked' => '谱面已上锁，以供讨论。',
 
         'metadata' => [
-            'nominated' => '您不能更改已提名谱面的信息。如果您认为其不正确，请联系谱面审核成员 (BN) 或审核评估团队 (NAT) 更改。',
+            'nominated' => '您不能更改已提名谱面的信息。如果您认为其不正确，请联系谱面审核成员 （BN）或审核评估团队（NAT）更改。',
         ],
     ],
 

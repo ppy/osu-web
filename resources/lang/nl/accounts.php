@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'gast moeilijkheid',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privéberichten',
+            'channel_mention' => '',
             'channel_team' => 'Team chat berichten',
             'comment_new' => 'nieuwe reacties',
             'forum_topic_reply' => 'topic antwoord',

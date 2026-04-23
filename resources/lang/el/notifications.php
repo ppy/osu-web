@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Νέο μήνυμα ομάδας',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Έλαβες ένα νέο μήνυμ από :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Υπάρχει ένα νέο μήνυμα στην ομάδα ":name"',
             ],

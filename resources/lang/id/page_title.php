@@ -59,7 +59,7 @@ return [
             '_' => 'riwayat perubahan',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'obrolan',
         ],
         'comments_controller' => [
             '_' => 'komentar',

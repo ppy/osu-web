@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'هذه العلامة غير صالحة مع هذه الخريطة.',
     ],
 ];

@@ -27,7 +27,7 @@ return [
         'title' => 'البحث',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'عرض المزيد من نتائج البحث لمسارات الفنان المميز',
         ],
         'beatmapset' => [
             'login_required' => 'سجل الدخول للبحث عن الخرائط',
@@ -54,17 +54,17 @@ return [
 
         'mode' => [
             'all' => 'الكل',
-            'artist_track' => '',
+            'artist_track' => 'مسار الفنان المميز',
             'beatmapset' => 'خريطة',
             'forum_post' => 'منتدى',
-            'team' => '',
+            'team' => 'الفريق',
             'user' => 'لاعب',
             'wiki_page' => 'ويكي',
         ],
 
         'team' => [
-            'login_required' => '',
-            'more_simple' => '',
+            'login_required' => 'سجّل الدخول للبحث عن الفرق',
+            'more_simple' => 'عرض المزيد من نتائج البحث للفِرق',
         ],
 
         'user' => [
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'تحقق من هذه الصفحة للمزيد من المعلومات',
-        'download' => '',
+        'download' => 'تنزيل',
         'for_os' => 'ل :os',
         'macos-fallback' => 'مستخدمين MacOS',
         'mirror' => 'مُباشر',
@@ -92,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version أو أحدث',
         'other_os' => 'منصات أخرى',
         'quick_start_guide' => 'دليل البدء السريع',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'إذا كنت تبحث عن النسخة الأقدم',
+        'tagline_1' => 'لنجعلك',
+        'tagline_2' => 'مستعداً!',
         'video-guide' => 'دليل الفديو',
 
         'help' => [
@@ -105,7 +105,7 @@ return [
 
         'os' => [
             'windows' => 'لنظام التشغيل Windows',
-            'macos' => 'لنظام التشغل MacOS',
+            'macos' => 'لنظام التشغيل macOS',
             'linux' => 'لنظام التشغيل Linux',
         ],
         'steps' => [
@@ -141,11 +141,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'خريطة التحدي اليومية',
             'new' => 'خرائط Ranked جديدة',
             'popular' => 'خرائط شعبية',
             'by_user' => 'بواسطة :user',
-            'resets' => '',
+            'resets' => 'إعادة تعيين :ends',
         ],
         'buttons' => [
             'download' => 'حَمِل osu!',
@@ -153,11 +153,11 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'البث المباشر المميّز',
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'فتح وحدة تحكم الإدارة',
             ],
         ],
     ],

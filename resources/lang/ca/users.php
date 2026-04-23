@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Repeticions vistes',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Repeticions més vistes',
                 ],
             ],
             'kudosu' => [
@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Publicacions recents',
                 'show_more' => 'veure més publicacions',
             ],
-            'quickplay' => [
-                'title' => 'Partides ràpides',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recent',

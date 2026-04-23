@@ -16,6 +16,8 @@ return [
             'by' => 'Chơi bởi',
             'played_on' => '',
             'submitted_on' => 'Tải lên',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Xếp hạng quốc gia',

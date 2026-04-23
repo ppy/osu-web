@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Nowa wiadomość na czacie zespołu',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Otrzymujesz nową wiadomość od użytkownika :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Nowa wiadomość na czacie zespołu „:name” ',
             ],

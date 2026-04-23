@@ -277,8 +277,8 @@ return [
                 'link_text' => 'osu! 서포터',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => '사용자 태그 탐색',
+                'prompt' => '검색어를 입력해주세요',
             ],
         ],
     ],

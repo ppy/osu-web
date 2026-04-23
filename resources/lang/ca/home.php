@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Inicieu sessió per a cercar equips',
             'more_simple' => 'Mostra més resultats de la cerca d\'equip',
         ],
 
