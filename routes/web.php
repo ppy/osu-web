@@ -307,7 +307,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
-    Route::get('rankings/quickplay/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');
+    Route::get('rankings/ranked-play/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');
     Route::get('rankings/top-plays/{mode?}', 'Ranking\TopPlaysController@show')->name('rankings.top-plays');
     Route::get('rankings/{mode?}/{type?}/{sort?}', 'RankingController@index')->name('rankings');
 
@@ -344,7 +344,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
-            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|quickplay|realtime'])->names('multiplayer');
+            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|ranked-play|realtime'])->names('multiplayer');
 
             Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
                 Route::get('/', 'ModdingHistoryController@index')->name('index');

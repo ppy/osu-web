@@ -23,7 +23,10 @@ class MatchmakingController extends Controller
         $rulesetName ??= default_mode();
         $rulesetId = Beatmap::MODES[$rulesetName] ?? abort(422, 'invalid ruleset parameter');
 
-        $poolsQuery = MatchmakingPool::where(['ruleset_id' => $rulesetId])->orderByDesc('active')->orderByDesc('id');
+        $poolsQuery = MatchmakingPool::where([
+            'ruleset_id' => $rulesetId,
+            'type' => 'ranked_play',
+        ])->orderByDesc('active')->orderByDesc('id');
 
         if ($poolId === null) {
             $pool = $poolsQuery->firstOrFail();
@@ -34,23 +37,19 @@ class MatchmakingController extends Controller
         $pools = $poolsQuery->get();
 
         $pool = $pools->findOrFail($poolId);
-        $query = $pool->allUserStats()->with('user.team')->default();
-
-        $sort = get_string(request('sort'));
-        if (!array_key_exists($sort, static::SORTS)) {
-            $sort = 'rating';
-        }
-        foreach (static::SORTS[$sort] as $dbSort) {
-            $query->orderBy(...$dbSort);
-        }
-        $scores = $query->paginate()->withQueryString();
+        $scores = $pool
+            ->allUserStats()
+            ->with('user.team')
+            ->default()
+            ->orderByDesc('rating')
+            ->paginate()
+            ->withQueryString();
 
         return ext_view('rankings.matchmaking', compact(
             'pool',
             'pools',
             'rulesetName',
             'scores',
-            'sort',
         ));
     }
 }
