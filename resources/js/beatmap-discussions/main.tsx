@@ -93,12 +93,10 @@ export default class Main extends React.Component<Props> {
           store={this.store}
         />
         <div className='osu-page osu-page--small osu-page--full'>
+          <Toolbar discussionsState={this.discussionsState} store={this.store} />
           <div className='sticky-toolbar-before' />
-          <div ref={this.stickyRef} className='sticky-toolbar sticky-toolbar--with-shadow'>
+          <div ref={this.stickyRef} className='sticky-toolbar'>
             <ModeSwitcher discussionsState={this.discussionsState} />
-            {this.discussionsState.currentPage !== 'events' && (
-              <Toolbar discussionsState={this.discussionsState} stickTo={this.stickyRef} store={this.store} />
-            )}
           </div>
           {this.discussionsState.currentPage === 'events' ? (
             <Events

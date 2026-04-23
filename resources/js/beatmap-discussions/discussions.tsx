@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import IconExpand from 'components/icon-expand';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import { action, computed, makeObservable } from 'mobx';
@@ -69,10 +70,14 @@ export class Discussions extends React.Component<Props> {
           {trans('beatmaps.discussions.title')}
         </div>
         <div className={`${bn}__toolbar`}>
-          <div className={`${bn}__toolbar-content ${bn}__toolbar-content--left`}>
+          <div className={`${bn}__toolbar-content`}>
             <div className={`${bn}__toolbar-item`}>
               {this.renderSortOptions()}
             </div>
+          </div>
+          <div className={`${bn}__toolbar-content ${bn}__toolbar-content--right`}>
+            {this.renderExpandCollapseAllButton('collapse')}
+            {this.renderExpandCollapseAllButton('expand')}
           </div>
         </div>
         {this.renderDiscussions()}
@@ -86,6 +91,11 @@ export class Discussions extends React.Component<Props> {
     this.discussionsState.sort[this.discussionsState.currentPage] = e.currentTarget.dataset.sortPreset as Sort;
   };
 
+  @action
+  private readonly handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+    this.discussionsState.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
+    this.discussionsState.discussionCollapsed.clear();
+  };
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
     const parentDiscussion = this.store.discussions.get(discussion.parent_id);
@@ -126,6 +136,22 @@ export class Discussions extends React.Component<Props> {
 
         {this.renderTimelineCircle()}
       </div>
+    );
+  }
+
+  private renderExpandCollapseAllButton(type: 'collapse' | 'expand') {
+    return (
+      <button
+        className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
+        data-type={type}
+        onClick={this.handleExpandClick}
+        type='button'
+      >
+        <IconExpand expand={type === 'expand'} parentClass={`${bn}__toolbar-link-content`} />
+        <span className={`${bn}__toolbar-link-content`}>
+          {trans(`beatmaps.discussions.collapse.all-${type}`)}
+        </span>
+      </button>
     );
   }
 
