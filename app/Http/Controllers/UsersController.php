@@ -848,7 +848,8 @@ class UsersController extends Controller
                 $transformer = new ScoreReplayStatsTransformer();
                 $includes = ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES;
                 $query = $this->user->scoreReplayStats()
-                    ->whereHas('score.beatmap.beatmapset')
+                    // temporarily? disable existence check
+                    // ->whereHas('score.beatmap.beatmapset')
                     ->orderByDesc('watch_count')
                     ->with(ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 break;
