@@ -176,7 +176,7 @@ class UsersController extends Controller
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                     'score_replay_stats' => $this->getExtraSection(
                         'scoreReplayStats',
-                        $this->user->scoreReplayStats()->whereHas('score.beatmap')->countLimit($this->maxResults),
+                        $this->user->scoreReplayStats()->countLimit($this->maxResults),
                     ),
                 ];
 
@@ -853,7 +853,6 @@ class UsersController extends Controller
                 $transformer = new ScoreReplayStatsTransformer();
                 $includes = ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES;
                 $query = $this->user->scoreReplayStats()
-                    ->whereHas('score.beatmap')
                     ->orderByDesc('watch_count')
                     ->with(ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 break;
