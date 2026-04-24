@@ -34,6 +34,13 @@ class TopPlays
         $search->loggingTag = "top_plays_{$this->rulesetId}";
 
         $scores = $search->records();
+
+        $error = $search->getError();
+        if ($error !== null) {
+            log_error($error, ['source' => 'top_plays', 'ruleset_id' => $this->rulesetId]);
+            return;
+        }
+
         $ids = [];
         foreach ($scores as $score) {
             // the loop is in descending order so the first assignment will be the highest pp score.
