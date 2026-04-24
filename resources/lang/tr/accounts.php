@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
         'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
-        'news_post' => '',
+        'news_post' => 'Yeni haber gönderileri için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
@@ -89,12 +89,13 @@ return [
             'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
             'channel_message' => 'özel sohbet mesajları',
+            'channel_mention' => '',
             'channel_team' => 'takım sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
             'mapping' => 'beatmap mapper',
-            'news_post' => '',
+            'news_post' => 'haber paylaşımları',
             'push' => 'anlık',
         ],
     ],
@@ -106,7 +107,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'Anime tarzı beatmap kapaklarını göster',
         'beatmapset_show_nsfw' => 'beatmaplerdeki müstehcen içerikler için uyarıları gizle',
         'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
         'title' => 'Seçenekler',

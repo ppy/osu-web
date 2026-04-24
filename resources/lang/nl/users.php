@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Recente berichten',
                 'show_more' => 'bekijk meer berichten',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

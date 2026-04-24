@@ -402,8 +402,8 @@ return [
                 'title_longer' => '最新貼文',
                 'show_more' => '顯示更多貼文',
             ],
-            'quickplay' => [
-                'title' => '快速遊玩紀錄',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => '最近活動',

@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen kelpuutetuissa rytmikartoissa',
         'beatmapset_disqualify' => 'vastaanota ilmoituksia, kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
-        'news_post' => '',
+        'news_post' => 'vastaanota ilmoituksia uutisilmoituksista',
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => 'ota automaattisesti ilmoitukset käyttöön tekemillesi uusille foorumiaiheille',
 
@@ -89,12 +89,13 @@ return [
             'beatmap_owner_change' => 'vieraileva vaikeustaso',
             'beatmapset:modding' => 'beatmapin modaus',
             'channel_message' => 'yksityisviestit',
+            'channel_mention' => '',
             'channel_team' => 'tiimin yksityisviestit',
             'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
             'mail' => 'posti',
             'mapping' => 'mappaaja',
-            'news_post' => '',
+            'news_post' => 'uutisetilmoitukset',
             'push' => 'push',
         ],
     ],
@@ -106,7 +107,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'näytä rytmikarttojen anime-tyyliset kansikuvat',
         'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä beatmapeissa',
         'beatmapset_title_show_original' => 'näytä beatmappien metadata alkuperäisellä kielellä',
         'title' => 'Asetukset',
@@ -130,7 +131,7 @@ return [
     'privacy' => [
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
         'hide_online' => 'piilota paikallaolotilasi',
-        'hide_online_info' => '',
+        'hide_online_info' => 'tämä vastaa osu!lazerin ”näy offline-tilassa” -tilaa',
         'title' => 'Yksityisyys',
     ],
 
@@ -152,17 +153,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Todennussovellus',
+        'usage_note' => 'Käytä todennussovellusta vahvistamiseen sähköpostin sijaan. Sähköpostivahvistus säilyy yhä käytettävissä varakeinona.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Poista',
+            'setup' => 'Lisää todennussovellus',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'tila',
+            'not_set' => 'Ei määritelty',
+            'set' => 'Määritetty',
         ],
     ],
 

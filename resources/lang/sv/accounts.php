@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmapmodding',
             'channel_message' => 'privata chattmeddelanden',
+            'channel_mention' => '',
             'channel_team' => 'lagchattsmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',

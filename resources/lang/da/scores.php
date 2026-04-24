@@ -16,6 +16,8 @@ return [
             'by' => 'Spillet af',
             'played_on' => '',
             'submitted_on' => 'Indsendt den',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Lande Rang',

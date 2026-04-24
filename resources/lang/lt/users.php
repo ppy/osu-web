@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Paskutiniai Įrašai',
                 'show_more' => 'rodyti daugiau įrašų',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'модовање',
             'playlists' => 'плејлисте',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'мултиплејер',
             'show' => 'инфо',
         ],

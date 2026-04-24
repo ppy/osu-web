@@ -14,8 +14,10 @@ return [
 
         'player' => [
             'by' => '玩家',
-            'played_on' => '',
+            'played_on' => '遊玩於',
             'submitted_on' => '達成時間',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => '全國排名',

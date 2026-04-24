@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'danh sách phát',
-            'quickplay' => 'Chơi nhanh',
+            'ranked-play' => '',
             'realtime' => 'nhiều người chơi',
             'show' => 'thông tin',
         ],

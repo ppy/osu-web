@@ -16,6 +16,8 @@ return [
             'by' => 'Avspilt av',
             'played_on' => '',
             'submitted_on' => 'Innsendt på',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Landsrangering',

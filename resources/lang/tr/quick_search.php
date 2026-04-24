@@ -19,11 +19,11 @@ return [
         'title' => ':mode için Arama Sonuçları',
 
         'no_results' => [
-            '_' => '',
+            '_' => ':mode için sonuç bulunamadı',
 
-            'artist_track' => '',
+            'artist_track' => 'Öne Çıkan Sanatçı Şarkıları',
             'beatmapset' => 'Haritalar',
-            'forum_post' => '',
+            'forum_post' => 'Forumlar',
             'other' => 'Diğer',
             'team' => 'Takımlar',
             'user' => 'Oyuncular',

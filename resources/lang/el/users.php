@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Πρόσφατες Αναρτήσεις',
                 'show_more' => 'δείτε περισσότερες δημοσιεύσεις',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

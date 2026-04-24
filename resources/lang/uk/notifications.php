@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Нове повідомлення команди',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Ви отримали нове повідомлення від :username ',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Нове повідомлення в команді ":name"',
             ],

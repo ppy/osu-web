@@ -69,17 +69,17 @@ return [
     'count' => [
         'badges' => ':count_delimited medaglia|:count_delimited medaglie',
         'days' => ':count_delimited giorno|:count_delimited giorni',
-        'hour_short_unit' => 'ora|ore',
+        'hour_short_unit' => 'h|h',
         'hours' => ':count_delimited ora|:count_delimited ore',
         'item' => ':count unità|:count unità',
-        'minute_short_unit' => 'minuto|minuti',
+        'minute_short_unit' => 'min|min',
         'minutes' => ':count_delimited minuto|:count_delimited minuti',
         'months' => ':count_delimited mese|:count_delimited mesi',
         'notifications' => ':count_delimited notifica|:count_delimited notifiche',
         'player' => ':count_delimited giocatore|:count_delimited giocatori',
         'plus_others' => '+ :count_delimited altro!|+ :count_delimited altri!',
         'post' => ':count_delimited post|:count_delimited post',
-        'second_short_unit' => 'secondo|secondi',
+        'second_short_unit' => 's|s',
         'star_priority' => ':count_delimited stella di priorità|:count_delimited stelle di priorità',
         'update' => ':count_delimited aggiornamento|:count_delimited aggiornamenti',
         'view' => ':count_delimited visualizzazione|:count_delimited visualizzazioni',
@@ -95,7 +95,7 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => 'm',
+            'php' => 'mo',
         ],
         'year' => [
             'php' => 'a',
@@ -139,16 +139,16 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '%dg',
-        'dd' => '%dg',
+        'd' => '%dd',
+        'dd' => '%dd',
         'h' => '%dh',
         'hh' => '%dh',
         'm' => 'adesso',
-        'mm' => 'adesso',
-        'month' => '%dm',
-        'months' => '%dm',
+        'mm' => 'ora',
+        'month' => '%dmo',
+        'months' => '%dmo',
         'past' => '',
-        's' => 'adesso',
+        's' => 'ora',
         'y' => '%da',
         'yy' => '%da',
     ],

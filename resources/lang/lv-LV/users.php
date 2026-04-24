@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Jaunākās ziņas',
                 'show_more' => 'apskatīt vairāk rakstus',
             ],
-            'quickplay' => [
-                'title' => 'Ātrās spēles mači',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Nesenie',

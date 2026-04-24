@@ -66,6 +66,7 @@ export function urlSingular(item: Notification) {
     case 'beatmapset_rank':
       return route('beatmapsets.show', { beatmapset: item.objectId });
     case 'channel_announcement':
+    case 'channel_mention':
     case 'channel_message':
     case 'channel_team':
       return route('chat.index', { channel_id: item.objectId });

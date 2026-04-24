@@ -16,6 +16,8 @@ return [
             'by' => 'Παίχτηκε από',
             'played_on' => '',
             'submitted_on' => 'Υποβλήθηκε στις',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Κατάταξη Χώρας',

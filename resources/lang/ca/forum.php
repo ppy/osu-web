@@ -328,8 +328,8 @@ return [
 
         'watch' => [
             'to_not_watching' => 'No marcat',
-            'to_watching' => 'Marcar',
-            'to_watching_mail' => 'Marcar amb notificació',
+            'to_watching' => 'Marca',
+            'to_watching_mail' => 'Marca amb notificació',
             'tooltip_mail_disable' => 'Notificació activa. Clica per desactivar-la',
             'tooltip_mail_enable' => 'Notificació desactivada. Clica per activar-la',
         ],

@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'پست های اخیر',
                 'show_more' => 'دیدن پست های بیشتر',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

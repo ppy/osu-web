@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => '게스트 난이도',
             'beatmapset:modding' => '비트맵 모딩',
             'channel_message' => '개인 채팅 메시지',
+            'channel_mention' => '',
             'channel_team' => '팀 채팅 메시지',
             'comment_new' => '새 댓글',
             'forum_topic_reply' => '주제 답글',

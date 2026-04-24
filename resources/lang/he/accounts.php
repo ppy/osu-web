@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => '',
             'beatmapset:modding' => 'תומך יותר המפה',
             'channel_message' => 'הודעות פרטיות',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'תגובות חדשות',
             'forum_topic_reply' => 'תגובה על הנושא',

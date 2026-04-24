@@ -134,7 +134,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => 'Percakapan Tim',
+            'chat' => 'Obrolan Tim',
             'destroy' => 'Bubarkan Tim',
             'join' => 'Minta Gabung',
             'join_cancel' => 'Batal Gabung',

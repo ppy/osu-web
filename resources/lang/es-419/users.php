@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Publicaciones recientes',
                 'show_more' => 'ver más publicaciones',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

@@ -151,7 +151,7 @@ return [
             'source' => 'Źródło',
             'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
-            'success_rate_plays' => ':passes z :count_delimited play|:passes z :count_delimited odtwarza',
+            'success_rate_plays' => ':passes z :count_delimited zagrań|:passes z :count_delimited zagrań|:passes z :count_delimited zagrań',
             'user_tags' => 'Tagi użytkowników',
             'video' => 'Ta beatmapa zawiera wideo w tle',
         ],

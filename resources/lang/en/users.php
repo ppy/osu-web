@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Recent Posts',
                 'show_more' => 'see more posts',
             ],
-            'quickplay' => [
-                'title' => 'Quick Play Matches',
+            'ranked-play' => [
+                'title' => 'Ranked Play Matches',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Quick Play',
+            'title' => 'Ranked Play',
         ],
 
         'not_found' => [

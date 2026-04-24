@@ -8,7 +8,7 @@ return [
         'active' => 'Pengguna ini tidak sedang berada di dalam ruang :type_group osu!(lazer) mana pun yang sedang berlangsung!',
         'ended' => 'Pengguna ini belum pernah mengikuti permainan :type_group osu!(lazer) mana pun yang sudah rampung!',
         'playlists' => 'playlist',
-        'quickplay' => 'permainan kilat',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 

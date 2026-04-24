@@ -66,8 +66,9 @@ export default class ChatStateStore implements DispatchListener {
     return new Set(this.channelStore.groupedChannels.PUBLIC.map((channel) => channel.channelId));
   }
 
+  @computed
   get selectedChannel() {
-    return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : null;
+    return typeof this.selected === 'number' ? this.channelStore.get(this.selected) : undefined;
   }
 
   // In most cases we want the Channel or create/add channel type, not the channel id itself.

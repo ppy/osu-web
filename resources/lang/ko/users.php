@@ -403,8 +403,8 @@ return [
                 'title_longer' => '최근 게시글',
                 'show_more' => '글 더 보기',
             ],
-            'quickplay' => [
-                'title' => '빠른 대전 경기',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',

@@ -23,7 +23,7 @@ return [
         'button' => 'Cerca',
         'empty_result' => 'Nessun risultato!',
         'keyword_required' => 'È necessaria una parola chiave di ricerca',
-        'placeholder' => 'digita per cercare',
+        'placeholder' => 'scrivi per cercare',
         'title' => 'Cerca',
 
         'artist_track' => [

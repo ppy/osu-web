@@ -10,12 +10,12 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'الصعوبة',
+        'top_10p' => 'أفضل 10% من النتائج',
+        'top_50p' => 'أفضل 50% من النتائج',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'لا يوجد تحدٍ يومي في التاريخ المحدد بعد!',
+            'past' => 'لا يوجد تحدٍ يومي في التاريخ المحدد!',
         ],
     ],
 
@@ -34,15 +34,16 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
+        'plays' => 'مرات اللعب',
+        'points' => 'النقاط',
         'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'rating' => 'التقييم',
+        'wins' => 'مرات الفوز
+',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'إسم الغرفة',
     ],
 
     'performance' => [
@@ -50,26 +51,27 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'يتم حساب البيانات...',
+        'last_updated' => 'تاريخ آخر تحديث',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
+        'charts' => 'الأضواء القديمة',
+        'featured' => 'مميّز
+',
         'season_room' => '',
         'seasons' => '',
     ],
 
     'type' => [
         'country' => 'الدولة',
-        'daily_challenge' => '',
-        'global' => '',
+        'daily_challenge' => 'التحدّي اليومي',
+        'global' => 'عالمي',
         'kudosu' => 'كودوسو',
-        'matchmaking' => '',
-        'playlists' => '',
-        'team' => '',
-        'top_plays' => '',
+        'matchmaking' => 'اللعب السريع',
+        'playlists' => 'قوائم التشغيل',
+        'team' => 'الفريق',
+        'top_plays' => 'أفضل الأداءات',
     ],
 
     'seasons' => [
@@ -95,7 +97,7 @@ return [
         'active_users' => 'المستخدمين النشطين',
         'country' => 'الدولة',
         'division' => '',
-        'members' => '',
+        'members' => 'الأعضاء',
         'play_count' => 'مرات اللعب',
         'performance' => 'الأداء',
         'total_score' => 'مجموع النقاط',

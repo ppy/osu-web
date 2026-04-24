@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title_page' => 'اخبار!osu',
+        'title_page' => 'أخبار!osu',
 
         'nav' => [
             'newer' => 'المنشورات الأجدد',
@@ -24,15 +24,15 @@ return [
         'community_tournaments' => '',
         'fanart_contests' => '',
         'featured_artists' => '',
-        'game_updates' => '',
+        'game_updates' => 'تحديثات العميل والموقع الإلكتروني',
         'mappers_guild' => '',
         'monthly_beatmapping_contest' => '',
         'merch_runs' => '',
-        'miscellaneous' => '',
-        'official_contests' => '',
-        'offline_events' => '',
-        'online_events' => '',
-        'project_loved' => '',
+        'miscellaneous' => 'إعلانات متنوعة',
+        'official_contests' => 'المسابقات الرسمية',
+        'offline_events' => 'الأحداث غير المتصلة بالإنترنت',
+        'online_events' => 'الأحداث عبر الإنترنت',
+        'project_loved' => 'مشروع Loved',
         'ranking_system_updates' => '',
         'world_cups' => '',
     ],

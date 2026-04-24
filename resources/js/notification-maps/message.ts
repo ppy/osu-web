@@ -32,6 +32,7 @@ function formatBeatmapsetReviewCounts(counts: NonNullable<Notification['details'
 export function formatMessage(item: Notification, compact = false) {
   const replacements: Replacements = {
     content: item.details.content,
+    name: item.details.name,
     title: item.title,
     username: item.details.username,
   };
@@ -66,6 +67,7 @@ export function formatMessage(item: Notification, compact = false) {
 export function formatMessageGroup(item: Notification) {
   if (item.objectType === 'channel') {
     const replacements = {
+      name: item.details.name,
       title: item.title,
       username: item.details.username,
     };

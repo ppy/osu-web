@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Nedavne objave',
                 'show_more' => 'prikaži več objav',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

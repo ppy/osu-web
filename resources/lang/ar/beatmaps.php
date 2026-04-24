@@ -278,7 +278,7 @@ return [
             ],
             'tag_picker' => [
                 'tooltip' => '',
-                'prompt' => '',
+                'prompt' => 'اكتب للبحث',
             ],
         ],
     ],
