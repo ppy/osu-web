@@ -31,6 +31,7 @@ class TopPlays
         ]));
         $search->connectionName = 'scores_slow';
         $search->searchTimeout = "{$GLOBALS['cfg']['elasticsearch']['connections']['scores_slow']['connectionParams']['client']['timeout']}s";
+        $search->loggingTag = "top_plays_{$this->rulesetId}";
 
         $scores = $search->records();
         $ids = [];
