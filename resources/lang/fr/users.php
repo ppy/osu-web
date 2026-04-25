@@ -403,7 +403,7 @@ return [
                 'show_more' => 'voir plus de posts',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Parties compétitives',
             ],
             'recent_activity' => [
                 'title' => 'Activité récente',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Partie rapide',
+            'title' => 'Partie compétitive',
         ],
 
         'not_found' => [
