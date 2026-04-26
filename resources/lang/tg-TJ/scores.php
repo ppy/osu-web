@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => '',
+            'played_on' => '',
             'submitted_on' => '',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => '',

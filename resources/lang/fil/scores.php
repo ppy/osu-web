@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Laro ni',
+            'played_on' => 'Nilaro noong',
             'submitted_on' => 'Sinumite noong',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Ranggong Pambansa',
@@ -27,6 +30,6 @@ return [
         'non_best' => 'Ang laro na may pinakamataas na iskor lamang ang bibigyan ng pp',
         'no_pp' => 'pp ay hindi iginawad para sa iskor na ito',
         'processing' => 'Ang iskor ay pinoproseso pa lamang at maipapakita sa mas madaling panahon',
-        'no_rank' => '',
+        'no_rank' => 'Ang score na ito ay walang ranggo dahil ito ay unranked o minarkahan para sa pagbura',
     ],
 ];

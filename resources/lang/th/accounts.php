@@ -80,21 +80,22 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของบีทแมพที่ผ่านการรับรองกับโหมดต่อไปนี้',
         'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
         'comment_reply' => 'รับการแจ้งเตือนสำหรับการตอบกลับความคิดเห็นของคุณ',
-        'news_post' => '',
+        'news_post' => 'รับการแจ้งเตือนโพสต์ข่าว',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
 
         'options' => [
             '_' => 'วิธีการรับการแจ้งเตือน',
-            'beatmap_owner_change' => 'ระดับความยากของแขก',
+            'beatmap_owner_change' => 'ระดับความยากของผู้มีส่วนร่วม',
             'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
             'channel_message' => 'ข้อความส่วนตัว',
+            'channel_mention' => '',
             'channel_team' => 'ข้อความกลุ่ม',
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
             'mapping' => 'ผู้ทำบีทแมพ',
-            'news_post' => '',
+            'news_post' => 'โพสต์ข่าว',
             'push' => 'ส่งการแจ้งเตือน',
         ],
     ],
@@ -106,7 +107,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'แสดงปกแนวอนิเมะ',
         'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีทแมพ',
         'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
         'title' => 'ตัวเลือก',
@@ -130,7 +131,7 @@ return [
     'privacy' => [
         'friends_only' => 'บล็อกข้อความส่วนตัวจากคนที่ไม่ได้อยู่ในรายชื่อเพื่อน',
         'hide_online' => 'ซ่อนสถานะออนไลน์ของคุณ',
-        'hide_online_info' => '',
+        'hide_online_info' => 'เป็นตั้งค่าเดียวกับ "แสดงเป็นออฟไลน์" ในเกม',
         'title' => 'ความเป็นส่วนตัว',
     ],
 
@@ -152,17 +153,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'แอป Authenticator',
+        'usage_note' => 'ใช้แอป Authenticator แทนอีเมลสำหรับการยืนยันตัวตน การยืนยันผ่านอีเมลจะยังใช้ได้ปกติหากจำเป็น',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'ลบ',
+            'setup' => 'เพิ่มแอป Authenticator',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'สถานะ',
+            'not_set' => 'ยังไม่ได้กำหนดค่า',
+            'set' => 'กำหนดค่าแล้ว',
         ],
     ],
 

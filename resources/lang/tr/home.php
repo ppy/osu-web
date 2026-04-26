@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Takımları aramak için giriş yap',
             'more_simple' => 'Daha fazla takım arama sonucu gör',
         ],
 
@@ -153,11 +153,11 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Öne Çıkan Canlı Yayın',
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Yönetici konsolunu aç',
             ],
         ],
     ],

@@ -3,7 +3,7 @@
 
 import RoomListJson from './room-list-json';
 
-export type MultiplayerTypeGroup = 'playlists' | 'quickplay' | 'realtime';
+export type MultiplayerTypeGroup = 'playlists' | 'ranked-play' | 'realtime';
 
 export default interface UserMultiplayerHistoryJson extends RoomListJson {
   type_group: MultiplayerTypeGroup;

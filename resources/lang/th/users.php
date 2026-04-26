@@ -127,8 +127,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'ใช้งานอยู่',
+            'ended' => 'จบแล้ว',
         ],
     ],
 
@@ -150,7 +150,7 @@ return [
     'anonymous' => [
         'login_link' => 'คลิกเพื่อลงชื่อเข้าใช้',
         'login_text' => 'ลงชื่อเข้าใช้',
-        'username' => 'ผู้เยี่ยมชม',
+        'username' => 'ผู้มีส่วนร่วม',
         'error' => 'คุณจะต้องเข้าสู่ระบบเพื่อจะกระทำสิ่งนี้',
     ],
     'logout_confirm' => 'คุณแน่ใจหรือว่าต้องการออกจากระบบ? :(',
@@ -169,16 +169,16 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'ตาม :policy กรุณารายงานการละเมิดลิขสิทธิ์มาที่ :mail',
+                'policy' => 'นโยบายลิขสิทธิ์ osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'ในกรณีที่มีการใช้ภาพ เสียง หรือเนื้อหาบีทแมพโดยไม่ได้รับอนุญาต',
         ],
 
         'options' => [
             'cheating' => 'เล่นผิดกติกา / โกง',
-            'copyright_infringement' => '',
-            'inappropriate_chat' => '',
+            'copyright_infringement' => 'การละเมิดลิขสิทธิ์',
+            'inappropriate_chat' => 'พฤติกรรมการสนทนาที่ไม่เหมาะสม',
             'insults' => 'ดูหมิ่น เหยียดหยามตนเอง / ผู้อื่น',
             'multiple_accounts' => 'การใช้หลายบัญชี',
             'nonsense' => 'นอกเรื่อง',
@@ -196,7 +196,7 @@ return [
         'age' => ':age ปี',
         'change_avatar' => 'เปลี่ยนรูปของคุณ',
         'first_members' => 'อยู่ตั้งแต่โอสุเริ่มต้น',
-        'is_developer' => 'osu!ผู้พัฒนา',
+        'is_developer' => 'ผู้พัฒนา osu!',
         'is_supporter' => 'ผู้สนับสนุน osu!',
         'joined_at' => 'เข้าร่วมเมื่อ :date',
         'lastvisit' => 'ออนไลน์ล่าสุด :date',
@@ -290,7 +290,7 @@ return [
                     'title' => 'สุสานบีทแมพ',
                 ],
                 'guest' => [
-                    'title' => 'แขกผู้ที่มีส่วนร่วมบีทแมพ',
+                    'title' => 'บีทแมพที่ได้มีส่วนร่วมในการสร้าง',
                 ],
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
@@ -335,7 +335,7 @@ return [
                     'count_label' => 'การดูรีเพลย์',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'รีเพลย์ที่มีคนดูบ่อยที่สุด',
                 ],
             ],
             'kudosu' => [
@@ -403,7 +403,7 @@ return [
                 'title_longer' => 'โพสต์ล่าสุด',
                 'show_more' => 'ดูโพสต์อื่นๆ เพิ่มเติม',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -476,7 +476,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'ควิกเพลย์',
         ],
 
         'not_found' => [
@@ -509,12 +509,12 @@ return [
             'highest' => 'อันดับสูงสุด: :rank เมื่อ :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'คะแนนรวมทั้งหมด',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
-            'hits_per_play' => '',
+            'hits_per_play' => 'จำนวนฮิตต่อการเล่น',
             'level' => 'เลเวล :level',
             'level_progress' => 'ความคืบหน้าในการอัพเลเวล',
             'maximum_combo' => 'คอมโบสูงสุด',
@@ -524,11 +524,11 @@ return [
             'ranked_score' => 'คะแนนแรงค์',
             'replays_watched_by_others' => 'ดูรีเพลย์โดยผู้อื่น',
             'score_ranks' => 'อันดับคะแนน',
-            'total_hits' => 'Hit รวม',
+            'total_hits' => 'ฮิตทั้งหมด',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
-            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
+            'loved_beatmapset_count' => 'บีทแมพเลิฟด์',
             'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'ranked_beatmapset_count' => 'บีทแมพที่จัดอันดับแล้ว',
         ],

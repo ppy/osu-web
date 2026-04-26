@@ -8,7 +8,7 @@ return [
         'active' => 'Momentan nicht in laufenden osu!(lazer) :type_group-Spielen!',
         'ended' => 'Noch nicht in abgeschlossenen osu!(lazer) :type_group-Spielen!',
         'playlists' => 'playlist',
-        'quickplay' => 'Quick Play',
+        'ranked-play' => '',
         'realtime' => 'Mehrspieler',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Die Dauer ist zu lang.',
             'name_too_long' => 'Raumname ist zu lang.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Zu viele Playlist-Elemente.',
         ],
 
         'status' => [

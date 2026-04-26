@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => '',
+        'gift_supporter' => 'Giv supporter tag i gave',
         'loading' => 'Indlæser...',
         'send_message' => 'Send besked',
     ],
@@ -65,7 +65,7 @@ return [
 
             'tos_notice' => [
                 '_' => 'ved at oprette konto accepterer du :link',
-                'link' => '',
+                'link' => 'tjenestevilkår',
             ],
         ],
     ],
@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Din konto har ikke været brugt i lang tid.",
             'inactive_different_country' => "Din account har ikke været i brug i lang tid.",
         ],
     ],
@@ -126,19 +126,19 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Aktive',
+            'ended' => 'Afsluttet',
         ],
     ],
 
     'ogp' => [
-        'modding_description' => '',
+        'modding_description' => 'Beatmaps :counts',
         'modding_description_empty' => 'Brugeren har ingen beatmaps...',
 
         'description' => [
-            '_' => '',
-            'country' => '',
-            'global' => '',
+            '_' => 'Rang (:ruleset): :global | :country',
+            'country' => 'Land :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -168,16 +168,16 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Anmeld venligst ophavsretskrænkelser igennem et DMCA-claim til :mail jævnfør :policy.',
+                'policy' => 'osu! ophavsretspolitik',
             ],
-            'message_2' => '',
+            'message_2' => 'Dette gælder i tilfælde hvor lydspor, visuelt indhold eller beapmap level indhold anvendes uden tilladelse.',
         ],
 
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
-            'copyright_infringement' => '',
-            'inappropriate_chat' => '',
+            'copyright_infringement' => 'Ophavsretskrænkelse',
+            'inappropriate_chat' => 'Upassende chatadfærd',
             'insults' => 'Fornærmede mig / andre',
             'multiple_accounts' => 'Bruger flere konti',
             'nonsense' => 'Nonsens',
@@ -214,28 +214,28 @@ return [
             'to_1' => 'Vis omslag',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
+            'daily' => 'Daglig Streak',
+            'daily_streak_best' => 'Bedste Daglige Streak',
+            'daily_streak_current' => 'Nuværende Daglige Streak',
+            'playcount' => 'Samlet Deltagelse',
+            'title' => 'Daglig\nUdfordring',
             'top_10p_placements' => 'Top 10%-placeringer',
             'top_50p_placements' => 'Top 50%-placeringer',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'weekly' => 'Ugentlig Streak',
+            'weekly_streak_best' => 'Bedste Daglige Streak',
+            'weekly_streak_current' => 'Nuværende Ugentlige Streak',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Skift Coverbillede',
                 'defaults_info' => 'Flere muligheder for coverbillede kommer snart',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "Det tidligere valgte cover er ikke tilgængeligt længere. Du kan ikke ændre tilbage efter du ændrer til et nyt. Fortsæt?",
+                'title' => 'Cover',
 
                 'upload' => [
                     'broken_file' => 'Kunne ikke uploade billedet. Kontroller det uploadede billede og prøv igen.',
@@ -259,12 +259,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
+                'reset_no_supporter' => 'Nulstil farve til standard? Supporter tag vil kræves for at ændre til en anden farve.',
                 'title' => 'Farve',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Tilpassede farvetemaer er kun tilgængelige for :link',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],
@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Replays Set',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Mest Sete Genafspilninger',
                 ],
             ],
             'kudosu' => [
@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Seneste Opslag',
                 'show_more' => 'se flere opslag',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Hurtigt Spil',
         ],
 
         'not_found' => [
@@ -505,15 +505,15 @@ return [
             'country_simple' => 'Lande Rang',
             'global' => 'Global rang for :mode',
             'global_simple' => 'Global Rang',
-            'highest' => '',
+            'highest' => 'Højeste rang :rank på :date',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Samlet score',
         ],
         'stats' => [
             'hit_accuracy' => 'Præcision',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Pletskud Per Spil',
             'level' => 'Level :level',
             'level_progress' => 'Progression til næste level',
             'maximum_combo' => 'Højeste Combo',
@@ -544,7 +544,7 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
+        'from_client' => 'registrér dig gennem spilklienten i stedet!',
         'from_web' => 'fuldfør venligst registrationen via osu!s website',
         'saved' => 'Bruger Oprettet',
     ],

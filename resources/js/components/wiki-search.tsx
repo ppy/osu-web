@@ -13,6 +13,7 @@ import { WikiSearchController } from 'wiki-search-controller';
 export class WikiSearch extends React.Component {
   private readonly controller = new WikiSearchController();
   private readonly ref = React.createRef<HTMLDivElement>();
+  private readonly selectedRef = React.createRef<HTMLAnchorElement>();
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleEsc);
@@ -21,7 +22,7 @@ export class WikiSearch extends React.Component {
 
   componentDidUpdate() {
     // scroll highlighted option into view if triggered by keys
-    $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    this.selectedRef.current?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }
 
   componentWillUnmount() {
@@ -94,16 +95,21 @@ export class WikiSearch extends React.Component {
     return (
       <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar'>
         {
-          this.controller.suggestions.map((item, index) => (
-            <a
-              key={index}
-              className={classWithModifiers('wiki-search__suggestion', { active: this.controller.selectedIndex === index })}
-              data-index={index}
-              href={wikiUrl(item.path)}
-            >
-              <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
-            </a>
-          ))
+          this.controller.suggestions.map((item, index) => {
+            const active = this.controller.selectedIndex === index;
+
+            return (
+              <a
+                key={index}
+                ref={active ? this.selectedRef : undefined}
+                className={classWithModifiers('wiki-search__suggestion', { active })}
+                data-index={index}
+                href={wikiUrl(item.path)}
+              >
+                <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
+              </a>
+            );
+          })
         }
       </div>
     );

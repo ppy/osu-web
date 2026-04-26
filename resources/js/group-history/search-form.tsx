@@ -35,7 +35,7 @@ export default class SearchForm extends React.Component<Props> {
     return (
       <form className={bn} data-loading-overlay='0' onSubmit={this.onSubmit}>
         <div className={`${bn}__content ${bn}__content--inputs`}>
-          <InputContainer labelKey='group_history.form.group' modifiers={['group-history-wide', 'select']}>
+          <InputContainer labelKey='group_history.form.group' modifiers='group-history-wide select'>
             <select
               className='input-text'
               name='group_id'
@@ -84,7 +84,7 @@ export default class SearchForm extends React.Component<Props> {
           <BigButton
             disabled={newParamsEmpty}
             icon='fas fa-times'
-            modifiers={['artist-track-search', 'rounded-thin']}
+            modifiers='artist-track-search rounded-thin'
             props={{ onClick: this.onReset }}
             text={trans('common.buttons.reset')}
           />
@@ -92,7 +92,7 @@ export default class SearchForm extends React.Component<Props> {
             disabled={this.props.disabled}
             icon='fas fa-search'
             isSubmit
-            modifiers={['artist-track-search', 'rounded-thin-wide']}
+            modifiers='artist-track-search rounded-thin-wide'
             text={trans('common.buttons.search')}
           />
         </div>

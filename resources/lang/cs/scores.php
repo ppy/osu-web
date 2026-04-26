@@ -13,8 +13,11 @@ return [
         ],
 
         'player' => [
-            'by' => 'Hráno',
+            'by' => 'Zahrál',
+            'played_on' => 'Odehráno na',
             'submitted_on' => 'Nahráno',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Státní žebříčky',

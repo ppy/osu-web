@@ -12,7 +12,7 @@ return [
             'ok' => 'Liittymiskutsu peruttu.',
         ],
         'reject' => [
-            'ok' => 'Liittymiskutsu kielletty.',
+            'ok' => 'Liittymiskutsu hylätty.',
         ],
         'store' => [
             'ok' => 'Pyydetty tiimiin liittymistä.',
@@ -63,14 +63,14 @@ return [
 
         'settings' => [
             'application_help' => 'Sallitaanko pelaajien hakea tiimiin',
-            'default_ruleset_help' => '',
+            'default_ruleset_help' => 'Sääntö, joka valitaan oletuksena, kun vieraillaan tiimin sivulla',
             'flag_help' => 'Enimmäiskoko :width×:height',
             'header_help' => 'Enimmäiskoko :width×:height',
             'title' => 'Tiimin Asetukset',
 
             'application_state' => [
                 'state_0' => 'Suljettu',
-                'state_1' => 'Avaa',
+                'state_1' => 'Avoin',
             ],
         ],
     ],
@@ -102,7 +102,7 @@ return [
                 'created_at' => 'Pyydetty ',
                 'empty' => 'Ei liittymispyyntöjä tällä hetkellä.',
                 'empty_slots' => 'Vapaita paikkoja',
-                'empty_slots_overflow' => '',
+                'empty_slots_overflow' => ':count_delimited käyttäjä liikaa|:count_delimited käyttäjää liikaa',
                 'reject_confirm' => 'Hylätäänkö liittymispyynto käyttäjältä :user?',
                 'title' => 'Liittymispyynnöt',
             ],
@@ -110,7 +110,7 @@ return [
             'table' => [
                 'joined_at' => 'Liittymispäivämäärä',
                 'remove' => 'Poista',
-                'remove_confirm' => 'Haluatko poistaa käyttäjän :user joukkueestasi?',
+                'remove_confirm' => 'Haluatko poistaa käyttäjän :user joukkueesta?',
                 'set_leader' => 'Siirrä tiimin johtajuus',
                 'set_leader_confirm' => 'Siirretäänkö tiimin johtajuus käyttäjälle :user?',
                 'status' => 'Tila',
@@ -158,10 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited paikka jäljellä|:count_delimited paikkaa jäljellä',
-            'first_places' => '',
+            'first_places' => 'Ensimmäisiä sijoja',
             'leader' => 'Joukkuejohtaja',
             'rank' => 'Sijoitus',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Rankattuja rytmikarttoja',
         ],
     ],
 

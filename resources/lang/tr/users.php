@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Aktif',
+            'ended' => 'Sona Erdi',
         ],
     ],
 
@@ -171,7 +171,7 @@ return [
                 '_' => 'Lütfen telif hakkı ihlallerini :policy\'ne göre :mail adresine DMCA talebi göndererek bildiriniz.',
                 'policy' => 'osu! telif hakkı yönergesi',
             ],
-            'message_2' => '',
+            'message_2' => 'Bu, ses parçalarının, görsel içeriklerin ve beatmap seviye içeriği doğru izin olmadan kullanıldığında geçerlidir.',
         ],
 
         'options' => [
@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Tekrar İzlendi',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'En Çok İzlenen Tekrarlar',
                 ],
             ],
             'kudosu' => [
@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Son Gönderiler',
                 'show_more' => 'daha fazla gönderi gör',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Quick Play',
         ],
 
         'not_found' => [

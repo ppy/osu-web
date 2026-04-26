@@ -335,7 +335,7 @@ return [
                     'count_label' => '리플레이 재생 횟수',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => '가장 많이 시청한 리플레이',
                 ],
             ],
             'kudosu' => [
@@ -403,8 +403,8 @@ return [
                 'title_longer' => '최근 게시글',
                 'show_more' => '글 더 보기',
             ],
-            'quickplay' => [
-                'title' => '빠른 대전 경기',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',

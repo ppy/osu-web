@@ -102,7 +102,7 @@ return [
                 'created_at' => 'Запрос отправлен',
                 'empty' => 'Нет запросов на вступление.',
                 'empty_slots' => 'Свободных мест',
-                'empty_slots_overflow' => 'переполнена на :count_delimited игрока|переполнена на :count_delimited игроков',
+                'empty_slots_overflow' => 'переполнена на :count_delimited игрока|переполнена на :count_delimited игроков|переполнена на :count_delimited игроков',
                 'reject_confirm' => 'Отклонить запрос на вступление игрока :user?',
                 'title' => 'Запросы на вступление',
             ],

@@ -138,13 +138,13 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'شكرًا لدعمك المستمر! حتى الآن، لقد ساهمت بإجمالي :dollars، مما أكسبك وسام "Supporter" لمدة :duration.',
             'not_yet' => "ليس لديك شارة osu!supporter حتى الان :(",
             'valid_until' => 'شارة osu!supporter خاصتك نافذة لغاية :date!',
             'was_valid_until' => 'شارة osu!supporter خاصتك كانت نافذة لغاية :date.',
 
             'gifted' => [
-                '_' => '',
+                '_' => 'من إجمالي مساهماتك، لقد أهديت ما قيمته :dollars من الأوسمة إلى :users لمدة :duration. هذا كرمٌ مذهل للغاية!',
                 'users' => '',
             ],
         ],

@@ -245,7 +245,7 @@ return [
             'prompt' => 'escriu paraules clau...',
             'login_required' => 'Inicia sessió per cercar.',
             'options' => 'Més opcions de cerca',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Els recomptes de primers classificats de perfil i els resultats mostrats en aquesta pàgina es basen en les puntuacions més altes «normalitzades» (també conegudes com a «lazer») en els mapes.',
             'supporter_filter' => 'Filtrar per :filters requereix d\'una etiqueta osu!patrocinador activa',
             'not-found' => 'sense resultats',
             'not-found-quote' => '... no, no s\'ha trobat res.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Filtrar per :filters requereix d\'un :link actiu',
                 'link_text' => 'Etiqueta osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => 'cerca etiquetes d\'usuari',
+                'prompt' => 'escriviu per a cercar',
             ],
         ],
     ],

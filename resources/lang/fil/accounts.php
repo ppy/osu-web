@@ -91,6 +91,7 @@ return [
             'beatmap_owner_change' => 'guest na difficulty',
             'beatmapset:modding' => 'pagmo-mod ng beatmap',
             'channel_message' => 'mga pribadong mensahe',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'mga bagong komento',
             'forum_topic_reply' => 'tugon sa paksa',

@@ -81,7 +81,7 @@ return [
                 'beatmapset_love_compact' => 'La beatmap è stata promossa tra le amate',
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_nominate_compact' => 'La beatmap è stata nominata',
-                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di raking',
+                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di classificazione',
                 'beatmapset_qualify_compact' => 'La beatmap è entrata nella coda di classificazione',
                 'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
@@ -121,6 +121,16 @@ return [
                     'channel_message' => ':username ha scritto ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'da :username',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
                 ],
             ],
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Hai ricevuto un nuovo messaggio da :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'C\'è un nuovo messaggio sulla squadra ":name"',
             ],

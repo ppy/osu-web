@@ -3,12 +3,11 @@
 
 import Notification from 'models/notification';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
-import NotificationDetails from 'models/notification-details';
 import { trans, transArray, transChoice, transExists } from 'utils/lang';
 
 type Replacements = { title: string } & Partial<Record<string, string|number>>;
 
-function formatBeatmapsetReviewCounts(counts: NonNullable<NotificationDetails['embeds']>, replacements: Replacements) {
+function formatBeatmapsetReviewCounts(counts: NonNullable<Notification['details']['embeds']>, replacements: Replacements) {
   const translatedCounts = [];
   for (const type of ['praises', 'problems', 'suggestions'] as const) {
     const count = counts[type];
@@ -33,6 +32,7 @@ function formatBeatmapsetReviewCounts(counts: NonNullable<NotificationDetails['e
 export function formatMessage(item: Notification, compact = false) {
   const replacements: Replacements = {
     content: item.details.content,
+    name: item.details.name,
     title: item.title,
     username: item.details.username,
   };
@@ -67,6 +67,7 @@ export function formatMessage(item: Notification, compact = false) {
 export function formatMessageGroup(item: Notification) {
   if (item.objectType === 'channel') {
     const replacements = {
+      name: item.details.name,
       title: item.title,
       username: item.details.username,
     };

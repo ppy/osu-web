@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Spelad av',
+            'played_on' => '',
             'submitted_on' => 'Uppladdat den',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Nationell rankning',

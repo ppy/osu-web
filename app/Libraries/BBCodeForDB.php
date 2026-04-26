@@ -59,13 +59,9 @@ class BBCodeForDB
         return $text;
     }
 
-    /**
-     * Handles:
-     * - Centre (centre).
-     */
-    public function parseBlockSimple($text)
+    public function parseAlignment(string $text): string
     {
-        foreach (['centre'] as $tag) {
+        foreach (['centre', 'left', 'right'] as $tag) {
             $text = preg_replace(
                 "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
@@ -387,7 +383,7 @@ class BBCodeForDB
         $text = $this->parseQuote($text);
         $text = $this->parseList($text);
 
-        $text = $this->parseBlockSimple($text);
+        $text = $this->parseAlignment($text);
         $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
         $text = $this->parseMultilineSimple($text);

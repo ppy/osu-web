@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => 'Paling banyak di-vote oleh (3 bulan terakhir)',
+            'title_most' => 'Paling banyak mendapatkan suara dari (3 bulan terakhir)',
         ],
 
         'votes_made' => [
-            'title_most' => 'Paling banyak di-vote (3 bulan terakhir)',
+            'title_most' => 'Paling banyak memberikan suara kepada (3 bulan terakhir)',
         ],
     ],
 
@@ -111,7 +111,7 @@ return [
         'forgot' => 'Lupa kata sandi?',
         'info' => 'Silakan masuk untuk melanjutkan',
         'invalid_captcha' => 'Upaya masuk yang gagal terlalu banyak. Silakan selesaikan captcha dan coba lagi. (Muat ulang halaman ini apabila captcha tidak terlihat)',
-        'locked_ip' => 'Alamat IP-mu dikunci. Silakan tunggu beberapa menit.',
+        'locked_ip' => 'Alamat IP kamu dikunci. Silakan tunggu beberapa menit.',
         'password' => 'Kata Sandi',
         'register' => "Belum memiliki akun osu!? Buat sekarang",
         'remember' => 'Ingat perangkat ini',
@@ -175,14 +175,14 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Melakukan kecurangan',
+            'cheating' => 'Bermain curang',
             'copyright_infringement' => 'Pelanggaran hak cipta',
-            'inappropriate_chat' => 'Berperilaku tidak pantas dalam chat',
+            'inappropriate_chat' => 'Berperilaku tidak pantas di dalam ruang obrolan',
             'insults' => 'Menghina saya / orang lain',
             'multiple_accounts' => 'Menggunakan lebih dari satu akun',
             'nonsense' => 'Beromong kosong',
             'other' => 'Lainnya (ketik di bawah)',
-            'spam' => 'Spam',
+            'spam' => 'Mengirimkan pesan spam',
             'unwanted_content' => 'Menautkan konten yang tidak pantas',
         ],
     ],
@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Postingan Terkini',
                 'show_more' => 'lihat lebih banyak postingan',
             ],
-            'quickplay' => [
-                'title' => 'Pertandingan Permainan Kilat',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',
@@ -435,8 +435,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => 'Suara Diberikan (3 bulan terakhir)',
-                'received' => 'Suara Diterima (3 bulan terakhir)',
+                'given' => 'Suara yang Diberikan (3 bulan terakhir)',
+                'received' => 'Suara yang Diterima (3 bulan terakhir)',
                 'title' => 'Hak Suara',
                 'title_longer' => 'Riwayat Pemberian Suara Terkini',
                 'vote_count' => ':count_delimited suara|:count_delimited suara',

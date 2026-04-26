@@ -245,7 +245,7 @@ return [
             'prompt' => '검색어를 입력하세요...',
             'login_required' => '검색하려면 로그인하세요.',
             'options' => '검색 옵션 더 보기',
-            'rank_filter_note' => '',
+            'rank_filter_note' => '이 페이지에 표시된 프로필 상위 순위 수와 결과는 비트맵에서 가장 높은 "표준화"(일명 "lazer") 점수를 기반으로 해요.',
             'supporter_filter' => ':filters로 검색하려면 osu! 서포터 태그가 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => '":filters" 필터를 사용하시려면 :link가 필요합니다.',
                 'link_text' => 'osu! 서포터',
+            ],
+            'tag_picker' => [
+                'tooltip' => '사용자 태그 탐색',
+                'prompt' => '검색어를 입력해주세요',
             ],
         ],
     ],

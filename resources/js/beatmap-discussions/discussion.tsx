@@ -13,7 +13,7 @@ import * as React from 'react';
 import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
 import DiscussionsState from './discussions-state';
@@ -103,8 +103,24 @@ export class Discussion extends React.Component<Props> {
     return this.props.discussionsState?.showDeleted ?? true;
   }
 
+  @computed
+  private get replies() {
+    return this.props.discussionsState != null ? this.props.discussion.posts.slice(1) : [];
+  }
+
   private get users() {
     return this.props.store.users;
+  }
+
+  @computed
+  private get visibleReplies() {
+    if (this.props.discussionsState == null
+      || this.props.discussionsState.selectedUserIds.size === 0
+      || this.props.discussionsState.showOtherReplies) {
+      return this.replies;
+    }
+    // always include system posts for the markers and state changes
+    return this.replies.filter((post) => post.system || this.props.discussionsState?.selectedUserIds.has(post.user_id));
   }
 
   constructor(props: Props) {
@@ -166,7 +182,7 @@ export class Discussion extends React.Component<Props> {
             </div>
             {this.renderPostButtons()}
           </div>
-          {this.postFooter()}
+          {this.renderReplies()}
           <div className={lineClasses} />
         </div>
       </div>
@@ -194,29 +210,6 @@ export class Discussion extends React.Component<Props> {
 
   private isVisible(object: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
     return object != null && (this.showDeleted || object.deleted_at == null);
-  }
-
-  private postFooter() {
-    if (this.props.discussionsState == null) return null;
-
-    let cssClasses = `${bn}__expanded`;
-    if (this.collapsed) {
-      cssClasses += ' hidden';
-    }
-
-    return (
-      <div className={cssClasses}>
-        <div className={`${bn}__replies`}>
-          {this.props.discussion.posts.slice(1).map(this.renderReply)}
-        </div>
-        {this.props.discussionsState != null && this.canBeRepliedTo && (
-          <NewReply
-            discussion={this.props.discussion}
-            discussionsState={this.props.discussionsState}
-          />
-        )}
-      </div>
-    );
   }
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
@@ -283,6 +276,31 @@ export class Discussion extends React.Component<Props> {
             </div>
           </button>
         </div>
+      </div>
+    );
+  }
+
+  private renderReplies() {
+    if (this.props.discussionsState == null) return null;
+
+    let cssClasses = `${bn}__expanded`;
+    if (this.collapsed) {
+      cssClasses += ' hidden';
+    }
+
+    const hiddenReplies = this.replies.length - this.visibleReplies.length;
+    return (
+      <div className={cssClasses}>
+        <div className={`${bn}__replies`}>
+          {hiddenReplies > 0 && <div className={`${bn}__info`}>{transChoice('beatmap_discussions.hidden_replies', hiddenReplies)}</div>}
+          {this.visibleReplies.map(this.renderReply)}
+        </div>
+        {this.props.discussionsState != null && this.canBeRepliedTo && (
+          <NewReply
+            discussion={this.props.discussion}
+            discussionsState={this.props.discussionsState}
+          />
+        )}
       </div>
     );
   }

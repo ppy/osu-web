@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'seznam pesmi',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'večigralski način',
     ],
 

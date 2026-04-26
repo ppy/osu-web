@@ -16,9 +16,9 @@ return [
         'admin' => [
             'beatmapset' => 'บีทแมพเซ็ท',
             'beatmapset_covers' => 'ปกหลังบีทแมพเซ็ท',
-            'contest' => 'การแข่งขัน',
-            'contests' => 'การแข่งขัน',
-            'root' => 'แผงควบคุม',
+            'contest' => 'คอนเทสต์',
+            'contests' => 'คอนเทสต์',
+            'root' => 'คอนโซล',
         ],
 
         'artists' => [
@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'ข้อมูล',
             'discussions' => 'การสนทนา',
-            'versions' => '',
+            'versions' => 'ประวัติเวอร์ชัน',
         ],
 
         'changelog' => [
@@ -52,8 +52,8 @@ return [
 
         'users' => [
             'modding' => 'การดัดแปลง',
-            'playlists' => 'รายการเพลง',
-            'quickplay' => '',
+            'playlists' => 'เพลย์ลิสต์',
+            'ranked-play' => '',
             'realtime' => 'ผู้เล่นหลายคน',
             'show' => 'ข้อมูล',
         ],
@@ -61,7 +61,7 @@ return [
 
     'gallery' => [
         'close' => 'ปิด (กด Esc)',
-        'fullscreen' => 'สลับโหมดเต็มหน้าจอ',
+        'fullscreen' => 'เปิด/ปิดโหมดเต็มหน้าจอ',
         'zoom' => 'ซูมเข้า/ออก',
         'previous' => 'รูปที่แล้ว (กดลูกศรซ้าย)',
         'next' => 'รูปต่อไป (กดลูกศรขวา)',
@@ -115,7 +115,7 @@ return [
             'copyright' => 'ลิขสิทธิ์ (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'ความเป็นส่วนตัว',
-            'rules' => '',
+            'rules' => 'กฎระเบียบ',
             'server_status' => 'สถานะของเซิร์ฟเวอร์',
             'source_code' => 'ซอร์สโค้ด',
             'terms' => 'เงื่อนไข',
@@ -198,8 +198,8 @@ return [
             'account-edit' => 'การตั้งค่า',
             'follows' => 'รายการการเฝ้าดู',
             'friends' => 'เพื่อน',
-            'legacy_score_only_toggle' => 'โหมดLazer',
-            'legacy_score_only_toggle_tooltip' => 'โหมดLazer แสดงเซ็ตคะแนนจาก Lazer ด้วยอัลกอริธึมการให้คะแนนใหม่',
+            'legacy_score_only_toggle' => 'โหมด Lazer',
+            'legacy_score_only_toggle_tooltip' => 'โหมด Lazer แสดงเซ็ตคะแนนจาก Lazer ด้วยอัลกอริธึมการให้คะแนนใหม่',
             'logout' => 'ออกจากระบบ',
             'profile' => 'โปรไฟล์ของฉัน',
             'scoring_mode_toggle' => 'การให้คะแนนแบบคลาสสิค',

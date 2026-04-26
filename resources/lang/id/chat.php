@@ -7,7 +7,7 @@ return [
     'loading_users' => 'memuat pengguna...',
     'talking_in' => 'berbicara di :channel',
     'talking_with' => 'berbicara dengan :name',
-    'title_compact' => 'chat',
+    'title_compact' => 'obrolan',
     'unread_messages' => 'pesan yang belum dibaca',
 
     'cannot_send' => [
@@ -56,12 +56,6 @@ return [
         'disconnected' => 'Terputus',
         'placeholder' => 'ketik pesan...',
         'send' => 'Kirim',
-    ],
-
-    'no-conversations' => [
-        'howto' => "Mulailah percakapan baru dari halaman profil atau kartu pop-up pengguna.",
-        'lazer' => 'Kanal percakapan publik yang kamu buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
-        'title' => 'belum ada percakapan',
     ],
 
     'join_channels' => [

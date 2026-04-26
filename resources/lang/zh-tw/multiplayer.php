@@ -8,7 +8,7 @@ return [
         'active' => '目前沒有任何進行中的 osu!(lazer) :type_group 遊戲！',
         'ended' => '不在任何已結束的 osu!(lazer) :type_group 遊戲內！',
         'playlists' => '歌單',
-        'quickplay' => '快速遊玩',
+        'ranked-play' => '',
         'realtime' => '多人遊戲',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => '持續時間過長。',
             'name_too_long' => '房間名稱過長。',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => '歌單項目數量過多。',
         ],
 
         'status' => [

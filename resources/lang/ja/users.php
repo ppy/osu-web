@@ -405,8 +405,8 @@ CAPTCHA認証を成功させてから再試行してください。
                 'title_longer' => '最近の投稿',
                 'show_more' => '他の投稿を見る',
             ],
-            'quickplay' => [
-                'title' => 'クイックプレイ',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',

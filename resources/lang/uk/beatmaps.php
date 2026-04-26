@@ -276,6 +276,10 @@ return [
                 '_' => 'Сортування за :filters вимагає :link',
                 'link_text' => 'тег osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => 'перегляд тегів користувача',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

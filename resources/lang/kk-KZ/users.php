@@ -402,7 +402,7 @@ return [
                 'title_longer' => '',
                 'show_more' => '',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

@@ -181,7 +181,7 @@ export default class Header extends React.Component<Props> {
             {core.currentUser != null &&
               <BigButton
                 icon={favouriteButton.icon}
-                modifiers={['beatmapset-header-square', `beatmapset-header-square-${favouriteButton.action}`]}
+                modifiers={`beatmapset-header-square beatmapset-header-square-${favouriteButton.action}`}
                 props={{
                   onClick: this.onClickFavourite,
                   title: trans(`beatmapsets.show.details.${favouriteButton.action}`),

@@ -145,7 +145,7 @@ return [
 
             'gifted' => [
                 '_' => 'Из них вы подарили :users тегов на сумму :dollars, общей длительностью в :duration. Это невероятно щедро!',
-                'users' => ':count_delimited другому игроку|:count_delimited другим игрокам',
+                'users' => ':count_delimited другому игроку|:count_delimited другим игрокам|:count_delimited другим игрокам',
             ],
         ],
     ],

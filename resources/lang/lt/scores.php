@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Žaidė',
+            'played_on' => '',
             'submitted_on' => 'Pateikta',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Šalies reitingai',

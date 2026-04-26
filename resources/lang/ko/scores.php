@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => '플레이어',
+            'played_on' => '클라이언트 버전',
             'submitted_on' => '제출 날짜',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => '국가 순위',

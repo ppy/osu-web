@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Гравець',
+            'played_on' => '',
             'submitted_on' => 'Поставлено',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Ранг країни',

@@ -276,6 +276,10 @@ return [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
                 'link_text' => 'etiqueta de osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => 'explora las etiquetas de los usuarios',
+                'prompt' => 'escribe para buscar',
+            ],
         ],
     ],
     'general' => [

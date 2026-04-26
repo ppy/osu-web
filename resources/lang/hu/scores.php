@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Játékos',
+            'played_on' => '',
             'submitted_on' => 'Beküldve',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Országos rangsor',

@@ -8,7 +8,7 @@ return [
         'active' => 'Наразі немає жодної незавершеної гри osu!(lazer) :type_group!',
         'ended' => 'Ще не в жодній завершеній грі osu!(lazer) :type_group!',
         'playlists' => 'плейліст',
-        'quickplay' => 'швидка гра',
+        'ranked-play' => '',
         'realtime' => 'мультиплеєр',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Тривалість занадто довга.',
             'name_too_long' => 'Назва кімнати занадто довга.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Забагато елементів у плейлисті.',
         ],
 
         'status' => [

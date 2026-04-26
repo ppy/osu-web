@@ -276,6 +276,10 @@ return [
                 '_' => 'Фільтрацыі па :filters патрабуецца :link',
                 'link_text' => 'тэг osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

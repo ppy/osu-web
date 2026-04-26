@@ -8,7 +8,7 @@ return [
         'active' => 'Нет игр, проходящих прямо сейчас в :type_group osu!(lazer)!',
         'ended' => 'Пока нет ни одной завершённой игры в :type_group osu!(lazer)!',
         'playlists' => 'плейлистах',
-        'quickplay' => 'быстрой игре',
+        'ranked-play' => '',
         'realtime' => 'мультиплеере',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Слишком большая продолжительность.',
             'name_too_long' => 'Слишком длинное название комнаты.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Слишком много карт.',
         ],
 
         'status' => [

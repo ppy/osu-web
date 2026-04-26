@@ -8,7 +8,7 @@ return [
         'active' => 'Pengguna ini tidak sedang berada di dalam ruang :type_group osu!(lazer) mana pun yang sedang berlangsung!',
         'ended' => 'Pengguna ini belum pernah mengikuti permainan :type_group osu!(lazer) mana pun yang sudah rampung!',
         'playlists' => 'playlist',
-        'quickplay' => 'permainan kilat',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Durasi pertandingan terlalu lama.',
             'name_too_long' => 'Nama ruangan terlalu panjang.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Terlalu banyak item playlist.',
         ],
 
         'status' => [

@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Inicieu sessió per a cercar equips',
             'more_simple' => 'Mostra més resultats de la cerca d\'equip',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Directes destacats',
         ],
         'show' => [
             'admin' => [

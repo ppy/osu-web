@@ -276,6 +276,10 @@ return [
                 '_' => '需要成为 :link 才能按 :filters 筛选',
                 'link_text' => '支持者',
             ],
+            'tag_picker' => [
+                'tooltip' => '浏览玩家标签',
+                'prompt' => '输入以搜索',
+            ],
         ],
     ],
     'general' => [

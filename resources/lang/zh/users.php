@@ -92,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '成员按游戏模式筛选',
+        'by_game_mode' => '按游戏模式筛选成员',
     ],
 
     'force_reactivation' => [
@@ -402,8 +402,8 @@ return [
                 'title_longer' => '最近回复',
                 'show_more' => '查看更多回复',
             ],
-            'quickplay' => [
-                'title' => '匹配模式历史',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => '最近活动',

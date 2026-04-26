@@ -56,7 +56,7 @@ return [
         'show_more' => 'visa mer',
         'show_more_options' => 'visa fler alternativ',
         'submit' => 'Skicka',
-        'unpin' => 'ofäst ',
+        'unpin' => 'lossa',
         'update' => 'Uppdatera',
         'upload_image' => 'ladda upp bild',
 

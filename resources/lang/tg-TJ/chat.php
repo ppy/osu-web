@@ -58,12 +58,6 @@ return [
         'send' => '',
     ],
 
-    'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
-        'title' => '',
-    ],
-
     'join_channels' => [
         'loading' => '',
     ],

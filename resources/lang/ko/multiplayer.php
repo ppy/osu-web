@@ -8,7 +8,7 @@ return [
         'active' => '현재 진행 중인 osu!(lazer) :type_group 게임이 없어요!',
         'ended' => '아직 완료된 osu!(lazer) :type_group 게임이 없어요!',
         'playlists' => '플레이리스트',
-        'quickplay' => '빠른 대전',
+        'ranked-play' => '',
         'realtime' => '멀티플레이어',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => '기간이 너무 깁니다.',
             'name_too_long' => '방 이름이 너무 깁니다.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => '플레이리스트 항목이 너무 많습니다.',
         ],
 
         'status' => [

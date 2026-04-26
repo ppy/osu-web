@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld Hold',
+        'title' => 'Vil du anmelde :username\'s hold?',
     ],
 
     'user' => [

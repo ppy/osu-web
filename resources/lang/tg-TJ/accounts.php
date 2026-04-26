@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => '',
             'beatmapset:modding' => '',
             'channel_message' => '',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => '',
             'forum_topic_reply' => '',

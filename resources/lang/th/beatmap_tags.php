@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'แทกนี้ไม่สามารถใช้กับบีทแมพนี้ได้',
     ],
 ];

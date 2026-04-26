@@ -13,7 +13,6 @@
   --selector-overflow-y: auto;
 
   &--beatmap-discussions-user-filter {
-    --decoration-colour: hsl(var(--hsl-c1));
     --selector-max-height: auto;
 
     @media @desktop {
@@ -60,10 +59,6 @@
 
     &--selected {
       background-color: @osu-colour-b3;
-    }
-
-    .@{_top}--beatmap-discussions-user-filter & {
-      --colour: var(--group-colour, hsl(var(--hsl-c1)));
     }
 
     .link-hover({

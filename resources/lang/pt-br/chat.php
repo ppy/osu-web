@@ -58,12 +58,6 @@ return [
         'send' => 'Enviar',
     ],
 
-    'no-conversations' => [
-        'howto' => "Comece uma conversa através do perfil ou pelo cartão do usuário.",
-        'lazer' => 'Canais públicos que você entrar via <a href=":link">osu!lazer</a> também serão visíveis aqui.',
-        'title' => 'sem conversas no momento',
-    ],
-
     'join_channels' => [
         'loading' => 'Carregando lista de canais...',
     ],

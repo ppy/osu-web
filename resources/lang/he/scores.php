@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'שוחק על ידי',
+            'played_on' => '',
             'submitted_on' => 'נשלח ב',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'דירוג מדיני',

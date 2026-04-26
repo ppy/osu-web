@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Скорошни публикации',
                 'show_more' => 'виж повече публикации',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

@@ -8,7 +8,7 @@ return [
         'active' => 'Brak aktywnych gier w trybie :type_group!',
         'ended' => 'Brak zakończonych gier w trybie :type_group!',
         'playlists' => 'asynchronicznym',
-        'quickplay' => 'szybka gra',
+        'ranked-play' => '',
         'realtime' => 'wieloosobowym',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Czas trwania jest zbyt długi.',
             'name_too_long' => 'Nazwa pokoju jest zbyt długa.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Za dużo elementów w liście odtwarzania.',
         ],
 
         'status' => [

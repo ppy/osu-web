@@ -125,6 +125,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Tin nhắn mới của đội',
 
@@ -221,7 +231,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Tin tức',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
@@ -260,6 +270,10 @@ return [
             'channel' => [
                 'channel_message' => 'Bạn nhận được tin nhắn mới từ :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Có tin nhắn mới trong đội ":name"',
             ],

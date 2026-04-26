@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Senaste Inläggen',
                 'show_more' => 'se fler inlägg',
             ],
-            'quickplay' => [
-                'title' => 'Snabba spelmatcher',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Senaste',

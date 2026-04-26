@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Скорије Објаве',
                 'show_more' => 'видите још објава',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

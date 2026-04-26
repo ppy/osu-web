@@ -8,7 +8,7 @@ return [
         'active' => 'No hi és en cap partida en curs del tipus osu!(lazer) :type_group!',
         'ended' => 'Encara no hi és en cap partida completada del tipus osu!(lazer) :type_group!',
         'playlists' => 'llista d\'àudio',
-        'quickplay' => 'partides ràpides',
+        'ranked-play' => '',
         'realtime' => 'multijugador',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'La durada és massa llarga.',
             'name_too_long' => 'El nom de la sala és massa llarg.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Massa elements a la llista',
         ],
 
         'status' => [

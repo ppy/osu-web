@@ -245,7 +245,7 @@ return [
             'prompt' => 'wpisz poszukiwaną frazę...',
             'login_required' => 'Zaloguj się, aby wyszukać.',
             'options' => 'Więcej opcji wyszukiwania',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Najwyższe miejsca w rankingu oraz wyniki widoczne na tej stronie są oparte na twoim najwyższszym \'standaryzowanym (aka \'lazerowym\') wyniku na beatmapach',
             'supporter_filter' => 'Użycie wybranych filtrów (:filters) wymaga aktywnego statusu donatora osu!',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
@@ -275,6 +275,11 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Użycie wybranych filtrów (:filters) wymaga :link',
                 'link_text' => 'statusu donatora osu!',
+            ],
+            'tag_picker' => [
+                'tooltip' => 'przeglądaj tagi użytkowników
+',
+                'prompt' => 'pisz, aby szukać',
             ],
         ],
     ],

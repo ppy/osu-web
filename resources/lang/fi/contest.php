@@ -30,9 +30,9 @@ return [
         '_' => 'Tuomaroinnin tulokset',
         'creator' => 'tekijä',
         'score' => 'Pisteet',
-        'score_std' => '',
+        'score_std' => 'Standardoitu Pistemäärä',
         'total_score' => 'yhteispisteet',
-        'total_score_std' => '',
+        'total_score_std' => 'standardisoitu kokonaispistemäärä',
     ],
 
     'voting' => [
@@ -69,11 +69,11 @@ return [
         'silenced_or_restricted' => 'Et voi osallistua kilpailuun jos olet rajoitetussa -tai mykistetyssä tilassa.',
         'preparation' => 'Valmistelemme tätä kilpailua. Odota rauhassa!',
         'drop_here' => 'Pudota työsi tähän',
-        'allowed_extensions' => '',
-        'max_size' => '',
-        'required_dimensions' => '',
+        'allowed_extensions' => ':types-tiedostot hyväksytään',
+        'max_size' => 'Suurin koko :limit',
+        'required_dimensions' => 'Mittojen on oltava :widthx:height',
         'download' => 'Lataa .osz-tiedosto',
-        'wrong_file_type' => '',
+        'wrong_file_type' => 'Vain :types tiedostot ovat hyväksyttyjä tähän kilpailuun.',
         'wrong_dimensions' => 'Tämän kilpailun kohteiden on oltava :widthx:height',
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
@@ -86,7 +86,7 @@ return [
         'list' => 'äänet',
         'count' => ':count_delimited ääni|:count_delimited ääntä',
         'points' => ':count piste|:count pistettä',
-        'points_float' => '',
+        'points_float' => ':points pistettä',
     ],
 
     'dates' => [

@@ -90,7 +90,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <ScoreValue score={score} />
         </TdLink>
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: scoreAccuracy === 1 }}>
+        <TdLink href={this.scoreUrl} modifiers={scoreAccuracy === 1 ? 'perfect' : null}>
           {`${formatNumber(scoreAccuracy * 100, 2)}%`}
         </TdLink>
 
@@ -131,7 +131,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </td>
         )}
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: isPerfectCombo(score) }}>
+        <TdLink href={this.scoreUrl} modifiers={isPerfectCombo(score) ? 'perfect' : null}>
           {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
@@ -139,7 +139,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <TdLink
             key={stat.label.short}
             href={this.scoreUrl}
-            modifiers={{ zero: stat.value === 0 }}
+            modifiers={stat.value === 0 ? 'zero' : null}
           >
             {formatNumber(stat.value)}
           </TdLink>

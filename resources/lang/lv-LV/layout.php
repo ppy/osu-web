@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'moderēšana',
             'playlists' => 'dziesmu saraksti',
-            'quickplay' => 'ātrā spēle',
+            'ranked-play' => '',
             'realtime' => 'daudzspēlētāju režīms',
             'show' => 'info',
         ],

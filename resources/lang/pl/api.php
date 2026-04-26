@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Twórz i zarządzaj pokojami trybu wieloosobowego w twoim imieniu.',
         ],
 
         'public' => 'odczytywać dane publiczne w twoim imieniu.',

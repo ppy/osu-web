@@ -6,7 +6,7 @@
 return [
     'landing' => [
         'download' => '지금 바로 다운로드하기',
-        'online' => '<strong>:players</strong>명이 현재 접속 중이며, <strong>:games</strong>개의 게임이 개설되어 있습니다.',
+        'online' => '<strong>:players</strong>명이 현재 접속 중이며, <strong>:games</strong>개의 게임이 개설되어 있어요',
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '<strong>:count</strong>명이 가입되어 있고',
         'title' => '환영합니다',
@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => '로그인하여 팀 검색',
             'more_simple' => '팀 검색 결과 더 보기',
         ],
 
@@ -153,7 +153,7 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => '추천 라이브 스트림',
         ],
         'show' => [
             'admin' => [

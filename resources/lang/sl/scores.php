@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Igral',
+            'played_on' => '',
             'submitted_on' => 'Objavljeno',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Državna uvrstitev',

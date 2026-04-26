@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Nylige Innlegg',
                 'show_more' => 'se flere innlegg',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

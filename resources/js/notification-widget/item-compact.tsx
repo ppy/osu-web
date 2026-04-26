@@ -25,7 +25,7 @@ export default class ItemCompact extends React.Component<Props> {
         item={this.props.item}
         markRead={this.handleMarkAsRead}
         message={formatMessage(this.props.item, true)}
-        modifiers={['compact']}
+        modifiers='compact'
         url={urlSingular(this.props.item)}
         withCategory={false}
         withCoverImage={this.props.item.name === 'user_achievement_unlock' || this.props.item.category === 'user_beatmapset_new'}

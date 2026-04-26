@@ -276,6 +276,10 @@ return [
                 '_' => 'Penyaringan berdasarkan :filters memerlukan :link yang aktif',
                 'link_text' => 'tag osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => 'telusuri tag pengguna',
+                'prompt' => 'ketik untuk mencari',
+            ],
         ],
     ],
     'general' => [

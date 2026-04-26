@@ -4,8 +4,15 @@
 @import "app";
 
 .bbcode {
+  .align-left() {
+    --list-style-position: outside;
+    --list-padding-left: 20px;
+    text-align: left;
+  }
+
   @_top: bbcode;
   .content-font();
+  .align-left();
   overflow-wrap: anywhere;
   line-height: 1.5;
 
@@ -79,7 +86,8 @@
 
   ol,
   ul {
-    padding-left: 20px;
+    list-style-position: var(--list-style-position);
+    padding-left: var(--list-padding-left);
   }
 
   pre {
@@ -115,5 +123,21 @@
   &__list-title {
     list-style: none;
     margin: 0;
+  }
+
+  &__align-centre {
+    --list-style-position: inside;
+    --list-padding-left: 0;
+    text-align: center;
+  }
+
+  &__align-left {
+    .align-left();
+  }
+
+  &__align-right {
+    --list-style-position: inside;
+    --list-padding-left: 0;
+    text-align: right;
   }
 }

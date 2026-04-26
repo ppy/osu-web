@@ -10,7 +10,7 @@ return [
         'client_missing_owner' => 'El cliente no tiene propietario.',
         'client_unauthorized' => 'El cliente no está autorizado.',
         'delegate_bot_only' => 'La delegación con credenciales de cliente solo está disponible para los bots del chat.',
-        'client_credentials_only' => '',
+        'client_credentials_only' => 'Este ámbito solo es válido para tokens de client_credentials.',
         'delegate_invalid_combination' => 'La delegación no es compatible con esta combinación de ámbitos.',
         'delegate_required' => 'se requiere un ámbito delegado.',
         'empty' => 'Los tokens sin ámbito no son válidos.',

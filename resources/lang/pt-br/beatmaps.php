@@ -276,6 +276,10 @@ return [
                 '_' => 'Filtrar por :filters requer uma :link',
                 'link_text' => 'osu!supporter tag',
             ],
+            'tag_picker' => [
+                'tooltip' => 'procurar por tags de usuário',
+                'prompt' => 'digite para pesquisar',
+            ],
         ],
     ],
     'general' => [

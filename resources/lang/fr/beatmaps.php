@@ -245,7 +245,7 @@ return [
             'prompt' => 'tapez des mots-clés...',
             'login_required' => 'Connectez-vous pour rechercher.',
             'options' => 'Plus de critères de recherche',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Les meilleurs rangs sur votre profil ainsi que les résultats affichés sur cette page sont basés sur vos scores « standardisés »  les plus hauts (alias « lazer ») sur les beatmaps.',
             'supporter_filter' => 'Le filtrage par :filters requiert un tag osu!supporter actif',
             'not-found' => 'aucun résultat',
             'not-found-quote' => '... non, rien trouvé.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Le filtrage par :filters requiert un :link actif',
                 'link_text' => 'tag osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => 'parcourir les tags des joueurs',
+                'prompt' => 'tapez pour rechercher',
             ],
         ],
     ],

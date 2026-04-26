@@ -18,6 +18,7 @@ class MatchmakingPoolTransformer extends TransformerAbstract
             'id' => $pool->getKey(),
             'name' => $pool->name,
             'ruleset_id' => $pool->ruleset_id,
+            'type' => $pool->type,
             'variant_id' => $pool->variant_id,
         ];
     }

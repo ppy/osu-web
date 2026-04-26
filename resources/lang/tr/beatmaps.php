@@ -245,7 +245,7 @@ return [
             'prompt' => 'anahtar kelimeler yazın...',
             'login_required' => 'Arama yapmak için giriş yap.',
             'options' => 'Diğer Arama Seçenekleri',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Bu sayfada gösterilen profildeki en iyi derece sayıları ve sonuçları, beatmap’lerdeki en yüksek “standartlaştırılmış” (yani “lazer”) skorlarına dayanır.',
             'supporter_filter' => ':filters ile filtrelemek için aktif bir osu!supporter etiketi gereklidir',
             'not-found' => 'sonuç bulunamadı',
             'not-found-quote' => '... yok, bir şey bulunamadı.',
@@ -275,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => ':filters ile filtrelemek için aktif bir :link gerekli',
                 'link_text' => 'osu!supporter etiketi',
+            ],
+            'tag_picker' => [
+                'tooltip' => 'kullanıcı etiketlerine göz at',
+                'prompt' => 'aramak için yaz',
             ],
         ],
     ],

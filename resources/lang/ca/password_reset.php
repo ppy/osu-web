@@ -16,10 +16,10 @@ return [
         'invalid' => 'Error inesperat en el codi de verificació.',
         'is_privileged' => 'Si us plau, contacta un administrador per a recuperar el teu compte.',
         'missing_key' => 'Requerit.',
-        'too_many_requests' => '',
+        'too_many_requests' => 'S\'ha assolit el límit de sol·licituds de restabliment de contrasenya. Poseu-vos en contacte amb suport per a recuperar el compte.',
         'too_many_tries' => 'Massa intents fracassats.',
         'user_not_found' => 'Usuari inexistent.',
-        'wait_resend' => '',
+        'wait_resend' => 'Espereu un moment.',
         'wrong_key' => 'Codi incorrecte.',
     ],
 

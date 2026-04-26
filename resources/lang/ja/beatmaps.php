@@ -276,6 +276,10 @@ return [
                 '_' => ':filters による絞り込みには有効な:link が必要です',
                 'link_text' => 'osu!サポータータグ',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [

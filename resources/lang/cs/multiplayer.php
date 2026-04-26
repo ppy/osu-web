@@ -8,7 +8,7 @@ return [
         'active' => 'Není právě v žádných probíhajících osu!(lazer) :type_group hrách!',
         'ended' => 'Zatím není v žádných dokončených osu!(lazer) :type_group hrách!',
         'playlists' => 'playlist',
-        'quickplay' => 'rychlá hra',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Doba je příliě dlouhá.',
             'name_too_long' => 'Název místnosti je příliš dlouhý.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Příliš mnoho položek playlistu.',
         ],
 
         'status' => [

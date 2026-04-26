@@ -8,7 +8,7 @@ return [
         'active' => 'Ei tällä hetkellä missään keskeneräisessä osu!(lazer) :type_group pelissä!',
         'ended' => 'Ei vielä missään valmiissa osu!(lazer) :type_group pelissä!',
         'playlists' => 'soittolistoja',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'moninpelejä',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Liian pitkä aika.',
             'name_too_long' => 'Huoneen nimi on liian pitkä.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Liian monta rytmikarttaa soittolistalla.',
         ],
 
         'status' => [

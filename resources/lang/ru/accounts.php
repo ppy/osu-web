@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'о гостевых сложностях',
             'beatmapset:modding' => 'о новых модах',
             'channel_message' => 'о новых личных сообщениях',
+            'channel_mention' => '',
             'channel_team' => 'о сообщениях в командном чате',
             'comment_new' => 'о новых комментариях',
             'forum_topic_reply' => 'об ответах на форуме',
@@ -131,7 +132,7 @@ return [
     'privacy' => [
         'friends_only' => 'блокировать личные сообщения не от друзей',
         'hide_online' => 'скрывать, что я в сети',
-        'hide_online_info' => 'это соответствует статусу "невидимый" в osu!lazer',
+        'hide_online_info' => 'это соответствует статусу "невидимка" в osu!lazer',
         'title' => 'Конфиденциальность',
     ],
 

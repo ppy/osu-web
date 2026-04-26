@@ -58,12 +58,6 @@ return [
         'send' => 'Ipadala',
     ],
 
-    'no-conversations' => [
-        'howto' => "Simulan ang pakikipag-usap mula sa profile ng isang user o sa isang popup ng usercard.",
-        'lazer' => 'Ang mga public channel na sinalihan mo sa <a href=":link">osu!lazer</a> ay makikita din dito.',
-        'title' => 'wala pang mga usapan',
-    ],
-
     'join_channels' => [
         'loading' => '',
     ],

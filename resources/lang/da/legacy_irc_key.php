@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Opret ny IRC-adgangskode?',
+    'new' => 'Ny Legacy IRC-adgangskode',
+    'none' => 'IRC-adgangskode ikke angivet.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'server',
+        'server_port' => 'port',
+        'token' => 'serveradgangskode',
+        'username' => 'brugernavn',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Skjul Adgangskode',
+        'show' => 'Vis Adgangskode',
+        'delete' => 'Slet',
     ],
 ];
