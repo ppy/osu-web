@@ -8,7 +8,7 @@ import SocketMessageSendAction from 'actions/socket-message-send-action';
 import SocketStateChangedAction from 'actions/socket-state-changed-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import { supportedChannelTypes } from 'interfaces/chat/channel-json';
+import ChannelJson, { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
@@ -17,7 +17,9 @@ import core from 'osu-core-singleton';
 import ChannelStore from 'stores/channel-store';
 import { isJqXHR, onError } from 'utils/ajax';
 import { hideLoadingOverlay } from 'utils/loading-overlay';
+import { getInt } from 'utils/math';
 import { updateHistory } from 'utils/turbolinks';
+import { currentUrlParams } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import ChannelId, { AddChannelType } from './channel-id';
 import ChannelJoinEvent from './channel-join-event';
@@ -32,6 +34,7 @@ export default class ChatStateStore implements DispatchListener {
   @observable canChatAnnounce = false;
   @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
+  @observable offerJoinChannel = new Map<number, ChannelJson>();
   readonly publicChannels = new PublicChannels();
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
@@ -159,6 +162,14 @@ export default class ChatStateStore implements DispatchListener {
     }
   }
 
+  getOfferJoinChannel() {
+    const channelId = getInt(currentUrlParams().get('channel_id'));
+
+    return channelId == null
+      ? undefined
+      : this.offerJoinChannel.get(channelId);
+  }
+
   handleDispatchAction(event: DispatcherAction) {
     if (event instanceof ChannelJoinEvent) {
       this.handleChatChannelJoinEvent(event);
@@ -212,6 +223,11 @@ export default class ChatStateStore implements DispatchListener {
   }
 
   @action
+  setOfferJoinChannel(channel: ChannelJson) {
+    this.offerJoinChannel.set(channel.channel_id, channel);
+  }
+
+  @action
   private focusChannelAtIndex(index: number) {
     if (this.channelList.length === 0) {
       return;
@@ -242,9 +258,16 @@ export default class ChatStateStore implements DispatchListener {
       // hide overlay before changing channel if we're waiting for a change to remove it from history navigation.
       hideLoadingOverlay();
       this.selectChannel(json.channel_id);
+      this.offerJoinChannel.delete(json.channel_id);
       this.waitAddChannelId = null;
       if (json.type === 'ANNOUNCE') {
         this.createAnnouncement.clear();
+      }
+    } else {
+      const offerJoinChannel = this.getOfferJoinChannel();
+      if (offerJoinChannel?.channel_id === json.channel_id) {
+        this.selectChannel(json.channel_id);
+        this.offerJoinChannel.delete(json.channel_id);
       }
     }
   }

@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BigButton from 'components/big-button';
 import Img2x from 'components/img2x';
 import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
@@ -8,9 +9,18 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import { getInt } from 'utils/math';
 import ConversationView from './conversation-view';
 import CreateAnnouncement from './create-announcement';
 import JoinChannels from './join-channels';
+
+function handleJoinChannelClick(e: React.MouseEvent<HTMLElement>) {
+  const channelId = getInt(e.currentTarget.dataset.channelId);
+
+  if (channelId == null) return;
+
+  core.dataStore.chatState.addChannel(channelId);
+}
 
 @observer
 export default class ConversationPanel extends React.Component<Record<string, never>> {
@@ -70,6 +80,31 @@ export default class ConversationPanel extends React.Component<Record<string, ne
 
     if (selected != null) {
       return <ConversationView />;
+    }
+
+    const joinChannel = core.dataStore.chatState.getOfferJoinChannel();
+    if (joinChannel != null) {
+      return (
+        <div className='chat-conversation-panel__no-channel'>
+          <div className='chat-conversation-panel__title'>{joinChannel.name}</div>
+          <div className='chat-conversation-panel__instructions'>
+            {joinChannel.description}
+          </div>
+          <div className='chat-conversation-panel__instructions'>
+            {trans('chat.not_joined.message')}
+          </div>
+          <div className='chat-conversation-panel__instructions'>
+            <BigButton
+              modifiers='rounded-thin'
+              props={{
+                'data-channel-id': joinChannel.channel_id,
+                onClick: handleJoinChannelClick,
+              }}
+              text={trans('chat.not_joined.join')}
+            />
+          </div>
+        </div>
+      );
     }
 
     // requested channel not found

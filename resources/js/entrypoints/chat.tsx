@@ -12,6 +12,7 @@ import { parseJsonNullable } from 'utils/json';
 import { currentUrl, currentUrlParams } from 'utils/turbolinks';
 
 interface ChatInitialJson {
+  current_channel: ChannelJson | null;
   current_user_attributes: {
     can_chat_announce: boolean;
   };
@@ -83,12 +84,15 @@ core.reactTurbolinks.register('chat', action(() => {
     core.dataStore.chatState.selectChannel(channelId, 'replace');
   } else {
     const channel = getInitialChannel(initial?.send_to);
-
     if (channel === undefined) {
       core.dataStore.chatState.selectFirst();
     } else {
       core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replace');
     }
+  }
+
+  if (initial?.current_channel != null) {
+    core.dataStore.chatState.setOfferJoinChannel(initial.current_channel);
   }
 
   return <MainView />;
