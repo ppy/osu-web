@@ -46,8 +46,7 @@ class MatchmakingUserStats extends Model
     public function scopeDefault(Builder $query): Builder
     {
         return $query
-            // temporarily? disable
-            // ->whereHas('user', fn (Builder $q): Builder => $q->default())
+            ->whereHas('user', fn (Builder $q): Builder => $q->default())
             ->where('plays', '>', 0);
     }
 
