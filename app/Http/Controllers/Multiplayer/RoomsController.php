@@ -221,12 +221,12 @@ class RoomsController extends Controller
             'leaderboard' => json_collection(
                 $room->topScores()->paginate($limit),
                 'Multiplayer\UserScoreAggregate',
-                ['user.country']
+                ['user.country', 'user.cover', 'user.team']
             ),
             'user_score' => $userScore !== null ? json_item(
                 $userScore,
                 'Multiplayer\UserScoreAggregate',
-                ['position', 'user.country']
+                ['position', 'user.country', 'user.cover', 'user.team']
             ) : null,
         ];
     }
