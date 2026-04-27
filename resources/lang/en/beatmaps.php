@@ -286,6 +286,7 @@ return [
         'converts' => 'Include converted beatmaps',
         'featured_artists' => 'Featured Artists',
         'follows' => 'Subscribed mappers',
+        'osu_originals' => 'osu! originals',
         'recommended' => 'Recommended difficulty',
         'spotlights' => 'Spotlighted beatmaps',
     ],
