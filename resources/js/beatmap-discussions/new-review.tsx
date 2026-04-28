@@ -33,7 +33,7 @@ export default class NewReview extends React.Component<Props> {
   @computed
   private get cssTop() {
     if (this.mounted && this.pinned && this.stickToHeight != null) {
-      return core.stickyHeader.headerHeight + this.stickToHeight;
+      return Math.floor(core.stickyHeader.headerHeight + this.stickToHeight);
     }
   }
 

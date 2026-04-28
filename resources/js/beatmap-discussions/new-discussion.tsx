@@ -81,7 +81,7 @@ export class NewDiscussion extends React.Component<Props> {
   @computed
   private get cssTop() {
     if (this.mounted && this.pinned && this.stickToHeight != null) {
-      return core.stickyHeader.headerHeight + this.stickToHeight;
+      return Math.floor(core.stickyHeader.headerHeight + this.stickToHeight);
     }
   }
 
@@ -163,6 +163,7 @@ export class NewDiscussion extends React.Component<Props> {
   componentDidMount() {
     // watching for height changes on the stickTo element to handle horizontal scrollbars when they appear.
     $(window).on('resize', this.updateStickToHeight);
+    $.subscribe('sticky-toolbar:expand', this.updateStickToHeight);
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => {
       this.mounted = true;
       this.updateStickToHeight();
@@ -175,6 +176,7 @@ export class NewDiscussion extends React.Component<Props> {
 
   componentWillUnmount() {
     $(window).off('resize', this.updateStickToHeight);
+    $.unsubscribe('sticky-toolbar:expand', this.updateStickToHeight);
     this.postXhr?.abort();
     this.disposers.forEach((disposer) => disposer?.());
   }

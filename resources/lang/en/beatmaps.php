@@ -26,6 +26,7 @@ return [
         'edited' => 'Last edited by :editor :update_time.',
         'guest' => 'Guest difficulty by :user',
         'kudosu_denied' => 'Denied from obtaining kudosu.',
+        'include_replies' => 'Include replies',
         'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
         'message_placeholder_locked' => 'Discussion for this beatmap has been disabled.',
         'message_placeholder_silenced' => "Can't post discussion while silenced.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Resolved',
         'restore' => 'restore',
         'show_deleted' => 'Show deleted',
+        'show_other_replies' => 'Show other replies',
         'title' => 'Discussions',
         'unresolved_count' => ':count_delimited unresolved issue|:count_delimited unresolved issues',
 

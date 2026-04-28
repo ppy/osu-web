@@ -45,8 +45,7 @@
   }
 
   &--beatmap-discussions {
-    margin: 5px;
-    height: var(--box-height);
+    min-width: 60px; // allows up to 3 digits without resizing.
   }
 
   &--info {
@@ -91,8 +90,8 @@
     font-size: @font-size--small;
     white-space: nowrap;
 
-    .@{top}--beatmap-discussions & {
-      margin-right: 10px;
+    &--beatmap-discussions {
+      margin-right: 0;
     }
 
     .@{top}--info & {

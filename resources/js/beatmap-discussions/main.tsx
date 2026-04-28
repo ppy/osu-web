@@ -12,6 +12,7 @@ import * as React from 'react';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { parseUrl } from 'utils/beatmapset-discussion-helper';
 import { parseJson, storeJson } from 'utils/json';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
 import { updateHistory, currentUrl } from 'utils/turbolinks';
 import { Discussions } from './discussions';
@@ -22,6 +23,7 @@ import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
 import { NewDiscussion } from './new-discussion';
 import Refresh from './refresh';
+import Toolbar from './toolbar';
 
 const beatmapsetJsonId = 'json-beatmapset';
 
@@ -37,10 +39,12 @@ export default class Main extends React.Component<Props> {
   private readonly discussionsStateWorker: DiscussionsStateWorker;
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly eventId = `beatmap-discussions-${nextVal()}`;
+  @observable private expanded = true;
+  private expandedStateUpdated = false;
   // FIXME: update url handler to recognize this instead
   private readonly focusNewDiscussion = currentUrl().hash === '#new';
-  private readonly modeSwitcherRef = React.createRef<HTMLDivElement>();
   private readonly newDiscussionRef = React.createRef<HTMLDivElement>();
+  private readonly stickyRef = React.createRef<HTMLDivElement>();
   @observable private readonly store;
 
   constructor(props: Props) {
@@ -79,6 +83,13 @@ export default class Main extends React.Component<Props> {
     })));
   }
 
+  componentDidUpdate() {
+    if (this.expandedStateUpdated) {
+      this.expandedStateUpdated = false;
+      $.publish('sticky-toolbar:expand', this.expanded);
+    }
+  }
+
   componentWillUnmount() {
     $.unsubscribe(`.${this.eventId}`);
     $(document).off(`.${this.eventId}`);
@@ -92,10 +103,22 @@ export default class Main extends React.Component<Props> {
           store={this.store}
         />
         <div className='osu-page osu-page--small osu-page--full'>
-          <ModeSwitcher
-            discussionsState={this.discussionsState}
-            innerRef={this.modeSwitcherRef}
-          />
+          <div className='sticky-toolbar-before' />
+          <div ref={this.stickyRef} className='sticky-toolbar sticky-toolbar--with-shadow'>
+            <ModeSwitcher discussionsState={this.discussionsState} />
+            {this.discussionsState.currentPage !== 'events' && (
+              <>
+                {this.expanded && <Toolbar discussionsState={this.discussionsState} store={this.store} />}
+                <button
+                  className='sticky-toolbar__expander'
+                  onClick={this.handleExpanderClick}
+                  title={trans(`common.buttons.${this.expanded ? 'collapse' : 'expand'}`)}
+                >
+                  {this.expanded ? <span className='fas fa-angle-up' /> : <span className='fas fa-angle-down' />}
+                </button>
+              </>
+            )}
+          </div>
           {this.discussionsState.currentPage === 'events' ? (
             <Events
               discussions={this.store.discussions}
@@ -109,7 +132,7 @@ export default class Main extends React.Component<Props> {
                   discussionsState={this.discussionsState}
                   innerRef={this.newDiscussionRef}
                   onFocus={this.handleNewDiscussionFocus}
-                  stickTo={this.modeSwitcherRef}
+                  stickTo={this.stickyRef}
                   store={this.store}
                 />
               ) : (
@@ -118,7 +141,7 @@ export default class Main extends React.Component<Props> {
                   discussionsState={this.discussionsState}
                   innerRef={this.newDiscussionRef}
                   onFocus={this.handleNewDiscussionFocus}
-                  stickTo={this.modeSwitcherRef}
+                  stickTo={this.stickyRef}
 
                 />
               )}
@@ -149,6 +172,11 @@ export default class Main extends React.Component<Props> {
     this.disposers.forEach((disposer) => disposer?.());
   };
 
+  private readonly handleExpanderClick = () => {
+    this.expanded = !this.expanded;
+    this.expandedStateUpdated = true;
+  };
+
   private readonly handleNewDiscussionFocus = () => {
     // Bug with position: sticky and scroll-padding: https://bugs.chromium.org/p/chromium/issues/detail?id=1466472
     document.documentElement.style.removeProperty('--scroll-padding-top-extra');
@@ -165,9 +193,9 @@ export default class Main extends React.Component<Props> {
     const attribute = postId != null ? `data-post-id='${postId}'` : `data-id='${discussionId}'`;
     const target = document.querySelector(`.js-beatmap-discussion-jump[${attribute}]`);
 
-    if (target == null || this.modeSwitcherRef.current == null || this.newDiscussionRef.current == null) return;
+    if (target == null || this.stickyRef.current == null || this.newDiscussionRef.current == null) return;
 
-    let margin = this.modeSwitcherRef.current.getBoundingClientRect().height;
+    let margin = this.stickyRef.current.getBoundingClientRect().height;
     if (this.discussionsState.pinnedNewDiscussion) {
       margin += this.newDiscussionRef.current.getBoundingClientRect().height;
     }
