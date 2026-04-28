@@ -8,6 +8,17 @@
   top: calc(var(--navbar-height) - 1px);
   z-index: @z-index--sticky-toolbar;
 
+  &__expander {
+    .reset-input();
+    .link-plain();
+    width: 100%;
+    background-color: hsl(var(--hsl-b4));
+
+    &:hover {
+      background-color: hsl(var(--hsl-b3));
+    }
+  }
+
   &--with-shadow {
     .default-box-shadow();
   }

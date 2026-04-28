@@ -12,6 +12,7 @@ import * as React from 'react';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
 import { parseUrl } from 'utils/beatmapset-discussion-helper';
 import { parseJson, storeJson } from 'utils/json';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
 import { updateHistory, currentUrl } from 'utils/turbolinks';
 import { Discussions } from './discussions';
@@ -38,6 +39,8 @@ export default class Main extends React.Component<Props> {
   private readonly discussionsStateWorker: DiscussionsStateWorker;
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly eventId = `beatmap-discussions-${nextVal()}`;
+  @observable private expanded = true;
+  private expandedStateUpdated = false;
   // FIXME: update url handler to recognize this instead
   private readonly focusNewDiscussion = currentUrl().hash === '#new';
   private readonly newDiscussionRef = React.createRef<HTMLDivElement>();
@@ -80,6 +83,13 @@ export default class Main extends React.Component<Props> {
     })));
   }
 
+  componentDidUpdate() {
+    if (this.expandedStateUpdated) {
+      this.expandedStateUpdated = false;
+      $.publish('sticky-toolbar:expand', this.expanded);
+    }
+  }
+
   componentWillUnmount() {
     $.unsubscribe(`.${this.eventId}`);
     $(document).off(`.${this.eventId}`);
@@ -97,7 +107,16 @@ export default class Main extends React.Component<Props> {
           <div ref={this.stickyRef} className='sticky-toolbar sticky-toolbar--with-shadow'>
             <ModeSwitcher discussionsState={this.discussionsState} />
             {this.discussionsState.currentPage !== 'events' && (
-              <Toolbar discussionsState={this.discussionsState} store={this.store} />
+              <>
+                {this.expanded && <Toolbar discussionsState={this.discussionsState} store={this.store} />}
+                <button
+                  className='sticky-toolbar__expander'
+                  onClick={this.handleExpanderClick}
+                  title={trans(`common.buttons.${this.expanded ? 'collapse' : 'expand'}`)}
+                >
+                  {this.expanded ? <span className='fas fa-angle-up' /> : <span className='fas fa-angle-down' />}
+                </button>
+              </>
             )}
           </div>
           {this.discussionsState.currentPage === 'events' ? (
@@ -151,6 +170,11 @@ export default class Main extends React.Component<Props> {
     this.discussionsState.saveState();
 
     this.disposers.forEach((disposer) => disposer?.());
+  };
+
+  private readonly handleExpanderClick = () => {
+    this.expanded = !this.expanded;
+    this.expandedStateUpdated = true;
   };
 
   private readonly handleNewDiscussionFocus = () => {
