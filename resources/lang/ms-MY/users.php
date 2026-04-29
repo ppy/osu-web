@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Hantaran Terkini',
                 'show_more' => 'lihat hantaran lain',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

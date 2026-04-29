@@ -126,6 +126,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => '新的战队信息',
 
@@ -262,6 +272,10 @@ return [
             'channel' => [
                 'channel_message' => '您收到了 :username 的新消息',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '战队 “:name” 中有新消息',
             ],

@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Mga Bagong Post',
                 'show_more' => 'higit pang mga post',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

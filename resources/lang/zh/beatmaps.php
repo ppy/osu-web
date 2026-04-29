@@ -277,8 +277,8 @@ return [
                 'link_text' => '支持者',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => '浏览玩家标签',
+                'prompt' => '输入以搜索',
             ],
         ],
     ],

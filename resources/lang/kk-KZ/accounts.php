@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'қонақтық қиындық',
             'beatmapset:modding' => 'карта модтау',
             'channel_message' => 'жеке хабарламалар',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'жаңа пікірлер',
             'forum_topic_reply' => 'тақырып жауабы',

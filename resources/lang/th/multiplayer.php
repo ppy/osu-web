@@ -8,7 +8,7 @@ return [
         'active' => 'ไม่อยู่ในแมตช์:type_groupใดๆของ osu!(lazer) ที่กำลังดำเนินการอยู่!',
         'ended' => 'ไม่อยู่ในแมตช์:type_groupใดๆของ osu!(lazer) ที่จบไปแล้ว!',
         'playlists' => 'เพลย์ลิสต์',
-        'quickplay' => 'ควิกเพลย์',
+        'ranked-play' => '',
         'realtime' => 'เล่นหลายคน',
     ],
 

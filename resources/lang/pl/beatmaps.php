@@ -277,8 +277,9 @@ return [
                 'link_text' => 'statusu donatora osu!',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'przeglądaj tagi użytkowników
+',
+                'prompt' => 'pisz, aby szukać',
             ],
         ],
     ],

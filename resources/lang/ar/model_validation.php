@@ -138,10 +138,10 @@ return [
 
         'attributes' => [
             'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
+            'is_open' => 'طلب الانضمام إلى الفريق',
+            'name' => 'الاسم',
             'short_name' => '',
-            'url' => '',
+            'url' => 'عنوان URL',
         ],
     ],
 
@@ -178,7 +178,7 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'لا يمكنك تغيير اسم المستخدم اذا كان حسابك مقيد.',
+            'restricted' => 'لا يمكنك تغيير اسم المستخدم أثناء فترة التقييد.',
             'supporter_required' => [
                 '_' => 'تحتاج إلى أن تملك :link لتغيير اسمك!',
                 'link_text' => 'اِدعم osu!',
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'الخرائط الـ Ranked لا يمكن الإبلاغ عنها',
         'not_in_channel' => 'أنت لست في هذه القناة.',
-        'in_team' => '',
+        'in_team' => 'أنت بالفعل جزء من الفريق.',
         'reason_not_valid' => ':reason ليس مقبولا لنوع الأبلاغ هذا.',
         'self' => "لا يمكنك الإبلاغ عن نفسك!",
     ],

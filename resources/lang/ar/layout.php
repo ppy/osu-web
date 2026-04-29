@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'معلومات',
             'discussions' => 'المناقشة',
-            'versions' => '',
+            'versions' => 'سجل الإصدارات',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'الاِقتراح',
             'playlists' => 'قوائم التشغيل',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'لعب جماعي',
             'show' => 'معلومات',
         ],
@@ -115,7 +115,7 @@ return [
             'copyright' => 'حقوق الطبع والنشر (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'الخصوصية',
-            'rules' => '',
+            'rules' => 'القوانين',
             'server_status' => 'حالة الخادم',
             'source_code' => 'الشفرة المصدرية',
             'terms' => 'المفردات',
@@ -202,9 +202,9 @@ return [
             'legacy_score_only_toggle_tooltip' => 'يُظهر وضع ليزر الدرجات التي سُجّلت في ليزر وبخوارزمية تدريج جديدة',
             'logout' => 'تسجيل الخروج',
             'profile' => 'الصفحة الشخصية',
-            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle' => 'نظام التسجيل القديم',
             'scoring_mode_toggle_tooltip' => '',
-            'team' => '',
+            'team' => 'فريقي',
         ],
     ],
 

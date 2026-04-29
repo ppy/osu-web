@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Nouveau message d\'équipe',
 
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Vous avez reçu un nouveau message de :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Il y a un nouveau message dans l\'équipe « :name »',
             ],

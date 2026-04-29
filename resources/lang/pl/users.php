@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Obejrzane powtórki:',
                 ],
                 'score_replay_stats' => [
-                    'title' => 'Najczęściej Oglądane Powtórki',
+                    'title' => 'Najczęściej oglądane powtórki',
                 ],
             ],
             'kudosu' => [
@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Ostatnie posty',
                 'show_more' => 'zobacz więcej postów',
             ],
-            'quickplay' => [
-                'title' => 'Mecze w trybie szybkiej gry',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',

@@ -277,8 +277,8 @@ return [
                 'link_text' => 'osu! 贊助者標籤',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => '搜尋玩家標籤',
+                'prompt' => '請輸入以搜尋',
             ],
         ],
     ],

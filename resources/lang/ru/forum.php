@@ -46,7 +46,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Вы действительно хотите удалить этот ответ?',
         'confirm_restore' => 'Вы действительно хотите восстановить этот ответ?',
-        'edited' => 'Последний раз редактировал :user :when, всего правок: :count_delimited.',
+        'edited' => 'Последний раз редактировал :user :when, всего :count_delimited правка.|Последний раз редактировал :user :when, всего :count_delimited правки.|Последний раз редактировал :user :when, всего :count_delimited правок.',
         'posted_at' => 'создана :when',
         'posted_by_in' => 'опубликовано :username в :forum',
 
@@ -299,7 +299,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => ':count голос|:count голоса|:count голосов',
+                    'count' => '{0} голосов|{1} :count_delimited голос|[2,*] :count_delimited голоса|[2,*] :count_delimited голосов',
                     'current' => 'У вас осталось :votes.',
                     'not_enough' => "У вас больше нет голосов",
                 ],

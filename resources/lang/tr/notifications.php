@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Yeni takım mesajı',
 
@@ -161,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Haberler (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,7 +230,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Haberler',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => ':username\'dan yeni bir mesaj aldın',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '":name" takımından yeni bir mesaj var',
             ],

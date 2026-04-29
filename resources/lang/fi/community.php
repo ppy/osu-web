@@ -138,7 +138,7 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Kiitos jatkuvasta tuestasi! Olet tähän mennessä lahjoittanut yhteensä :dollars, ja olet ansainnut ”Supporter”-tunnuksen :duration ajaksi.',
             'not_yet' => "Sinulla ei vielä ole ollut tukijamerkkiä :(",
             'valid_until' => 'Nykyinen tukijamerkkisi on voimassa :date asti!',
             'was_valid_until' => 'Tukijamerkkisi oli voimassa :date asti.',

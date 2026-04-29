@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'гостьова складність',
             'beatmapset:modding' => 'моддинг мап',
             'channel_message' => 'особисті повідомлення',
+            'channel_mention' => '',
             'channel_team' => 'повідомлення командного чату ',
             'comment_new' => 'нові коментарі',
             'forum_topic_reply' => 'відповідь в темі',

@@ -54,10 +54,6 @@ services:
     profiles: ['testjs']
     command: ['test', 'js']
 
-  schedule:
-    <<: *x-web
-    command: ['schedule']
-
   migrator:
     <<: *x-web
     command: ['migrate']

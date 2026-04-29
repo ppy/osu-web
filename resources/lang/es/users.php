@@ -402,8 +402,8 @@ return [
                 'title_longer' => 'Publicaciones recientes',
                 'show_more' => 'ver más publicaciones',
             ],
-            'quickplay' => [
-                'title' => 'Partidas rápidas',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',

@@ -180,11 +180,11 @@ class TeamsController extends Controller
             'members.user.',
             array_diff(UserCompactTransformer::CARD_INCLUDES_PRELOAD, ['team']),
         ));
+        foreach ($team->members as $member) {
+            $member->user?->setRelation('team', $team);
+        }
 
         if (is_api_request()) {
-            foreach ($team->members as $member) {
-                $member->user?->setRelation('team', $team);
-            }
             return response()->json(json_item(
                 $team,
                 new TeamExtendedTransformer()->setRulesetId($rulesetId),

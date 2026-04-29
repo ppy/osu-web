@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Postări recente',
                 'show_more' => 'vedeți mai multe postări',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

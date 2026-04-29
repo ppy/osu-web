@@ -79,7 +79,7 @@ return [
         ],
         'home_controller' => [
             'get_download' => 'скачать игру',
-            'index' => 'главная страница',
+            'index' => 'дашборд',
             'search' => 'поиск',
             'support_the_game' => 'поддержать игру',
             'testflight' => 'testflight',

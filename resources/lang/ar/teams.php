@@ -6,7 +6,7 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'تم إضافة مستخدم إلى الفريق.',
         ],
         'destroy' => [
             'ok' => '',
@@ -15,7 +15,7 @@ return [
             'ok' => '',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'تم إرسال طلب الانضمام إلى الفريق.',
         ],
     ],
 
@@ -24,12 +24,12 @@ return [
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'إنشاء فريق',
 
         'form' => [
             'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'short_name_help' => 'الحد الأقصى 4 أحرف.',
+            'title' => "لنقم بإنشاء فريق جديد",
         ],
 
         'intro' => [
@@ -43,17 +43,17 @@ return [
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'تم حفظ الإعدادات بنجاح.',
+        'title' => 'إعدادات الفريق',
 
         'description' => [
             'label' => '',
-            'title' => '',
+            'title' => 'وصف الفريق',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'علم الفريق',
+            'title' => 'تعيين علم الفريق',
         ],
 
         'header' => [
@@ -66,7 +66,7 @@ return [
             'default_ruleset_help' => '',
             'flag_help' => '',
             'header_help' => '',
-            'title' => '',
+            'title' => 'إعدادات الفريق',
 
             'application_state' => [
                 'state_0' => '',
@@ -77,8 +77,8 @@ return [
 
     'header_links' => [
         'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'leaderboard' => 'الترتيب',
+        'show' => 'معلومات',
 
         'members' => [
             'index' => '',
@@ -86,12 +86,12 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'الترتيب العالمي',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'تمت إزالة عضو من الفريق',
         ],
 
         'index' => [
@@ -111,7 +111,7 @@ return [
                 'joined_at' => '',
                 'remove' => '',
                 'remove_confirm' => '',
-                'set_leader' => '',
+                'set_leader' => 'نقل قيادة الفريق',
                 'set_leader_confirm' => '',
                 'status' => '',
                 'title' => '',
@@ -124,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'المستخدم :user هو الآن قائد الفريق.',
         ],
     ],
 
@@ -134,11 +134,11 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
+            'chat' => 'محادثة الفريق',
+            'destroy' => 'تفكيك الفريق',
             'join' => '',
             'join_cancel' => '',
-            'part' => '',
+            'part' => 'مغادرة الفريق',
         ],
 
         'info' => [
@@ -146,26 +146,26 @@ return [
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'أعضاء الفريق',
+            'owner' => 'قائد الفريق',
         ],
 
         'sections' => [
             'about' => '',
-            'info' => '',
+            'info' => 'معلومات',
             'members' => '',
         ],
 
         'statistics' => [
             'empty_slots' => '',
             'first_places' => '',
-            'leader' => '',
+            'leader' => 'قائد الفريق',
             'rank' => '',
             'ranked_beatmapsets' => '',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'تم إنشاء الفريق.',
     ],
 ];

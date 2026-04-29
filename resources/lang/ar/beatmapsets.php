@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'لا يوجد خوادم تحميل متاحة.',
     ],
 
     'featured_artist_badge' => [
@@ -146,7 +146,7 @@ return [
             'nominators' => 'المُرَشِحون',
             'nsfw' => 'محتوى حساس',
             'offset' => 'الإزاحة عبر الإنترنت',
-            'pack_tags' => '',
+            'pack_tags' => 'حزم الخرائط',
             'points-of-failure' => 'نقاط الفشل',
             'source' => 'المصدر',
             'storyboard' => 'تحتوي هذه الخريطة على لوحة قصصية',
@@ -226,7 +226,7 @@ return [
             'rating-spread' => 'انتشار التصنيف',
             'nominations' => 'الترشيحات',
             'playcount' => 'مرات اللعب',
-            'favourites' => '',
+            'favourites' => 'المفضلات',
             'no_favourites' => '',
         ],
 

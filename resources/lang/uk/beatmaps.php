@@ -277,7 +277,7 @@ return [
                 'link_text' => 'тег osu!supporter',
             ],
             'tag_picker' => [
-                'tooltip' => '',
+                'tooltip' => 'перегляд тегів користувача',
                 'prompt' => '',
             ],
         ],

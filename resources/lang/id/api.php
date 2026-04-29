@@ -19,7 +19,7 @@ return [
         'chat' => [
             'read' => 'Membaca pesan atas nama akunmu.',
             'write' => 'Mengirim pesan atas nama akunmu.',
-            'write_manage' => 'Membawa akunmu untuk masuk dan keluar dari kanal percakapan.',
+            'write_manage' => 'Membawa akunmu untuk masuk dan keluar dari kanal obrolan.',
         ],
 
         'forum' => [

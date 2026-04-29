@@ -8,7 +8,7 @@ return [
         'active' => 'Šiuo metu nėra jokiose vykstančiuose osu!(lazer) :type_group žaidimuose!',
         'ended' => 'Dar nėra jokiuose užbaigtuose osu!(lazer) :type_group žaidimuose!',
         'playlists' => 'grojaraščio',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'tinklo',
     ],
 

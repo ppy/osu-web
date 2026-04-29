@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => '',
+
     'authorizations' => [
         'update' => [
             'null_user' => 'يجب أن يتم تسجيل دخولك للتعديل.',
@@ -67,10 +69,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'جارٍ التحقق من التحديثات...',
+        'has_updates' => 'يوجد تحديثات في النقاش، انقر للتحديث.',
+        'no_updates' => 'لا توجد تحديثات.',
+        'updating' => 'جاري التحديث...',
     ],
 
     'reply' => [

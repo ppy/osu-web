@@ -402,7 +402,7 @@ return [
                 'title_longer' => 'Viimeaikaiset julkaisut',
                 'show_more' => 'katso lisää julkaisuja',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [

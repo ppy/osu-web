@@ -20,7 +20,7 @@ return [
             'new_confirmation' => '確認電子郵件地址',
             'title' => '電子郵件',
             'locked' => [
-                '_' => '如果您需要更新您的電子郵件地址，請聯絡 :accounts。',
+                '_' => '若您需要更新電子郵件地址，請聯絡:accounts。',
                 'accounts' => '帳號支援團隊',
             ],
         ],
@@ -64,7 +64,7 @@ return [
     ],
 
     'github_user' => [
-        'info' => "如果您是 osu! 開源儲存庫的貢獻者，在這裡連結您的 GitHub 帳號將使您的更新日誌條目與您的 osu! 個人資料產生關聯。沒有 osu! 貢獻紀錄的 GitHub 帳號無法連結。",
+        'info' => "如果您是 osu! 開源專案儲存庫的貢獻者，在此連結您的 GitHub 帳號，即可將您的更新日誌項目與您的 osu! 個人檔案相關聯。若 GitHub 帳號沒有 osu! 的貢獻紀錄，則無法進行連結。",
         'link' => '連結 GitHub 帳號',
         'title' => 'GitHub',
         'unlink' => '取消連結 GitHub 帳號',
@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => '客串難度',
             'beatmapset:modding' => '圖譜製作',
             'channel_message' => '私訊',
+            'channel_mention' => '',
             'channel_team' => '團隊聊天訊息',
             'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
@@ -114,7 +115,7 @@ return [
         'beatmapset_download' => [
             '_' => '預設圖譜下載類型',
             'all' => '包含影片',
-            'direct' => '在 osu!direct 中查看',
+            'direct' => '在 osu!direct 中開啟',
             'no_video' => '不包含影片',
         ],
     ],
@@ -137,7 +138,7 @@ return [
     'security' => [
         'current_session' => '目前',
         'end_session' => '結束工作階段',
-        'end_session_confirmation' => '這將立即結束這個裝置上的工作階段。您確定嗎？',
+        'end_session_confirmation' => '這將立即結束您在該裝置上的工作階段。您確定嗎？',
         'last_active' => '上次使用：',
         'title' => '安全性',
         'web_sessions' => '瀏覽器工作階段',
@@ -153,7 +154,7 @@ return [
 
     'user_totp' => [
         'title' => '驗證應用程式',
-        'usage_note' => '會以驗證應用程式代替電子郵件驗證。 電子郵件驗證仍然會以備用的驗證方式做使用。',
+        'usage_note' => '使用驗證器應用程式取代電子郵件進行驗證。電子郵件驗證仍可作為備援方案使用。',
 
         'button' => [
             'remove' => '移除',

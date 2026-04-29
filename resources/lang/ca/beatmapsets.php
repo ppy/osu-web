@@ -151,7 +151,7 @@ return [
             'source' => 'Font',
             'storyboard' => 'Aquest mapa conté un storyboard',
             'success-rate' => 'Percentatge d\'èxit',
-            'success_rate_plays' => ':passes de :count_delimited jugar|:passes of :count_delimited jugades',
+            'success_rate_plays' => ':passes de :count_delimited partides|:passes de :count_delimited partides',
             'user_tags' => 'Etiquetes d\'usuari',
             'video' => 'Aquest mapa conté vídeo',
         ],

@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Hindi wastong ruleset ang tinukoy.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Masyadong maraming mga guest mappers.',
     ],
 
     'discussion-votes' => [
@@ -17,7 +17,7 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'payang ang kudosu',
+        'allow_kudosu' => 'payagan ang kudosu',
         'beatmap_information' => 'Pahina ng Beatmap',
         'delete' => 'tanggalin',
         'deleted' => 'Tinanggal ni :editor :delete_time.',
@@ -31,14 +31,14 @@ return [
         'message_placeholder_silenced' => "Hindi maaaring magpost ng diskusyon habang pinatahimik.",
         'message_type_select' => 'Piliin ang tipo ng komento',
         'reply_notice' => 'Pindutin ang Enter para magreply.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Pindotin ang enter para mag-reply. Pindotin ang ctrl+enter para mag-reply at iresolba.',
         'reply_placeholder' => 'I-type ang mensahe dito',
         'require-login' => 'Paki-sign-in upang mag-post o tumugon',
         'resolved' => 'Nalutas',
         'restore' => 'ibalik',
         'show_deleted' => 'Ipakita ang tinanggal',
         'title' => 'Diskusyon',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited hindi nalutas na isyu|:count_delimited hindi nalutas na isyu',
 
         'collapse' => [
             'all-collapse' => 'Icollapse lahat',
@@ -221,8 +221,8 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ang mapa na ito ay tatantiyahin na maging ranked sa :date kapag walang isyu ang nahanap. Nasa ika-#:position  ng :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
+            'unresolved_problems' => 'Ang map na ito ay kasalukuyang naka-block sa pag-alis sa Qualified section hangga\'t hindi nareresolba ang :problems.',
+            'problems' => 'itong mga problema',
             'on' => 'sa :date',
             'queue' => 'pila ng ranking',
             'soon' => 'malapit na',
@@ -245,7 +245,7 @@ return [
             'prompt' => 'magtype ng keywords...',
             'login_required' => 'Mag-sign in upang makapag-search.',
             'options' => 'Mga opsyon pa sa pagsesearch',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Ang bilang ng pinakamataas na ranggo sa profile at mga resultang ipinapakita sa pahinang ito ay nakabatay sa iyong pinakamataas na "standardized" (tinataawag ding "lazer") na mga marka sa mga beatmap.',
             'supporter_filter' => 'Ang pag fi-filter ng :filters ay nag re-require ng aktibong osu!supporter tag',
             'not-found' => 'walang resulta',
             'not-found-quote' => '... nope, walang nahanap.',
@@ -277,8 +277,8 @@ return [
                 'link_text' => 'osu!supporter tag',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'mag-browse ng user tags',
+                'prompt' => 'mag-type para maghanap',
             ],
         ],
     ],
@@ -296,7 +296,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'hindi na i-set',
     ],
     'status' => [
         'any' => 'Kahit Ano',

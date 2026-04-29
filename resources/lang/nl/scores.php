@@ -16,6 +16,8 @@ return [
             'by' => 'Gespeeld door',
             'played_on' => '',
             'submitted_on' => 'Ingediend op',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Landelijke Ranglijst',

@@ -8,7 +8,7 @@ return [
         'active' => '¡No estás en ninguna :type_group en curso de osu!(lazer)!',
         'ended' => '¡No estás en ninguna :type_group completada de osu!(lazer) todavía!',
         'playlists' => 'lista de juego',
-        'quickplay' => 'partida rápida',
+        'ranked-play' => '',
         'realtime' => 'partida multijugador',
     ],
 

@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'การดัดแปลง',
             'playlists' => 'เพลย์ลิสต์',
-            'quickplay' => 'ควิกเพลย์',
+            'ranked-play' => '',
             'realtime' => 'ผู้เล่นหลายคน',
             'show' => 'ข้อมูล',
         ],

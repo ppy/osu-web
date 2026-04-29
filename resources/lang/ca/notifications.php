@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Missatge d\'equip nou',
 
@@ -220,7 +230,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Notícies',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
@@ -259,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Has rebut un nou missatge de :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Hi ha un missatge a l\'equip «:name».',
             ],

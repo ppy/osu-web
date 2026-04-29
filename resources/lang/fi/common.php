@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
         'notifications' => ':count_delimited ilmoitus|:count_delimited ilmoitusta',
-        'player' => '',
+        'player' => ':count_delimited pelaaja|:count_delimited pelaajaa',
         'plus_others' => '+ :count_delimited muu!|+ :count_delimited muita!',
         'post' => ':count_delimited viesti|:count_delimited viestiä',
         'second_short_unit' => 's|s',
@@ -95,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'm',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'y',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
