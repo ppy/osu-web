@@ -31,7 +31,7 @@ Examples of incorrect / abusive usage:
 - Using the API as if it is your database, re-requesting the same data every time it is needed.
 - Harvesting mass score/user/beatmap data (consider using [data.ppy.sh](https://data.ppy.sh) instead if looking for seed or sample data).
 
-Please **limit your usage to 60 requests per minute (generally 1 request per second)**. The internal rate limits are higher than this and allow some degree of bursting, but exceeding this specified limit may lead to your API tokens being revoked, or in serious abuse cases your access to the API being restricted.
+Please **limit your usage to no more than 60 requests per minute (generally 1 request per second)**. The internal rate limits are higher than this and allow some degree of bursting, but exceeding this specified limit may lead to your API tokens being revoked, or in serious abuse cases your access to the API being restricted.
 
 Providing this API is done for free, but it's a substantial infrastructure cost in recent times. Please consume respectfully.
 
