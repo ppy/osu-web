@@ -14,9 +14,26 @@ Code examples are provided in the dark area to the right, you can use the tabs a
 
 # Terms of Use
 
-Use the API for good. Don't overdo it. If in doubt, ask before (ab)using :). _this section may expand as necessary_.
+Use the API for good. Don't overdo it. If in doubt, [ask](mailto:pe@ppy.sh) before serious long term use.
 
-Current rate limit is set at an insanely high 1200 requests per minute, with burst capability of up to 200 beyond that. If you require more, you probably fall into the above category of abuse. If you are doing more than 60 requests a minute, you should probably give [peppy](mailto:pe@ppy.sh) a yell.
+Examples of good practices:
+
+- Gathering initial information on a user after they login to your site.
+- Tracking data of users registered on your site on an irregular polling interval.
+- Implementing [exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff) to reduce request rate during low activity periods.
+- Caching retrieved data and reusing as often as possible.
+
+Examples of incorrect / abusive usage:
+
+- Polling for new data every minute for every user.
+- Polling more than once a minute for the same user/beatmap.
+- Using the API to try to gain a competitive advantage.
+- Using the API as if it is your database, re-requesting the same data every time it is needed.
+- Harvesting mass score/user/beatmap data (consider using [data.ppy.sh](https://data.ppy.sh) instead if looking for seed or sample data).
+
+Please **limit your usage to 60 requests per minute (generally 1 request per second)**. The internal rate limits are higher than this and allow some degree of bursting, but exceeding this specified limit may lead to your API tokens being revoked, or in serious abuse cases your access to the API being restricted.
+
+Providing this API is done for free, but it's a substantial infrastructure cost in recent times. Please consume respectfully.
 
 # Wrappers
 
