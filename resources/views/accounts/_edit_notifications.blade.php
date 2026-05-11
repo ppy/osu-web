@@ -128,13 +128,16 @@
                                         ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$name][$mode]
                                         ?? BroadcastNotificationBase::DELIVERY_MODE_DEFAULTS[$mode],
                                     'defaultValue' => '0',
-                                    'modifiers' => ['grid'],
+                                    'modifiers' => 'grid',
                                     'name' => "user_notification_option[{$name}][details][{$mode}]",
                                 ]])
                             </label>
                         @endforeach
 
-                        <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
+                        <span
+                            class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid"
+                            title="{{ osu_trans("accounts.notifications.tooltips.{$name}") }}"
+                        >
                             {{ osu_trans("accounts.notifications.options.{$name}") }}
                         </span>
                     @endforeach
