@@ -7,8 +7,6 @@ namespace App\Http\Controllers;
 
 use App\Libraries\LocaleMeta;
 use App\Libraries\OsuWiki;
-use App\Libraries\Search\WikiSuggestions;
-use App\Libraries\Search\WikiSuggestionsRequestParams;
 use App\Libraries\Wiki\WikiSitemap;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
@@ -147,22 +145,6 @@ class WikiController extends Controller
             'locale' => $locale,
             'sitemap' => WikiSitemap::get(),
         ]);
-    }
-
-    public function suggestions()
-    {
-        $search = new WikiSuggestions(new WikiSuggestionsRequestParams(request()->all()));
-
-        $response = [];
-        foreach ($search->response() as $hit) {
-            $response[] = [
-                'highlight' => $hit->highlights('title.autocomplete')[0],
-                'path' => $hit->source('path'),
-                'title' => $hit->source('title'),
-            ];
-        }
-
-        return $response;
     }
 
     public function update($locale, $path)

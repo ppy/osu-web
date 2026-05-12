@@ -319,6 +319,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('session', 'SessionsController@store')->name('login');
     Route::delete('session', 'SessionsController@destroy')->name('logout');
 
+    Route::get('suggestions/user', 'SuggestionsController@user')->name('suggestions.user');
+    Route::get('suggestions/wiki', 'SuggestionsController@wiki')->name('suggestions.wiki');
+
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
 
@@ -368,7 +371,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/{locale?}/{path?}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
     Route::put('wiki/{locale}/{path}', 'WikiController@update')->where('path', '.+');
-    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
 
     // FIXME: someone split this crap up into proper controllers
     Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
