@@ -22,6 +22,7 @@ use App\Models\ScoreToken;
 use App\Models\User;
 use Artisan;
 use Carbon\CarbonInterface;
+use Ds\Set;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -309,9 +310,22 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
-    {
-        return in_array($model->getKey(), $obj->getReceiverIds(), true);
+    protected function receiversInclude(
+        NewPrivateNotificationEvent|BroadcastNotificationBase $obj,
+        array|Collection|Model $includes = [],
+        array|Collection|Model $excludes = []
+    ): bool {
+        $excludes = collect($excludes instanceof Model ? [$excludes] : $excludes);
+        $includesSet = new Set(collect($includes instanceof Model ? [$includes] : $includes)->map->getKey());
+        $receiverIds = new Set($obj->getReceiverIds());
+
+        $extraIds = $receiverIds->diff($includesSet);
+        $missingIds = $includesSet->diff($receiverIds);
+        $this->assertSame([], $extraIds->toArray(), 'extra ids found.');
+        $this->assertSame([], $missingIds->toArray(), 'expected ids missing.');
+
+        return $missingIds->isEmpty() && $extraIds->isEmpty()
+            && $excludes->every(fn (Model $model) => !$receiverIds->contains($model->getKey()));
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])
