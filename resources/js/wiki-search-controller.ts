@@ -103,7 +103,7 @@ export class WikiSearchController {
 
   @action
   private fetchSuggestions() {
-    this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
+    this.xhr = $.getJSON(route('suggestions.wiki'), { query: this.query.trim() })
       .done(action((response: SuggestionJson[]) => {
         if (response != null) {
           this.suggestions = observable(response);
