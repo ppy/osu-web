@@ -134,11 +134,13 @@
                             </label>
                         @endforeach
 
-                        <span
-                            class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid"
-                            title="{{ osu_trans("accounts.notifications.tooltips.{$name}") }}"
-                        >
+                        <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
                             {{ osu_trans("accounts.notifications.options.{$name}") }}
+                            <span
+                                class="fas fa-question-circle"
+                                data-tooltip-position="right center"
+                                title="{{ osu_trans("accounts.notifications.tooltips.{$name}") }}"
+                            ></span>
                         </span>
                     @endforeach
                 </form>
