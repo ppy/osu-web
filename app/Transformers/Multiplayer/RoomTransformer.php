@@ -56,6 +56,7 @@ class RoomTransformer extends TransformerAbstract
             'starts_at' => json_time($room->starts_at),
             'ends_at' => json_time($room->ends_at),
             'max_attempts' => $room->max_attempts,
+            'max_participants' => $room->max_participants,
             'participant_count' => $room->participant_count,
             'channel_id' => $room->channel_id,
             'active' => $room->ends_at === null || Carbon::now()->between($room->starts_at, $room->ends_at),
