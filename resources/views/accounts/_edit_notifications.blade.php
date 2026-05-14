@@ -128,7 +128,7 @@
                                         ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS[$name][$mode]
                                         ?? BroadcastNotificationBase::DELIVERY_MODE_DEFAULTS[$mode],
                                     'defaultValue' => '0',
-                                    'modifiers' => ['grid'],
+                                    'modifiers' => 'grid',
                                     'name' => "user_notification_option[{$name}][details][{$mode}]",
                                 ]])
                             </label>
@@ -136,6 +136,11 @@
 
                         <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
                             {{ osu_trans("accounts.notifications.options.{$name}") }}
+                            <span
+                                class="fas fa-question-circle"
+                                data-tooltip-position="right center"
+                                title="{{ osu_trans("accounts.notifications.tooltips.{$name}") }}"
+                            ></span>
                         </span>
                     @endforeach
                 </form>
