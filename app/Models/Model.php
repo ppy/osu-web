@@ -14,6 +14,7 @@ use App\Scopes\MacroableModelScope;
 use App\Traits\Validatable;
 use Exception;
 use Illuminate\Database\ClassMorphViolationException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -66,6 +67,7 @@ abstract class Model extends BaseModel
     {
         return [
             ...$this->macros,
+            'countLimit',
             'getWithHasMore',
             'last',
             'realCount',
@@ -93,6 +95,14 @@ abstract class Model extends BaseModel
     public function lockSelf()
     {
         return $this->lockForUpdate()->find($this->getKey());
+    }
+
+    public function macroCountLimit(Builder $query, int $limit)
+    {
+        $query = clone $query;
+        $subQuery = $query->limit($limit)->toRawSql();
+
+        return $query->getConnection()->selectOne("SELECT COUNT(*) as c FROM ({$subQuery}) as s")->c;
     }
 
     public function macroGetWithHasMore($query)
