@@ -28,7 +28,7 @@ class ScorePin extends Model
 
     public function scopeWithVisibleScore($query): Builder
     {
-        return $query->whereHas('score', fn ($q) => $q->whereHas('beatmap.beatmapset'));
+        return $query->whereHas('score', fn ($q) => $q->whereHas('beatmap'));
     }
 
     public function score(): BelongsTo

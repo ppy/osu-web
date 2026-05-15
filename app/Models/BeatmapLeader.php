@@ -27,7 +27,7 @@ class BeatmapLeader extends Model
 
     public function scopeDefault(Builder $query): void
     {
-        $query->whereHas('beatmap.beatmapset')->whereHas('score');
+        $query->whereHas('beatmap')->whereHas('score');
     }
 
     public function scopeRuleset(Builder $query, string $ruleset): void
