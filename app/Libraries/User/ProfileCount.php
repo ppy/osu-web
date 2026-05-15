@@ -13,11 +13,6 @@ class ProfileCount
 {
     public static function scoresFirst(User $user, string $rulesetName, null | true $legacyOnly): int
     {
-        $limitQuery = $user
-            ->scoresFirst($rulesetName, $legacyOnly)
-            ->limit(101)
-            ->toRawSql();
-
-        return $user->getConnection()->select("SELECT count(*) as c FROM ({$limitQuery}) t")[0]->c;
+        return $user->scoresFirst($rulesetName, $legacyOnly)->countLimit(101);
     }
 }

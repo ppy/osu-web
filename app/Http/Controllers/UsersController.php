@@ -176,7 +176,7 @@ class UsersController extends Controller
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                     'score_replay_stats' => $this->getExtraSection(
                         'scoreReplayStats',
-                        min($this->maxResults, $this->user->scoreReplayStats()->whereHas('score.beatmap.beatmapset')->count()),
+                        $this->user->scoreReplayStats()->countLimit($this->maxResults),
                     ),
                 ];
 
