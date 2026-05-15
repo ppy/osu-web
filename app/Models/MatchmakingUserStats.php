@@ -52,13 +52,11 @@ class MatchmakingUserStats extends Model
 
     public function scopeWithRank(Builder $query): void
     {
+        // this won't be accurate when there are restricted users
         $rankQuery = new static()
-            // mainly so whereHas in default() uses the correct table alias
-            ->setTable('mus')
             ->newQuery()
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
-            ->default()
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
