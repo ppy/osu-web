@@ -14,6 +14,7 @@ use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\FindForProfilePage;
+use App\Libraries\User\ProfileCount;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -193,7 +194,11 @@ class UsersController extends Controller
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))->count()
+                        ProfileCount::scoresFirst(
+                            $this->user,
+                            $this->mode,
+                            ScoreSearchParams::showLegacyForUser(\Auth::user()),
+                        )
                     ),
                     'pinned' => $this->getExtraSection(
                         'scoresPinned',

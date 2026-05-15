@@ -7,6 +7,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   count?: number | null;
+  countOverflow?: boolean;
   titleKey: string;
 }
 
@@ -18,6 +19,7 @@ export default function ProfilePageExtraSectionTitle(props: Props) {
       {props.count != null &&
         <span className='title__count'>
           {formatNumber(props.count)}
+          {props.countOverflow && '+'}
         </span>
       }
     </h3>

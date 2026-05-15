@@ -23,6 +23,7 @@ const sectionMaps = {
     translationKey: 'top_ranks.best',
   },
   scoresFirsts: {
+    countLimit: 100,
     key: 'firsts',
     translationKey: 'top_ranks.first',
   },
@@ -113,11 +114,14 @@ export default class PlayDetailList extends React.Component<Props> {
     if (this.scores == null) return null;
 
     const showPpWeight = 'showPpWeight' in this.sectionMap && this.sectionMap.showPpWeight;
+    const countOverflow = 'countLimit' in this.sectionMap && this.scores.count > this.sectionMap.countLimit;
+    const count = countOverflow ? this.sectionMap.countLimit : this.scores.count;
 
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.scores.count}
+          count={count}
+          countOverflow={countOverflow}
           titleKey={`users.show.extra.${this.sectionMap.translationKey}.title`}
         />
 
