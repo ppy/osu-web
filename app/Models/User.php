@@ -1406,22 +1406,22 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function scoresFirstOsu()
     {
-        return $this->hasMany(LegacyScoreFirst\Osu::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Osu::class);
     }
 
     public function scoresFirstFruits()
     {
-        return $this->hasMany(LegacyScoreFirst\Fruits::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Fruits::class);
     }
 
     public function scoresFirstMania()
     {
-        return $this->hasMany(LegacyScoreFirst\Mania::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Mania::class);
     }
 
     public function scoresFirstTaiko()
     {
-        return $this->hasMany(LegacyScoreFirst\Taiko::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Taiko::class);
     }
 
     public function beatmapLeaders()

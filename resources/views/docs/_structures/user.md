@@ -69,7 +69,7 @@ rank_history               | | |
 ranked_beatmapset_count    | | |
 replays_watched_counts     | | |
 scores_best_count          | integer | |
-scores_first_count         | integer | Always returns 101 if there are more than 100.
+scores_first_count         | integer | |
 scores_recent_count        | integer | |
 session_verified           | boolean | |
 statistics                 | [UserStatistics](#userstatistics) | |

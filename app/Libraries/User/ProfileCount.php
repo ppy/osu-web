@@ -13,6 +13,6 @@ class ProfileCount
 {
     public static function scoresFirst(User $user, string $rulesetName, null | true $legacyOnly): int
     {
-        return $user->scoresFirst($rulesetName, $legacyOnly)->countLimit(101);
+        return $user->scoresFirst($rulesetName, $legacyOnly)->count();
     }
 }
