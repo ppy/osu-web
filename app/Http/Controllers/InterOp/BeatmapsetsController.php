@@ -43,6 +43,15 @@ class BeatmapsetsController extends Controller
         return response()->noContent();
     }
 
+    public function broadcastGraveyard($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        Event::generate('beatmapsetGraveyard', ['beatmapset' => $beatmapset]);
+
+        return response()->noContent();
+    }
+
     public function broadcastUpdate($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

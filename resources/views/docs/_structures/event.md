@@ -78,6 +78,14 @@ Field      | Type
 -----------|--------------------------------------
 beatmapset | [Event.Beatmapset](#event-beatmapset)
 
+#### beatmapsetGraveyard
+
+When a beatmapset is moved to the graveyard.
+
+Field      | Type
+-----------|--------------------------------------
+beatmapset | [Event.Beatmapset](#event-beatmapset)
+
 #### beatmapsetRevive
 
 When a beatmapset in graveyard state is updated.

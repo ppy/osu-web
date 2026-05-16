@@ -8,6 +8,7 @@ return [
     'beatmap_playcount' => ':beatmap has been played :count times!',
     'beatmapset_approve' => ':beatmapset by :user has been :approval!',
     'beatmapset_delete' => ':beatmapset has been deleted.',
+    'beatmapset_graveyard' => ':beatmapset has been moved to the graveyard.',
     'beatmapset_revive' => ':beatmapset has been revived from eternal slumber by :user.',
     'beatmapset_update' => ':user has updated the beatmap ":beatmapset"',
     'beatmapset_upload' => ':user has submitted a new beatmap ":beatmapset"',

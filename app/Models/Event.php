@@ -47,6 +47,7 @@ class Event extends Model
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
         'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified|loved)\!$!",
         'beatmapsetDelete' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been deleted.$!",
+        'beatmapsetGraveyard' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been moved to the graveyard\.$!",
         'beatmapsetRevive' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
         'beatmapsetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
         'beatmapsetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
@@ -113,6 +114,22 @@ class Event extends Model
                     'text' => "{$beatmapsetLink['html']} has been deleted.",
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $options['user']->getKey(),
+                    'private' => false,
+                    'epicfactor' => 1,
+                ];
+
+                break;
+
+            case 'beatmapsetGraveyard':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+
+                $template = '%s has been moved to the graveyard.';
+                $params = [
+                    'text' => sprintf($template, $beatmapsetLink['html']),
+                    'text_clean' => sprintf($template, $beatmapsetLink['clean']),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
                     'epicfactor' => 1,
                 ];
@@ -399,6 +416,13 @@ class Event extends Model
     }
 
     public function parseMatchesBeatmapsetDelete($matches)
+    {
+        return [
+            'beatmapset' => $this->arrayBeatmapset($matches),
+        ];
+    }
+
+    public function parseMatchesBeatmapsetGraveyard($matches)
     {
         return [
             'beatmapset' => $this->arrayBeatmapset($matches),

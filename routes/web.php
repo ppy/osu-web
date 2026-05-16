@@ -656,6 +656,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
 
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::group(['prefix' => '{beatmapset}'], function () {
+                Route::post('broadcast-graveyard', 'BeatmapsetsController@broadcastGraveyard')->name('broadcast-graveyard');
                 Route::post('broadcast-new', 'BeatmapsetsController@broadcastNew')->name('broadcast-new');
                 Route::post('broadcast-revive', 'BeatmapsetsController@broadcastRevive')->name('broadcast-revive');
                 Route::post('broadcast-update', 'BeatmapsetsController@broadcastUpdate')->name('broadcast-update');

@@ -81,6 +81,29 @@ class EventTest extends TestCase
         $this->assertSame('beatmapsetDelete', $event->type);
     }
 
+    public function testBeatmapsetGraveyardEventEscaping()
+    {
+        $user = User::factory()->create([
+            'user_id' => 222,
+            'username' => 'john123',
+        ]);
+        $beatmapset = BeatmapSet::factory()->create([
+            'beatmapset_id' => 333,
+            'user_id' => $user->getKey(),
+            'artist' => 'artist & artist',
+            'title' => '< title >',
+            'approved' => Beatmapset::STATES['graveyard'],
+        ]);
+
+        $event = Event::generate('beatmapsetGraveyard', ['beatmapset' => $beatmapset]);
+
+        $this->assertSame('<a href=\'/beatmapsets/333\'>artist &amp; artist - &lt; title &gt;</a> has been moved to the graveyard.', $event->text);
+        $this->assertSame('[http://localhost/beatmapsets/333 artist & artist - < title >] has been moved to the graveyard.', $event->text_clean);
+
+        $this->assertArrayNotHasKey('parse_error', $event->parse()->details);
+        $this->assertSame('beatmapsetGraveyard', $event->type);
+    }
+
     public function testBeatmapsetReviveEventEscaping()
     {
         $user = User::factory()->create([
