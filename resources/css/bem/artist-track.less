@@ -27,6 +27,11 @@
     --cover-play-opacity: 1;
   }
 
+  &:target {
+    --bg-hover: hsl(var(--hsl-b2));
+    background-color: hsl(var(--hsl-b2));
+  }
+
   &[data-audio-state="loading"],
   &[data-audio-state="playing"] {
     --cover-play-opacity: 1;
@@ -146,6 +151,15 @@
 
   &__title {
     font-size: @font-size--title-small-3;
+  }
+
+  &__title-link {
+    .link-plain();
+    color: inherit;
+
+    .link-hover({
+      color: hsl(var(--hsl-c1));
+    });
   }
 
   &__version {

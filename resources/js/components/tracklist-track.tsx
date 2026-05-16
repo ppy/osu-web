@@ -40,7 +40,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
     blockClass += ' js-audio--player';
 
     return (
-      <div className={blockClass} data-audio-url={this.props.track.preview}>
+      <div id={`track-${this.props.track.id}`} className={blockClass} data-audio-url={this.props.track.preview}>
         <div
           className='artist-track__col artist-track__col--preview'
           style={{
@@ -55,15 +55,17 @@ export default class TracklistTrack extends React.PureComponent<Props> {
 
         <div className='artist-track__col artist-track__col--names'>
           <div className='artist-track__title u-ellipsis-overflow'>
-            {this.props.track.title}
-            {present(this.props.track.version) && (
-              <>
-                {' '}
-                <span className='artist-track__version'>
-                  {this.props.track.version}
-                </span>
-              </>
-            )}
+            <a className='artist-track__title-link' href={route('tracks.show', { track: this.props.track.id })}>
+              {this.props.track.title}
+              {present(this.props.track.version) && (
+                <>
+                  {' '}
+                  <span className='artist-track__version'>
+                    {this.props.track.version}
+                  </span>
+                </>
+              )}
+            </a>
           </div>
           <div className='artist-track__info'>
             <a href={route('artists.show', { artist: this.artist.id })}>

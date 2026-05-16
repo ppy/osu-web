@@ -51,6 +51,6 @@ class ArtistTracksController extends Controller
             abort(404);
         }
 
-        return ujs_redirect(route('artists.show', $artist));
+        return ujs_redirect(route('artists.show', $artist)."#track-{$track->getKey()}");
     }
 }
