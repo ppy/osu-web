@@ -59,12 +59,12 @@ class Authorize extends Model
 
     public static function increasesPostsCount($user, $forum)
     {
-        return static::aclCheck($user, 'f_postcount', $forum);
+        return $forum->enable_indexing === true;
     }
 
     public static function postsCountedForums($user)
     {
-        return static::aclGetAllowedForums($user, 'f_postcount');
+        return model_pluck(Forum::where('enable_indexing', true), 'forum_id');
     }
 
     public function scopeDirectAcl($query, $groupIds, $authOptionId)

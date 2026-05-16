@@ -8,6 +8,9 @@ declare(strict_types=1);
 namespace Tests\Models;
 
 use App\Libraries\Session\Store;
+use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
@@ -228,6 +231,43 @@ class UserTest extends TestCase
             ->create();
 
         $this->assertSame($cost, $user->usernameChangeCost());
+    }
+
+    public function testRefreshForumCacheCountsSearchableForums(): void
+    {
+        $user = User::factory()->create();
+        $searchableForum = Forum::factory()->create(['enable_indexing' => true]);
+        $unsearchableForum = Forum::factory()->create(['enable_indexing' => false]);
+        $searchableTopic = Topic::factory()->create(['forum_id' => $searchableForum->getKey()]);
+        $unsearchableTopic = Topic::factory()->create(['forum_id' => $unsearchableForum->getKey()]);
+
+        Post::factory()->create([
+            'forum_id' => $searchableForum->getKey(),
+            'poster_id' => $user->getKey(),
+            'topic_id' => $searchableTopic->getKey(),
+        ]);
+        Post::factory()->create([
+            'forum_id' => $unsearchableForum->getKey(),
+            'poster_id' => $user->getKey(),
+            'topic_id' => $unsearchableTopic->getKey(),
+        ]);
+
+        $user->refreshForumCache();
+
+        $this->assertSame(1, $user->fresh()->user_posts);
+    }
+
+    public function testRefreshForumCacheIncrementOnlyCountsSearchableForums(): void
+    {
+        $user = User::factory()->create();
+        $searchableForum = Forum::factory()->create(['enable_indexing' => true]);
+        $unsearchableForum = Forum::factory()->create(['enable_indexing' => false]);
+
+        $user->refreshForumCache($searchableForum, 1);
+        $this->assertSame(1, $user->fresh()->user_posts);
+
+        $user->refreshForumCache($unsearchableForum, 1);
+        $this->assertSame(1, $user->fresh()->user_posts);
     }
 
     /**
