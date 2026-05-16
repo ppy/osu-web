@@ -876,6 +876,7 @@ class UsersController extends Controller
                 $query = $this
                     ->user
                     ->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))
+                    ->default()
                     ->with(array_map(
                         fn ($include) => "score.{$include}",
                         ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
