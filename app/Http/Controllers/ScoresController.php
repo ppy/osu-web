@@ -212,7 +212,7 @@ class ScoresController extends Controller
         if (\Auth::user()?->isAdmin() !== true) {
             $scoreQuery->visibleUsers();
         }
-        $score = $scoreQuery->whereHas('beatmap.beatmapset')->firstOrFail();
+        $score = $scoreQuery->whereHas('beatmap')->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";

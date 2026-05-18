@@ -182,7 +182,7 @@ class Score extends Model implements Traits\ReportableInterface
 
     public function scopeDefault(Builder $query): Builder
     {
-        return $query->whereHas('beatmap.beatmapset');
+        return $query->whereHas('beatmap');
     }
 
     /**
