@@ -5,6 +5,8 @@
 
 namespace App\Models\Forum;
 
+use Illuminate\Database\Eloquent\Builder;
+
 /**
  * temporary class until simpler acl is implemented.
  *
@@ -25,25 +27,9 @@ class Authorize extends Model
 
     public static function aclCheck($user, $authOption, $forum)
     {
-        $groupIds = $user->groupIds();
-        $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
-
-        // the group may contain direct acl entry
-        $isAuthorized = static::directAcl($groupIds, $authOptionId)
+        return static::acl($user->groupIds(), $authOption)
             ->where('forum_id', $forum->forum_id)
             ->exists();
-
-        // the group may also be part of role which may have matching
-        // acl entry
-        if (!$isAuthorized) {
-            $isAuthorized = static::roleAcl($groupIds, $authOptionId)
-                ->where('forum_id', $forum->forum_id)
-                ->exists();
-        }
-
-        // there's actually another one (phpbb_acl_users) but doesn't seem
-        // to contain anything but old-ish banlist?
-        return $isAuthorized;
     }
 
     public static function increasesPostsCount($user, $forum)
@@ -53,16 +39,21 @@ class Authorize extends Model
 
     public static function postsCountedForums($user): array
     {
-        $groupIds = $user->groupIds();
-        $authOptionId = AuthOption::where('auth_option', 'f_postcount')->value('auth_option_id');
-
         return Forum::searchable()
-            ->where(
-                fn ($q) => $q
-                    ->whereIn('forum_id', static::directAcl($groupIds, $authOptionId)->select('forum_id'))
-                    ->orWhereIn('forum_id', static::roleAcl($groupIds, $authOptionId)->select('forum_id'))
-            )->pluck('forum_id')
+            ->whereIn('forum_id', static::acl($user->groupIds(), 'f_postcount')->select('forum_id'))
+            ->pluck('forum_id')
             ->all();
+    }
+
+    public function scopeAcl(Builder $query, array $groupIds, string $authOption): void
+    {
+        $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
+
+        // there's actually another one (phpbb_acl_users) but doesn't seem
+        // to contain anything but old-ish banlist?
+        $query
+            ->orWhere(fn ($q) => $q->directAcl($groupIds, $authOptionId))
+            ->orWhere(fn ($q) => $q->roleAcl($groupIds, $authOptionId));
     }
 
     public function scopeDirectAcl($query, $groupIds, $authOptionId)
