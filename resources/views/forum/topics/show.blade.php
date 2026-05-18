@@ -66,6 +66,7 @@
 
                 <div class="forum-topic-title__item forum-topic-title__item--counters">
                     <div class="grid-items">
+                        @include('forum.topics._header_watch_counter')
                         @include('forum.topics._header_total_counter', ['newTopic' => false])
 
                         @if ($userCanModerate)
