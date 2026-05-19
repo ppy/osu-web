@@ -18,7 +18,7 @@ return new class extends Migration
         });
 
         Schema::table('tournament_banners', function (Blueprint $table) {
-            $table->string('winner_country_acronym', 255)->change();
+            $table->string('winner_country_acronym', 255)->nullable()->change();
         });
     }
 
