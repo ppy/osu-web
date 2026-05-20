@@ -15,15 +15,15 @@ return [
 
     'judge' => [
         'comments' => 'komentar',
-        'hide_judged' => 'sembunyikan entri yang telah dinilai',
+        'hide_judged' => 'sembunyikan entri yang sudah dinilai',
         'nav_title' => 'juri',
         'no_current_vote' => 'kamu belum memberikan suaramu.',
         'update' => 'perbarui',
         'validation' => [
             'missing_score' => 'skor hilang',
-            'contest_vote_judged' => 'kamu tidak dapat memberikan suara pada kontes yang dinilai oleh juri',
+            'contest_vote_judged' => 'kamu tidak bisa memberikan suara pada kontes yang dinilai oleh juri',
         ],
-        'voted' => 'Kamu telah memberikan suara untuk entri ini.',
+        'voted' => 'Kamu sudah memberikan suara untuk entri ini.',
     ],
 
     'judge_results' => [
@@ -39,7 +39,7 @@ return [
         'judge_link' => 'Kamu adalah juri pada kontes ini. Nilai entri yang masuk di sini!',
         'judged_notice' => 'Kontes ini menggunakan sistem penjurian, dan para juri saat ini sedang menilai entri yang masuk.',
         'login_required' => 'Silakan masuk untuk memberikan suara.',
-        'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
+        'over' => 'Pemungutan suara untuk kontes ini sudah berakhir',
         'show_voted_only' => 'Tampilkan pilihan',
 
         'best_of' => [
@@ -49,16 +49,16 @@ return [
         'button' => [
             'add' => 'Pilih',
             'remove' => 'Lepas pilihan',
-            'used_up' => 'Kamu telah menggunakan seluruh hak suaramu',
+            'used_up' => 'Kamu sudah menggunakan semua hak suaramu',
         ],
 
         'progress' => [
-            '_' => ':used / :max suara telah digunakan',
+            '_' => ':used / :max suara digunakan',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Seluruh beatmap yang terkandung pada playlist yang ditentukan harus terlebih dahulu dimainkan sebelum memberikan suara',
+                'incomplete_play' => 'Kamu harus memainkan semua beatmap pada playlist yang ditentukan sebelum memberikan suara',
             ],
         ],
     ],
@@ -66,17 +66,14 @@ return [
     'entry' => [
         '_' => 'entri',
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
-        'silenced_or_restricted' => 'Kamu tidak dapat mengikuti kontes ketika kamu sedang di-restrict atau di-silence.',
+        'silenced_or_restricted' => 'Kamu tidak bisa mengikuti kontes ketika kamu sedang di-restrict atau di-silence.',
         'preparation' => 'Kami sedang mempersiapkan kontes ini. Mohon bersabar!',
         'drop_here' => 'Letakkan entrimu di sini',
+        'allowed_extensions' => 'Kontes ini menerima jenis berkas :types',
+        'max_size' => 'Ukuran berkas maks.: :limit',
+        'required_dimensions' => 'Ukuran gambar harus :widthx:height',
         'download' => 'Unduh .osz',
-
-        'wrong_type' => [
-            'art' => 'Kontes ini hanya menerima berkas dengan ekstensi .jpg dan .png.',
-            'beatmap' => 'Kontes ini hanya menerima berkas dengan ekstensi .osu.',
-            'music' => 'Kontes ini hanya menerima berkas dengan ekstensi .mp3.',
-        ],
-
+        'wrong_file_type' => 'Kontes ini hanya menerima berkas :types.',
         'wrong_dimensions' => 'Entri untuk kontes ini harus berukuran :widthx:height',
         'too_big' => 'Berkas yang diikutsertakan untuk kontes ini tidak boleh melebihi batas ukuran :limit.',
     ],
@@ -93,7 +90,7 @@ return [
     ],
 
     'dates' => [
-        'ended' => 'Telah Berakhir Pada :date',
+        'ended' => 'Berakhir Pada :date',
         'ended_no_date' => 'Telah Berakhir',
 
         'starts' => [

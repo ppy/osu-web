@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => '',
+
     'authorizations' => [
         'update' => [
             'null_user' => '编辑前请先登录。',
@@ -70,7 +72,7 @@ return [
         'checking' => '正在检查更新......',
         'has_updates' => '讨论有更新，点击刷新。',
         'no_updates' => '没有更新。',
-        'updating' => '更新中...',
+        'updating' => '更新中......',
     ],
 
     'reply' => [

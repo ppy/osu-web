@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'kesukaran tamu',
             'beatmapset:modding' => 'penyelarasan peta rentak',
             'channel_message' => 'pesanan bualan peribadi',
+            'channel_mention' => '',
             'channel_team' => 'pesanan bualan pasukan',
             'comment_new' => 'komen baharu',
             'forum_topic_reply' => 'balasan tajuk',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'sorok amaran untuk kandungan tidak senonoh dalam peta rentak',
         'beatmapset_title_show_original' => 'paparkan metadata peta rentak dalam bahasa asli',
         'title' => 'Pilihan',

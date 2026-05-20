@@ -70,14 +70,11 @@ Vertinimo rezultatai',
         'silenced_or_restricted' => 'Jūs negalite dalyvauti konkursuose būdami uždrausti arba nutildyti.',
         'preparation' => 'Dabar mes ruošiam šį konkursą. Prašome kantriai palaukti!',
         'drop_here' => 'Numesk savo pateikti čia',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Atsiųsti .osz',
-
-        'wrong_type' => [
-            'art' => 'Tik .jpg failai priimami šiam konkursui.',
-            'beatmap' => 'Tik .osu failai priimami šiam konkursui.',
-            'music' => 'Tik .mp3 failai priimami šiam konkursui.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Pateikymai šiam konkursui turi būti :widthx:height',
         'too_big' => 'Pateikymai šiam konkursui gali būti tik iki :limit.',
     ],

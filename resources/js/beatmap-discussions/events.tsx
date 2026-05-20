@@ -20,14 +20,12 @@ export class Events extends React.PureComponent<Props> {
     const events = this.props.events.filter((event) => event.type !== 'nomination_reset_received');
 
     return (
-      <div className='osu-page osu-page--small osu-page--generic'>
-        <div className='beatmapset-events'>
-          {events.length === 0 ? (
-            <div className='beatmapset-events__empty'>
-              {trans('beatmap_discussions.events.empty')}
-            </div>
-          ) : this.renderEvents(events)}
-        </div>
+      <div className='beatmapset-events'>
+        {events.length === 0 ? (
+          <div className='beatmapset-events__empty'>
+            {trans('beatmap_discussions.events.empty')}
+          </div>
+        ) : this.renderEvents(events)}
       </div>
     );
   }

@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Du kan inte gå med i en tävling när du är begränsad eller tystad.',
         'preparation' => 'Vi håller på att förbereda denna tävling. Ha tålamod!',
         'drop_here' => 'Släpp ditt bidrag här',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Ladda ner .osz',
-
-        'wrong_type' => [
-            'art' => 'Endast .jpg- och .png-filer är tillåtna i denna tävling.',
-            'beatmap' => 'Endast .osu-filer är tillåtna i denna tävling.',
-            'music' => 'Endast .mp3-filer är tillåtna i denna tävling.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Bidrag för denna tävling måste vara :widthx:height',
         'too_big' => 'Bidrag till denna tävling får vara högst :limit.',
     ],

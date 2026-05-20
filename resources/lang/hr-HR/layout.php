@@ -55,7 +55,7 @@ return [
         'users' => [
             'modding' => 'modificiranje',
             'playlists' => 'popisi za reprodukciju',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'multiplayer',
             'show' => 'informacije
 

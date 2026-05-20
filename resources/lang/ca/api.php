@@ -24,11 +24,15 @@ return [
 
         'forum' => [
             'write' => 'Crear i editar temes i publicacions del fòrum en nom seu.',
-            'write_manage' => '',
+            'write_manage' => 'Gestiona els temes i publicacions del fòrum en nom seu.',
         ],
 
         'friends' => [
             'read' => 'Veure qui segueixes.',
+        ],
+
+        'multiplayer' => [
+            'write_manage' => 'Crea i gestiona sales multijugador.',
         ],
 
         'public' => 'Llegir dades públiques en nom seu.',

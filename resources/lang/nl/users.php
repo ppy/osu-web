@@ -333,6 +333,9 @@ return [
                     'title' => 'Kijkgeschiedenis Replays',
                     'count_label' => 'Aantal Replays Bekeken',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Recente berichten',
                 'show_more' => 'bekijk meer berichten',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

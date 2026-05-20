@@ -5,7 +5,6 @@
 
 namespace App\Models;
 
-use App\Exceptions\InvariantException;
 use App\Jobs\EsDocumentUnique;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\Memoizes;
@@ -230,36 +229,6 @@ class Beatmap extends Model implements AfterCommit
         return $this->hasMany(BeatmapFailtimes::class);
     }
 
-    public function scores($mode = null)
-    {
-        return $this->getScores(Score::class, $mode);
-    }
-
-    public function scoresBest($mode = null)
-    {
-        return $this->getScores(Score\Best::class, $mode);
-    }
-
-    public function scoresBestOsu()
-    {
-        return $this->hasMany(Score\Best\Osu::class);
-    }
-
-    public function scoresBestTaiko()
-    {
-        return $this->hasMany(Score\Best\Taiko::class);
-    }
-
-    public function scoresBestFruits()
-    {
-        return $this->hasMany(Score\Best\Fruits::class);
-    }
-
-    public function scoresBestMania()
-    {
-        return $this->hasMany(Score\Best\Mania::class);
-    }
-
     public function afterCommit()
     {
         $beatmapset = $this->beatmapset;
@@ -330,10 +299,6 @@ class Beatmap extends Model implements AfterCommit
             'difficulty',
             'difficultyAttribs',
             'failtimes',
-            'scoresBestFruits',
-            'scoresBestMania',
-            'scoresBestOsu',
-            'scoresBestTaiko',
             'user' => $this->getRelationValue($key),
         };
     }
@@ -505,23 +470,6 @@ class Beatmap extends Model implements AfterCommit
     private function getMode()
     {
         return static::modeStr($this->playmode);
-    }
-
-    private function getScores($modelPath, $mode)
-    {
-        $mode ?? ($mode = $this->mode);
-
-        if (!static::isModeValid($mode)) {
-            throw new InvariantException(osu_trans('errors.beatmaps.invalid_mode'));
-        }
-
-        if ($this->mode !== 'osu' && $this->mode !== $mode) {
-            throw new InvariantException(osu_trans('errors.beatmaps.standard_converts_only'));
-        }
-
-        $mode = studly_case($mode);
-
-        return $this->hasMany("{$modelPath}\\{$mode}");
     }
 
     private function getVersion()

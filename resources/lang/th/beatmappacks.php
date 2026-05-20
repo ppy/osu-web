@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'โดย :author',
         'download' => 'ดาวน์โหลด',
         'item' => [
             'cleared' => 'ผ่านแล้ว',
@@ -31,9 +31,9 @@ return [
 
     'mode' => [
         'artist' => 'ศิลปิน/ผู้แต่ง',
-        'chart' => 'โดดเด่น',
+        'chart' => 'สปอตไลท์',
         'featured' => 'ศิลปินโดดเด่น',
-        'loved' => 'โครงการที่ชื่นชอบ',
+        'loved' => 'โปรเจกต์เลิฟด์',
         'standard' => 'ทั่วไป',
         'theme' => 'ธีม',
         'tournament' => 'การแข่งขัน',

@@ -3,7 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import FlagTeam from 'components/flag-team';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import ScoreboardTime from 'components/scoreboard-time';
 import UserLink from 'components/user-link';
@@ -35,6 +35,9 @@ export default function RankingScores(props: Props) {
           <div className='ranking-page-grid-item__col'>
             {trans('beatmapsets.show.scoreboard.headers.accuracy')}
           </div>
+          <div className='ranking-page-grid-item__col'>
+            {trans('beatmapsets.show.scoreboard.headers.miss')}
+          </div>
           <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number-focus'>
             {trans('beatmapsets.show.scoreboard.headers.pp')}
           </div>
@@ -51,7 +54,7 @@ export default function RankingScores(props: Props) {
         <div key={score.id} className='ranking-page-grid-item'>
           <a
             className='ranking-page-grid-item__link-bg'
-            href={route('scores.show', { rulesetOrScore: score.id })}
+            href={route('scores.show', { score: score.id })}
           />
           <div className='ranking-page-grid-item__content'>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus'>
@@ -97,6 +100,11 @@ export default function RankingScores(props: Props) {
                 {formatNumber(score.accuracy, 2, { style: 'percent' })}
               </span>
             </div>
+            <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number'>
+              <span className={classWithModifiers('ranking-page-grid-item__value')}>
+                {formatNumber(score.statistics.miss ?? 0)}
+              </span>
+            </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus'>
               <span className='u-hover' title={formatNumber(score.pp ?? 0)}>
                 {formatNumber(Math.round(score.pp ?? 0))}
@@ -109,7 +117,7 @@ export default function RankingScores(props: Props) {
             </div>
             <div className='ranking-page-grid-item__col'>
               <div className='ranking-page-grid-item__icons u-hover'>
-                {displayMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} modifiers='dynamic' />)}
+                <Mods modifiers='dynamic' mods={displayMods(score)} />
               </div>
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--menu u-hover'>

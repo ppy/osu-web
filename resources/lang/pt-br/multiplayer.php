@@ -8,7 +8,7 @@ return [
         'active' => 'Atualmente não está em nenhum jogo de :type_group em andamento no osu!(lazer)!',
         'ended' => 'Não está em nenhum jogo de :type_group finalizado no osu!(lazer) ainda!',
         'playlists' => 'seleção de música',
-        'quickplay' => 'partida rápida',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'A duração é muito longa.',
             'name_too_long' => 'Nome da sala é muito longo.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

@@ -294,45 +294,43 @@ export class NewDiscussion extends React.Component<Props> {
     const buttonCssClasses = classWithModifiers('btn-circle', { activated: this.pinned });
 
     return (
-      <div className='osu-page osu-page--small'>
-        <div className={bn}>
-          <div className='page-title'>
-            {trans('beatmaps.discussions.new.title')}
+      <div className={bn}>
+        <div className='page-title'>
+          {trans('beatmaps.discussions.new.title')}
 
-            <span className='page-title__button'>
-              <span
-                className={buttonCssClasses}
-                onClick={this.toggleSticky}
-                title={trans(`beatmaps.discussions.new.${this.pinned ? 'unpin' : 'pin'}`)}
-              >
-                <span className='btn-circle__content'>
-                  <i className='fas fa-thumbtack' />
-                </span>
+          <span className='page-title__button'>
+            <span
+              className={buttonCssClasses}
+              onClick={this.toggleSticky}
+              title={trans(`beatmaps.discussions.new.${this.pinned ? 'unpin' : 'pin'}`)}
+            >
+              <span className='btn-circle__content'>
+                <i className='fas fa-thumbtack' />
               </span>
             </span>
-          </div>
-          <div className={`${bn}__content`}>
-            <div className={`${bn}__avatar`}>
-              <UserAvatar modifiers='full-rounded' user={core.currentUser} />
-            </div>
-            <div className={`${bn}__message`} id='new'>
-              {this.renderTextarea()}
-            </div>
-          </div>
-
-          <div className={`${bn}__footer`}>
-            {this.renderTimestamp()}
-            {this.renderHype()}
-            <div className={`${bn}__footer-content ${bn}__footer-content--right`}>
-              {canHype && this.submitButton('hype')}
-              {canPostNote && this.submitButton('mapper_note')}
-              {this.submitButton('praise')}
-              {this.submitButton('suggestion')}
-              {this.submitButton('problem')}
-            </div>
-          </div>
-          {this.renderNearbyTimestamps()}
+          </span>
         </div>
+        <div className={`${bn}__content`}>
+          <div className={`${bn}__avatar`}>
+            <UserAvatar modifiers='full-rounded' user={core.currentUser} />
+          </div>
+          <div className={`${bn}__message`} id='new'>
+            {this.renderTextarea()}
+          </div>
+        </div>
+
+        <div className={`${bn}__footer`}>
+          {this.renderTimestamp()}
+          {this.renderHype()}
+          <div className={`${bn}__footer-content ${bn}__footer-content--right`}>
+            {canHype && this.submitButton('hype')}
+            {canPostNote && this.submitButton('mapper_note')}
+            {this.submitButton('praise')}
+            {this.submitButton('suggestion')}
+            {this.submitButton('problem')}
+          </div>
+        </div>
+        {this.renderNearbyTimestamps()}
       </div>
     );
   }

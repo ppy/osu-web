@@ -16,8 +16,10 @@ return [
         'invalid' => 'Hindi inaasahang error sa verification code.',
         'is_privileged' => 'Pakikontak ng isang high level na admin upang mabawi ang account.',
         'missing_key' => 'Kinakailangan.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Masyadong maraming nabigong tangka.',
         'user_not_found' => 'Hindi umiiral ang hiniling na user.',
+        'wait_resend' => '',
         'wrong_key' => 'Maling kodigo.',
     ],
 

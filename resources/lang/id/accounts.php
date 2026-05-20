@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Silakan hubungi :accounts apabila kamu perlu untuk memperbarui alamat emailmu.',
+                '_' => 'Silakan hubungi :accounts apabila kamu perlu memperbarui alamat emailmu.',
                 'accounts' => 'tim dukungan akun',
             ],
         ],
@@ -64,14 +64,14 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Apabila kamu merupakan kontributor repositori open-source osu!, kamu dapat menautkan akun GitHub kamu di sini untuk menghubungkan entri riwayat perubahanmu dengan profil osu! kamu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak dapat ditautkan.",
+        'info' => "Apabila kamu adalah kontributor repositori open-source osu!, kamu bisa menautkan akun GitHub kamu di sini untuk menghubungkan entri riwayat perubahanmu dengan profil osu! kamu. Akun GitHub yang tidak memiliki riwayat kontribusi terhadap osu! tidak bisa ditautkan.",
         'link' => 'Tautkan Akun GitHub',
         'title' => 'GitHub',
         'unlink' => 'Lepas Tautan Akun GitHub',
 
         'error' => [
-            'already_linked' => 'Akun GitHub ini telah terhubung ke pengguna lain.',
-            'no_contribution' => 'Tidak dapat menautkan akun GitHub yang tidak memiliki kontribusi terhadap proyek osu!',
+            'already_linked' => 'Akun GitHub ini sudah terhubung ke pengguna lain.',
+            'no_contribution' => 'Akun GitHub yang tidak memiliki riwayat kontribusi pada repositori osu! tidak bisa ditautkan.',
             'unverified_email' => 'Silakan verifikasi email utama kamu di GitHub, lalu cobalah untuk menghubungkan akunmu kembali.',
         ],
     ],
@@ -80,32 +80,34 @@ return [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap Qualified di mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi untuk balasan baru pada komentar yang kamu tulis',
-        'news_post' => '',
+        'news_post' => 'terima notifikasi untuk postingan berita yang berkaitan dengan',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis bagi topik forum baru yang kamu buat atau balas',
 
         'options' => [
-            '_' => 'kirimkan notifikasi melalui',
+            '_' => 'opsi pengiriman',
             'beatmap_owner_change' => 'tingkat kesulitan tamu',
             'beatmapset:modding' => 'modding',
             'channel_message' => 'pesan pribadi',
-            'channel_team' => 'pesan percakapan tim',
+            'channel_mention' => '',
+            'channel_team' => 'pesan obrolan tim',
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan topik',
             'mail' => 'email',
             'mapping' => 'mapper',
-            'news_post' => '',
+            'news_post' => 'postingan berita',
             'push' => 'push (web)',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'klien diizinkan',
-        'own_clients' => 'klien yang dimiliki',
+        'authorized_clients' => 'klien yang terizin',
+        'own_clients' => 'klien yang kamu miliki',
         'title' => 'OAuth',
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'tampilkan sampul beatmap bergaya anime',
         'beatmapset_show_nsfw' => 'sembunyikan peringatan untuk konten eksplisit pada beatmap',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
@@ -161,16 +163,16 @@ return [
         'status' => [
             'label' => 'status',
             'not_set' => 'Belum diatur',
-            'set' => 'Telah diatur',
+            'set' => 'Sudah diatur',
         ],
     ],
 
     'verification_completed' => [
-        'text' => 'Kamu dapat menutup tab/jendela ini sekarang',
+        'text' => 'Kamu bisa menutup tab/jendela ini sekarang',
         'title' => 'Verifikasi selesai',
     ],
 
     'verification_invalid' => [
-        'title' => 'Tautan verifikasi tidak valid atau telah kedaluwarsa',
+        'title' => 'Tautan verifikasi tidak valid atau sudah kedaluwarsa',
     ],
 ];

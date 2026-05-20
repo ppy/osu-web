@@ -58,12 +58,6 @@ return [
         'send' => 'Pošalji',
     ],
 
-    'no-conversations' => [
-        'howto' => "Započni razgovore iz korisničkog profila ili skočnog prozora korisničke kartice.",
-        'lazer' => 'Ovdje će također biti vidljivi javni kanali kojima se pridružiš putem <a href=":link">osu!lazera</a>.',
-        'title' => 'još nema razgovora',
-    ],
-
     'join_channels' => [
         'loading' => 'Učitavanje lista kanala...',
     ],

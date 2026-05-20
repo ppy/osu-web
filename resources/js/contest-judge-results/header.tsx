@@ -1,23 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import SelectOptions from 'components/select-options';
 import UserLink from 'components/user-link';
 import ValueDisplay from 'components/value-display';
 import { ContestEntryJsonForResults } from 'interfaces/contest-entry-json';
 import { ContestJsonForResults } from 'interfaces/contest-json';
 import { route } from 'laroute';
-import { computed } from 'mobx';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { navigate } from 'utils/turbolinks';
-
-interface Option {
-  contest_id: ContestEntryJsonForResults['contest_id'];
-  id: ContestEntryJsonForResults['id'];
-  text: ContestEntryJsonForResults['title'];
-}
 
 interface Props {
   contest: ContestJsonForResults;
@@ -25,18 +17,23 @@ interface Props {
   entry: ContestEntryJsonForResults;
 }
 
-export default class Header extends React.PureComponent<Props> {
-  @computed
-  private get options() {
-    return this.props.entries.map((entry) => ({
-      contest_id: entry.contest_id,
-      id: entry.id,
-      text: entry.title,
-    }));
-  }
+function entryToOption(entry: ContestEntryJsonForResults) {
+  return {
+    href: route('contests.entries.judge-results', { contest: entry.contest_id, contest_entry: entry.id }),
+    id: entry.id,
+    text: <OptionText entry={entry} />,
+  };
+}
 
-  private get selected() {
-    return { contest_id: this.props.entry.contest_id, id: this.props.entry.id, text: this.props.entry.title };
+function OptionText(props: { entry: ContestEntryJsonForResults }) {
+  return (
+    <ValueDisplay label={props.entry.title} modifiers='select-option' value={props.entry.user.username} />
+  );
+}
+
+export default class Header extends React.PureComponent<Props> {
+  private get options() {
+    return this.props.entries.map(entryToOption);
   }
 
   render() {
@@ -46,11 +43,13 @@ export default class Header extends React.PureComponent<Props> {
     return (
       <div className='contest-judge-results-header'>
         <SelectOptions
-          onChange={this.handleChange}
+          href={this.href(this.props.entry.id)}
+          modifiers='ranking'
           options={this.options}
-          renderOption={this.renderOption}
-          selected={this.selected}
-        />
+          selected={this.props.entry.id}
+        >
+          <OptionText entry={this.props.entry} />
+        </SelectOptions>
 
         <div className='contest-judge-results-header__values'>
           {totalScoreStd != null && (
@@ -79,18 +78,7 @@ export default class Header extends React.PureComponent<Props> {
     );
   }
 
-  private readonly handleChange = (option: Option) => {
-    navigate(route('contests.entries.judge-results', { contest: option.contest_id, contest_entry: option.id }));
-  };
-
-  private readonly renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => (
-    <a
-      key={option.id}
-      className={cssClasses}
-      href={route('contests.entries.judge-results', { contest: option.contest_id, contest_entry: option.id })}
-      onClick={onClick}
-    >
-      {children}
-    </a>
-  );
+  private href(entryId?: number) {
+    return route('contests.entries.judge-results', { contest: this.props.contest.id, contest_entry: entryId });
+  }
 }

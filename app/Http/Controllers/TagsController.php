@@ -18,6 +18,8 @@ class TagsController extends Controller
 
     public function index()
     {
+        priv_check('BeatmapsetAdvancedSearch')->ensureCan();
+
         return [
             'tags' => app('tags')->json(),
         ];

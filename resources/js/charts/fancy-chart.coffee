@@ -8,7 +8,7 @@ export default class FancyChart
       y: d3.scaleLinear()
 
     endCircleRadius = 3
-    @marginRight = endCircleRadius
+    @margin = endCircleRadius
 
     @area = d3.select(area)
 
@@ -52,17 +52,22 @@ export default class FancyChart
 
   setDimensions: =>
     areaDims = @area.node().getBoundingClientRect()
-    @width = areaDims.width - @marginRight
+    @width = areaDims.width
     @height = areaDims.height
 
 
   setScalesRange: =>
     @options.scales.x
-      .range [0, @width]
+      # Prevent end circle from being cut off to the right.
+      # No extra margin on the left as there should always be some data
+      # and thus the circle should never be around the starting point.
+      .range [0, @width - @margin]
       .domain @options.domains?.x ? d3.extent(@data, (d) => d.x)
 
     @options.scales.y
-      .range [@height, 0]
+      # Prevent end circle from being cut off when the last value is at the
+      # highest/lowest.
+      .range [@height - @margin, @margin]
       .domain @options.domains?.y ? d3.extent(@data, (d) => d.y)
 
 
@@ -81,7 +86,7 @@ export default class FancyChart
 
   setSvgSize: =>
     @svg
-      .attr 'width', @width + @marginRight
+      .attr 'width', @width
       .attr 'height', @height
 
 

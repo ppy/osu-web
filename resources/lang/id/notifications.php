@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Seluruh notifikasi telah dibaca!',
+    'all_read' => 'Semua notifikasi sudah dibaca!',
     'delete' => 'Hapus :type',
     'loading' => 'Memuat notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'Lihat riwayat notifikasi',
-    'see_channel' => 'Buka jendela chat',
+    'see_channel' => 'buka jendela obrolan',
     'verifying' => 'Silakan verifikasi sesi untuk melihat notifikasi',
 
     'action_type' => [
         '_' => 'semua',
         'beatmapset' => 'beatmap',
         'build' => 'versi rilis',
-        'channel' => 'percakapan',
+        'channel' => 'obrolan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
         'team' => 'tim',
@@ -28,7 +28,7 @@ return [
         '_' => 'semua',
         'beatmapset' => 'beatmap',
         'build' => 'build',
-        'channel' => 'chat',
+        'channel' => 'obrolan',
         'forum_topic' => 'forum',
         'news_post' => 'berita',
         'team' => 'tim',
@@ -41,13 +41,13 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => 'Tingkat kesulitan tamu',
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan ":beatmap" pada beatmap ":title"',
-                'beatmap_owner_change_compact' => 'Kamu telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
+                'beatmap_owner_change' => 'Kamu sekarang adalah pemilik dari tingkat kesulitan ":beatmap" pada beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Kamu sekarang adalah pemilik dari tingkat kesulitan ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
                 '_' => 'Diskusi beatmap',
-                'beatmapset_discussion_lock' => 'Diskusi pada ":title" telah dikunci',
+                'beatmapset_discussion_lock' => 'Diskusi beatmap ":title" telah dikunci',
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
                 'beatmapset_discussion_post_new' => 'Postingan baru pada ":title" oleh :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru pada ":title" oleh :username',
@@ -55,8 +55,8 @@ return [
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
                 'beatmapset_discussion_review_new' => 'Kajian baru pada ":title" oleh :username yang mengandung :review_counts',
                 'beatmapset_discussion_review_new_compact' => 'Kajian baru oleh :username yang mengandung :review_counts',
-                'beatmapset_discussion_unlock' => 'Diskusi pada beatmap ":title" telah kembali dibuka',
-                'beatmapset_discussion_unlock_compact' => 'Diskusi beatmap telah dibuka',
+                'beatmapset_discussion_unlock' => 'Kunci diskusi beatmap ":title" telah dibuka',
+                'beatmapset_discussion_unlock_compact' => 'Kunci diskusi beatmap telah dibuka',
 
                 'review_count' => [
                     'praises' => ':count_delimited pujian|:count_delimited pujian',
@@ -77,17 +77,17 @@ return [
                 '_' => 'Perubahan status beatmap',
                 'beatmapset_disqualify' => '":title" telah didiskualifikasi',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
-                'beatmapset_love' => '":title" telah dipromosikan ke kategori Loved',
-                'beatmapset_love_compact' => 'Beatmap telah dipromosikan ke kategori Loved',
+                'beatmapset_love' => '":title" telah dipromosikan ke Loved',
+                'beatmapset_love_compact' => 'Beatmap telah dipromosikan ke Loved',
                 'beatmapset_nominate' => '":title" telah dinominasikan',
                 'beatmapset_nominate_compact' => 'Beatmap telah dinominasikan',
-                'beatmapset_qualify' => '":title" telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat memasuki antrean ranking',
-                'beatmapset_qualify_compact' => 'Beatmap memasuki antrean ranking',
-                'beatmapset_rank' => '":title" telah berstatus Ranked',
+                'beatmapset_qualify' => '":title" telah memperoleh nominasi yang cukup untuk memasuki antrean ranking',
+                'beatmapset_qualify_compact' => 'Beatmap telah memasuki antrean ranking',
+                'beatmapset_rank' => '":title" telah berstatus ranked',
                 'beatmapset_rank_compact' => 'Beatmap telah berstatus Ranked',
                 'beatmapset_remove_from_loved' => '":title" telah dilepas dari Loved',
                 'beatmapset_remove_from_loved_compact' => 'Beatmap telah dilepas dari Loved',
-                'beatmapset_reset_nominations' => 'Nominasi pada ":title" telah dianulir',
+                'beatmapset_reset_nominations' => 'Nominasi beatmap ":title" telah dianulir',
                 'beatmapset_reset_nominations_compact' => 'Nominasi beatmap dianulir',
             ],
 
@@ -102,7 +102,7 @@ return [
         ],
 
         'channel' => [
-            '_' => 'Chat',
+            '_' => 'Obrolan',
 
             'announcement' => [
                 '_' => 'Pengumuman baru',
@@ -121,6 +121,16 @@ return [
                     'channel_message' => ':username mengatakan ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'dari :username',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
                 ],
             ],
 
@@ -161,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Berita (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -182,8 +192,8 @@ return [
             'team_application' => [
                 '_' => 'Permintaan gabung tim',
 
-                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
-                'team_application_accept_compact' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_accept' => "Kamu sekarang adalah anggota dari tim :title",
+                'team_application_accept_compact' => "Kamu sekarang adalah anggota dari tim :title",
 
                 'team_application_group' => 'Pembaruan permintaan gabung tim',
 
@@ -202,7 +212,7 @@ return [
                 'user_beatmapset_new_compact' => 'Beatmap baru ":title"',
                 'user_beatmapset_new_group' => 'Beatmap baru oleh :username',
 
-                'user_beatmapset_revive' => 'Beatmap ":title" telah dipulihkan dari Graveyard oleh :username',
+                'user_beatmapset_revive' => 'Beatmap ":title" dipulihkan dari Graveyard oleh :username',
                 'user_beatmapset_revive_compact' => 'Beatmap ":title" dipulihkan',
             ],
         ],
@@ -220,9 +230,11 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Berita',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan tamu pada beatmap ":title"',
+                'beatmap_owner_change' => 'Kamu sekarang adalah pemilik tingkat kesulitan tamu pada beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Kamu menerima pesan baru dari :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Terdapat pesan baru pada tim ":name"',
             ],
@@ -272,10 +288,6 @@ return [
             'comment' => [
                 'comment_new' => 'Terdapat komentar baru pada topik berita ":title"',
             ],
-
-            'news_post' => [
-                'news_post_new' => '',
-            ],
         ],
 
         'forum_topic' => [
@@ -286,7 +298,7 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "Kamu kini merupakan anggota dari tim :title",
+                'team_application_accept' => "Kamu sekarang adalah anggota dari tim :title",
                 'team_application_reject' => 'Permintaan kamu untuk bergabung ke tim :title telah ditolak',
                 'team_application_store' => ':title meminta untuk bergabung ke tim kamu',
             ],

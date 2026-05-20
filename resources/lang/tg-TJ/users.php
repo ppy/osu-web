@@ -333,6 +333,9 @@ return [
                     'title' => '',
                     'count_label' => '',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => '',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => '',
                 'show_more' => '',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

@@ -7,10 +7,6 @@ export type ReportableType =
   | 'comment'
   | 'forum_post'
   | 'message'
-  | 'score_best_fruits'
-  | 'score_best_mania'
-  | 'score_best_osu'
-  | 'score_best_taiko'
   | 'solo_score'
   | 'team'
   | 'user';

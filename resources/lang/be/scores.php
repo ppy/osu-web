@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Згуляна',
+            'played_on' => '',
             'submitted_on' => 'Апублікавана',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Рэйтынг краіны',

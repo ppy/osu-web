@@ -20,7 +20,7 @@ return [
         'channel' => 'المحادثة',
         'forum_topic' => 'منتدى',
         'news_post' => 'الأخبار',
-        'team' => '',
+        'team' => 'الفريق',
         'user' => 'الملف الشخصي',
     ],
 
@@ -31,7 +31,7 @@ return [
         'channel' => 'محادثة',
         'forum_topic' => 'المنتدى',
         'news_post' => 'الأخبار',
-        'team' => '',
+        'team' => 'الفريق',
         'user' => 'الملف الشخصي',
     ],
 
@@ -124,8 +124,18 @@ return [
                 ],
             ],
 
-            'channel_team' => [
+            'channel_mention' => [
                 '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => 'رسالة فريق جديدة',
 
                 'team' => [
                     'channel_team' => '',
@@ -180,7 +190,7 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'طلب الانضمام للفريق',
 
                 'team_application_accept' => "",
                 'team_application_accept_compact' => "",
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'الأخبار',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'أنت الآن ضيف خريطة ":title"',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => '',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'الأخبار ":title" تحتوي على تعليقات جديدة',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

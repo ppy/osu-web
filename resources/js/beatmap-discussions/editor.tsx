@@ -283,10 +283,10 @@ export default class Editor extends React.Component<Props, State> {
   render(): React.ReactNode {
     this.cache = {};
     const editorClass = 'beatmap-discussion-editor';
-    const modifiers = this.editMode ? ['edit-mode'] : [];
-    if (this.state.posting) {
-      modifiers.push('readonly');
-    }
+    const modifiers = {
+      'edit-mode': this.editMode,
+      readonly: this.state.posting,
+    };
 
     this.updateDrafts();
 

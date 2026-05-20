@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Nova mensagem do time',
 
@@ -161,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Novidades (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Novidades',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Você agora é convidado do mapa ":title"',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Você recebeu uma nova mensagem de :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Há uma nova mensagem no time ":name"',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Há novos comentários na notícia ":title"',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

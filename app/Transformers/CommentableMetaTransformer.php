@@ -5,12 +5,12 @@
 
 namespace App\Transformers;
 
-use App\Libraries\Commentable;
+use App\Interfaces\CommentableInterface;
 use App\Models\Beatmapset;
 
 class CommentableMetaTransformer extends TransformerAbstract
 {
-    public function transform(?Commentable $commentable)
+    public function transform(?CommentableInterface $commentable)
     {
         if (isset($commentable)) {
             if ($commentable instanceof Beatmapset) {
@@ -28,6 +28,7 @@ class CommentableMetaTransformer extends TransformerAbstract
                 'url' => $commentable->url(),
                 'owner_id' => $ownerId ?? null,
                 'owner_title' => $ownerTitle ?? null,
+                'locked' => $commentable->commentLocked(),
             ];
         } else {
             return [

@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'гостојућа тежина',
             'beatmapset:modding' => 'модовање мапа',
             'channel_message' => 'приватне чет поруке',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'нови коментари',
             'forum_topic_reply' => 'одговор на тему',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'сакриј упозорења за експлицитан садржај у мапама',
         'beatmapset_title_show_original' => 'покажи метаподатке ове мапе на оригиналном језику',
         'title' => 'Опције',

@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => 'Pro hledání týmů se přihlaste',
             'more_simple' => 'Zobrazit další výsledky vyhledávání týmů',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Stáhnout osu!',
             'support' => 'Podpoř osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => 'Doporučené živé vysílání',
         ],
         'show' => [
             'admin' => [

@@ -4,6 +4,7 @@
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
+import { Spinner } from 'components/spinner'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { formatBytes } from 'utils/html'
@@ -23,6 +24,7 @@ export class Uploader extends React.Component
 
     @state =
       state: ''
+      uploading: false
 
 
   setOverlay: (state) ->
@@ -32,18 +34,8 @@ export class Uploader extends React.Component
 
 
   componentDidMount: =>
-    switch @props.contest.type
-      when 'art'
-        allowedExtensions = ['.jpg', '.jpeg', '.png']
-        maxSize = 8*1024*1024
-
-      when 'beatmap'
-        allowedExtensions = ['.osu', '.osz']
-        maxSize = 32*1024*1024
-
-      when 'music'
-        allowedExtensions = ['.mp3']
-        maxSize = 16*1024*1024
+    allowedExtensions = @props.contest.allowed_extensions.map (ext) -> ".#{ext.toLowerCase()}"
+    maxSize = @props.contest.max_filesize
 
 
     $dropzone = $(@dropzoneRef.current)
@@ -74,7 +66,7 @@ export class Uploader extends React.Component
         extension = /(\.[^.]+)$/.exec(file.name)[1]
 
         if !_.includes(allowedExtensions, extension.toLowerCase())
-          popup trans("contest.entry.wrong_type.#{@props.contest.type}"), 'danger'
+          popup trans('contest.entry.wrong_file_type', types: allowedExtensions.join(', ')), 'danger'
           return
 
         if file.size > maxSize
@@ -94,13 +86,17 @@ export class Uploader extends React.Component
             width: @props.contest.forced_width,
             height: @props.contest.forced_height), 'danger'
 
-      submit: ->
+      submit: =>
+        @setState uploading: true
         $.publish 'dragendGlobal'
 
-      done: (_e, data) ->
+      done: (_e, data) =>
+        @setState uploading: false
         $.publish 'contest:entries:update', data: data.result
 
-      fail: fileuploadFailCallback
+      fail: (e, data) =>
+        @setState uploading: false
+        fileuploadFailCallback(e, data)
 
 
   componentWillUnmount: =>
@@ -134,9 +130,20 @@ export class Uploader extends React.Component
       label
         className: 'contest-userentry__uploader'
         ref: @uploadContainerRef
-        span className: 'contest-userentry__icon',
-          span className: 'fas fa-plus'
-        div {}, trans('contest.entry.drop_here')
+        if @state.uploading
+          div className: 'contest-userentry__spinner',
+            el Spinner
+        else
+          el React.Fragment, null,
+            span className: 'contest-userentry__icon',
+              span className: 'fas fa-plus'
+            div {}, trans('contest.entry.drop_here')
+            div
+              className: 'contest-userentry__info'
+              div {}, trans('contest.entry.allowed_extensions', types: @props.contest.allowed_extensions.map((ext) -> ".#{ext.toLowerCase()}").join(', '))
+              if @props.contest.forced_width && @props.contest.forced_height
+                div {}, trans('contest.entry.required_dimensions', width: @props.contest.forced_width, height: @props.contest.forced_height)
+              div {}, trans('contest.entry.max_size', limit: formatBytes(@props.contest.max_filesize, 0))
 
 
   $uploadButton: =>

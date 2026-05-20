@@ -29,9 +29,13 @@ class ChatMessageEvent extends BroadcastableEventBase implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        $userIds = $this->message->isUserCommand()
+            ? [$this->message->user_id]
+            : $this->message->channel->activeUserIds();
+
         return array_map(
             fn ($userId) => new Channel("private:user:{$userId}"),
-            $this->message->channel->activeUserIds()
+            $userIds,
         );
     }
 

@@ -22,10 +22,6 @@ return [
             'generic' => 'May isang error na naganap. Subukang i-refresh ang pahina.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Hindi wastong mode ang natukoy.',
-        'standard_converts_only' => 'Walang available na mga iskor para sa hiniling na mode sa difficulty ng beatmap na ito.',
-    ],
     'checkout' => [
         'generic' => 'May nangyaring error habang hinahanda ang iyong pagsisiyasat.',
     ],

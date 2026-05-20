@@ -12,6 +12,8 @@
     <div class="download-page">
         <div class="download-page__header">
             <div class="download-page__banner">
+                <video class="download-page__banner-video" src="{{ $GLOBALS['cfg']['osu']['urls']['download_video'] }}" autoplay muted loop playsinline>
+                </video>
                 <div class="download-page__banner-content download-page__banner-content--main">
                     <div class="download-page__tagline">
                         <span class="download-page__tagline-1">{{ osu_trans('home.download.tagline_1') }}</span>

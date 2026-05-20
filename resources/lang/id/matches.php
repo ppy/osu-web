@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap yang telah dihapus',
+        'beatmap-deleted' => 'beatmap yang dihapus',
         'failed' => 'GAGAL',
         'header' => 'Pertandingan Multiplayer',
         'in-progress' => '(pertandingan sedang berlangsung)',

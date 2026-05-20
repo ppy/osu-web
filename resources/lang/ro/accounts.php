@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'dificultate cu participare ca oaspete',
             'beatmapset:modding' => 'modding beatmap-uri',
             'channel_message' => 'mesaje chat private',
+            'channel_mention' => '',
             'channel_team' => 'mesaje chat echipă',
             'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns subiect',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'ascunde avertismente pentru conținut obscen în beatmap-uri',
         'beatmapset_title_show_original' => 'arată datele melodiilor în limba originală',
         'title' => 'Opțiuni',

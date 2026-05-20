@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\Handler as ExceptionHandler;
 use App\Jobs\EsDocument;
 use App\Jobs\Notifications\ForumTopicReply;
-use App\Jobs\RegenerateBeatmapsetCover;
+use App\Jobs\RegenerateBeatmapsetMedia;
 use App\Libraries\Chat;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
@@ -49,7 +49,7 @@ class LegacyInterOpController extends Controller
 
             (new ForumTopicReply($post, $user))->dispatch();
 
-            return response(null, 204);
+            return response()->noContent();
         }
     }
 
@@ -58,13 +58,13 @@ class LegacyInterOpController extends Controller
         $beatmapset = Beatmapset::withTrashed()->findOrFail($id);
 
         if (!$beatmapset->trashed()) {
-            $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_default');
+            $job = (new RegenerateBeatmapsetMedia($beatmapset))->onQueue('beatmap_default');
             $this->dispatch($job);
         }
 
         dispatch(new EsDocument($beatmapset));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function news()
@@ -256,7 +256,8 @@ class LegacyInterOpController extends Controller
                         $sender,
                         $pmTarget,
                         presence($messageParams['message'] ?? null),
-                        $messageParams['is_action'] ?? null
+                        $messageParams['is_action'] ?? null,
+                        false,
                     );
                 } else {
                     $channel = $channels[$messageParams['target_id']] ?? null;
@@ -268,7 +269,8 @@ class LegacyInterOpController extends Controller
                         $sender,
                         $channel,
                         presence($messageParams['message'] ?? null),
-                        $messageParams['is_action'] ?? false
+                        $messageParams['is_action'] ?? false,
+                        false,
                     );
                 }
 
@@ -307,7 +309,7 @@ class LegacyInterOpController extends Controller
             '--user' => $user->getKey(),
         ]);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function userRecalculateRankedScores($id)
@@ -319,7 +321,7 @@ class LegacyInterOpController extends Controller
             $class::recalculateRankedScoreForUser($user);
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     /**

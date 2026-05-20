@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Models\OAuth\Client;
+use App\Models\OAuth\Token;
 use App\Models\User;
 use PHPUnit\Framework\Attributes\DataProvider;
 
@@ -23,7 +24,7 @@ class OAuthAuthCodeRequestTest extends TestCase
 
     public static function dataProviderForTestNonBotClientCannotRequestChatScopes()
     {
-        return static::chatScopes()->map(fn ($scope) => [$scope]);
+        return array_map(fn ($scope) => [$scope], Token::SCOPES_OWN_CLIENT);
     }
 
     #[DataProvider('dataProviderForTestBotClient')]

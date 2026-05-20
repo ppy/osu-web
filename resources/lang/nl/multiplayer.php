@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'afspeellijst',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Tijdsduur te lang.',
             'name_too_long' => '',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

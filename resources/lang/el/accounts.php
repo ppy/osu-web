@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'δυσκολία επισκέπτη',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'ιδιωτικά μηνύματα',
+            'channel_mention' => '',
             'channel_team' => 'μηνύματα συνομιλίας ομάδας',
             'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => 'απάντηση θέματος',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'απόκρυψη προειδοποιήσεων για ακατάλληλο περιεχόμενο σε beatmaps',
         'beatmapset_title_show_original' => 'εμφάνιση μεταδεδομένων beatmap στην αρχική γλώσσα',
         'title' => 'Ρυθμίσεις',

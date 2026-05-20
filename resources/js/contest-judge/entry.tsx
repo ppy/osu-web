@@ -21,7 +21,7 @@ interface Props {
   store: ContestJudgeStore;
 }
 
-const commentsMaxLength = 1000;
+const commentsMaxLength = 3000;
 
 @observer
 export default class Entry extends React.Component<Props> {

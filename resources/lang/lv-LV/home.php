@@ -64,6 +64,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Apskatīt vēl komandas meklēšanas rezultātus',
         ],
 
@@ -151,6 +152,9 @@ return [
             'download' => 'Lejupielādēt osu!',
             'support' => 'Atbalstīt osu!',
             'store' => 'osu!veikals',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

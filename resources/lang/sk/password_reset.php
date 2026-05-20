@@ -16,8 +16,10 @@ return [
         'invalid' => '',
         'is_privileged' => 'Kontaktujte peppyho lulz.',
         'missing_key' => 'Požadovaný.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Príliš veľa nepodarených pokusov.',
         'user_not_found' => 'Zadaný užívateľ neexistuje.',
+        'wait_resend' => '',
         'wrong_key' => 'Neplatný kód.',
     ],
 

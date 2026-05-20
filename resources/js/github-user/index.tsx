@@ -47,7 +47,7 @@ export default class GithubUser extends React.Component<Props> {
             <BigButton
               icon='fas fa-unlink'
               isBusy={this.unlinkXhr != null}
-              modifiers={['account-edit', 'account-edit-small', 'danger']}
+              modifiers='account-edit account-edit-small danger'
               props={{ onClick: this.onUnlinkButtonClick }}
               text={trans('accounts.github_user.unlink')}
             />

@@ -6,13 +6,16 @@
 namespace App\Transformers;
 
 use App\Models\Contest;
-use Auth;
+use App\Models\ContestEntry;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Primitive;
 use League\Fractal\Resource\ResourceInterface;
 
 class ContestTransformer extends TransformerAbstract
 {
+    const string SORT_ALPHA = 'alpha';
+    const string SORT_SHUFFLE = 'shuffle';
+
     protected array $availableIncludes = [
         'current_user_attributes',
         'entries',
@@ -21,6 +24,9 @@ class ContestTransformer extends TransformerAbstract
         'max_total_score',
         'users_voted_count',
     ];
+
+    public ?int $seed = null;
+    public ?string $sort = null;
 
     public function transform(Contest $contest)
     {
@@ -44,6 +50,8 @@ class ContestTransformer extends TransformerAbstract
             'type' => $contest->type,
             'forced_width' => $contest->getForcedWidth(),
             'forced_height' => $contest->getForcedHeight(),
+            'allowed_extensions' => $contest->getAllowedExtensions(),
+            'max_filesize' => $contest->getMaxFilesize(),
             'voting_ends_at' => json_time($contest->voting_ends_at),
         ];
     }
@@ -57,7 +65,15 @@ class ContestTransformer extends TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
+        $entries = $contest->entries;
+
+        if ($this->sort === static::SORT_ALPHA) {
+            $entries = $entries->sort(fn (ContestEntry $a, ContestEntry $b) => strnatcasecmp($a->title, $b->title));
+        } else if ($this->sort === static::SORT_SHUFFLE) {
+            seeded_shuffle($entries, $this->seed);
+        }
+
+        return $this->collection($entries, new ContestEntryTransformer());
     }
 
     public function includeMaxJudgingScore(Contest $contest): Primitive

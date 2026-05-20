@@ -333,6 +333,9 @@ return [
                     'title' => 'Zgodovina gledanih replayev',
                     'count_label' => 'Gledanih replayev',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nedavna zgodovina Kudosu točk',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Nedavne objave',
                 'show_more' => 'prikaži več objav',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

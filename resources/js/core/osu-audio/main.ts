@@ -3,6 +3,7 @@
 
 import UserPreferences from 'core/user/user-preferences';
 import { action, autorun, makeObservable } from 'mobx';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { presence } from 'utils/string';
 import Slider from './slider';
@@ -56,9 +57,9 @@ const createMainPlayer = () => {
   return player;
 };
 
-const createPagePlayer = () => {
+const createPagePlayer = (modifiers?: Modifiers) => {
   const player = document.createElement('div');
-  player.className = 'audio-player js-audio--player';
+  player.className = `${classWithModifiers('audio-player', modifiers)} js-audio--player`;
   player.innerHTML = `
     <button
     type="button"
@@ -383,7 +384,7 @@ export default class Main {
       throw new Error('audio element is missing src');
     }
 
-    const player = createPagePlayer();
+    const player = createPagePlayer(elem.dataset.modifiers);
     player.dataset.audioUrl = src;
     player.dataset.audioState = 'paused';
 

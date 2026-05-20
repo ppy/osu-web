@@ -34,7 +34,7 @@ class ApplicationsController extends Controller
 
         \Session::flash('popup', osu_trans('teams.applications.accept.ok'));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function destroy(string $teamId, string $id): Response
@@ -44,7 +44,7 @@ class ApplicationsController extends Controller
 
         \Session::flash('popup', osu_trans('teams.applications.destroy.ok'));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function reject(string $teamId, string $id): Response
@@ -58,7 +58,7 @@ class ApplicationsController extends Controller
         (new TeamApplicationReject($application, \Auth::user()))->dispatch();
         \Session::flash('popup', osu_trans('teams.applications.reject.ok'));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function store(string $teamId): Response
@@ -71,6 +71,6 @@ class ApplicationsController extends Controller
         (new TeamApplicationStore($application, $user))->dispatch();
         \Session::flash('popup', osu_trans('teams.applications.store.ok'));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }

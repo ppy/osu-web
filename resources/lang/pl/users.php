@@ -333,6 +333,9 @@ return [
                     'title' => 'Wykres obejrzanych powtórek',
                     'count_label' => 'Obejrzane powtórki:',
                 ],
+                'score_replay_stats' => [
+                    'title' => 'Najczęściej oglądane powtórki',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
@@ -399,8 +402,8 @@ return [
                 'title_longer' => 'Ostatnie posty',
                 'show_more' => 'zobacz więcej postów',
             ],
-            'quickplay' => [
-                'title' => 'Mecze w trybie szybkiej gry',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
@@ -472,8 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Szybka Gra',
         ],
 
         'not_found' => [

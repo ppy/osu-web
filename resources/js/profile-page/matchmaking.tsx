@@ -9,6 +9,7 @@ import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
+import { qtipPosition } from 'utils/qtip-helper';
 import { ProfilePageMatchmakingStatsJson } from './extra-page-props';
 
 function poolDisplayName(pool: MatchmakingPoolJson) {
@@ -40,9 +41,6 @@ function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
           {trans('rankings.matchmaking.plays')}
         </div>
         <div className='matchmaking-popup__value'>
-          {trans('rankings.matchmaking.points')}
-        </div>
-        <div className='matchmaking-popup__value'>
           {trans('rankings.matchmaking.rating')}
         </div>
       </div>
@@ -59,9 +57,6 @@ function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
           </div>
           <div className='matchmaking-popup__value'>
             {formatNumber(stats.plays)}
-          </div>
-          <div className='matchmaking-popup__value'>
-            {formatNumber(stats.total_points)}
           </div>
           <div className='matchmaking-popup__value'>
             {formatNumber(stats.rating)}{stats.is_rating_provisional ? '*' : ''}
@@ -131,12 +126,8 @@ export default class Matchmaking extends React.Component<Props> {
       },
       overwrite: false,
       position: {
-        adjust: {
-          scroll: false,
-        },
-        at: 'top left',
-        my: 'bottom left',
-        viewport: $(window),
+        ...qtipPosition('top left'),
+        adjust: { scroll: false },
       },
       show: {
         delay: 200,

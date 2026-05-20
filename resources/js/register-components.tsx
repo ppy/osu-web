@@ -138,7 +138,7 @@ core.reactTurbolinks.register('team-extra-menu', (container) => (
 
 core.reactTurbolinks.register('user-card', (container) => (
   <UserCard
-    modifiers={reqJson(container.dataset.modifiers ?? 'null')}
+    modifiers={container.dataset.modifiers}
     user={container.dataset.isCurrentUser === '1' ? core.currentUser : reqJson(container.dataset.user ?? 'null')}
   />
 ));
@@ -153,7 +153,7 @@ core.reactTurbolinks.register('user-card-tooltip', (container) => (
 $(document).ready(startListening);
 core.reactTurbolinks.register('user-cards', (container) => (
   <UserCards
-    modifiers={reqJson(container.dataset.modifiers ?? 'null')}
+    modifiers={container.dataset.modifiers}
     users={reqJson(container.dataset.users ?? '[]')}
     viewMode='card'
   />

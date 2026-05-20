@@ -333,6 +333,9 @@ return [
                     'title' => 'História Pozretých Replayov',
                     'count_label' => 'Počet zhliadnutích hier',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nedávna Kudosu História',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Nedávne príspevky',
                 'show_more' => 'pozri ďalšie príspevky',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

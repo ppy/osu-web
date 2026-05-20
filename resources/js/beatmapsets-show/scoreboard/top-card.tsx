@@ -3,7 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import FlagTeam from 'components/flag-team';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import ScorePin from 'components/score-pin';
 import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
@@ -12,16 +12,17 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
 import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
+import { rulesetNames } from 'interfaces/ruleset';
 import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
+import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, displayMods, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, displayMods, isPerfectCombo, calculateStatisticsFor, rank } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -32,7 +33,7 @@ interface Props {
 
 export default class TopCard extends React.PureComponent<Props> {
   render() {
-    const ruleset = rulesetName(this.props.score.ruleset_id);
+    const ruleset = rulesetNames[this.props.score.ruleset_id];
     const scoreAccuracy = accuracy(this.props.score);
     const avatar = <UserAvatar user={this.props.score.user} />;
 
@@ -40,7 +41,7 @@ export default class TopCard extends React.PureComponent<Props> {
       <div className={classWithModifiers('beatmap-score-top', this.props.modifiers)}>
         <a
           className='beatmap-score-top__link-container'
-          href={scoreUrl(this.props.score)}
+          href={route('scores.show', { score: this.props.score.id })}
         />
 
         <div className='beatmap-score-top__section'>
@@ -196,7 +197,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   {trans('beatmapsets.show.scoreboard.headers.mods')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--mods u-hover'>
-                  {displayMods(this.props.score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+                  <Mods mods={displayMods(this.props.score)} />
                 </div>
               </div>
             </div>

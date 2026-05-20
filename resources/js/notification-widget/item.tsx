@@ -8,7 +8,7 @@ import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import { NotificationContext } from 'notifications-context';
 import * as React from 'react';
-import { classWithModifiers, mergeModifiers, urlPresence } from 'utils/css';
+import { classWithModifiers, mergeModifiers, Modifiers, urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -21,7 +21,7 @@ interface Props {
   item: Notification;
   markRead?: () => void;
   message: string;
-  modifiers: string[];
+  modifiers?: Modifiers;
   url?: string;
   withCategory: boolean;
   withCoverImage: boolean;
@@ -91,7 +91,7 @@ export default class Item extends React.Component<Props> {
   }
 
   private renderCover() {
-    const coverUrl = this.props.withCoverImage ? this.props.item.details.coverUrl : null;
+    const coverUrl = this.props.withCoverImage ? this.props.item.details.cover_url : null;
 
     return (
       <div
@@ -127,7 +127,7 @@ export default class Item extends React.Component<Props> {
     return (
       <NotificationDeleteButton
         isDeleting={this.props.isDeleting ?? this.props.item.isDeleting}
-        modifiers={['fancy']}
+        modifiers='fancy'
         onDelete={this.props.delete}
       />
     );
@@ -153,7 +153,7 @@ export default class Item extends React.Component<Props> {
     return (
       <NotificationReadButton
         isMarkingAsRead={this.props.isMarkingAsRead ?? this.props.item.isMarkingAsRead}
-        modifiers={['fancy']}
+        modifiers='fancy'
         onMarkAsRead={this.props.markRead}
       />
     );

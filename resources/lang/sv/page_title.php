@@ -53,7 +53,7 @@ return [
             'discussion' => 'beatmapdiskussioner',
             'index' => 'beatmaplistning',
             'show' => 'beatmapinfo',
-            'versions' => '',
+            'versions' => 'slagkarta versionshistorik',
         ],
         'changelog_controller' => [
             '_' => 'ändringslogg',
@@ -72,7 +72,7 @@ return [
             'judge' => 'tävlingsbedömning',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'grupp historik',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -85,7 +85,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'matcher',
         ],
         'legal_controller' => [
             '_' => 'information',
@@ -125,7 +125,7 @@ return [
             '_' => 'användarens omslagsförinställningar',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'autentiseringsapp',
         ],
         'users_controller' => [
             '_' => 'spelarinformation',
@@ -138,7 +138,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'rums historik',
         ],
     ],
     'passport' => [

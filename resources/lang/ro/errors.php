@@ -22,10 +22,6 @@ return [
             'generic' => 'A apărut o eroare. Încearcă să reîmprospătezi pagina.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Mod specificat invalid.',
-        'standard_converts_only' => 'Niciun scor valabil pentru modul solicitat pe această dificultate beatmap.',
-    ],
     'checkout' => [
         'generic' => 'A apărut o eroare în timpul preparării comenzii tale.',
     ],

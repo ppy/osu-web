@@ -253,69 +253,6 @@ return [
             'views' => 'προβολές',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Αφαίρεση του tag \'\'added\'\'',
-            'to_0_done' => 'Το tag \'\'added\'\' αφαιρέθηκε',
-            'to_1' => 'Πρόσθεση του tag \'\'added\'\'',
-            'to_1_done' => 'To tag \'\'added\'\' προστέθηκε',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Αφαίρεση του tag \'\'assigned"',
-            'to_0_done' => 'Το tag "assigned" αφαιρέθηκε',
-            'to_1' => 'Πρόσθεση του tag "assigned"',
-            'to_1_done' => 'To tag "assigned" προστέθηκε',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Αφαίρεση του tag "confirmed"',
-            'to_0_done' => 'Το tag "confirmed" αφαιρέθηκε',
-            'to_1' => 'Πρόσθεση του tag "confirmed"',
-            'to_1_done' => 'Το tag "confirmed" προστέθηκε',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Αφαίρεση του tag "duplicate"',
-            'to_0_done' => 'To tag "duplicate" αφαιρέθηκε',
-            'to_1' => 'Πρόσθεση του tag "duplicate"',
-            'to_1_done' => 'To tag "duplicate" προστέθηκε',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Αφαίρεση του tag "invalid"',
-            'to_0_done' => 'To tag "invalid" αφαιρέθηκε',
-            'to_1' => 'Πρόσθεση του tag "invalid"',
-            'to_1_done' => 'To tag "invalid" προστέθηκε',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Αφαίρεση του tag "resolved"',
-            'to_0_done' => 'To tag "resolved" αφαιρέθηκε',
-            'to_1' => 'Πρόσθεση του tag "resolved"',
-            'to_1_done' => 'Το tag "resolved" προστέθηκε',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Αφαίρεση ετικέτας "osu!lazer"',
-            'to_0_done' => 'Αφαιρέθηκε το η "osu!lazer" ετικέτα',
-            'to_1' => 'Προσθήκη ετικέτας "osu!lazer"',
-            'to_1_done' => 'Προστέθηκε η "osu!lazer" ετικέτα',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Αφαίρεση του tag "osu!stable"',
-            'to_0_done' => 'Αφαιρέθηκε το tag "osu!stable"',
-            'to_1' => 'Προσθήκη ετικέτας "osu!stable"',
-            'to_1_done' => 'Προστέθηκε το tag "osu!stable"',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Αφαίρεση του tag "osu!web"',
-            'to_0_done' => 'Το tag "osu!web" αφαιρέθηκε',
-            'to_1' => 'Προσθήκη ετικέτας "osu!web"',
-            'to_1_done' => 'Προστέθηκε το tag "osu!web"',
-        ],
-
         'lock' => [
             'is_locked' => 'Η συζήτηση κλειδώθηκε και δεν δέχεται άλλες απαντήσεις',
             'to_0' => 'Ξεκλειδώστε το θέμα',

@@ -48,11 +48,9 @@ export class ModeSwitcher extends React.Component<Props> {
       <>
         <div className='page-extra-tabs-before' />
         <div ref={this.props.innerRef} className='page-extra-tabs'>
-          <div className='osu-page osu-page--small'>
-            <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
-              {discussionPages.map(this.renderMode)}
-            </ul>
-          </div>
+          <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
+            {discussionPages.map(this.renderMode)}
+          </ul>
         </div>
       </>
     );

@@ -24,11 +24,15 @@ return [
 
         'forum' => [
             'write' => 'Skapa och redigera forumämnen och inlägg åt dig.',
-            'write_manage' => '',
+            'write_manage' => 'Skapa och redigera forumämnen och inlägg åt dig.',
         ],
 
         'friends' => [
             'read' => 'Se vem du följer.',
+        ],
+
+        'multiplayer' => [
+            'write_manage' => '',
         ],
 
         'public' => 'Läs offentlig data för dina vägnar',

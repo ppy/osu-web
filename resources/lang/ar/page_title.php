@@ -53,7 +53,8 @@ return [
             'discussion' => 'مناقشة الخريطة',
             'index' => 'قائمة الخرائط',
             'show' => 'معلومات الخريطة',
-            'versions' => '',
+            'versions' => 'سجل إصدارات الخريطة
+',
         ],
         'changelog_controller' => [
             '_' => 'سِجل التغييرات',
@@ -72,7 +73,7 @@ return [
             'judge' => 'تحكيم المسابقة',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'سجل الغرفة',
         ],
         'groups_controller' => [
             'show' => 'المجموعات',
@@ -85,7 +86,7 @@ return [
             'testflight' => 'مشروع الأختبار',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'المباريات',
         ],
         'legal_controller' => [
             '_' => 'المعلومات',
@@ -112,11 +113,11 @@ return [
             '_' => 'الترتيب',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'الفِرق',
+            'create' => 'إنشاء فريق',
+            'edit' => 'إعدادات الفريق',
+            'leaderboard' => 'ترتيب الفريق',
+            'show' => 'معلومات الفريق',
         ],
         'tournaments_controller' => [
             '_' => 'البطولات',
@@ -125,7 +126,7 @@ return [
             '_' => 'أغلفة المستخدم المعدَّة',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'تطبيق المصادقة',
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',
@@ -138,7 +139,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'سجل الغرفة',
         ],
     ],
     'passport' => [
@@ -151,7 +152,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'أعضاء الفريق',
         ],
     ],
     'users' => [

@@ -22,7 +22,7 @@ export class UserArtEntry extends React.Component
       td className: 'osu-table__cell admin-contest-entry__user-column',
         a
           href: route('users.show', user: @props.entry.user.id)
-          el UserAvatar, user: @props.entry.user, modifiers: ['profile']
+          el UserAvatar, user: @props.entry.user, modifiers: 'profile'
           div className: 'admin-contest-entry__username',
             @props.entry.user.username
 

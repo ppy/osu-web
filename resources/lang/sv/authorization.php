@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Kan ej redigera borttagna inlägg.',
                 'locked' => 'Inlägget är låst för redigering.',
                 'no_forum_access' => 'Åtkomst till begärt forum behövs.',
-                'no_permission' => '',
+                'no_permission' => 'Inga redigeringsrättigheter.',
                 'not_owner' => 'Endast avsändaren kan redigera inlägget.',
                 'topic_locked' => 'Kan ej redigera inlägg med ett låst ämne.',
             ],

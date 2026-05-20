@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Mesaj de echipă nou',
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Ești acum un oaspete al beatmap-ului ":title"',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Ai primit un mesaj nou de la :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Există un mesaj nou în echipa ":name"',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Noutățile ”:title” au noi comentarii',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

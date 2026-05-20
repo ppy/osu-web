@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Jaunas komandas ziņas',
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Tu tagad esi ":title" ritma-mapes viesis',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Tu saņēmi jaunu ziņu no :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Ir jauna ziņa komandā ":name"',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Jaunumi ":title" ir komentāri',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

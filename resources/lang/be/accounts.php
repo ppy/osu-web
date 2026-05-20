@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'гасцявая складанасць',
             'beatmapset:modding' => 'модынг карт',
             'channel_message' => 'асабістыя паведамленні',
+            'channel_mention' => '',
             'channel_team' => 'паведамленні каманднага чата',
             'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'схаваць папярэджанні аб відавочным змесце ў картах',
         'beatmapset_title_show_original' => 'паказаць метададзеныя карты на мове арыгіналу',
         'title' => 'Налады',

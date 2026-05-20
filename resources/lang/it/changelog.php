@@ -20,7 +20,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'note di rilascio',
+            '_' => 'lista changelog',
             '_from' => 'modifiche dal :from',
             '_from_to' => 'modifiche da :from a :to',
             '_stream' => 'modifiche in :stream',
@@ -35,6 +35,6 @@ return [
         'heading' => 'Ti piace questo aggiornamento?',
         'text_1' => 'Sostieni gli sviluppi futuri di osu! e :link oggi stesso!',
         'text_1_link' => 'diventa un osu!supporter',
-        'text_2' => 'Non solo aiuterai a velocizzare lo sviluppo, ma riceverai anche funzionalità e personalizzazioni extra!',
+        'text_2' => 'Non solo aiuterai ad accelerare lo sviluppo, ma otterrai anche personalizzazioni e funzionalità extra!',
     ],
 ];

@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Новае паведамленне ад каманды',
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Цяпер вы госць бітмапы ":title"',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Вы атрымалі новае паведамленне ад :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Новае паведамленне ў чаце каманды ":name"',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Навіны ":title" маюць новыя каментарыі',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

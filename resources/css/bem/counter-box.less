@@ -2,33 +2,35 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .counter-box {
+  --counter-box-border-colour: hsla(var(--hsl-b5), 0.25);
+  --line-colour: initial;
+
   @top: counter-box;
 
-  @color-deleted: black;
-  @color-mapper-notes: var(--beatmapset-discussion-colour--mapper_note);
-  @color-mine: @yellow-darker;
-  @color-pending: @pink-darker;
-  @color-praises: @blue-darker;
-  @color-resolved: @green;
-  @color-total: #fff;
-
-  .border(@color) {
-    box-shadow: 0 0 0 2px @color;
-  }
-
-  .with-active(@color) {
-    &:hover,
-    &:focus,
-    &:active,
-    &.js-active {
-      .border(@color);
+  @types: {
+    deleted: black;
+    pending: @pink-darker;
+    praises: @blue-darker;
+    mapper-notes: var(--beatmapset-discussion-colour--mapper_note);
+    mine: @yellow-darker;
+    resolved: @green;
+    total: #fff;
+  };
+  each(@types, {
+    &--@{key} {
+      --line-colour: @value;
+      &:hover,
+      &:focus,
+      &:active,
+      &.js-active {
+        --counter-box-border-colour: @value;
+      }
     }
-  }
+  });
 
   .default-border-radius();
-  .border(hsla(var(--hsl-b5), 0.25));
   background-color: @osu-colour-b5;
-
+  box-shadow: 0 0 0 2px var(--counter-box-border-colour);
   color: @osu-colour-c1;
 
   display: inline-flex;
@@ -63,34 +65,6 @@
     flex-direction: column;
   }
 
-  &--deleted {
-    .with-active(@color-deleted);
-  }
-
-  &--pending {
-    .with-active(@color-pending);
-  }
-
-  &--praises {
-    .with-active(@color-praises);
-  }
-
-  &--mapper-notes {
-    .with-active(@color-mapper-notes);
-  }
-
-  &--mine {
-    .with-active(@color-mine);
-  }
-
-  &--resolved {
-    .with-active(@color-resolved);
-  }
-
-  &--total {
-    .with-active(@color-total);
-  }
-
   &__content {
     line-height: 1;
   }
@@ -108,34 +82,7 @@
     .default-border-radius();
     width: 2px;
     margin-left: 10px;
-
-    .@{top}--deleted & {
-      background-color: @color-deleted;
-    }
-
-    .@{top}--mapper-notes & {
-      background-color: @color-mapper-notes;
-    }
-
-    .@{top}--pending & {
-      background-color: @color-pending;
-    }
-
-    .@{top}--praises & {
-      background-color: @color-praises;
-    }
-
-    .@{top}--mine & {
-      background-color: @color-mine;
-    }
-
-    .@{top}--resolved & {
-      background-color: @color-resolved;
-    }
-
-    .@{top}--total & {
-      background-color: @color-total;
-    }
+    background-color: var(--line-colour);
   }
 
   &__title {

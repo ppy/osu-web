@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Færdigpakkede samlinger af beatmaps bygget op omkring et fælles tema.',
-        'empty' => '',
+        'empty' => 'Kommer snart!',
         'nav_title' => 'katalog',
         'title' => 'Beatmap Pakker',
 
@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'af :author',
         'download' => 'Download',
         'item' => [
             'cleared' => 'ryddet',
@@ -32,8 +32,8 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'Spotlights',
-        'featured' => '',
-        'loved' => '',
+        'featured' => 'Fremhævet Kunstner',
+        'loved' => 'Projekt Elsket',
         'standard' => 'Standard',
         'theme' => 'Tema',
         'tournament' => 'Turnering',

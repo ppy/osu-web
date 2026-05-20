@@ -72,6 +72,8 @@ class Handler extends ExceptionHandler
             return 401;
         } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
+        } elseif ($e instanceof \Illuminate\Validation\ValidationException) {
+            return 422;
         } elseif (static::isOAuthSessionException($e)) {
             return 422;
         } else {

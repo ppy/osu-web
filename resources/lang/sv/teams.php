@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited medlem|:count_delimited medlemmar',
     ],
 
     'create' => [
@@ -157,9 +157,11 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
+            'empty_slots' => ':count_delimited hål tillgängliga|:count_delimited hål tillgängliga',
+            'first_places' => '',
             'leader' => 'Lagledare ',
             'rank' => 'Rank',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

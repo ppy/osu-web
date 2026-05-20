@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'taisymai',
             'playlists' => 'grojaraščiai',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'žaidimas tinkle',
             'show' => 'info',
         ],

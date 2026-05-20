@@ -61,7 +61,7 @@ class UserTotpKey extends Model
 
     public static function isValidKey(string $uri, string $key): bool
     {
-        return Factory::loadFromProvisioningUri($uri)->verify($key, null, 10);
+        return Factory::loadFromProvisioningUri($uri, new InternalClock())->verify($key, null, 10);
     }
 
     public function user(): BelongsTo

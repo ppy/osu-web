@@ -146,10 +146,12 @@ return [
             'nominators' => 'Nominatorer',
             'nsfw' => 'Explicit innehåll',
             'offset' => 'Online-förskjutning',
+            'pack_tags' => '',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
             'storyboard' => 'Denna beatmap innehåller storyboard',
             'success-rate' => 'Genomsnittig Succe',
+            'success_rate_plays' => '',
             'user_tags' => 'Använartaggar',
             'video' => 'Denna beatmap innehåller video',
         ],
@@ -224,8 +226,8 @@ return [
             'rating-spread' => 'Betygsspridning',
             'nominations' => 'Nomineringar',
             'playcount' => 'Antal gånger spelad',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Favoriter',
+            'no_favourites' => 'Inga favoriter än',
         ],
 
         'status' => [

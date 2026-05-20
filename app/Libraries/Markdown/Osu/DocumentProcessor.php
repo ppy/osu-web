@@ -149,7 +149,8 @@ class DocumentProcessor
 
         $title = presence($this->getText($this->node));
         $slug = $this->node->data['attributes']['id']
-            ?? presence(mb_strtolower(strtr($title ?? '', ' ', '-')))
+            // turbo can't handle non-percent encoded id
+            ?? presence(urlencode(mb_strtolower(strtr($title ?? '', ' ', '-'))))
             ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {

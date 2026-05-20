@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'beatmapekben lévő felnőtt tartalmakra vonatkozó figyelmeztetések elrejtése',
         'beatmapset_title_show_original' => 'a beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',

@@ -245,6 +245,7 @@ return [
             'prompt' => 'напішыце ключавыя словы...',
             'login_required' => 'Увайдзіце, каб шукаць.',
             'options' => 'Больш параметраў пошуку',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Фільтрацыя па :filters патрабуе наяўнасці актыўнага тэга osu!supporter',
             'not-found' => 'няма вынікаў',
             'not-found-quote' => '... няма, нічога не знойдзена.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Фільтрацыі па :filters патрабуецца :link',
                 'link_text' => 'тэг osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

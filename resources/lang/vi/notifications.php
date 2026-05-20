@@ -125,6 +125,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Tin nhắn mới của đội',
 
@@ -162,10 +172,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Tin tức (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -221,6 +231,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Tin tức',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Bạn hiện là khách của beatmap ":title"',
@@ -258,6 +270,10 @@ return [
             'channel' => [
                 'channel_message' => 'Bạn nhận được tin nhắn mới từ :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Có tin nhắn mới trong đội ":name"',
             ],
@@ -272,10 +288,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Tin mới ":title" đã có bình luận mới',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'obtiažnosť hosťa',
             'beatmapset:modding' => 'módovanie beatmáp',
             'channel_message' => 'správy súkromného chatu',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'nové komentáre
 ',
@@ -107,6 +108,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'skryť varovania pre explicitný obsah v beatmapách',
         'beatmapset_title_show_original' => 'zobraziť metadáta beatmapy v originálnom jazyku',
         'title' => 'Možnosti',

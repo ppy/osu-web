@@ -58,12 +58,6 @@ return [
         'send' => 'Pošlji',
     ],
 
-    'no-conversations' => [
-        'howto' => "Začni pogovor iz igralčevega profila ali pojavnega okna igralčeve kartice.",
-        'lazer' => 'Javni kanali, ki se jim pridružiš preko <a href=":link">osu!lazer</a> bodo tudi prikazani tukaj.',
-        'title' => 'še ni pogovorov',
-    ],
-
     'join_channels' => [
         'loading' => '',
     ],

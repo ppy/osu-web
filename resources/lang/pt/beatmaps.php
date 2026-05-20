@@ -246,6 +246,7 @@ return [
             'prompt' => 'escreve em palavras-chave...',
             'login_required' => 'Inicia sessão para procurares',
             'options' => 'Mais opções de pesquisa',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtrar por :filters requer uma etiqueta osu!supporter',
             'not-found' => 'sem resultados',
             'not-found-quote' => '... não, nada encontrado.',
@@ -275,6 +276,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Filtrar por :filters requer um :link ativo',
                 'link_text' => 'etiqueta de osu!supporter',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

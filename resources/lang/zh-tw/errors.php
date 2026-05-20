@@ -22,10 +22,6 @@ return [
             'generic' => '發生未知錯誤，請嘗試重新載入頁面。',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => '指定的遊戲模式無效。',
-        'standard_converts_only' => '此遊戲模式下的圖譜難度尚未有分數。',
-    ],
     'checkout' => [
         'generic' => '處理您的訂單時發生錯誤。',
     ],

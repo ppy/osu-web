@@ -333,6 +333,9 @@ return [
                     'title' => 'Povijest gledanja repriza',
                     'count_label' => 'Repriza gledano',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nedavna povijest Kudosua',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Nedavne objave',
                 'show_more' => 'pogledaj još objava',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

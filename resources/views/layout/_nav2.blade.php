@@ -2,6 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $currentUser ??= Auth::user();
+@endphp
 <div class="nav2 js-nav-button">
     <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
@@ -93,7 +96,22 @@
             {!! app('layout-cache')->getLocalesDesktop() !!}
         </div>
 
-        @if (Auth::user() !== null)
+        @if ($currentUser !== null)
+            @if ($GLOBALS['cfg']['osu']['user']['wrapped_enabled'])
+                <div class="nav2__col">
+                    <a
+                        href="{{ route('wrapped', $currentUser->getKey()) }}"
+                        class="{{ class_with_modifiers('nav-button', [
+                            'wrapped' => true,
+                            'wrapped-first' => !has_viewed_wrapped(),
+                        ]) }}"
+                        title="View your summary of 2025!"
+                        data-tooltip-position="bottom center"
+                    >
+                        <span class="fas fa-star"></span>
+                    </a>
+                </div>
+            @endif
             <div class="nav2__col nav2__col--notifications">
                 <div class="nav2__notification-container">
                     <a

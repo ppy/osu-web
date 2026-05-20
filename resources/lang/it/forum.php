@@ -26,10 +26,10 @@ return [
 
     'forums' => [
         'forums' => 'Forum',
-        'latest_post' => 'Post più recente',
+        'latest_post' => 'Ultimo post',
 
         'index' => [
-            'title' => 'Indice Forum',
+            'title' => 'Indice forum',
         ],
 
         'topics' => [
@@ -44,8 +44,8 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Vuoi veramente eliminare il post?',
-        'confirm_restore' => 'Vuoi veramente ripristinare il post?',
+        'confirm_destroy' => 'Sei sicuro di voler eliminare il post?',
+        'confirm_restore' => 'Sei sicuro di voler ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
         'posted_by_in' => 'inviato da :username in :forum',
@@ -76,8 +76,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Vuoi veramente eliminare il topic?',
-        'confirm_restore' => 'Vuoi veramente ripristinare il topic?',
+        'confirm_destroy' => 'Sei sicuro di voler eliminare il topic?',
+        'confirm_restore' => 'Sei sicuro di voler ripristinare il topic?',
         'deleted' => 'discussione eliminata',
         'go_to_latest' => 'guarda l\'ultimo post',
         'go_to_unread' => 'vedi ultimo post non letto',
@@ -86,7 +86,7 @@ return [
         'latest_post' => ':when da :user',
         'latest_reply_by' => 'ultima risposta di :user',
         'new_topic' => 'Nuovo topic',
-        'new_topic_login' => 'Effettua l\'accesso per postare un nuovo topic',
+        'new_topic_login' => 'Accedi per postare un nuovo topic',
         'post_reply' => 'Posta',
         'reply_box_placeholder' => 'Scrivi qui per rispondere',
         'reply_title_prefix' => 'Re',
@@ -253,69 +253,6 @@ return [
             'views' => 'visualizzazioni',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Rimuovi tag "aggiunto"',
-            'to_0_done' => 'Rimosso tag "aggiunto"',
-            'to_1' => 'Aggiungi tag "aggiunto"',
-            'to_1_done' => 'Aggiunto tag "aggiunto"',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Rimuovi tag "assegnato"',
-            'to_0_done' => 'Rimosso tag "assegnato"',
-            'to_1' => 'Aggiungi tag "assegnato"',
-            'to_1_done' => 'Aggiunto tag "assegnato"',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Rimuovi tag "confermato"',
-            'to_0_done' => 'Rimosso tag "confermato"',
-            'to_1' => 'Aggiungi tag "confermato"',
-            'to_1_done' => 'Aggiunto tag "confermato"',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Rimuovi tag "duplicato"',
-            'to_0_done' => 'Rimosso tag "duplicato"',
-            'to_1' => 'Aggiungi tag "duplicato"',
-            'to_1_done' => 'Aggiunto tag "duplicato"',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Rimuovi tag "invalido"',
-            'to_0_done' => 'Rimosso tag "invalido"',
-            'to_1' => 'Aggiungi tag "invalido"',
-            'to_1_done' => 'Aggiunto tag "invalido"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Rimuovi tag "risolto"',
-            'to_0_done' => 'Rimosso tag "risolto"',
-            'to_1' => 'Aggiungi tag "risolto"',
-            'to_1_done' => 'Aggiunto tag "risolto"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Rimuovi il tag "osu!lazer"',
-            'to_0_done' => 'Rimosso il tag "osu!lazer"',
-            'to_1' => 'Aggiungi il tag "osu!lazer"',
-            'to_1_done' => 'Aggiunto il tag "osu!lazer"',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Rimuovi il tag "osu!stable"',
-            'to_0_done' => 'Rimosso il tag "osu!stable"',
-            'to_1' => 'Aggiungi il tag "osu!stable"',
-            'to_1_done' => 'Aggiunto il tag "osu!stable"',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Rimuovi il tag "osu!web"',
-            'to_0_done' => 'Rimosso il tag "osu!web"',
-            'to_1' => 'Aggiungi il tag "osu!web"',
-            'to_1_done' => 'Aggiunto il tag "osu!web"',
-        ],
-
         'lock' => [
             'is_locked' => 'Questo topic è bloccato e non si può più rispondere',
             'to_0' => 'Sblocca topic',
@@ -327,7 +264,7 @@ return [
         ],
 
         'moderate_move' => [
-            'title' => 'Muovi in un altro forum',
+            'title' => 'Sposta in un altro forum',
         ],
 
         'moderate_pin' => [

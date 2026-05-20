@@ -37,6 +37,6 @@ class ReplayFile implements ScoreReplayFileInterface
 
     private function storage(): Filesystem
     {
-        return \Storage::disk("{$GLOBALS['cfg']['filesystems']['default']}-solo-replay");
+        return storage_disk('replay');
     }
 }

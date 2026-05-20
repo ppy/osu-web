@@ -1,0 +1,45 @@
+osu file format v5
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: 73743
+Countdown: 1
+SampleSet: Soft
+
+[Metadata]
+Title:TestTitle
+Artist:TestArtist
+Creator:TestUser
+Version:Normal
+
+[Difficulty]
+HPDrainRate:4
+CircleSize:3
+OverallDifficulty:5
+SliderMultiplier:1.2
+SliderTickRate:1
+
+[Events]
+//Background and Video events
+//Break Periods
+//Storyboard Layer 0 (Background)
+//Storyboard Layer 1 (Failing)
+//Storyboard Layer 2 (Passing)
+//Storyboard Layer 3 (Foreground)
+4,3,1,"arrow.png",230,150
+ L,68700,3
+  S,0,0,400,1,1.05
+  R,0,0,400,0.1,-0.2
+ F,0,68700,69000,0,1
+ C,0,68700,70000,255,200,200,255,0,0
+//Storyboard Sound Samples
+//Background Colour Transformations
+3,100,163,162,255
+
+[TimingPoints]
+15050,431.64284,4,2,1,100
+
+[HitObjects]
+424,192,8143,5,2
+256,80,9007,1,0

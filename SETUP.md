@@ -13,6 +13,8 @@ There are a few different options to get started:
 - elasticsearch 6+
 - redis
 
+Current targeted PHP and NodeJS versions can be found in [`.php-version`](.php-version) and [`.node-version`](.node-version).
+
 ### Clone the git repository
 
 ```
@@ -129,7 +131,6 @@ There are multiple services involved:
 - php: main service for php server. Also serves as entry point for doing other stuff like testing etc
 - assets: builds assets. It sometimes behaves weirdly in which case try restarting it
 - job: runs queued job
-- schedule: runs scheduled job every 5 minutes
 - migrator: prepare database and elasticsearch (service should exit with status 0 after finishing its task)
 - beatmap-difficulty-lookup-cache: for computing beatmap difficulty attributes
 - notification-server: main service for notification websocket server

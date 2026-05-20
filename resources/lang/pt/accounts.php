@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'dificuldade de convidado',
             'beatmapset:modding' => 'modificações de beatmaps',
             'channel_message' => 'Mensagens do chat privado',
+            'channel_mention' => '',
             'channel_team' => 'mensagens da equipa',
             'comment_new' => 'Novos comentários ',
             'forum_topic_reply' => 'resposta a um tópico',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'ocultar avisos para conteúdo explícito em beatmaps',
         'beatmapset_title_show_original' => 'mostrar os metadados do beatmap no idioma original',
         'title' => 'Opções',

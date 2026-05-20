@@ -33,7 +33,7 @@ return [
     ],
 
     'staff_log' => [
-        '_' => 'Riwayat grup yang lebih lawas dapat ditemukan di :wiki_articles.',
+        '_' => 'Riwayat grup yang lebih lawas bisa ditemukan di :wiki_articles.',
         'wiki_articles' => 'artikel wiki log staf',
     ],
 ];

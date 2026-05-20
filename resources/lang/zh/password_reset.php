@@ -15,14 +15,16 @@ return [
         'expired' => '验证码已过期。',
         'invalid' => '发送验证码时出现意外错误。',
         'is_privileged' => '请联系高级管理员进行账户恢复。',
-        'missing_key' => '必填',
-        'too_many_tries' => '重试次数过多',
-        'user_not_found' => '请求的用户不存在',
+        'missing_key' => '必填。',
+        'too_many_requests' => '密码重置请求次数已达上限。请联系支持人员以恢复账户。',
+        'too_many_tries' => '重试次数过多。',
+        'user_not_found' => '请求的用户不存在。',
+        'wait_resend' => '请稍等。',
         'wrong_key' => '验证码不正确。',
     ],
 
     'notice' => [
-        'sent' => '检查您邮箱中的验证码',
+        'sent' => '检查您邮箱中的验证码。',
         'saved' => '密码已重设！',
     ],
 

@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Missatge d\'equip nou',
 
@@ -161,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Notícies (:series):',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Notícies',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Ara ets un convidat del mapa «:title»',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Has rebut un nou missatge de :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Hi ha un missatge a l\'equip «:name».',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Les novetats ":title" tenen nous comentaris',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

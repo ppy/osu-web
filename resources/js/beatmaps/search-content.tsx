@@ -1,6 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import notFoundImgUrl from '@images/layout/beatmaps/not-found.png';
+import notFoundImgUrl2x from '@images/layout/beatmaps/not-found@2x.png';
+import supporterRequiredImgUrl from '@images/layout/beatmaps/supporter-required.png';
+import supporterRequiredImgUrl2x from '@images/layout/beatmaps/supporter-required@2x.png';
 import BeatmapsetCardSizeSelector from 'beatmaps/beatmapset-card-size-selector';
 import VirtualListMeta from 'beatmaps/virtual-list-meta';
 import BeatmapsetPanel, { beatmapsetCardSizes } from 'beatmapset-panel';
@@ -49,7 +53,8 @@ const EmptyList = () => (
   <div className='beatmapsets__empty'>
     <Img2x
       alt={trans('beatmaps.listing.search.not-found')}
-      src='/images/layout/beatmaps/not-found.png'
+      src={notFoundImgUrl}
+      src2x={notFoundImgUrl2x}
       title={trans('beatmaps.listing.search.not-found')}
     />
     {trans('beatmaps.listing.search.not-found-quote')}
@@ -108,6 +113,13 @@ export class SearchContent extends React.Component<Props> {
               </div>
             )}
             <div className='beatmapsets__content js-audio--group'>
+              {this.controller.filters.rank != null &&
+                <div className='wiki-notice wiki-notice--beatmapset-search'>
+                  <span className='fas fa-info-circle' />
+                  {' '}
+                  {trans('beatmaps.listing.search.rank_filter_note')}
+                </div>
+              }
               {this.controller.isSupporterMissing ? this.renderSupporterRequired() : this.renderList() }
             </div>
             {!this.controller.isSupporterMissing && (
@@ -145,7 +157,8 @@ export class SearchContent extends React.Component<Props> {
       <div className='beatmapsets__empty'>
         <Img2x
           alt={trans('beatmaps.listing.search.supporter_filter', { filters })}
-          src='/images/layout/beatmaps/supporter-required.png'
+          src={supporterRequiredImgUrl}
+          src2x={supporterRequiredImgUrl2x}
           title={trans('beatmaps.listing.search.supporter_filter', { filters })}
         />
         <p>

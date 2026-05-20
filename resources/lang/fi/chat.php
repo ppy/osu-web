@@ -58,12 +58,6 @@ return [
         'send' => 'Lähetä',
     ],
 
-    'no-conversations' => [
-        'howto' => "Aloita keskusteluja käyttäjän profiilista tai käyttäjäkortti-ikkunasta.",
-        'lazer' => 'Julkiset kanavat joihin olet liittynyt <a href=":link">osu!lazerilla</a> näkyvät myös täällä.',
-        'title' => 'ei keskusteluja...',
-    ],
-
     'join_channels' => [
         'loading' => 'Ladataan kanavaluetteloa...',
     ],

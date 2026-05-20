@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Dimain oleh',
+            'played_on' => '',
             'submitted_on' => 'Diserahkan pada',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Pangkat Kebangsaan',

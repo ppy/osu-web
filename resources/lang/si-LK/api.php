@@ -31,6 +31,10 @@ return [
             'read' => '',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => '',
     ],
 ];

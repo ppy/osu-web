@@ -253,69 +253,6 @@ return [
             'views' => 'pelihatan',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Padam tag "added"',
-            'to_0_done' => 'Tag "added" dipadam',
-            'to_1' => 'Tambah tag "added"',
-            'to_1_done' => 'Tag "added" ditambah',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Padam tag "assigned"',
-            'to_0_done' => 'Tag "assigned" dipadam',
-            'to_1' => 'Tambah tag "assigned"',
-            'to_1_done' => 'Tag "assigned" ditambah',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Padam tag "confirmed"',
-            'to_0_done' => 'Tag "confirmed" dipadam',
-            'to_1' => 'Tambah tag "confirmed"',
-            'to_1_done' => 'Tag "confirmed" ditambah',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Padam tag "duplicate"',
-            'to_0_done' => 'Tag "duplicate" dipadam',
-            'to_1' => 'Tambah tag "duplicate"',
-            'to_1_done' => 'Tag "duplicate" ditambah',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Padam tag "invalid"',
-            'to_0_done' => 'Tag "invalid" dipadam',
-            'to_1' => 'Tambah tag "invalid"',
-            'to_1_done' => 'Tag "invalid" ditambah',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Padam tag "resolved"',
-            'to_0_done' => 'Tag "resolved" dipadam',
-            'to_1' => 'Tambah tag "resolved"',
-            'to_1_done' => 'Tag "resolved" ditambah',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Padam tag "osu!lazer"',
-            'to_0_done' => 'Tag "osu!lazer" dipadam',
-            'to_1' => 'Tambah tag "osu!lazer"',
-            'to_1_done' => 'Tag "osu!lazer" ditambah',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Padam tag "osu!stable"',
-            'to_0_done' => 'Tag "osu!stable" dipadam',
-            'to_1' => 'Tambah tag "osu!stable"',
-            'to_1_done' => 'Tag "osu!stable" ditambah',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Padam tag "osu!web"',
-            'to_0_done' => 'Tag "osu!web" dipadam',
-            'to_1' => 'Tambah tag "osu!web"',
-            'to_1_done' => 'Tag "osu!web" ditambah',
-        ],
-
         'lock' => [
             'is_locked' => 'Tajuk ini dikunci dan tidak boleh dibalas',
             'to_0' => 'Buka kunci tajuk',

@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'қонақтық қиындық',
             'beatmapset:modding' => 'карта модтау',
             'channel_message' => 'жеке хабарламалар',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'жаңа пікірлер',
             'forum_topic_reply' => 'тақырып жауабы',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'карталардағы ерсі контент ескертулерін жасыру',
         'beatmapset_title_show_original' => 'карта метадеректерін түпнұсқа тілінде көрсету',
         'title' => 'Баптаулар',

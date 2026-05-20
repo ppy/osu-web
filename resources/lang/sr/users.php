@@ -333,6 +333,9 @@ return [
                     'title' => 'Историја погледаних резултата',
                     'count_label' => 'Погледани Резултати',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Скорија kudosu историја',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Скорије Објаве',
                 'show_more' => 'видите још објава',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

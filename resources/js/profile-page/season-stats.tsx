@@ -9,6 +9,7 @@ import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
+import { qtipPosition } from 'utils/qtip-helper';
 
 function colourStyle(tier: string) {
   return {
@@ -101,13 +102,11 @@ export default class SeasonStats extends React.Component<Props> {
       },
       overwrite: false,
       position: {
+        ...qtipPosition('top center'),
         adjust: {
           method: 'shift flip',
           scroll: false,
         },
-        at: 'top center',
-        my: 'bottom center',
-        viewport: $(window),
       },
       show: {
         delay: 200,

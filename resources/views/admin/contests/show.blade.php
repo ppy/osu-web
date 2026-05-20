@@ -8,7 +8,10 @@
 
     if ($contest->isJudged()) {
         foreach ($contest->judges as $judge) {
-            $hasMissingVotes |= $judgeVoteCounts[$judge->getKey()]->judge_vote_count ?? 0 !== $entriesCount;
+            if (($judgeVoteCounts[$judge->getKey()]->judge_vote_count ?? 0) !== $entriesCount) {
+                $hasMissingVotes = true;
+                break;
+            }
         }
     }
 @endphp

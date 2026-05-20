@@ -2,10 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import FlagCountry from 'components/flag-country';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import UserLink from 'components/user-link';
 import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
-import { rulesetIdToName } from 'interfaces/ruleset';
+import { rulesetNames } from 'interfaces/ruleset';
 import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -32,7 +32,7 @@ function renderVersion(props: Props) {
   return (
     <a href={route('beatmaps.show', { beatmap: props.score.beatmap_id })}>
       <span
-        className={`fal fa-extra-mode-${rulesetIdToName[props.score.ruleset_id]}`}
+        className={`fal fa-extra-mode-${rulesetNames[props.score.ruleset_id]}`}
       /> {version}
     </a>
   );
@@ -49,9 +49,7 @@ export default observer(function Score(props: Props) {
 
   return (
     <div className={classWithModifiers('mp-history-player-score', { team: props.showTeam })}>
-      <div
-        className='mp-history-player-score__shapes'
-        style={{ backgroundImage: `url(/images/layout/mp-history/shapes-team-${team}.svg)` }} />
+      <div className={classWithModifiers('mp-history-player-score__shapes', team)} />
       <div className='mp-history-player-score__main'>
         <div className={classWithModifiers('mp-history-player-score__info-box', ['user'])}>
           <div className='mp-history-player-score__username-box'>
@@ -59,7 +57,7 @@ export default observer(function Score(props: Props) {
               className='mp-history-player-score__country-flag'
               href={route('rankings', {
                 country: user.country?.code,
-                mode: rulesetIdToName[props.score.ruleset_id],
+                mode: rulesetNames[props.score.ruleset_id],
                 type: 'performance',
               })}
             >
@@ -76,7 +74,7 @@ export default observer(function Score(props: Props) {
           )}
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'mods')}>
-          {props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+          <Mods mods={props.score.mods} />
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'stats')}>
           <div className={classWithModifiers('mp-history-player-score__stat-row', 'first')}>

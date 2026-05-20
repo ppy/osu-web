@@ -15,7 +15,7 @@ import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { makeSearchQueryOption } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import { present } from 'utils/string';
 import Controller from './controller';
 import MetadataEditor from './metadata-editor';
@@ -228,6 +228,27 @@ export default class Info extends React.Component<Props> {
                 </div>
               </div>
             }
+
+            {this.controller.beatmapset.pack_tags.length > 0 &&
+              <div className='beatmapset-info__row'>
+                <h3 className='beatmapset-info__header beatmapset-info__header--sticky'>
+                  {trans('beatmapsets.show.info.pack_tags')}
+                </h3>
+                <div>
+                  {this.controller.beatmapset.pack_tags.map((pack, i) => (
+                    <React.Fragment key={`${pack}-${i}`}>
+                      {i !== 0 && ', '}
+                      <a
+                        className='beatmapset-info__link'
+                        href={route('packs.show', pack)}
+                      >
+                        {pack}
+                      </a>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            }
           </div>
           {this.withEditMetadata && this.renderEditMetadataButton()}
         </div>
@@ -344,19 +365,22 @@ export default class Info extends React.Component<Props> {
       );
     }
 
+    const successPercent = this.controller.currentBeatmap.passcount / Math.max(1, this.controller.currentBeatmap.playcount);
+
     return (
       <div className='beatmap-success-rate'>
         <h3 className='beatmap-success-rate__header'>
           {trans('beatmapsets.show.info.success-rate')}
         </h3>
 
-        <Bar
-          current={this.controller.currentBeatmap.passcount}
-          modifiers='beatmap-success-rate'
-          textPrecision={1}
-          title={`${formatNumber(this.controller.currentBeatmap.passcount)} / ${formatNumber(this.controller.currentBeatmap.playcount)}`}
-          total={this.controller.currentBeatmap.playcount}
-        />
+        <Bar modifiers='beatmap-success-rate' value={successPercent} />
+        <div className='beatmap-success-rate__count-text'>
+          {formatNumber(successPercent, 1, { style: 'percent' })}
+          {' '}
+          ({transChoice('beatmapsets.show.info.success_rate_plays', this.controller.currentBeatmap.playcount, {
+            passes: formatNumber(this.controller.currentBeatmap.passcount),
+          })})
+        </div>
 
         <h3 className='beatmap-success-rate__header'>
           {trans('beatmapsets.show.info.points-of-failure')}

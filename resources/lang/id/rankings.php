@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Jumlah Permainan',
+        'points' => 'Poin',
+        'provisional' => 'Jumlah permainan belum mencukupi untuk menentukan rating secara akurat',
+        'rating' => 'Rating',
+        'wins' => 'Menang',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Nama Ruangan',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => 'Data sedang diproses...',
-        'last_updated' => '',
+        'last_updated' => 'Terakhir diperbarui',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlight (versi lawas)',
+        'featured' => 'sorotan',
+        'season_room' => 'ruangan musim',
+        'seasons' => 'musim',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'tantangan harian',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'permainan kilat',
+        'playlists' => 'playlist',
         'team' => 'tim',
         'top_plays' => 'permainan terbaik',
     ],

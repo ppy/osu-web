@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
         'comment_reply' => 'recibir notificaciones de respuestas a tus comentarios',
-        'news_post' => '',
+        'news_post' => 'recibir notificaciones de nuevas noticias',
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que cree',
 
@@ -89,12 +89,13 @@ return [
             'beatmap_owner_change' => 'dificultades de invitados',
             'beatmapset:modding' => 'modding de mapas',
             'channel_message' => 'mensajes de chat privados',
+            'channel_mention' => '',
             'channel_team' => 'mensajes del chat del equipo',
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo',
             'mapping' => 'creadores de mapas',
-            'news_post' => '',
+            'news_post' => 'noticias',
             'push' => 'push',
         ],
     ],
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'mostrar mapas con fondos de anime',
         'beatmapset_show_nsfw' => 'ocultar advertencias para contenido explícito en mapas',
         'beatmapset_title_show_original' => 'mostrar datos de mapas en su idioma original',
         'title' => 'Opciones',

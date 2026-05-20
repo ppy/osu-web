@@ -333,6 +333,9 @@ return [
                     'title' => 'سابقه تماشای بازپخش ها',
                     'count_label' => 'بازپخش های تماشا شده',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'تاریخچه kudosu اخیر',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'پست های اخیر',
                 'show_more' => 'دیدن پست های بیشتر',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

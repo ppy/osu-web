@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Spiele',
+        'points' => 'Punkte',
+        'provisional' => 'Zur genauen Ermittlung einer Wertung wurden noch nicht genug Runden absolviert',
+        'rating' => 'Wertung',
+        'wins' => 'Siege',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Raumname',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => 'Die Daten werden noch verarbeitet...',
-        'last_updated' => '',
+        'last_updated' => 'Zuletzt aktualisiert',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'Spotlights (alt)',
+        'featured' => 'Empfohlen',
+        'season_room' => 'Season-Raum',
+        'seasons' => 'Seasons',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'Tägliche Herausforderung',
         'global' => 'Global',
         'kudosu' => 'Kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'Quick Play',
+        'playlists' => 'Playlists',
         'team' => 'Teams',
         'top_plays' => 'Top-Spiele',
     ],
@@ -85,7 +85,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Enddatum',
-        'map_count' => 'Map-Anzahl',
+        'map_count' => 'Beatmap-Anzahl',
         'participants' => 'Teilnehmer',
         'start_date' => 'Startdatum',
     ],

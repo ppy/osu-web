@@ -58,12 +58,6 @@ return [
         'send' => 'Siųsti',
     ],
 
-    'no-conversations' => [
-        'howto' => "Pradėkite pokalbį iš vartotojo profilio arba iššokančios kortelės.",
-        'lazer' => 'Vieši kanalai prisijungti per <a href=":link">osu!lazer</a> bus matomi ir čia.',
-        'title' => 'kol kas pokalbių nėra',
-    ],
-
     'join_channels' => [
         'loading' => 'Kraunamas kanalų sąrašas...',
     ],

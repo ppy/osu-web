@@ -93,7 +93,6 @@ export default class ConversationView extends React.Component<Props> {
     return conversationStack;
   }
 
-  @computed
   private get currentChannel() {
     return core.dataStore.chatState.selectedChannel;
   }

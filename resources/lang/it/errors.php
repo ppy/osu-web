@@ -22,10 +22,6 @@ return [
             'generic' => 'Si è verificato un errore. Prova a ricaricare la pagina.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Modalità specificata non valida.',
-        'standard_converts_only' => 'Nessuno score disponibile per la modalità richiesta in questa difficoltà della beatmap.',
-    ],
     'checkout' => [
         'generic' => 'Si è verificato un errore durante la preparazione del tuo checkout.',
     ],

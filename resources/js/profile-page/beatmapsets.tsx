@@ -69,6 +69,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
     const state = this.props.controller.state.lazy.beatmaps?.[section.key];
     if (state == null) return;
+    if (state.count === 0 && section.key !== 'favourite') return;
 
     return (
       <React.Fragment key={section.key}>
@@ -87,7 +88,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
               {...state.pagination}
               callback={this.onShowMore}
               data={section.urlType}
-              modifiers={['profile-page', 'profile-page-beatmapsets']}
+              modifiers='profile-page profile-page-beatmapsets'
             />
           </div>
         )}

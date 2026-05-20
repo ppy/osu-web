@@ -24,11 +24,15 @@ return [
 
         'forum' => [
             'write' => 'Luoda ja muokata foorumin aiheita ja viestejä sinun nimissäsi.',
-            'write_manage' => '',
+            'write_manage' => 'Hallinnoi foorumiketjuja ja viestejä puolestasi.',
         ],
 
         'friends' => [
             'read' => 'Nähdä, keitä seuraat.',
+        ],
+
+        'multiplayer' => [
+            'write_manage' => 'Luo ja hallinnoi moninpelihuoneita puolestasi.',
         ],
 
         'public' => 'Lukea julkisia tietoja sinun nimissäsi.',

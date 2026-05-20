@@ -23,7 +23,7 @@ abstract class Model extends BaseModel
 
     public function scopeDefault(Builder $query): Builder
     {
-        return $query->whereHas('beatmap.beatmapset')->whereHas('score');
+        return $query->whereHas('beatmap')->whereHas('score');
     }
 
     public function beatmap(): BelongsTo

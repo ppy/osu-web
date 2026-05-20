@@ -43,7 +43,6 @@ function Channel({ channel, onClick, status }: ChannelProps) {
     <a
       className={classWithModifiers('chat-join-channel__channel', { joined: status === 'joined' })}
       href={route('chat.index', { channel_id: channel.channel_id })}
-      onAuxClick={handleClick}
       onClick={handleClick}
     >
       <span>{statusElement}</span>

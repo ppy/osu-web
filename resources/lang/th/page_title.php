@@ -53,7 +53,7 @@ return [
             'discussion' => 'การสนทนาเกี่ยวกับบีทแมพ',
             'index' => 'รายการบีทแมพ',
             'show' => 'ข้อมูลบีทแมพ',
-            'versions' => '',
+            'versions' => 'ประวัติเวอร์ชั่นบีทแมพ',
         ],
         'changelog_controller' => [
             '_' => 'การเปลี่ยนแปลง',
@@ -65,14 +65,14 @@ return [
             '_' => 'ความคิดเห็น',
         ],
         'contest_entries_controller' => [
-            'judge_results' => 'ผลการตัดสินการแข่งขัน',
+            'judge_results' => 'ผลการตัดสินคอนเทสต์',
         ],
         'contests_controller' => [
-            '_' => 'การแข่งขัน',
-            'judge' => 'การตัดสินการแข่งขัน',
+            '_' => 'คอนเทสต์',
+            'judge' => 'การตัดสินคอนเทสต์',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'ประวัติกลุ่ม',
         ],
         'groups_controller' => [
             'show' => 'กลุ่ม',
@@ -85,7 +85,7 @@ return [
             'testflight' => 'บินเที่ยว',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'แมตซ์',
         ],
         'legal_controller' => [
             '_' => 'ข้อมูล',
@@ -115,7 +115,7 @@ return [
             '_' => 'ทีม',
             'create' => 'สร้างทีม',
             'edit' => 'การตั้งค่าทีม',
-            'leaderboard' => '',
+            'leaderboard' => 'กระดานผู้นำของทีม',
             'show' => 'ข้อมูลทีม',
         ],
         'tournaments_controller' => [
@@ -126,7 +126,7 @@ return [
             '_' => 'พรีเซ็ตปกของผู้ใช้',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'แอป Authenticator',
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',
@@ -139,7 +139,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'ประวัติห้อง',
         ],
     ],
     'passport' => [

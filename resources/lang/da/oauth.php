@@ -7,7 +7,7 @@ return [
     'cancel' => 'Annullér',
 
     'authorise' => [
-        'app_owner' => '',
+        'app_owner' => 'en app af :owner',
         'request' => 'anmoder om adgang til din konto.',
         'scopes_title' => 'Denne applikation vil være i stand til at:',
         'title' => 'Autorisation Anmodning',

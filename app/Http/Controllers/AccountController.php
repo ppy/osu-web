@@ -199,7 +199,7 @@ class AccountController extends Controller
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
 
-            return response([], 204);
+            return response()->noContent();
         } else {
             return ModelNotSavedException::makeResponse(null, compact('user'));
         }
@@ -233,7 +233,7 @@ class AccountController extends Controller
             }
         });
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function updateOptions()
@@ -307,7 +307,7 @@ class AccountController extends Controller
 
             $user->resetSessions(\Session::getId());
 
-            return response([], 204);
+            return response()->noContent();
         } else {
             return ModelNotSavedException::makeResponse(null, compact('user'));
         }

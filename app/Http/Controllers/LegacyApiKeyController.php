@@ -24,7 +24,7 @@ class LegacyApiKeyController extends Controller
     {
         Auth::user()->apiKeys()->available()->update(['revoked' => true]);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function store()

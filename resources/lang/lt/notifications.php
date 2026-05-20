@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Nauja žinutė komandoje',
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Dabar esi svečias beatmap\'o ":title"',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Gavote naują žinutę iš :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Nauja žinutė komandoje ":name"',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Naujienos ":title" turi naujų komentarų',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

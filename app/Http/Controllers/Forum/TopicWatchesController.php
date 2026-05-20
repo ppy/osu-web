@@ -31,7 +31,7 @@ class TopicWatchesController extends Controller
 
         switch (request('return')) {
             case 'index':
-                return response([], 204);
+                return response()->noContent();
 
             default:
                 return ext_view('forum.topics.replace_watch_button', [

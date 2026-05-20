@@ -56,7 +56,7 @@ return [
         'show_more' => 'visa mer',
         'show_more_options' => 'visa fler alternativ',
         'submit' => 'Skicka',
-        'unpin' => 'ofäst ',
+        'unpin' => 'lossa',
         'update' => 'Uppdatera',
         'upload_image' => 'ladda upp bild',
 
@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited minut|:count_delimited minuter',
         'months' => ':count_delimited månad|:count_delimited månader',
         'notifications' => ':count_delimited avisering|:count_delimited aviseringar  ',
-        'player' => '',
+        'player' => ':count_delimited spelare|:count_delimited spelare',
         'plus_others' => '+ :count_delimited övrig!|+ :count_delimited övriga!',
         'post' => ':count_delimited inlägg|:count_delimited inlägg',
         'second_short_unit' => 's|s',

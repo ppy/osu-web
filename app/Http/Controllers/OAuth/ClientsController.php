@@ -23,7 +23,7 @@ class ClientsController extends Controller
         $client = auth()->user()->oauthClients()->findOrFail($clientId);
         $client->revoke();
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function index()

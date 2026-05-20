@@ -20,6 +20,9 @@ class UsersController extends Controller
     public function achievement($id, $achievementId, $beatmapId = null)
     {
         $achievement = app('medals')->byIdOrFail($achievementId);
+
+        abort_if($achievement->client_side, 422, 'achievement cannot be unlocked via interop call');
+
         $unlocked = UserAchievement::unlock(
             User::findOrFail($id),
             $achievement,
@@ -28,7 +31,7 @@ class UsersController extends Controller
 
         abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
 
-        datadog_increment('user_achievement_unlock', ['id' => $achievementId]);
+        datadog_increment('user_achievement_unlock', ['id' => $achievementId, 'source' => 'interop']);
 
         return $achievement->getKey();
     }
@@ -54,7 +57,7 @@ class UsersController extends Controller
         $params['user'] = User::findOrFail($userId);
 
         Event::generate('rank', $params);
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function firstPlaceLost($userId, $beatmapId, $rulesetId)
@@ -68,7 +71,7 @@ class UsersController extends Controller
             'ruleset' => Beatmap::modeStr($rulesetId),
             'user' => User::findOrFail($userId),
         ]);
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function store()

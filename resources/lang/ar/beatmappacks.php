@@ -17,7 +17,7 @@ return [
     ],
 
     'show' => [
-        'created_by' => '',
+        'created_by' => 'بواسطة :author',
         'download' => 'تحميل',
         'item' => [
             'cleared' => 'ممحو',

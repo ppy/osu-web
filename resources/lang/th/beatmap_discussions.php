@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => '',
+
     'authorizations' => [
         'update' => [
             'null_user' => 'ต้องเข้าสู่ระบบก่อนจะแก้ไข',
@@ -68,7 +70,7 @@ return [
 
     'refresh' => [
         'checking' => 'กำลังตรวจสอบการอัปเดต…',
-        'has_updates' => '',
+        'has_updates' => 'การสนทนามีอัปเดต คลิกเพื่อรีเฟรช',
         'no_updates' => 'ไม่มีการอัปเดท',
         'updating' => 'กำลังอัปเดต',
     ],

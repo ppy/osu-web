@@ -24,7 +24,7 @@ export class UserEntry extends React.Component
           className: 'admin-contest-entry__user-link'
           href: route('users.show', user: @props.entry.user.id),
           div className: 'admin-contest-entry__avatar',
-            el UserAvatar, user: @props.entry.user, modifiers: ['full-rounded']
+            el UserAvatar, user: @props.entry.user, modifiers: 'full-rounded'
           @props.entry.user.username
 
       td className: 'osu-table__cell admin-contest-entry__column',

@@ -12,12 +12,14 @@ return [
 
     'error' => [
         'contact_support' => 'Silakan hubungi layanan dukungan untuk memulihkan akun.',
-        'expired' => 'Kode verifikasi telah kedaluwarsa.',
+        'expired' => 'Kode verifikasi sudah kedaluwarsa.',
         'invalid' => 'Terdapat kesalahan yang tidak terduga dalam kode verifikasi.',
         'is_privileged' => 'Silakan hubungi admin dengan izin akses tingkat tinggi untuk memulihkan akun.',
         'missing_key' => 'Wajib.',
+        'too_many_requests' => 'Batas jumlah permintaan pengaturan ulang kata sandi tercapai. Silakan hubungi layanan dukungan untuk memulihkan akun.',
         'too_many_tries' => 'Terlalu banyak percobaan yang gagal.',
         'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',
+        'wait_resend' => 'Silakan tunggu sejenak.',
         'wrong_key' => 'Kode salah.',
     ],
 
@@ -37,7 +39,7 @@ return [
         'username' => 'Masukkan alamat email atau nama pengguna',
 
         'reason' => [
-            'inactive_different_country' => "Akunmu telah lama tidak digunakan. Untuk memastikan keamanan akunmu, silakan atur ulang kata sandimu.",
+            'inactive_different_country' => "Akunmu sudah lama tidak digunakan. Untuk memastikan keamanan akunmu, silakan atur ulang kata sandimu.",
         ],
         'support' => [
             '_' => 'Butuh bantuan lebih lanjut? Hubungi kami melalui :button kami.',

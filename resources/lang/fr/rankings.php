@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Parties',
+        'points' => 'Points',
+        'provisional' => 'Le joueur n\'a pas joué suffisamment de matchs pour déterminer un classement précis',
+        'rating' => 'Pts Classement',
+        'wins' => 'Victoires',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Nom de la salle',
     ],
 
     'performance' => [
@@ -50,15 +50,15 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Calcul des données en cours...',
+        'last_updated' => 'Dernière mise à jour ',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlights (ancien)',
+        'featured' => 'mis en avant',
+        'season_room' => 'salle (saison) ',
+        'seasons' => 'saisons',
     ],
 
     'type' => [
@@ -66,17 +66,17 @@ return [
         'daily_challenge' => 'défi du jour',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'partie rapide',
+        'playlists' => 'playlists',
         'team' => 'équipe',
-        'top_plays' => '',
+        'top_plays' => 'meilleures performances',
     ],
 
     'seasons' => [
         'empty' => 'Il n\'y a pas encore de salles pour cette saison.',
         'ongoing' => 'Cette saison est toujours en cours (d\'autres playlists seront ajoutées).',
         'room_count' => 'Nombre de playlists',
-        'summary' => '',
+        'summary' => 'Voir le résumé de la saison',
         'url' => 'Afficher plus d\'informations sur cette saison.',
         'validation' => [
             'not_enough_factors' => 'Il n\'y a pas suffisamment de facteurs de score pour établir un calcul correct',

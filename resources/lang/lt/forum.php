@@ -253,69 +253,6 @@ return [
             'views' => 'peržiūros',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Pašalinti „pridėta“ žymą',
-            'to_0_done' => 'Pašalinta „pridėta“ žyma',
-            'to_1' => 'Pridėti „pridėta“ žymą',
-            'to_1_done' => 'Pridėta "pridėta" žyma',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Pašalinti „priskirta“ žymą',
-            'to_0_done' => 'Pašalinta „priskirta“ žyma',
-            'to_1' => 'Pridėti „priskirta“ žymą',
-            'to_1_done' => 'Pridėta „priskirta“ žyma',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Pašalinti „patvirtinta“ žymą',
-            'to_0_done' => 'Pašalinta „patvirtinta“ žyma',
-            'to_1' => 'Pridėti „patvirtinta“ žymą',
-            'to_1_done' => 'Pridėta „patvirtinta“ žyma',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Pašalinti „dubliuota“ žymą',
-            'to_0_done' => 'Pašalinta „dubliuota“ žyma',
-            'to_1' => 'Pridėti „dubliuota“ žymą',
-            'to_1_done' => 'Pridėta „dubliuota“ žyma',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Pašalinti „negalima“ žymą',
-            'to_0_done' => 'Pašalinta „negalima“ žyma',
-            'to_1' => 'Pridėti „negalima“ žymą',
-            'to_1_done' => 'Pridėta „negalima“ žyma',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Pašalinti „išspręsta“ žymą',
-            'to_0_done' => 'Pašalinta „išspręsta“ žyma',
-            'to_1' => 'Pridėti „išspręsta“ žymą',
-            'to_1_done' => 'Pridėta „išspręsta“ žyma',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Pašalinti "osu!lazer" žymę',
-            'to_0_done' => 'Pašalinta "osu!lazer" žymė',
-            'to_1' => 'Pridėti "osu!lazer" žymę',
-            'to_1_done' => 'Pridėta "osu!lazer" žymė',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Pašalinti "osu!stable" žymę',
-            'to_0_done' => 'Pašalinta "osu!stable" žymė',
-            'to_1' => 'Pridėti "osu!stable" žymę',
-            'to_1_done' => 'Pridėta "osu!stable" žymė',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Pašalinti "osu!web" žymę',
-            'to_0_done' => 'Pašalinta "osu!web" žymė',
-            'to_1' => 'Pridėti "osu!web" žymę',
-            'to_1_done' => 'Pridėta "osu!web" žymė',
-        ],
-
         'lock' => [
             'is_locked' => 'Ši tema yra užrakinta ir negalima atsakyti joje',
             'to_0' => 'Atrakinti temą',

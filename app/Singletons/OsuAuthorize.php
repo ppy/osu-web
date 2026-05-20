@@ -6,8 +6,8 @@
 namespace App\Singletons;
 
 use App\Exceptions\AuthorizationCheckException;
+use App\Interfaces\CommentableInterface;
 use App\Libraries\AuthorizationResult;
-use App\Libraries\Commentable;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -28,8 +28,7 @@ use App\Models\Language;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
-use App\Models\Score\Best\Model as ScoreBest;
-use App\Models\Solo;
+use App\Models\Solo\Score;
 use App\Models\Team;
 use App\Models\TeamApplication;
 use App\Models\Traits\ReportableInterface;
@@ -103,6 +102,17 @@ class OsuAuthorize
         }
 
         return $auth;
+    }
+
+    public function checkAchievementUnlock(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isRestricted()) {
+            return 'restricted';
+        }
+
+        return 'ok';
     }
 
     public function checkBeatmapShow(?User $user, Beatmap $beatmap): string
@@ -1141,7 +1151,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkCommentStore(?User $user, Commentable $commentable): string
+    public function checkCommentStore(?User $user, CommentableInterface $commentable): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
@@ -1888,11 +1898,11 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param \App\Models\Score\Best\Model $score
+     * @param \App\Models\Solo\Score $score
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkScorePin(?User $user, ScoreBest|Solo\Score $score): string
+    public function checkScorePin(?User $user, Score $score): string
     {
         $prefix = 'score.pin.';
 

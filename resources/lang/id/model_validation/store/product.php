@@ -7,5 +7,5 @@ return [
     'insufficient_stock' => 'Stok yang tersedia tidak mencukupi atau sudah habis!',
     'must_separate' => 'Item ini harus di-checkout secara terpisah dari item lainnya',
     'not_available' => 'Item ini tidak tersedia.',
-    'too_many' => 'Kamu hanya dapat memesan :count item ini per pesanannya.',
+    'too_many' => 'Kamu hanya bisa memesan :count item ini per pesanannya.',
 ];

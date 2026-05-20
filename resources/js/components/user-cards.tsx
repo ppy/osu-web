@@ -2,8 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJson from 'interfaces/user-json';
+import { makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
-import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
+import { ActiveKeyState, ContainerContext, KeyContext } from 'stateful-activation-context';
 import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { UserCard, ViewMode } from './user-card';
 
@@ -13,22 +15,27 @@ interface Props {
   viewMode: ViewMode;
 }
 
+@observer
 export class UserCards extends React.PureComponent<Props> {
-  readonly activeKeyDidChange = activeKeyDidChange.bind(this);
-  readonly state: ActiveKeyState = {};
+  @observable private readonly activeKeyState = new ActiveKeyState<number>();
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
 
   render() {
     const classMods = {
-      'menu-active': this.state.activeKey != null,
+      'menu-active': this.activeKeyState.value != null,
       [this.props.viewMode]: true,
     };
 
     return (
-      <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
+      <ContainerContext.Provider value={this.activeKeyState}>
         <div className={classWithModifiers('user-cards', classMods)}>
           {
             this.props.users.map((user) => {
-              const activated = this.state.activeKey === user.id;
+              const activated = this.activeKeyState.value === user.id;
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>

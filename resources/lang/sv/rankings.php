@@ -14,8 +14,8 @@ return [
         'top_10p' => 'Topp 10% resultat',
         'top_50p' => 'Topp 50% resultat',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Ingen daglig utmaning på angivet datum ännu!',
+            'past' => 'Ingen daglig utmaning på angivet datum!',
         ],
     ],
 
@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Spelningar',
+        'points' => 'Poäng',
+        'provisional' => 'Inte tillräckligt med matcher som spelas för att exakt bestämma betyg',
+        'rating' => 'Betyg',
+        'wins' => 'Vinster',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Rumsnamn ',
     ],
 
     'performance' => [
@@ -50,15 +50,15 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Data beräknas...',
+        'last_updated' => 'Senast uppdaterat',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlights (gammal)',
+        'featured' => 'utvald',
+        'season_room' => 'säsongsrum',
+        'seasons' => 'säsonger',
     ],
 
     'type' => [
@@ -66,17 +66,17 @@ return [
         'daily_challenge' => 'daglig utmaning',
         'global' => 'global ',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'snabbspel',
+        'playlists' => 'spellistor',
         'team' => 'lag',
-        'top_plays' => '',
+        'top_plays' => 'topp spelningar',
     ],
 
     'seasons' => [
         'empty' => 'Det finns inga rum i denna säsong ännu.',
         'ongoing' => 'Denna säsong pågår fortfarande (det kommer läggas till fler spellistor).',
         'room_count' => 'Antal spellistor',
-        'summary' => '',
+        'summary' => 'Sammanfattning av säsong',
         'url' => 'Visa mer information om den säsongen.',
         'validation' => [
             'not_enough_factors' => 'det finns inte tillräckligt med poängfaktorer för korrekt beräkning',

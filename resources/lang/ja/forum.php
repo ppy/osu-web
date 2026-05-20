@@ -253,69 +253,6 @@ return [
             'views' => '観覧数',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => '"added" タグを外す',
-            'to_0_done' => '"added" タグを外しました',
-            'to_1' => '"added" タグを追加する',
-            'to_1_done' => '"added" タグを追加しました',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '"assigned" タグを外す',
-            'to_0_done' => '"assigned" タグを外しました',
-            'to_1' => '"assigned" タグを追加する',
-            'to_1_done' => '"assigned" タグを追加しました',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '"confirmed" タグを外す',
-            'to_0_done' => '"confirmed" タグを外しました',
-            'to_1' => '"confirmed" タグを追加する',
-            'to_1_done' => '"confirmed" タグを追加しました',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '"duplicate" タグを外す',
-            'to_0_done' => '"duplicate" タグを外しました',
-            'to_1' => '"duplicate" タグを追加する',
-            'to_1_done' => '"duplicate" タグを追加しました',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '"invalid" タグを外す',
-            'to_0_done' => '"invalid" タグを外しました',
-            'to_1' => '"invalid" タグを追加する',
-            'to_1_done' => '"invalid" タグを追加しました',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '"resolved" タグを外す',
-            'to_0_done' => '"resolved" タグを外しました',
-            'to_1' => '"resolved" タグを追加する',
-            'to_1_done' => '"resolved" タグを追加しました',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '"osu!lazer" タグを削除',
-            'to_0_done' => '"osu!lazer" タグを削除しました',
-            'to_1' => '"osu!lazer" タグを追加',
-            'to_1_done' => '"osu!lazer" タグを追加しました',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '"osu!stable" タグを削除',
-            'to_0_done' => '"osu!stable" タグを削除しました',
-            'to_1' => '"osu!stable" タグを追加',
-            'to_1_done' => '"osu!stable" タグを追加しました',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '"osu!web" タグを削除',
-            'to_0_done' => '"osu!web" タグを削除しました',
-            'to_1' => '"osu!web" タグを追加',
-            'to_1_done' => '"osu!web" タグを追加しました',
-        ],
-
         'lock' => [
             'is_locked' => 'このトピックはロックされていて投稿が制限されています。',
             'to_0' => 'トピックのロックを解除する',

@@ -7,6 +7,7 @@ use App\Http\Middleware\ThrottleRequests;
 
 Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
 Route::get('media-url', 'ProxyMediaController')->name('media-url');
+Route::get('ss/{screenshot}/{hash?}', 'ScreenshotsController@show')->name('screenshots.show');
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -54,6 +55,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
             Route::post('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
+        Route::resource('tags', 'TagsController', ['only' => ['index']]);
     });
 
     Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -121,9 +123,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->name('download-legacy');
+        Route::get('{ruleset}/{score}/download', 'ScoresController@download')->name('download-legacy');
 
-        Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+        Route::get('{ruleset}/{score}', 'ScoresController@show')->name('show-legacy');
+        Route::get('{score}', 'ScoresController@show')->name('show');
     });
 
     Route::group(['prefix' => 'score-pins/{score}', 'as' => 'score-pins.'], function () {
@@ -304,7 +307,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
-    Route::get('rankings/quickplay/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');
+    Route::get('rankings/ranked-play/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');
     Route::get('rankings/top-plays/{mode?}', 'Ranking\TopPlaysController@show')->name('rankings.top-plays');
     Route::get('rankings/{mode?}/{type?}/{sort?}', 'RankingController@index')->name('rankings');
 
@@ -315,6 +318,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('session', 'SessionsController@store')->name('login');
     Route::delete('session', 'SessionsController@destroy')->name('logout');
+
+    Route::get('suggestions/user', 'SuggestionsController@user')->name('suggestions.user');
+    Route::get('suggestions/wiki', 'SuggestionsController@wiki')->name('suggestions.wiki');
 
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
@@ -341,7 +347,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
-            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|quickplay|realtime'])->names('multiplayer');
+            Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|ranked-play|realtime'])->names('multiplayer');
 
             Route::group(['as' => 'modding.', 'prefix' => 'modding'], function () {
                 Route::get('/', 'ModdingHistoryController@index')->name('index');
@@ -353,6 +359,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('kudosu', 'UsersController@kudosu')->name('kudosu');
         Route::get('recent_activity', 'UsersController@recentActivity')->name('recent-activity');
+        Route::get('score-replay-stats', 'UsersController@scoreReplayStats')->name('score-replay-stats');
         Route::get('scores/{type}', 'UsersController@scores')->name('scores');
         Route::get('beatmapsets/{type}', 'UsersController@beatmapsets')->name('beatmapsets');
     });
@@ -364,7 +371,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/{locale?}/{path?}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
     Route::put('wiki/{locale}/{path}', 'WikiController@update')->where('path', '.+');
-    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
 
     // FIXME: someone split this crap up into proper controllers
     Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
@@ -411,6 +417,8 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('wrapped/{user?}', 'WrappedController@show')->name('wrapped');
 
     // redirects go here
     route_redirect('forum/p/{post}', 'forum.posts.show');
@@ -541,9 +549,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             Route::get('{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download');
-            Route::get('{rulesetOrScore}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
+            Route::get('{ruleset}/{score}/download', 'ScoresController@download')->middleware(ThrottleRequests::getApiThrottle('scores_download'))->name('download-legacy');
 
-            Route::get('{rulesetOrScore}/{score?}', 'ScoresController@show')->name('show');
+            Route::get('{ruleset}/{score}', 'ScoresController@show')->name('show-legacy');
+            Route::get('{score}', 'ScoresController@show')->name('show');
 
             Route::get('/', 'ScoresController@index');
         });
@@ -552,6 +561,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::post('reorder', 'ScorePinsController@reorder')->name('reorder');
             Route::delete('/', 'ScorePinsController@destroy')->name('destroy');
             Route::put('/', 'ScorePinsController@store')->name('store');
+        });
+
+        Route::group(['as' => 'teams.', 'prefix' => 'teams/{team}'], function () {
+            Route::get('{ruleset?}', 'TeamsController@show')->middleware('require-scopes:public')->name('show');
         });
 
         Route::get('users/lookup', 'Users\LookupController@index')->name('users.lookup');
@@ -590,6 +603,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
+        //  PUT /api/v2/me/achievements/:achievementId
+        Route::put('me/achievements/{achievementId}', 'UsersController@unlockClientSideAchievement')->name('unlock-client-side-achievement');
 
         Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
 
@@ -612,6 +627,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         // Tags
         Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
+
+        Route::post('screenshots', 'ScreenshotsController@store')->middleware('auth')->name('screenshots.store');
     });
 });
 

@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'bilgi',
             'discussions' => 'tartışma',
-            'versions' => '',
+            'versions' => 'sürüm geçmişi',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modlama',
             'playlists' => 'oynatma listeleri',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'çok oyunculu',
             'show' => 'bilgi',
         ],

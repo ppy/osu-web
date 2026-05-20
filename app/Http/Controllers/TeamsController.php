@@ -12,9 +12,13 @@ use App\Exceptions\ModelNotSavedException;
 use App\Models\Beatmap;
 use App\Models\Team;
 use App\Models\User;
+use App\Transformers\TeamExtendedTransformer;
 use App\Transformers\UserCompactTransformer;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group Teams
+ */
 class TeamsController extends Controller
 {
     public function __construct()
@@ -127,6 +131,29 @@ class TeamsController extends Controller
         return ujs_redirect(route('teams.show', ['team' => $team]));
     }
 
+    /**
+     * Get Team
+     *
+     * This endpoint returns the details of a specified team.
+     *
+     * ---
+     *
+     * ### Response format
+     *
+     * Returns the [TeamExtended](#teamextended) object. On both the `leader` and `members` fields, the following
+     * [optional attributes on User](#user-optionalattributes) are included:
+     *
+     * - country
+     * - cover
+     * - groups
+     * - team
+     *
+     * @urlParam team string required Id or `@`-prefixed shortname of the team. Example: `1`.
+     * @urlParam mode string [Ruleset](#ruleset). Default ruleset will be used if not specified. Example: `osu`.
+     *
+     * @response See TeamExtended object section.
+     *
+     */
     public function show(string $id, ?string $ruleset = null): Response
     {
         $params = str_starts_with($id, '@')
@@ -149,11 +176,31 @@ class TeamsController extends Controller
             return ujs_redirect(route('teams.show', compact('team', 'ruleset')));
         }
 
-        $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]);
+        $team->loadMissing(prefix_strings(
+            'members.user.',
+            array_diff(UserCompactTransformer::CARD_INCLUDES_PRELOAD, ['team']),
+        ));
+        foreach ($team->members as $member) {
+            $member->user?->setRelation('team', $team);
+        }
 
-        $team->loadMissing(prefix_strings('members.user.', UserCompactTransformer::CARD_INCLUDES_PRELOAD));
-
-        return ext_view('teams.show', compact('rulesetId', 'statistics', 'team'));
+        if (is_api_request()) {
+            return response()->json(json_item(
+                $team,
+                new TeamExtendedTransformer()->setRulesetId($rulesetId),
+                [
+                    ...prefix_strings('leader.', UserCompactTransformer::CARD_INCLUDES),
+                    ...prefix_strings('members.', UserCompactTransformer::CARD_INCLUDES),
+                ],
+            ));
+        } else {
+            return ext_view('teams.show', [
+                'extraStatistics' => $team->extraStatistics($rulesetId),
+                'rulesetId' => $rulesetId,
+                'statistics' => $team->statistics()->firstOrNew(['ruleset_id' => $rulesetId]),
+                'team' => $team,
+            ]);
+        }
     }
 
     public function store(): Response

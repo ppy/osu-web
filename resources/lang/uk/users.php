@@ -333,6 +333,9 @@ return [
                     'title' => 'Історія переглянутих повторів',
                     'count_label' => 'Переглянутих повторів',
                 ],
+                'score_replay_stats' => [
+                    'title' => 'Найбільш переглянуті повтори',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Останні обміни',
@@ -399,8 +402,8 @@ return [
                 'title_longer' => 'Недавні пости',
                 'show_more' => 'бачити більше постiв',
             ],
-            'quickplay' => [
-                'title' => 'Матчі Швидкої Гри',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Недавня активність',
@@ -472,8 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Швидка гра',
         ],
 
         'not_found' => [

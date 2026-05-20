@@ -34,7 +34,7 @@ class RoomsController extends Controller
     {
         Room::findOrFail($id)->endGame(\Auth::user());
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function events($id)
@@ -221,12 +221,12 @@ class RoomsController extends Controller
             'leaderboard' => json_collection(
                 $room->topScores()->paginate($limit),
                 'Multiplayer\UserScoreAggregate',
-                ['user.country']
+                ['user.country', 'user.cover', 'user.team']
             ),
             'user_score' => $userScore !== null ? json_item(
                 $userScore,
                 'Multiplayer\UserScoreAggregate',
-                ['position', 'user.country']
+                ['position', 'user.country', 'user.cover', 'user.team']
             ) : null,
         ];
     }
@@ -242,7 +242,7 @@ class RoomsController extends Controller
         $room = Room::findOrFail($roomId);
         $room->part($currentUser);
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     public function show($id)

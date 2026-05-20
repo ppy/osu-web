@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
+        'non_preserved' => 'Denne score er markeret til sletning og vil snart forsvinde.',
         'title' => ':username på :title [:version]',
 
         'beatmap' => [
@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Spillet af',
+            'played_on' => '',
             'submitted_on' => 'Indsendt den',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Lande Rang',
@@ -25,8 +28,8 @@ return [
 
     'status' => [
         'non_best' => 'Kun personlige bedste scorer giver pp',
-        'no_pp' => '',
+        'no_pp' => 'pp er ikke tildelt for denne score',
         'processing' => 'Denne score bliver stadig beregnet og vil snart blive vist',
-        'no_rank' => '',
+        'no_rank' => 'Denne score har ingen rang eftersom det ikke er rangeret eller markeret til sletning',
     ],
 ];

@@ -58,12 +58,6 @@ return [
         'send' => 'Odoslať',
     ],
 
-    'no-conversations' => [
-        'howto' => "Začnite konverzáciu z profilu užívateľa alebo z popup karty užívateľa.",
-        'lazer' => 'Verejné kanály na ktoré sa pripojíte cez <a href=":link">osu!lazer</a> budú viditeľné aj tu.',
-        'title' => 'zatiaľ žiadne konverzácie',
-    ],
-
     'join_channels' => [
         'loading' => '',
     ],

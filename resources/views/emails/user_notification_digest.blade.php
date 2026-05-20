@@ -6,6 +6,9 @@
 
 {!! osu_trans('mail.user_notification_digest.new') !!}
 
+@if (!empty($news))
+@include('emails._news', compact('news'))
+@endif
 @foreach ($groups as $group)
 {!! $group['text'] !!}:
 @foreach ($group['links'] as $link => $_ignored)

@@ -19,16 +19,15 @@
   }
 
   &__banner {
-    .at2x-simple("~@images/headers/download-v2.jpg");
-    background-size: cover;
+    position: relative;
     display: flex;
     justify-content: flex-end;
     min-height: 420px; // use min-height in case the tagline is too many lines
-
     border-radius: 0 0 @border-radius--extra @border-radius--extra;
   }
 
   &__banner-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -56,6 +55,13 @@
   &__banner-tail {
     display: flex;
     justify-content: flex-end;
+  }
+
+  &__banner-video {
+    .full-size();
+    object-fit: cover;
+    object-position: left;
+    border-radius: 0 0 @border-radius--extra @border-radius--extra;
   }
 
   &__example {

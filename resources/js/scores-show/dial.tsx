@@ -3,13 +3,9 @@
 
 import * as d3 from 'd3';
 import Rank from 'interfaces/rank';
+import ScoreJson from 'interfaces/score-json';
 import * as React from 'react';
-
-interface Props {
-  accuracy: number;
-  rank: Rank;
-  rankCutoffs: number[];
-}
+import { accuracy, rank, rankCutoffIndex, rankCutoffs, rankAbsoluteCutoffs } from 'utils/score-helper';
 
 const displayRank: Record<Rank, string> = {
   A: 'A',
@@ -23,10 +19,16 @@ const displayRank: Record<Rank, string> = {
   XH: 'SS',
 };
 
-export default function Dial(props: Props) {
+export default function Dial({ score }: { score: ScoreJson }) {
+  const scoreAccuracy = accuracy(score);
+  const scoreRank = rank(score);
+  const scoreRankCutoffs = rankCutoffs(score);
+  const scoreRankAbsoluteCutoffs = rankAbsoluteCutoffs(score);
+  const displayAccuracy = Math.min(scoreAccuracy, scoreRankAbsoluteCutoffs[rankCutoffIndex[scoreRank]] ?? 1);
+
   const arc = d3.arc();
   const pie = d3.pie().sortValues(null);
-  const valueData = [props.accuracy, 1 - props.accuracy];
+  const valueData = [displayAccuracy, 1 - displayAccuracy];
 
   return (
     <div className='score-dial'>
@@ -39,7 +41,7 @@ export default function Dial(props: Props) {
             </linearGradient>
           </defs>
           <g transform='translate(100, 100)'>
-            {pie(props.rankCutoffs).map((d) => (
+            {pie(scoreRankCutoffs).map((d) => (
               <path
                 key={d.index}
                 className={`score-dial__inner score-dial__inner--${d.index}`}
@@ -58,7 +60,7 @@ export default function Dial(props: Props) {
       </div>
 
       <div className='score-dial__layer score-dial__layer--grade'>
-        <span>{displayRank[props.rank]}</span>
+        <span>{displayRank[scoreRank]}</span>
       </div>
     </div>
   );

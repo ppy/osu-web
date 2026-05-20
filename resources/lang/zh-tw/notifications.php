@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => '新的團隊訊息',
 
@@ -161,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => '新聞（:series）',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '新聞',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => '您現在是圖譜 ":title" 的客串譜師',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => '你已收到來自 :username 的訊息',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '戰隊「:name」有新訊息',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '新聞【:title】中有新的留言',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

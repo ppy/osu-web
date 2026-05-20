@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'discussió',
-            'versions' => '',
+            'versions' => 'historial de versions',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'moding',
             'playlists' => 'llistes d\'àudio',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'multijugador',
             'show' => 'info',
         ],
@@ -203,7 +203,7 @@ return [
             'logout' => 'Tanca la sessió',
             'profile' => 'El meu perfil',
             'scoring_mode_toggle' => 'Puntuació clàssica',
-            'scoring_mode_toggle_tooltip' => 'Ajusta els valors de la puntuació per a simular la puntuació clàssic sense límits.',
+            'scoring_mode_toggle_tooltip' => 'Ajusta els valors de la puntuació per a simular la puntuació clàssica sense límits.',
             'team' => 'El Meu Equip',
         ],
     ],

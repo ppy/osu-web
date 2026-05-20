@@ -31,6 +31,10 @@ return [
             'read' => 'Prikaži komu slediš.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Branje javnih podatkov v tvojem imenu.',
     ],
 ];

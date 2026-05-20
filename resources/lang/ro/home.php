@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru echipe',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Descarcă osu!',
             'support' => 'Sprijină osu!',
             'store' => 'Magazinul osu!',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

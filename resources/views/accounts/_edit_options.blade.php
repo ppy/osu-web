@@ -82,9 +82,30 @@
                     </div>
                 </label>
             </div>
-        </div>
 
-        <div class="account-edit__input-group">
+            <div
+                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
+                data-url="{{ route('account.options') }}"
+                data-skip-ajax-error-popup="1"
+                data-user-preferences-update="1"
+            >
+                <label class="account-edit-entry__checkbox">
+                    @include('objects._switch', ['locals' => [
+                        'additionalClass'=> 'js-account-edit__input',
+                        'checked' => $customization['beatmapset_show_anime_cover'],
+                        'name' => 'user_profile_customization[beatmapset_show_anime_cover]',
+                    ]])
+
+                    <span class="account-edit-entry__checkbox-label">
+                        {{ osu_trans('accounts.options.beatmapset_show_anime_cover') }}
+                    </span>
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
+                    </div>
+                </label>
+            </div>
+
             <div
                 class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
                 data-url="{{ route('account.options') }}"

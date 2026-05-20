@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'เล่นโดย',
+            'played_on' => '',
             'submitted_on' => 'เล่นเมื่อ',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'อันดับประเทศ',

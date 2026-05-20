@@ -38,8 +38,8 @@ return [
     ],
 
     'teams' => [
-        'relevance' => '',
-        'name' => '',
+        'relevance' => 'الصِلة',
+        'name' => 'الاسم',
         'short-name' => '',
     ],
 

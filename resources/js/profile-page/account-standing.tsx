@@ -9,6 +9,7 @@ import UserAccountHistoryJson from 'interfaces/user-account-history-json';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
+import core from 'osu-core-singleton';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
@@ -79,6 +80,27 @@ const content: Record<Column, (props: ColumnProps) => JSX.Element | null> = {
 @observer
 export default class AccountStanding extends React.Component<ExtraPageProps> {
   @computed
+  get inBadStanding() {
+    const user = this.props.controller.state.user;
+    const history = user.account_history;
+    const silences = history.filter((d) => d.type === 'silence');
+
+    if ((core.currentUser?.is_moderator || core.currentUser?.is_admin) && silences.length > 0) {
+      return true;
+    }
+
+    if (silences.length === 0) {
+      return false;
+    }
+
+    const recentCount = silences.length;
+    const longestPeriod = Math.max(...silences.map((s) => s.length));
+
+    // 2560 minutes = 42 hours 40 minutes, the length of a standard long silence
+    return longestPeriod >= 2560 * 60 || recentCount >= 3;
+  }
+
+  @computed
   get endTime() {
     return this.latest == null
       ? null
@@ -95,7 +117,7 @@ export default class AccountStanding extends React.Component<ExtraPageProps> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={false} />
 
-        {this.latest != null && (
+        {this.inBadStanding && (
           <div className='page-extra__alert page-extra__alert--warning'>
             <StringWithComponent
               mappings={{ username: <strong>{this.props.controller.state.user.username}</strong> }}

@@ -124,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => 'Pengguna :user kini menjabat sebagai ketua tim.',
+            'success' => 'Pengguna :user sekarang adalah ketua tim.',
         ],
     ],
 
@@ -134,7 +134,7 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => 'Percakapan Tim',
+            'chat' => 'Obrolan Tim',
             'destroy' => 'Bubarkan Tim',
             'join' => 'Minta Gabung',
             'join_cancel' => 'Batal Gabung',
@@ -158,12 +158,14 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited slot tersedia|:count_delimited slot tersedia',
+            'first_places' => 'Peringkat pertama',
             'leader' => 'Ketua Tim',
             'rank' => 'Peringkat',
+            'ranked_beatmapsets' => 'Beatmap Ranked',
         ],
     ],
 
     'store' => [
-        'ok' => 'Tim telah dibuat.',
+        'ok' => 'Tim dibuat.',
     ],
 ];

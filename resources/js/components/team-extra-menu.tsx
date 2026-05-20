@@ -25,12 +25,12 @@ export default function TeamExtraMenu(props: Props) {
       title={trans('common.buttons.show_more_options')}
     >
       <PopupMenu>
-        {(dismiss) => (
+        {(state) => (
           <div className='simple-menu'>
             <ReportReportable
               className='simple-menu__item'
               icon
-              onFormOpen={dismiss}
+              onFormOpen={state.dismiss}
               reportableId={props.teamId.toString()}
               reportableType='team'
               user={{ username: props.leaderUsername }}

@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
         'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
         'comment_reply' => 'otrzymuj powiadomienia o odpowiedziach do twoich komentarzy',
-        'news_post' => '',
+        'news_post' => 'otrzymuj powiadomienia o aktualnościach',
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
 
@@ -89,12 +89,13 @@ return [
             'beatmap_owner_change' => 'gościnny poziom trudności',
             'beatmapset:modding' => 'dyskusje beatmap',
             'channel_message' => 'wiadomości prywatne na czacie',
+            'channel_mention' => '',
             'channel_team' => 'wiadomości na czacie zespołu',
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
             'mail' => 'e-mail',
             'mapping' => 'twórca',
-            'news_post' => '',
+            'news_post' => 'aktualności',
             'push' => 'push',
         ],
     ],
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'Pokazuj okładki stylizowane anime w beatmapach',
         'beatmapset_show_nsfw' => 'ukryj ostrzeżenia o treściach dla pełnoletnich w beatmapach',
         'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
         'title' => 'Ustawienia strony',

@@ -27,10 +27,11 @@ class ChangeUsernameTest extends TestCase
         $user = $this->createUser(['user_warnings' => 1]);
 
         $errors = $user->validateChangeUsername('newusername')->all();
-        $expected = [osu_trans('model_validation.user.change_username.restricted')];
 
-        $this->assertArrayHasKey('username', $errors);
-        $this->assertArraySubset($expected, $errors['username'], true);
+        $this->assertContains(
+            osu_trans('model_validation.user.change_username.restricted'),
+            $errors['username'],
+        );
     }
 
     public function testSupportCanChangeEvenIfUserIsRestricted()
@@ -47,10 +48,11 @@ class ChangeUsernameTest extends TestCase
         $user = $this->createUser(['osu_subscriptionexpiry' => null]);
 
         $errors = $user->validateChangeUsername('newusername')->all();
-        $expected = [ChangeUsername::requireSupportedMessage()];
 
-        $this->assertArrayHasKey('username', $errors);
-        $this->assertArraySubset($expected, $errors['username'], true);
+        $this->assertContains(
+            ChangeUsername::requireSupportedMessage(),
+            $errors['username'],
+        );
     }
 
     public function testSupportCanChangeEvenIfUserHasNeverSupported()
@@ -67,10 +69,11 @@ class ChangeUsernameTest extends TestCase
         $user = $this->createUser();
 
         $errors = $user->validateChangeUsername('iamuser')->all();
-        $expected = [osu_trans('model_validation.user.change_username.username_is_same')];
 
-        $this->assertArrayHasKey('username', $errors);
-        $this->assertArraySubset($expected, $errors['username'], true);
+        $this->assertContains(
+            osu_trans('model_validation.user.change_username.username_is_same'),
+            $errors['username'],
+        );
     }
 
     public function testUsernameWithDifferentCasingIsSame()
@@ -78,10 +81,11 @@ class ChangeUsernameTest extends TestCase
         $user = $this->createUser();
 
         $errors = $user->validateChangeUsername('iAmUser')->all();
-        $expected = [osu_trans('model_validation.user.change_username.username_is_same')];
 
-        $this->assertArrayHasKey('username', $errors);
-        $this->assertArraySubset($expected, $errors['username'], true);
+        $this->assertContains(
+            osu_trans('model_validation.user.change_username.username_is_same'),
+            $errors['username'],
+        );
     }
 
     public function testUserHasSupportedButExpired()

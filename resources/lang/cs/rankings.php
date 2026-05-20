@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Zahrání',
+        'points' => 'Bodů',
+        'provisional' => 'Nedostatek odehraných zápasů pro přesné stanovení hodnocení',
+        'rating' => 'Hodnocení',
+        'wins' => 'Výher',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Název místnosti',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => 'Data se vypočítávají...',
-        'last_updated' => '',
+        'last_updated' => 'Naposledy aktualizováno',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'zvýrazněné (staré)',
+        'featured' => 'výběry',
+        'season_room' => 'sezónní místnost',
+        'seasons' => 'sezóny',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'denní výzva',
         'global' => 'svět',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'rychlá hra',
+        'playlists' => 'playlisty',
         'team' => 'týmy',
         'top_plays' => 'nejlepší výkony',
     ],

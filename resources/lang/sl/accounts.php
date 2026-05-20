@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'težavnost za goste',
             'beatmapset:modding' => 'modificiranje beatmape',
             'channel_message' => 'zasebna sporočila',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'novi komentarji',
             'forum_topic_reply' => 'odgovor na temo',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'skrij opozorila za eksplicitno vsebino v beatmapah',
         'beatmapset_title_show_original' => 'prikaži metadata beatmape v originalnem jeziku',
         'title' => 'Možnosti',

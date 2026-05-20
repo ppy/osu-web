@@ -9,11 +9,11 @@ return [
         'all_scope_no_mix' => '* tidak valid dengan cakupan lainnya',
         'client_missing_owner' => 'Klien ini tidak memiliki pengguna.',
         'client_unauthorized' => 'Klien ini tidak terizin.',
-        'delegate_bot_only' => 'Delegasi dengan Kredensial Klien hanya tersedia bagi bot chat.',
+        'delegate_bot_only' => 'Delegasi dengan Kredensial Klien hanya tersedia bagi akun bot.',
         'client_credentials_only' => 'Cakupan ini hanya valid untuk token client_credentials.',
         'delegate_invalid_combination' => 'Delegasi untuk kombinasi cakupan ini tidak didukung.',
         'delegate_required' => 'cakupan delegasi dibutuhkan.',
         'empty' => 'Token tanpa cakupan tidak valid.',
-        'bot_only' => 'Cakupan ini hanya tersedia bagi bot chat atau klien yang kamu miliki.',
+        'bot_only' => 'Cakupan ini hanya tersedia bagi akun bot atau klien yang kamu miliki.',
     ],
 ];

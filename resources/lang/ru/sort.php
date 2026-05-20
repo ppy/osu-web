@@ -45,6 +45,6 @@ return [
 
     'users' => [
         'relevance' => 'Релевантности',
-        'username' => 'Имени',
+        'username' => 'Никнейму',
     ],
 ];

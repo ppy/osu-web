@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
             'locked' => [
-                '_' => 'Si us plau, contacta amb el :accounts si necessites que s\'actualitzi el teu correu electrònic.',
+                '_' => 'Si us plau, contacta amb :accounts si necessites que s\'actualitzi el teu correu electrònic.',
                 'accounts' => 'equip de suport de comptes',
             ],
         ],
@@ -80,21 +80,22 @@ return [
         'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en mapes qualificats dels següents modes',
         'beatmapset_disqualify' => 'rebre notificacions per quan els mapes dels següents modes siguin desqualificats',
         'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
-        'news_post' => '',
+        'news_post' => 'rep notificacions de publicacions noves',
         'title' => 'Notificacions',
-        'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creis or responguis',
+        'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que tu hagis creat o respost',
 
         'options' => [
             '_' => 'opcions d\'entrega',
             'beatmap_owner_change' => 'dificultat de convidat',
             'beatmapset:modding' => 'moding de mapes',
             'channel_message' => 'missatges de xat privats',
+            'channel_mention' => '',
             'channel_team' => 'missatges de xat privats',
             'comment_new' => 'comentaris nous',
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',
             'mapping' => 'edició de mapes',
-            'news_post' => '',
+            'news_post' => 'publicacions noves',
             'push' => 'emergent',
         ],
     ],
@@ -106,12 +107,13 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'mostra mapes amb fons d\'anime',
         'beatmapset_show_nsfw' => 'oculta els avisos per al contingut explícit en mapes',
         'beatmapset_title_show_original' => 'mostra les metadades del mapa en l\'idioma original',
         'title' => 'Opcions',
 
         'beatmapset_download' => [
-            '_' => 'tipus de baixada de beatmap predeterminat',
+            '_' => 'tipus de baixada de mapa predeterminat',
             'all' => 'amb vídeo si està disponible',
             'direct' => 'obre a osu!direct',
             'no_video' => 'sense vídeo',
@@ -129,7 +131,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloca els missatges privats de persones que no són a la llista d\'amics',
         'hide_online' => 'amaga la teva presència en línia',
-        'hide_online_info' => '',
+        'hide_online_info' => 'va relacionat amb el mode «Mostra\'m desconnectat» a l\'osu!lazer',
         'title' => 'Privadesa',
     ],
 
@@ -151,17 +153,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Aplicació d\'autenticació',
+        'usage_note' => 'Feu servir l\'aplicació Authenticator en lloc de la verificació per correu. La verificació per correu estarà disponible com a via alternativa.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Trau',
+            'setup' => 'Afegeix l\'aplicació d\'autenticació',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'estat',
+            'not_set' => 'Sense configurar',
+            'set' => 'Configurat',
         ],
     ],
 

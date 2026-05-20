@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'плейлист',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'мултиплейър',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Прекалено голяма продължителност.',
             'name_too_long' => 'Името на стаята е много дълго.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

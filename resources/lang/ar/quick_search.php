@@ -9,7 +9,7 @@ return [
         'beatmapset' => 'المقطوعة',
         'forum_post' => 'المنتدى',
         'other' => 'أخرى',
-        'team' => '',
+        'team' => 'الفريق',
         'user' => 'اللاعب',
         'wiki_page' => 'ويكي',
     ],
@@ -21,13 +21,13 @@ return [
         'no_results' => [
             '_' => '',
 
-            'artist_track' => '',
+            'artist_track' => 'مسارات الفنانين المميزين',
             'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'forum_post' => 'المنتديات',
+            'other' => 'أُخرى',
+            'team' => 'الفِرق',
+            'user' => 'اللاعبين',
+            'wiki_page' => 'ويكي',
         ],
     ],
 ];

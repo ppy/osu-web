@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'λίστες αναπαραγωγής',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'multiplayer',
             'show' => 'πληροφορίες',
         ],

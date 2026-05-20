@@ -36,10 +36,9 @@
 
     @if ($loop->last)
         @foreach ($currentLevels as $level)
-            @if ($level === 0)
-                @break
+            @if ($level !== 0)
+                </ol>
             @endif
-            </ol>
         @endforeach
     @endif
 @endforeach

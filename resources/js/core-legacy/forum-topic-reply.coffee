@@ -19,6 +19,7 @@ export default class ForumTopicReply
     $(document).on 'ajax:success', '.js-forum-topic-reply--quote', @activateWithReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
+    document.addEventListener 'keyup', @deactivateOnEscape
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
@@ -84,6 +85,15 @@ export default class ForumTopicReply
     $.publish 'stickyFooter:check'
     @disableFlash()
     button.classList.remove 'js-activated' for button in @toggleButtons
+
+
+  deactivateOnEscape: (e) =>
+    target = e.target
+
+    return unless e.key == 'Escape' && target.classList.contains('js-forum-topic-reply--input') && target.value == ''
+
+    target.blur()
+    @deactivate()
 
 
   disableFlash: ->

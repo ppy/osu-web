@@ -22,6 +22,7 @@ use App\Models\BeatmapsetNomination;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Notification;
+use App\Models\Score\Best as ScoreBest;
 use App\Models\User;
 use App\Models\UserNotification;
 use Bus;
@@ -484,14 +485,13 @@ class BeatmapsetTest extends TestCase
         $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->$state()->create();
         $otherUser = User::factory()->create();
         $beatmap = $beatmapset->beatmaps()->first();
-        $beatmap->scoresBest()->create([
-            'user_id' => $otherUser->getKey(),
-        ]);
+        $scoreClass = ScoreBest\Model::getClass($beatmap->mode);
+        $scoreClass::factory()->create(['beatmap_id' => $beatmap->getKey(), 'user_id' => $otherUser->getKey()]);
 
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
         $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), $success ? 1 : 0);
-        $this->expectCountChange(fn () => $beatmap->scoresBest()->count(), $success ? -1 : 0);
+        $this->expectCountChange(fn () => $scoreClass::where(['beatmap_id' => $beatmap->getKey()])->count(), $success ? -1 : 0);
         $this->assertNotificationChanges($success);
 
         $res = $beatmapset->rank();

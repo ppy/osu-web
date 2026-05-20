@@ -58,12 +58,6 @@ return [
         'send' => 'Envia',
     ],
 
-    'no-conversations' => [
-        'howto' => "Comença conversacions des del perfil d'un usuari o des de la targeta d'usuari emergent.",
-        'lazer' => 'Els canals públics als quals t\'uneixis per  <a href=":link">osu!lazer</a> també seran visibles aquí.',
-        'title' => 'encara no tens conversacions',
-    ],
-
     'join_channels' => [
         'loading' => 'Carregant la llista de canals...',
     ],

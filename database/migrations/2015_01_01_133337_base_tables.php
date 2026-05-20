@@ -581,6 +581,19 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE `osu_scores_taiko` ADD KEY `user_id` (`user_id`, `date`)');
         DB::statement('ALTER TABLE `osu_scores_taiko` MODIFY COLUMN `score_id` INT UNSIGNED AUTO_INCREMENT');
 
+        Schema::create('osu_screenshots', function (Blueprint $table) {
+            $table->increments('screenshot_id');
+            $table->unsignedInteger('user_id')->default(0);
+            $table->timestamp('timestamp')->useCurrent();
+            $table->unsignedMediumInteger('hits')->default(0);
+            $table->timestamp('last_access')->nullable()->default(null);
+
+            $table->index(['user_id'], 'user_id');
+        });
+        // laravel migrations seem to not support creating a bit column
+        DB::statement("ALTER TABLE `osu_screenshots` ADD COLUMN `deleted` bit(1) NOT NULL DEFAULT b'0'");
+        DB::statement('ALTER TABLE `osu_screenshots` ADD INDEX `last_access` (`last_access`, `deleted`)');
+
         Schema::create('osu_user_achievements', function (Blueprint $table) {
             $table->mediumInteger('user_id');
             $table->mediumInteger('achievement_id');
@@ -1330,6 +1343,7 @@ class BaseTables extends Migration
         Schema::drop('osu_scores');
         Schema::drop('osu_scores_taiko_high');
         Schema::drop('osu_scores_taiko');
+        Schema::drop('osu_screenshots');
         Schema::drop('osu_user_achievements');
         Schema::drop('osu_user_banhistory');
         Schema::drop('osu_user_beatmap_playcount');

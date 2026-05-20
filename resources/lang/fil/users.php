@@ -333,6 +333,9 @@ return [
                     'title' => 'Kasaysayan sa Panooran ng Replay',
                     'count_label' => 'Beses na Napanooran ng Replay',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Kamakailang Kaganapan sa Kudosu',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Mga Bagong Post',
                 'show_more' => 'higit pang mga post',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

@@ -32,14 +32,29 @@
     gap: 10px;
   }
 
-  &__news {
-    padding: 0 0 20px;
+  &__left-section {
+    padding-bottom: 20px;
     flex: none;
     width: 100%;
 
     @media @desktop {
       margin-right: 10px;
       width: calc(60% - 10px);
+    }
+  }
+
+  &__left-title {
+    margin: 0;
+    padding: 20px 0 10px @gutter-v2;
+    font-size: @font-size--large;
+    font-weight: bold;
+    color: @osu-colour-l1;
+
+    display: flex;
+    align-items: flex-end;
+
+    @media @desktop {
+      padding-left: 0;
     }
   }
 
@@ -56,21 +71,6 @@
       color: @osu-colour-l1;
       padding: 20px;
       text-align: center;
-    }
-  }
-
-  &__news-title {
-    margin: 0;
-    padding: 20px 0 10px @gutter-v2;
-    font-size: @font-size--large;
-    font-weight: bold;
-    color: @osu-colour-l1;
-
-    display: flex;
-    align-items: flex-end;
-
-    @media @desktop {
-      padding-left: 0;
     }
   }
 

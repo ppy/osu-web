@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => '',
+            'first_places' => '',
             'leader' => 'Капітан каманды',
             'rank' => 'Ранг',
+            'ranked_beatmapsets' => '',
         ],
     ],
 

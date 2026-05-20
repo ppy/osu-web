@@ -7,6 +7,7 @@ namespace Database\Seeders\ModelSeeders;
 
 use App\Models\BeatmapPlaycount;
 use App\Models\FavouriteBeatmapset;
+use App\Models\Score\Best as ScoreBest;
 use App\Models\User;
 use DB;
 use Ds\Set;
@@ -34,7 +35,7 @@ class UserProfileSeeder extends Seeder
     // Add favourite beatmaps, beatmap playcounts, and first places for each user
     private function fillUserProfile(User $user)
     {
-        $scores = $user->scoresBestOsu()->get();
+        $scores = ScoreBest\Osu::where(['user_id' => $user->getKey()])->get();
 
         if (count($scores) < 1) {
             $this->command->info('Can\'t seed favourite maps, map playcounts or leaders due to having no score data.');

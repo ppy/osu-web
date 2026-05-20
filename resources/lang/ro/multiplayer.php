@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'playlist',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Durata este prea lungă.',
             'name_too_long' => 'Numele camerei este prea lung.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

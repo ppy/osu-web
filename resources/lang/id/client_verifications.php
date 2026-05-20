@@ -7,7 +7,7 @@ return [
     'completed' => [
         'home' => 'Tuju dasbor',
         'logout' => 'Keluar',
-        'text' => 'Kamu dapat menutup tab/jendela ini sekarang',
+        'text' => 'Kamu bisa menutup tab/jendela ini sekarang',
         'title' => 'Verifikasi klien osu! selesai',
     ],
 

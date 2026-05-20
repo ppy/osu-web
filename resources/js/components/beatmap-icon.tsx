@@ -6,6 +6,7 @@ import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { qtipPosition } from 'utils/qtip-helper';
 import { nextVal } from 'utils/seq';
 import DifficultyBadge from './difficulty-badge';
 
@@ -83,11 +84,7 @@ export class BeatmapIcon extends React.Component<Props> {
         event: 'click mouseleave',
       },
       overwrite: false,
-      position: {
-        at: 'top center',
-        my: 'bottom center',
-        viewport: $(window),
-      },
+      position: qtipPosition('top center'),
       show: {
         event: event.type,
         ready: true,

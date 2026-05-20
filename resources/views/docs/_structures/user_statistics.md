@@ -13,6 +13,7 @@
       "ssh": 3
   },
   "hit_accuracy": 92.19,
+  "accuracy": 0.9219,
   "is_ranked": true,
   "level": {
       "current": 30,
@@ -67,7 +68,8 @@ grade_counts.s            | integer  | Number of S ranked scores.
 grade_counts.sh           | integer  | Number of Silver S ranked scores.
 grade_counts.ss           | integer  | Number of SS ranked scores.
 grade_counts.ssh          | integer  | Number of Silver SS ranked scores.
-hit_accuracy              | float    | Hit accuracy percentage
+hit_accuracy              | float    | Hit accuracy percentage. Deprecated, use `accuracy` instead
+accuracy                  | float    | Accuracy, as a decimal in \[0, 1\] range.
 is_ranked                 | boolean  | Is actively ranked
 level.current             | integer  | Current level.
 level.progress            | float    | Progress to next level.

@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'svečio sunkumas',
             'beatmapset:modding' => 'beatmap\'ų taisymai',
             'channel_message' => 'privatūs susirašinėjimai',
+            'channel_mention' => '',
             'channel_team' => 'komandos žinutės',
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'slėpti perspėjimus dėl eksplicitinio turinio beatmap\'uose',
         'beatmapset_title_show_original' => 'rodyti beatmap\'o metaduomenys orginaliaja kalba',
         'title' => 'Parinktys',
@@ -156,11 +158,11 @@ return [
         'usage_note' => '',
 
         'button' => [
-            'remove' => '',
+            'remove' => 'Pašalinti',
             'setup' => '',
         ],
         'status' => [
-            'label' => '',
+            'label' => 'būsena',
             'not_set' => '',
             'set' => '',
         ],

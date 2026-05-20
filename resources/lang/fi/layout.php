@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modaus',
             'playlists' => 'soittolistat',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'moninpeli',
             'show' => 'tiedot',
         ],

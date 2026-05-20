@@ -333,6 +333,9 @@ return [
                     'title' => 'Sejarah Tontonan Ulangan',
                     'count_label' => 'Tontonan Ulangan',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Sejarah Kudosu Semasa',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Hantaran Terkini',
                 'show_more' => 'lihat hantaran lain',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

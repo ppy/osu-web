@@ -8,7 +8,7 @@ return [
         'active' => 'Kini tidak berada di dalam mainan sedang berjalan :type_group osu!(lazer)!',
         'ended' => 'Belum berada di dalam mainan :type_group osu!(lazer) lengkap!',
         'playlists' => 'senarai main',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'pemain ramai',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Tempoh terlalu panjang.',
             'name_too_long' => 'Nama bilik terlalu panjang.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

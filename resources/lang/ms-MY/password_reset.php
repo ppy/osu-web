@@ -16,8 +16,10 @@ return [
         'invalid' => 'Ralat tidak terjangka dalam kod pengesahan.',
         'is_privileged' => 'Sila hubungi pentadbir bertahap tinggi untuk memulihkan akaun.',
         'missing_key' => 'Diperlukan.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Terlalu banyak percubaan yang gagal.',
         'user_not_found' => 'Pengguna pintaan tidak ada.',
+        'wait_resend' => '',
         'wrong_key' => 'Kod salah.',
     ],
 

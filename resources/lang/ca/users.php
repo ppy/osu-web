@@ -333,6 +333,9 @@ return [
                     'title' => 'Historial de repeticions vistes',
                     'count_label' => 'Repeticions vistes',
                 ],
+                'score_replay_stats' => [
+                    'title' => 'Repeticions més vistes',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Historial de Kudosu recent',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Publicacions recents',
                 'show_more' => 'veure més publicacions',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,8 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Partides ràpides',
         ],
 
         'not_found' => [
@@ -539,7 +541,7 @@ return [
     'status' => [
         'all' => 'Tots',
         'online' => 'En línia',
-        'offline' => 'Sense connexió',
+        'offline' => 'Desconnectat',
     ],
     'store' => [
         'from_client' => 'si us plau, registreu-vos a través del client del joc!',

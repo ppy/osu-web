@@ -25,7 +25,7 @@ class ContestEntryTransformer extends TransformerAbstract
         $return = [
             'contest_id' => $entry->contest_id,
             'id' => $entry->getKey(),
-            'title' => $entry->contest->unmasked ? $entry->name : $entry->masked_name,
+            'title' => $entry->title,
             'preview' => $entry->entry_url,
         ];
 

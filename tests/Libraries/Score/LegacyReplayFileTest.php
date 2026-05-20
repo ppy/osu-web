@@ -7,7 +7,7 @@ namespace Tests\Libraries\Score;
 
 use App\Libraries\Score\LegacyReplayFile;
 use App\Models\Beatmap;
-use App\Models\Score\Best;
+use App\Models\Solo\Score;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -26,7 +26,7 @@ class LegacyReplayFileTest extends TestCase
     public function testHeaderChunk()
     {
         // known good header.
-        $known = '0056ef33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101784200000b008014b73dec8dd508';
+        $known = '0056ef33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000000000000000059911f00460101784200000b008014b73dec8dd508';
 
         $replayFile = new LegacyReplayFile($this->knownScore());
 
@@ -35,7 +35,7 @@ class LegacyReplayFileTest extends TestCase
 
     public function testHeaderChunkDefaultVersion()
     {
-        $known = '00bc7b33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101784200000b008014b73dec8dd508';
+        $known = '00bc7b33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000000000000000059911f00460101784200000b008014b73dec8dd508';
 
         $replayFile = new LegacyReplayFile($this->knownScore(true, null));
 
@@ -44,7 +44,7 @@ class LegacyReplayFileTest extends TestCase
 
     public function testHeaderChunkMissingReplayRecord()
     {
-        $known = '00bc7b33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000016000500000059911f00460101784200000b008014b73dec8dd508';
+        $known = '00bc7b33010b2039323536623735613064663334356262623237396533353438303732396631340b08492e522e5265616c0b2033393336326435393239313738633162626265373465323130646639316232399e000600000000000000000059911f00460101784200000b008014b73dec8dd508';
 
         $replayFile = new LegacyReplayFile($this->knownScore(false));
 
@@ -61,34 +61,48 @@ class LegacyReplayFileTest extends TestCase
         $user = User::find($userId) ?? User::factory()->create(['user_id' => $userId]);
         $user->fill(['username' => 'I.R.Real'])->saveOrExplode(['skipValidations' => true]);
 
-        $score = Best\Osu::make([
-            'score_id' => 2493013207,
+        $legacyScoreId = 2493013207;
+
+        $score = Score::make([
+            'ruleset_id' => 0,
+            'legacy_score_id' => $legacyScoreId,
             'beatmap_id' => $beatmapId,
             'user_id' => $userId,
-            'score' => 2068825,
-            'maxcombo' => 326,
+            'legacy_total_score' => 2068825,
+            'max_combo' => 326,
             'rank' => 'SH',
-            'count50' => 0,
-            'count100' => 6,
-            'count300' => 158,
-            'countmiss' => 0,
-            'countgeki' => 22,
-            'countkatu' => 5,
+            'passed' => true,
+            'data' => [
+                'mods' => [
+                    ['acronym' => 'HD'],
+                    ['acronym' => 'HR'],
+                    ['acronym' => 'NC'],
+                    ['acronym' => 'PF'],
+                ],
+                'statistics' => [
+                    'meh' => 0,
+                    'ok' => 6,
+                    'great' => 158,
+                    'miss' => 0,
+                ],
+                'maximum_statistics' => [
+                    'legacy_combo_increase' => 326 - 158 - 6,
+                    'great' => 158 + 6,
+                ],
+            ],
             'perfect' => true,
-            'enabled_mods' => 17016, // [HD, HR, NC, PF]  + implied mods
-            'date' => '2018-03-19 22:53:33',
+            'ended_at' => '2018-03-19 22:53:33',
             'pp' => 68.41,
-            'replay' => true,
-            'hidden' => 0,
+            'has_replay' => true,
             'country_acronym' => 'DE',
         ]);
 
         if ($hasReplayRecord) {
-            $score->setRelation('replayViewCount', $score->replayViewCount()->make([
-                'score_id' => 2493013207,
+            $score->legacyReplayViewCount()->create([
+                'score_id' => $legacyScoreId,
                 'play_count' => 1,
                 'version' => $version,
-            ]));
+            ]);
         }
 
         return $score;

@@ -3,18 +3,26 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\BeatmapFile;
 
 class BeatmapsetArchive
 {
-    private $fileList;
+    // unify output to 44.1kHz stereo
+    private const RESAMPLE_FILTER = 'aresample=resampler=soxr:osr=44100:ochl=stereo';
+
     private $errorCode;
+    private $fileList;
+    private array $osuFileList;
     private $osz;
+    private array $parsedFiles = [];
     private $zip;
 
-    public function __construct(string $osz)
+    public function __construct(string $osz, private ?Beatmapset $beatmapset = null)
     {
         $this->osz = $osz;
         $this->zip = new \ZipArchive();
@@ -22,6 +30,192 @@ class BeatmapsetArchive
         if ($this->errorCode !== true) {
             throw new BeatmapProcessorException('Failed to open archive', $this->errorCode);
         }
+    }
+
+    public static function fetch(Beatmapset $beatmapset): ?static
+    {
+        $oszFile = tmpfile();
+        $mirror = BeatmapMirror::getRandomFromList($GLOBALS['cfg']['osu']['beatmap_processor']['mirrors_to_use'])
+            ?? throw new \Exception('no available mirror');
+        $url = $mirror->generateURL($beatmapset, true);
+
+        if ($url === false) {
+            return null;
+        }
+
+        $curl = curl_init($url);
+        curl_setopt_array($curl, [
+            CURLOPT_FILE => $oszFile,
+            CURLOPT_TIMEOUT => 30,
+        ]);
+        curl_exec($curl);
+
+        if (curl_errno($curl) > 0) {
+            throw new BeatmapProcessorException('Failed downloading osz: '.curl_error($curl));
+        }
+
+        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // archive file is gone, nothing to do for now
+        if ($statusCode === 302) {
+            return null;
+        }
+        if ($statusCode !== 200) {
+            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
+        }
+
+        try {
+            return new static(get_stream_filename($oszFile), $beatmapset);
+        } catch (BeatmapProcessorException) {
+            // zip file is broken, nothing to do for now
+            return null;
+        }
+    }
+
+    private static function convertAudioForPreview(string $audioFile, ?int $previewTime): ?string
+    {
+        $srcFile = tmpfile();
+        fwrite($srcFile, $audioFile);
+        $srcFilenameEscaped = escapeshellarg(get_stream_filename($srcFile));
+
+        $duration = 10000;
+        if ($previewTime === null || $previewTime < 0) {
+            // the output is in seconds
+            $srcDuration = (float) exec(implode(' ', [
+                'timeout 10s',
+                'ffprobe',
+                '-loglevel quiet',
+                "-i {$srcFilenameEscaped}",
+                '-show_entries format=duration',
+                '-of csv=p=0',
+            ]));
+            $previewTime = 0.4 * $srcDuration * 1000;
+        }
+
+        $fadeInExtension = min($previewTime, 100);
+        $fadeIn = $fadeInExtension + 100;
+        $duration += $fadeInExtension;
+        $previewTime -= $fadeInExtension;
+
+        $fadeOut = $duration - 1000;
+
+        // disabled due to being usually too quiet for client
+        if (false) {
+            $normOffset = 90_000;
+            $loudnorm = static::getAudioLoudnormFilter(
+                $srcFilenameEscaped,
+                max($previewTime - $normOffset, 0),
+                ($normOffset * 2) + $duration,
+            );
+
+            if ($loudnorm === null) {
+                return null;
+            }
+        }
+
+        $filter = implode(',', array_reject_null([
+            static::RESAMPLE_FILTER,
+            $loudnorm ?? null,
+            "afade=t=in:st=0:d={$fadeIn}ms:curve=ipar",
+            "afade=t=out:st={$fadeOut}ms:d=1000ms:curve=tri",
+        ]));
+
+        $dstFile = tmpfile();
+        $dstFilename = get_stream_filename($dstFile);
+        exec(implode(' ', [
+            'timeout 20s',
+            'ffmpeg',
+            '-nostdin',
+            '-loglevel quiet',
+            "-ss {$previewTime}ms",
+            "-t {$duration}ms",
+            "-i {$srcFilenameEscaped}",
+            "-af {$filter}",
+            '-map 0:a', // strip out non-audio streams
+            '-map_metadata -1', // strip out metadata
+            '-c:a libvorbis -q 1.0',
+            '-f ogg',
+            '-y',
+            escapeshellarg($dstFilename),
+        ]));
+
+        return presence(file_get_contents($dstFilename));
+    }
+
+    private static function getAudioLoudnormFilter(string $srcEscaped, float $start, float $duration): ?string
+    {
+        exec(implode(' ', [
+            'timeout 20s',
+            'ffmpeg',
+            '-hide_banner',
+            '-nostdin',
+            "-ss {$start}ms",
+            "-t {$duration}ms",
+            "-i {$srcEscaped}",
+            '-af '.static::RESAMPLE_FILTER,
+            '-af loudnorm=i=-14:print_format=json',
+            '-f null',
+            '-',
+            '2>&1',
+        ]), $output);
+
+        // TODO: replace with proper json output in newer ffmpeg (8.1+)
+        // Reference: https://code.ffmpeg.org/FFmpeg/FFmpeg/pulls/21766
+        $json = '';
+        $foundJson = false;
+        foreach ($output as $line) {
+            if ($foundJson) {
+                $json .= $line;
+                if ($line === '}') {
+                    break;
+                }
+            } else {
+                if (str_contains($line, '[Parsed_loudnorm_')) {
+                    $foundJson = true;
+                }
+            }
+        }
+
+        $stats = json_decode($json, true);
+
+        if ($stats === null) {
+            return null;
+        }
+
+        // taken from https://slhck.info/ffmpeg-normalize/usage/presets/
+        // which is basically ffmpeg defaults with i=-14.
+        $i = -14;
+        $lra = 7;
+        $tp = -2;
+        $offset = \Number::clamp((float) $stats['target_offset'], -99, 99);
+
+        $measuredI = \Number::clamp((float) $stats['input_i'], -99, 0);
+        $measuredLra = \Number::clamp((float) $stats['input_lra'], 1, 50);
+        $measuredTp = \Number::clamp((float) $stats['input_tp'], -99, 99);
+        $measuredThresh = \Number::clamp((float) $stats['input_thresh'], -99, 0);
+
+        // matches the behavior of the flags
+        // - auto-lower-loudness-target
+        //   reference: https://github.com/slhck/ffmpeg-normalize/blob/589ed776e627bbe093cd232a14743d1905969796/src/ffmpeg_normalize/_streams.py#L545
+        // - keep-lra-above-loudness-range-target
+        //   reference: https://github.com/slhck/ffmpeg-normalize/blob/589ed776e627bbe093cd232a14743d1905969796/src/ffmpeg_normalize/_streams.py#L508
+        $lra = max($measuredLra, $lra);
+        $safeI = $measuredI - $measuredTp + $tp - 0.1;
+        $i = min($safeI, $i);
+
+        return 'loudnorm='.implode(':', [
+            "i={$i}",
+            "lra={$lra}",
+            "tp={$tp}",
+
+            "measured_i={$measuredI}",
+            "measured_lra={$measuredLra}",
+            "measured_tp={$measuredTp}",
+            "measured_thresh={$measuredThresh}",
+
+            "offset={$offset}",
+
+            'linear=true',
+        ]);
     }
 
     public function __destruct()
@@ -47,7 +241,12 @@ class BeatmapsetArchive
 
     public function osuFileList()
     {
-        return preg_grep('/\.osu$/i', $this->fileList());
+        return $this->osuFileList ??= array_values(array_unique([
+            // use db order
+            // filename column in beatmaps table is nullable
+            ...array_reject_null($this->beatmapset?->beatmaps->pluck('filename') ?? []),
+            ...preg_grep('/\.osu$/i', $this->fileList()),
+        ]));
     }
 
     public function readFile(?string $filename)
@@ -68,39 +267,59 @@ class BeatmapsetArchive
         return $this->zip->locateName($filename, \ZipArchive::FL_NOCASE) !== false;
     }
 
-    // Parses given list (of .osu files) and finds background images referenced.
-    // If $performFallback is enabled, all .osu files in archive are scanned if $filelist yields no result.
-    // This allows beatmap order to dictate the priority (to match existing behaviour).
-    public function scanBeatmapsForBackground(array $filelist, bool $performFallback = false)
+    public function generateAudioPreview(): ?string
     {
-        if ($performFallback) {
-            $filelist = array_merge($filelist, $this->osuFileList());
+        foreach ($this->getParsedFiles() as $parsedFile) {
+            $previewTime = $parsedFile->previewTime;
+            $audioFilename = $parsedFile->audioFilename;
+
+            if (isset($audioFilename)) {
+                $audioFile = $this->readFile($audioFilename);
+
+                if ($audioFile !== false) {
+                    return static::convertAudioForPreview($audioFile, $previewTime);
+                }
+            }
         }
 
-        if (empty($filelist)) {
-            return;
+        return null;
+    }
+
+    public function scanBeatmapsForBackground(): ?string
+    {
+        foreach ($this->getParsedFiles() as $parsedFile) {
+            $filename = $parsedFile->backgroundImage;
+
+            // return if background is set in the file and present in .osz
+            if ($filename !== null && $this->hasFile($filename)) {
+                return $filename;
+            }
         }
 
-        foreach ($filelist as $file) {
+        return null;
+    }
+
+    private function getParsedFile(string $file): ?BeatmapFile
+    {
+        if (!array_key_exists($file, $this->parsedFiles)) {
             $content = $this->readFile($file);
-            if ($content === false) {
-                // missing .osu (usually due to mismatching filename from unicode stripping)
-                continue;
-            }
 
-            $osu = BeatmapFile::parse($content);
-            if ($osu === false) {
-                // invalid .osu
-                continue;
-            }
-
-            // return if background is present in .osz
-            $backgroundFilename = $osu->backgroundImage();
-            if ($this->hasFile($backgroundFilename)) {
-                return $backgroundFilename;
-            }
+            $this->parsedFiles[$file] = $content === false
+                ? null
+                : new BeatmapFile($content);
         }
 
-        return false;
+        return $this->parsedFiles[$file];
+    }
+
+    private function getParsedFiles(): iterable
+    {
+        foreach ($this->osuFileList() as $file) {
+            $parsedFile = $this->getParsedFile($file);
+
+            if ($parsedFile !== null) {
+                yield $parsedFile;
+            }
+        }
     }
 }

@@ -16,8 +16,10 @@ return [
         'invalid' => 'Oväntat fel i verifieringskod.',
         'is_privileged' => 'Kontakta en administratör på hög nivå för att återställa kontot.',
         'missing_key' => 'Krävs.',
+        'too_many_requests' => '',
         'too_many_tries' => 'För många misslyckade försök.',
         'user_not_found' => 'Användaren finns inte.',
+        'wait_resend' => '',
         'wrong_key' => 'Felaktig kod.',
     ],
 

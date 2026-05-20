@@ -21,8 +21,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Carbon\Carbon $created_at
  * @property int $id
  * @property int $playlist_item_id
+ * @property-read PlaylistItem $playlistItem
  * @property int $score_id
- * @property ScoreLink $scoreLink
+ * @property-read Score $score
+ * @property-read ScoreLink $scoreLink
  * @property int $total_score
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id

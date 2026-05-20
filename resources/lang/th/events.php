@@ -21,7 +21,7 @@ return [
 
     'beatmapset_status' => [
         'approved' => 'อนุมัติแล้ว',
-        'loved' => 'รักเลย',
+        'loved' => 'เลิฟด์',
         'qualified' => 'ผ่านการรับรอง',
         'ranked' => 'ติดอันดับ',
     ],

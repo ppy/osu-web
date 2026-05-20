@@ -246,6 +246,7 @@ return [
             'prompt' => 'skriv inn nøkkelord...',
             'login_required' => 'Logg inn for å søke.',
             'options' => 'Flere søkemuligheter',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtrering ved bruk av :filters krever en aktiv osu!supporter tag',
             'not-found' => 'ingen treff',
             'not-found-quote' => '... nei, ingenting ble funnet.',
@@ -275,6 +276,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Filtrering ved bruk av :filters krever en aktiv :link',
                 'link_text' => 'osu!supporter tag',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

@@ -20,7 +20,7 @@ class AdditionalDuskServiceProvider extends ServiceProvider
         Route::get('/_dusk/verify', function () {
             \Session::instance()->markVerified();
 
-            return response(null, 204);
+            return response()->noContent();
         })->middleware('web');
     }
 }

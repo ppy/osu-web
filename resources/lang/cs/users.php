@@ -333,6 +333,9 @@ return [
                     'title' => 'Historie zhlédnutí záznamů',
                     'count_label' => 'Záznamů přehráno',
                 ],
+                'score_replay_stats' => [
+                    'title' => 'Nejvíce sledované záznamy',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Nedávná Kudosu historie',
@@ -399,8 +402,8 @@ return [
                 'title_longer' => 'Poslední příspěvky',
                 'show_more' => 'zobrazit více příspěvků',
             ],
-            'quickplay' => [
-                'title' => 'Zápasy Rychlé hry',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Nedávné',
@@ -472,8 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Rychlá hra',
         ],
 
         'not_found' => [

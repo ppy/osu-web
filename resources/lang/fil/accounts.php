@@ -91,6 +91,7 @@ return [
             'beatmap_owner_change' => 'guest na difficulty',
             'beatmapset:modding' => 'pagmo-mod ng beatmap',
             'channel_message' => 'mga pribadong mensahe',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'mga bagong komento',
             'forum_topic_reply' => 'tugon sa paksa',
@@ -108,6 +109,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'itago ang mga babala para sa mga sensitibong nilalaman sa mga beatmaps',
         'beatmapset_title_show_original' => 'ipakita ang beatmap metadata sa orihinal na wika',
         'title' => 'Mga pagpipilian',

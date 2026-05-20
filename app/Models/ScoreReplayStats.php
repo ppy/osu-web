@@ -7,8 +7,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class ScoreReplayStats extends Model
 {
     public $incrementing = false;
     protected $primaryKey = 'score_id';
+
+    public function score(): BelongsTo
+    {
+        return $this->belongsTo(Solo\Score::class);
+    }
 }

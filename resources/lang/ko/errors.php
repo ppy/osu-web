@@ -22,10 +22,6 @@ return [
             'generic' => '문제가 발생했습니다. 페이지를 새로고침 해보세요.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => '잘못된 모드 종류입니다.',
-        'standard_converts_only' => '현재 비트맵에서는 해당 모드로 점수를 기록할 수 없습니다.',
-    ],
     'checkout' => [
         'generic' => '결제를 준비하는 중 오류가 발생하였습니다.',
     ],

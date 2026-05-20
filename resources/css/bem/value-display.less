@@ -43,11 +43,18 @@
     --value-color: hsl(var(--hsl-c2));
     --value-font-size-desktop: @font-size--new-header-title;
     --value-font-size: @font-size--large;
-    line-height: 1;
 
     @media @desktop {
       flex: none;
     }
+  }
+
+  &--select-option {
+    --label-font-size-desktop: inherit;
+    --label-font-size: inherit;
+    --label-font-weight: normal;
+    --value-font-size-desktop: 0.8em;
+    --value-font-size: 0.8em;
   }
 
   &--score {

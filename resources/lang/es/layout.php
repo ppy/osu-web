@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'listas de juego',
-            'quickplay' => 'partidas rápidas',
+            'ranked-play' => '',
             'realtime' => 'multijugador',
             'show' => 'información',
         ],

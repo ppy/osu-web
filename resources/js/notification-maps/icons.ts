@@ -1,9 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-interface IconsMap {
-  [key: string]: string[];
-}
+type IconsMap = Partial<Record<string, string[]>>;
 
 export const categoryToIcons: IconsMap = {
   announcement: ['fas fa-bullhorn'],
@@ -12,6 +10,7 @@ export const categoryToIcons: IconsMap = {
   beatmapset_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
   beatmapset_state: ['fas fa-drafting-compass'],
   channel: ['fas fa-comments'],
+  channel_mention: ['fas fa-at'],
   channel_team: ['fas fa-comments'],
   comment: ['fas fa-comment'],
   forum_topic_reply: ['fas fa-comment-medical'],
@@ -34,6 +33,7 @@ export const nameToIcons: IconsMap = {
   beatmapset_remove_from_loved: ['fas fa-drafting-compass', 'fas fa-heart-broken'],
   beatmapset_reset_nominations: ['fas fa-drafting-compass', 'fas fa-undo'],
   channel_announcement: ['fas fa-bullhorn'],
+  channel_mention: ['fas fa-at'],
   channel_message: ['fas fa-comments'],
   channel_team: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],
@@ -61,6 +61,7 @@ export const nameToIconsCompact: IconsMap = {
   beatmapset_remove_from_loved: ['fas fa-heart-broken'],
   beatmapset_reset_nominations: ['fas fa-undo'],
   channel_announcement: ['fas fa-bullhorn'],
+  channel_mention: ['fas fa-at'],
   channel_message: ['fas fa-comments'],
   channel_team: ['fas fa-comments'],
   comment_new: ['fas fa-comment'],

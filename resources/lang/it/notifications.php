@@ -40,7 +40,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Difficoltà guest',
+                '_' => 'Difficoltà ospite',
                 'beatmap_owner_change' => 'Sei diventato il proprietario della difficoltà ":beatmap" nella beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Sei diventato il proprietario della difficoltà ":beatmap"',
             ],
@@ -81,7 +81,7 @@ return [
                 'beatmapset_love_compact' => 'La beatmap è stata promossa tra le amate',
                 'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_nominate_compact' => 'La beatmap è stata nominata',
-                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di raking',
+                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di classificazione',
                 'beatmapset_qualify_compact' => 'La beatmap è entrata nella coda di classificazione',
                 'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Nuovo messaggio di squadra',
 
@@ -136,7 +146,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Note di rilascio',
+            '_' => 'Changelog',
 
             'comment' => [
                 '_' => 'Nuovo commento',
@@ -161,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Notizie (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Notizie',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Sei diventato ospite della beatmap ":title"',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Hai ricevuto un nuovo messaggio da :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'C\'è un nuovo messaggio sulla squadra ":name"',
             ],
@@ -264,17 +280,13 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => 'La nota di rilascio ":title" ha nuovi commenti',
+                'comment_new' => 'Il changelog ":title" ha nuovi commenti',
             ],
         ],
 
         'news_post' => [
             'comment' => [
                 'comment_new' => 'La notizia ":title" ha nuovi commenti',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

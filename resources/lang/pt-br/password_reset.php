@@ -16,8 +16,10 @@ return [
         'invalid' => 'Erro inesperado no código de verificação.',
         'is_privileged' => 'Fala com o peppy, lul.',
         'missing_key' => 'Obrigatório.',
+        'too_many_requests' => 'O limite de solicitação de reset de senha foi atingido. Por favor, contate o suporte para recuperar a conta.',
         'too_many_tries' => 'Número de tentativas excedido.',
         'user_not_found' => 'O usuário selecionado não existe.',
+        'wait_resend' => 'Por favor, aguarde alguns minutos.',
         'wrong_key' => 'Código incorreto.',
     ],
 

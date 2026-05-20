@@ -12,9 +12,6 @@ return [
         'prefix' => presence(env('STORE_ORDER_PREFIX'), 'store'),
         'stale_days' => get_int(env('STORE_STALE_DAYS')) ?? 14,
     ],
-    'queue' => [
-        'notifications' => presence(env('STORE_NOTIFICATIONS_QUEUE'), 'store-notifications'),
-    ],
     'shopify' => [
         'domain' => presence(env('SHOPIFY_DOMAIN')),
         'storefront_token' => presence(env('SHOPIFY_STOREFRONT_TOKEN')),

@@ -78,7 +78,7 @@
                 <div class="account-edit__input-group">
                     <div class="account-edit-entry account-edit-entry--block js-account-edit-avatar">
                         <div class="account-edit-entry__avatar">
-                            <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
+                            <div class="avatar avatar--full-rounded u-current-user-avatar"></div>
 
                             <div class="account-edit-entry__drop-overlay">
                                 <span>

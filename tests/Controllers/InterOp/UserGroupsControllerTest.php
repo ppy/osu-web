@@ -111,7 +111,9 @@ class UserGroupsControllerTest extends TestCase
         $actualPlaymodes = $user->findUserGroup($group)->playmodes;
 
         $this->assertCount(count($playmodes), $actualPlaymodes);
-        $this->assertArraySubset($playmodes, $actualPlaymodes);
+        foreach ($playmodes as $ruleset) {
+            $this->assertContains($ruleset, $actualPlaymodes);
+        }
         $this->assertSame(
             $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
             $userAddEventCount,
@@ -229,7 +231,9 @@ class UserGroupsControllerTest extends TestCase
         $actualPlaymodes = $user->findUserGroup($group)->playmodes;
 
         $this->assertCount(count($playmodes), $actualPlaymodes);
-        $this->assertArraySubset($playmodes, $actualPlaymodes);
+        foreach ($playmodes as $ruleset) {
+            $this->assertContains($ruleset, $actualPlaymodes);
+        }
     }
 
     public function testUserGroupSetDefaultWhenAlreadyDefault()

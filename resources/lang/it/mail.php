@@ -56,8 +56,8 @@ return [
         'processing' => 'Abbiamo ricevuto il tuo pagamento e stiamo elaborando l\'ordine. Puoi seguire i progressi del tuo ordine qui:',
         'questions' => "Se hai dubbi, non esitare a contattarci rispondendo a questa email.",
         'shipping' => 'Spedizione',
-        'subject' => 'Abbiamo ricevuto il tuo ordine sull\'osu!store!',
-        'thank_you' => 'Grazie per il tuo ordine sull\'osu!store!',
+        'subject' => 'Abbiamo ricevuto il tuo ordine su osu!store!',
+        'thank_you' => 'Grazie per il tuo ordine su osu!store!',
         'total' => 'Totale',
     ],
 

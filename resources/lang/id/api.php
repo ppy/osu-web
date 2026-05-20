@@ -6,7 +6,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Tidak dapat mengirim pesan kosong.',
+            'empty' => 'Pesan kosong tidak bisa dikirim.',
             'limit_exceeded' => 'Kamu mengirim pesan terlalu cepat. Silakan tunggu beberapa saat sebelum mencoba lagi.',
             'too_long' => 'Pesan yang ingin kamu kirim terlalu panjang.',
         ],
@@ -19,7 +19,7 @@ return [
         'chat' => [
             'read' => 'Membaca pesan atas nama akunmu.',
             'write' => 'Mengirim pesan atas nama akunmu.',
-            'write_manage' => 'Membawa akunmu untuk masuk dan keluar dari kanal percakapan.',
+            'write_manage' => 'Membawa akunmu untuk masuk dan keluar dari kanal obrolan.',
         ],
 
         'forum' => [
@@ -29,6 +29,10 @@ return [
 
         'friends' => [
             'read' => 'Melihat siapa saja yang kamu ikuti.',
+        ],
+
+        'multiplayer' => [
+            'write_manage' => 'Membuat dan mengelola ruangan multiplayer atas nama akunmu.',
         ],
 
         'public' => 'Membaca data yang bersifat publik atas nama akunmu.',

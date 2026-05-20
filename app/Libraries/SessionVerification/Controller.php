@@ -93,7 +93,7 @@ class Controller
     {
         $state = State::getCurrent();
         if ($state->session->isVerified()) {
-            return response(null, 204);
+            return response()->noContent();
         }
 
         $key = strtr(get_string(\Request::input('verification_key')) ?? '', [' ' => '']);
@@ -133,7 +133,7 @@ class Controller
         Helper::logAttempt('input', 'success');
         $state->markVerified($mailState ?? null);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public static function verifyLink()

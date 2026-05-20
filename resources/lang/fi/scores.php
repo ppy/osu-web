@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Pelaaja',
+            'played_on' => 'Pelattu',
             'submitted_on' => 'Tulos lähetetty',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Maakohtainen sijoitus',

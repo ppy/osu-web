@@ -125,6 +125,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => '',
 
@@ -221,6 +231,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Mostantól vendégje vagy ":title" beatmapnek',
@@ -258,6 +270,10 @@ return [
             'channel' => [
                 'channel_message' => '',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '',
             ],
@@ -272,10 +288,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Új kommentek jelentek meg itt::title',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

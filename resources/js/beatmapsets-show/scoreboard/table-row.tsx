@@ -3,7 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import FlagTeam from 'components/flag-team';
-import Mod from 'components/mod';
+import Mods from 'components/mods';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import ScoreValue from 'components/score-value';
 import ScoreboardTime from 'components/scoreboard-time';
@@ -19,7 +19,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank, scoreUrl } from 'utils/score-helper';
+import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -55,7 +55,7 @@ interface Props {
 export default class ScoreboardTableRow extends React.Component<Props> {
   @computed
   get scoreUrl() {
-    return scoreUrl(this.props.score);
+    return route('scores.show', { score: this.props.score.id });
   }
 
   constructor(props: Props) {
@@ -90,7 +90,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <ScoreValue score={score} />
         </TdLink>
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: scoreAccuracy === 1 }}>
+        <TdLink href={this.scoreUrl} modifiers={scoreAccuracy === 1 ? 'perfect' : null}>
           {`${formatNumber(scoreAccuracy * 100, 2)}%`}
         </TdLink>
 
@@ -131,7 +131,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </td>
         )}
 
-        <TdLink href={this.scoreUrl} modifiers={{ perfect: isPerfectCombo(score) }}>
+        <TdLink href={this.scoreUrl} modifiers={isPerfectCombo(score) ? 'perfect' : null}>
           {`${formatNumber(score.max_combo)}x`}
         </TdLink>
 
@@ -139,7 +139,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <TdLink
             key={stat.label.short}
             href={this.scoreUrl}
-            modifiers={{ zero: stat.value === 0 }}
+            modifiers={stat.value === 0 ? 'zero' : null}
           >
             {formatNumber(stat.value)}
           </TdLink>
@@ -155,11 +155,12 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <ScoreboardTime dateTime={score.ended_at} />
         </TdLink>
 
-        <TdLink href={this.scoreUrl} modifiers='mods'>
+        <td className={`${bn}__cell ${bn}__cell--player u-relative`}>
+          <a className={classWithModifiers(`${bn}__cell-content`, 'bg-link')} href={this.scoreUrl} />
           <div className={`${bn}__mods`}>
-            {displayMods(score).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            <Mods mods={displayMods(score)} />
           </div>
-        </TdLink>
+        </td>
 
         <td className={`${bn}__popup-menu`}>
           {hasMenu(score) && <PlayDetailMenu score={score} user={score.user} />}

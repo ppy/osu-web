@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Jugat per',
+            'played_on' => 'Jugat a',
             'submitted_on' => 'Enviat el',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Classificació nacional',

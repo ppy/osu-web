@@ -27,7 +27,7 @@ type LinkKey = BioKey | MediaKey;
 
 interface LinkProps {
   icon: string;
-  text: string | React.ReactNode;
+  text: React.ReactNode;
   title?: string;
   url?: string | null;
 }

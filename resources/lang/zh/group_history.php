@@ -8,7 +8,7 @@ return [
     'view' => '查看用户组历史记录',
 
     'event' => [
-        'actor' => '操作人：  :user',
+        'actor' => '操作人：:user',
 
         'message' => [
             'group_add' => '已创建用户组 :group 。',

@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => 'Νέο μήνυμα ομάδας',
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Είσαι τώρα επισκέπτης του beatmap \'\':title\'\'',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => 'Έλαβες ένα νέο μήνυμ από :username',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => 'Υπάρχει ένα νέο μήνυμα στην ομάδα ":name"',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => 'Νέα ":title" έχει νέα σχόλια',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

@@ -8,7 +8,7 @@ return [
         'active' => 'Pagaidām nav neviena notiekošā osu!(shitzer) :type_group spēlē!',
         'ended' => 'Pagaidām nav neviena pabeigtā osu!(shitzer) :type_group spēlē!',
         'playlists' => 'sarakstu',
-        'quickplay' => 'ātrā spēle',
+        'ranked-play' => '',
         'realtime' => 'daudzspēlētāju režīma',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Ilgums ir pārāk garš.',
             'name_too_long' => 'Istabas vārds ir par garu.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

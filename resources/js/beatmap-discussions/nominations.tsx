@@ -651,6 +651,8 @@ export class Nominations extends React.Component<Props> {
             : formatDate(rankingEta)
           : trans('beatmaps.nominations.rank_estimate.soon');
 
+        const firstUnresolvedDiscussion = this.props.discussionsState.firstUnresolvedDiscussion;
+
         return (
           <>
             <StringWithComponent
@@ -670,16 +672,15 @@ export class Nominations extends React.Component<Props> {
               }}
               pattern={trans('beatmaps.nominations.rank_estimate._')}
             />
-            {this.props.discussionsState.discussionsByFilter.pending.length > 0 ?
+            {firstUnresolvedDiscussion != null &&
               <div className={`${bn}__problems`}>
                 <StringWithComponent
                   mappings={{
                     problems: <a
                       className='js-beatmap-discussion--jump'
                       href={makeUrl({
-                        discussion: this.props.discussionsState.discussionsByFilter.pending[0],
+                        discussion: firstUnresolvedDiscussion,
                         filter: 'pending',
-                        mode: this.props.discussionsState.currentPage,
                       })}
                       onClick={this.handlePendingProblemsClick}
                     >
@@ -689,7 +690,6 @@ export class Nominations extends React.Component<Props> {
                   pattern={trans('beatmaps.nominations.rank_estimate.unresolved_problems')}
                 />
               </div>
-              : <></>
             }
           </>
         );

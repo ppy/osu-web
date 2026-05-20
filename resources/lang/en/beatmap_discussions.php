@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => ':count_delimited reply is hidden.|:count_delimited replies are hidden.',
+
     'authorizations' => [
         'update' => [
             'null_user' => 'Must be signed in to edit.',

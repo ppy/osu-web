@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => '',
             'more_simple' => 'Εμφάνιση περισσότερων αποτελεσμάτων ομάδων',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Λήψη osu!',
             'support' => 'Υποστηρίξτε το osu!',
             'store' => 'osu!κατάστημα',
+        ],
+        'livestream' => [
+            'title' => '',
         ],
         'show' => [
             'admin' => [

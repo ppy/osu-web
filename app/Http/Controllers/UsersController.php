@@ -14,6 +14,7 @@ use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\FindForProfilePage;
+use App\Libraries\User\ProfileCount;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -21,7 +22,9 @@ use App\Models\IpBan;
 use App\Models\Log;
 use App\Models\User;
 use App\Models\UserAccountHistory;
+use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\ScoreReplayStatsTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserMonthlyPlaycountTransformer;
@@ -43,6 +46,8 @@ class UsersController extends Controller
     const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
 
     const PER_PAGE = [
+        'scoreReplayStats' => 5,
+
         'scoresBest' => 5,
         'scoresFirsts' => 5,
         'scoresPinned' => 5,
@@ -77,6 +82,7 @@ class UsersController extends Controller
             'me',
             'posts',
             'updatePage',
+            'unlockClientSideAchievement',
         ]]);
 
         $this->middleware('throttle:60,10', ['only' => ['store']]);
@@ -87,6 +93,7 @@ class UsersController extends Controller
             'index',
             'kudosu',
             'recentActivity',
+            'scoreReplayStats',
             'scores',
             'show',
         ]]);
@@ -96,7 +103,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity'],
+            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity', 'scoreReplayStats'],
         ]);
 
         parent::__construct();
@@ -167,6 +174,10 @@ class UsersController extends Controller
                         $this->user->soloScores()->recent($this->mode, false)->count(),
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
+                    'score_replay_stats' => $this->getExtraSection(
+                        'scoreReplayStats',
+                        $this->user->scoreReplayStats()->whereHas('score.beatmap')->countLimit($this->maxResults),
+                    ),
                 ];
 
             case 'kudosu':
@@ -183,7 +194,11 @@ class UsersController extends Controller
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))->count()
+                        ProfileCount::scoresFirst(
+                            $this->user,
+                            $this->mode,
+                            ScoreSearchParams::showLegacyForUser(\Auth::user()),
+                        )
                     ),
                     'pinned' => $this->getExtraSection(
                         'scoresPinned',
@@ -209,12 +224,12 @@ class UsersController extends Controller
         }
 
         try {
-            ClientCheck::parseToken($request);
+            $clientTokenData = ClientCheck::parseToken($request);
         } catch (HttpException $e) {
             return static::storeClientDisabledError();
         }
 
-        return $this->storeUser($request->all());
+        return $this->storeUser($request->all(), $clientTokenData);
     }
 
     public function storeWeb()
@@ -251,7 +266,7 @@ class UsersController extends Controller
             }
         }
 
-        return $this->storeUser($rawParams);
+        return $this->storeUser($rawParams, null);
     }
 
     /**
@@ -481,6 +496,11 @@ class UsersController extends Controller
         return $this->getExtra('recentActivity', [], $this->perPage, $this->offset);
     }
 
+    public function scoreReplayStats()
+    {
+        return $this->getExtra('scoreReplayStats', [], $this->perPage, $this->offset);
+    }
+
     /**
      * Get User Scores
      *
@@ -683,6 +703,29 @@ class UsersController extends Controller
         }
     }
 
+    public function unlockClientSideAchievement($achievementId)
+    {
+        priv_check('AchievementUnlock')->ensureCan();
+
+        $user = \Auth::user();
+        $request = \Request::instance();
+        $achievement = app('medals')->byIdOrFail($achievementId);
+
+        abort_unless($achievement->client_side, 422, 'achievement cannot be unlocked');
+
+        try {
+            ClientCheck::parseToken($request);
+        } catch (HttpException $e) {
+            abort(403);
+        }
+
+        $unlocked = UserAchievement::unlock($user, $achievement);
+        abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
+
+        datadog_increment('user_achievement_unlock', ['id' => $achievementId, 'source' => 'client']);
+        return response()->noContent();
+    }
+
     public function updatePage($id)
     {
         $user = User::findOrFail($id);
@@ -741,7 +784,7 @@ class UsersController extends Controller
                 $transformer = 'BeatmapPlaycount';
                 $query = $this->user->beatmapPlaycounts()
                     ->with('beatmap', 'beatmap.beatmapset')
-                    ->whereHas('beatmap.beatmapset')
+                    ->whereHas('beatmap')
                     ->orderBy('playcount', 'desc')
                     ->orderBy('beatmap_id', 'desc'); // for consistent sorting
                 break;
@@ -806,6 +849,15 @@ class UsersController extends Controller
                     ->orderBy('exchange_id', 'desc');
                 break;
 
+            case 'scoreReplayStats':
+                $transformer = new ScoreReplayStatsTransformer();
+                $includes = ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES;
+                $query = $this->user->scoreReplayStats()
+                    ->whereHas('score.beatmap')
+                    ->orderByDesc('watch_count')
+                    ->with(ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                break;
+
             // Score
             case 'scoresBest':
                 $transformer = new ScoreTransformer();
@@ -824,6 +876,7 @@ class UsersController extends Controller
                 $query = $this
                     ->user
                     ->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))
+                    ->default()
                     ->with(array_map(
                         fn ($include) => "score.{$include}",
                         ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
@@ -967,7 +1020,7 @@ class UsersController extends Controller
         return $userJson;
     }
 
-    private function storeUser(array $rawParams)
+    private function storeUser(array $rawParams, ?array $clientTokenData)
     {
         if (!$GLOBALS['cfg']['osu']['user']['allow_registration']) {
             return abort(403, 'User registration is currently disabled');
@@ -976,7 +1029,7 @@ class UsersController extends Controller
         $ip = Request::ip();
 
         if (IpBan::where('ip', '=', $ip)->exists()) {
-            return error_popup('Banned IP', 403);
+            return error_popup('Account registration currently unavailable', 403);
         }
 
         $params = get_params($rawParams, 'user', [
@@ -995,13 +1048,21 @@ class UsersController extends Controller
             $registration->assertValid();
 
             if (get_bool($rawParams['check'] ?? null)) {
-                return response(null, 204);
+                return response()->noContent();
             }
 
             $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);
 
             if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
                 abort(429);
+            }
+
+            if ($clientTokenData !== null) {
+                $validationResult = ClientCheck::validateToken($clientTokenData);
+
+                if ($validationResult !== null && $validationResult !== ClientCheck::SUCCESS) {
+                    abort(422, $validationResult);
+                }
             }
 
             $registration->save();

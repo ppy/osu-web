@@ -24,11 +24,15 @@ return [
 
         'forum' => [
             'write' => 'Tạo và chỉnh sửa các chủ đề và bài đăng trên diễn đàn thay mặt bạn.',
-            'write_manage' => '',
+            'write_manage' => 'Chỉnh sửa các chủ đề và bài đăng thay mặt bạn',
         ],
 
         'friends' => [
             'read' => 'Xem những ai bạn đang theo dõi.',
+        ],
+
+        'multiplayer' => [
+            'write_manage' => 'Tạo và quản lý phòng chơi nhiều người thay bạn.',
         ],
 
         'public' => 'Đọc dữ liệu công khai thay mặt bạn.',

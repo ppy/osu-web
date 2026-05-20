@@ -8,6 +8,7 @@ namespace App\Transformers;
 use App\Libraries\MorphMap;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\SessionVerification;
+use App\Libraries\User\ProfileCount;
 use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Season;
@@ -68,6 +69,7 @@ class UserCompactTransformer extends TransformerAbstract
         'follow_user_mapping',
         'follower_count',
         'friends',
+        'global_rank',
         'graveyard_beatmapset_count',
         'groups',
         'guest_beatmapset_count',
@@ -280,6 +282,14 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
+    public function includeGlobalRank(User $user)
+    {
+        return $this->primitive([
+            'rank' => $user->statistics($this->mode)?->globalRank(),
+            'ruleset_id' => Beatmap::MODES[$this->mode],
+        ]);
+    }
+
     public function includeGraveyardBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('graveyard'));
@@ -362,8 +372,10 @@ class UserCompactTransformer extends TransformerAbstract
     {
         $allStats = $user
             ->matchmakingStats()
-            ->whereRulesetId(Beatmap::MODES[$this->mode])
-            ->withRank()
+            ->whereHas('pool', fn ($q) => $q->where([
+                'ruleset_id' => Beatmap::MODES[$this->mode],
+                'type' => 'ranked_play',
+            ]))->withRank()
             ->with('pool')
             ->get();
 
@@ -450,7 +462,11 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive($user->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))->count());
+        return $this->primitive(ProfileCount::scoresFirst(
+            $user,
+            $this->mode,
+            ScoreSearchParams::showLegacyForUser(\Auth::user()),
+        ));
     }
 
     public function includeScoresPinnedCount(User $user)

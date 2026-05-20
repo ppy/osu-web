@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Hindi ka pwedeng sumali sa mga paligsahan habang naka-restricted o naka-silenced ka.',
         'preparation' => 'Hinahanda pa namin ang pagligsahang ito. Mangyaring maghintay nang matiyaga!',
         'drop_here' => 'Ihulog ang iyong entrada dito',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'I-download ang .osz',
-
-        'wrong_type' => [
-            'art' => 'Ang mga .jpg at .png na file lamang ang tinatanggap para sa paligsahang ito.',
-            'beatmap' => 'Ang mga .osu file lamang ang tinatanggap para sa paligsahang ito.',
-            'music' => 'Ang mga .mp3 file lamang ang tinatanggap para sa paligsahang ito.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Ang mga entry para sa patimpalak na ito ay dapat na :widthx:height',
         'too_big' => 'Ang bilang ng pagsumite sa paligsahan na ito ay hanggang :limit.',
     ],

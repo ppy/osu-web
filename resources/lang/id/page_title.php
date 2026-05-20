@@ -59,7 +59,7 @@ return [
             '_' => 'riwayat perubahan',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'obrolan',
         ],
         'comments_controller' => [
             '_' => 'komentar',
@@ -85,7 +85,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => 'kecocokan',
+            '_' => 'pertandingan',
         ],
         'legal_controller' => [
             '_' => 'informasi',

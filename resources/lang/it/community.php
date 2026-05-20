@@ -9,7 +9,7 @@ return [
             'title' => 'Mi hai convinto! :D',
             'support' => 'sostieni osu!',
             'gift' => 'o regala il supporter ad altri giocatori',
-            'instructions' => 'clicca il pulsante con il cuore per procedere all\'osu!store',
+            'instructions' => 'clicca il pulsante con il cuore per procedere sul osu!store',
         ],
         'why-support' => [
             'title' => 'Perché dovrei sostenere osu!? Dove vanno a finire i soldi?',

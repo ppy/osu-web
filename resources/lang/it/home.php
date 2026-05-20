@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
-            'sub' => 'il ritmo è a distanza di un click',
+            'sub' => 'il ritmo è a distanza di un clic',
         ],
     ],
 
@@ -23,7 +23,7 @@ return [
         'button' => 'Cerca',
         'empty_result' => 'Nessun risultato!',
         'keyword_required' => 'È necessaria una parola chiave di ricerca',
-        'placeholder' => 'digita per cercare',
+        'placeholder' => 'scrivi per cercare',
         'title' => 'Cerca',
 
         'artist_track' => [
@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => 'Accedi per cercare squadre',
             'more_simple' => 'Vedi più risultati di ricerca per squadra',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'Scarica osu!',
             'support' => 'Supporta osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => 'Diretta streaming in evidenza',
         ],
         'show' => [
             'admin' => [

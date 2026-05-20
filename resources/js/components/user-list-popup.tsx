@@ -8,18 +8,13 @@ import { autorun } from 'mobx';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { transChoice } from 'utils/lang';
+import { qtipPosition, PositionAt } from 'utils/qtip-helper';
 
 interface Props {
   count: number;
   title?: string;
   users: Partial<Pick<UserJson, 'avatar_url' | 'id' | 'username'>>[];
 }
-
-type PositionAt = `${'right' | 'top'} center`;
-const atToMy = {
-  'right center': 'left center',
-  'top center': 'bottom center',
-};
 
 export function createTooltip(targetFn: () => HTMLElement | null, propsFn: () => Props, positionAt: PositionAt) {
   $(targetFn() ?? []).qtip({
@@ -33,11 +28,7 @@ export function createTooltip(targetFn: () => HTMLElement | null, propsFn: () =>
       },
       fixed: true,
     },
-    position: {
-      at: positionAt,
-      my: atToMy[positionAt],
-      viewport: $(window),
-    },
+    position: qtipPosition(positionAt),
     show: {
       delay: 100,
       effect(this: HTMLElement) {

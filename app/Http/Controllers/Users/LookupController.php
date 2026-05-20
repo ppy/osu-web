@@ -9,6 +9,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Exceptions\RequestTooLargeException;
 use App\Http\Controllers\Controller;
+use App\Models\Beatmap;
 use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 
@@ -28,6 +29,7 @@ class LookupController extends Controller
         $params = get_params(\Request::all(), null, [
             'exclude_bots:bool',
             'ids:string[]',
+            'ruleset_id:int',
         ]);
 
         $ids = array_reject_null(get_arr($params['ids'] ?? [], presence(...)));
@@ -54,8 +56,23 @@ class LookupController extends Controller
             $users = $users->withoutBots();
         }
 
+        $includes = UserCompactTransformer::CARD_INCLUDES;
+        $transformer = new UserCompactTransformer();
+
+        if (isset($params['ruleset_id'])) {
+            $rulesetName = Beatmap::modeStr($params['ruleset_id']);
+
+            if ($rulesetName === null) {
+                abort(422, 'invalid ruleset_id specified');
+            }
+
+            $transformer->setMode($rulesetName);
+            $includes[] = 'global_rank';
+            $users->with(User::statisticsRelationName($rulesetName));
+        }
+
         return [
-            'users' => json_collection($users->get(), new UserCompactTransformer(), UserCompactTransformer::CARD_INCLUDES),
+            'users' => json_collection($users->get(), $transformer, $includes),
         ];
     }
 }

@@ -199,6 +199,7 @@ const rules = [
 const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/fonts'),
+    '@image_resources': path.resolve(__dirname, 'resources/images'),
     '@images': path.resolve(__dirname, 'public/images'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],

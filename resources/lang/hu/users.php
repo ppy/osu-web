@@ -333,6 +333,9 @@ return [
                     'title' => 'Visszajátszás megtekintések előzménye',
                     'count_label' => 'Megnézett Visszajátszások',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Legutóbbi Kudosu történelem',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Legutóbbi bejegyzések',
                 'show_more' => 'láss további bejegyzéseket',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

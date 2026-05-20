@@ -253,69 +253,6 @@ return [
             'views' => 'visningar',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Ta bort "tillagd”-tagg',
-            'to_0_done' => 'Tog bort "tillagd"-tagg',
-            'to_1' => 'Lägg till "tillagd"-tagg',
-            'to_1_done' => 'La till "tillagd"-tagg',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Ta bort "tilldelad"-tagg',
-            'to_0_done' => 'Tog bort "tilldelad"-tagg',
-            'to_1' => 'Lägg till "tilldelad"-tagg',
-            'to_1_done' => 'La till "tilldelad"-tagg',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Ta bort "bekräftad"-tagg',
-            'to_0_done' => 'Tog bort "bekräftad"-tagg',
-            'to_1' => 'Lägg till "bekräftad"-tagg',
-            'to_1_done' => 'La till "bekräftad"-tagg',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Ta bort "duplikat"-tagg',
-            'to_0_done' => 'Tog bort "duplikat"-tagg',
-            'to_1' => 'Lägg till "duplikat"-tagg',
-            'to_1_done' => 'La till "duplikat" tagg',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Ta bort "ogiltlig" tagg',
-            'to_0_done' => 'Tog bort "ogiltlig" tagg',
-            'to_1' => 'Lägg till "ogiltlig" tagg',
-            'to_1_done' => 'La till "ogiltlig" tagg',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Ta bort "löst" tagg',
-            'to_0_done' => 'Tog bort "löst" tagg',
-            'to_1' => 'Lägg till "löst" tagg',
-            'to_1_done' => 'La till "löst" tagg',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Ta bort "osu!lazer" tag',
-            'to_0_done' => 'Tog bort "osu!lazer" tag',
-            'to_1' => 'Lägg till "osu!lazer" tag',
-            'to_1_done' => 'La till "osu!lazer" tag',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Ta bort "osu!stable" tag',
-            'to_0_done' => 'Tog bort "osu!stable" tag',
-            'to_1' => 'Lägg till "osu!stable" tag',
-            'to_1_done' => 'La till "osu!stable" tag',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Ta bort "osu!web" tag',
-            'to_0_done' => 'Tog bort "osu!web" tag',
-            'to_1' => 'Lägg till "osu!web" tag',
-            'to_1_done' => 'La till "osu!web" tag',
-        ],
-
         'lock' => [
             'is_locked' => 'Detta ämne är låst och kan ej svaras på',
             'to_0' => 'Lås upp ämne',

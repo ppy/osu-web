@@ -16,8 +16,10 @@ return [
         'invalid' => 'Váratlan hiba a hitelesítő kódban.',
         'is_privileged' => 'Nyaggasd peppy-t lol.',
         'missing_key' => 'Kötelező.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Túl sok sikertelen próbálkozás.',
         'user_not_found' => 'A megadott felhasználó nem létezik.',
+        'wait_resend' => '',
         'wrong_key' => 'Helytelen kód.',
     ],
 

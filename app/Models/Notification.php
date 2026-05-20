@@ -40,6 +40,7 @@ class Notification extends Model
     const BEATMAPSET_REMOVE_FROM_LOVED = 'beatmapset_remove_from_loved';
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const CHANNEL_ANNOUNCEMENT = 'channel_announcement';
+    const CHANNEL_MENTION = 'channel_mention';
     const CHANNEL_MESSAGE = 'channel_message';
     const CHANNEL_TEAM = 'channel_team';
     const COMMENT_NEW = 'comment_new';
@@ -69,6 +70,7 @@ class Notification extends Model
         self::BEATMAPSET_RESET_NOMINATIONS => 'beatmapset_state',
         self::CHANNEL_ANNOUNCEMENT => 'announcement',
         self::CHANNEL_MESSAGE => 'channel',
+        self::CHANNEL_MENTION => 'channel_mention',
         self::CHANNEL_TEAM => 'channel_team',
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',

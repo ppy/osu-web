@@ -8,9 +8,11 @@ namespace Database\Seeders\ModelSeeders;
 use App\Models\Achievement;
 use App\Models\Genre;
 use App\Models\Language;
+use App\Models\UserCoverPreset;
 use DB;
 use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
 
 class MiscSeeder extends Seeder
 {
@@ -27,6 +29,7 @@ class MiscSeeder extends Seeder
             DB::table('osu_languages')->delete();
             DB::table('osu_countries')->delete();
             DB::table('osu_achievements')->delete();
+            DB::table('user_cover_presets')->delete();
 
             //COUNTS
             if (!DB::table('osu_counts')->where('name', 'pp_rank_column')->get()) {
@@ -94,6 +97,15 @@ class MiscSeeder extends Seeder
                 'slug' => array_rand_val($comboSlugs),
             ]);
             //END ACHIEVEMENTS
+
+            // USER COVER PROFILE
+            $file = UploadedFile::fake()->image('cover.jpg', 2000, 500);
+
+            $preset = UserCoverPreset::create(['active' => true]);
+            $preset->file()->store($file->getRealPath());
+
+            $preset->save();
+            // END USER COVER PROFILE
         } catch (Exception $ex) {
             echo $ex->getMessage().PHP_EOL;
         }

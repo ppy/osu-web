@@ -253,69 +253,6 @@ return [
             'views' => 'skatījumi',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Noņemt "pievienots" piespraudni',
-            'to_0_done' => 'Noņemts "pievienots" piespraudnis',
-            'to_1' => 'Pievienot "pievienots" piespraudni',
-            'to_1_done' => 'Pievienots "pievienots" piespraudnis',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Noņemt "piešķirts" piespraudni',
-            'to_0_done' => 'Noņemts "piešķirts" piespraudnis',
-            'to_1' => 'Pievienot "piešķirts" piespraudni',
-            'to_1_done' => 'Pievienots "piešķirts" piespraudnis',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Noņemt "apstiprināts" piespraudni',
-            'to_0_done' => 'Noņemts "apstiprināts" piespraudnis',
-            'to_1' => 'Pievienot "apstiprināt" piespraudnis',
-            'to_1_done' => 'Pievienots "apstiprināt" piespraudnis',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Noņemt "dublicēt" piespraudni',
-            'to_0_done' => 'Noņemts "dublicēt" piespraudnis',
-            'to_1' => 'Pievienot "dublicēt" piespraudni',
-            'to_1_done' => 'Pievienots "dublicēt" piespraudnis',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Noņemt "nederīgs" piespraudni',
-            'to_0_done' => 'Noņemts "nederīgs" piespraudnis',
-            'to_1' => 'Pievienot "nederīgs" piespraudni',
-            'to_1_done' => 'Pievienots "nederīgs" piespraudnis',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Noņemt "atrisināts" piespraudni',
-            'to_0_done' => 'Noņemts "atrisināts" piespraudnis',
-            'to_1' => 'Pievienot "atrisināts" piespraudni',
-            'to_1_done' => 'Pievienots "atrisināts" piespraudnis',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Noņemt "osu!lazer" piekariņu',
-            'to_0_done' => 'Noņemts "osu!lazer" piekariņš',
-            'to_1' => 'Pievienot "osu!lazer" piekariņu',
-            'to_1_done' => 'Pievienots "osu!lazer" piekariņš',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Noņemt "osu!stabils" piekariņu',
-            'to_0_done' => 'Noņemts "osu!stable" piekariņš',
-            'to_1' => 'Pievienot "osu!stable" piekariņu',
-            'to_1_done' => 'Pievienots "osu!stable" piekariņš',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Noņemt "osu!web" piekariņu',
-            'to_0_done' => 'Noņemts "osu!web" piekariņš',
-            'to_1' => 'Pievienot "osu!web" piekariņu',
-            'to_1_done' => 'Pievienots "osu!web" piekariņš',
-        ],
-
         'lock' => [
             'is_locked' => 'Šī tēma ir slēgta un nav iespējams caur to atbildēt',
             'to_0' => 'Atvērt tēmu',

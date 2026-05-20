@@ -6,10 +6,10 @@
 namespace App\Models\Chat;
 
 use App\Events\ChatChannelEvent;
+use App\Events\ChatMessageEvent;
 use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Libraries\AuthorizationResult;
-use App\Libraries\Chat\MessageTask;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
@@ -463,7 +463,7 @@ class Channel extends Model
         ]);
 
         $message->sender()->associate($sender)->channel()->associate($this)
-            ->uuid = $uuid; // relay any message uuid back.
+            ->uuid = presence($uuid); // relay any message uuid back.
 
         $message->getConnection()->transaction(function () use ($message, $sender) {
             $message->save();
@@ -479,8 +479,7 @@ class Channel extends Model
             $this->unhide();
 
             $message->dispatchNotification();
-
-            MessageTask::dispatch($message);
+            new ChatMessageEvent($message)->broadcast(true);
         });
 
         datadog_increment('chat.channel.send', ['target' => $this->type]);

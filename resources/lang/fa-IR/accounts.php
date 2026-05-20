@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'درجه سختی میهمان',
             'beatmapset:modding' => 'مودینگ بیت مپ',
             'channel_message' => 'پیام های خصوصی چت',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'نظرات جدید',
             'forum_topic_reply' => 'پاسخ موضوع',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'مخفی کردن هشدار ها برای محتوای نامناسب در بیت مپ ها',
         'beatmapset_title_show_original' => 'نمایش متادیتای بیت مپ ها در زبان اصلی',
         'title' => 'گزینه ها',

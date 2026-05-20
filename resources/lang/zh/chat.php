@@ -58,12 +58,6 @@ return [
         'send' => '发送',
     ],
 
-    'no-conversations' => [
-        'howto' => "点击用户的个人资料/卡片上的信封图标以开始聊天",
-        'lazer' => '在 <a href=":link">osu!lazer</a> 中加入的频道将在这里显示。',
-        'title' => '暂无对话',
-    ],
-
     'join_channels' => [
         'loading' => '正在加载频道列表......',
     ],

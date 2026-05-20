@@ -10,4 +10,4 @@ fi
 
 chown -f "${uid}:${gid}" ./storage/testjs-*
 
-exec gosu osuweb ./docker/development/run.sh "$@"
+exec runuser -u osuweb -- ./docker/development/run.sh "$@"

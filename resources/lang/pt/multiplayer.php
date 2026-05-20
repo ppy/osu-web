@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'playlist',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'multijogador',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'A duração é muito longa.',
             'name_too_long' => 'O nome da sala é demasiado longo.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

@@ -7,7 +7,7 @@ import { ScoreJsonForShow } from 'interfaces/score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import { displayMods } from 'utils/score-helper';
 
 interface Props {
@@ -52,10 +52,22 @@ export default function Player(props: Props) {
           {props.score.user.username}
         </strong>
         <span>
+          {trans('scores.show.player.watched')}
+        </span>
+        <strong>
+          {transChoice('scores.show.player.watched_count', props.score.replay_views)}
+        </strong>
+        <span>
           {trans('scores.show.player.submitted_on')}
         </span>
         <strong>
           {moment(props.score.ended_at).format('LLL')}
+        </strong>
+        <span>
+          {trans('scores.show.player.played_on')}
+        </span>
+        <strong>
+          {props.score.legacy_score_id == null ? 'Lazer' : 'Stable'}
         </strong>
       </div>
 

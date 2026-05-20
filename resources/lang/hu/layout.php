@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modolás',
             'playlists' => 'játéklisták',
-            'quickplay' => '',
+            'ranked-play' => '',
             'realtime' => 'többjátékos',
             'show' => 'információ',
         ],

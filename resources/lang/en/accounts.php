@@ -88,6 +88,7 @@ return [
             '_' => 'delivery options',
             'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'beatmap modding',
+            'channel_mention' => 'chat mention',
             'channel_message' => 'private chat messages',
             'channel_team' => 'team chat messages',
             'comment_new' => 'new comments',
@@ -96,6 +97,18 @@ return [
             'mapping' => 'beatmap mapper',
             'news_post' => 'news posts',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => 'when you are added as a guest mapper on a beatmap difficulty',
+            'beatmapset:modding' => 'when beatmap discussions you are watching receives updates, or there is a problem or suggestion on your own beatmap.',
+            'channel_mention' => 'when you are mentioned in a public channel',
+            'channel_message' => 'when you receive a new private message',
+            'channel_team' => 'when your team chat channel has a new message',
+            'comment_new' => 'when there is a new comment on an item you are following',
+            'forum_topic_reply' => 'when forum topics you are watching receive new replies',
+            'mapping' => 'when a mapper you are following uploads a beatmap',
+            'news_post' => 'when there are new news posts',
         ],
     ],
 
@@ -106,6 +119,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'show anime style beatmap covers',
         'beatmapset_show_nsfw' => 'hide warnings for explicit content in beatmaps',
         'beatmapset_title_show_original' => 'show beatmap metadata in original language',
         'title' => 'Options',

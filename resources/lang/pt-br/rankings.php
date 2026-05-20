@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Vezes jogadas',
+        'points' => 'Pontos',
+        'provisional' => 'Partidas insuficientes para determinar com precisão a classificação',
+        'rating' => 'Classificação',
+        'wins' => 'Vitórias',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Nome da Sala',
     ],
 
     'performance' => [
@@ -51,14 +51,14 @@ return [
 
     'top_plays' => [
         'empty' => 'Os dados estão sendo calculados...',
-        'last_updated' => '',
+        'last_updated' => 'Ultima atualização',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlights(antigo)',
+        'featured' => 'destaque',
+        'season_room' => 'sala da temporada',
+        'seasons' => 'temporadas',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'desafio diário',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'jogo rápido',
+        'playlists' => 'playlists',
         'team' => 'equipe',
         'top_plays' => 'recordes',
     ],

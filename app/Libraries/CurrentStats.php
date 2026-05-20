@@ -26,7 +26,7 @@ class CurrentStats
 
             return [
                 'currentOnline' => $latest['users'] ?? 0,
-                'currentGames' => $latest['multiplayer_games'] ?? 0,
+                'currentGames' => ($latest['multiplayer_games'] ?? 0) + ($latest['multiplayer_games_lazer'] ?? 0),
                 'graphData' => array_to_graph_json($stats, 'users'),
                 'totalUsers' => Count::totalUsers()->count,
             ];

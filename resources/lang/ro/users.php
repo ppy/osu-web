@@ -333,6 +333,9 @@ return [
                     'title' => 'Istoricul reluărilor vizionate',
                     'count_label' => 'Reluări Vizionate',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Istoricul Kudosu recent',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Postări recente',
                 'show_more' => 'vedeți mai multe postări',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

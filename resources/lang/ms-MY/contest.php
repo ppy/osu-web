@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Anda tidak boleh menyertai peraduan ketika dihadkan atau didiamkan.',
         'preparation' => 'Kami kini menyiapkan peraduan ini. Mohon bersabar!',
         'drop_here' => 'Lepaskan penyertaan di sini',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Muat turun .osz',
-
-        'wrong_type' => [
-            'art' => 'Hanya fail .jpg dan .png diterima untuk peraduan.',
-            'beatmap' => 'Hanya fail .osu diterima untuk peraduan.',
-            'music' => 'Hanya fail .mp3 diterima untuk peraduan.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Penyertaan untuk peraduan mesti :widthx:height',
         'too_big' => 'Penyertaan peraduan ini hanya dibolehkan hingga :limit.',
     ],

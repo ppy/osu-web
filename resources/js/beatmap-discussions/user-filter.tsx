@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import mapperGroup from 'beatmap-discussions/mapper-group';
-import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import SelectOptions from 'components/select-options';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable } from 'mobx';
@@ -12,35 +12,23 @@ import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
+import { getInt } from 'utils/math';
 import DiscussionsState from './discussions-state';
 
 const allUsers = Object.freeze({
   id: null,
-  text: trans('beatmap_discussions.user_filter.everyone'),
-});
-
-const noSelection = Object.freeze({
-  id: null,
-  text: trans('beatmap_discussions.user_filter.label'),
+  username: trans('beatmap_discussions.user_filter.everyone'),
 });
 
 interface Option {
-  groups: UserJson['groups'];
+  groups?: UserJson['groups'];
   id: UserJson['id'] | null;
-  text: UserJson['username'];
+  username: UserJson['username'];
 }
 
 interface Props {
   discussionsState: DiscussionsState;
   store: BeatmapsetDiscussionsStore;
-}
-
-function mapUserProperties(user: UserJson): Option {
-  return {
-    groups: user.groups,
-    id: user.id,
-    text: user.username,
-  };
 }
 
 @observer
@@ -49,13 +37,7 @@ export class UserFilter extends React.Component<Props> {
     return this.props.discussionsState.beatmapset.user_id;
   }
 
-  @computed
-  private get selected() {
-    return this.props.discussionsState.selectedUser != null
-      ? mapUserProperties(this.props.discussionsState.selectedUser)
-      : noSelection;
-  }
-
+  // TODO: add actual multi user selection.
   @computed
   private get options() {
     const usersWithDicussions = new Map<number, UserJson>();
@@ -69,11 +51,27 @@ export class UserFilter extends React.Component<Props> {
     }
 
     return [
-      allUsers,
+      this.mapUserProperties(allUsers),
       ...[...usersWithDicussions.values()]
         .sort(usernameSortAscending)
-        .map(mapUserProperties),
+        .map(this.mapUserProperties),
     ];
+  }
+
+  @computed
+  private get text() {
+    const selectedUsers = this.props.discussionsState.selectedUsers;
+    if (selectedUsers.length === 0) {
+      return trans('beatmap_discussions.user_filter.label');
+    }
+
+    const user = this.props.discussionsState.selectedUsers[0];
+    return <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>;
+  }
+
+  @computed
+  private get urlOptions() {
+    return parseUrl(this.props.discussionsState.url);
   }
 
   constructor(props: Props) {
@@ -84,50 +82,51 @@ export class UserFilter extends React.Component<Props> {
   render() {
     return (
       <SelectOptions
+        href={this.props.discussionsState.url}
         modifiers='beatmap-discussions-user-filter'
-        onChange={this.handleChange}
+        onSelect={this.handleSelect}
         options={this.options}
-        renderOption={this.renderOption}
-        selected={this.selected}
-      />
+        selected={this.props.discussionsState.selectedUserIds}
+      >
+        {this.text}
+      </SelectOptions>
     );
   }
 
-  private getGroup(option: Option) {
-    if (this.isOwner(option)) return mapperGroup;
+  private getGroup(user: Option) {
+    if (this.isOwner(user)) return mapperGroup;
 
-    return option.groups?.[0];
+    return user.groups?.[0];
   }
 
   @action
-  private readonly handleChange = (option: Option) => {
-    this.props.discussionsState.selectedUserId = option.id;
+  private readonly handleSelect = (id?: string) => {
+    const userId = getInt(id);
+    this.props.discussionsState.selectedUserIds.clear();
+    if (userId != null) {
+      this.props.discussionsState.selectedUserIds.add(userId);
+    }
   };
 
-  private isOwner(user?: Option) {
+  private isOwner(user?: Option): boolean {
     return user != null && user.id === this.ownerId;
   }
 
-  private readonly renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => {
-    const group = this.getGroup(option);
-    const style = groupColour(group);
-
-    const urlOptions = parseUrl();
+  private readonly mapUserProperties = (user: Option) => {
+    const urlOptions = structuredClone(this.urlOptions);
     // means it doesn't work on non-beatmapset discussion paths
-    if (urlOptions == null) return null;
+    if (urlOptions != null) {
+      urlOptions.users = user.id != null ? [user.id] : undefined;
+    }
 
-    urlOptions.user = option.id ?? undefined;
-
-    return (
-      <a
-        key={option.id}
-        className={cssClasses}
-        href={makeUrl(urlOptions)}
-        onClick={onClick}
-        style={style}
-      >
-        {children}
-      </a>
-    );
+    return {
+      href: urlOptions != null ? makeUrl(urlOptions) : '#',
+      id: user.id,
+      text: <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>,
+    };
   };
+
+  private styleForUser(user: Option) {
+    return groupColour(this.getGroup(user));
+  }
 }

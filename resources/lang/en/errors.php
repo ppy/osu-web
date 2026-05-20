@@ -22,10 +22,6 @@ return [
             'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Invalid mode specified.',
-        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
-    ],
     'checkout' => [
         'generic' => 'An error occurred while preparing your checkout.',
     ],

@@ -14,7 +14,10 @@ return [
 
         'player' => [
             'by' => 'Jucat de',
+            'played_on' => '',
             'submitted_on' => 'Trimis pe',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => 'Rang Național',

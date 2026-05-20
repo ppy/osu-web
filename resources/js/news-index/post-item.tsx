@@ -7,10 +7,10 @@ import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
-export default function PostItem({ modifiers, post }: { modifiers?: string[]; post: PostJson }) {
+export default function PostItem({ modifiers, post }: { modifiers?: Modifiers; post: PostJson }) {
   let cover;
 
   if (post.first_image != null) {

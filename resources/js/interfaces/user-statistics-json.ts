@@ -17,6 +17,7 @@ interface Variant {
 }
 
 interface UserStatisticsBaseJson {
+  accuracy: number;
   count_100: number;
   count_300: number;
   count_50: number;

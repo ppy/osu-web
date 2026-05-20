@@ -58,12 +58,6 @@ return [
         'send' => 'Küldés',
     ],
 
-    'no-conversations' => [
-        'howto' => "Beszélgetés indítása egy felhasználó profiljából, vagy egy felugró felhasználókártyából.",
-        'lazer' => 'A nyilvános csatornák, amikbe <a href=":link">osu!lazer</a>-en keresztül csatlakozol, itt is láthatóak lesznek.',
-        'title' => 'még nincsenek beszélgetések',
-    ],
-
     'join_channels' => [
         'loading' => 'Csatornalista betöltése...',
     ],

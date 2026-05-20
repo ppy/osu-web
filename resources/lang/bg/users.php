@@ -333,6 +333,9 @@ return [
                     'title' => 'История на гледани повторения от останалите',
                     'count_label' => 'Гледани повторения',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Скорошна Kudosu история',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Скорошни публикации',
                 'show_more' => 'виж повече публикации',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

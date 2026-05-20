@@ -242,7 +242,11 @@ class Store extends BaseStore implements SessionVerificationInterface
 
         // TODO: move this to migrate and validate session id in readFromHandler
         if ($userId !== null) {
-            self::redis()->sadd(self::listKey($userId), $this->getId());
+            static::redis()->pipeline(function ($pipe) use ($userId) {
+                $listKey = static::listKey($userId);
+                $pipe->sadd($listKey, $this->getId());
+                $pipe->expire($listKey, $GLOBALS['cfg']['session']['lifetime'] * 60);
+            });
         }
     }
 

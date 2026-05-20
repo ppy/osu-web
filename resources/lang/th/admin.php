@@ -55,8 +55,8 @@ return [
                 'general' => '',
 
                 'users' => [
-                    'header' => 'ผู้ใช้งาน',
-                    'cover_presets' => '',
+                    'header' => 'ผู้ใช้',
+                    'cover_presets' => 'พรีเซ็ตปกโปรไฟล์',
                 ],
             ],
         ],

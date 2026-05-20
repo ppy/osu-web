@@ -14,7 +14,7 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'التعليقات',
         'hide_judged' => 'إخفاء المُدخلات المحكوم عليها',
         'nav_title' => 'تحكيم',
         'no_current_vote' => 'لم تصوت بعد.',
@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'لا يمكنك دخول المسابقات بينما تكون مقيد أو صامت.',
         'preparation' => 'نحن نقوم حاليا بإعداد هذه المسابقة. الرجاء الانتظار بصبر!',
         'drop_here' => 'ضع مشاركتك هنا',
+        'allowed_extensions' => '',
+        'max_size' => 'الحجم الأقصى: :limit',
+        'required_dimensions' => '',
         'download' => 'تحميل .osz',
-
-        'wrong_type' => [
-            'art' => 'تُقبل ملفات.jpg و.png فقط لهذه المسابقة.',
-            'beatmap' => 'تُقبل ملفات .osu فقط لهذه المسابقة.',
-            'music' => 'تُقبل ملفات .mp3 فقط لهذه المسابقة.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'مشاركات هذه المسابقة يجب ان تكون :widthx:height',
         'too_big' => 'مشاركات هذه المسابقة يمكن ان تصل الى :limit.',
     ],

@@ -10,6 +10,7 @@ use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\User;
+use App\Transformers\Chat\ChannelTransformer;
 
 class ChatController extends Controller
 {
@@ -53,9 +54,14 @@ class ChatController extends Controller
             // This is only for rejoining / unhiding channels the user is already in.
             $channel = Channel::find($params['channel_id']);
             $channel?->unhide($user);
+
+            if ($channel?->isPublic()) {
+                $currentChannel = $channel;
+            }
         }
 
         $json = [
+            'current_channel' => isset($currentChannel) ? json_item($currentChannel, new ChannelTransformer()) : null,
             'current_user_attributes' => [
                 'can_chat_announce' => priv_check('ChatAnnounce')->can(),
             ],

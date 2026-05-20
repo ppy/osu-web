@@ -16,8 +16,10 @@ return [
         'invalid' => '驗證碼中發生未預期的錯誤。',
         'is_privileged' => '聯繫 peppy（笑）',
         'missing_key' => '必填',
+        'too_many_requests' => '已達重設密碼請求次數上限。請聯絡客服以救援帳號。',
         'too_many_tries' => '重試次數過多',
         'user_not_found' => '請求的使用者不存在。',
+        'wait_resend' => '請稍等片刻。',
         'wrong_key' => '不正確的驗證碼',
     ],
 
@@ -40,7 +42,7 @@ return [
             'inactive_different_country' => "您的帳戶已長時間未使用。為確保帳戶安全，請重設您的密碼。",
         ],
         'support' => [
-            '_' => '需要進一步的幫助？透過我們的 :button 聯絡我們。',
+            '_' => '需要進一步協助嗎？透過我們的 :button 聯絡我們。',
             'button' => '支援系統',
         ],
     ],

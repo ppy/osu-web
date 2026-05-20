@@ -333,6 +333,9 @@ return [
                     'title' => 'Histórico de Replays Assistidos',
                     'count_label' => 'Replays Assistidos',
                 ],
+                'score_replay_stats' => [
+                    'title' => 'Replays mais assistidos',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Histórico de kudosu recente',
@@ -399,8 +402,8 @@ return [
                 'title_longer' => 'Publicações Recentes',
                 'show_more' => 'ver mais publicações',
             ],
-            'quickplay' => [
-                'title' => 'Partidas Rápidas',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
@@ -472,8 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Jogo Rápido',
         ],
 
         'not_found' => [

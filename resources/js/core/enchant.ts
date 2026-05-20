@@ -39,7 +39,7 @@ export default class Enchant {
 
   unload = () => {
     this.turbolinksReload.forget(src);
-    $('#enchant-messenger-main, #enchant-messenger-launcher, iframe[src^="https://enchantwidgets-"]').remove();
+    $('[id^=enchant-], script[src^="//enchantwidgets-"]').remove();
 
     document.querySelectorAll('style').forEach((el) => {
       const text = el.textContent;

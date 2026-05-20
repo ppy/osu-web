@@ -31,7 +31,7 @@ return [
 
     'mode' => [
         'artist' => 'Artista/Àlbum',
-        'chart' => 'En el focus',
+        'chart' => 'Destacats',
         'featured' => 'Artista Destacat',
         'loved' => 'Projecte Amat',
         'standard' => 'Estàndard',

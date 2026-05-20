@@ -51,7 +51,8 @@ class CountryChangeTest extends TestCase
                 );
             }
 
-            foreach ($user->scoresBest($ruleset) as $score) {
+            $scores = ScoreBestModel::getClass($ruleset)::where(['user_id' => $user->getKey()])->get();
+            foreach ($scores as $score) {
                 $this->assertSame($score->country_acronym, $targetCountry);
             }
         }

@@ -6,16 +6,22 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 
-interface Props {
+type ValueProps = {
+  value: number;
+} | {
   current: number;
+  total: number;
+  value?: undefined;
+};
+
+type Props = ValueProps & {
   modifiers?: Modifiers;
   textPrecision?: number;
   title?: string;
-  total: number;
-}
+};
 
 export default function Bar(props: Props) {
-  let percentage = props.total === 0 ? 0 : props.current / props.total;
+  let percentage = props.value ?? (props.total === 0 ? 0 : props.current / props.total);
   percentage = clamp(percentage, 0, 1);
 
   return (

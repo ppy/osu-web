@@ -19,6 +19,7 @@ import ForumPoll from 'core/forum/forum-poll';
 import ForumPostEdit from 'core/forum/forum-post-edit';
 import ForumPostInput from 'core/forum/forum-post-input';
 import ForumPostReport from 'core/forum/forum-post-report';
+import ForumTopicTagEditor from 'core/forum/forum-topic-tag-editor';
 import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
@@ -45,6 +46,7 @@ import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
 import { parseJsonNullable } from 'utils/json';
+import UserTagPickerController from './beatmaps/user-tag-picker-controller';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -54,6 +56,7 @@ export default class OsuCore {
   readonly animateNav;
   readonly bbcodeAutoPreview;
   readonly beatmapsetSearchController;
+  readonly beatmapTagPickerController;
   readonly bladePopup;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -70,6 +73,7 @@ export default class OsuCore {
   readonly forumPostEdit;
   readonly forumPostInput;
   readonly forumPostReport;
+  readonly forumTopicTagEditor;
   readonly localtime;
   readonly mobileToggle;
   readonly notificationsWorker;
@@ -120,6 +124,7 @@ export default class OsuCore {
     this.forumPostEdit = new ForumPostEdit();
     this.forumPostInput = new ForumPostInput();
     this.forumPostReport = new ForumPostReport();
+    this.forumTopicTagEditor = new ForumTopicTagEditor();
     this.localtime = new Localtime();
     this.mobileToggle = new MobileToggle();
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
@@ -151,6 +156,7 @@ export default class OsuCore {
     this.windowFocusObserver = new WindowFocusObserver();
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
+    this.beatmapTagPickerController = new UserTagPickerController();
 
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);

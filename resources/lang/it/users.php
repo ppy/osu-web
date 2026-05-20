@@ -81,7 +81,7 @@ return [
 
         'reasons' => [
             'compromised' => 'Il tuo account sembra essere stato compromesso. Potrebbe essere disattivato temporaneamente mentre la sua identità viene confermata.',
-            'opening' => 'Ci sono una serie di motivi che possono causare la disabilitazione del tuo account:',
+            'opening' => 'Ci sono una serie di motivi che possono causare la disattivazione del tuo account:',
 
             'tos' => [
                 '_' => 'Hai violato una o più delle nostre :community_rules, oppure uno o più :tos.',
@@ -319,7 +319,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Cronologia Partite',
-                    'count_label' => 'Giocate',
+                    'count_label' => 'Partite',
                 ],
                 'most_played' => [
                     'count' => 'volte giocata',
@@ -332,6 +332,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => 'Cronologia Replay Guardati',
                     'count_label' => 'Replay guardati',
+                ],
+                'score_replay_stats' => [
+                    'title' => 'Replay Più Guardati',
                 ],
             ],
             'kudosu' => [
@@ -399,8 +402,8 @@ return [
                 'title_longer' => 'Post Recenti',
                 'show_more' => 'guarda più post',
             ],
-            'quickplay' => [
-                'title' => 'Scontri di Quick Play',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
@@ -413,7 +416,7 @@ return [
                 'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata :percentage',
                 'view_details' => 'Visualizza dettagli',
-                'title' => 'Rank',
+                'title' => 'Classifiche',
 
                 'best' => [
                     'title' => 'Migliore Performance',
@@ -472,8 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Quick Play',
         ],
 
         'not_found' => [

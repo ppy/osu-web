@@ -113,11 +113,6 @@ export default class Header extends React.Component<Props> {
             {this.renderBeatmapVersion()}
 
             <div>
-              <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.playcount')}>
-                <span className='beatmapset-header__value-icon'><span className='fas fa-play-circle' /></span>
-                <span className='beatmapset-header__value-name'>{formatNumber(this.controller.beatmapset.play_count)}</span>
-              </span>
-
               {this.controller.beatmapset.status === 'pending' &&
                 <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.nominations')}>
                   <span className='beatmapset-header__value-icon'><span className='fas fa-thumbs-up' /></span>
@@ -126,6 +121,11 @@ export default class Header extends React.Component<Props> {
                   </span>
                 </span>
               }
+
+              <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.playcount')}>
+                <span className='beatmapset-header__value-icon'><span className='fas fa-play-circle' /></span>
+                <span className='beatmapset-header__value-name'>{formatNumber(this.controller.beatmapset.play_count)}</span>
+              </span>
 
               <span
                 ref={this.favouriteIconRef}
@@ -181,7 +181,7 @@ export default class Header extends React.Component<Props> {
             {core.currentUser != null &&
               <BigButton
                 icon={favouriteButton.icon}
-                modifiers={['beatmapset-header-square', `beatmapset-header-square-${favouriteButton.action}`]}
+                modifiers={`beatmapset-header-square beatmapset-header-square-${favouriteButton.action}`}
                 props={{
                   onClick: this.onClickFavourite,
                   title: trans(`beatmapsets.show.details.${favouriteButton.action}`),

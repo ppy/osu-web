@@ -22,10 +22,6 @@ return [
             'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Invalide mode opgegeven.',
-        'standard_converts_only' => 'Er zijn geen scores beschikbaar voor de gevraagde mode voor deze beatmap difficulty.',
-    ],
     'checkout' => [
         'generic' => 'Er is een fout opgetreden tijdens het voorbereiden voor het afrekenen.',
     ],

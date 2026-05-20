@@ -42,7 +42,7 @@ export default class Stats extends React.PureComponent<Props> {
       : this.props.stats[key];
 
     if (key === 'hit_accuracy') {
-      return `${formatNumber(val, 2)}%`;
+      return formatNumber(this.props.stats.accuracy, 2, { style: 'percent' });
     }
 
     return formatNumber(val);

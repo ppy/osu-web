@@ -146,10 +146,12 @@ return [
             'nominators' => 'Nominator\'ler',
             'nsfw' => 'Müstehcen içerik',
             'offset' => 'Çevrimiçi ofset',
+            'pack_tags' => 'Beatmap Paketleri',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
             'success-rate' => 'Başarı Oranı',
+            'success_rate_plays' => ':count_delimited oyunun :passes kadarı” | “:count_delimited oyunun :passes kadarı',
             'user_tags' => 'Kullanıcı Etiketleri',
             'video' => 'Bu beatmap video içeriyor',
         ],
@@ -224,8 +226,8 @@ return [
             'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',
             'playcount' => 'Oynama sayısı',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Favoriler',
+            'no_favourites' => 'Henüz favori yok',
         ],
 
         'status' => [

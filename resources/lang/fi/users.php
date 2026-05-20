@@ -333,6 +333,9 @@ return [
                     'title' => 'Uusintojen katsomishistoria',
                     'count_label' => 'Uusintoja katsottu',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Viimeaikainen kudosuhistoria',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Viimeaikaiset julkaisut',
                 'show_more' => 'katso lisää julkaisuja',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

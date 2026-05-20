@@ -335,6 +335,9 @@ return [
                     'title' => 'היסטוריית שידורים חוזרים שנצפו',
                     'count_label' => 'שידורים חוזרים שנצפו',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'היסטוריית Kudosu אחרונה',
@@ -401,7 +404,7 @@ return [
                 'title_longer' => 'פוסטים אחרונים',
                 'show_more' => 'ראה עוד פוסטים',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -474,7 +477,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

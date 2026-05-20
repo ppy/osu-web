@@ -22,10 +22,6 @@ return [
             'generic' => 'Priščo je do napake. Poskusi osvežiti stran.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Določen neveljavni igralni način.',
-        'standard_converts_only' => 'Za željeni igralni način niso na voljo nobeni razultati na tej težavnosti beatmape.',
-    ],
     'checkout' => [
         'generic' => 'Napaka med zaključevanjem tvojega nakupa.',
     ],

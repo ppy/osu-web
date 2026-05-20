@@ -333,6 +333,9 @@ return [
                     'title' => 'Įrašų Peržiūros Istorija',
                     'count_label' => 'Įrašai Žiūrėti',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Paskutinių Kudosu Istorija',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Paskutiniai Įrašai',
                 'show_more' => 'rodyti daugiau įrašų',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

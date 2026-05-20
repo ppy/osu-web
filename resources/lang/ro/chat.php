@@ -58,12 +58,6 @@ return [
         'send' => 'Trimite',
     ],
 
-    'no-conversations' => [
-        'howto' => "Începe conversații din profilul unui utilizator sau din fereastra unui utilizator.",
-        'lazer' => 'Canalele publice cărora li te alături prin <a href=":link">osu!lazer</a> vor fi vizibile aici.',
-        'title' => 'nu sunt conversații încă',
-    ],
-
     'join_channels' => [
         'loading' => 'Se încarcă canalele...',
     ],

@@ -16,8 +16,10 @@ return [
         'invalid' => 'Неочаквана грешка в код за потвърждение.',
         'is_privileged' => 'Пишете на peppy лол.',
         'missing_key' => 'Задължително.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Прекалено много неуспешни опити.',
         'user_not_found' => 'Въведеният потребител не съществува.',
+        'wait_resend' => '',
         'wrong_key' => 'Неправилен код.',
     ],
 

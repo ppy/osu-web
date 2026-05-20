@@ -3,10 +3,14 @@
 
 declare module 'twitch-embed-player' {
   // (2024-03-26) see https://dev.twitch.tv/docs/embed/video-and-clips/ for all options.
-  export default class TwitchEmbedPlayer {
-    static PLAY: string;
+  interface PlayerOptions {
+    autoplay?: boolean;
+    channel: string;
+    height: number | string;
+    width: number | string;
+  }
 
-    constructor(id: string, options: Record<string, unknown>);
-    addEventListener(action: string, callback: () => void): void;
+  export default class TwitchEmbedPlayer {
+    constructor(id: string, options: PlayerOptions);
   }
 }

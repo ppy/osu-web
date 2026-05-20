@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Felfüggesztve illetve némítva nem jelentkezhetsz versenyekre.',
         'preparation' => 'Ez a verseny előkészítés alatt áll. Kérjük várj türelmesen!',
         'drop_here' => 'Húzd a jelentkezésedet ide',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '.osz letöltése',
-
-        'wrong_type' => [
-            'art' => 'Csak .jpg és .png kiterjesztésű fájlok engedélyezettek erre a versenyre.',
-            'beatmap' => 'Csak .osu kiterjesztésű fájlok engedélyezettek erre a versenyre.',
-            'music' => 'Csak .mp3 kiterjesztésű fájlok engedélyezettek erre a versenyre.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'A beküldéseknek erre a versenyre :widthx:height méretűnek kell lennie',
         'too_big' => 'A jelentkezések száma erre a versenyre csak :limit lehet.',
     ],

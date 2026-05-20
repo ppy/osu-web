@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'authorise' => 'استأِذان',
         'authorising' => 'استأِذان...',
-        'back' => '',
+        'back' => 'رجوع',
         'back_to_previous' => 'العودة إلى الحالة السابقة',
         'back_to_top' => 'العودة إلى الأعلى',
         'cancel' => 'إلغاء',

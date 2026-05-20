@@ -35,7 +35,7 @@ return [
     ],
 
     'team' => [
-        'button' => '',
+        'button' => 'الإبلاغ عن فريق',
         'title' => '',
     ],
 

@@ -245,6 +245,7 @@ return [
             'prompt' => 'vpiši ključne besede...',
             'login_required' => 'Za iskanje se vpiši.',
             'options' => 'Več Možnosti Iskanja',
+            'rank_filter_note' => '',
             'supporter_filter' => 'Filtriranje po :filters je potrebna aktivna osu!supporter značka',
             'not-found' => 'ni rezultatov',
             'not-found-quote' => '... ne, nič najdeno.',
@@ -274,6 +275,10 @@ return [
             'supporter_filter_quote' => [
                 '_' => 'Filtriranje po :filters je potreben aktivni :link',
                 'link_text' => 'osu!supporter značka',
+            ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
             ],
         ],
     ],

@@ -53,7 +53,7 @@ return [
             'discussion' => 'beatmap diskussion',
             'index' => 'beatmap katalog',
             'show' => 'beatmap info',
-            'versions' => '',
+            'versions' => 'beatmap versionshistorik',
         ],
         'changelog_controller' => [
             '_' => 'ændringsoversigt',
@@ -65,14 +65,14 @@ return [
             '_' => 'kommentarer',
         ],
         'contest_entries_controller' => [
-            'judge_results' => '',
+            'judge_results' => 'konkurrence bedømmelsesresultater',
         ],
         'contests_controller' => [
             '_' => 'konkurrencer',
-            'judge' => '',
+            'judge' => 'konkurrence bedømmelse',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'gruppe historik',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -85,7 +85,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'kampe',
         ],
         'legal_controller' => [
             '_' => 'information',
@@ -109,23 +109,23 @@ return [
             '_' => 'præstation',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'rangeringer',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'hold',
+            'create' => 'opret hold',
+            'edit' => 'holdindstillinger',
+            'leaderboard' => 'hold rangliste',
+            'show' => 'hold info',
         ],
         'tournaments_controller' => [
             '_' => 'turneringer',
         ],
         'user_cover_presets_controller' => [
-            '_' => '',
+            '_' => 'brugerens cover forudindstillinger',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'godkendelses-app',
         ],
         'users_controller' => [
             '_' => 'spiller info',
@@ -138,7 +138,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'rum historik',
         ],
     ],
     'passport' => [
@@ -151,7 +151,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'holdmedlemmer',
         ],
     ],
     'users' => [

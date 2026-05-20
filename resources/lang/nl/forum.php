@@ -253,69 +253,6 @@ return [
             'views' => 'keer bekeken',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Verwijder "toegevoegd" tag',
-            'to_0_done' => 'Verwijderde "toegevoegd" tag',
-            'to_1' => 'Voeg "toegevoegd" tag toe',
-            'to_1_done' => 'Voegde "toegevoegd" tag toe',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Verwijder "toegewezen" tag',
-            'to_0_done' => 'Verwijderde "toegewezen" tag',
-            'to_1' => 'Voeg "toegewezen" tag toe',
-            'to_1_done' => 'Voegde "toegewezen" tag toe',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Verwijder "bevestigd" tag',
-            'to_0_done' => 'Verwijderde "bevestigd" tag',
-            'to_1' => 'Voeg "bevestigd" tag toe',
-            'to_1_done' => 'Voegde "bevestigd" tag toe',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Verwijder "duplicaat" tag',
-            'to_0_done' => 'Verwijderde "duplicaat" tag',
-            'to_1' => 'Voeg "duplicaat" tag toe',
-            'to_1_done' => 'Voegde "duplicaat" tag toe',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Verwijder "invalide" tag',
-            'to_0_done' => 'Verwijderde "invalide" tag',
-            'to_1' => 'Voeg "invalide" tag toe',
-            'to_1_done' => 'Voegde "invalide" tag toe',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Verwijder "opgelost" tag',
-            'to_0_done' => 'Verwijderde "opgelost" tag',
-            'to_1' => 'Voeg "opgelost" tag toe',
-            'to_1_done' => 'Voegde "opgelost" tag toe',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => 'Dit onderwerp is gesloten en kan niet meer op beantwoord worden',
             'to_0' => 'Ontgrendel topic',

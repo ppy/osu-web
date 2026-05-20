@@ -36,8 +36,8 @@ class TopPlaysController extends Controller
                     ::whereIntegerInRaw('id', array_slice($data['ids'], 0, (int) ($page * static::PAGE_SIZE * 1.5)))
                     ->with('user.team')
                     ->with('beatmap.beatmapset')
-                    ->whereHas('user')
-                    ->whereHas('beatmap.beatmapset')
+                    ->whereHas('user', fn ($q) => $q->default())
+                    ->whereHas('beatmap')
                     ->orderByDesc('pp')
                     ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, static::PAGE_SIZE * static::PAGES);
 

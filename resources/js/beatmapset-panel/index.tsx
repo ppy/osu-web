@@ -478,17 +478,17 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           )}
 
           <StatsItem
-            icon={this.favourite.icon}
-            title={trans('beatmaps.panel.favourites', { count: formatNumber(this.props.beatmapset.favourite_count) })}
-            type='favourite-count'
-            value={this.props.beatmapset.favourite_count}
-          />
-
-          <StatsItem
             icon='fas fa-play-circle'
             title={trans('beatmaps.panel.playcount', { count: formatNumber(this.props.beatmapset.play_count) })}
             type='play-count'
             value={this.props.beatmapset.play_count}
+          />
+
+          <StatsItem
+            icon={this.favourite.icon}
+            title={trans('beatmaps.panel.favourites', { count: formatNumber(this.props.beatmapset.favourite_count) })}
+            type='favourite-count'
+            value={this.props.beatmapset.favourite_count}
           />
 
           <div className='beatmapset-panel__stats-item beatmapset-panel__stats-item--date'>

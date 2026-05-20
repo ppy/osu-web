@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Fremhævet Kunstner Spor',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
         'other' => 'Andre',
-        'team' => '',
+        'team' => 'Hold',
         'user' => 'Spiller',
         'wiki_page' => 'Wiki',
     ],
@@ -19,15 +19,15 @@ return [
         'title' => ':mode Søgeresultater',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Ingen resultater for :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Fremhævet Kunstner Spor',
+            'beatmapset' => 'Beatmaps',
+            'forum_post' => 'Fora',
+            'other' => 'Andre',
+            'team' => 'Hold',
+            'user' => 'Spillere',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

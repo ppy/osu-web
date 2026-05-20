@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => 'Inicieu sessió per a cercar equips',
             'more_simple' => 'Mostra més resultats de la cerca d\'equip',
         ],
 
@@ -83,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'consulteu aquesta pàgina per obtenir més informació',
-        'download' => '',
+        'download' => 'Descarrega',
         'for_os' => 'per :os',
         'macos-fallback' => 'usuaris de macOS',
         'mirror' => 'enllaç alternatiu',
@@ -91,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version o posterior',
         'other_os' => 'altres plataformes',
         'quick_start_guide' => 'guia d\'inici ràpid',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'si busqueu la versió antiga',
+        'tagline_1' => 'Anem a',
+        'tagline_2' => 'començar!',
         'video-guide' => 'guia en vídeo',
 
         'help' => [
@@ -150,6 +151,9 @@ return [
             'download' => 'Descarrega l\'osu!',
             'support' => 'Dona suport a l\'osu!',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => 'Directes destacats',
         ],
         'show' => [
             'admin' => [

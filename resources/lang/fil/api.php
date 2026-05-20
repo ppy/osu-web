@@ -31,6 +31,10 @@ return [
             'read' => 'Tignan kung sino ang iyong mga sinusundan.',
         ],
 
+        'multiplayer' => [
+            'write_manage' => '',
+        ],
+
         'public' => 'Magbasa ng pampublikong data sa iyong ngalan.',
     ],
 ];

@@ -75,6 +75,7 @@ class AuthServiceProvider extends ServiceProvider
             'friends.read' => osu_trans('api.scopes.friends.read'),
             'group_permissions' => '',
             'identify' => osu_trans('api.scopes.identify'),
+            'multiplayer.write_manage' => osu_trans('api.scopes.multiplayer.write_manage'),
             'public' => osu_trans('api.scopes.public'),
         ]);
     }

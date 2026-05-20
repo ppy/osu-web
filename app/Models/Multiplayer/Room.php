@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property User $host
  * @property int $id
  * @property int|null $max_attempts
+ * @property int|null $max_participants
  * @property string $name
  * @property int $participant_count
  * @property bool $pinned
@@ -47,6 +48,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property-read Season $season
  * @property \Carbon\Carbon $starts_at
+ * @property bool $tournament_mode
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
  * @property string $type
@@ -73,15 +75,16 @@ class Room extends Model
     const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
+        'ranked-play' => [self::RANKED_PLAY_TYPE],
         'realtime' => self::REALTIME_STANDARD_TYPES,
-        'quickplay' => [self::MATCHMAKING_TYPE],
     ];
 
     const PLAYLIST_TYPE = 'playlists';
-    const MATCHMAKING_TYPE = 'matchmaking';
+    const RANKED_PLAY_TYPE = 'ranked_play';
+    const MATCHMAKING_TYPES = ['matchmaking', self::RANKED_PLAY_TYPE];
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_STANDARD_TYPES = ['head_to_head', 'team_versus'];
-    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, self::MATCHMAKING_TYPE];
+    const REALTIME_TYPES = [...self::REALTIME_STANDARD_TYPES, ...self::MATCHMAKING_TYPES];
 
     const PLAYLIST_QUEUE_MODE = 'host_only';
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
@@ -99,6 +102,7 @@ class Room extends Model
         'password' => PresentString::class,
         'pinned' => 'boolean',
         'starts_at' => 'datetime',
+        'tournament_mode' => 'boolean',
     ];
     protected array $macros = [
         'dailyChallengeFor',
@@ -368,9 +372,12 @@ class Room extends Model
 
     public function getNameAttribute(?string $value): ?string
     {
-        return $this->isMatchmaking() && $value === 'Unnamed room'
-            ? 'Quick Play Match'
-            : $value;
+        return $value === 'Unnamed room'
+            ? match ($this->type) {
+                'matchmaking' => 'Quick Play Match',
+                'ranked_play' => 'Ranked Play Match',
+                default => $value,
+            } : $value;
     }
 
     public function assertCorrectPassword(?string $password): void
@@ -448,16 +455,14 @@ class Room extends Model
 
     public function isRealtime()
     {
-        static $realtimeTypes;
-
-        $realtimeTypes ??= new Set(static::REALTIME_TYPES);
-
+        static $realtimeTypes = new Set(self::REALTIME_TYPES);
         return $realtimeTypes->contains($this->type);
     }
 
     public function isMatchmaking()
     {
-        return $this->type === static::MATCHMAKING_TYPE;
+        static $matchmakingTypes = new Set(self::MATCHMAKING_TYPES);
+        return $matchmakingTypes->contains($this->type);
     }
 
     public function isScoreSubmissionStillAllowed()
@@ -638,6 +643,7 @@ class Room extends Model
             'duration:int',
             'ends_at:time',
             'max_attempts:int',
+            'max_participants:int',
             'name',
             'password',
             'playlist:array',
@@ -646,6 +652,10 @@ class Room extends Model
             'auto_start_duration:int',
             'auto_skip:bool',
         ], ['null_missing' => true]);
+
+        if ($params['name'] === null) {
+            throw new InvariantException("field 'name' is required");
+        }
 
         $this->fill([
             'max_attempts' => $params['max_attempts'],
@@ -675,6 +685,7 @@ class Room extends Model
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
+            $this->max_participants = $params['max_participants'];
         } else {
             $this->type = static::PLAYLIST_TYPE;
             $this->queue_mode = static::PLAYLIST_QUEUE_MODE;
@@ -689,7 +700,7 @@ class Room extends Model
         $this->assertValidStartGame();
 
         if (!is_array($params['playlist'])) {
-            throw new InvariantException("field 'playlist' must an an array");
+            throw new InvariantException("field 'playlist' must be an array");
         }
 
         $playlistItems = [];
@@ -699,10 +710,6 @@ class Room extends Model
 
         $playlistItemsCount = count($playlistItems);
 
-        if ($playlistItemsCount < 1) {
-            throw new InvariantException('room must have at least one playlist item');
-        }
-
         if ($this->isMatchmaking()) {
             $banchoBotId = $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'];
             foreach ($playlistItems as $item) {
@@ -710,6 +717,10 @@ class Room extends Model
             }
         } elseif ($this->isRealtime() && $playlistItemsCount !== 1) {
             throw new InvariantException('realtime room must have exactly one playlist item');
+        } elseif (!$this->isRealtime() && $playlistItemsCount < 1) {
+            throw new InvariantException('room must have at least one playlist item');
+        } elseif (!$this->isRealtime() && $playlistItemsCount > $GLOBALS['cfg']['osu']['user']['max_items_in_playlist']) {
+            throw new InvariantException(osu_trans('multiplayer.room.errors.too_many_playlist_items'));
         }
 
         if (mb_strlen($this->name) > 100) {
@@ -811,10 +822,10 @@ class Room extends Model
             throw new InvariantException('matchmaking rooms cannot be created');
         } else if ($this->isRealtime()) {
             $query->whereIn('type', static::REALTIME_TYPES);
-            $max = 1;
+            $max = $this->tournament_mode ? $this->host->maxTournamentRooms() : 1;
         } else {
             $query->where('type', static::PLAYLIST_TYPE);
-            $max = $this->host->maxMultiplayerRooms();
+            $max = $this->host->maxPlaylists();
         }
 
         if ($query->count() >= $max) {
@@ -851,6 +862,13 @@ class Room extends Model
             $maxAttemptsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_attempts_limit'];
             if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
                 throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
+            }
+        }
+
+        if ($this->max_participants !== null) {
+            $maxParticipantsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_participants_limit'];
+            if ($this->max_participants < 2 || $this->max_participants > $maxParticipantsLimit) {
+                throw new InvariantException("field 'max_participants' must be between 2 and {$maxParticipantsLimit}");
             }
         }
     }

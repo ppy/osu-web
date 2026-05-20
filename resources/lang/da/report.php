@@ -25,8 +25,8 @@ return [
     ],
 
     'message' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld besked',
+        'title' => 'Anmeld :usernames besked?',
     ],
 
     'scores' => [
@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld Hold',
+        'title' => 'Vil du anmelde :username\'s hold?',
     ],
 
     'user' => [

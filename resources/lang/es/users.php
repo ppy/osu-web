@@ -333,6 +333,9 @@ return [
                     'title' => 'Historial de repeticiones vistas',
                     'count_label' => 'Repeticiones vistas',
                 ],
+                'score_replay_stats' => [
+                    'title' => 'Repeticiones más vistas por otros',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Historial de Kudosu reciente',
@@ -399,8 +402,8 @@ return [
                 'title_longer' => 'Publicaciones recientes',
                 'show_more' => 'ver más publicaciones',
             ],
-            'quickplay' => [
-                'title' => 'Partidas rápidas',
+            'ranked-play' => [
+                'title' => '',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
@@ -472,8 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
-            'title' => '',
+            'title' => 'Partidas rápidas',
         ],
 
         'not_found' => [

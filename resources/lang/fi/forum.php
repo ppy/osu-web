@@ -253,69 +253,6 @@ return [
             'views' => 'katsomiskertaa',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Poista tunniste "lisätty" ',
-            'to_0_done' => 'Tunniste "lisätty" poistettu',
-            'to_1' => 'Lisää tunniste "lisätty"',
-            'to_1_done' => 'Tunniste "lisätty" lisätty',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Poista tunniste "siirretty"',
-            'to_0_done' => 'Tunniste "siirretty" poistettu',
-            'to_1' => 'Lisää tunniste "siirretty"',
-            'to_1_done' => 'Tunniste "siirretty" lisätty',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Poista tunniste "vahvistettu"',
-            'to_0_done' => 'Tunniste "vahvistettu" poistettu',
-            'to_1' => 'Lisää tunniste "vahvistettu"',
-            'to_1_done' => 'Tunniste "vahvistettu" lisätty',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Poista tunniste "duplikaatti"',
-            'to_0_done' => 'Tunniste "duplikaatti" poistettu',
-            'to_1' => 'Lisää tunniste "duplikaatti"',
-            'to_1_done' => 'Tunniste "duplikaatti" lisätty',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Poista tunniste "virheellinen"',
-            'to_0_done' => 'Tunniste "virheellinen" poistettu',
-            'to_1' => 'Lisää tunniste "virheellinen"',
-            'to_1_done' => 'Lisää tunniste "virheellinen"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Poista tunniste "selvitetty"',
-            'to_0_done' => 'Tunniste "selvitetty" poistettu',
-            'to_1' => 'Lisää tunniste "selvitetty"',
-            'to_1_done' => 'Lisää tunniste "selvitetty"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
         'lock' => [
             'is_locked' => 'Tämä aihe on lukittu, eikä siihen voida vastata',
             'to_0' => 'Avaa aihe',

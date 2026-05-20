@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'gjeste-kart',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'private meldinger',
+            'channel_mention' => '',
             'channel_team' => '',
             'comment_new' => 'nye kommentar',
             'forum_topic_reply' => 'emne svar',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'skjul advarsler for eksplisitt innhold i beatmaps',
         'beatmapset_title_show_original' => 'vis beatmap metadata på originalspråket',
         'title' => 'Innstillinger',

@@ -23,8 +23,7 @@
   &--beatmap-success-rate {
     height: 5px;
     background-color: @osu-colour-b6;
-    margin-top: 5px;
-    margin-bottom: calc(1em + 2px);
+    margin: 5px 0 2px;
   }
 
   &--double {
@@ -90,11 +89,6 @@
     position: absolute;
     top: 100%;
     margin-top: 2px;
-
-    .@{_top}--beatmap-success-rate & {
-      margin-left: var(--fill);
-      transform: translateX(-50%);
-    }
 
     .@{_top}--user-profile & {
       right: 0;

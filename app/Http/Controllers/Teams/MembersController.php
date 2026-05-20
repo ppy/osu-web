@@ -36,7 +36,7 @@ class MembersController extends Controller
 
         \Session::flash('popup', osu_trans('teams.members.destroy.success'));
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function index(string $teamId): Response

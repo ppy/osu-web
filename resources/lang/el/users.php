@@ -333,6 +333,9 @@ return [
                     'title' => 'Ιστορικό Παρακολούθησης Replay',
                     'count_label' => 'Παρακολουθημένες Επαναλήψεις',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Πρόσφατο Ιστορικό Kudosu',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Πρόσφατες Αναρτήσεις',
                 'show_more' => 'δείτε περισσότερες δημοσιεύσεις',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

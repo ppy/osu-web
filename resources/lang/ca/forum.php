@@ -5,8 +5,8 @@
 
 return [
     'pinned_topics' => 'Temes Fixats',
-    'slogan' => "és perillós jugar sol.",
-    'subforums' => 'Subfòrums',
+    'slogan' => "És perillós jugar sol.",
+    'subforums' => 'Subfòrum',
     'title' => 'Fòrums',
 
     'covers' => [
@@ -253,69 +253,6 @@ return [
             'views' => 'vistes',
         ],
 
-        'issue_tag_added' => [
-            'to_0' => 'Elimina l\'etiqueta "afegit"',
-            'to_0_done' => 'S\'ha eliminat l\'etiqueta "afegit"',
-            'to_1' => 'Afegeix l\'etiqueta "afegit"',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta "afegit"',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Elimina l\'etiqueta "assignat"',
-            'to_0_done' => 'S\'ha eliminat l\'etiqueta "assignat"',
-            'to_1' => 'Afegeix l\'etiqueta "assignat"',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta "assignat"',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Elimina l\'etiqueta "confirmat"',
-            'to_0_done' => 'S\'ha eliminat l\'etiqueta "confirmat"',
-            'to_1' => 'Afegeix l\'etiqueta "confirmat"',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta "confirmat"',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Elimina l\'etiqueta "duplicat"',
-            'to_0_done' => 'S\'ha eliminat l\'etiqueta "duplicat"',
-            'to_1' => 'Afegeix l\'etiqueta "duplicat"',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta "duplicat"',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Elimina l\'etiqueta "invàlid"',
-            'to_0_done' => 'S\'ha eliminat l\'etiqueta "invàlid"',
-            'to_1' => 'Afegeix l\'etiqueta "invàlid"',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta "invàlid"',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Elimina l\'etiqueta "resolt"',
-            'to_0_done' => 'S\'ha eliminat l\'etiqueta "resolt"',
-            'to_1' => 'Afegeix l\'etiqueta "resolt"',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta "resolt"',
-        ],
-
-        'issue_tag_osulazer' => [
-            'to_0' => 'Eliminar l\'etiqueta «osu!lazer»',
-            'to_0_done' => 'Etiqueta «osu!lazer» eliminada',
-            'to_1' => 'Afegir l\'etiqueta «osu!lazer»',
-            'to_1_done' => 'Etiqueta «osu!lazer» afegida',
-        ],
-
-        'issue_tag_osustable' => [
-            'to_0' => 'Trau l\'etiqueta «osu!stable»',
-            'to_0_done' => 'S\'ha tret l\'etiqueta «osu!stable».',
-            'to_1' => 'Afegeix l\'etiqueta «osu!stable»',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta «osu!stable».',
-        ],
-
-        'issue_tag_osuweb' => [
-            'to_0' => 'Trau l\'etiqueta «osu!web»',
-            'to_0_done' => 'S\'ha tret l\'etiqueta «osu!web».',
-            'to_1' => 'Afegeix l\'etiqueta «osu!web»',
-            'to_1_done' => 'S\'ha afegit l\'etiqueta «osu!web».',
-        ],
-
         'lock' => [
             'is_locked' => 'Aquest tema està tancat i no pots respondre-hi',
             'to_0' => 'Obre el tema',
@@ -391,8 +328,8 @@ return [
 
         'watch' => [
             'to_not_watching' => 'No marcat',
-            'to_watching' => 'Marcar',
-            'to_watching_mail' => 'Marcar amb notificació',
+            'to_watching' => 'Marca',
+            'to_watching_mail' => 'Marca amb notificació',
             'tooltip_mail_disable' => 'Notificació activa. Clica per desactivar-la',
             'tooltip_mail_enable' => 'Notificació desactivada. Clica per activar-la',
         ],

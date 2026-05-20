@@ -11,7 +11,7 @@ _ide_helper.php
 composer.phar
 
 # docker related local files
-/compose.override.yml
+/compose.override.yaml
 
 # OS-specific crud
 .DS_Store

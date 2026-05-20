@@ -228,7 +228,7 @@ export class UserList extends React.PureComponent<Props> {
     return (
       <Sort
         currentValue={this.state.sortMode}
-        modifiers={['user-list']}
+        modifiers='user-list'
         onChange={this.handleSortChange}
         values={sortModes}
       />

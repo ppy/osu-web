@@ -333,6 +333,9 @@ return [
                     'title' => 'Гісторыя праглядаў паўтораў',
                     'count_label' => 'Паўтораў прагледжана',
                 ],
+                'score_replay_stats' => [
+                    'title' => '',
+                ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Нядаўняя гісторыя кудосу',
@@ -399,7 +402,7 @@ return [
                 'title_longer' => 'Апошнія паведамленні',
                 'show_more' => 'убачыць больш паведамленняў',
             ],
-            'quickplay' => [
+            'ranked-play' => [
                 'title' => '',
             ],
             'recent_activity' => [
@@ -472,7 +475,6 @@ return [
         ],
 
         'matchmaking' => [
-            'details_soon' => '',
             'title' => '',
         ],
 

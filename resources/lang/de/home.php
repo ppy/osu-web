@@ -63,6 +63,7 @@ return [
         ],
 
         'team' => [
+            'login_required' => 'Melde dich an, um Teams zu suchen',
             'more_simple' => 'Weitere Team-Ergebnisse anzeigen',
         ],
 
@@ -150,6 +151,9 @@ return [
             'download' => 'osu! herunterladen',
             'support' => 'osu! unterstützen',
             'store' => 'osu!store',
+        ],
+        'livestream' => [
+            'title' => 'Empfohlene Liveübertragung',
         ],
         'show' => [
             'admin' => [

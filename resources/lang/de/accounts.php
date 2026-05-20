@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'Erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
         'beatmapset_disqualify' => 'Erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
         'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
-        'news_post' => '',
+        'news_post' => 'Erhalte Benachrichtigungen bei Neuigkeiten',
         'title' => 'Benachrichtigungen',
         'topic_auto_subscribe' => 'Benachrichtigungen zu den Forenposts, die du erstellt oder auf die du geantwortet hast, immer aktivieren',
 
@@ -89,12 +89,13 @@ return [
             'beatmap_owner_change' => 'Guest-Difficulty',
             'beatmapset:modding' => 'Beatmap-Modding',
             'channel_message' => 'Private Chat-Nachrichten',
+            'channel_mention' => '',
             'channel_team' => 'Nachrichten im Team-Chat',
             'comment_new' => 'Neue Kommentare',
             'forum_topic_reply' => 'Antwort auf Forenthema',
             'mail' => 'Mail',
             'mapping' => 'Beatmap-Mapper',
-            'news_post' => '',
+            'news_post' => 'Neuigkeiten',
             'push' => 'Push',
         ],
     ],
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'Beatmap-Cover mit Anime-Stil anzeigen',
         'beatmapset_show_nsfw' => 'Warnungen für expliziten Inhalt in Beatmaps ausblenden',
         'beatmapset_title_show_original' => 'Beatmap-Metadaten in Originalsprache anzeigen',
         'title' => 'Optionen',

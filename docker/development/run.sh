@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export CHROME_BIN=/usr/bin/chromium
+export CHROME_BIN=/usr/bin/chromium-browser
 export DUSK_WEBDRIVER_BIN=/usr/bin/chromedriver
 export LANG="C.UTF-8"
 export LC_ALL="C.UTF-8"
@@ -12,8 +12,12 @@ if [ "$#" -gt 0 ]; then
 fi
 
 # commands
+_assets() {
+    exec yarn dev
+}
+
 _job() {
-    exec ./artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
+    exec ./artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,imagesize --tries=3 --timeout=1000
 }
 
 _migrate() {
@@ -50,7 +54,7 @@ _test() {
 
     case "$command" in
         browser) _test_browser "$@";;
-        js) exec yarn karma start --single-run --browsers ChromeHeadless "$@";;
+        js) exec yarn karma start --single-run --browsers ChromeCustom "$@";;
         phpunit) exec ./bin/phpunit.sh "$@";;
     esac
 }
@@ -63,11 +67,11 @@ _test_browser() {
 
 _watch() {
     yarn --network-timeout 100000
-    exec yarn watch
+    exec yarn watch --color "$@"
 }
 
 case "$command" in
     artisan) exec ./artisan "$@";;
-    job|migrate|octane|schedule|test|watch) "_$command" "$@";;
+    assets|job|migrate|octane|schedule|test|watch) "_$command" "$@";;
     *) exec "$command" "$@";;
 esac

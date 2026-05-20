@@ -37,7 +37,7 @@ interface Props {
   depth: number;
   expandReplies?: boolean;
   linkParent: boolean;
-  modifiers: Modifiers;
+  modifiers?: Modifiers;
   showCommentableMeta: boolean;
   showToolbar: boolean;
 }
@@ -686,7 +686,7 @@ export default class Comment extends React.Component<Props> {
   }
 
   private renderReplyButton() {
-    if (this.props.comment.isDeleted) return;
+    if (!this.props.comment.canReply) return;
 
     return (
       <div className='comment__row-item'>

@@ -8,7 +8,7 @@ return [
         'active' => 'Šiuo metu nėra jokiose vykstančiuose osu!(lazer) :type_group žaidimuose!',
         'ended' => 'Dar nėra jokiuose užbaigtuose osu!(lazer) :type_group žaidimuose!',
         'playlists' => 'grojaraščio',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'tinklo',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Per ilga trūkmė.',
             'name_too_long' => 'Kambario pavadinimas per ilgas',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

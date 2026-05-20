@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
         'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
         'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
-        'news_post' => '',
+        'news_post' => 'Nhận thông báo về bài đăng mới',
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề bạn tạo trong forum',
 
@@ -89,12 +89,13 @@ return [
             'beatmap_owner_change' => 'độ khó khách mời',
             'beatmapset:modding' => 'sửa đổi beatmap',
             'channel_message' => 'tin nhắn riêng tư',
+            'channel_mention' => '',
             'channel_team' => 'tin nhắn đội',
             'comment_new' => 'bình luận mới',
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
             'mapping' => 'người tạo beatmap',
-            'news_post' => '',
+            'news_post' => 'Bài đăng mới',
             'push' => 'đẩy',
         ],
     ],
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'hiện bìa beatmap phong cách anime',
         'beatmapset_show_nsfw' => 'ẩn cảnh báo nội dung không lành mạnh trong beatmap',
         'beatmapset_title_show_original' => 'hiển thị metadata của beatmap bằng ngôn ngữ gốc',
         'title' => 'Tuỳ chọn',
@@ -129,7 +131,7 @@ return [
     'privacy' => [
         'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
         'hide_online' => 'ẩn trạng thái của bạn khi bạn online',
-        'hide_online_info' => '',
+        'hide_online_info' => 'ss',
         'title' => 'Quyền Riêng Tư',
     ],
 
@@ -151,17 +153,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Ứng dụng xác thực',
+        'usage_note' => 'Xác thực bằng ứng dụng xác thực thay cho email. Email vẫn sẽ được sử dụng dự phòng',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Loại bỏ',
+            'setup' => 'Thêm ứng dụng xác thực',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'Trạng thái',
+            'not_set' => 'Chưa được thiết lập',
+            'set' => 'Đã thiết lập',
         ],
     ],
 

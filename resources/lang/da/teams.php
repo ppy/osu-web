@@ -6,164 +6,166 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Tilføjede bruger til teamet.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Annullerede tilmeldingsanmodning.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Afviste tilmeldingsanmodning.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Anmodede om at deltage i hold.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited medlem|:count_delimited medlemmer',
     ],
 
     'create' => [
-        'submit' => '',
+        'submit' => 'Opret Team',
 
         'form' => [
-            'name_help' => '',
-            'short_name_help' => '',
-            'title' => "",
+            'name_help' => 'Dit teams navn. Navnet er permanent i øjeblikket.',
+            'short_name_help' => 'Højst 4 tegn.',
+            'title' => "Lad os oprette et nyt hold",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "Spil sammen med eksisterende eller nye venner. Du er ikke i et team lige nu. Du kan melde dig ind i et team ved at besøge teamets side, eller lav dit eget team fra denne side.",
+            'title' => 'Team!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'Team fjernet.',
     ],
 
     'edit' => [
-        'ok' => '',
-        'title' => '',
+        'ok' => 'Indstillinger gemt.',
+        'title' => 'Team-indstillinger',
 
         'description' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Beskrivelse',
+            'title' => 'Team-beskrivelse',
         ],
 
         'flag' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Hold Flag',
+            'title' => 'Angiv Hold Flag',
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'Headerbillede',
+            'title' => 'Angiv Headerbillede',
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
-            'title' => '',
+            'application_help' => 'Om folk skal kunne ansøge om at blive en del af holdet',
+            'default_ruleset_help' => 'Regelsættet som vælgæes som standard, når holdsiden besøges',
+            'flag_help' => 'Maksimum størrelse af :width×:height',
+            'header_help' => 'Maksimum størrelse af :width×:height',
+            'title' => 'Holdindstillinger',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'Lukket',
+                'state_1' => 'Åben',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => '',
-        'show' => '',
+        'edit' => 'indstillinger',
+        'leaderboard' => 'rangliste',
+        'show' => 'info',
 
         'members' => [
-            'index' => '',
+            'index' => 'administrér medlemmer',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => '',
+        'global_rank' => 'Global Rang',
     ],
 
     'members' => [
         'destroy' => [
-            'success' => '',
+            'success' => 'Holdmedlem fjernet',
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'Administrér Medlemmer',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'accept_confirm' => 'Tilføj brugeren :user til holdet?',
+                'created_at' => 'Ansøgt Ved',
+                'empty' => 'Ingen tilmeldningsanmodninger i øjeblikket.',
+                'empty_slots' => 'Tilgængelige pladser',
+                'empty_slots_overflow' => ':count_delimited bruger opfyldt|:count_delimited brugere opfyldt',
+                'reject_confirm' => 'Afvis tilmeldingsanmodning  fra :user?',
+                'title' => 'Deltageranmodning',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'joined_at' => 'Tilmeldingsdato',
+                'remove' => 'Fjern',
+                'remove_confirm' => 'Fjern brugeren :user fra teamet?',
+                'set_leader' => 'Overfør holdlederskab',
+                'set_leader_confirm' => 'Overfør holdlederskab til brugeren :user?',
+                'status' => 'Status',
+                'title' => 'Nuværende Medlemmer',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'Inaktive',
+                'status_1' => 'Aktive',
             ],
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'Brugeren :user er nu holdlederen.',
         ],
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'Forlod holdet ;_;',
     ],
 
     'show' => [
         'bar' => [
-            'chat' => '',
-            'destroy' => '',
-            'join' => '',
-            'join_cancel' => '',
-            'part' => '',
+            'chat' => 'Holdchat',
+            'destroy' => 'Opløs Hold',
+            'join' => 'Anmod om at deltage',
+            'join_cancel' => 'Annullér Deltagelse',
+            'part' => 'Forlad Hold',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'Dannet',
         ],
 
         'members' => [
-            'members' => '',
-            'owner' => '',
+            'members' => 'Holdmedlemmer',
+            'owner' => 'Holdleder',
         ],
 
         'sections' => [
-            'about' => '',
-            'info' => '',
-            'members' => '',
+            'about' => 'Om Os!',
+            'info' => 'Info',
+            'members' => 'Medlemmer',
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'leader' => '',
-            'rank' => '',
+            'empty_slots' => ':count_delimited plads til rådighed|:count_delimited pladser til rådighed',
+            'first_places' => 'Første plads',
+            'leader' => 'Holdleder',
+            'rank' => 'Rang',
+            'ranked_beatmapsets' => 'Rangerede Beatmaps',
         ],
     ],
 
     'store' => [
-        'ok' => '',
+        'ok' => 'Hold oprettet.',
     ],
 ];

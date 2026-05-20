@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'бийтмап трудност',
             'beatmapset:modding' => 'бийтмап редактор',
             'channel_message' => 'лично съобщение',
+            'channel_mention' => '',
             'channel_team' => 'отборни съобщения',
             'comment_new' => 'нов коментар',
             'forum_topic_reply' => 'отговор на тема',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'скриване на предупрежденията за бийтмапове с Explicit съдържание',
         'beatmapset_title_show_original' => 'показване на бийтмап метаданните с оригиналния им език',
         'title' => 'Hастройки',

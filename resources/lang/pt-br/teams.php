@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => ':count_delimited jogador:count_delimited jogadores',
+        'members' => ':count_delimited jogador|:count_delimited jogadores',
     ],
 
     'create' => [
@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited de espaço disponível|:count_delimited de espaços disponíveis',
+            'first_places' => 'Primeiros lugares',
             'leader' => 'Líder da Equipe',
             'rank' => 'Classificação',
+            'ranked_beatmapsets' => 'Beatmaps Ranqueados',
         ],
     ],
 

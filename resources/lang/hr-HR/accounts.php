@@ -89,6 +89,7 @@ return [
             'beatmap_owner_change' => 'gostova težina',
             'beatmapset:modding' => 'modificiranje beatmapa',
             'channel_message' => 'privatne chat poruke',
+            'channel_mention' => '',
             'channel_team' => 'poruke timskog čavrljanja',
             'comment_new' => 'nove komentare',
             'forum_topic_reply' => 'odgovor na temu',
@@ -106,6 +107,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'sakrij upozorenja za eksplicitni sadržaj u beatmap-ama',
         'beatmapset_title_show_original' => 'prikaži metapodatke beatmap-a na izvornom jeziku',
         'title' => 'Opcije',

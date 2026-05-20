@@ -24,11 +24,15 @@ return [
 
         'forum' => [
             'write' => '以你的名义创建和编辑论坛的主题与帖子。',
-            'write_manage' => '管理你发布的论坛主题与帖子。',
+            'write_manage' => '以你的名义管理论坛主题与帖子。',
         ],
 
         'friends' => [
             'read' => '看看你关注了谁。',
+        ],
+
+        'multiplayer' => [
+            'write_manage' => '以你的名义创建并管理多人游戏房间。',
         ],
 
         'public' => '以你的身份读取公开数据。',

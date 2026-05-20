@@ -48,6 +48,8 @@ class ScoreTransformer extends TransformerAbstract
         // Only for MultiplayerScoreLink
         'position',
         'scores_around',
+
+        'replay_views',
     ];
 
     protected array $defaultIncludes = [
@@ -238,6 +240,11 @@ class ScoreTransformer extends TransformerAbstract
         return $this->primitive($score->userRank([
             'is_legacy' => ScoreSearchParams::showLegacyForUser(\Auth::user()),
         ]));
+    }
+
+    public function includeReplayViews(SoloScore $score)
+    {
+        return $this->primitive($score->replayStats?->watch_count ?? 0);
     }
 
     public function includeUser(LegacyMatch\Score|MultiplayerScoreLink|SoloScore $score)

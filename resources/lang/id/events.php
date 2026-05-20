@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> telah membuka medali "<strong>:achievement</strong>"!',
-    'beatmap_playcount' => ':beatmap telah dimainkan sebanyak :count kali!',
-    'beatmapset_approve' => ':beatmapset oleh <strong>:user</strong> telah berstatus :approval!',
+    'achievement' => ':user telah membuka medali ":achievement"!',
+    'beatmap_playcount' => ':beatmap sudah dimainkan sebanyak :count kali!',
+    'beatmapset_approve' => ':beatmapset oleh :user telah berstatus :approval!',
     'beatmapset_delete' => ':beatmapset telah dihapus.',
-    'beatmapset_revive' => ':beatmapset telah dipulihkan dari Graveyard oleh <strong>:user</strong>.',
-    'beatmapset_update' => '<strong><em>:user</em></strong> telah memperbarui beatmap "<em>:beatmapset</em>"',
-    'beatmapset_upload' => '<strong><em>:user</em></strong> telah mengunggah beatmap baru ":beatmapset"',
+    'beatmapset_revive' => ':beatmapset telah dipulihkan dari Graveyard oleh :user.',
+    'beatmapset_update' => ':user telah memperbarui beatmap ":beatmapset"',
+    'beatmapset_upload' => ':user telah mengunggah beatmap baru ":beatmapset"',
     'empty' => "Pengguna ini tidak melakukan hal apa pun baru-baru ini!",
     'rank' => ':user telah meraih :rank pada :beatmap (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> telah kehilangan peringkat pertama pada <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> telah memutuskan untuk kembali mendukung osu! - terima kasih atas kemurahan hatimu!',
-    'user_support_first' => '<strong>:user</strong> telah mendukung osu! - terima kasih atas kemurahan hatimu!',
-    'user_support_gift' => '<strong>:user</strong> telah menerima hadiah osu! supporter!',
-    'username_change' => '<strong>:previousUsername</strong> telah mengubah nama penggunanya menjadi <strong><em>:user</strong></em>!',
+    'rank_lost' => ':user telah kehilangan peringkat pertama pada :beatmap (:mode)',
+    'user_support_again' => ':user telah memutuskan untuk kembali mendukung osu! - terima kasih atas kemurahan hatimu!',
+    'user_support_first' => ':user telah mendukung osu! - terima kasih atas kemurahan hatimu!',
+    'user_support_gift' => ':user telah menerima hadiah osu! supporter!',
+    'username_change' => ':previousUsername telah mengubah nama penggunanya menjadi :user!',
 
     'beatmapset_status' => [
         'approved' => 'Approved',

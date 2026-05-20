@@ -75,7 +75,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'nsfw' => $beatmapset->nsfw,
             'offset' => $beatmapset->offset,
             'play_count' => $beatmapset->play_count,
-            'preview_url' => $beatmapset->previewURL(),
+            'preview_url' => $beatmapset->previewUrl(),
             'source' => $beatmapset->source,
             'spotlight' => $beatmapset->spotlight,
             'status' => $beatmapset->status(),

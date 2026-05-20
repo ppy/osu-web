@@ -6,14 +6,15 @@
 namespace App\Models\Chat;
 
 use App\Jobs\Notifications\ChannelAnnouncement;
+use App\Jobs\Notifications\ChannelMention;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Jobs\Notifications\ChannelTeam;
+use App\Libraries\UsernameValidation;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
-use Illuminate\Support\Collection;
 
 /**
  * @property Channel $channel
@@ -29,7 +30,20 @@ class Message extends Model implements ReportableInterface
 {
     use Reportable;
 
-    public static function filterBacklogs(Channel $channel, Collection $messages): Collection
+    public ?string $uuid = null;
+
+    protected $primaryKey = 'message_id';
+    protected $casts = [
+        'is_action' => 'boolean',
+        'timestamp' => 'datetime',
+    ];
+
+    public static function filter(iterable $messages, Channel $channel, ?int $userId): iterable
+    {
+        return static::filterUserCommands(static::filterBacklogs($messages, $channel), $userId);
+    }
+
+    private static function filterBacklogs(iterable $messages, Channel $channel): iterable
     {
         if (!$channel->isPublic()) {
             return $messages;
@@ -44,16 +58,20 @@ class Message extends Model implements ReportableInterface
             }
         }
 
-        return collect($ret);
+        return $ret;
     }
 
-    public ?string $uuid = null;
+    private static function filterUserCommands(iterable $messages, ?int $userId): iterable
+    {
+        $ret = [];
+        foreach ($messages as $message) {
+            if ($message->user_id === $userId || !$message->isUserCommand()) {
+                $ret[] = $message;
+            }
+        }
 
-    protected $primaryKey = 'message_id';
-    protected $casts = [
-        'is_action' => 'boolean',
-        'timestamp' => 'datetime',
-    ];
+        return $ret;
+    }
 
     public function channel()
     {
@@ -92,7 +110,12 @@ class Message extends Model implements ReportableInterface
 
     public function dispatchNotification(): void
     {
-        $class = match ($this->channel->type) {
+        if ($this->isUserCommand()) {
+            return;
+        }
+
+        $channelType = $this->channel->type;
+        $class = match ($channelType) {
             Channel::TYPES['announce'] => ChannelAnnouncement::class,
             Channel::TYPES['pm'] => ChannelMessage::class,
             Channel::TYPES['team'] => ChannelTeam::class,
@@ -102,6 +125,37 @@ class Message extends Model implements ReportableInterface
         if ($class !== null) {
             new $class($this, $this->sender)->dispatch();
         }
+
+        if ($channelType === Channel::TYPES['public'] && $this->mayContainMention()) {
+            new ChannelMention($this, $this->sender)->dispatch();
+        }
+    }
+
+    public function isUserCommand(): bool
+    {
+        return preg_match('/^![^ !]/', $this->content ?? '') === 1;
+    }
+
+    public function mayContainMention(): bool
+    {
+        return strpos($this->content, '@') !== false;
+    }
+
+    public function mention(): ?string
+    {
+        static $chars = UsernameValidation::ALLOWED_CHARACTERS;
+
+        preg_match("/(?<=^|\s|'|\"|,|\.|\/)(?:@([{$chars}]+))/", $this->content, $match);
+
+        if (isset($match[1])) {
+            $length = strlen($match[1]);
+
+            if ($length >= UsernameValidation::LENGTH_MIN && $length <= UsernameValidation::LENGTH_MAX) {
+                return $match[1];
+            }
+        }
+
+        return null;
     }
 
     public function reportableAdditionalInfo(): ?string

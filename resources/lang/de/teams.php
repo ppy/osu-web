@@ -27,7 +27,7 @@ return [
         'submit' => 'Team erstellen',
 
         'form' => [
-            'name_help' => 'Dein Teamname. Der Name kann später nicht mehr geändert werden.',
+            'name_help' => 'Dein Teamname. Der Name kann derzeit nicht geändert werden.',
             'short_name_help' => 'Maximal 4 Zeichen.',
             'title' => "Ein neues Team anlegen",
         ],
@@ -158,8 +158,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited Platz verfügbar|:count_delimited Plätze verfügbar',
+            'first_places' => 'Auf dem ersten Platz',
             'leader' => 'Teamleiter',
             'rank' => 'Rang',
+            'ranked_beatmapsets' => 'Gerankte Beatmaps',
         ],
     ],
 

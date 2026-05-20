@@ -124,6 +124,16 @@ return [
                 ],
             ],
 
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
             'channel_team' => [
                 '_' => '새 팀 메시지',
 
@@ -161,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => '뉴스 (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -220,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '뉴스',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => '당신은 이제 비트맵 ":title"의 게스트가 되었습니다.',
@@ -257,6 +269,10 @@ return [
             'channel' => [
                 'channel_message' => ':username 님에게 새로운 메시지를 받았습니다.',
             ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
             'channel_team' => [
                 'channel_team' => '팀 ":name"에 새로운 메시지가 있습니다.',
             ],
@@ -271,10 +287,6 @@ return [
         'news_post' => [
             'comment' => [
                 'comment_new' => '뉴스 ":title"에 새로운 댓글이 달렸습니다.',
-            ],
-
-            'news_post' => [
-                'news_post_new' => '',
             ],
         ],
 

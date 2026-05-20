@@ -22,10 +22,6 @@ return [
             'generic' => 'Radās kļūda. Mēģiniet atsvaidzināt lapu.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Norādīts nederīgs mods.',
-        'standard_converts_only' => 'Pieprasītajam modam šajā bītmapes grūtībā nav pieejami nekādi rezultāti.',
-    ],
     'checkout' => [
         'generic' => 'Jūsu pirkuma pārbaudes sagatavošanas laikā notikusi kļūda.',
     ],

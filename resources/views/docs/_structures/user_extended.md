@@ -126,6 +126,7 @@
     "global_rank": 2000,
     "ranked_score": 2000000,
     "hit_accuracy": 90.5,
+    "accuracy": 0.905,
     "play_count": 1000,
     "play_time": 100000,
     "total_score": 3000000,

@@ -174,7 +174,7 @@ export default class SearchForm extends React.Component<Props> {
               />
             </InputContainer>
 
-            <InputContainer labelKey='artist.tracks.index.form.genre' modifiers={['4', 'genre']}>
+            <InputContainer labelKey='artist.tracks.index.form.genre' modifiers='4 genre'>
               <div className='input-text'>
                 <div className='artist-track-search-form-switches'>
                   {this.renderGenreLink(trans('artist.tracks.index.form.genre_all'), null)}
@@ -183,7 +183,7 @@ export default class SearchForm extends React.Component<Props> {
               </div>
             </InputContainer>
 
-            <InputContainer labelKey='artist.tracks.index.form.exclusive_only' modifiers={['4', 'genre']}>
+            <InputContainer labelKey='artist.tracks.index.form.exclusive_only' modifiers='4 genre'>
               <div className='input-text'>
                 <div className='artist-track-search-form-switches'>
                   {([['all', false], ['exclusive_only', true]] as const).map(([label, value]) => (
@@ -208,7 +208,7 @@ export default class SearchForm extends React.Component<Props> {
           <BigButton
             disabled={this.isEmptySearch}
             href={makeLink(this.emptySearch)}
-            modifiers={['artist-track-search', 'rounded-thin']}
+            modifiers='artist-track-search rounded-thin'
             props={{ onClick: this.handleReset }}
             text={trans('common.buttons.reset')}
           />
@@ -216,7 +216,7 @@ export default class SearchForm extends React.Component<Props> {
           <BigButton
             disabled={!this.newSearch}
             href={this.url}
-            modifiers={['artist-track-search', 'rounded-thin-wide']}
+            modifiers='artist-track-search rounded-thin-wide'
             props={{ onClick: this.handleSubmit }}
             text={trans('common.buttons.search')}
           />

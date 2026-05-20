@@ -163,7 +163,7 @@ export default class Main extends React.Component<Props, State> {
         callback={this.handleShowMore}
         hasMore={type?.hasMore}
         loading={type?.isLoading}
-        modifiers={['notification-group', 'notification-list']}
+        modifiers='notification-group notification-list'
       />
     );
   }

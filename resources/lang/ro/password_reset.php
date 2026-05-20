@@ -16,8 +16,10 @@ return [
         'invalid' => 'Eroare neașteptată în codul de verificare.',
         'is_privileged' => 'Contactați-l pe peppy lulz.',
         'missing_key' => 'Necesar.',
+        'too_many_requests' => '',
         'too_many_tries' => 'Prea multe încercări eșuate.',
         'user_not_found' => 'Utilizatorul nu există.',
+        'wait_resend' => '',
         'wrong_key' => 'Cod incorect.',
     ],
 

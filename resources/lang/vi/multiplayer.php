@@ -5,10 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Hiện không có ván osu!(lazer) :type_group: nào đang diễn ra!',
+        'ended' => 'Chưa có ván osu!(lazer) :type_group: nào hoàn thành!',
         'playlists' => 'danh sách phát',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'nhiều người chơi',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Thời lượng quá dài. ',
             'name_too_long' => 'Tên phòng quá dài.',
+            'too_many_playlist_items' => 'Quá nhiều mục trong danh sách phát.',
         ],
 
         'status' => [

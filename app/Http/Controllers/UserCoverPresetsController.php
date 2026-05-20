@@ -28,7 +28,7 @@ class UserCoverPresetsController extends Controller
         }
         UserCoverPreset::whereKey($params['ids'] ?? [])->update(['active' => $params['active']]);
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function index(): Response
@@ -82,6 +82,6 @@ class UserCoverPresetsController extends Controller
             $item->update(['active' => $params['active']]);
         }
 
-        return response(null, 204);
+        return response()->noContent();
     }
 }

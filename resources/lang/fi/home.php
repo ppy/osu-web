@@ -27,7 +27,7 @@ return [
         'title' => 'Hae',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Näytä lisää esitellyn artistin kappaleita',
         ],
         'beatmapset' => [
             'login_required' => 'Kirjaudu sisään hakeaksesi rytmikarttoja',
@@ -54,16 +54,17 @@ return [
 
         'mode' => [
             'all' => 'kaikki',
-            'artist_track' => '',
+            'artist_track' => 'esittelyartistin kappale',
             'beatmapset' => 'beatmap',
             'forum_post' => 'foorumi',
-            'team' => '',
+            'team' => 'tiimi',
             'user' => 'pelaaja',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'more_simple' => '',
+            'login_required' => 'Kirjaudu sisään etsiäksesi tiimejä',
+            'more_simple' => 'Näytä lisää tiimihakujen tuloksia',
         ],
 
         'user' => [
@@ -83,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'lisätietoja saat täältä',
-        'download' => '',
+        'download' => 'Lataa',
         'for_os' => 'käyttöjärjestelmälle: :os',
         'macos-fallback' => 'macOS-käyttäjät',
         'mirror' => 'vaihtoehtoinen lataus',
@@ -91,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version tai uudempi',
         'other_os' => 'muut alustat',
         'quick_start_guide' => 'pikakäyttöohjeet',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'jos etsit vanhempia',
+        'tagline_1' => 'laitetaan sinut',
+        'tagline_2' => 'alkuun!',
         'video-guide' => 'video-opas',
 
         'help' => [
@@ -140,20 +141,23 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Päivän haasterytmikartta',
             'new' => 'Uudet rankatut rytmikartat',
             'popular' => 'Suositut Beatmapit',
             'by_user' => 'tehnyt :user',
-            'resets' => '',
+            'resets' => 'nollautuu :ends',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',
             'support' => 'Tue osu!a',
             'store' => 'osu!kauppa',
         ],
+        'livestream' => [
+            'title' => 'Suositeltu Livelähetys',
+        ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Avaa hallintakonsoli',
             ],
         ],
     ],

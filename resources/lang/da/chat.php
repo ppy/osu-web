@@ -8,7 +8,7 @@ return [
     'talking_in' => 'taler i :channel',
     'talking_with' => 'taler med:name',
     'title_compact' => 'chat',
-    'unread_messages' => '',
+    'unread_messages' => 'ulæste beskeder',
 
     'cannot_send' => [
         'channel' => 'Du kan ikke skrive i denne kanal på nuværende tidspunkt. Dette kan være pga. en af disse grunde:',
@@ -18,8 +18,8 @@ return [
     'channels' => [
         'confirm_part' => 'Vil du skjule denne kanal? Du vil stadig modtage beskeder fra denne kanal.',
         'create' => 'opret annoncering',
-        'join' => '',
-        'none' => '',
+        'join' => 'tilslut kanal',
+        'none' => 'ingen kanal',
 
         'list' => [
             'title' => [
@@ -27,7 +27,7 @@ return [
                 'GROUP' => 'Grupper',
                 'PM' => 'Direkte beskeder',
                 'PUBLIC' => 'Kanaler',
-                'TEAM' => '',
+                'TEAM' => 'Hold',
             ],
         ],
     ],
@@ -39,7 +39,7 @@ return [
 
         'labels' => [
             'description' => 'beskrivelse',
-            'message' => '',
+            'message' => 'besked',
             'name' => 'navn på rum',
             'users' => 'spillere at tilføje',
         ],
@@ -58,13 +58,7 @@ return [
         'send' => 'Send',
     ],
 
-    'no-conversations' => [
-        'howto' => "Start samtaler fra en brugers profil eller et brugerkort-popup.",
-        'lazer' => 'Offentlige kanaler du joiner via <a href=":link">osu!lazer</a> vil også vises her.',
-        'title' => 'ingen samtaler "endnu"',
-    ],
-
     'join_channels' => [
-        'loading' => '',
+        'loading' => 'Indlæser kanalliste...',
     ],
 ];

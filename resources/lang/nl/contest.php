@@ -69,14 +69,11 @@ return [
         'silenced_or_restricted' => 'Je kan niet meedoen aan wedstrijden als je restricted of silenced bent.',
         'preparation' => 'We zijn nog bezig met de voorbereidingen van deze wedstrijd. Heb nog even geduld alsjeblieft!',
         'drop_here' => 'Sleep je inzending hier',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => 'Download .osz',
-
-        'wrong_type' => [
-            'art' => 'Alleen .jpg en .png bestanden worden geaccepteerd voor deze wedstrijd.',
-            'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
-            'music' => 'Alleen .mp3 bestanden worden geaccepteerd voor deze wedstrijd.',
-        ],
-
+        'wrong_file_type' => '',
         'wrong_dimensions' => 'Inzendingen voor deze wedstrijd moeten :widthx:height zijn',
         'too_big' => 'Inzendingen voor deze wedstrijd kunnen maar :limit zijn.',
     ],

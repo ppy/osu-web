@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Ugyldigt regelsæt valgt.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'For mange gæstemappere.',
     ],
 
     'discussion-votes' => [
@@ -31,14 +31,14 @@ return [
         'message_placeholder_silenced' => "Kan ikke skrive diskussion, mens du er tavs.",
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Tryk på enter for at besvare. Tryk ctrl+enter for at besvare og løse.',
         'reply_placeholder' => 'Skriv dit svar her',
         'require-login' => 'Log ind for at lave et opslag eller svare',
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'show_deleted' => 'Vis slettede',
         'title' => 'Diskussioner',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited uløst problematik|:count_delimited uløst problemer',
 
         'collapse' => [
             'all-collapse' => 'Sammenfold alle',
@@ -93,9 +93,9 @@ return [
             'nomination_reset' => 'Fjern alle nominationer',
             'praise' => 'Post Ros',
             'problem' => 'Post Problem',
-            'problem_warning' => '',
-            'review' => '',
-            'suggestion' => '',
+            'problem_warning' => 'Rapportér Problem',
+            'review' => 'Indlæg Anmeldelse',
+            'suggestion' => 'Indlæg Forslag',
         ],
 
         'mode' => [
@@ -195,8 +195,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Du har allerede nomineret dette beatmap.',
+        'cannot_nominate' => 'Du kan ikke nominere denne beatmap spiltilstand.',
         'delete' => 'Fjern',
         'delete_own_confirm' => 'Er du sikker? Dette beatmap vil blive slettet og du vil blive ledt tilbage til din profil.',
         'delete_other_confirm' => 'Er du sikker? Dette beatmap vil blive slettet og du vil blive ledt tilbage til brugerens profil.',
@@ -221,9 +221,9 @@ return [
 
         'rank_estimate' => [
             '_' => 'Dette kort anslås at være rangeret :date , hvis ingen problemer findes. Det er #:position i :queue.',
-            'unresolved_problems' => '',
-            'problems' => '',
-            'on' => '',
+            'unresolved_problems' => 'Dette map er i øjeblikket blokeret fra at forlade den kvalificerede sektion indtil :problems er løst.',
+            'problems' => 'disse problemer',
+            'on' => 'den :date',
             'queue' => 'rangering kø',
             'soon' => 'snart',
         ],
@@ -245,6 +245,7 @@ return [
             'prompt' => 'skriv nøgleord...',
             'login_required' => 'Log ind for at kunne søge.',
             'options' => 'Flere Søgefunktioner',
+            'rank_filter_note' => 'Profilens højeste rangerings-tællinger og resultater er vist på denne side baseret på din højeste "standardiserede" (aka "lazer") scores på beatmaps.',
             'supporter_filter' => 'Filtrering af :filters kræver et aktivt osu! supporter tag',
             'not-found' => 'ingen resultater',
             'not-found-quote' => '... desværre, intet fundet.',
@@ -275,6 +276,10 @@ return [
                 '_' => 'Filtrering af :filters kræver et aktivt :link',
                 'link_text' => 'osu!supporter tag',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [
@@ -292,7 +297,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'ikke angivet',
     ],
     'status' => [
         'any' => 'Vilkårlig',

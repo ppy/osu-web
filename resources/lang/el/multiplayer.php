@@ -8,7 +8,7 @@ return [
         'active' => '',
         'ended' => '',
         'playlists' => 'λίστες αναπαραγωγής',
-        'quickplay' => '',
+        'ranked-play' => '',
         'realtime' => 'multiplayer',
     ],
 
@@ -24,6 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Η διάρκεια είναι πολύ μεγάλη.',
             'name_too_long' => 'Το όνομα δωματίου είναι πολύ μεγάλο.',
+            'too_many_playlist_items' => '',
         ],
 
         'status' => [

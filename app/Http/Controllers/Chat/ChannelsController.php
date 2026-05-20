@@ -129,7 +129,7 @@ class ChannelsController extends Controller
 
         $channel->removeUser(Auth::user());
 
-        return response([], 204);
+        return response()->noContent();
     }
 
     /**
@@ -328,6 +328,6 @@ class ChannelsController extends Controller
         ->firstOrFail()
         ->markAsRead(get_int($messageId));
 
-        return response([], 204);
+        return response()->noContent();
     }
 }

@@ -21,7 +21,7 @@ export type BeatmapsetSection = typeof beatmapsetSections[number];
 export const topScoreSections = ['scoresPinned', 'scoresBest', 'scoresFirsts'] as const;
 export type TopScoreSection = typeof topScoreSections[number];
 
-const historicalSections = ['beatmapPlaycounts', 'scoresRecent'] as const;
+const historicalSections = ['beatmapPlaycounts', 'scoresRecent', 'scoreReplayStats'] as const;
 export type HistoricalSection = typeof historicalSections[number];
 
 type ProfilePageIncludes =
