@@ -31,13 +31,13 @@ class UserSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $lowercase_stick = [
+        static $lowercaseStick = [
             'analyzer' => 'username_lower',
             'type' => 'most_fields',
             'fields' => ['username', 'username._*'],
         ];
 
-        static $whitespace_stick = [
+        static $whitespaceStick = [
             'analyzer' => 'whitespace',
             'type' => 'most_fields',
             'fields' => ['username', 'username._*'],
@@ -54,8 +54,8 @@ class UserSearch extends RecordSearch
                 ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
                 ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 5]]])
                 ->should(['match' => ['previous_usernames' => ['query' => $this->params->queryString]]])
-                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
-                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
+                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercaseStick)])
+                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespaceStick)])
                 ->should(['match_phrase' => ['username._slop' => $this->params->queryString]]);
         }
 
