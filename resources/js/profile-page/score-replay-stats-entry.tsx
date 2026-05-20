@@ -25,6 +25,10 @@ export default function ScoreReplayStatsEntry(props: Props) {
   const user = props.user;
   const stats = props.stats;
   const score = stats.score;
+  if (score == null) {
+    return null;
+  }
+
   const scoreRank = rank(score);
   const { beatmap, beatmapset } = score;
 

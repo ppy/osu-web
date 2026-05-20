@@ -30,6 +30,8 @@ class ScoreReplayStatsTransformer extends TransformerAbstract
 
     public function includeScore(ScoreReplayStats $stats): ResourceInterface
     {
-        return $this->item($stats->score, new ScoreTransformer());
+        return $stats->score !== null
+            ? $this->item($stats->score, new ScoreTransformer())
+            : $this->null();
     }
 }

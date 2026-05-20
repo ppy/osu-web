@@ -4,7 +4,7 @@
 import ScoreJson, { ScoreJsonForUser } from './score-json';
 
 interface ScoreReplayStatsJsonAvailableIncludes {
-  score: ScoreJson;
+  score: ScoreJson|null;
 }
 
 interface ScoreReplayStatsJsonDefaultAttributes {
@@ -16,4 +16,4 @@ type ScoreReplayStatsJson = ScoreReplayStatsJsonDefaultAttributes & Partial<Scor
 
 export default ScoreReplayStatsJson;
 
-export type ScoreReplayStatsJsonForUser = ScoreReplayStatsJson & { score: ScoreJsonForUser };
+export type ScoreReplayStatsJsonForUser = ScoreReplayStatsJson & { score: ScoreJsonForUser|null };
