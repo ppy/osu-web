@@ -14,7 +14,6 @@ use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\User\FindForProfilePage;
-use App\Libraries\User\ProfileCount;
 use App\Libraries\UserRegistration;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -45,6 +44,8 @@ class UsersController extends Controller
     // more limited list of UserProfileCustomization::SECTIONS for now.
     const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
 
+    const MAX_RESULTS = 100;
+
     const PER_PAGE = [
         'scoreReplayStats' => 5,
 
@@ -65,8 +66,6 @@ class UsersController extends Controller
         'recentActivity' => 5,
         'recentlyReceivedKudosu' => 5,
     ];
-
-    protected $maxResults = 100;
 
     private ?string $mode = null;
     private ?int $offset = null;
@@ -152,32 +151,25 @@ class UsersController extends Controller
 
     public function extraPages($_id, $page)
     {
-        // TODO: counts basically duplicated from UserCompactTransformer
         switch ($page) {
             case 'beatmaps':
                 return [
-                    'favourite' => $this->getExtraSection('favouriteBeatmapsets', $this->user->profileBeatmapsetsFavourite()->count()),
-                    'graveyard' => $this->getExtraSection('graveyardBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('graveyard')),
-                    'guest' => $this->getExtraSection('guestBeatmapsets', $this->user->profileBeatmapsetsGuest()->count()),
-                    'loved' => $this->getExtraSection('lovedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('loved')),
-                    'nominated' => $this->getExtraSection('nominatedBeatmapsets', $this->user->profileBeatmapsetsNominated()->count()),
-                    'ranked' => $this->getExtraSection('rankedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('ranked')),
-                    'pending' => $this->getExtraSection('pendingBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('pending')),
+                    'favourite' => $this->getExtraSection('favouriteBeatmapsets'),
+                    'graveyard' => $this->getExtraSection('graveyardBeatmapsets'),
+                    'guest' => $this->getExtraSection('guestBeatmapsets'),
+                    'loved' => $this->getExtraSection('lovedBeatmapsets'),
+                    'nominated' => $this->getExtraSection('nominatedBeatmapsets'),
+                    'ranked' => $this->getExtraSection('rankedBeatmapsets'),
+                    'pending' => $this->getExtraSection('pendingBeatmapsets'),
                 ];
 
             case 'historical':
                 return [
-                    'beatmap_playcounts' => $this->getExtraSection('beatmapPlaycounts', $this->user->beatmapPlaycounts()->count()),
+                    'beatmap_playcounts' => $this->getExtraSection('beatmapPlaycounts'),
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
-                    'recent' => $this->getExtraSection(
-                        'scoresRecent',
-                        $this->user->soloScores()->recent($this->mode, false)->count(),
-                    ),
+                    'recent' => $this->getExtraSection('scoresRecent'),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
-                    'score_replay_stats' => $this->getExtraSection(
-                        'scoreReplayStats',
-                        $this->user->scoreReplayStats()->whereHas('score.beatmap')->countLimit($this->maxResults),
-                    ),
+                    'score_replay_stats' => $this->getExtraSection('scoreReplayStats'),
                 ];
 
             case 'kudosu':
@@ -188,22 +180,9 @@ class UsersController extends Controller
 
             case 'top_ranks':
                 return [
-                    'best' => $this->getExtraSection(
-                        'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode))
-                    ),
-                    'firsts' => $this->getExtraSection(
-                        'scoresFirsts',
-                        ProfileCount::scoresFirst(
-                            $this->user,
-                            $this->mode,
-                            ScoreSearchParams::showLegacyForUser(\Auth::user()),
-                        )
-                    ),
-                    'pinned' => $this->getExtraSection(
-                        'scoresPinned',
-                        $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count()
-                    ),
+                    'best' => $this->getExtraSection('scoresBest'),
+                    'firsts' => $this->getExtraSection('scoresFirsts'),
+                    'pinned' => $this->getExtraSection('scoresPinned'),
                 ];
 
             default:
@@ -762,11 +741,11 @@ class UsersController extends Controller
 
         $this->offset = max(0, get_int(Request::input('offset')) ?? 0);
 
-        if ($this->offset >= $this->maxResults) {
+        if ($this->offset >= static::MAX_RESULTS) {
             $this->perPage = 0;
         } else {
             $perPage = $this->sanitizedLimitParam();
-            $this->perPage = min($perPage, $this->maxResults - $this->offset);
+            $this->perPage = min($perPage, static::MAX_RESULTS - $this->offset);
         }
     }
 
@@ -921,7 +900,7 @@ class UsersController extends Controller
         return json_collection($collection, $transformer, $includes ?? []);
     }
 
-    private function getExtraSection(string $section, ?int $count = null)
+    private function getExtraSection(string $section)
     {
         // TODO: replace with cursor.
         $items = $this->getExtra($section, [], static::PER_PAGE[$section] + 1);
@@ -937,6 +916,7 @@ class UsersController extends Controller
             ],
         ];
 
+        $count = $this->user->profileCount()->get($section, $this->mode);
         if ($count !== null) {
             $response['count'] = $count;
         }
