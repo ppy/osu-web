@@ -17,6 +17,7 @@ trait UserSearch
     public static function esIndexingQuery()
     {
         return static::withoutGlobalScopes()
+            ->with('userGroups')
             ->with('usernameChangeHistoryPublic');
     }
 
@@ -30,9 +31,9 @@ trait UserSearch
         return match ($field) {
             'id' => $this->getKey(),
             'is_old' => $this->isOld(),
-            'previous_usernames' => $this->previousUsernames(true)->unique()->values(),
+            'previous_usernames' => $this->previousUsernames(true)->unique()->all(),
             'user_lastvisit' => $this->displayed_last_visit,
-            'groups' => $this->userGroups->pluck('group_id')->values(),
+            'groups' => $this->userGroups->pluck('group_id')->all(),
             default => $this->$field,
         };
     }
