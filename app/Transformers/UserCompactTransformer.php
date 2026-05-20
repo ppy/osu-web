@@ -6,9 +6,7 @@
 namespace App\Transformers;
 
 use App\Libraries\MorphMap;
-use App\Libraries\Search\ScoreSearchParams;
 use App\Libraries\SessionVerification;
-use App\Libraries\User\ProfileCount;
 use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Season;
@@ -195,7 +193,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeBeatmapPlaycountsCount(User $user)
     {
-        return $this->primitive($user->beatmapPlaycounts()->count());
+        return $this->primitive($user->profileCount()->get('beatmapPlaycounts'));
     }
 
     public function includeBlocks(User $user)
@@ -256,7 +254,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeFavouriteBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsFavourite()->count());
+        return $this->primitive($user->profileCount()->get('favouriteBeatmapsets'));
     }
 
     public function includeFollowUserMapping(User $user)
@@ -292,7 +290,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGraveyardBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('graveyard'));
+        return $this->primitive($user->profileCount()->get('graveyardBeatmapsets'));
     }
 
     public function includeGroups(User $user)
@@ -302,7 +300,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGuestBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsGuest()->count());
+        return $this->primitive($user->profileCount()->get('guestBeatmapsets'));
     }
 
     public function includeIsAdmin(User $user)
@@ -360,7 +358,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeLovedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('loved'));
+        return $this->primitive($user->profileCount()->get('lovedBeatmapsets'));
     }
 
     public function includeMappingFollowerCount(User $user)
@@ -392,7 +390,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeNominatedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsNominated()->count());
+        return $this->primitive($user->profileCount()->get('nominatedBeatmapsets'));
     }
 
     public function includePage(User $user)
@@ -409,7 +407,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includePendingBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('pending'));
+        return $this->primitive($user->profileCount()->get('pendingBeatmapsets'));
     }
 
     public function includePreviousUsernames(User $user)
@@ -442,7 +440,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeRankedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('ranked'));
+        return $this->primitive($user->profileCount()->get('rankedBeatmapsets'));
     }
 
     public function includeReplaysWatchedCounts(User $user)
@@ -455,28 +453,22 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresBestCount(User $user)
     {
-        return $this->primitive(count($user->beatmapBestScoreIds(
-            $this->mode
-        )));
+        return $this->primitive($user->profileCount()->get('scoresBest', $this->mode));
     }
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive(ProfileCount::scoresFirst(
-            $user,
-            $this->mode,
-            ScoreSearchParams::showLegacyForUser(\Auth::user()),
-        ));
+        return $this->primitive($user->profileCount()->get('scoresFirsts', $this->mode));
     }
 
     public function includeScoresPinnedCount(User $user)
     {
-        return $this->primitive($user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count());
+        return $this->primitive($user->profileCount()->get('scoresPinned', $this->mode));
     }
 
     public function includeScoresRecentCount(User $user)
     {
-        return $this->primitive($user->soloScores()->recent($this->mode, false)->count());
+        return $this->primitive($user->profileCount()->get('scoresRecent', $this->mode));
     }
 
     public function includeSessionVerified(User $user)

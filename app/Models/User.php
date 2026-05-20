@@ -18,7 +18,7 @@ use App\Libraries\Uploader;
 use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\Cover;
 use App\Libraries\User\DatadogLoginAttempt;
-use App\Libraries\User\ProfileBeatmapset;
+use App\Libraries\User\ProfileCount;
 use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
@@ -2241,10 +2241,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->with('beatmaps');
     }
 
-    public function profileBeatmapsetCountByGroupedStatus(string $status)
+    public function profileCount(): ProfileCount
     {
-        return $this->memoize(__FUNCTION__, fn () =>
-            ProfileBeatmapset::countByGroupedStatus($this))[$status] ?? 0;
+        return $this->memoize(__FUNCTION__, fn () => new ProfileCount($this));
     }
 
     public function isSessionVerified()
