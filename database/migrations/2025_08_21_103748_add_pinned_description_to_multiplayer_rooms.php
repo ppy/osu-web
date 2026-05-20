@@ -20,21 +20,21 @@ return new class extends Migration
             $table->boolean('pinned')->default(false);
             $table->string('description')->nullable();
 
-            $table->index('pinned');
+            $table->index([DB::raw('pinned DESC')], 'multiplayer_rooms_pinned_index');
 
-            $table->index(['user_id', 'pinned']);
+            $table->index(['user_id', DB::raw('pinned DESC')], 'multiplayer_rooms_user_id_pinned_index');
             $table->dropIndex(['user_id']);
 
-            $table->index(['category', 'ends_at', 'pinned']);
+            $table->index(['category', 'ends_at', DB::raw('pinned DESC')], 'multiplayer_rooms_category_ends_at_pinned_index');
             $table->dropIndex(['category', 'ends_at']);
 
-            $table->index(['category', 'user_id', 'pinned']);
+            $table->index(['category', 'user_id', DB::raw('pinned DESC')], 'multiplayer_rooms_category_user_id_pinned_index');
             $table->dropIndex(['category', 'user_id']);
 
-            $table->index(['ends_at', 'pinned']);
+            $table->index(['ends_at', DB::raw('pinned DESC')], 'multiplayer_rooms_ends_at_pinned_index');
             $table->dropIndex(['ends_at']);
 
-            $table->index(['type', 'category', 'ends_at', 'pinned']);
+            $table->index(['type', 'category', 'ends_at', DB::raw('pinned DESC')], 'multiplayer_rooms_type_category_ends_at_pinned_index');
             $table->dropIndex(['type', 'category', 'ends_at']);
         });
 
@@ -53,22 +53,22 @@ return new class extends Migration
         });
 
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->dropIndex(['pinned']);
+            $table->dropIndex('multiplayer_rooms_pinned_index');
 
             $table->index(['user_id']);
-            $table->dropIndex(['user_id', 'pinned']);
+            $table->dropIndex('multiplayer_rooms_user_id_pinned_index');
 
             $table->index(['category', 'ends_at']);
-            $table->dropIndex(['category', 'ends_at', 'pinned']);
+            $table->dropIndex('multiplayer_rooms_category_ends_at_pinned_index');
 
             $table->index(['category', 'user_id']);
-            $table->dropIndex(['category', 'user_id', 'pinned']);
+            $table->dropIndex('multiplayer_rooms_category_user_id_pinned_index');
 
             $table->index(['ends_at']);
-            $table->dropIndex(['ends_at', 'pinned']);
+            $table->dropIndex('multiplayer_rooms_ends_at_pinned_index');
 
             $table->index(['type', 'category', 'ends_at']);
-            $table->dropIndex(['type', 'category', 'ends_at', 'pinned']);
+            $table->dropIndex('multiplayer_rooms_type_category_ends_at_pinned_index');
 
             $table->dropColumn(['pinned', 'description']);
         });
