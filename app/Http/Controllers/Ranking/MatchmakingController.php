@@ -59,7 +59,8 @@ class MatchmakingController extends Controller
             ->allUserStats()
             ->with(['user', 'user.team'])
             ->default()
-            ->orderByDesc('rating');
+            ->orderByDesc('rating')
+            ->orderBy('sigma');
 
         $maxResults = $scoresQuery->count();
         $maxPages = ceil($maxResults / Model::PER_PAGE);
