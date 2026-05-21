@@ -19,6 +19,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserAchievement;
@@ -847,6 +848,7 @@ class UsersController extends Controller
                     $offset,
                     ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD
                 );
+                Score::preloadDifficultyRatings($collection, $this->mode);
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
@@ -858,7 +860,7 @@ class UsersController extends Controller
                     ->with(prefix_strings('score.', ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->orderByDesc('score_id');
                 $userRelationColumn = 'user';
-                $collectionFn = fn ($scoreFirst) => $scoreFirst->map->score;
+                $collectionFn = fn ($scoreFirst) => Score::preloadDifficultyRatings($scoreFirst->map->score, $this->mode);
                 break;
             case 'scoresPinned':
                 $transformer = new ScoreTransformer();
@@ -869,7 +871,7 @@ class UsersController extends Controller
                     ->withVisibleScore()
                     ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->reorderBy('display_order', 'asc');
-                $collectionFn = fn ($pins) => $pins->map->score;
+                $collectionFn = fn ($pins) => Score::preloadDifficultyRatings($pins->map->score, $this->mode);
                 $userRelationColumn = 'user';
                 break;
             case 'scoresRecent':
@@ -880,6 +882,7 @@ class UsersController extends Controller
                     ->reorderBy('ended_at', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
+                $collectionFn = fn ($scores) => Score::preloadDifficultyRatings($scores, $this->mode);
                 break;
         }
 
