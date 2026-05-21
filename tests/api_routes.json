@@ -1643,7 +1643,7 @@
         ]
     },
     {
-        "uri": "api/v2/rankings/{mode}/ranked-play",
+        "uri": "api/v2/rankings/ranked-play/{mode}",
         "methods": [
             "GET",
             "HEAD"
@@ -1659,7 +1659,7 @@
         ]
     },
     {
-        "uri": "api/v2/rankings/{mode}/ranked-play/{pool}",
+        "uri": "api/v2/rankings/ranked-play/{mode}/{pool}",
         "methods": [
             "GET",
             "HEAD"
