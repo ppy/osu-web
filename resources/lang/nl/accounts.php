@@ -88,8 +88,8 @@ return [
             '_' => 'verzend methodes',
             'beatmap_owner_change' => 'gast moeilijkheid',
             'beatmapset:modding' => 'beatmap modding',
-            'channel_message' => 'privéberichten',
             'channel_mention' => '',
+            'channel_message' => 'privéberichten',
             'channel_team' => 'Team chat berichten',
             'comment_new' => 'nieuwe reacties',
             'forum_topic_reply' => 'topic antwoord',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'beatmap mapper',
             'news_post' => 'Nieuws berichten',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

@@ -10,17 +10,17 @@ return [
 
         'avatar' => [
             'title' => 'Profilbillede',
-            'reset' => 'genstart',
-            'rules' => 'Vær sikker på at din avatar overholder :link.<br/>Dette betyder at den skal være <strong>passende for alle aldre</strong>. Det betyder ingen nøgenhed, skælsord eller suggestivt indhold.',
+            'reset' => 'nulstil',
+            'rules' => 'Vær sikker på at dit profilbillede overholder :link.<br/>Dette betyder at den skal være <strong>passende for alle aldre</strong>. Det betyder ingen nøgenhed, skældsord eller suggestivt indhold.',
             'rules_link' => 'fællesskabs-reglerne',
         ],
 
         'email' => [
             'new' => 'ny email',
-            'new_confirmation' => 'email bekræftelse',
+            'new_confirmation' => 'bekræftelse af email-adresse',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Venligst kontakt :accounts his du har brug for at opdatere din email.',
+                '_' => 'Kontakt venligst :accounts hvis du har brug for at opdatere din email.',
                 'accounts' => 'kontohjælp',
             ],
         ],
@@ -88,8 +88,8 @@ return [
             '_' => 'leveringsmuligheder',
             'beatmap_owner_change' => 'gæst sværhedsgrad',
             'beatmapset:modding' => 'beatmap modding',
+            'channel_mention' => 'nævnt i chat',
             'channel_message' => 'privat beskeder',
-            'channel_mention' => '',
             'channel_team' => 'holdchat beskeder',
             'comment_new' => 'nye kommentarer',
             'forum_topic_reply' => 'emne svar',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'beatmap mapper',
             'news_post' => 'nyhedsindlæg',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

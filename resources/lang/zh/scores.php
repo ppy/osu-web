@@ -16,8 +16,8 @@ return [
             'by' => '玩家',
             'played_on' => '游玩于',
             'submitted_on' => '达成时间',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => '被观看次数',
+            'watched_count' => ':count_delimited 次',
 
             'rank' => [
                 'country' => '地区排名',

@@ -5,43 +5,43 @@
 
 return [
     'box' => [
-        'sent' => 'Um email foi enviado para :mail com um código de verificação. Introduz o código.',
+        'sent' => 'Um e-mail foi enviado para :mail com um código de verificação. Introduza-o.',
         'title' => 'Verificação da conta',
         'verifying' => 'A verificar...',
         'issuing' => 'A emitir o novo código...',
 
         'info' => [
-            'check_spam' => "Assegura-te de que confirmas a pasta de spam se não conseguires encontrar o email.",
-            'recover' => "Se não conseguires aceder ao teu email ou esqueceste-te do que usaste, segue o :link.",
+            'check_spam' => "Certifique‑se de verificar a sua pasta de publicidade caso não encontre o e-mail.",
+            'recover' => "Se não conseguir aceder ao seu e-mail ou se já não se lembrar qual utilizou, siga o :link.",
             'recover_link' => 'processo de recuperação de email aqui',
-            'reissue' => 'Também podes :reissue_link ou :logout_link.',
+            'reissue' => 'Também pode :reissue_link ou :logout_link.',
             'reissue_link' => 'pedir outro código',
-            'logout_link' => 'terminar sessão',
+            'logout_link' => 'terminar a sessão',
         ],
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Por favor, introduza o código do seu autenticador.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Também pode :link.',
+                'link' => 'encerrar a sessão',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Se não conseguir aceder à sua aplicação, :link.',
+                'link' => 'pode, em alternativa, verificar através do e-mail',
             ],
         ],
     ],
 
     'errors' => [
-        'expired' => 'O código de verificação está expirado, um novo email de verificação foi enviado.',
-        'incorrect_key' => 'Código de verificação incorreto.',
-        'retries_exceeded' => 'Código de verificação incorreto. O limite de tentativas foi excedido, um novo email de verificação foi enviado.',
-        'reissued' => 'Código de verificação reenviado, um novo email de verificação foi enviado.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
-        'unknown' => 'Ocorreu um problema desconhecido, um novo email de verificação foi enviado.',
+        'expired' => 'O código de verificação expirou. Foi enviado um novo e-mail de verificação.',
+        'incorrect_key' => 'O código de verificação está incorreto.',
+        'retries_exceeded' => 'O código de verificação está incorreto. O limite de tentativas foi excedido, um novo e-mail de verificação foi enviado.',
+        'reissued' => 'O Código de verificação foi reenviado. Um novo e-mail de verificação foi enviado.',
+        'totp_used_key' => 'O código de verificação já foi utilizado. Aguarde e use um novo.',
+        'totp_gone' => 'O token de autenticação foi removido. A verificação passará a ser feita por e-mail. O e-mail de verificação foi enviado.',
+        'unknown' => 'Ocorreu um problema desconhecido. Um novo e-mail de verificação foi enviado.',
     ],
 ];

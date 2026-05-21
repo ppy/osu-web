@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'beatmap_hash_invalid' => '',
-        'submission_disabled' => '',
+        'beatmap_hash_invalid' => 'معرّف الخريطة (beatmap_hash) غير صالح أو مفقود',
+        'submission_disabled' => 'تم تعطيل إرسال النتائج',
     ],
 ];

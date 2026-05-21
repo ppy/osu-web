@@ -22,7 +22,7 @@ return [
             '_' => '',
 
             'artist_track' => 'مسارات الفنانين المميزين',
-            'beatmapset' => '',
+            'beatmapset' => 'خرائط الإيقاع',
             'forum_post' => 'المنتديات',
             'other' => 'أُخرى',
             'team' => 'الفِرق',

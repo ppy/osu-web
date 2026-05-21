@@ -11,8 +11,8 @@ return [
     'unread_messages' => 'tin nhắn chưa đọc',
 
     'cannot_send' => [
-        'channel' => 'Hiện bạn không thế gửi tin nhắn vào kênh này. Điều này có thể vì những lí do sau:',
-        'user' => 'Hiện bạn không thế gửi tin nhắn cho người dùng này. Điều này có thể vì những lí do sau:',
+        'channel' => 'Hiện bạn không thế gửi tin nhắn vào kênh này.',
+        'user' => 'Hiện bạn không thế gửi tin nhắn cho người dùng này.',
     ],
 
     'channels' => [
@@ -48,6 +48,11 @@ return [
     'not_found' => [
         'message' => 'Không có gì ở đây, có lẽ bạn đã thoát kênh hoặc kênh không tồn tại...',
         'title' => 'không tìm thấy kênh',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

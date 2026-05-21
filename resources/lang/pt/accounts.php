@@ -11,24 +11,24 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'reset' => 'reiniciar',
-            'rules' => 'Assegura-te de que o teu avatar respeita :link.<br/>Significa que deve estar<strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo sugestivo.',
-            'rules_link' => 'as regras da comunidade',
+            'rules' => 'Certifique‑se de que o avatar cumpre :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, i.e., sem nudez, conteúdo ofensivo ou sugestivo.',
+            'rules_link' => 'as regras do conteúdo visual',
         ],
 
         'email' => [
-            'new' => 'novo email',
-            'new_confirmation' => 'confirmação do email',
-            'title' => 'Email',
+            'new' => 'novo e-mail',
+            'new_confirmation' => 'confirmação do e-mail',
+            'title' => 'E-mail',
             'locked' => [
-                '_' => 'Entra em contacto com :accounts se precisares de atualizar o teu email.',
-                'accounts' => 'equipa de apoio à conta',
+                '_' => 'Por favor, entre em contacto com :accounts caso seja necessária a atualização do endereço de e-mail.',
+                'accounts' => 'equipa de suporte de contas',
             ],
         ],
 
         'legacy_api' => [
-            'api' => 'API',
-            'irc' => 'IRC',
-            'title' => 'API legada',
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API antiga',
         ],
 
         'password' => [
@@ -43,7 +43,7 @@ return [
             'title' => 'Perfil',
 
             'country_change' => [
-                '_' => "Parece que o país da tua conta não corresponde ao teu país de residência. :update_link",
+                '_' => "Detetou‑se que o país definido na conta não coincide com o país de residência. :update_link.",
                 'update_link' => 'Atualizar para :country',
             ],
 
@@ -53,7 +53,7 @@ return [
                 'user_interests' => 'interesses',
                 'user_occ' => 'ocupação',
                 'user_twitter' => '',
-                'user_website' => 'website',
+                'user_website' => 'página',
             ],
         ],
 
@@ -64,58 +64,70 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Se fores um contribuidor dos repositórios de fonte aberta do osu!, ao associar a tua conta do GitHub, irá associar os teus acessos ao registo de alterações com o teu perfil no osu! As contas do GitHub sem histórico de contribuições ao osu!, não podem ser vinculadas.",
+        'info' => "Se for um colaborador dos repositórios de código aberto do osu!, associar a sua conta GitHub aqui permitirá que as suas entradas de mudanças fiquem ligadas ao seu perfil do osu!. Contas GitHub sem histórico de contribuições para o osu! não podem ser associadas.",
         'link' => 'Associar conta do GitHub',
         'title' => 'GitHub',
         'unlink' => 'Desassociar conta do GitHub',
 
         'error' => [
             'already_linked' => 'Esta conta do GitHub já está associada a um utilizador diferente.',
-            'no_contribution' => 'Não é possível associar uma conta GitHub sem qualquer histórico de contribuições nos repositórios osu!',
-            'unverified_email' => 'Verifica o teu email principal no GitHub e, em seguida, tenta associar a tua conta novamente.',
+            'no_contribution' => 'Não é possível associar a conta GitHub sem qualquer histórico de contribuições nos repositórios do osu!.',
+            'unverified_email' => 'Por favor, confirme o seu e-mail principal no GitHub e volte a tentar efetuar a associação de conta.',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'receber notificações para um novo problema em beatmaps qualificados dos modos seguintes',
-        'beatmapset_disqualify' => 'receber notificações para quando os beatmaps dos modos seguintes forem desqualificados',
-        'comment_reply' => 'receber notificações para respostas aos teus comentários',
-        'news_post' => '',
+        'beatmapset_discussion_qualified_problem' => 'receber notificações sobre novos problemas em mapas qualificados dos seguintes modos',
+        'beatmapset_disqualify' => 'receber notificações sempre que mapas dos seguintes modos sejam desqualificados',
+        'comment_reply' => 'receber notificações quando houver respostas aos seus comentários',
+        'news_post' => 'receber notificações quando forem publicadas novidades',
         'title' => 'Notificações',
-        'topic_auto_subscribe' => 'ativar automaticamente as notificações em novos tópicos de fórum que tenhas criado',
+        'topic_auto_subscribe' => 'ativar automaticamente as notificações em novos tópicos de fórum que tenha criado ou respondido',
 
         'options' => [
             '_' => 'opções de envio',
             'beatmap_owner_change' => 'dificuldade de convidado',
-            'beatmapset:modding' => 'modificações de beatmaps',
-            'channel_message' => 'Mensagens do chat privado',
-            'channel_mention' => '',
-            'channel_team' => 'mensagens da equipa',
-            'comment_new' => 'Novos comentários ',
-            'forum_topic_reply' => 'resposta a um tópico',
+            'beatmapset:modding' => 'modificações de mapas',
+            'channel_mention' => 'menções na conversa',
+            'channel_message' => 'mensagens da conversa privada',
+            'channel_team' => 'mensagens da conversa da equipa',
+            'comment_new' => 'novos comentários',
+            'forum_topic_reply' => 'resposta num tópico',
             'mail' => 'correio',
-            'mapping' => 'mapeador de beatmaps',
+            'mapping' => 'criador de mapas',
+            'news_post' => 'novas publicações',
+            'push' => 'alerta',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
             'news_post' => '',
-            'push' => 'push',
         ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'clientes autorizados',
-        'own_clients' => 'os teus clientes',
+        'own_clients' => 'os seus clientes',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
-        'beatmapset_show_nsfw' => 'ocultar avisos para conteúdo explícito em beatmaps',
-        'beatmapset_title_show_original' => 'mostrar os metadados do beatmap no idioma original',
+        'beatmapset_show_anime_cover' => 'mostrar capas de mapas no estilo anime',
+        'beatmapset_show_nsfw' => 'ocultar avisos para conteúdo explícito em mapas',
+        'beatmapset_title_show_original' => 'mostrar os metadados do mapa no idioma original',
         'title' => 'Opções',
 
         'beatmapset_download' => [
-            '_' => 'tipo de download predefinido do beatmap',
+            '_' => 'tipo de download predefinido do mapa',
             'all' => 'com vídeo, se disponível',
-            'direct' => 'abrir em osu!direct',
+            'direct' => 'abrir no osu!direct',
             'no_video' => 'sem vídeo',
         ],
     ],
@@ -129,16 +141,16 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'bloquear mensagens privadas de pessoas que não estejam na tua lista de amigos',
-        'hide_online' => 'ocultar a tua presença online',
-        'hide_online_info' => '',
+        'friends_only' => 'bloquear mensagens privadas de pessoas que não estejam na sua lista de amigos',
+        'hide_online' => 'ocultar a sua presença online',
+        'hide_online_info' => 'corresponde ao modo "aparecer offline" no osu!lazer',
         'title' => 'Privacidade',
     ],
 
     'security' => [
         'current_session' => 'atual',
         'end_session' => 'Terminar sessão',
-        'end_session_confirmation' => 'Isto irá imediatamente terminar a tua sessão nesse dispositivo. Tens a certeza?',
+        'end_session_confirmation' => 'Isto irá imediatamente terminar a sua sessão nesse dispositivo. Tem a certeza que pretende continuar?',
         'last_active' => 'Ativo pela última vez:',
         'title' => 'Segurança',
         'web_sessions' => 'sessões web',
@@ -153,22 +165,22 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Autenticador',
+        'usage_note' => 'Utilize o autenticador em vez do e-mail. A verificação por e-mail continuará disponível como alternativa.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Remover',
+            'setup' => 'Adicionar autenticador',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'estado',
+            'not_set' => 'Não configurado',
+            'set' => 'Configurado',
         ],
     ],
 
     'verification_completed' => [
-        'text' => 'Poderás agora fechar este(a) separador/janela',
+        'text' => 'Poderá agora fechar este(a) separador/janela',
         'title' => 'A verificação foi concluída',
     ],
 

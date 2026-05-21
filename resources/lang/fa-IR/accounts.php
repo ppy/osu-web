@@ -88,8 +88,8 @@ return [
             '_' => 'تنظیمات ارسال',
             'beatmap_owner_change' => 'درجه سختی میهمان',
             'beatmapset:modding' => 'مودینگ بیت مپ',
-            'channel_message' => 'پیام های خصوصی چت',
             'channel_mention' => '',
+            'channel_message' => 'پیام های خصوصی چت',
             'channel_team' => '',
             'comment_new' => 'نظرات جدید',
             'forum_topic_reply' => 'پاسخ موضوع',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'سازنده بیت مپ',
             'news_post' => '',
             'push' => 'اعلان push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

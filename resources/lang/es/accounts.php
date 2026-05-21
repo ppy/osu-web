@@ -88,8 +88,8 @@ return [
             '_' => 'opciones de entrega',
             'beatmap_owner_change' => 'dificultades de invitados',
             'beatmapset:modding' => 'modding de mapas',
+            'channel_mention' => 'menciones en el chat',
             'channel_message' => 'mensajes de chat privados',
-            'channel_mention' => '',
             'channel_team' => 'mensajes del chat del equipo',
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'creadores de mapas',
             'news_post' => 'noticias',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

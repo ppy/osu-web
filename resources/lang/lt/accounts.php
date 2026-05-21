@@ -88,15 +88,27 @@ return [
             '_' => 'pristatymo būdai',
             'beatmap_owner_change' => 'svečio sunkumas',
             'beatmapset:modding' => 'beatmap\'ų taisymai',
+            'channel_mention' => 'pokalbio paminėjimo',
             'channel_message' => 'privatūs susirašinėjimai',
-            'channel_mention' => '',
             'channel_team' => 'komandos žinutės',
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',
             'mapping' => 'beatmap\'o kūrėjas',
-            'news_post' => '',
+            'news_post' => 'naujienos įrašų',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -107,7 +119,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'rodyti anime stiliaus beatmap\'ų viršelius',
         'beatmapset_show_nsfw' => 'slėpti perspėjimus dėl eksplicitinio turinio beatmap\'uose',
         'beatmapset_title_show_original' => 'rodyti beatmap\'o metaduomenys orginaliaja kalba',
         'title' => 'Parinktys',
@@ -159,12 +171,12 @@ return [
 
         'button' => [
             'remove' => 'Pašalinti',
-            'setup' => '',
+            'setup' => 'Pridėti Autentifikatorius Programėlė',
         ],
         'status' => [
             'label' => 'būsena',
-            'not_set' => '',
-            'set' => '',
+            'not_set' => 'Nesukonfigūruota',
+            'set' => 'Sukonfigūruota',
         ],
     ],
 

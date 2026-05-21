@@ -88,8 +88,8 @@ return [
             '_' => 'спосабы дастаўкі',
             'beatmap_owner_change' => 'гасцявая складанасць',
             'beatmapset:modding' => 'модынг карт',
-            'channel_message' => 'асабістыя паведамленні',
             'channel_mention' => '',
+            'channel_message' => 'асабістыя паведамленні',
             'channel_team' => 'паведамленні каманднага чата',
             'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'стваральнік карты',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

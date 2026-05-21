@@ -227,7 +227,7 @@ return [
 
             'unit' => [
                 'day' => ':valueg',
-                'week' => ':values',
+                'week' => ':valuewk',
             ],
         ],
         'edit' => [
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'guarda più post',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Partite Ranked Play',
             ],
             'recent_activity' => [
                 'title' => 'Recenti',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Quick Play',
+            'title' => 'Ranked Play',
         ],
 
         'not_found' => [

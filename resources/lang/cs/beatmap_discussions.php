@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited odpověď je skrytá.|:count_delimited odpovědi jsou skryté.|:count_delimited odpovědí je skrytých.',
 
     'authorizations' => [
         'update' => [

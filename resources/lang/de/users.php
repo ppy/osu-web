@@ -403,7 +403,7 @@ return [
                 'show_more' => 'weitere Beiträge anschauen',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Ranked-Play-Spiele',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Quick Play',
+            'title' => 'Ranked Play',
         ],
 
         'not_found' => [

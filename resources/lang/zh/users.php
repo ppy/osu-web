@@ -34,7 +34,7 @@ return [
     'blocks' => [
         'banner_text' => '你已经屏蔽此用户。',
         'comment_text' => '此评论已隐藏。',
-        'blocked_count' => '被屏蔽的用户 (:count)',
+        'blocked_count' => '被屏蔽的用户（:count）',
         'hide_profile' => '隐藏用户资料',
         'hide_comment' => '隐藏',
         'forum_post_text' => '此帖子已被隐藏。',
@@ -136,7 +136,7 @@ return [
         'modding_description_empty' => '玩家没有任何谱面...',
 
         'description' => [
-            '_' => '排名 (:ruleset): :global | :country',
+            '_' => '排名（:ruleset）: :global | :country',
             'country' => '地区 :rank',
             'global' => '全球 :rank',
         ],
@@ -200,7 +200,7 @@ return [
         'joined_at' => '注册于 :date',
         'lastvisit' => '最后活跃于 :date',
         'lastvisit_online' => '当前在线',
-        'missingtext' => '手滑打错字了？（或者该用户已被封禁）',
+        'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
         'plays_with' => '用 :devices 游玩',
@@ -292,16 +292,16 @@ return [
                     'title' => '客串制作的谱面',
                 ],
                 'loved' => [
-                    'title' => '社区喜爱 (Loved) 谱面',
+                    'title' => '社区喜爱（Loved）谱面',
                 ],
                 'nominated' => [
-                    'title' => '提名并上架 (Ranked) 的谱面',
+                    'title' => '提名并上架（Ranked）的谱面',
                 ],
                 'pending' => [
-                    'title' => '待定 (Pending) 谱面',
+                    'title' => '待定（Pending）谱面',
                 ],
                 'ranked' => [
-                    'title' => '上架 (Ranked) 谱面',
+                    'title' => '上架（Ranked）谱面',
                 ],
             ],
             'discussions' => [
@@ -327,7 +327,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
-                    'title' => '最近24小时游玩',
+                    'title' => '最近 24 小时游玩',
                 ],
                 'replays_watched_counts' => [
                     'title' => '回放被观看记录',
@@ -403,7 +403,7 @@ return [
                 'show_more' => '查看更多回复',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => '排位模式游戏',
             ],
             'recent_activity' => [
                 'title' => '最近活动',
@@ -435,7 +435,7 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '最近三个月的给予投票',
+                'given' => '最近三个月给予的投票',
                 'received' => '最近三个月所得投票',
                 'title' => '投票',
                 'title_longer' => '最近投票',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '快速匹配',
+            'title' => '排位模式',
         ],
 
         'not_found' => [
@@ -527,9 +527,9 @@ return [
             'total_score' => '总分',
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
-            'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
-            'pending_beatmapset_count' => '待定 (Pending) 谱面',
-            'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
+            'loved_beatmapset_count' => '社区喜爱（Loved）谱面',
+            'pending_beatmapset_count' => '待定（Pending）谱面',
+            'ranked_beatmapset_count' => '上架（Ranked）谱面',
         ],
     ],
 

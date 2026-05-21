@@ -77,8 +77,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审 (Qualified) 谱面上的新问题通知：',
-        'beatmapset_disqualify' => '接收以下游戏模式谱面下架 (DQ) 时的通知：',
+        'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审（Qualified）谱面上的新问题通知：',
+        'beatmapset_disqualify' => '接收以下游戏模式谱面下架（DQ）时的通知：',
         'comment_reply' => '在你的评论被回复时接收通知',
         'news_post' => '接收这些新闻的通知',
         'title' => '通知',
@@ -88,8 +88,8 @@ return [
             '_' => '推送设置',
             'beatmap_owner_change' => '客串难度',
             'beatmapset:modding' => '谱面摸图',
+            'channel_mention' => '聊天提及',
             'channel_message' => '私信',
-            'channel_mention' => '',
             'channel_team' => '战队聊天消息',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
@@ -97,6 +97,18 @@ return [
             'mapping' => '谱师',
             'news_post' => '新闻帖子',
             'push' => '推送',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

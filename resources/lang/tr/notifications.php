@@ -125,7 +125,7 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Sohbet etiketlenmesi',
 
                 'public' => [
                     'channel_mention' => '',

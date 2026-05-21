@@ -406,7 +406,7 @@ CAPTCHA認証を成功させてから再試行してください。
                 'show_more' => '他の投稿を見る',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'ランクマッチ',
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',

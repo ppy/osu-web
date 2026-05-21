@@ -8,55 +8,55 @@ return [
         'checkout' => 'Pagamento',
         'empty_cart' => 'Remover todos os artigos do carrinho',
         'info' => ':count_delimited artigo no carrinho ($:subtotal)|:count_delimited artigos no carrinho ($:subtotal)',
-        'more_goodies' => 'Quero adicionar mais brindes antes de completar o pedido',
+        'more_goodies' => 'Quero adicionar mais brindes antes de completar a encomenda',
         'shipping_fees' => 'custos de envio',
-        'title' => 'Carrinho de compras',
+        'title' => 'Carrinho de Compras',
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Oh não, há problemas com o teu carrinho a impedir o pagamento!',
-            'line_2' => 'Remove ou atualiza os artigos acima para continuar.',
+            'line_1' => 'Ups, há problemas no seu carrinho que estão a impedir a finalização da compra!',
+            'line_2' => 'Remova ou atualize os artigos acima para continuar.',
         ],
 
         'empty' => [
-            'text' => 'O teu carrinho está vazio.',
+            'text' => 'O seu carrinho está vazio.',
             'return_link' => [
-                '_' => 'Regressa ao :link para descobrires coisas fixolas!',
+                '_' => 'Regresse ao :link para descobrir alguns brindes!',
                 'link_text' => 'catálogo da loja',
             ],
         ],
     ],
 
     'checkout' => [
-        'cart_problems' => 'Oh não, há problemas com o teu carrinho!',
-        'cart_problems_edit' => 'Clica aqui para editá-lo.',
+        'cart_problems' => 'Ups, há problemas com o seu carrinho!',
+        'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
-        'delayed_shipping' => 'Estamos de momento sobrecarregados com encomendas! Podes realizar o teu pedido, mas espera aguardar **1 a 2 semanas** enquanto nos pomos a par dos pedidos existentes.',
-        'hide_from_activity' => 'Ocultar todas as etiquetas osu!supporter nesta ordem da minha atividade',
-        'old_cart' => 'O teu carrinho parece que está fora de prazo e foi atualizado. Tenta outra vez.',
-        'pay' => 'Pagar com Paypal',
+        'delayed_shipping' => 'Estamos atualmente sobrecarregados com encomendas! Pode fazer a sua encomenda, mas deverá contar com um **atraso adicional de 1–2 semanas** enquanto tratamos das encomendas já existentes.',
+        'hide_from_activity' => 'Ocultar todas as etiquetas de osu!supporter nesta ordem da minha atividade',
+        'old_cart' => 'O seu carrinho parece estar desatualizado e foi recarregado. Por favor, tente novamente.',
+        'pay' => 'Pagar com o Paypal',
         'title_compact' => 'pagamento',
 
         'has_pending' => [
-            '_' => 'Tens pagamentos incompletos, clica :link para os veres.',
+            '_' => 'Tem pagamentos incompletos, clique :link para os ver.',
             'link_text' => 'aqui',
         ],
 
         'pending_checkout' => [
-            'line_1' => 'Um pagamento prévio foi iniciado mas não foi terminado.',
-            'line_2' => 'Resume o teu pagamento ao selecionar um método de pagamento.',
+            'line_1' => 'Um pagamento anterior foi iniciado, mas não foi concluído.',
+            'line_2' => 'Resuma o seu pagamento ao selecionar um método de pagamento.',
         ],
     ],
 
-    'discount' => 'poupa :percent%',
+    'discount' => 'poupe :percent%',
     'free' => 'grátis!',
 
     'invoice' => [
         'contact' => 'Contacto:',
         'date' => 'Data:',
-        'echeck_delay' => 'Como o teu pagamento era um eCheck, terás de permitir até 10 dias extra para que o pagamento seja autorizado através do PayPal!',
+        'echeck_delay' => 'Como o seu pagamento foi feito por eCheck, deverá aguardar até 10 dias adicionais para que o pagamento seja processado pelo PayPal!',
         'echeck_denied' => 'O pagamento por eCheck foi rejeitado pelo PayPal.',
-        'hide_from_activity' => 'As etiquetas osu!supporter nesta ordem não estão visíveis nas tuas atividades recentes.',
+        'hide_from_activity' => 'As etiquetas de osu!supporter nesta ordem não são apresentadas nas suas atividades recentes.',
         'sent_via' => 'Enviado através de:',
         'shipping_to' => 'Enviar para:',
         'title' => 'Fatura',
@@ -64,67 +64,67 @@ return [
 
         'status' => [
             'cancelled' => [
-                'title' => 'A tua encomenda foi cancelada',
+                'title' => 'A sua encomenda foi cancelada',
                 'line_1' => [
-                    '_' => "Se não pediste o cancelamento, contacta :link indicando o teu número da encomenda (#:order_number).",
+                    '_' => "Se não pediu o cancelamento, contacte :link indicando o número da sua encomenda (#:order_number).",
                     'link_text' => 'Apoio da osu!store',
                 ],
             ],
             'delivered' => [
-                'title' => 'A tua encomenda foi entregue. Esperemos que gostes!',
+                'title' => 'A sua encomenda foi entregue! Esperamos que esteja a gostar!',
                 'line_1' => [
-                    '_' => 'Se tiveres algum problema com a tua compra, contacta :link.',
+                    '_' => 'Se tiver algum problema com a sua compra, contacte o :link.',
                     'link_text' => 'Apoio da osu!store',
                 ],
             ],
             'prepared' => [
-                'title' => 'O teu pedido está a ser preparado!',
-                'line_1' => 'Aguarda um pouco mais para que a encomenda seja enviada. A informação de seguimento aparecerá aqui assim que ela for processada e enviada. Isto pode demorar até 5 dias (normalmente menos), dependendo do nosso nível de atividade.',
-                'line_2' => 'Enviamos todas as encomendas do Japão utilizando uma variedade de serviços de envio, consoante o peso e o valor. Esta área será atualizada com os detalhes específicos assim que a encomenda for enviada.',
+                'title' => 'A sua encomenda está a ser preparada!',
+                'line_1' => 'Por favor, aguarde mais um pouco até que a encomenda seja enviada. As informações de rastreio aparecerão aqui assim que a encomenda for processada e expedida. Isto pode demorar até 5 dias (mas normalmente é menos!), dependendo do nosso volume de vendas/trabalho.',
+                'line_2' => 'Enviamos todas as encomendas a partir do Japão, utilizando vários serviços de envio consoante o peso e o valor. Esta área será atualizada com detalhes assim que a encomenda for expedida.',
             ],
             'processing' => [
-                'title' => 'O teu pagamento ainda não foi confirmado!',
-                'line_1' => 'Se já pagaste, ainda poderemos estar à espera de receber a confirmação do teu pagamento. Atualiza esta página dentro de um minuto ou dois!',
+                'title' => 'O seu pagamento ainda não foi confirmado!',
+                'line_1' => 'Se já efetuou o pagamento, poderemos ainda estar a aguardar a confirmação. Por favor, atualize esta página dentro de um ou dois minutos!',
                 'line_2' => [
-                    '_' => 'Se encontraste um problema durante o pagamento, :link',
-                    'link_text' => 'clica aqui para resumir o teu pagamento',
+                    '_' => 'Se encontrou um problema durante o pagamento, :link',
+                    'link_text' => 'clique aqui para resumir o seu pagamento',
                 ],
             ],
             'shipped' => [
-                'title' => 'O teu pedido foi enviado!',
+                'title' => 'A sua encomenda foi enviada!',
                 'tracking_details' => 'Detalhes do seguimento:',
                 'no_tracking_details' => [
-                    '_' => "Não temos detalhes de seguimento, pois enviamos a tua embalagem por correio aéreo, mas podes esperar recebê-lo dentro de 1 a 3 semanas. Para a Europa, por vezes a alfândega poderá atrasar a encomenda. Este processo está fora do nosso controlo. Se tiveres alguma dúvida, responde ao email de confirmação da encomenda que recebeste :link.",
-                    'link_text' => 'envia-nos um email',
+                    '_' => "Não temos detalhes de rastreio porque enviámos a sua encomenda por Air Mail, mas pode esperar recebê‑la dentro de 1 a 3 semanas. Na Europa, por vezes a alfândega pode atrasar a encomenda, algo que está fora do nosso controlo. Se tiver alguma preocupação, por favor, responda ao e-mail de confirmação da encomenda que recebeu (ou :link).",
+                    'link_text' => 'envie-nos um e-mail',
                 ],
             ],
         ],
     ],
 
     'order' => [
-        'cancel' => 'Cancelar o pedido',
-        'cancel_confirm' => 'Este pedido será cancelado e o seu pagamento não será aceite. O fornecedor de pagamento poderá não reembolsar imediatamente. Tens a certeza?',
-        'cancel_not_allowed' => 'Este pedido não pode ser cancelado de momento.',
+        'cancel' => 'Cancelar a encomenda',
+        'cancel_confirm' => 'Esta encomenda será cancelada e o pagamento não será aceite. O fornecedor de pagamentos poderá não libertar imediatamente quaisquer fundos reservados. Tem a certeza?',
+        'cancel_not_allowed' => 'Esta encomenda não pode ser cancelada agora.',
         'invoice' => 'Ver fatura',
-        'no_orders' => 'Sem pedidos para ver.',
-        'paid_on' => 'Pedido colocado em :date',
+        'no_orders' => 'Sem encomendas para ver.',
+        'paid_on' => 'Encomenda realizada a :date',
         'resume' => 'Retomar pagamento',
         'shipping_and_handling' => 'Expedição e manuseamento',
-        'shopify_expired' => 'O link de pagamento para este pedido expirou.',
+        'shopify_expired' => 'O link de pagamento para esta encomenda expirou.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
 
         'details' => [
-            'order_number' => 'Pedido n.º ',
+            'order_number' => 'Encomenda #',
             'payment_terms' => 'Condições de pagamento',
             'salesperson' => 'Vendedor',
-            'shipping_method' => 'Método de envío',
+            'shipping_method' => 'Método de envio',
             'shipping_terms' => 'Condições de envio',
-            'title' => 'Detalhes do pedido',
+            'title' => 'Detalhes da encomenda',
         ],
 
         'item' => [
-            'quantity' => 'Quantidade',
+            'quantity' => 'quantidade',
 
             'display_name' => [
                 'supporter_tag' => ':name para :username (:duration)',
@@ -136,13 +136,13 @@ return [
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => 'Não podes modificar o teu pedido porque foi cancelado.',
-            'checkout' => 'Não podes alterar o teu pedido enquanto estiver a ser processado.', // checkout and processing should have the same message.
-            'default' => 'O pedido não é alterável',
-            'delivered' => 'Não podes alterar o teu pedido porque já foi entregue.',
-            'paid' => 'Não podes alterar o teu pedido porque já foi pago.',
-            'processing' => 'Não podes alterar o teu pedido porque já foi processado.',
-            'shipped' => 'Não podes alterar o teu pedido porque já foi enviado.',
+            'cancelled' => 'Não pode alterar a sua encomenda porque foi cancelada.',
+            'checkout' => 'Não pode alterar a sua encomenda enquanto estiver a ser processada.', // checkout and processing should have the same message.
+            'default' => 'A sua encomenda não é alterável',
+            'delivered' => 'Não pode alterar a sua encomenda porque já foi entregue.',
+            'paid' => 'Não pode alterar a sua encomenda porque já foi paga.',
+            'processing' => 'Não pode alterar a sua encomenda porque já foi processada.',
+            'shipped' => 'Não pode alterar a sua encomenda porque já foi enviada.',
         ],
 
         'status' => [
@@ -152,14 +152,14 @@ return [
             'paid' => 'Pagos',
             'processing' => 'Confirmação pendente',
             'shipped' => 'Em curso',
-            'title' => 'Estado do pedido',
+            'title' => 'Estado da encomenda',
         ],
 
         'thanks' => [
-            'title' => 'Obrigado pelo teu pedido!',
+            'title' => 'Obrigado pela sua encomenda!',
             'line_1' => [
-                '_' => 'Receberás um email de confirmação em breve. Se tiveres alguma dúvida: :link!',
-                'link_text' => 'contacta-nos',
+                '_' => 'Irá receber um e-mail de confirmação em breve. Se tiver alguma questão, por favor :link!',
+                'link_text' => 'contacte-nos',
             ],
         ],
     ],
@@ -168,15 +168,15 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Este artigo está esgotado atualmente. Volta mais tarde!',
-            'out_with_alternative' => 'Infelizmente este artigo está fora de stock. Usa a opção acima para escolher um tipo diferente ou volta mais tarde!',
+            'out' => 'Este artigo está esgotado atualmente. Volte mais tarde!',
+            'out_with_alternative' => 'Infelizmente este artigo esgotou. Use a opção acima para escolher um tipo diferente ou volte mais tarde!',
         ],
 
         'add_to_cart' => 'Adicionar ao carrinho',
-        'notify' => 'Notifica-me quando estiver disponível!',
-        'out_of_stock' => '',
+        'notify' => 'Notifique-me quando estiver disponível!',
+        'out_of_stock' => 'Esgotado',
 
-        'notification_success' => 'serás notificado quando tivermos um novo stock. clica em :link para cancelar',
+        'notification_success' => 'será notificado quando tivermos novas quantidades. clique em :link para cancelar',
         'notification_remove_text' => 'aqui',
 
         'notification_in_stock' => 'Este produto já está em stock!',
@@ -184,23 +184,23 @@ return [
 
     'supporter_tag' => [
         'gift' => 'oferecer ao jogador',
-        'gift_message' => 'junta uma mensagem opcional ao teu presente! (até :length caracteres)',
+        'gift_message' => 'junte uma mensagem opcional ao seu presente! (até :length caracteres)',
 
         'require_login' => [
-            '_' => 'Precisas de ter :link para obter uma etiqueta osu!supporter!',
+            '_' => 'Precisa de ter :link para obter uma etiqueta osu!supporter!',
             'link_text' => 'sessão iniciada',
         ],
     ],
 
     'username_change' => [
-        'check' => 'Introduz um nome de utilizador para confirmar disponibilidade!',
+        'check' => 'Introduza um nome de utilizador para confirmar disponibilidade!',
         'checking' => 'A confirmar disponibilidade de :username...',
         'placeholder' => 'Nome de utilizador solicitado',
         'label' => 'Novo nome de utilizador',
-        'current' => 'O teu nome de utilizador atual: :username.',
+        'current' => 'O seu nome de utilizador atual: ":username".',
 
         'require_login' => [
-            '_' => 'Precisas de ter :link para mudares o teu nome!',
+            '_' => 'Precisa de ter :link para mudar o seu nome!',
             'link_text' => 'sessão iniciada',
         ],
     ],

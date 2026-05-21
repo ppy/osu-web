@@ -50,6 +50,11 @@ return [
         'title' => 'kanal ni najden',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Ustvari',
         'disabled' => 'ni možno poslati sporočila...',

@@ -124,7 +124,7 @@ return [
         ],
 
         'item' => [
-            'quantity' => 'Số lượng',
+            'quantity' => 'số lượng',
 
             'display_name' => [
                 'supporter_tag' => ':name cho :username (:duration)',

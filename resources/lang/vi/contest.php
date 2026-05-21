@@ -84,8 +84,8 @@ return [
 
     'vote' => [
         'list' => 'phiếu',
-        'count' => ':count phiếu',
-        'points' => ':count điểm',
+        'count' => ':count_delimited phiếu|:count_delimited phiếu',
+        'points' => ':count_delimited điểm|:count_delimited điểm',
         'points_float' => ':points điểm',
     ],
 

@@ -8,7 +8,7 @@ return [
         'active' => '現在進行中のosu!(lazer) :type_groupゲームはありません！',
         'ended' => 'まだ終了したosu!(lazer) :type_groupゲームはありません！',
         'playlists' => 'プレイリスト',
-        'ranked-play' => '',
+        'ranked-play' => 'ランクマッチ',
         'realtime' => 'マルチプレイヤー',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => '時間が長すぎます。',
             'name_too_long' => 'ルーム名が長すぎます。',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'プレイリストのアイテムが多すぎます。',
         ],
 
         'status' => [

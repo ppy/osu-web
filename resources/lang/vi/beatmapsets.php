@@ -79,12 +79,12 @@ return [
 
         'details' => [
             'by_artist' => 'bởi :artist',
-            'favourite' => 'Yêu thích beatmapset này',
-            'favourite_login' => 'Đăng nhập để yêu thích beatmap này',
-            'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
+            'favourite' => 'yêu thích beatmapset này',
+            'favourite_login' => 'đăng nhập để yêu thích beatmap này',
+            'logged-out' => 'bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'mapped_by' => 'được tạo bởi :mapper',
             'mapped_by_guest' => 'độ khó khách bởi :mapper',
-            'unfavourite' => 'Bỏ yêu thích beatmapset này',
+            'unfavourite' => 'bỏ yêu thích beatmapset này',
             'updated_timeago' => 'cập nhật lần cuối vào :timeago',
 
             'download' => [
