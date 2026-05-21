@@ -57,7 +57,7 @@ class MatchmakingController extends Controller
 
         $scoresQuery = $pool
             ->allUserStats()
-            ->with(['user', 'user.country', 'user.team'])
+            ->with(['user', 'user.team'])
             ->default()
             ->orderByDesc('rating');
 
