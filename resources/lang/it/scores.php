@@ -16,8 +16,8 @@ return [
             'by' => 'Giocata da',
             'played_on' => 'Giocato su',
             'submitted_on' => 'Inviato il',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Guardato',
+            'watched_count' => ':count_delimited volta|:count_delimited volte',
 
             'rank' => [
                 'country' => ' Classifica Nazionale',

@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => '채팅 언급',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username 님이 :name ":title" 에서 사용자를 언급하셨어요',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => ':name 에서 언급됨',
                 ],
             ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => ':username 님에게 새로운 메시지를 받았습니다.',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username 님이 :name ":title" 에서 사용자를 언급하셨어요',
             ],
 
             'channel_team' => [

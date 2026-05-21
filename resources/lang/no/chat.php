@@ -50,6 +50,11 @@ return [
         'title' => 'fant ikke kanalen',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Opprett',
         'disabled' => 'kan ikke sende melding...',

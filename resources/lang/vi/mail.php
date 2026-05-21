@@ -82,7 +82,7 @@ return [
         'main' => 'Tài khoản của bạn được nghi ngờ đã bị đánh cắp, có hoạt động đáng ngờ gần đây hoặc một mật khẩu RẤT yếu. Do đó, chúng tôi yêu cầu bạn đặt một mật khẩu mới. Xin hãy đảm bảo rằng bạn chọn một mật khẩu MẠNH.',
         'perform_reset' => 'Bạn có thể thực hiện việc đặt lại từ :url',
         'reason' => 'Lý do:',
-        'subject' => 'Cần Tái kích hoạt Tài khoản osu!',
+        'subject' => 'Cần Kích Hoạt Lại Tài Khoản osu!',
     ],
 
     'user_notification_digest' => [
@@ -101,7 +101,7 @@ return [
         'code_hint' => 'Bạn có thể nhập mã có hoặc không có dấu cách.',
         'link' => 'Hoặc bạn cũng có thể truy cập liên kết này để hoàn tất xác minh:',
         'report' => 'Nếu như bạn không yêu cầu điều này, hãy PHẢN HỒI NGAY LẬP TỨC vì tài khoản của bạn có thể đang gặp nguy hiểm.',
-        'subject' => 'Xác minh tài khoản osu!',
+        'subject' => 'xác minh tài khoản osu!',
 
         'action_from' => [
             '_' => 'Một thao tác ở tài khoản của bạn từ :country cần xác minh.',

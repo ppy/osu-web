@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => '聊天室提及',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username 在 :name 提及了您 「:title」',
+                    'channel_mention_compact' => ':username 「:title」',
+                    'channel_mention_group' => '在 :name 中提及',
                 ],
             ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => '你已收到來自 :username 的訊息',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username 在 :name 提及了您 「:title」',
             ],
 
             'channel_team' => [

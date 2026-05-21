@@ -12,7 +12,7 @@ return [
             '_' => ':action :items?',
             'disable' => 'Zakázat',
             'enable' => 'Povolit',
-            'items' => ':count_delimited záhlaví|:count_delimited záhlaví',
+            'items' => ':count_delimited záhlaví|:count_delimited záhlaví|:count_delimited záhlaví',
         ],
 
         'create_form' => [

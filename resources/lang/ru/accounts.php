@@ -88,8 +88,8 @@ return [
             '_' => 'способы получения',
             'beatmap_owner_change' => 'о гостевых сложностях',
             'beatmapset:modding' => 'о новых модах',
+            'channel_mention' => 'об упоминаниях в чате',
             'channel_message' => 'о новых личных сообщениях',
-            'channel_mention' => '',
             'channel_team' => 'о сообщениях в командном чате',
             'comment_new' => 'о новых комментариях',
             'forum_topic_reply' => 'об ответах на форуме',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'о действиях мапперов',
             'news_post' => 'о новостях',
             'push' => 'пуши',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

@@ -403,7 +403,7 @@ return [
                 'show_more' => '顯示更多貼文',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => '排位模式場次',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '快速遊玩',
+            'title' => '排名模式',
         ],
 
         'not_found' => [

@@ -88,8 +88,8 @@ return [
             '_' => 'алу әдістері',
             'beatmap_owner_change' => 'қонақтық қиындық',
             'beatmapset:modding' => 'карта модтау',
-            'channel_message' => 'жеке хабарламалар',
             'channel_mention' => '',
+            'channel_message' => 'жеке хабарламалар',
             'channel_team' => '',
             'comment_new' => 'жаңа пікірлер',
             'forum_topic_reply' => 'тақырып жауабы',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'карта маппері',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

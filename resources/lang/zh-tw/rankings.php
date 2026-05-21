@@ -66,7 +66,7 @@ return [
         'daily_challenge' => '每日挑戰',
         'global' => '全球',
         'kudosu' => 'kudosu',
-        'matchmaking' => '快速遊玩',
+        'matchmaking' => '排位模式',
         'playlists' => '歌單',
         'team' => '隊伍',
         'top_plays' => '單次最高 pp',

@@ -35,14 +35,14 @@ return [
 
     'matchmaking' => [
         'plays' => '',
-        'points' => '',
+        'points' => 'Балы',
         'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'rating' => 'Рэйтынг',
+        'wins' => 'Перамогі',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Назва пакоя',
     ],
 
     'performance' => [
@@ -50,8 +50,8 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Усё яшчэ ідзе падлік даных...',
+        'last_updated' => 'Апошняе абнаўленне',
     ],
 
     'playlists' => [

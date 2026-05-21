@@ -88,8 +88,8 @@ return [
             '_' => 'hantarkan pemberitahuan melalui',
             'beatmap_owner_change' => 'kesukaran tamu',
             'beatmapset:modding' => 'penyelarasan peta rentak',
-            'channel_message' => 'pesanan bualan peribadi',
             'channel_mention' => '',
+            'channel_message' => 'pesanan bualan peribadi',
             'channel_team' => 'pesanan bualan pasukan',
             'comment_new' => 'komen baharu',
             'forum_topic_reply' => 'balasan tajuk',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'pemeta rentak',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class MatchmakingUserStats extends Model
 {
-    const MIN_PLAYS_NON_PROVISIONAL = 5;
+    const MIN_SIG_PROVISIONAL = 100;
 
     public $incrementing = false;
 
@@ -70,6 +70,6 @@ class MatchmakingUserStats extends Model
 
     public function isRatingProvisional(): bool
     {
-        return $this->plays < static::MIN_PLAYS_NON_PROVISIONAL;
+        return $this->elo_data['approximate_posterior']['sig'] >= static::MIN_SIG_PROVISIONAL;
     }
 }

@@ -250,7 +250,7 @@ return [
             'not-found' => 'tidak ada hasil',
             'not-found-quote' => '… enggak, tidak ada yang ditemukan.',
             'filters' => [
-                'extra' => 'Konten Tambahan',
+                'extra' => 'Tambahan',
                 'general' => 'Umum',
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',

@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Cơ sở hạ tầng máy chủ',
-                'description' => 'Phần đóng góp sẽ được sử dụng cho các máy chủ để chạy trang web, dịch vụ multiplayer, bảng xếp hạng trực tuyến, v.v.',
+                'description' => 'Các khoản đóng góp sẽ được sử dụng để duy trì máy chủ vận hành trang web, dịch vụ chơi nhiều người, bảng xếp hạng trực tuyến, v.v.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artists',
@@ -43,7 +43,7 @@ return [
             ],
         ],
         'perks' => [
-            'title' => 'Ồ, Vậy tôi sẽ nhận được gì?!',
+            'title' => 'Ồ, Vậy tôi sẽ nhận được gì?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'Truy cập nhanh và dễ dàng để tìm beatmap mà không cần thoát trò chơi.',
@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => 'Tiếp Cận Sớm',
-                'description' => 'Tiếp cận những bản release sớm mà bạn có thể dùng thử các tính năng mới trước khi nó được ra mắt công khai!',
+                'description' => 'Trải nghiệm sớm các bản phát hành mới với những tính năng mới trước khi ra mắt công khai!<br/><br/>Bao gồm cả quyền truy cập sớm vào các tính năng mới trên trang web nữa!',
             ],
 
             'customisation' => [
@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => 'Đổi Tên Tài Khoản',
-                'description' => 'Được đổi tên tài khoản miễn phí. (tối đa một lần)',
+                'description' => 'Bạn sẽ được đổi tên miễn phí một lần khi mua gói ủng hộ đầu tiên.',
             ],
 
             'skinnables' => [

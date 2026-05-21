@@ -49,12 +49,12 @@ return [
                 '_' => 'Beatmap diskussion',
                 'beatmapset_discussion_lock' => 'Diskussion på ":title" er blevet låst',
                 'beatmapset_discussion_lock_compact' => 'Diskussion er låst',
-                'beatmapset_discussion_post_new' => ':username har indsendt en ny besked i ":title" beatmap diskussion.',
+                'beatmapset_discussion_post_new' => 'Nyt opslag på ":title" af :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Nyt opslag på ":title" af :username',
                 'beatmapset_discussion_post_new_compact' => 'Nyt opslag af :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nyt opslag af :username',
-                'beatmapset_discussion_review_new' => 'Ny anmeldelse på ":title" af :username indeholder problemer: :problems, forslag: :suggestions, rose: :praises',
-                'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse af :username indeholder problemer: :problems, forslag: :suggestions, rose: :praises',
+                'beatmapset_discussion_review_new' => 'Ny anmeldelse på ":title" af :username som indholder :review_counts',
+                'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse af :username som indholder :review_counts',
                 'beatmapset_discussion_unlock' => 'Diskussion på ":title" er blevet åbnet',
                 'beatmapset_discussion_unlock_compact' => 'Diskussion er blevet åbnet',
 
@@ -75,7 +75,7 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Beatmap status ændret',
-                'beatmapset_disqualify' => 'Beatmap ":title" er blevet diskvalificeret af :username.',
+                'beatmapset_disqualify' => '":title" er blevet diskvalificeret',
                 'beatmapset_disqualify_compact' => 'Beatmap blev diskvalificeret',
                 'beatmapset_love' => 'Beatmap ":title" er blevet forfremmet som elsket af :username.',
                 'beatmapset_love_compact' => 'Beatmap blev ophøjet til elsket',
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Nævnt i chat',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username nævnte dig i :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'nævnt i :name',
                 ],
             ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => 'Du har modtaget en ny besked fra :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username nævnte dig i :name ":title"',
             ],
 
             'channel_team' => [

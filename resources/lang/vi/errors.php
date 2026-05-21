@@ -7,7 +7,7 @@ return [
     'load_failed' => 'Tải dữ liệu thất bại.',
     'missing_route' => 'Url không hợp lệ hoặc phương pháp yêu cầu không chính xác.',
     'no_restricted_access' => 'Không thể thực hiện hành động do tài khoản của bạn đang bị hạn chế.',
-    'param_too_large' => 'Tham số :name cho phép tối đa :count_delimited mục :count_delimited|Tham số :name cho phép tối đa :count_delimited mục',
+    'param_too_large' => 'Tham số :name có tối đa :count_delimited mục|Tham số :name có tối đa :count_delimited mục',
     'supporter_only' => 'Bạn phải là một osu!supporter để sử dụng tính năng này.',
     'unknown' => 'Đã xảy ra lỗi không xác định.',
 

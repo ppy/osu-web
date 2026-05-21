@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited 条回复已隐藏。',
 
     'authorizations' => [
         'update' => [
@@ -35,10 +35,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '下架 (DQ)',
-                'never_qualified' => '从未过审 (Qualified)',
-                'qualified' => '过审 (Qualified)',
-                'ranked' => '上架 (Ranked)',
+                'disqualified' => '下架（DQ）',
+                'never_qualified' => '从未过审（Qualified）',
+                'qualified' => '过审（Qualified）',
+                'ranked' => '上架（Ranked）',
             ],
 
             'user' => [
@@ -57,7 +57,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
-        'notice' => '发表讨论前，请检查 :timestamp 附近 (:existing_timestamps) 已存在的讨论记录。',
+        'notice' => '发表讨论前，请检查 :timestamp 附近（:existing_timestamps）已存在的讨论记录。',
         'unsaved' => '此审阅中有 :count',
     ],
 

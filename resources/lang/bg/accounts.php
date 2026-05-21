@@ -88,8 +88,8 @@ return [
             '_' => 'опции за доставка',
             'beatmap_owner_change' => 'бийтмап трудност',
             'beatmapset:modding' => 'бийтмап редактор',
-            'channel_message' => 'лично съобщение',
             'channel_mention' => '',
+            'channel_message' => 'лично съобщение',
             'channel_team' => 'отборни съобщения',
             'comment_new' => 'нов коментар',
             'forum_topic_reply' => 'отговор на тема',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'бийтмап създател',
             'news_post' => '',
             'push' => 'сайт',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

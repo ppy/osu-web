@@ -19,8 +19,8 @@ return [
             'game_aborted_no_user' => 'гульня была скасавана',
             'game_completed' => 'гульня скончана',
             'game_completed_no_user' => 'гульня скончана',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
+            'host_changed' => ':user стаў хастом',
+            'host_changed_no_user' => 'хвост быў зменены',
             'player_joined' => '',
             'player_joined_no_user' => '',
             'player_kicked' => '',
@@ -28,9 +28,9 @@ return [
             'player_left' => '',
             'player_left_no_user' => '',
             'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'room_created_no_user' => 'гульня была створана',
+            'room_disbanded' => 'гульня была распушчана',
+            'room_disbanded_no_user' => 'гульня была распушчана',
         ],
 
         'score' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Вольны стыль',
 
         'scoring-type' => [
             'score' => 'Найлепшыя ачкі',

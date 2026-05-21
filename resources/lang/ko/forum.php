@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => '삭제된 게시글',
             'total_posts' => '총 게시글',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => '현재 우선도: +:count',

@@ -7,20 +7,20 @@ return [
     'pinned_topics' => 'Tópicos afixados',
     'slogan' => "é perigoso brincar sozinho.",
     'subforums' => 'Sub-fóruns',
-    'title' => 'Fóruns osu!',
+    'title' => 'Fóruns do osu!',
 
     'covers' => [
         'edit' => 'Editar capa',
 
         'create' => [
-            '_' => 'Colocar imagem de capa',
+            '_' => 'Definir a imagem de capa',
             'button' => 'Carregar imagem',
-            'info' => 'O tamanho cobrido deveria ser :dimensions. Também podes largar aqui uma imagem para carregá-la.',
+            'info' => 'O tamanho da capa deve ser :dimensions. Também pode largar a sua imagem aqui para a enviar.',
         ],
 
         'destroy' => [
-            '_' => 'Remover imagem de capa',
-            'confirm' => 'Tens a certeza de que pretendes remover a imagem de capa?',
+            '_' => 'Remover a imagem de capa',
+            'confirm' => 'Tem a certeza de que pretende remover a imagem de capa?',
         ],
     ],
 
@@ -44,10 +44,10 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Queres mesmo apagar a publicação?',
-        'confirm_restore' => 'Queres mesmo restaurar a publicação?',
-        'edited' => 'Editado pela última vez por :user :when, editado :count vezes no total.',
-        'posted_at' => 'publicado :when',
+        'confirm_destroy' => 'Quer mesmo apagar a publicação?',
+        'confirm_restore' => 'Quer mesmo restaurar a publicação?',
+        'edited' => 'Editado pela última vez por :user a :when, editado :count_delimited vez no total.|Editado pela última vez por :user a :when, editado :count_delimited vezes no total.',
+        'posted_at' => 'publicado a :when',
         'posted_by_in' => 'publicado por :username em :forum',
 
         'actions' => [
@@ -76,19 +76,19 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Queres mesmo apagar o tópico?',
-        'confirm_restore' => 'Queres mesmo restaurar o tópico?',
+        'confirm_destroy' => 'Quer mesmo apagar o tópico?',
+        'confirm_restore' => 'Quer mesmo restaurar o tópico?',
         'deleted' => 'tópico eliminado',
         'go_to_latest' => 'ver ultima publicação',
         'go_to_unread' => 'ver a primeira mensagem não lida',
-        'has_replied' => 'Respondeste a este tópico',
+        'has_replied' => 'Respondeu a este tópico',
         'in_forum' => 'em :forum',
-        'latest_post' => ':when por :user',
+        'latest_post' => 'a :when por :user',
         'latest_reply_by' => 'última resposta por :user',
         'new_topic' => 'Novo tópico',
-        'new_topic_login' => 'Inicia sessão para publicar um novo tópico',
+        'new_topic_login' => 'Inicie a sessão para publicar um novo tópico',
         'post_reply' => 'Publicar',
-        'reply_box_placeholder' => 'Escreve aqui para responder',
+        'reply_box_placeholder' => 'Escreva aqui para responder',
         'reply_title_prefix' => 'Re',
         'started_by' => 'por :user',
         'started_by_verbose' => 'começado por :user',
@@ -100,29 +100,29 @@ return [
 
         'create' => [
             'close' => 'Fechar',
-            'preview' => 'Amostra',
+            'preview' => 'Pré-visualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
             'submit' => 'Publicar',
 
             'necropost' => [
-                'default' => 'Este tópico tem estado inativo há já algum tempo. Publica aqui só se tiveres uma razão específica para o fazer.',
+                'default' => 'Este tópico está inativo há algum tempo. Só deve publicar aqui se tiver um motivo específico para isso.',
 
                 'new_topic' => [
-                    '_' => "Este tópico tem estado inativo há já algum tempo. Se não tiveres uma razão específica para publicar aqui, :create como alternativa.",
+                    '_' => "Este tópico está inativo há algum tempo. Se não tiver um motivo específico para publicar aqui, por favor, faça o seguinte: :create.",
                     'create' => 'criar um novo tópico',
                 ],
             ],
 
             'placeholder' => [
-                'body' => 'Escreve o conteúdo da publicação aqui',
-                'title' => 'Clica aqui para definir o título',
+                'body' => 'Escreva o conteúdo da publicação aqui',
+                'title' => 'Clique aqui para definir o título',
             ],
         ],
 
         'jump' => [
-            'enter' => 'clica para inserir o número específico da publicação',
+            'enter' => 'clique para inserir o número específico da publicação',
             'first' => 'ir para a primeira publicação',
             'last' => 'ir para a última publicação',
             'next' => 'saltar as próximas 10 publicações',
@@ -173,8 +173,8 @@ return [
                 'topic_type_changed' => 'Tipo de tópico alterado',
                 'unlock' => 'Tópico desbloqueado',
                 'unpin' => 'Tópico desafixado',
-                'user_lock' => 'Bloqueaste o teu tópico',
-                'user_unlock' => 'Desbloqueaste o teu tópico',
+                'user_lock' => 'Bloqueou o seu tópico',
+                'user_unlock' => 'Desbloqueou o seu tópico',
             ],
         ],
 
@@ -287,31 +287,32 @@ return [
         'show' => [
             'deleted-posts' => 'Publicações eliminadas',
             'total_posts' => 'Publicações totais',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'Prioridade atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'info' => [
-                    '_' => 'Isto é um :feature_request. Pedidos de características e funcionalidades podem ser votados por :supporters.',
-                    'feature_request' => 'solicitação de características/funcionalidades',
+                    '_' => 'Isto é um :feature_request. Os pedidos de funcionalidades podem ser apoiados por :supporters.',
+                    'feature_request' => 'solicitação de funcionalidades',
                     'supporters' => 'apoiantes',
                 ],
 
                 'user' => [
-                    'count' => '{0} sem voto|{1} :count voto|[2,*] :count votos',
-                    'current' => 'Tu tens :votes restantes.',
-                    'not_enough' => "Não tens mais nenhuns votos restantes",
+                    'count' => '{0} sem votos|{1} :count_delimited voto|[2,*] :count_delimited votos',
+                    'current' => 'Tem :votes votos restantes.',
+                    'not_enough' => "Já não tem mais votos disponíveis",
                 ],
             ],
 
             'poll' => [
                 'edit' => 'Edição da sondagem',
-                'edit_warning' => 'Ao editares uma sondagem, isto irá remover os resultados atuais!',
+                'edit_warning' => 'Editar uma sondagem irá remover os resultados atuais!',
                 'vote' => 'Votar',
 
                 'button' => [
-                    'change_vote' => 'Trocar de voto',
+                    'change_vote' => 'Alterar voto',
                     'edit' => 'Editar a sondagem',
                     'view_results' => 'Ir para os resultados',
                     'vote' => 'Votar',
@@ -321,7 +322,7 @@ return [
                     'end_time' => 'A sondagem irá terminar em :time',
                     'ended' => 'A sondagem terminou a :time',
                     'results_hidden' => 'Os resultados serão mostrados após a sondagem terminar.',
-                    'total' => 'Votos totais :count',
+                    'total' => 'Votos totais: :count',
                 ],
             ],
         ],
@@ -330,8 +331,8 @@ return [
             'to_not_watching' => 'Não marcado',
             'to_watching' => 'Marcador',
             'to_watching_mail' => 'Marcador com notificação',
-            'tooltip_mail_disable' => 'A notificação está ativada. Clica para desativares',
-            'tooltip_mail_enable' => 'A notificação está desativada. Clica para ativares',
+            'tooltip_mail_disable' => 'A notificação está ativada. Clique para a desativar',
+            'tooltip_mail_enable' => 'A notificação está desativada. Clique para a ativar',
         ],
     ],
 ];

@@ -88,8 +88,8 @@ return [
             '_' => '配送設定',
             'beatmap_owner_change' => 'ゲスト難易度',
             'beatmapset:modding' => 'ビートマップmodding',
+            'channel_mention' => 'チャットのメンション',
             'channel_message' => 'プライベートチャットメッセージ',
-            'channel_mention' => '',
             'channel_team' => 'チームチャットメッセージ',
             'comment_new' => '新しいコメント',
             'forum_topic_reply' => 'トピックへの返信',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'ビートマップマッパー',
             'news_post' => '新しい投稿',
             'push' => 'プッシュ通知',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

@@ -17,7 +17,7 @@ return [
 
         'email' => [
             'new' => '新電子郵件地址',
-            'new_confirmation' => '確認電子郵件地址',
+            'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
             'locked' => [
                 '_' => '若您需要更新電子郵件地址，請聯絡:accounts。',
@@ -88,8 +88,8 @@ return [
             '_' => '傳送選項',
             'beatmap_owner_change' => '客串難度',
             'beatmapset:modding' => '圖譜製作',
+            'channel_mention' => '聊天室提及',
             'channel_message' => '私訊',
-            'channel_mention' => '',
             'channel_team' => '團隊聊天訊息',
             'comment_new' => '新評論',
             'forum_topic_reply' => '主題回覆',
@@ -97,6 +97,18 @@ return [
             'mapping' => '譜師',
             'news_post' => '新聞貼文',
             'push' => '推送',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

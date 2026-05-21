@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Удалено ответов',
             'total_posts' => 'Всего ответов',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'Текущий приоритет: +:count',
@@ -299,8 +300,8 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} голосов|{1} :count_delimited голос|[2,*] :count_delimited голоса|[2,*] :count_delimited голосов',
-                    'current' => 'У вас осталось :votes.',
+                    'count' => '{0} не осталось голосов|{1} остался :count_delimited голос|[2,*] осталось :count_delimited голоса|[2,*] осталось :count_delimited голосов',
+                    'current' => 'У вас :votes.',
                     'not_enough' => "У вас больше нет голосов",
                 ],
             ],

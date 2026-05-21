@@ -59,7 +59,7 @@ return [
                 'beatmapset_discussion_unlock_compact' => 'Diskuze byla odemčena',
 
                 'review_count' => [
-                    'praises' => ':count_delimited ocenění|:count_delimited ocenění',
+                    'praises' => ':count_delimited ocenění|:count_delimited ocenění|:count_delimited ocenění',
                     'problems' => ':count_delimited problém|:count_delimited problémy|:count_delimited problémů',
                     'suggestions' => ':count_delimited návrh|:count_delimited návrhy|:count_delimited návrhů',
                 ],
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Zmínka v chatu',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username tě zmínil v :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'zmíněn v :name',
                 ],
             ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => 'Obdržel jsi novou zprávu od :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username tě zmínil v :name ":title"',
             ],
 
             'channel_team' => [

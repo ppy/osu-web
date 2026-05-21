@@ -9,10 +9,10 @@ return [
             'ok' => 'تم إضافة مستخدم إلى الفريق.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'تم إلغاء طلب الانضمام.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'تم رفض طلب الانضمام.',
         ],
         'store' => [
             'ok' => 'تم إرسال طلب الانضمام إلى الفريق.',
@@ -20,26 +20,26 @@ return [
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited عضو|:count_delimited أعضاء',
     ],
 
     'create' => [
         'submit' => 'إنشاء فريق',
 
         'form' => [
-            'name_help' => '',
+            'name_help' => 'الاسم الذي تختاره سيكون دائمًا في الوقت الحالي، لذا احرص على اختياره بعناية.',
             'short_name_help' => 'الحد الأقصى 4 أحرف.',
             'title' => "لنقم بإنشاء فريق جديد",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "العب مع أصدقائك، سواء الحاليين أو الجدد. أنت لست ضمن فريق حاليًا. انضم إلى فريق موجود بزيارة صفحته أو أنشئ فريقك الخاص من هذه الصفحة.",
+            'title' => 'فريق!',
         ],
     ],
 
     'destroy' => [
-        'ok' => '',
+        'ok' => 'تم حذف الفريق.',
     ],
 
     'edit' => [
@@ -47,7 +47,7 @@ return [
         'title' => 'إعدادات الفريق',
 
         'description' => [
-            'label' => '',
+            'label' => 'الوصف',
             'title' => 'وصف الفريق',
         ],
 
@@ -57,36 +57,36 @@ return [
         ],
 
         'header' => [
-            'label' => '',
-            'title' => '',
+            'label' => 'صورة الغلاف',
+            'title' => 'تعيين صورة الغلاف',
         ],
 
         'settings' => [
-            'application_help' => '',
+            'application_help' => 'ما إذا كان سيُسمح للأشخاص بالتقدم للانضمام إلى الفريق',
             'default_ruleset_help' => '',
-            'flag_help' => '',
-            'header_help' => '',
+            'flag_help' => 'الحد الأقصى للحجم: :width×:height',
+            'header_help' => 'الحد الأقصى للحجم: :width×:height',
             'title' => 'إعدادات الفريق',
 
             'application_state' => [
-                'state_0' => '',
-                'state_1' => '',
+                'state_0' => 'مغلق',
+                'state_1' => 'مفتوح',
             ],
         ],
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => 'الترتيب',
+        'edit' => 'الإعدادات',
+        'leaderboard' => 'لوحة الصدارة',
         'show' => 'معلومات',
 
         'members' => [
-            'index' => '',
+            'index' => 'إدارة الأعضاء',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => 'الترتيب العالمي',
+        'global_rank' => 'التصنيف العالمي',
     ],
 
     'members' => [
@@ -95,31 +95,31 @@ return [
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'إدارة الأعضاء',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => '',
-                'empty' => '',
-                'empty_slots' => '',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => '',
+                'accept_confirm' => 'هل تريد إضافة المستخدم :user إلى الفريق؟',
+                'created_at' => 'تم الطلب في',
+                'empty' => 'لا توجد طلبات انضمام في الوقت الحالي.',
+                'empty_slots' => 'الفتحات المتاحة',
+                'empty_slots_overflow' => ':count_delimited تجاوز المستخدم|:count_delimited تجاوز المستخدمين',
+                'reject_confirm' => 'هل تريد رفض طلب الانضمام من المستخدم :user؟',
+                'title' => 'طلبات الانضمام',
             ],
 
             'table' => [
-                'joined_at' => '',
-                'remove' => '',
-                'remove_confirm' => '',
+                'joined_at' => 'تاريخ الانضمام',
+                'remove' => 'إزالة',
+                'remove_confirm' => 'هل تريد إزالة المستخدم :user من الفريق؟',
                 'set_leader' => 'نقل قيادة الفريق',
-                'set_leader_confirm' => '',
-                'status' => '',
-                'title' => '',
+                'set_leader_confirm' => 'هل تريد نقل قيادة الفريق إلى المستخدم :user؟',
+                'status' => 'الحالة',
+                'title' => 'الأعضاء الحاليون',
             ],
 
             'status' => [
-                'status_0' => '',
-                'status_1' => '',
+                'status_0' => 'غير نشط',
+                'status_1' => 'نشط',
             ],
         ],
 
@@ -129,20 +129,20 @@ return [
     ],
 
     'part' => [
-        'ok' => '',
+        'ok' => 'غادر الفريق ;_;',
     ],
 
     'show' => [
         'bar' => [
             'chat' => 'محادثة الفريق',
             'destroy' => 'تفكيك الفريق',
-            'join' => '',
-            'join_cancel' => '',
+            'join' => 'أطلب الانضمام',
+            'join_cancel' => 'إلغاء طلب الانضمام',
             'part' => 'مغادرة الفريق',
         ],
 
         'info' => [
-            'created' => '',
+            'created' => 'تأسَّس',
         ],
 
         'members' => [
@@ -151,17 +151,17 @@ return [
         ],
 
         'sections' => [
-            'about' => '',
+            'about' => 'نبذة عنا!',
             'info' => 'معلومات',
-            'members' => '',
+            'members' => 'الأعضاء',
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'first_places' => '',
+            'empty_slots' => ':count_delimited فتحة متاحة|:count_delimited فتحات متاحة',
+            'first_places' => 'المراكز الأولى',
             'leader' => 'قائد الفريق',
-            'rank' => '',
-            'ranked_beatmapsets' => '',
+            'rank' => 'الترتيب',
+            'ranked_beatmapsets' => 'خرائط الإيقاع المصنّفة',
         ],
     ],
 

@@ -8,7 +8,7 @@ return [
         'active' => '目前沒有任何進行中的 osu!(lazer) :type_group 遊戲！',
         'ended' => '不在任何已結束的 osu!(lazer) :type_group 遊戲內！',
         'playlists' => '歌單',
-        'ranked-play' => '',
+        'ranked-play' => '排位模式',
         'realtime' => '多人遊戲',
     ],
 

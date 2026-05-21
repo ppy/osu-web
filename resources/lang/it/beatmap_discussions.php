@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited risposta è nascosta.|:count_delimited risposte sono nascoste.',
 
     'authorizations' => [
         'update' => [

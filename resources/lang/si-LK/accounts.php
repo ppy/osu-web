@@ -88,8 +88,8 @@ return [
             '_' => '',
             'beatmap_owner_change' => '',
             'beatmapset:modding' => '',
-            'channel_message' => '',
             'channel_mention' => '',
+            'channel_message' => '',
             'channel_team' => '',
             'comment_new' => '',
             'forum_topic_reply' => '',
@@ -97,6 +97,18 @@ return [
             'mapping' => '',
             'news_post' => '',
             'push' => '',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

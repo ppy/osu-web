@@ -105,5 +105,9 @@ class Kernel extends ConsoleKernel
             ->cron('20 0 * * *')
             ->withoutOverlapping(120)
             ->onOneServer();
+
+        $schedule->command('ranked-play:decay-ratings')
+            ->daily()
+            ->onOneServer();
     }
 }

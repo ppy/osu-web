@@ -88,8 +88,8 @@ return [
             '_' => 'možnosti doručenia',
             'beatmap_owner_change' => 'obtiažnosť hosťa',
             'beatmapset:modding' => 'módovanie beatmáp',
-            'channel_message' => 'správy súkromného chatu',
             'channel_mention' => '',
+            'channel_message' => 'správy súkromného chatu',
             'channel_team' => '',
             'comment_new' => 'nové komentáre
 ',
@@ -98,6 +98,18 @@ return [
             'mapping' => 'tvorca beatmapy',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
