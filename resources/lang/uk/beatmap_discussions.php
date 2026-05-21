@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited відповідь приховано.|:count_delimited відповіді приховано.|:count_delimited відповідей приховано.',
 
     'authorizations' => [
         'update' => [

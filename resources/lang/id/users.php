@@ -199,7 +199,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Bergabung pada :date',
         'lastvisit' => 'Terakhir terlihat :date',
-        'lastvisit_online' => 'Saat ini online',
+        'lastvisit_online' => 'Sedang online',
         'missingtext' => 'Mungkin kamu salah ketik! (atau pengguna ini sudah di-ban)',
         'origin_country' => 'Dari :country',
         'previous_usernames' => 'sebelumnya dikenal sebagai',
@@ -338,7 +338,7 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Riwayat Kudosu Terbaru',
+                'recent_entries' => 'Riwayat Kudosu Terkini',
                 'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang Diperoleh',
 
@@ -348,19 +348,19 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Memperoleh :amount atas dibatalkannya penganuliran kudosu pada topik diskusi :post',
+                            'give' => 'Memperoleh :amount dari dibatalkannya penganuliran kudosu pada topik diskusi :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Kehilangan :amount kudosu karena suara yang diperoleh pada topik diskusi :post sudah dianulir',
+                            'reset' => ':amount kudosu dari topik diskusi :post dianulir',
                         ],
 
                         'delete' => [
-                            'reset' => 'Kehilangan :amount atas penghapusan topik diskusi :post',
+                            'reset' => 'Kehilangan :amount dari dihapusnya topik diskusi :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Memperoleh :amount atas dipulihkannya topik diskusi :post',
+                            'give' => 'Memperoleh :amount dari dipulihkannya topik diskusi :post',
                         ],
 
                         'vote' => [
@@ -369,8 +369,8 @@ return [
                         ],
 
                         'recalculate' => [
-                            'give' => 'Memperoleh :amount atas penghitungan ulang suara pada topik diskusi :post',
-                            'reset' => 'Kehilangan :amount atas penghitungan ulang suara pada topik diskusi :post',
+                            'give' => 'Memperoleh :amount dari perhitungan ulang suara pada topik diskusi :post',
+                            'reset' => 'Kehilangan :amount dari perhitungan ulang suara pada topik diskusi :post',
                         ],
                     ],
 
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'lihat lebih banyak postingan',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Pertandingan Permainan Ranked',
             ],
             'recent_activity' => [
                 'title' => 'Aktivitas Terkini',

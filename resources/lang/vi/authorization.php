@@ -74,7 +74,7 @@ return [
         'no_announce' => 'Bạn không có quyền đăng thông báo.',
         'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
         'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
-        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
+        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị tắt tiếng, bị hạn chế hoặc bị cấm.',
     ],
 
     'comment' => [
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Không thể chỉnh sửa bài đăng đã bị xóa.',
                 'locked' => 'Bài đăng đã bị khóa chỉnh sửa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
-                'no_permission' => 'Không có quyền chỉnh sửa',
+                'no_permission' => 'Không có quyền chỉnh sửa.',
                 'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
                 'topic_locked' => 'Không thể chỉnh sửa bài đăng của một chủ đề bị khóa.',
             ],
@@ -152,8 +152,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Vui lòng đăng nhập để bình chọn.',
-                    'restricted' => "Không thể bình chọn trong khi bị hạn chế",
-                    'silenced' => "Không thể bình chọn khi im lặng",
+                    'restricted' => "Không thể bình chọn trong khi bị hạn chế.",
+                    'silenced' => "Không thể bình chọn khi im lặng.",
                 ],
             ],
 

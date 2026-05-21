@@ -88,8 +88,8 @@ return [
             '_' => 'szállítási lehetőségek',
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
-            'channel_message' => 'Privát üzenetek',
             'channel_mention' => '',
+            'channel_message' => 'Privát üzenetek',
             'channel_team' => '',
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'beatmap készítő',
             'news_post' => '',
             'push' => 'Elöjövő',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

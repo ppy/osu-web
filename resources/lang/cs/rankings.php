@@ -66,7 +66,7 @@ return [
         'daily_challenge' => 'denní výzva',
         'global' => 'svět',
         'kudosu' => 'kudosu',
-        'matchmaking' => 'rychlá hra',
+        'matchmaking' => 'hodnocená hra',
         'playlists' => 'playlisty',
         'team' => 'týmy',
         'top_plays' => 'nejlepší výkony',

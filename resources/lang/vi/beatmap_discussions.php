@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited câu trả lời đã bị ẩn.|:count_delimited câu trả lời đã bị ẩn.',
 
     'authorizations' => [
         'update' => [
@@ -107,8 +107,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => 'Chung',
-        'general_all' => 'Chung (tất cả)',
+        'general' => 'chung',
+        'general_all' => 'chung (tất cả)',
     ],
 
     'user_filter' => [

@@ -77,18 +77,18 @@ return [
 
             'beatmapset_state' => [
                 '_' => '谱面状态更改',
-                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)。',
-                'beatmapset_disqualify_compact' => '谱面已下架 (DQ)',
-                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱 (Loved)',
-                'beatmapset_love_compact' => '谱面已推荐进入社区喜爱 (Loved)',
+                'beatmapset_disqualify' => '谱面 ":title" 已下架（DQ）。',
+                'beatmapset_disqualify_compact' => '谱面已下架（DQ）',
+                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱（Loved）',
+                'beatmapset_love_compact' => '谱面已推荐进入社区喜爱（Loved）',
                 'beatmapset_nominate' => '谱面 ":title" 已提名。',
                 'beatmapset_nominate_compact' => '谱面被提名',
                 'beatmapset_qualify' => '谱面 ":title" 已经得到足够数量的提名，并进入上架队列',
                 'beatmapset_qualify_compact' => '谱面已进入上架队列',
-                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)。',
-                'beatmapset_rank_compact' => '谱面已上架 (Ranked)',
-                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱 (Loved)',
-                'beatmapset_remove_from_loved_compact' => '谱面已移出社区喜爱 (Loved)',
+                'beatmapset_rank' => '谱面 ":title" 已上架（Ranked）',
+                'beatmapset_rank_compact' => '谱面已上架（Ranked）',
+                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱（Loved）',
+                'beatmapset_remove_from_loved_compact' => '谱面已移出社区喜爱（Loved）',
                 'beatmapset_reset_nominations' => '谱面 ":title" 的提名已重置',
                 'beatmapset_reset_nominations_compact' => '提名已重置',
             ],
@@ -127,12 +127,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => '聊天提及',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username 在 :name 中提到了你 ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => '在 :name 中提及',
                 ],
             ],
 
@@ -251,12 +251,12 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)',
-                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱 (Loved)',
+                'beatmapset_disqualify' => '谱面 ":title" 已下架（DQ）',
+                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱（Loved）',
                 'beatmapset_nominate' => '谱面 ":title" 已被提名',
                 'beatmapset_qualify' => '谱面 ":title" 已经得到足够数量的提名，并进入上架队列',
-                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)',
-                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱 (Loved)',
+                'beatmapset_rank' => '谱面 ":title" 已上架（Ranked）',
+                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱（Loved）',
                 'beatmapset_reset_nominations' => '谱面 ":title" 的提名已被重置',
             ],
 
@@ -273,7 +273,7 @@ return [
                 'channel_message' => '您收到了 :username 的新消息',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username 在 :name 中提到了你 ":title"',
             ],
 
             'channel_team' => [

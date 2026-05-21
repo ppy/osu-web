@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Publicacions eliminades',
             'total_posts' => 'Publicacions totals',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'Prioritat actual: +:count',

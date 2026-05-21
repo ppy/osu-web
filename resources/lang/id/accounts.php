@@ -88,8 +88,8 @@ return [
             '_' => 'opsi pengiriman',
             'beatmap_owner_change' => 'tingkat kesulitan tamu',
             'beatmapset:modding' => 'modding',
+            'channel_mention' => 'panggilan obrolan',
             'channel_message' => 'pesan pribadi',
-            'channel_mention' => '',
             'channel_team' => 'pesan obrolan tim',
             'comment_new' => 'komentar baru',
             'forum_topic_reply' => 'balasan topik',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'mapper',
             'news_post' => 'postingan berita',
             'push' => 'push (web)',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

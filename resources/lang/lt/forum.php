@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Ištrinti Įrašai',
             'total_posts' => 'Iš viso Įrašų',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'Dabartinis prioritetas: +:count',

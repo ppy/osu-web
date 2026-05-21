@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'інфармацыя',
             'discussions' => 'абмеркаванне',
-            'versions' => '',
+            'versions' => 'гісторыя версій',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'модынг',
             'playlists' => 'плэйлісты',
-            'ranked-play' => '',
+            'ranked-play' => 'ранкавана гульня',
             'realtime' => 'мультыплэер',
             'show' => 'інфармацыя',
         ],

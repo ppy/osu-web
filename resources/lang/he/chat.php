@@ -50,6 +50,11 @@ return [
         'title' => '',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => '',
         'disabled' => 'אין אפשרות לשלוח את ההודעה...',

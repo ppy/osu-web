@@ -7,16 +7,16 @@ return [
     'loading_users' => 'a carregar utilizadores...',
     'talking_in' => 'a falar em :channel',
     'talking_with' => 'a falar com :name',
-    'title_compact' => 'chat',
+    'title_compact' => 'conversa',
     'unread_messages' => 'mensagens não lidas',
 
     'cannot_send' => [
-        'channel' => 'Não podes mandar mensagens neste canal de momento. Isto poderá ser devido a uma das razões:',
-        'user' => 'Não podes enviar mensagens a este utilizador de momento. Isto poderá ser devido a uma das razões:',
+        'channel' => 'Não pode enviar mensagens para este canal neste momento.',
+        'user' => 'Não pode enviar mensagens a este utilizador neste momento.',
     ],
 
     'channels' => [
-        'confirm_part' => 'Queres ocultar este canal? Ainda vais receber mensagens deste canal.',
+        'confirm_part' => 'Deseja ocultar este canal? Continuará a receber mensagens deste canal.',
         'create' => 'criar notícia',
         'join' => 'juntar-se a um canal',
         'none' => 'sem canal',
@@ -34,7 +34,7 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => 'Criar nova notícia',
+            'announcement' => 'Criar notícia',
         ],
 
         'labels' => [
@@ -46,19 +46,24 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Não há nada aqui, talvez tenhas saído do canal ou ele não existe...',
-        'title' => 'canal não escontrado',
+        'message' => 'Não há nada aqui. Talvez tenha saído do canal ou ele não existe...',
+        'title' => 'canal não encontrado',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [
         'create' => 'Criar',
-        'disabled' => 'incapacitado de enviar mensagem...',
-        'disconnected' => 'Desligado',
+        'disabled' => 'não foi possível enviar a mensagem...',
+        'disconnected' => 'Desconectado',
         'placeholder' => 'escrever mensagem...',
         'send' => 'Enviar',
     ],
 
     'join_channels' => [
-        'loading' => 'A carregar lista de canais...',
+        'loading' => 'A carregar a lista de canais...',
     ],
 ];

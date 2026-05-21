@@ -7,8 +7,8 @@ return [
     'deleted' => '[utilizador eliminado]',
 
     'beatmapset_activities' => [
-        'title' => "Histórico de modificações do :user",
-        'title_compact' => 'Modding',
+        'title' => "Histórico de Modificações de :user",
+        'title_compact' => 'Modificações',
 
         'discussions' => [
             'title_recent' => 'Discussões recentemente iniciadas',
@@ -32,14 +32,14 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'Tu bloqueaste este utilizador.',
+        'banner_text' => 'Bloqueou este utilizador.',
         'comment_text' => 'Este comentário está oculto.',
         'blocked_count' => 'utilizadores bloqueados (:count)',
-        'hide_profile' => 'Ocultar perfil',
+        'hide_profile' => 'Ocultar o perfil',
         'hide_comment' => 'ocultar',
         'forum_post_text' => 'Esta publicação está oculta.',
         'not_blocked' => 'Esse utilizador não está bloqueado.',
-        'show_profile' => 'Mostrar perfil',
+        'show_profile' => 'Mostrar o perfil',
         'show_comment' => 'mostrar',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
@@ -58,33 +58,33 @@ return [
         'form' => [
             'password' => 'palavra-passe',
             'password_confirmation' => 'confirmação da palavra-passe',
-            'submit' => 'criar conta',
+            'submit' => 'criar uma conta',
             'user_email' => 'email',
-            'user_email_confirmation' => 'confirmação do email',
+            'user_email_confirmation' => 'confirmação do e-mail',
             'username' => 'nome de utilizador',
 
             'tos_notice' => [
-                '_' => 'ao criar uma conta, tu concordas com :link',
+                '_' => 'ao criar uma conta, concorda com :link',
                 'link' => 'termos de serviço',
             ],
         ],
     ],
 
     'disabled' => [
-        'title' => 'Oh não! Parece que a tua conta foi desativada.',
-        'warning' => "No caso de teres desrespeitado uma regra, nota que há geralmente um período de espera de um mês durante o qual não iremos considerar nenhum pedido de amnistia. Após este período, poderás entrar em contacto connosco caso aches necessário. Nota que a criação de novas contas, após teres tido uma desativada, resultará numa <strong>extensão deste período de espera de um mês </strong>. Recorda também que para <strong>cada conta que cries, estás a violar ainda mais as regras</strong>. Instamos que não sigas este caminho!",
+        'title' => 'Ó não! Parece que a sua conta foi desativada.',
+        'warning' => "No caso de ter desrespeitado uma regra, note que há geralmente um período de espera de um mês durante o qual não iremos considerar nenhum pedido de amnistia. Após este período, poderá entrar em contacto connosco caso considere necessário. Por favor, note que a criação de novas contas, após ter uma desativada, resultará numa <strong>extensão deste período de espera de um mês </strong>. Por favor, recorde também que para <strong>cada conta que crie, está a violar ainda mais as regras</strong>. Instamos que não siga este caminho!",
 
         'if_mistake' => [
-            '_' => 'Se achares que isto é um engano, poderás entrar em contacto connosco (por :email ou ao clicar em "?" no canto inferior direito desta página). Recorda que estamos sempre confiantes com as nossas ações, uma vez que se baseiam em dados fidedignos. Reservamo-nos ao direito de ignorar o teu pedido se sentirmos que estejas a ser intencionalmente desonesto.',
-            'email' => 'email',
+            '_' => 'Se sentir que isto é um engano, poderá entrar em contacto connosco (por :email ou ao clicar em "?" no canto inferior direito desta página). Por favor, recorde que estamos sempre confiantes com as nossas ações, uma vez que se baseiam em dados fidedignos. Reservamo-nos ao direito de ignorar o seu pedido se sentirmos que esteja a ser intencionalmente desonesto.',
+            'email' => 'e-mail',
         ],
 
         'reasons' => [
-            'compromised' => 'A tua conta foi considerada como comprometida. Poderá estar desativada temporariamente enquanto a sua identidade for confirmada.',
-            'opening' => 'Há uma série de razões pelas quais podem resultar na desativação da tua conta:',
+            'compromised' => 'A sua conta foi considerada como comprometida. Poderá estar desativada temporariamente enquanto a sua identidade for confirmada.',
+            'opening' => 'Há uma série de razões pelas quais podem resultar na desativação da sua conta:',
 
             'tos' => [
-                '_' => 'Desrespeitaste pelo menos uma das nossas :community_rules ou :tos.',
+                '_' => 'Desrespeitou pelo menos uma das nossas :community_rules ou :tos.',
                 'community_rules' => 'regras da comunidade',
                 'tos' => 'termos de serviço',
             ],
@@ -97,25 +97,25 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "A tua conta já não é utilizada há muito tempo.",
-            'inactive_different_country' => "A tua conta não foi usada há muito tempo.",
+            'inactive' => "A sua conta já não é utilizada há muito tempo.",
+            'inactive_different_country' => "A sua conta já não é utilizada há muito tempo.",
         ],
     ],
 
     'login' => [
-        '_' => 'Iniciar sessão',
-        'button' => 'Iniciar sessão',
+        '_' => 'Iniciar a sessão',
+        'button' => 'Iniciar a sessão',
         'button_posting' => 'A iniciar sessão...',
-        'email_login_disabled' => 'Neste momento, a autenticação por email está desativada. Usa o nome de utilizador como alternativa.',
+        'email_login_disabled' => 'Agora, a autenticação por e-mail está desativada. Use o nome de utilizador como alternativa.',
         'failed' => 'Início de sessão incorreto',
-        'forgot' => 'Esqueceste-te da palavra-passe?',
+        'forgot' => 'Esqueceu-se da palavra-passe?',
         'info' => 'Inicia sessão para continuar',
-        'invalid_captcha' => 'Demasiadas tentativas falhadas de início de sessão, termina o captcha e tenta novamente. (Atualiza a página se o captcha não estiver visível)',
-        'locked_ip' => 'O teu endereço de IP foi bloqueado. Espera uns minutos.',
+        'invalid_captcha' => 'Demasiadas tentativas falhadas de início de sessão, termine o captcha e tente novamente. (Atualize a página se o captcha não estiver visível)',
+        'locked_ip' => 'O seu endereço de IP foi bloqueado. Espere uns minutos.',
         'password' => 'Palavra-passe',
-        'register' => "Não tens uma conta osu? Cria uma nova",
+        'register' => "Não tem uma conta do osu? Crie uma nova",
         'remember' => 'Lembrar este computador',
-        'title' => 'Inicia sessão para proceder',
+        'title' => 'Inicie a sessão para proceder',
         'username' => 'Nome de utilizador',
 
         'beta' => [
@@ -132,8 +132,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => 'Beatmaps: :counts',
-        'modding_description_empty' => 'O utilizador não possui nenhum beatmap...',
+        'modding_description' => 'Mapas: :counts',
+        'modding_description_empty' => 'O utilizador não possui nenhum mapa...',
 
         'description' => [
             '_' => 'Classificação (:ruleset): :global | :country',
@@ -147,19 +147,19 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'clica para iniciar sessão',
-        'login_text' => 'iniciar sessão',
+        'login_link' => 'clique para iniciar a sessão',
+        'login_text' => 'iniciar a sessão',
         'username' => 'Convidado',
-        'error' => 'Precisas de ter sessão iniciada para fazer isto.',
+        'error' => 'Precisa de ter sessão iniciada para fazer isto.',
     ],
-    'logout_confirm' => 'Tens a certeza de que queres terminar a sessão? :(',
+    'logout_confirm' => 'Tem a certeza de que quer terminar a sessão? :(',
     'report' => [
-        'button_text' => 'denunciar',
+        'button_text' => 'Denunciar',
         'comments' => 'Comentários adicionais',
-        'placeholder' => 'Fornece qualquer informação que acredites ser útil.',
+        'placeholder' => 'Forneça qualquer informação que acredita ser útil.',
         'reason' => 'Motivo',
-        'thanks' => 'Obrigado pela tua denúncia!',
-        'title' => 'Queres denunciar :username?',
+        'thanks' => 'Obrigado pela sua denúncia!',
+        'title' => 'Quer denunciar :username?',
 
         'actions' => [
             'send' => 'Enviar denúncia',
@@ -168,39 +168,39 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
+                '_' => 'Por favor, reporte a infração de direitos de autor através de uma reclamação DMCA para :mail, conforme indicado em :policy.',
                 'policy' => 'a política de direitos de autor do osu!',
             ],
-            'message_2' => '',
+            'message_2' => 'Isto aplica‑se a casos em que faixas de áudio, conteúdo visual ou conteúdo de níveis (mapas) são utilizados sem a devida autorização.',
         ],
 
         'options' => [
-            'cheating' => 'Jogada suja / Fazer batota',
+            'cheating' => 'Trapacear',
             'copyright_infringement' => 'Violação de direitos de autor',
             'inappropriate_chat' => 'Comportamento inadequado na conversa',
             'insults' => 'Insulto a mim ou a outros',
-            'multiple_accounts' => 'Utilização de contas múltiplas',
+            'multiple_accounts' => 'Utilização de múltiplas contas',
             'nonsense' => 'Disparate',
             'other' => 'Outro (escreve abaixo)',
-            'spam' => 'Spam',
+            'spam' => 'Repetição de texto',
             'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
         ],
     ],
     'restricted_banner' => [
-        'title' => 'A tua conta foi restrita!',
-        'message' => 'Enquanto estiveres restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é o resultado dum processo automático e será levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
-        'message_link' => 'Consulta esta página para saberes mais.',
+        'title' => 'A sua conta foi restrita!',
+        'message' => 'Enquanto estiver restrito(a), estará incapaz de interagir com outros jogadores e as suas pontuações só serão visíveis para si. Isto é o resultado de um processo automático e será retirado geralmente em 24 horas. :link',
+        'message_link' => 'Consulte esta página para saber mais.',
     ],
     'show' => [
-        'age' => ':age anos',
-        'change_avatar' => 'muda o teu avatar!',
-        'first_members' => 'Aqui desde o princípio',
+        'age' => ':age ano(s)',
+        'change_avatar' => 'mude o seu avatar!',
+        'first_members' => 'Aqui desde o começo',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Juntou-se em :date',
         'lastvisit' => 'Visto pela última vez em :date',
         'lastvisit_online' => 'Atualmente online',
-        'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
+        'missingtext' => 'Poderá ter escrito mal! (ou o utilizador poderá ter sido banido)',
         'origin_country' => 'De :country',
         'previous_usernames' => 'antigamente conhecido como',
         'plays_with' => 'Joga com :devices',
@@ -214,16 +214,16 @@ return [
             'to_1' => 'Mostrar capa',
         ],
         'daily_challenge' => [
-            'daily' => 'Série de vitórias diária',
-            'daily_streak_best' => 'Melhor série de vitórias diária',
-            'daily_streak_current' => 'Série de vitórias diária atual',
+            'daily' => 'Série de vitórias diárias',
+            'daily_streak_best' => 'Melhor série de vitórias diárias',
+            'daily_streak_current' => 'Série atual de vitórias diárias',
             'playcount' => 'Participação total',
             'title' => 'Desafio\nDiário',
-            'top_10p_placements' => 'Os melhores 10%',
-            'top_50p_placements' => 'Os melhores 50%',
-            'weekly' => 'Série de vitórias semanal',
-            'weekly_streak_best' => 'Melhor série de vitórias semanal',
-            'weekly_streak_current' => 'Série de vitórias semanal atual',
+            'top_10p_placements' => 'As melhores colocações 10%',
+            'top_50p_placements' => 'As melhores colocações 50%',
+            'weekly' => 'Série de vitórias semanais',
+            'weekly_streak_best' => 'Melhor série de vitórias semanais',
+            'weekly_streak_current' => 'Série atual de vitórias semanais',
 
             'unit' => [
                 'day' => ':valued',
@@ -234,14 +234,14 @@ return [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
                 'defaults_info' => 'Mais opções de capa estarão disponíveis no futuro',
-                'holdover_remove_confirm' => "A capa selecionada anteriormente não está mais disponível para seleção. Não podes selecioná-la após mudar para outra capa. Prosseguir?",
+                'holdover_remove_confirm' => "A capa selecionada anteriormente não está mais disponível para seleção. Não pode selecioná-la após mudar para outra capa. Deseja prosseguir?",
                 'title' => 'Capa',
 
                 'upload' => [
-                    'broken_file' => 'Falha ao processar a imagem. Verifica a imagem carregada e tenta outra vez.',
+                    'broken_file' => 'Falha ao processar a imagem. Verifique a imagem carregada e tente outra vez.',
                     'button' => 'Carregar imagem',
-                    'dropzone' => 'Larga aqui para carregar',
-                    'dropzone_info' => 'Também podes largar aqui a tua imagem para carregá-la',
+                    'dropzone' => 'Largue aqui para carregar',
+                    'dropzone_info' => 'Também pode largar aqui a sua imagem para carregá-la',
                     'size_info' => 'O tamanho da capa deverá ter 2400x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
@@ -259,7 +259,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'Redefinir cor para padrão? A etiqueta de suporte será preciso para mudar para outra cor.',
+                'reset_no_supporter' => 'Redefinir cor para padrão? A etiqueta de apoiante é necessária para mudar para outra cor.',
                 'title' => 'Cor',
 
                 'supporter' => [
@@ -280,28 +280,28 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'por :artist',
-                'title' => 'Beatmaps',
+                'title' => 'Mapas',
 
                 'favourite' => [
-                    'title' => 'Beatmaps favoritos',
+                    'title' => 'Mapas favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no cemitério',
+                    'title' => 'Mapas no cemitério',
                 ],
                 'guest' => [
-                    'title' => 'Beatmaps onde participaram convidados',
+                    'title' => 'Mapas onde participaram convidados',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps adorados',
+                    'title' => 'Mapas adorados',
                 ],
                 'nominated' => [
-                    'title' => 'Beatmaps classificados nomeados',
+                    'title' => 'Mapas classificados nomeados',
                 ],
                 'pending' => [
-                    'title' => 'Beatmaps pendentes',
+                    'title' => 'Mapas pendentes',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmaps classificados e aprovados',
+                    'title' => 'Mapas classificados e aprovados',
                 ],
             ],
             'discussions' => [
@@ -323,18 +323,18 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'vezes jogados',
-                    'title' => 'Os beatmaps mais jogados',
+                    'title' => 'Os mapas mais jogados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisão: :percentage',
-                    'title' => 'Partidas recentes (24h)',
+                    'title' => 'Partidas Recentes (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Historial de repetições vistas',
                     'count_label' => 'Repetições assistidas',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Repetições Mais Assistidas',
                 ],
             ],
             'kudosu' => [
@@ -348,29 +348,29 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => ':amount recebido da revogação negada de kudosu da publicação de modding :post',
+                            'give' => ':amount recebido da revogação negada de kudosu da publicação de modificações :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => ':amount recusado da publicação de modding :post',
+                            'reset' => ':amount recusado da publicação de modificações :post',
                         ],
 
                         'delete' => [
-                            'reset' => ':amount perdido da publicação de modding :post',
+                            'reset' => ':amount perdido da publicação de modificações :post',
                         ],
 
                         'restore' => [
-                            'give' => ':amount recebido da restauração da publicação de modding :post',
+                            'give' => ':amount recebido da restauração da publicação de modificações :post',
                         ],
 
                         'vote' => [
-                            'give' => ':amount recebido de obteres votos na publicação de modding :post',
-                            'reset' => ':amount perdido de perderes votos na publicação de modding :post',
+                            'give' => ':amount recebido de obter votos na publicação de modificações :post',
+                            'reset' => ':amount perdido de perder votos na publicação de modificações :post',
                         ],
 
                         'recalculate' => [
-                            'give' => ':amount recebido da recalculação dos votos na publicação de modding :post',
-                            'reset' => ':amount perdido da recalculação de votos na publicação de modding :post',
+                            'give' => ':amount recebido da recalculação dos votos na publicação de modificações :post',
+                            'reset' => ':amount perdido da recalculação de votos na publicação de modificações :post',
                         ],
                     ],
 
@@ -382,7 +382,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Vê :link para mais informações.',
+                    '_' => 'Baseado no quão o utilizador contribuiu para a moderação do beatmap. Veja :link para mais informações.',
                     'link' => 'esta página',
                 ],
             ],
@@ -395,7 +395,7 @@ return [
                 'title' => 'Medalhas',
             ],
             'playlists' => [
-                'title' => 'Playlist de partidas',
+                'title' => 'Lista de reprodução de partidas',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'ver mais publicações',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Partidas Classificadas',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
@@ -413,7 +413,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Transferir repetição',
-                'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
+                'not_ranked' => 'Somente mapas classificados é que dão pp',
                 'pp_weight' => ':percentage ponderada',
                 'view_details' => 'Ver detalhes',
                 'title' => 'Classificações',
@@ -443,8 +443,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Reputação da conta',
-                'bad_standing' => "A conta de <strong>:username</strong> não tem uma boa reputação :(",
-                'remaining_silence' => '<strong>:username</strong> será capaz de falar outra vez em :duration.',
+                'bad_standing' => "A conta de :username não tem uma boa reputação :(",
+                'remaining_silence' => ':username será capaz de falar outra vez em :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Infrações recentes',
@@ -471,34 +471,34 @@ return [
             'location' => 'Localização atual',
             'occupation' => 'Ocupação',
             'twitter' => '',
-            'website' => 'Sítio web',
+            'website' => 'Página',
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Partida Classificada',
         ],
 
         'not_found' => [
             'reason_1' => 'É capaz de ter mudado o nome de utilizador.',
             'reason_2' => 'A conta poderá estar indisponível devido a problemas de segurança ou de abuso.',
-            'reason_3' => 'Poderás ter cometido um erro de escrita!',
+            'reason_3' => 'Poderá ter cometido um erro de escrita!',
             'reason_header' => 'Há algumas possíveis razões para isto:',
             'title' => 'Utilizador não encontrado! ;_;',
         ],
         'page' => [
-            'button' => 'Editar a página de perfil',
-            'description' => '<strong>eu!</strong> é uma área pessoal personalizável na tua página de perfil.',
-            'edit_big' => 'Edita-me!',
-            'placeholder' => 'Escreve o conteúdo da página aqui',
+            'button' => 'editar a página de perfil',
+            'description' => '<strong>eu!</strong> é uma área pessoal personalizável na sua página de perfil.',
+            'edit_big' => 'Edite-me!',
+            'placeholder' => 'Escreva o conteúdo da página aqui',
 
             'restriction_info' => [
-                '_' => 'Precisas de ser um :link para desbloquear esta funcionalidade.',
+                '_' => 'Precisa de ser um :link para desbloquear esta funcionalidade.',
                 'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
             '_' => 'Contribuiu em :link',
-            'count' => ':count publicação no fórum|:count publicações no fórum',
+            'count' => ':count_delimited publicação no fórum|:count_delimited publicações no fórum',
         ],
         'rank' => [
             'country' => 'Classificação nacional para :mode',
@@ -516,7 +516,7 @@ return [
             'hits_per_play' => 'Cliques por partida',
             'level' => 'Nível :level',
             'level_progress' => 'Progresso ao próximo nível',
-            'maximum_combo' => 'Combo máximo',
+            'maximum_combo' => 'Combinação máxima',
             'medals' => 'Medalhas',
             'play_count' => 'Número de partidas',
             'play_time' => 'Tempo total de jogo',
@@ -526,15 +526,15 @@ return [
             'total_hits' => 'Acertos totais',
             'total_score' => 'Pontuação total',
             // modding stats
-            'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
-            'loved_beatmapset_count' => 'Beatmaps adorados',
-            'pending_beatmapset_count' => 'Beatmaps pendentes',
-            'ranked_beatmapset_count' => 'Beatmaps classificados e aprovados',
+            'graveyard_beatmapset_count' => 'Mapas no cemitério',
+            'loved_beatmapset_count' => 'Mapas adorados',
+            'pending_beatmapset_count' => 'Mapas pendentes',
+            'ranked_beatmapset_count' => 'Mapas classificados e aprovados',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => 'Estás silenciado de momento.',
+        'title' => 'Está agora silenciado.',
         'message' => 'Algumas ações podem não estar disponíveis.',
     ],
 
@@ -544,8 +544,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => 'Regista-te através do cliente do jogo!',
-        'from_web' => 'Regista-te através do sítio web.',
+        'from_client' => 'Registe-se através do cliente do jogo!',
+        'from_web' => 'Registe-se através da página.',
         'saved' => 'Criado por utilizadores',
     ],
     'verify' => [

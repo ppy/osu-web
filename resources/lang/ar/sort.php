@@ -40,7 +40,7 @@ return [
     'teams' => [
         'relevance' => 'الصِلة',
         'name' => 'الاسم',
-        'short-name' => '',
+        'short-name' => 'الاسم المختصر',
     ],
 
     'users' => [

@@ -34,6 +34,6 @@ return [
 
     'staff_log' => [
         '_' => 'Lịch sử nhóm cũ hơn có thể được tìm thấy ở :wiki_articles.',
-        'wiki_articles' => 'Các bài viết wiki về nhật ký staff',
+        'wiki_articles' => 'các bài viết wiki về nhật ký staff',
     ],
 ];

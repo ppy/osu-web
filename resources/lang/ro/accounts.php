@@ -88,8 +88,8 @@ return [
             '_' => 'opțiuni de livrare',
             'beatmap_owner_change' => 'dificultate cu participare ca oaspete',
             'beatmapset:modding' => 'modding beatmap-uri',
-            'channel_message' => 'mesaje chat private',
             'channel_mention' => '',
+            'channel_message' => 'mesaje chat private',
             'channel_team' => 'mesaje chat echipă',
             'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns subiect',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'creator beatmap',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

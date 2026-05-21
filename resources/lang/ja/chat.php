@@ -50,6 +50,11 @@ return [
         'title' => 'チャンネルが見つかりません',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => '作成',
         'disabled' => 'メッセージの送信ができません...',

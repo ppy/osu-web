@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited 댓글은 숨겨져 있어요.|:count_delimited 댓글들은 숨겨져 있어요.',
 
     'authorizations' => [
         'update' => [

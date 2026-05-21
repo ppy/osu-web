@@ -88,8 +88,8 @@ return [
             '_' => 'επιλογές παράδοσης',
             'beatmap_owner_change' => 'δυσκολία επισκέπτη',
             'beatmapset:modding' => 'beatmap modding',
-            'channel_message' => 'ιδιωτικά μηνύματα',
             'channel_mention' => '',
+            'channel_message' => 'ιδιωτικά μηνύματα',
             'channel_team' => 'μηνύματα συνομιλίας ομάδας',
             'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => 'απάντηση θέματος',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'beatmap mapper',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

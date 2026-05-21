@@ -8,7 +8,7 @@ return [
         'active' => 'No hi és en cap partida en curs del tipus osu!(lazer) :type_group!',
         'ended' => 'Encara no hi és en cap partida completada del tipus osu!(lazer) :type_group!',
         'playlists' => 'llista d\'àudio',
-        'ranked-play' => '',
+        'ranked-play' => 'partida classificatòria',
         'realtime' => 'multijugador',
     ],
 

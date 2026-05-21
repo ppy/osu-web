@@ -403,7 +403,7 @@ return [
                 'show_more' => 'zobacz więcej postów',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Mecze gry rankingowej',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',

@@ -404,7 +404,7 @@ return [
                 'show_more' => '글 더 보기',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => '랭크 플레이 기록',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',

@@ -88,8 +88,8 @@ return [
             '_' => 'leveransalternativ',
             'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmapmodding',
-            'channel_message' => 'privata chattmeddelanden',
             'channel_mention' => '',
+            'channel_message' => 'privata chattmeddelanden',
             'channel_team' => 'lagchattsmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'beatmap-ägare',
             'news_post' => 'nya inlägg',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

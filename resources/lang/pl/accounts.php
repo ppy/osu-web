@@ -88,8 +88,8 @@ return [
             '_' => 'opcje wysyłania',
             'beatmap_owner_change' => 'gościnny poziom trudności',
             'beatmapset:modding' => 'dyskusje beatmap',
+            'channel_mention' => 'wspomnienie na czacie',
             'channel_message' => 'wiadomości prywatne na czacie',
-            'channel_mention' => '',
             'channel_team' => 'wiadomości na czacie zespołu',
             'comment_new' => 'nowe komentarze',
             'forum_topic_reply' => 'odpowiedzi do wątków',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'twórca',
             'news_post' => 'aktualności',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

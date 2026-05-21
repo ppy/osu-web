@@ -73,7 +73,7 @@ return [
         'max_size' => '',
         'required_dimensions' => '',
         'download' => 'Спампаваць .osz',
-        'wrong_file_type' => '',
+        'wrong_file_type' => 'Толькі :types файлы дазволены для гэтага конкурсу.',
         'wrong_dimensions' => 'Памеры заяўкі для гэтага конкурсу павінны быць :widthx:height',
         'too_big' => 'Памеры файлаў для гэтага конкурсу не могуць быць вышэй за :limit.',
     ],

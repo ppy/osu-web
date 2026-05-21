@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Згадки у чатах',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username згадав вас у :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'згадано у :name',
                 ],
             ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => 'Ви отримали нове повідомлення від :username ',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username згадав вас у :name ":title"',
             ],
 
             'channel_team' => [

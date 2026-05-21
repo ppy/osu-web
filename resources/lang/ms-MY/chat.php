@@ -50,6 +50,11 @@ return [
         'title' => 'saluran tidak ditemui',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Cipta',
         'disabled' => 'pesan tidak boleh dikirim...',

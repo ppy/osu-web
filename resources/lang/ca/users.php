@@ -403,7 +403,7 @@ return [
                 'show_more' => 'veure més publicacions',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Partides classificatòries',
             ],
             'recent_activity' => [
                 'title' => 'Recent',

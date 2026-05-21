@@ -6,10 +6,10 @@
 return [
     'all_read' => 'جميع الإشعارات مقروءة!',
     'delete' => 'حذف :type',
-    'loading' => 'تحميل الإشعارات الغير مقروءة...',
+    'loading' => 'جاري تحميل الإشعارات غير المقروءة...',
     'mark_read' => 'مَحو :type',
-    'none' => 'لا إشعارات',
-    'see_all' => 'أِظهار جميع الإشعارات',
+    'none' => 'لا توجد إشعارات',
+    'see_all' => 'إظهار جميع الإشعارات',
     'see_channel' => 'انتقل للمُحادثة',
     'verifying' => 'الرجاء التحقق من الجلسة لعرض الإشعارات',
 
@@ -47,7 +47,7 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'مناقشة الخريطة',
-                'beatmapset_discussion_lock' => 'تم اقفال مناقشة على ":title"',
+                'beatmapset_discussion_lock' => 'تم إغلاق المناقشة حول ”:title“',
                 'beatmapset_discussion_lock_compact' => 'المناقشة مقفلة',
                 'beatmapset_discussion_post_new' => 'منشور جديد على ":title" من قبل :username',
                 'beatmapset_discussion_post_new_empty' => 'منشور جديد على ":title" من قبل :username',
@@ -69,7 +69,8 @@ return [
                 '_' => 'مشكلة في خريطة مؤهلة',
                 'beatmapset_discussion_qualified_problem' => 'ابلغ عنه بواسطة :username على ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'ابلغ عنه بواسطة :username على ":title"',
-                'beatmapset_discussion_qualified_problem_compact' => 'ابلغ عنه بواسطة :username على ":content"',
+                'beatmapset_discussion_qualified_problem_compact' => 'تم الإبلاغ بواسطة :username: ":content"
+',
                 'beatmapset_discussion_qualified_problem_compact_empty' => 'ابلغ عنه بواسطة :username',
             ],
 
@@ -125,12 +126,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'ذكر في الدردشة',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => 'قام :username بذكرك في :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'تم ذكرك في :name',
                 ],
             ],
 
@@ -138,9 +139,9 @@ return [
                 '_' => 'رسالة فريق جديدة',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username يقول: ":title"',
+                    'channel_team_compact' => ':username يقول: ":title"',
+                    'channel_team_group' => ':username يقول: ":title"',
                 ],
             ],
         ],
@@ -171,10 +172,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'الأخبار (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -192,15 +193,15 @@ return [
             'team_application' => [
                 '_' => 'طلب الانضمام للفريق',
 
-                'team_application_accept' => "",
-                'team_application_accept_compact' => "",
+                'team_application_accept' => "لقد أصبحت الآن عضواً في فريق :title",
+                'team_application_accept_compact' => "لقد أصبحت الآن عضواً في فريق :title",
 
-                'team_application_group' => '',
+                'team_application_group' => 'تحديثات طلب الانضمام إلى الفريق',
 
-                'team_application_reject' => '',
-                'team_application_reject_compact' => '',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_reject' => 'تم رفض طلبك للانضمام إلى الفريق :title',
+                'team_application_reject_compact' => 'تم رفض طلبك للانضمام إلى الفريق :title',
+                'team_application_store' => ':title طلب الانضمام إلى فريقك',
+                'team_application_store_compact' => ':title طلب الانضمام إلى فريقك',
             ],
         ],
 
@@ -264,17 +265,17 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'هناك إعلان جديد في ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'لقد تلقيت رسالة جديدة من :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => 'قام :username بذكرك في :name ":title"',
             ],
 
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'هناك رسالة جديدة في فريق ":name"',
             ],
         ],
 
@@ -298,9 +299,9 @@ return [
 
         'team' => [
             'team_application' => [
-                'team_application_accept' => "",
-                'team_application_reject' => '',
-                'team_application_store' => '',
+                'team_application_accept' => "لقد أصبحت الآن عضواً في فريق :title",
+                'team_application_reject' => 'تم رفض طلبك للانضمام إلى فريق :title',
+                'team_application_store' => 'طلب :title الانضمام إلى فريقك',
             ],
         ],
 

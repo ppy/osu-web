@@ -64,7 +64,7 @@ return [
             'username' => 'اسم المستخدم',
 
             'tos_notice' => [
-                '_' => 'من خلال إنشاء الحساب أنت توافق على :link',
+                '_' => 'بإنشائك للحساب، فأنت توافق على :link',
                 'link' => 'شروط الخدمة',
             ],
         ],
@@ -112,7 +112,7 @@ return [
         'forgot' => 'نسيت كلمة المرور؟',
         'info' => 'الرجاء تسجيل الدخول للاستمرار',
         'invalid_captcha' => 'فَشِلت الكابتشا، قم بتحديث الصفحة وحاول مرة أخرى.',
-        'locked_ip' => 'عنوان IP الخاص بك مؤمن. الرجاء الانتظار بضع دقائق.',
+        'locked_ip' => 'عنوان IP الخاص بك محظور مؤقتاً. يرجى الانتظار بضع دقائق.',
         'password' => 'كلمة السر',
         'register' => "لا تملك حسابًا في osu!؟ أنشئ حسابًا جديدًا",
         'remember' => 'تذكر هذا الجهاز',
@@ -127,8 +127,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'نشطة',
+            'ended' => 'منتهية',
         ],
     ],
 
@@ -153,14 +153,14 @@ return [
         'username' => 'زائر',
         'error' => 'تحتاج إلى تسجيل الدخول للقيام بذلك.',
     ],
-    'logout_confirm' => 'أتريد تسجيل الخروج حقا؟ :(',
+    'logout_confirm' => 'أتريد تسجيل الخروج حقاً؟ :(',
     'report' => [
         'button_text' => 'اِبلاغ',
         'comments' => 'تعليقات إضافية',
         'placeholder' => 'يرجى تقديم أي معلومات تعتقد انه يمكن أن تكون مفيدة.',
         'reason' => 'السبب',
         'thanks' => 'شكرا لبلاغِك!',
-        'title' => 'الاِبلاغ عن :username؟',
+        'title' => 'هل تريد الإبلاغ عن المستخدم :username؟',
 
         'actions' => [
             'send' => 'إرسال البلاغ',
@@ -170,21 +170,21 @@ return [
         'dmca' => [
             'message_1' => [
                 '_' => 'يرجى الإبلاغ عن انتهاك حقوق الطبع والنشر من خلال مطالبة DMCA إلى :mail حسب :policy.',
-                'policy' => '',
+                'policy' => 'سياسة حقوق الطبع والنشر لـ !osu',
             ],
-            'message_2' => '',
+            'message_2' => 'ينطبق هذا على الحالات التي يتم فيها استخدام المقاطع الصوتية، أو المحتوى المرئي، أو محتوى مستويات اللعبة (الخريطة) بدون إذن رسمي.',
         ],
 
         'options' => [
             'cheating' => 'لعب مؤذي/ غش',
             'copyright_infringement' => 'انتهاك حقوق النشر',
-            'inappropriate_chat' => '',
+            'inappropriate_chat' => 'سلوك غير لائق في الدردشة',
             'insults' => 'اهانتي / اهانة الاخرين',
             'multiple_accounts' => 'استخدام حسابات متعددة',
             'nonsense' => 'هُراء',
             'other' => 'أخرى (اكتب أدناه)',
-            'spam' => 'سبام',
-            'unwanted_content' => 'ربط عن محتوى غير لائق',
+            'spam' => 'إرسال رسائل مزعجة (سبام)',
+            'unwanted_content' => 'محتوى غير مناسب',
         ],
     ],
     'restricted_banner' => [
@@ -199,7 +199,7 @@ return [
         'is_developer' => 'مطور!osu',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'انضم في :date',
-        'lastvisit' => 'اخر ظهور :date',
+        'lastvisit' => 'آخر ظهور :date',
         'lastvisit_online' => 'متصل حالياً',
         'missingtext' => 'لقد ادخلت معلومات خاطئة! (او قد يكون المستخدم مقيد)',
         'origin_country' => 'من :country',
@@ -215,20 +215,20 @@ return [
             'to_1' => 'إظهار الغلاف',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'التتابع اليومي',
+            'daily_streak_best' => 'أفضل تتابع يومي',
+            'daily_streak_current' => 'التتابع اليومي الحالي',
+            'playcount' => 'إجمالي المشاركات',
+            'title' => 'التحدي\nاليومي',
+            'top_10p_placements' => 'أفضل 10% من المراكز',
+            'top_50p_placements' => 'أفضل 50% من المراكز',
+            'weekly' => 'التتابع الأسبوعي',
+            'weekly_streak_best' => 'أفضل تتابع أسبوعي',
+            'weekly_streak_current' => 'التتابع الأسبوعي الحالي',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
@@ -236,14 +236,14 @@ return [
                 'button' => 'تغيير صورة الغلاف',
                 'defaults_info' => 'خيارات اغلفة اضافية ستكون متاحة في المستقبل',
                 'holdover_remove_confirm' => "الغلاف المحدد سابقاً لم يعد متوفّراً ولن تستطيع اختياره مجدداً بعد تغييره. هل تريد المتابعة؟",
-                'title' => '',
+                'title' => 'صورة الغلاف',
 
                 'upload' => [
                     'broken_file' => 'فشلت معالجة الصورة. تحقق من الصورة المرفوعة وحاول مرة أخرى.',
                     'button' => 'رفع صورة',
                     'dropzone' => 'اَسقط الملف هنا للرفع',
                     'dropzone_info' => 'يمكنك أيضا إسقاط الصورة هنا للرفع',
-                    'size_info' => 'حجم الغلاف يجب ان يكون 2400x640',
+                    'size_info' => 'يجب أن يكون حجم الغلاف 2000×500',
                     'too_large' => 'الملف المرفوع كبير جدا.',
                     'unsupported_format' => 'تنسيق غير مدعوم.',
 
@@ -255,17 +255,17 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'الوضع الافتراضي للعبة',
+                'is_default_tooltip' => 'وضع اللعبة الافتراضي',
                 'set' => 'عين :mode كالوضع الافتراضي للعبة',
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'إعادة تعيين اللون إلى الافتراضي؟ ستكون علامة الداعم مطلوبة لتغيير اللون إلى لون مختلف.',
+                'reset_no_supporter' => 'هل تريد إعادة تعيين اللون إلى الافتراضي؟ ستحتاج إلى osu!supporter لتغييره إلى لون مختلف.',
                 'title' => 'اللون',
 
                 'supporter' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'تتوفر سمات ألوان مخصصة فقط لـ :link',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],
@@ -281,7 +281,7 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'بواسطة :artist',
-                'title' => 'خرائط الايقاع',
+                'title' => 'الخرائط',
 
                 'favourite' => [
                     'title' => 'الخرائط المفضلة',
@@ -302,7 +302,7 @@ return [
                     'title' => 'الخرائط المعلقة',
                 ],
                 'ranked' => [
-                    'title' => 'الخرائط الـ Ranked',
+                    'title' => 'الخرائط المصنفة (Ranked)',
                 ],
             ],
             'discussions' => [
@@ -335,7 +335,7 @@ return [
                     'count_label' => 'الـ Replays التي شاهدتها',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'الإعادات الأكثر مشاهدة',
                 ],
             ],
             'kudosu' => [
@@ -383,7 +383,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'مبنية على اساس مساهمات المستخدم في اعطاء اقتراحات الخرائط. انظر :link لمزيد من المعلومات.',
+                    '_' => 'يعتمد على مقدار مساهمة المستخدم في الإشراف على خرائط الإيقاع. راجع :link لمزيد من المعلومات.',
                     'link' => 'هذه الصفحة',
                 ],
             ],
@@ -396,7 +396,7 @@ return [
                 'title' => 'الاوسمة',
             ],
             'playlists' => [
-                'title' => 'العاب قائمة التشغيل',
+                'title' => 'ألعاب قائمة التشغيل',
             ],
             'posts' => [
                 'title' => 'المنشورات',
@@ -404,7 +404,7 @@ return [
                 'show_more' => 'عرض المزيد من المنشورات',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'مباريات اللعب المصنّف',
             ],
             'recent_activity' => [
                 'title' => 'الأخيرة',
@@ -414,22 +414,22 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'تحميل الـ Replay',
-                'not_ranked' => 'فقط الخرائط الـ Ranked تعطي نقاط خبرة',
+                'not_ranked' => 'لا تمنح نقاط pp سوى خرائط الإيقاع المصنفة',
                 'pp_weight' => 'موزون :percentage',
                 'view_details' => 'عرض التفاصيل',
                 'title' => 'النتائج',
 
                 'best' => [
-                    'title' => 'افضل اداء',
+                    'title' => 'أفضل أداء',
                 ],
                 'first' => [
                     'title' => 'المراكز الاولى',
                 ],
                 'pin' => [
                     'to_0' => 'إزالة التثبيت',
-                    'to_0_done' => 'نتيجة غير مثبتة',
+                    'to_0_done' => 'تم إلغاء تثبيت النتيجة',
                     'to_1' => 'تثبيت',
-                    'to_1_done' => 'نتيجة مثبتة',
+                    'to_1_done' => 'تم تثبيت النتيجة',
                 ],
                 'pinned' => [
                     'title' => 'النتائج المثبتة',
@@ -476,7 +476,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'اللعب السريع',
+            'title' => 'اللعب المصنّف',
         ],
 
         'not_found' => [
@@ -488,8 +488,8 @@ return [
         ],
         'page' => [
             'button' => 'تعديل الملف الشخصي',
-            'description' => '<strong>انا!</strong> هي منطقة تخصصها بنفسك لعرض ما تريده للزوار.',
-            'edit_big' => 'عدلني!',
+            'description' => '<strong>انا!</strong> هي مساحة شخصية قابلة للتخصيص في صفحة ملفك الشخصي.',
+            'edit_big' => 'عدّلني!',
             'placeholder' => 'ادخل محتوى الصفحة هنا',
 
             'restriction_info' => [
@@ -499,7 +499,7 @@ return [
         ],
         'post_count' => [
             '_' => 'ساهم بـ :link',
-            'count' => ':count_delimited منشور منتدى":count_delimited منشورات المنتدى',
+            'count' => ':count_delimited منشور في المنتدى|:count_delimited منشورات المنتدى',
         ],
         'rank' => [
             'country' => 'ترتيب الدولة لـ :mode',
@@ -510,7 +510,7 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => '',
-            'total_score' => '',
+            'total_score' => 'إجمالي النقاط',
         ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',
@@ -521,7 +521,7 @@ return [
             'medals' => 'الاوسمة',
             'play_count' => 'مرات اللعب',
             'play_time' => 'وقت اللعب الإجمالي',
-            'ranked_score' => 'عدد نقاط الـ Ranked',
+            'ranked_score' => 'النتيجة المصنفة',
             'replays_watched_by_others' => 'الـ Replays التي شاهدها الأخرون',
             'score_ranks' => 'ترتيب النقاط',
             'total_hits' => 'مجموع التصويبات',
@@ -530,7 +530,7 @@ return [
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
             'loved_beatmapset_count' => 'خرائط Loved',
             'pending_beatmapset_count' => 'الخرائط المعلقة',
-            'ranked_beatmapset_count' => 'الخرائط الـ Ranked',
+            'ranked_beatmapset_count' => 'الخرائط المصنفة (Ranked)',
         ],
     ],
 

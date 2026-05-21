@@ -88,8 +88,8 @@ return [
             '_' => 'možnosti doručení',
             'beatmap_owner_change' => 'obtížnost hosta',
             'beatmapset:modding' => 'módování beatmap',
+            'channel_mention' => 'zmínka v chatu',
             'channel_message' => 'soukromé zprávy',
-            'channel_mention' => '',
             'channel_team' => 'zprávy týmového chatu',
             'comment_new' => 'nové komentáře',
             'forum_topic_reply' => 'odpověď v tématu',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'tvůrce beatmapy',
             'news_post' => 'články o novinkách',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

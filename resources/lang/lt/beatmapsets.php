@@ -151,7 +151,7 @@ return [
             'source' => 'Šaltinis',
             'storyboard' => 'Šis beatmap\'as turi foninę animaciją',
             'success-rate' => 'Įveikimų Rodiklis',
-            'success_rate_plays' => '',
+            'success_rate_plays' => ':passes iš :count_delimited žaidimo|:passes iš :count_delimited žaidimų',
             'user_tags' => 'Vartotojų Žymės',
             'video' => 'Šis beatmap\'as turi vaizdo įrašą',
         ],

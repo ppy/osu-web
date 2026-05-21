@@ -50,6 +50,11 @@ return [
         'title' => 'canal no trobat',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Crear',
         'disabled' => 'no s\'ha pogut enviar el missatge...',

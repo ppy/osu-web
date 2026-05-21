@@ -88,8 +88,8 @@ return [
             '_' => 'načine isporuke',
             'beatmap_owner_change' => 'gostova težina',
             'beatmapset:modding' => 'modificiranje beatmapa',
-            'channel_message' => 'privatne chat poruke',
             'channel_mention' => '',
+            'channel_message' => 'privatne chat poruke',
             'channel_team' => 'poruke timskog čavrljanja',
             'comment_new' => 'nove komentare',
             'forum_topic_reply' => 'odgovor na temu',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'autor beatmape',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

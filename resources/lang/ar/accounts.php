@@ -11,8 +11,8 @@ return [
         'avatar' => [
             'title' => 'الصورة الشخصية',
             'reset' => 'إعادة تعيين',
-            'rules' => 'يرجى التأكد من ان صورتك تلتزم بـ:link<br/>هذا يعني انه يجب ان تكون <strong>مناسبة لجميع الأعمار</strong>. أي بلا تعري أو الفاظ نابية أو محتوى عنيف.',
-            'rules_link' => 'قوانين المجتمع',
+            'rules' => 'يرجى التأكد من ان صورتك تلتزم بـ:link<br/>هذا يعني انه يجب ان تكون <strong>مناسبة لجميع الأعمار</strong>. أي لا يسمح بالعري، أو المحتوى المسيء أو الإيحائي.',
+            'rules_link' => 'قوانين المحتوى المرئي',
         ],
 
         'email' => [
@@ -43,7 +43,7 @@ return [
             'title' => 'الملف الشخصي',
 
             'country_change' => [
-                '_' => "كأن دولة حسابك لا تتطابق مع دولة الإقامة. :update_link.",
+                '_' => "يبدو أن بلد حسابك لا يتطابق مع بلد إقامتك. :update_link.",
                 'update_link' => 'التحديث إلى :country',
             ],
 
@@ -86,10 +86,10 @@ return [
 
         'options' => [
             '_' => 'خيارات التوصيل',
-            'beatmap_owner_change' => 'صعوبة ضيف',
+            'beatmap_owner_change' => 'صعوبة الضيف',
             'beatmapset:modding' => 'اقتراحات الخريطة',
+            'channel_mention' => 'ذكر في الدردشة',
             'channel_message' => 'الرسائل الخاصة',
-            'channel_mention' => '',
             'channel_team' => 'دردشة الفريق',
             'comment_new' => 'تعليقات جديدة',
             'forum_topic_reply' => 'رد الموضوع',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'مُنشئ خرائط',
             'news_post' => 'منشورات الأخبار',
             'push' => 'دفع',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -154,7 +166,7 @@ return [
 
     'user_totp' => [
         'title' => 'تطبيق المصادقة',
-        'usage_note' => 'استخدام تطبيق المصادقة بدلاً من البريد الإلكتروني للتحقق. التحقق من البريد الإلكتروني سيظل متاحاً كمرجع مسبق.',
+        'usage_note' => 'استخدم تطبيق المصادقة بدلًا من البريد الإلكتروني للتحقق. سيظل التحقق عبر البريد الإلكتروني متاحًا كخيار احتياطي.',
 
         'button' => [
             'remove' => 'إزالة',

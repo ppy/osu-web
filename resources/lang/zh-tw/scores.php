@@ -16,8 +16,8 @@ return [
             'by' => '玩家',
             'played_on' => '遊玩於',
             'submitted_on' => '達成時間',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => '觀看次數',
+            'watched_count' => ':count_delimited 次｜:count_delimited 次',
 
             'rank' => [
                 'country' => '全國排名',

@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmap eliminado',
+        'beatmap-deleted' => 'mapa eliminado',
         'failed' => 'FALHADO',
         'header' => 'Batalhas de multijogador',
         'in-progress' => '(partida em andamento)',
@@ -15,37 +15,37 @@ return [
         'winner_by' => ':winner por :difference',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'a partida foi cancelada',
+            'game_aborted_no_user' => 'a partida foi cancelada',
+            'game_completed' => 'a partida foi concluída',
+            'game_completed_no_user' => 'a partida foi concluída',
+            'host_changed' => ':user tornou‑se o anfitrião',
+            'host_changed_no_user' => 'o anfitrião foi alterado',
+            'player_joined' => ':user entrou na partida',
+            'player_joined_no_user' => 'um jogador entrou na partida',
+            'player_kicked' => ':user foi expulso da partida',
+            'player_kicked_no_user' => 'um jogador foi expulso da partida',
+            'player_left' => ':user saiu da partida',
+            'player_left_no_user' => 'um jogador saiu da partida',
+            'room_created' => ':user criou a partida',
+            'room_created_no_user' => 'a partida foi criada',
+            'room_disbanded' => 'a partida foi dissolvida',
+            'room_disbanded_no_user' => 'a partida foi dissolvida',
         ],
 
         'score' => [
             'stats' => [
                 'accuracy' => 'Precisão',
-                'combo' => 'Combo',
+                'combo' => 'Combinação',
                 'score' => 'Pontuação',
             ],
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Duelo direto',
+            'tag_coop' => 'Caça Cooperativa',
+            'tag_team_versus' => 'Caça de Equipa contra Equipa',
+            'team_versus' => 'Equipa contra Equipa',
         ],
 
         'teams' => [
@@ -54,12 +54,12 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Estilo Livre',
 
         'scoring-type' => [
             'score' => 'Maior pontuação',
             'accuracy' => 'Maior precisão',
-            'combo' => 'Maior combo',
+            'combo' => 'Maior combinação',
             'scorev2' => 'Pontuação V2',
         ],
     ],

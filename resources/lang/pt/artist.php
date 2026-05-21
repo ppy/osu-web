@@ -12,24 +12,24 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
-        'download' => 'Transferir o modelo do beatmap',
-        'download-na' => 'O modelo do beatmap ainda não está disponível',
+        '_' => 'Mapas',
+        'download' => 'transferir o modelo de mapa',
+        'download-na' => 'o modelo de mapa ainda não está disponível',
     ],
 
     'index' => [
-        'description' => 'Os artistas destacados são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer músicas novas e originais para o osu! Estes artistas e uma seleção das suas faixas, foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes artistas destacados também criaram novas faixas exclusivas para utilização no osu!<br><br>Todas as faixas nesta secção estão disponibilizadas em ficheiros .osz e foram oficialmente licenciadas para se usarem no osu! e no seu conteúdo relacionado.',
+        'description' => 'Os artistas destacados são artistas com quem estamos a colaborar para trazer música nova e original ao osu!. Estes artistas e uma seleção das suas faixas foram escolhidas a dedo pela equipa do osu! por serem incríveis e adequadas para a criação de mapas. Alguns destes artistas destacados também criaram faixas exclusivas para utilização no osu!.<br><br>Todas as faixas nesta secção são fornecidas como ficheiros .osz pré‑temporizados e foram oficialmente licenciadas para uso no osu! e em conteúdo relacionado com o osu!.',
     ],
 
     'links' => [
-        'beatmaps' => 'Beatmaps osu!',
-        'osu' => 'perfil osu!',
-        'site' => 'Sítio web oficial',
+        'beatmaps' => 'Mapas do osu!',
+        'osu' => 'Perfil do osu!',
+        'site' => 'Página oficial',
     ],
 
     'songs' => [
-        '_' => 'Canções',
-        'count' => ':count canção|:count canções',
+        '_' => 'Músicas',
+        'count' => ':count_delimited música|:count_delimited músicas',
         'original' => 'Original do osu!',
         'original_badge' => 'ORIGINAL',
     ],
@@ -56,8 +56,8 @@ return [
                 'artist' => 'Artista',
                 'bpm_gte' => 'BPM mínimos',
                 'bpm_lte' => 'BPM máximos',
-                'empty' => 'Não foram encontradas faixas que correspondessem aos critérios de pesquisa.',
-                'exclusive_only' => 'Típo',
+                'empty' => 'Não foram encontradas faixas que correspondam aos critérios de pesquisa.',
+                'exclusive_only' => 'Tipo',
                 'genre' => 'Género',
                 'genre_all' => 'Todas',
                 'length_gte' => 'Duração mínima',

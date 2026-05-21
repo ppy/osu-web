@@ -69,8 +69,8 @@ return [
         'silenced_or_restricted' => 'Kısıtlanmış veya susturulmuşken yarışmalara katılamazsınız.',
         'preparation' => 'Şu an bu yarışmayı hazırlıyoruz. Lütfen sabırla bekleyiniz!',
         'drop_here' => 'Girdinizi buraya bırakın',
-        'allowed_extensions' => '',
-        'max_size' => '',
+        'allowed_extensions' => ':types dosyaları kabul edilir',
+        'max_size' => 'Maksimum boyut: :limit',
         'required_dimensions' => '',
         'download' => '.osz indir',
         'wrong_file_type' => '',
@@ -107,7 +107,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Bilgiyi ve girdileri görüntüle',
         ],
     ],
 ];
