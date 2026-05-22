@@ -3,8 +3,22 @@
 
 .profile-detail {
   padding: 10px var(--page-gutter);
+  position: relative;
 
   .profile-info + & {
     .inner-shadow-top();
+  }
+
+  &__type-toggle {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+
+    @media @desktop {
+      .center-content();
+      width: var(--page-gutter);
+      top: 10px;
+      right: 0;
+    }
   }
 }

@@ -19,6 +19,7 @@ function colourStyle(tier: string) {
 
 interface Props {
   stats: SeasonStatsJson;
+  v2?: boolean;
 }
 
 const popup = (stats: SeasonStatsJson) => (
@@ -70,25 +71,7 @@ export default class SeasonStats extends React.Component<Props> {
   }
 
   render() {
-    return (
-      <div
-        ref={this.valueRef}
-        className='season-stats'
-        onMouseOver={this.onMouseOver}
-      >
-        <div
-          className='season-stats__line'
-          style={colourStyle(this.props.stats.division.colour_tier)}
-        />
-        <Img2x
-          className='season-stats__division'
-          src={this.props.stats.division.image_url}
-        />
-        <div className='season-stats__name'>
-          {this.props.stats.division.name}
-        </div>
-      </div>
-    );
+    return this.props.v2 ? this.renderV2() : this.renderV1();
   }
 
   private readonly onMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -124,4 +107,55 @@ export default class SeasonStats extends React.Component<Props> {
       $(this.valueRef.current ?? []).qtip('set', { 'content.text': content });
     });
   };
+
+  private renderV1() {
+    return (
+      <div
+        ref={this.valueRef}
+        className='season-stats'
+        onMouseOver={this.onMouseOver}
+      >
+        <div
+          className='season-stats__line'
+          style={colourStyle(this.props.stats.division.colour_tier)}
+        />
+        <Img2x
+          className='season-stats__division'
+          src={this.props.stats.division.image_url}
+        />
+        <div className='season-stats__name'>
+          {this.props.stats.division.name}
+        </div>
+      </div>
+    );
+  }
+
+  private renderV2() {
+    return (
+      <div
+        ref={this.valueRef}
+        className='profile-detail-stats-big'
+        onMouseOver={this.onMouseOver}
+      >
+        <div className='profile-detail-stats-big__icon'>
+          <div className='svg-icon svg-icon--star' />
+        </div>
+        <div className='profile-detail-stats-big__title-container'>
+          <div className='profile-detail-stats-big__label'>
+            {trans('users.show.season_stats.label')}
+          </div>
+          <div
+            className='profile-detail-stats-big__fancy-text'
+            style={colourStyle(this.props.stats.division.colour_tier)}
+          >
+            {this.props.stats.division.name}
+          </div>
+        </div>
+        <Img2x
+          className='profile-detail-stats-big__badge'
+          src={this.props.stats.division.image_url}
+        />
+      </div>
+    );
+  }
 }

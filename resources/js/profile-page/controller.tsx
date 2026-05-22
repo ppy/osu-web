@@ -7,6 +7,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import EventJson from 'interfaces/event-json';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
+import MatchmakingUserEloHistoryJson from 'interfaces/matchmaking-user-elo-history-json';
 import Ruleset from 'interfaces/ruleset';
 import ScoreJson, { isScoreJsonForUser, ScoreJsonForUser } from 'interfaces/score-json';
 import { ScoreReplayStatsJsonForUser } from 'interfaces/score-replay-stats-json';
@@ -89,6 +90,8 @@ interface State {
   currentPage: Page;
   editingUserPage: boolean;
   lazy: Partial<LazyPages>;
+  lazyMatchmakingChart: Partial<Record<number, MatchmakingUserEloHistoryJson[]>>;
+  matchmakingPoolId: null | number;
   user: ProfilePageUserJson;
 }
 
@@ -146,6 +149,8 @@ export default class Controller {
         currentPage: 'main',
         editingUserPage: false,
         lazy: {},
+        lazyMatchmakingChart: {},
+        matchmakingPoolId: null,
         user: initialData.user,
       };
     } else {
@@ -425,6 +430,26 @@ export default class Controller {
     this.xhr[page] = xhr;
 
     return xhr;
+  }
+
+  @action
+  loadMatchmakingChart(poolId: number) {
+    const xhrKey = `matchmaking_chart:${poolId}`;
+
+    if (this.xhr[xhrKey] != null || this.state.lazyMatchmakingChart[poolId] != null) {
+      return;
+    }
+
+    const xhr = $.get(route('matchmaking-pools.user-chart', {
+      pool: poolId,
+      user: this.state.user.id,
+    })) as JQuery.jqXHR<{ user_elo_history: MatchmakingUserEloHistoryJson[] }>;
+    // TODO: add error handler
+    xhr.done((json) => runInAction(() => {
+      this.state.lazyMatchmakingChart[poolId] = json.user_elo_history;
+    }));
+
+    this.xhr[xhrKey] = xhr;
   }
 
   @action

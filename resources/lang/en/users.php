@@ -475,7 +475,13 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => 'Losses',
+            'plays' => 'Total Matches',
+            'rank' => 'Rank',
+            'rating' => 'Rating',
+            'tier' => 'Tier',
             'title' => 'Ranked Play',
+            'wins' => 'Wins',
         ],
 
         'not_found' => [
@@ -514,7 +520,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => 'Spotlights',
             'total_score' => 'Total score',
+        ],
+        'solo' => [
+            'title' => 'Solo Play',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',

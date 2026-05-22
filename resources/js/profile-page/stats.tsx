@@ -6,12 +6,14 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
+import { playTimeStrings } from './play-time';
 
 // sorted by display order
 const entryKeys = [
   'ranked_score',
   'hit_accuracy',
   'play_count',
+  'play_time',
   'total_score',
   'total_hits',
   'hits_per_play',
@@ -23,6 +25,7 @@ type EntryKey = typeof entryKeys[number];
 
 interface Props {
   stats: UserStatisticsJson;
+  v2?: boolean;
 }
 
 function getHitsPerPlay(stats: UserStatisticsJson) {
@@ -44,15 +47,24 @@ export default class Stats extends React.PureComponent<Props> {
       case 'hits_per_play':
         return formatNumber(getHitsPerPlay(this.props.stats));
 
+      case 'play_time': {
+        const { title, value } = playTimeStrings(this.props.stats.play_time);
+
+        return <span title={title}>{value}</span>;
+      }
+
       default:
         return formatNumber(this.props.stats[key]);
     }
   }
 
   private readonly renderEntry = (key: EntryKey) => (
-    <dl key={key} className={classWithModifiers('profile-stats__entry', `key-${key}`)}>
-      <dt className='profile-stats__key'>{trans(`users.show.stats.${key}`)}</dt>
-      <dd className='profile-stats__value'>{this.formatValue(key)}</dd>
-    </dl>
+    key !== 'play_time' || this.props.v2
+      ? (
+        <dl key={key} className={classWithModifiers('profile-stats__entry', `key-${key}`)}>
+          <dt className='profile-stats__key'>{trans(`users.show.stats.${key}`)}</dt>
+          <dd className='profile-stats__value'>{this.formatValue(key)}</dd>
+        </dl>
+      ) : null
   );
 }

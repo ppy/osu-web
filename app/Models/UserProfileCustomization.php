@@ -32,6 +32,7 @@ class UserProfileCustomization extends Model
         'forum_posts_show_deleted' => true,
         'legacy_score_only' => false,
         'profile_cover_expanded' => true,
+        'profile_detail_v2' => false,
         'scoring_mode' => self::SCORING_MODES[0],
         'user_list_filter' => self::USER_LIST['filters']['default'],
         'user_list_sort' => self::USER_LIST['sorts']['default'],
@@ -341,6 +342,16 @@ class UserProfileCustomization extends Model
     public function setProfileCoverExpandedAttribute($value)
     {
         $this->setOption('profile_cover_expanded', get_bool($value));
+    }
+
+    public function getProfileDetailV2Attribute()
+    {
+        return $this->options['profile_detail_v2'] ?? static::DEFAULTS['profile_detail_v2'];
+    }
+
+    public function setProfileDetailV2Attribute($value)
+    {
+        $this->setOption('profile_detail_v2', get_bool($value));
     }
 
     private function setOption($key, $value)

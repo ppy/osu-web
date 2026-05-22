@@ -4,13 +4,16 @@
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import StringWithComponent from 'components/string-with-component';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import Badges from './badges';
 import Controller from './controller';
 import Cover from './cover';
 import DetailBar from './detail-bar';
 import DetailStats from './detail-stats';
+import DetailStatsV2 from './detail-stats-v2';
 import Links from './links';
 import ProfileEditButton from './profile-edit-button';
 
@@ -41,7 +44,11 @@ export default class Detail extends React.Component<Props> {
 
         {!user.is_bot && (
           <div className='profile-detail'>
-            <DetailStats user={user} />
+            {core.userPreferences.get('profile_detail_v2')
+              ? <DetailStatsV2 controller={this.props.controller} />
+              : <DetailStats user={user} />
+            }
+            {this.renderDetailToggle()}
 
             {this.renderScoresNotice()}
           </div>
@@ -51,6 +58,24 @@ export default class Detail extends React.Component<Props> {
 
         <Links user={user} />
       </>
+    );
+  }
+
+  private handleDetailToggle(this: void) {
+    core.userPreferences.toggle('profile_detail_v2');
+  }
+
+  private renderDetailToggle() {
+    return (
+      <div className='profile-detail__type-toggle'>
+        <button
+          className={classWithModifiers('btn-circle', 'page-toggle', { activated: core.userPreferences.get('profile_detail_v2') })}
+          onClick={this.handleDetailToggle}
+          type='button'
+        >
+          <span className='fas fa-sync' />
+        </button>
+      </div>
     );
   }
 

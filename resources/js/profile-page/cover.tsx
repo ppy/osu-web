@@ -105,7 +105,9 @@ export default class Cover extends React.Component<Props> {
             </div>
           </div>
 
-          {this.props.user.current_season_stats && <SeasonStats stats={this.props.user.current_season_stats} />}
+          {!core.userPreferences.get('profile_detail_v2') && this.props.user.current_season_stats != null &&
+            <SeasonStats stats={this.props.user.current_season_stats} />
+          }
 
           <div className='profile-info__cover-toggle'>
             <button
