@@ -52,10 +52,17 @@
             $firstItem = $scores->firstItem();
         @endphp
         @foreach ($scores as $index => $score)
+            @php
+                $rank = $index === 0
+                    ? ($firstItem === 1 ? $firstItem : $score->rank())
+                    : ($score->rating === $prevRating ? $prevRank : $index + $firstItem);
+                $prevRank = $rank;
+                $prevRating = $score->rating;
+            @endphp
             <div class="ranking-page-grid-item">
                 <div class="ranking-page-grid-item__content u-hover">
                     <div class="ranking-page-grid-item__col">
-                        #{{ i18n_number_format($index + $firstItem) }}
+                        #{{ i18n_number_format($rank) }}
                     </div>
                     <div class="ranking-page-grid-item__col ranking-page-grid-item__col--main">
                         @include('rankings._main_column', ['object' => $score->user])
