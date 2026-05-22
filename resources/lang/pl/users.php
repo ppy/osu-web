@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Szybka Gra',
+            'title' => 'Gra Rankingowa',
         ],
 
         'not_found' => [
