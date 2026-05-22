@@ -36,6 +36,11 @@
     --selector-display: block;
   }
 
+  &__checkmark {
+    color: var(--decoration-colour);
+    width: 1em;
+  }
+
   &__decoration {
     align-self: center;
     margin-left: 10px;
@@ -48,6 +53,7 @@
 
     --colour: hsl(var(--hsl-c1));
     display: flex;
+    gap: 5px;
     padding: var(--option-padding);
     white-space: nowrap;
     color: var(--colour);

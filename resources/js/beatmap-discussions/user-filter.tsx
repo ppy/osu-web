@@ -95,6 +95,7 @@ export class UserFilter extends React.Component<Props> {
         onSelect={this.handleSelect}
         options={this.options}
         selected={this.discussionsState.selectedUserIds}
+        useCheckmark
       >
         {this.text}
       </SelectOptions>
@@ -134,27 +135,10 @@ export class UserFilter extends React.Component<Props> {
       urlOptions.users = user.id != null ? [user.id] : undefined;
     }
 
-    const checked = user.id == null
-      ? this.discussionsState.selectedUserIds.size === 0
-      : this.discussionsState.selectedUserIds.has(user.id);
-
     return {
       href: urlOptions != null ? makeUrl(urlOptions) : '#',
       id: user.id,
-      text: (
-        <>
-          <div className='osu-switch-v2'>
-            <input
-              checked={checked}
-              className='osu-switch-v2__input'
-              readOnly
-              type='checkbox'
-            />
-            <span className='osu-switch-v2__content' />
-          </div>
-          <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>
-        </>
-      ),
+      text: <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>,
     };
   };
 
