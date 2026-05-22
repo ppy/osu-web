@@ -225,7 +225,7 @@ export default class DiscussionsState {
     for (const mode of discussionModes) {
       value[mode] = this.discussionsByMode[mode].filter(
         (discussion) => this.selectedUserIds.has(discussion.user_id)
-        || this.repliesIncludeSelectedUsers && discussion.posts?.some((post) => this.selectedUserIds.has(post.user_id)),
+        || this.repliesIncludeSelectedUsers && discussion.posts?.some((post) => this.selectedUserIds.has(post.user_id) && (post.deleted_at == null || this.showDeleted)),
       );
     }
 
