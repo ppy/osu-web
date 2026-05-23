@@ -857,6 +857,7 @@ class UsersController extends Controller
                 $query = $this
                     ->user
                     ->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))
+                    ->default()
                     ->with(prefix_strings('score.', ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->orderByDesc('score_id');
                 $userRelationColumn = 'user';
