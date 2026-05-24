@@ -138,6 +138,10 @@ return [
         'tablet' => 'tablet',
         'title' => 'Playstyles',
         'touch' => 'touch',
+
+        'default_game_mode' => [
+            '_' => 'default game mode',
+        ],
     ],
 
     'privacy' => [
