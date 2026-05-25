@@ -15,7 +15,7 @@ return [
             'ok' => 'Pedido de adesão rejeitado.',
         ],
         'store' => [
-            'ok' => 'Pediste para te juntares à equipa.',
+            'ok' => 'Pediu para se juntar à equipa.',
         ],
     ],
 
@@ -24,16 +24,16 @@ return [
     ],
 
     'create' => [
-        'submit' => 'Criar equipa',
+        'submit' => 'Criar uma Equipa',
 
         'form' => [
-            'name_help' => 'O nome da tua equipa. De momento, o nome é permanente.',
-            'short_name_help' => 'Máximo 4 caracteres.',
-            'title' => "Bora criar uma nova equipa",
+            'name_help' => 'O nome da sua equipa. De momento, o nome é permanente.',
+            'short_name_help' => 'Máximo de 4 caracteres.',
+            'title' => "Vamos criar uma equipa",
         ],
 
         'intro' => [
-            'description' => "Joga com amigos, sejam eles novos ou já existentes. Neste momento, não pertences a nenhuma equipa. Junta-te a uma equipa existente visitando a sua página ou cria a tua própria a partir desta página.",
+            'description' => "Jogue com amigos, sejam eles já existentes ou novos. De momento, não pertence a nenhuma equipa. Junte‑se a uma equipa existente visitando a página dessa equipa ou crie a sua própria equipa a partir desta página.",
             'title' => 'Equipa!',
         ],
     ],
@@ -53,17 +53,17 @@ return [
 
         'flag' => [
             'label' => 'Bandeira da equipa',
-            'title' => 'Definir bandeira da equipa',
+            'title' => 'Definir a bandeira da equipa',
         ],
 
         'header' => [
             'label' => 'Imagem do cabeçalho',
-            'title' => 'Definir imagem do cabeçalho',
+            'title' => 'Definir a imagem do cabeçalho',
         ],
 
         'settings' => [
             'application_help' => 'Permitir que as pessoas se candidatem à equipa',
-            'default_ruleset_help' => 'O conjunto de regras a selecionar por omissão quando se visita a página da equipa',
+            'default_ruleset_help' => 'O conjunto de modos de jogo a selecionar por omissão quando se visita a página da equipa',
             'flag_help' => 'Tamanho máximo de :width×:height',
             'header_help' => 'Tamanho máximo de :width×:height',
             'title' => 'Definições da equipa',
@@ -86,7 +86,7 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => 'Classificação global',
+        'global_rank' => 'Classificação Global',
     ],
 
     'members' => [
@@ -95,24 +95,24 @@ return [
         ],
 
         'index' => [
-            'title' => 'Gerir membros',
+            'title' => 'Gerir Membros',
 
             'applications' => [
-                'accept_confirm' => 'Adicionar o jogador :user à equipa?',
-                'created_at' => 'Pedido em',
-                'empty' => 'Não há pedidos de adesão de momento.',
-                'empty_slots' => 'Espaços disponíveis',
+                'accept_confirm' => 'Quer adicionar o jogador :user à equipa?',
+                'created_at' => 'Pedido a',
+                'empty' => 'Não existem pedidos de adesão agora.',
+                'empty_slots' => 'Vagas disponíveis',
                 'empty_slots_overflow' => ':count_delimited utilizador em excesso|:count_delimited utilizadores em excesso',
-                'reject_confirm' => 'Negar o pedido de adesão do jogador :user?',
+                'reject_confirm' => 'Quer negar o pedido de adesão do jogador :user?',
                 'title' => 'Pedidos de adesão',
             ],
 
             'table' => [
                 'joined_at' => 'Data de adesão',
                 'remove' => 'Remover',
-                'remove_confirm' => 'Eliminar o jogador :user da equipa?',
+                'remove_confirm' => 'Quer eliminar o jogador :user da equipa?',
                 'set_leader' => 'Transferir a liderança da equipa',
-                'set_leader_confirm' => 'Transferir a liderança da equipa ao jogador :user?',
+                'set_leader_confirm' => 'Quer transferir a liderança da equipa ao jogador :user?',
                 'status' => 'Estado',
                 'title' => 'Membros atuais',
             ],
@@ -124,7 +124,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => 'Jogador :user é agora o líder da equipa.',
+            'success' => 'O utilizador :user é agora o líder da equipa.',
         ],
     ],
 
@@ -136,13 +136,13 @@ return [
         'bar' => [
             'chat' => 'Conversa da equipa',
             'destroy' => 'Dissolver equipa',
-            'join' => 'Pedir para aderires',
+            'join' => 'Pedir para aderir',
             'join_cancel' => 'Cancelar pedido de adesão',
             'part' => 'Sair da equipa',
         ],
 
         'info' => [
-            'created' => 'Formada em',
+            'created' => 'Formada a',
         ],
 
         'members' => [
@@ -157,11 +157,11 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'first_places' => '',
-            'leader' => 'Líder da equipa',
+            'empty_slots' => ':count_delimited vaga disponível|:count_delimited vagas disponíveis',
+            'first_places' => 'Primeiros lugares',
+            'leader' => 'Líder da Equipa',
             'rank' => 'Classificação',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Mapas classificados',
         ],
     ],
 

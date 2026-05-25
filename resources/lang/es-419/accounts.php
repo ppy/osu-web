@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
         'comment_reply' => 'recibir notificaciones de las respuestas a tus comentarios',
-        'news_post' => '',
+        'news_post' => 'recibir notificaciones de nuevas publicaciones',
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activar automáticamente las notificaciones en los nuevos temas del foro que crees',
 
@@ -88,15 +88,27 @@ return [
             '_' => 'opciones de entrega',
             'beatmap_owner_change' => 'dificultades de invitados',
             'beatmapset:modding' => 'modding de mapas',
+            'channel_mention' => 'menciones en el chat',
             'channel_message' => 'mensajes de chat privados',
-            'channel_mention' => '',
             'channel_team' => 'mensajes del chat del equipo',
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo',
             'mapping' => 'creadores de mapas',
-            'news_post' => '',
+            'news_post' => 'nuevas publicaciones',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -107,7 +119,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'mostrar mapas con fondos de anime',
         'beatmapset_show_nsfw' => 'ocultar las advertencias de contenido explícito en los mapas',
         'beatmapset_title_show_original' => 'mostrar los metadatos de los mapas en su idioma original',
         'title' => 'Opciones',
@@ -131,7 +143,7 @@ return [
     'privacy' => [
         'friends_only' => 'bloquear los mensajes privados de las personas que no estén en tu lista de amigos',
         'hide_online' => 'ocultar tu presencia en línea',
-        'hide_online_info' => '',
+        'hide_online_info' => 'esto se relaciona con el modo «aparecer desconectado» en osu!lazer',
         'title' => 'Privacidad',
     ],
 
@@ -153,8 +165,8 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Aplicación de autenticación',
+        'usage_note' => 'Usa una aplicación de autenticación en lugar del correo electrónico para la verificación. La verificación por correo electrónico seguirá estando disponible como alternativa.',
 
         'button' => [
             'remove' => '',

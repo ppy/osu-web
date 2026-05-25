@@ -277,8 +277,8 @@ return [
                 'link_text' => 'osu!サポータータグ',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'ユーザータグで検索する',
+                'prompt' => '入力して検索',
             ],
         ],
     ],

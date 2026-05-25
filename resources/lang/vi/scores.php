@@ -14,10 +14,10 @@ return [
 
         'player' => [
             'by' => 'Chơi bởi',
-            'played_on' => '',
+            'played_on' => 'Đã chơi ở',
             'submitted_on' => 'Tải lên',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Đã được xem',
+            'watched_count' => ':count_delimited lần|:count_delimited lần',
 
             'rank' => [
                 'country' => 'Xếp hạng quốc gia',

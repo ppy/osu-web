@@ -5,44 +5,44 @@
 
 return [
     'button' => [
-        'resend' => 'Reenviar email de verificação',
-        'set' => 'Definir palavra-passe',
+        'resend' => 'Reenviar e-mail de verificação',
+        'set' => 'Definir a palavra-passe',
         'start' => 'Começar',
     ],
 
     'error' => [
-        'contact_support' => 'Contacta a assistência para recuperar a conta.',
+        'contact_support' => 'Contacte a assistência para recuperar a conta.',
         'expired' => 'O código de verificação expirou.',
-        'invalid' => 'Erro inesperado no código de verificação.',
-        'is_privileged' => 'Contacta um administrador de alto nível para recuperar a conta.',
-        'missing_key' => 'Necessário.',
-        'too_many_requests' => '',
+        'invalid' => 'Ocorreu um erro inesperado no código de verificação.',
+        'is_privileged' => 'Contacte um administrador sénior para recuperar a conta.',
+        'missing_key' => 'Obrigatório.',
+        'too_many_requests' => 'O limite de pedidos de reposição de palavra‑passe foi atingido. Por favor, contacte o suporte para recuperar a conta.',
         'too_many_tries' => 'Demasiadas tentativas falhadas.',
         'user_not_found' => 'O utilizador solicitado não existe.',
-        'wait_resend' => '',
-        'wrong_key' => 'Código incorreto.',
+        'wait_resend' => 'Por favor, aguarde um pouco.',
+        'wrong_key' => 'O código está incorreto.',
     ],
 
     'notice' => [
-        'sent' => 'Verifica o teu email para o código de verificação.',
+        'sent' => 'Verifique o seu e-mail para ver o código de verificação.',
         'saved' => 'Nova palavra-passe guardada!',
     ],
 
     'started' => [
         'password' => 'Nova palavra-passe',
         'password_confirmation' => 'Confirmação de palavra-passe',
-        'title' => 'Redefinir palavra-passe para a conta <strong>:username</strong>.',
+        'title' => 'Redefinir a palavra-passe para a conta <strong>:username</strong>.',
         'verification_key' => 'Código de verificação',
     ],
 
     'starting' => [
-        'username' => 'Introduz um endereço de email ou um nome de utilizador',
+        'username' => 'Introduza um endereço de e-mail ou um nome de utilizador',
 
         'reason' => [
-            'inactive_different_country' => "A tua conta já não é usada há muito tempo. Para garantir que a tua conta esteja segura, repõe a tua palavra-passe.",
+            'inactive_different_country' => "A sua conta não é utilizada há muito tempo. Para garantir a segurança da sua conta, por favor reponha a sua palavra‑passe.",
         ],
         'support' => [
-            '_' => 'Precisas de mais assistência? Contacta-nos a partir do nosso :button.',
+            '_' => 'Precisa de mais assistência? Contacte-nos a partir do nosso :button.',
             'button' => 'sistema de suporte',
         ],
     ],

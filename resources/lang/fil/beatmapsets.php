@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Hinay lang, maglaro ka muna.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Walang download servers na magagamit',
     ],
 
     'featured_artist_badge' => [
@@ -41,21 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Ang mga Probationary nominators ay hindi pwedeng mag-nominate ng maramihan na rulesets.',
+        'full_nomination_required' => 'Dapat kang maging isang full nominator upang magawa ang huling nominasyon ng ruleset.',
         'hybrid_requires_modes' => 'Ang isang hybrid na beatmap ay kinailangan na ikaw ay pumili ng kahit isang playmode upang makanominate.',
         'incorrect_mode' => 'Wala kang pahintulot na mag-nominate para sa mode :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Ang beatmap na ito ay may hindi wastong nominasyon at hindi maaaring makwalipika sa state na ito.',
+        'invalid_ruleset' => 'Ang nominasyon na ito ay may hindi wastong rulesets.',
         'too_many' => 'Nabuo na ang pangangailangan sa nominasyon.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Nakuha na ang nomination requirement para sa non-main ruleset.',
 
         'dialog' => [
             'confirmation' => 'Sigurado ka bang gusto mong i-nomina ito?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Mababaliwala ang pwesto nito sa qualification queue kapag pinalitan ang mga nominators.',
             'header' => 'Inomina ang Beatmap',
             'hybrid_warning' => 'tandaan: ikaw ay maaaring mag-nominate nang isang beses lamang, kaya siguraduhin na ikaw ay nagno-nominate para sa lahat ng game mode na iyong binabalak',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Ang pangunahing ruleset ay: :ruleset',
             'which_modes' => 'Inomina para sa aling mga mode?',
         ],
     ],
@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Tingnan ang buong laki ng cover sa larawan',
-            'page' => '',
+            'page' => 'Tingnan ang admin page',
         ],
 
         'deleted_banner' => [
@@ -141,18 +141,18 @@ return [
             'description' => 'Deskripsyon',
             'genre' => 'Dyanre',
             'language' => 'Wika',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Mga Mapper Tags',
             'no_scores' => 'Kinakalkula pa ang mga datos...',
             'nominators' => 'Mga nominador',
             'nsfw' => 'Maselang nilalaman',
             'offset' => 'Online na offset',
-            'pack_tags' => '',
+            'pack_tags' => 'Mga Beatmap Packs',
             'points-of-failure' => 'Mga punto ng pagkabigo',
             'source' => 'Pinagmulan',
             'storyboard' => 'Ang beatmap na ito ay may storyboard',
             'success-rate' => 'Rate ng Pagkakapasa',
-            'success_rate_plays' => '',
-            'user_tags' => '',
+            'success_rate_plays' => ':passes ng :count_delimited laro|:passes ng :count_delimited mga laro',
+            'user_tags' => 'Mga User Tags',
             'video' => 'Ang beatmap na ito ay may bidyo',
         ],
 
@@ -175,7 +175,7 @@ return [
             'global' => 'Pandaigdigang Ranggo',
             'supporter-link' => 'I-click <a href=":link">ito</a> para makita ang mga feature na iyong matatamasa!',
             'supporter-only' => 'Kailangan mong maging osu!supporter para mabuksan ang Ranggo sa Kaibigan at Pambansang Ranggo!',
-            'team' => '',
+            'team' => 'Team Ranking',
             'title' => 'Talaan ng Iskor',
 
             'headers' => [
@@ -197,7 +197,7 @@ return [
                 'friend' => 'Wala pa sa iyong mga kaibigan ang nakatala ng iskor sa mapang ito!',
                 'global' => 'Wala pang mga iskor. Nais mo bang maglagay dito?',
                 'loading' => 'Nilo-load ang mga iskor...',
-                'team' => '',
+                'team' => 'Wala pa sa iyong team ang nagka-iskor sa map na ito!',
                 'unranked' => 'Hindi Ranked na beatmap.',
             ],
             'score' => [
@@ -226,8 +226,8 @@ return [
             'rating-spread' => 'Pagkakalatag ng Rating',
             'nominations' => 'Mga Nominasyon',
             'playcount' => 'Bilang ng Paglaro',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Mga Paborito',
+            'no_favourites' => 'Wala pang paborito',
         ],
 
         'status' => [

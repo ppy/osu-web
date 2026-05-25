@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'моддинг',
             'playlists' => 'плейлисты',
-            'ranked-play' => '',
+            'ranked-play' => 'рейтинговая игра',
             'realtime' => 'мультиплеер',
             'show' => 'главная',
         ],

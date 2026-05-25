@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => '摸圖',
             'playlists' => '歌單',
-            'ranked-play' => '',
+            'ranked-play' => '排位模式',
             'realtime' => '多人遊戲',
             'show' => '資訊',
         ],

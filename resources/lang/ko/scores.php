@@ -16,8 +16,8 @@ return [
             'by' => '플레이어',
             'played_on' => '클라이언트 버전',
             'submitted_on' => '제출 날짜',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => '시청된 횟수',
+            'watched_count' => ':count_delimited 회|:count_delimited 회',
 
             'rank' => [
                 'country' => '국가 순위',

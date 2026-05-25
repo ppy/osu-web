@@ -50,6 +50,11 @@ return [
         'title' => '',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Vytvoriť',
         'disabled' => 'nedá sa poslať správa...',

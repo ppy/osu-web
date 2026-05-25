@@ -24,16 +24,16 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Sem mapeadores a serem seguidos.',
-        'followers' => 'subscritores de mapeamento',
-        'page_title' => 'lista de observação de mapeadores',
-        'title' => 'mapeador',
-        'to_0' => 'parar de notificar-me quando este utilizador carregar um novo beatmap',
-        'to_1' => 'notificar-me quando este utilizador carregar um novo beatmap',
+        'empty' => 'Sem criadores de mapas a serem seguidos.',
+        'followers' => 'subscritores de criação de mapas',
+        'page_title' => 'lista de observação de criadores de mapas',
+        'title' => 'criador de mapas',
+        'to_0' => 'parar de notificar-me quando este utilizador carregar um novo mapa',
+        'to_1' => 'notificar-me quando este utilizador carregar um novo mapa',
     ],
 
     'modding' => [
-        'title' => 'discussão do beatmap',
+        'title' => 'discussão do mapa',
     ],
 
     'store' => [

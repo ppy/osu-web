@@ -50,6 +50,11 @@ return [
         'title' => 'kanāls nav atrasts',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Izveidot',
         'disabled' => 'nevar nosūtīt ziņu...',

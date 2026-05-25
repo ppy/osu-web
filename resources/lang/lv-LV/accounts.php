@@ -88,8 +88,8 @@ return [
             '_' => 'piegādes opcijas',
             'beatmap_owner_change' => 'viesa grūtības līmenis',
             'beatmapset:modding' => 'ritma-karšu modifikācijas',
-            'channel_message' => 'privātās tērzētavas ziņas',
             'channel_mention' => '',
+            'channel_message' => 'privātās tērzētavas ziņas',
             'channel_team' => 'komandas tērzētavas ziņas',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'ritma-kartes izveidotājs',
             'news_post' => '',
             'push' => 'piespiestu',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

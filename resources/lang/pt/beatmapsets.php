@@ -5,18 +5,18 @@
 
 return [
     'availability' => [
-        'disabled' => 'Este beatmap não está disponível atualmente para transferência.',
-        'parts-removed' => 'Algumas porções deste beatmap foram removidas a pedido do criador ou dum titular de direitos de terceiros.',
-        'more-info' => 'Clica aqui para mais informações.',
-        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após terem sido considerados como não sendo adequados para utilização no osu!',
+        'disabled' => 'Este mapa não está disponível para transferência de momento.',
+        'parts-removed' => 'Partes deste mapa foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
+        'more-info' => 'Consulte aqui para mais informações.',
+        'rule_violation' => 'Alguns recursos incluídos neste mapa foram removidos após terem sido considerados inadequados para utilização no osu!.',
     ],
 
     'cover' => [
-        'deleted' => 'Beatmaps eliminados',
+        'deleted' => 'Mapas eliminados',
     ],
 
     'download' => [
-        'limit_exceeded' => 'Abranda, joga mais.',
+        'limit_exceeded' => 'Abrande, jogue mais.',
         'no_mirrors' => 'Nenhum servidor de transferência disponível.',
     ],
 
@@ -25,38 +25,38 @@ return [
     ],
 
     'index' => [
-        'title' => 'Listagem de beatmaps',
-        'guest_title' => 'Beatmaps',
+        'title' => 'Listagem de mapas',
+        'guest_title' => 'Mapas',
     ],
 
     'panel' => [
-        'empty' => 'sem beatmaps',
+        'empty' => 'sem mapas',
 
         'download' => [
             'all' => 'transferir',
             'video' => 'transferir com vídeo',
             'no_video' => 'transferir sem vídeo',
-            'direct' => 'abrir em osu!direct',
+            'direct' => 'abrir no osu!direct',
         ],
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => 'Os nomeadores novatos não podem nomear vários conjuntos de regras.',
-        'full_nomination_required' => 'Precisas de ser um nomeador efetivo para realizar a nomeação final dum conjunto de regras.',
-        'hybrid_requires_modes' => 'Um conjunto de beatmaps híbrido necessita que seleciones pelo menos um modo de jogo para nomear.',
-        'incorrect_mode' => 'Não tens permissão de nomear para o modo: :mode',
-        'invalid_limited_nomination' => 'Este beatmap tem nomeações inválidas e não pode ser qualificado neste estado.',
-        'invalid_ruleset' => 'Esta nomeação tem conjuntos de regras inválidos.',
-        'too_many' => 'O requisito de nomeação já foi realizado.',
-        'too_many_non_main_ruleset' => 'O requisito de nomeação para o conjunto de regras não principal já foi cumprido.',
+        'bng_limited_too_many_rulesets' => 'Os nomeadores probatórios não podem nomear múltiplos conjuntos de modos de jogo.',
+        'full_nomination_required' => 'Tem de ser um nomeador completo para realizar a nomeação final de um conjunto de modos de jogo.',
+        'hybrid_requires_modes' => 'Um mapa híbrido exige que selecione pelo menos um modo de jogo para nomear.',
+        'incorrect_mode' => 'Não tem permissão para nomear o seguinte modo: :mode',
+        'invalid_limited_nomination' => 'Este mapa tem nomeações inválidas e não pode ser qualificado neste estado.',
+        'invalid_ruleset' => 'Esta nomeação tem conjuntos de modos de jogo inválidos.',
+        'too_many' => 'O requisito de nomeação já foi cumprido.',
+        'too_many_non_main_ruleset' => 'O requisito de nomeação para o conjunto de modos de jogo não principal já foi cumprido.',
 
         'dialog' => [
-            'confirmation' => 'Tens a certeza que queres nomear este beatmap?',
-            'different_nominator_warning' => 'Qualificar este beatmaps com nominadores diferentes irá redefinir a tua posição na fila de qualificação.',
-            'header' => 'Nomear beatmap',
-            'hybrid_warning' => 'nota: poderás apenas nomear uma vez, por isso certifica-te de que estás a nomear para todos os modos de jogo que pretendes',
-            'current_main_ruleset' => 'O conjunto de regras principal está de momento: :ruleset',
-            'which_modes' => 'Nomear para quais modos?',
+            'confirmation' => 'Tem a certeza de que deseja nomear este mapa?',
+            'different_nominator_warning' => 'Qualificar este mapa com nomeadores diferentes irá redefinir a sua posição na fila de qualificação.',
+            'header' => 'Nomear mapa',
+            'hybrid_warning' => 'nota: só pode nomear uma vez, por isso certifique‑se de que está a nomear para todos os modos de jogo pretendidos',
+            'current_main_ruleset' => 'O conjunto de modos de jogo principal é de momento: :ruleset',
+            'which_modes' => 'Para que modos deseja nomear?',
         ],
     ],
 
@@ -68,27 +68,27 @@ return [
         'discussion' => 'Discussão',
 
         'admin' => [
-            'full_size_cover' => 'Ver imagem da capa em tamanho real',
-            'page' => '',
+            'full_size_cover' => 'Ver imagem de capa em tamanho completo',
+            'page' => 'Ver a página de administração',
         ],
 
         'deleted_banner' => [
-            'title' => 'Este beatmap foi apagado.',
+            'title' => 'Este mapa foi apagado.',
             'message' => '(apenas os moderadores podem ver isto)',
         ],
 
         'details' => [
             'by_artist' => 'por :artist',
-            'favourite' => 'Marcar este beatmapset como favorito',
-            'favourite_login' => 'Inicia sessão para pôr este beatmap nos favoritos',
-            'logged-out' => 'Precisas de iniciar sessão antes de transferir quaisquer beatmaps!',
-            'mapped_by' => 'mapeado por :mapper',
+            'favourite' => 'Marcar este mapa como favorito',
+            'favourite_login' => 'Inicie sessão para marcar este mapa como favorito',
+            'logged-out' => 'Tem de iniciar sessão antes de descarregar qualquer mapa!',
+            'mapped_by' => 'mapa criado por :mapper',
             'mapped_by_guest' => 'dificuldade de convidado por :mapper',
-            'unfavourite' => 'Desmarcar este beatmapset como favorito',
+            'unfavourite' => 'Remover este mapa dos favoritos',
             'updated_timeago' => 'atualizado há :timeago',
 
             'download' => [
-                '_' => 'Descarregar',
+                '_' => 'Transferir',
                 'direct' => '',
                 'no-video' => 'sem vídeo',
                 'video' => 'com vídeo',
@@ -110,11 +110,11 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Tens demasiados beatmaps como favoritos! Remove alguns antes de tentares novamente.',
+            'limit_reached' => 'Tem demasiados mapas como favoritos! Remova alguns mapas dos favoritos antes de tentar novamente.',
         ],
 
         'hype' => [
-            'action' => 'Hypeia este mapa se gostaste de jogá-lo para o ajudar a progredir ao estado <strong>Classificado</strong>.',
+            'action' => 'Hypeie este mapa se gostou de jogá-lo para o ajudar a progredir ao estado <strong>Classificado</strong>.',
 
             'current' => [
                 '_' => 'Este mapa está atualmente :status.',
@@ -127,11 +127,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Se encontrares um problema com este beatmap, desqualifica-o :link.',
+                '_' => 'Se encontrar um problema com este mapa, desqualifique-o :link.',
             ],
 
             'report' => [
-                '_' => 'Se encontrares um problema com este beatmap, denuncia-o :link para avisar a equipa.',
+                '_' => 'Se encontrar um problema com este mapa, denuncie-o :link para avisar a equipa.',
                 'button' => 'Relatar problema',
                 'link' => 'aqui',
             ],
@@ -146,23 +146,23 @@ return [
             'nominators' => 'Nomeadores',
             'nsfw' => 'Conteúdo explícito',
             'offset' => 'Desvio do online',
-            'pack_tags' => '',
+            'pack_tags' => 'Pacotes de mapas',
             'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
-            'storyboard' => 'Este beatmap contém um cenário',
+            'storyboard' => 'Este mapa contém sequências gráficas',
             'success-rate' => 'Taxa de sucesso',
-            'success_rate_plays' => '',
+            'success_rate_plays' => ':passes de :count_delimited partida|:passes de :count_delimited partidas',
             'user_tags' => 'Etiquetas do utilizador',
-            'video' => 'Este beatmap contém vídeo',
+            'video' => 'Este mapa contém um vídeo',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Este beatmap contém conteúdo explícito, ofensivo ou perturbador. Gostarias de vê-lo mesmo assim?',
+            'details' => 'Este mapa contém conteúdo explícito, ofensivo ou perturbador. Gostaria de vê-lo mesmo assim?',
             'title' => 'Conteúdo explícito',
 
             'buttons' => [
                 'disable' => 'Desativar aviso',
-                'listing' => 'Listagem de beatmaps',
+                'listing' => 'Listagem de mapas',
                 'show' => 'Mostrar',
             ],
         ],
@@ -173,16 +173,16 @@ return [
             'error' => 'Falha ao carregar a classificação',
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
-            'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
-            'supporter-only' => 'Precisas de ser um osu!supporter para acederes às classificações de amigos e países!',
+            'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obtém!',
+            'supporter-only' => 'Precisa de ser um osu!supporter para aceder às classificações de amigos e países!',
             'team' => 'Classificação da equipa',
             'title' => 'Tabela de pontuações',
 
             'headers' => [
                 'accuracy' => 'Precisão',
-                'combo' => 'Combo máximo',
+                'combo' => 'Combinação máxima',
                 'miss' => 'Erros',
-                'mods' => 'Mods',
+                'mods' => 'Modificações',
                 'pin' => 'Afixar',
                 'player' => 'Jogador',
                 'pp' => '',
@@ -193,19 +193,19 @@ return [
             ],
 
             'no_scores' => [
-                'country' => 'Ainda ninguém do teu país estabeleceu uma pontuação neste mapa!',
-                'friend' => 'Ainda nenhum dos teus amigos estabeleceu uma pontuação neste mapa!',
-                'global' => 'Ainda sem pontuações. Talvez deverias estabelecer algumas?',
+                'country' => 'Ninguém do seu país definiu uma pontuação neste mapa ainda!',
+                'friend' => 'Nenhum dos seus amigos definiu uma pontuação neste mapa ainda!',
+                'global' => 'Ainda não há pontuações. Talvez deva tentar definir algumas?',
                 'loading' => 'A carregar pontuações...',
-                'team' => 'Ainda ninguém da tua equipa estabeleceu uma pontuação neste mapa!',
-                'unranked' => 'Beatmap sem classificação.',
+                'team' => 'Ninguém da sua equipa definiu uma pontuação neste mapa ainda!',
+                'unranked' => 'Mapa sem classificação.',
             ],
             'score' => [
                 'first' => 'Na liderança',
-                'own' => 'A tua melhor',
+                'own' => 'O seu recorde',
             ],
             'supporter_link' => [
-                '_' => 'Clica :here para veres todas as funcionalidades catitas que recebes!',
+                '_' => 'Clique :here para ver todas as funcionalidades catitas que recebe!',
                 'here' => 'aqui',
             ],
         ],
@@ -213,21 +213,21 @@ return [
         'stats' => [
             'cs' => 'Tamanho do círculo',
             'cs-mania' => 'Quantidade de teclas',
-            'drain' => 'HP drenado',
+            'drain' => 'Dreno de HP',
             'accuracy' => 'Precisão',
             'ar' => 'Taxa de aproximação',
             'stars' => 'Dificuldade estrela',
-            'total_length' => 'Duração',
+            'total_length' => 'Duração (Duração de drenagem: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
             'count_sliders' => 'Número de deslizadores',
-            'offset' => 'Desvio do online :offset',
+            'offset' => 'Desvio do online: :offset',
             'user-rating' => 'Classificação de utilizador',
-            'rating-spread' => 'Avaliação dispersada',
+            'rating-spread' => 'Classificação dispersada',
             'nominations' => 'Nomeações',
             'playcount' => 'Número de partidas',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Favoritos',
+            'no_favourites' => 'Ainda não há favoritos',
         ],
 
         'status' => [

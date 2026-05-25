@@ -13,28 +13,28 @@ return [
         ],
 
         'title' => [
-            '_' => 'أخبار :info',
+            '_' => 'أخبار',
             'info' => 'المقدمة',
         ],
     ],
 
     'series' => [
         'beatmap_spotlights' => '',
-        'community_contests' => '',
-        'community_tournaments' => '',
+        'community_contests' => 'مسابقات المجتمع',
+        'community_tournaments' => 'بطولات المجتمع',
         'fanart_contests' => '',
         'featured_artists' => '',
         'game_updates' => 'تحديثات العميل والموقع الإلكتروني',
         'mappers_guild' => '',
         'monthly_beatmapping_contest' => '',
-        'merch_runs' => '',
+        'merch_runs' => 'منتجات osu!',
         'miscellaneous' => 'إعلانات متنوعة',
         'official_contests' => 'المسابقات الرسمية',
         'offline_events' => 'الأحداث غير المتصلة بالإنترنت',
         'online_events' => 'الأحداث عبر الإنترنت',
         'project_loved' => 'مشروع Loved',
-        'ranking_system_updates' => '',
-        'world_cups' => '',
+        'ranking_system_updates' => 'تحديثات نظام التصنيف',
+        'world_cups' => 'كأس العالم لـ osu!',
     ],
 
     'show' => [
@@ -46,7 +46,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'أخبار :info',
+            '_' => 'أخبار',
             'info' => 'نشر',
         ],
     ],

@@ -88,8 +88,8 @@ return [
             '_' => 'bildirim seçenekleri',
             'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
+            'channel_mention' => 'sohbet etiketlenmesi',
             'channel_message' => 'özel sohbet mesajları',
-            'channel_mention' => '',
             'channel_team' => 'takım sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'beatmap mapper',
             'news_post' => 'haber paylaşımları',
             'push' => 'anlık',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

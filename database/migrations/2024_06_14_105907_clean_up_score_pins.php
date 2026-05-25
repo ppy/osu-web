@@ -11,11 +11,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement('ALTER TABLE score_pins DROP id, DROP score_type, DROP new_score_id');
-        DB::statement('ALTER TABLE score_pins ADD PRIMARY KEY (score_id)');
         DB::statement('DROP INDEX score_id ON score_pins');
         DB::statement('DROP INDEX score_pins_user_id_score_type_score_id_unique ON score_pins');
         DB::statement('DROP INDEX score_pins_user_id_new_score_id_index ON score_pins');
+        DB::statement('ALTER TABLE score_pins DROP id, DROP score_type, DROP new_score_id');
+        DB::statement('ALTER TABLE score_pins ADD PRIMARY KEY (score_id)');
         DB::statement('CREATE INDEX user_id ON score_pins (user_id)');
     }
 

@@ -12,6 +12,11 @@ use App\Transformers\UserCompactTransformer;
 
 class UserSearch extends RecordSearch
 {
+    private const BOOST_GROUPS = [
+        2 => ['alumni', 'loved', 'beatmap_spotlights', 'tournament_staff'],
+        5 => ['ppy', 'gmt', 'nat', 'bng', 'bng_limited', 'dev', 'support', 'featured_artist'],
+    ];
+
     public function __construct(?UserSearchParams $params = null)
     {
         parent::__construct(
@@ -31,17 +36,26 @@ class UserSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $lowercase_stick = [
+        static $lowercaseStick = [
             'analyzer' => 'username_lower',
             'type' => 'most_fields',
             'fields' => ['username', 'username._*'],
         ];
 
-        static $whitespace_stick = [
+        static $whitespaceStick = [
             'analyzer' => 'whitespace',
             'type' => 'most_fields',
             'fields' => ['username', 'username._*'],
         ];
+
+        static $boostGroups;
+
+        if (!isset($boostGroups)) {
+            $allGroupsByIdentifier = app('groups')->allByIdentifier();
+            foreach (self::BOOST_GROUPS as $boost => $identifiers) {
+                $boostGroups[$boost] = array_reject_null(array_map(fn ($identifier) => ($allGroupsByIdentifier[$identifier] ?? null)?->getKey(), $identifiers));
+            }
+        }
 
         $query = (new BoolQuery())
             ->mustNot(['terms' => ['_id' => $this->params->blockedUserIds()]])
@@ -50,13 +64,18 @@ class UserSearch extends RecordSearch
             ->filter(['term' => ['user_type' => 0]]);
 
         if ($this->params->queryString !== null) {
-            $query->shouldMatch(1)
+            $query->must((new BoolQuery())->shouldMatch(1)
                 ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 5]]])
+                ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 10]]])
                 ->should(['match' => ['previous_usernames' => ['query' => $this->params->queryString]]])
-                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
-                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
-                ->should(['match_phrase' => ['username._slop' => $this->params->queryString]]);
+                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercaseStick)])
+                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespaceStick)])
+                ->should(['match_phrase' => ['username._slop' => $this->params->queryString]]));
+
+            foreach ($boostGroups as $boost => $groupIds) {
+                $query->should(['terms' => ['groups' => $groupIds, 'boost' => $boost]]);
+            }
+            $query->should(['range' => ['user_lastvisit' => ['gte' => 'now-30d/d', 'boost' => 1.5]]]);
         }
 
         if ($this->params->recentOnly) {

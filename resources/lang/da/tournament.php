@@ -28,7 +28,7 @@ return [
         'info_page' => 'Informationsside',
         'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!',
         'not_yet_entered' => 'Du er ikke tilmeldt denne turnering.',
-        'rank_too_low' => 'Beklager, du opfylder ikke rang kravene til denne turnering!',
+        'rank_too_low' => 'Beklager, du opfylder ikke rangkravene til denne turnering!',
         'registration_ends' => 'Tilmelding lukker på :date',
 
         'button' => [

@@ -10,14 +10,14 @@ return [
     'deleted_count' => ':count_delimited eliminou o comentário|:count_delimited eliminou os comentários',
     'edited' => 'editado há :timeago por :user',
     'pinned' => 'afixado',
-    'empty' => 'Ainda sem comentários.',
-    'empty_other' => 'Ainda não existem comentários.',
+    'empty' => 'Ainda não há comentários.',
+    'empty_other' => 'Ainda não há outros comentários.',
     'load_replies' => 'carregar respostas',
     'replies_count' => ':count_delimited resposta|:count_delimited respostas',
     'title' => 'Comentários',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmap',
+        'beatmapset' => 'Mapa',
         'build' => 'Registo de alterações',
         'news_post' => 'Notícias',
         '_deleted' => 'Item eliminado',
@@ -25,7 +25,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Prime enter para :action. Usa shift+enter para inserir uma nova linha.',
+            '_' => 'Prima Enter para :action. Use Shift+Enter para inserir uma nova linha.',
             'edit' => 'guardar',
             'new' => 'publicar',
             'reply' => 'responder',
@@ -33,14 +33,14 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Inicia sessão para comentar',
-        'reply' => 'Inicia sessão para responder',
+        'new' => 'Inicie sessão para comentar',
+        'reply' => 'Inicie sessão para responder',
     ],
 
     'index' => [
         'nav_comments' => 'comentários',
         'nav_title' => 'listagem',
-        'no_comments' => 'sem comentários',
+        'no_comments' => 'nenhum comentário encontrado...',
     ],
 
     'ogp' => [
@@ -48,9 +48,9 @@ return [
     ],
 
     'placeholder' => [
-        'edit' => 'Edita o comentário aqui',
-        'new' => 'Escreve o novo comentário aqui',
-        'reply' => 'Escreve a tua resposta aqui',
+        'edit' => 'Edite o comentário aqui',
+        'new' => 'Escreva o novo comentário aqui',
+        'reply' => 'Escreva a sua resposta aqui',
     ],
 
     'show' => [

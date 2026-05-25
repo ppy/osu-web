@@ -322,7 +322,7 @@ return [
         'novelty' => 'Novinka',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronická',
-        'metal' => 'Metál',
+        'metal' => 'Metal',
         'classical' => 'Klasická Hudba',
         'folk' => 'Folk',
         'jazz' => 'Jazz',

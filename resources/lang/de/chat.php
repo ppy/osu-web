@@ -50,6 +50,11 @@ return [
         'title' => 'Channel nicht gefunden',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Erstellen',
         'disabled' => 'Nachricht konnte nicht gesendet werden...',

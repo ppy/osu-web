@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited 個回覆已被隱藏。｜:count_delimited 個回覆已被隱藏。',
 
     'authorizations' => [
         'update' => [

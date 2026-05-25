@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Slettede innlegg',
             'total_posts' => 'Totalt antall innlegg',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'Prioritering: +:count',

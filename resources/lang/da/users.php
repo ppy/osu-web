@@ -206,12 +206,12 @@ return [
         'plays_with' => 'Spiller med :devices',
 
         'comments_count' => [
-            '_' => 'Slået op :link',
+            '_' => ':link opslået',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
         ],
         'cover' => [
-            'to_0' => 'Skjul omslag',
-            'to_1' => 'Vis omslag',
+            'to_0' => 'Skjul titelbillede',
+            'to_1' => 'Vis titelbillede',
         ],
         'daily_challenge' => [
             'daily' => 'Daglig Streak',
@@ -232,17 +232,17 @@ return [
         ],
         'edit' => [
             'cover' => [
-                'button' => 'Skift Coverbillede',
+                'button' => 'Skift Titelbillede',
                 'defaults_info' => 'Flere muligheder for coverbillede kommer snart',
-                'holdover_remove_confirm' => "Det tidligere valgte cover er ikke tilgængeligt længere. Du kan ikke ændre tilbage efter du ændrer til et nyt. Fortsæt?",
-                'title' => 'Cover',
+                'holdover_remove_confirm' => "Det tidligere valgte titelbillede er ikke tilgængeligt længere. Du kan ikke ændre tilbage, efter du ændrer til et nyt. Fortsæt?",
+                'title' => 'Titelbillede',
 
                 'upload' => [
                     'broken_file' => 'Kunne ikke uploade billedet. Kontroller det uploadede billede og prøv igen.',
                     'button' => 'Upload billede',
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
-                    'size_info' => 'Coverbilledet burde være 2400x620',
+                    'size_info' => 'Titelbilledet burde være 2000x500',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
 
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'se flere opslag',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Rangeret Spil Kampe',
             ],
             'recent_activity' => [
                 'title' => 'Seneste',
@@ -458,7 +458,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silence',
-                        'tournament_ban' => 'Turneringsforbud',
+                        'tournament_ban' => 'Turneringskarantæne',
                         'note' => 'Noter',
                     ],
                 ],
@@ -502,7 +502,7 @@ return [
         ],
         'rank' => [
             'country' => 'Lande Rang for :mode',
-            'country_simple' => 'Lande Rang',
+            'country_simple' => 'Landsrang',
             'global' => 'Global rang for :mode',
             'global_simple' => 'Global Rang',
             'highest' => 'Højeste rang :rank på :date',

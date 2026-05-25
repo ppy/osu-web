@@ -88,8 +88,8 @@ return [
             '_' => 'opcions d\'entrega',
             'beatmap_owner_change' => 'dificultat de convidat',
             'beatmapset:modding' => 'moding de mapes',
+            'channel_mention' => 'menció al xat',
             'channel_message' => 'missatges de xat privats',
-            'channel_mention' => '',
             'channel_team' => 'missatges de xat privats',
             'comment_new' => 'comentaris nous',
             'forum_topic_reply' => 'resposta del tema',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'edició de mapes',
             'news_post' => 'publicacions noves',
             'push' => 'emergent',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

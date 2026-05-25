@@ -5,35 +5,35 @@
 
 return [
     'load_failed' => 'Falha ao carregar os dados.',
-    'missing_route' => 'Hiperligação inválida ou método de pedido incorreto.',
-    'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
-    'param_too_large' => '',
-    'supporter_only' => 'Tens de ser um apoiante para utilizar esta funcionalidade.',
+    'missing_route' => 'URL inválido ou método de pedido incorreto.',
+    'no_restricted_access' => 'Não pode realizar esta ação enquanto a sua conta estiver em estado restrito.',
+    'param_too_large' => 'O parâmetro :name tem um máximo de :count_delimited artigo|O parâmetro :name tem um máximo de :count_delimited artigos',
+    'supporter_only' => 'Tem de ser um osu!supporter para usar esta funcionalidade.',
     'unknown' => 'Ocorreu um erro desconhecido.',
 
     'codes' => [
-        'http-401' => 'Inicia sessão para proceder.',
+        'http-401' => 'Por favor, inicie a sessão para proceder.',
         'http-403' => 'Acesso negado.',
         'http-404' => 'Não encontrado.',
-        'http-429' => 'Demasiadas tentativas. Tenta novamente mais tarde.',
+        'http-429' => 'Demasiadas tentativas. Tente novamente mais tarde.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ocorreu um erro. Tenta recarregar a página.',
+            'generic' => 'Ocorreu um erro. Tente recarregar a página.',
         ],
     ],
     'checkout' => [
-        'generic' => 'Ocorreu um erro ao preparar o teu pagamento.',
+        'generic' => 'Ocorreu um erro ao preparar o seu pagamento.',
     ],
     'scores' => [
-        'invalid_id' => 'Pontuação ID inválida.',
+        'invalid_id' => 'ID de pontuação inválida.',
     ],
     'search' => [
-        'default' => 'Não foi possível obter nenhuns resultados, tenta outra vez mais tarde.',
-        'invalid_cursor_exception' => 'Parâmetro do cursor inválido.',
-        'operation_timeout_exception' => 'De momento, a pesquisa está mais ocupada que o habitual, tenta outra vez mais tarde.',
+        'default' => 'Não foi possível obter resultados, tente novamente mais tarde.',
+        'invalid_cursor_exception' => 'Foi especificado um parâmetro de cursor inválido.',
+        'operation_timeout_exception' => 'A pesquisa está atualmente mais ocupada do que o habitual, tente novamente mais tarde.',
     ],
     'user_report' => [
-        'recently_reported' => "Já relataste isto recentemente.",
+        'recently_reported' => "Já reportou isto recentemente.",
     ],
 ];

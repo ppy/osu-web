@@ -88,8 +88,8 @@ return [
             '_' => 'types d\'alertes',
             'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'modding de beatmap',
+            'channel_mention' => 'mentions du chat',
             'channel_message' => 'messages privés',
-            'channel_mention' => '',
             'channel_team' => 'messages d\'équipe',
             'comment_new' => 'nouveaux commentaires',
             'forum_topic_reply' => 'réponse à un sujet',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'créateur de beatmap',
             'news_post' => 'articles d\'actualité',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited balasan disembunyikan.|:count_delimited balasan disembunyikan.',
 
     'authorizations' => [
         'update' => [

@@ -24,7 +24,7 @@ return [
         'empty_result' => 'Không có kết quả!',
         'keyword_required' => 'Cần ít nhất một từ khóa tìm kiếm',
         'placeholder' => 'nhập để tìm kiếm',
-        'title' => 'Tìm Kiếm',
+        'title' => 'tìm kiếm',
 
         'artist_track' => [
             'more_simple' => 'Hiển thị thêm bài của nghệ sĩ nổi bật theo kết quả tìm kiếm',

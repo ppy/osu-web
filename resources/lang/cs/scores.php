@@ -16,8 +16,8 @@ return [
             'by' => 'Zahrál',
             'played_on' => 'Odehráno na',
             'submitted_on' => 'Nahráno',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Zhlédnuto',
+            'watched_count' => ':count_delimitedkrát|:count_delimitedkrát|:count_delimitedkrát',
 
             'rank' => [
                 'country' => 'Státní žebříčky',

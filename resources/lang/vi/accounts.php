@@ -80,7 +80,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
         'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
         'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
-        'news_post' => 'Nhận thông báo về bài đăng mới',
+        'news_post' => 'nhận thông báo về bài đăng mới',
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề bạn tạo trong forum',
 
@@ -88,15 +88,27 @@ return [
             '_' => 'phương thức giao hàng',
             'beatmap_owner_change' => 'độ khó khách mời',
             'beatmapset:modding' => 'sửa đổi beatmap',
+            'channel_mention' => 'nhắc tên trong chat',
             'channel_message' => 'tin nhắn riêng tư',
-            'channel_mention' => '',
             'channel_team' => 'tin nhắn đội',
             'comment_new' => 'bình luận mới',
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
             'mapping' => 'người tạo beatmap',
-            'news_post' => 'Bài đăng mới',
+            'news_post' => 'bài đăng mới',
             'push' => 'đẩy',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -154,14 +166,14 @@ return [
 
     'user_totp' => [
         'title' => 'Ứng dụng xác thực',
-        'usage_note' => 'Xác thực bằng ứng dụng xác thực thay cho email. Email vẫn sẽ được sử dụng dự phòng',
+        'usage_note' => 'Xác thực bằng ứng dụng xác thực thay cho email. Email vẫn sẽ được sử dụng dự phòng.',
 
         'button' => [
             'remove' => 'Loại bỏ',
             'setup' => 'Thêm ứng dụng xác thực',
         ],
         'status' => [
-            'label' => 'Trạng thái',
+            'label' => 'trạng thái',
             'not_set' => 'Chưa được thiết lập',
             'set' => 'Đã thiết lập',
         ],

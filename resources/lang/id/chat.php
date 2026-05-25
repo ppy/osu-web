@@ -50,6 +50,11 @@ return [
         'title' => 'kanal percakapan tidak ditemukan',
     ],
 
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
         'create' => 'Buat',
         'disabled' => 'pesan tidak bisa dikirim...',

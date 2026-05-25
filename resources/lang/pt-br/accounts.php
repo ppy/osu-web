@@ -88,8 +88,8 @@ return [
             '_' => 'opções de entrega',
             'beatmap_owner_change' => 'dificuldade do convidado',
             'beatmapset:modding' => 'modding em beatmap',
+            'channel_mention' => 'menções no chat',
             'channel_message' => 'mensagens privadas',
-            'channel_mention' => '',
             'channel_team' => 'mensagens do bate-papo do time',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
@@ -97,6 +97,18 @@ return [
             'mapping' => 'mapper do beatmap',
             'news_post' => 'novos posts',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 

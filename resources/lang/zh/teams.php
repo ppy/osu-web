@@ -161,7 +161,7 @@ return [
             'first_places' => '第一名',
             'leader' => '队长',
             'rank' => '排名',
-            'ranked_beatmapsets' => '已上架谱面',
+            'ranked_beatmapsets' => '已上架（Ranked）谱面',
         ],
     ],
 
