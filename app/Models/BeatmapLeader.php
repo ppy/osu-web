@@ -25,6 +25,11 @@ class BeatmapLeader extends Model
 
     protected $primaryKey = 'score_id';
 
+    public function scopeDefault(Builder $query): void
+    {
+        $query->whereHas('beatmap')->whereHas('score');
+    }
+
     public function scopeRuleset(Builder $query, string $ruleset): void
     {
         $query->where('ruleset_id', '=', Beatmap::modeInt($ruleset));
