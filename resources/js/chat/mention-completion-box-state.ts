@@ -28,21 +28,18 @@ export default class MentionCompletionBoxState {
   private newCursorPosition?: number;
 
   @computed
+  get isFetchingCurrent() {
+    return this.fetching.has(this.query);
+  }
+
+  @computed
   get users() {
     if (this.query.length >= maxSearchLength) {
       return [];
     }
 
-    let search = this.query;
-    // prevent returning empty result while doing api lookup
-    while (search.length > 0) {
-      const ret = this.cache[search];
-
-      if (ret == null) {
-        search = search.slice(0, -1);
-      } else {
-        return ret;
-      }
+    if (this.query.length > 0) {
+      return this.cache[this.query];
     }
 
     const channel = this.selectedChannel;
