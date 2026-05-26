@@ -23,7 +23,7 @@ export default class MentionCompletionBoxState {
   @observable visible = false;
 
   @observable private readonly cache: Partial<Record<string, UserSearchEntry[]>> = {};
-  private readonly debouncedFetchSuggestions = debounce(() => this.fetchSuggestions());
+  private readonly debouncedFetchSuggestions = debounce(() => this.fetchSuggestions(), 300);
   @observable private readonly fetching = new Set<string>();
   private newCursorPosition?: number;
 
