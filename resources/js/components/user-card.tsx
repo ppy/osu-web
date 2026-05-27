@@ -4,6 +4,7 @@
 import BlockButton from 'components/block-button';
 import FriendButton from 'components/friend-button';
 import Reportable from 'interfaces/reportable';
+import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
@@ -12,6 +13,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { performanceRankingUrl } from 'utils/ranking';
 import { present } from 'utils/string';
 import { giftSupporterTagUrl } from 'utils/url';
 import FlagCountry from './flag-country';
@@ -32,6 +34,7 @@ export const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
   activated: boolean;
+  currentMode?: Ruleset;
   mode: ViewMode;
   modifiers?: Modifiers;
   reportable?: Reportable;
@@ -75,6 +78,10 @@ export class UserCard extends React.PureComponent<Props, State> {
   private get canMessage() {
     return !this.isSelf
       && !core.currentUserModel.blocks.has(this.user.id);
+  }
+
+  private get currentMode() {
+    return this.props.currentMode ?? 'osu';
   }
 
   private get isOnline() {
@@ -204,7 +211,11 @@ export class UserCard extends React.PureComponent<Props, State> {
       <div className='user-card__icons user-card__icons--card'>
         <a
           className='user-card__icon user-card__icon--flag'
-          href={route('rankings', { country: this.user.country_code, mode: 'osu', type: 'performance' })}
+          href={performanceRankingUrl({
+            country: this.user.country_code,
+            mode: this.currentMode,
+            rank: this.user.statistics?.country_rank,
+          })}
         >
           <FlagCountry country={this.user.country} />
         </a>
