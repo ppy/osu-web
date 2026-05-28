@@ -40,19 +40,21 @@ export class UserFilter extends React.Component<Props> {
   // TODO: add actual multi user selection.
   @computed
   private get options() {
-    const usersWithDicussions = new Map<number, UserJson>();
+    const users = new Map<number, UserJson>();
     for (const [, discussion] of this.props.store.discussions) {
-      if (discussion.message_type === 'hype') continue;
+      if (discussion.message_type === 'hype' || discussion.posts == null) continue;
 
-      const user = this.props.store.users.get(discussion.user_id);
-      if (user != null && !usersWithDicussions.has(user.id)) {
-        usersWithDicussions.set(user.id, user);
+      for (const post of discussion.posts) {
+        const user = this.props.store.users.get(post.user_id);
+        if (user != null && !users.has(user.id)) {
+          users.set(user.id, user);
+        }
       }
     }
 
     return [
       this.mapUserProperties(allUsers),
-      ...[...usersWithDicussions.values()]
+      ...[...users.values()]
         .sort(usernameSortAscending)
         .map(this.mapUserProperties),
     ];
