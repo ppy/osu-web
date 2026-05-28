@@ -11,7 +11,7 @@ import { usernameSortAscending } from 'models/user';
 import * as React from 'react';
 import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
 import { groupColour } from 'utils/css';
-import { trans } from 'utils/lang';
+import { trans, transChoice } from 'utils/lang';
 import { getInt } from 'utils/math';
 import DiscussionsState from './discussions-state';
 
@@ -72,7 +72,7 @@ export class UserFilter extends React.Component<Props> {
         return <span className='u-group-colour u-ellipsis-overflow' style={this.styleForUser(user)}>{user.username}</span>;
       }
       default:
-        return trans('beatmap_discussions.user_filter.multiple');
+        return transChoice('beatmap_discussions.user_filter.multiple', this.discussionsState.selectedUsers.length);
     }
   }
 
