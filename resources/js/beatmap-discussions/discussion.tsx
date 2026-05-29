@@ -120,7 +120,19 @@ export class Discussion extends React.Component<Props> {
       return this.replies;
     }
 
-    return [...this.visibleRepliesGenerator()];
+    const replies = [];
+    for (const reply of this.replies) {
+      if (!this.showDeleted && reply.deleted_at != null) continue;
+      // always include non-deleted system posts for the markers and state changes
+      if (reply.system) {
+        replies.push(reply);
+        continue;
+      }
+      if (!this.props.discussionsState.showOtherReplies && !this.props.discussionsState.selectedUserIds.has(reply.user_id)) continue;
+      replies.push(reply);
+    }
+
+    return replies;
   }
 
   constructor(props: Props) {
@@ -333,20 +345,5 @@ export class Discussion extends React.Component<Props> {
         </div>
       </div>
     );
-  }
-
-  private *visibleRepliesGenerator() {
-    if (this.props.discussionsState == null) {
-      yield* this.replies;
-      return;
-    }
-
-    for (const reply of this.replies) {
-      if (!this.showDeleted && reply.deleted_at != null) continue;
-      // always include non-deleted system posts for the markers and state changes
-      if (reply.system) yield reply;
-      if (!this.props.discussionsState.showOtherReplies && !this.props.discussionsState.selectedUserIds.has(reply.user_id)) continue;
-      yield reply;
-    }
   }
 }
