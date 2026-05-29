@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e95ab98aac02e2859a80e62fedf3eef",
+    "content-hash": "bd0b2150d086079bf98bb1fd1740516b",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -7708,16 +7708,16 @@
         },
         {
             "name": "shopify/shopify-api",
-            "version": "v5.9.0",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Shopify/shopify-api-php.git",
-                "reference": "0080c3ca238c91237c8c65ff182bc5a7c5ba65cf"
+                "reference": "caa2287b000a175fad03d305eaf10c1626c3a8d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Shopify/shopify-api-php/zipball/0080c3ca238c91237c8c65ff182bc5a7c5ba65cf",
-                "reference": "0080c3ca238c91237c8c65ff182bc5a7c5ba65cf",
+                "url": "https://api.github.com/repos/Shopify/shopify-api-php/zipball/caa2287b000a175fad03d305eaf10c1626c3a8d8",
+                "reference": "caa2287b000a175fad03d305eaf10c1626c3a8d8",
                 "shasum": ""
             },
             "require": {
@@ -7776,9 +7776,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Shopify/shopify-api-php/issues",
-                "source": "https://github.com/Shopify/shopify-api-php/tree/v5.9.0"
+                "source": "https://github.com/Shopify/shopify-api-php/tree/v6.1.0"
             },
-            "time": "2025-01-08T19:04:36+00:00"
+            "time": "2026-01-23T19:34:31+00:00"
         },
         {
             "name": "spatie/data-transfer-object",
