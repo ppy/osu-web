@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-discussions-toolbar {
-  --num-columns: 6;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -17,8 +16,7 @@
 
     &--filters {
       @media @desktop {
-        display: grid;
-        grid-template-columns: minmax(0, 500px) repeat(var(--num-columns), auto);
+        flex-direction: row;
       }
 
       // force the elements to stack to avoid them shifting around if they resize.

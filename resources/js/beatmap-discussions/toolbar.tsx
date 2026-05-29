@@ -34,15 +34,10 @@ export default class Toolbar extends React.Component<Props> {
   }
 
   render() {
-    // -1 because hype is not shown.
-    const numColumns = this.discussionsState.filtersForCurrentUser.length - 1;
     return (
       <>
         <div className='beatmapset-discussions-toolbar'>
-          <div
-            className='beatmapset-discussions-toolbar__group beatmapset-discussions-toolbar__group--filters'
-            style={{ '--num-columns': numColumns } as React.CSSProperties}
-          >
+          <div className='beatmapset-discussions-toolbar__group beatmapset-discussions-toolbar__group--filters'>
             <UserFilter
               discussionsState={this.discussionsState}
               store={this.store}
