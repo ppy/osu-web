@@ -37,7 +37,6 @@ export class UserFilter extends React.Component<Props> {
     return this.discussionsState.beatmapset.user_id;
   }
 
-  // TODO: add actual multi user selection.
   @computed
   private get options() {
     const users = new Map<number, UserJson>();

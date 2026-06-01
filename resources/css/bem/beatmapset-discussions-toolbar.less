@@ -27,21 +27,18 @@
 
   &__item {
     .reset-input();
+    .link-plain();
+    .default-border-radius();
     display: flex;
     align-items: center;
     gap: 5px;
+    padding: 5px 10px;
     flex: none;
+    font-size: @font-size--normal;
+    color: white;
 
-    &--link {
-      .link-plain();
-      .default-border-radius();
-      font-size: @font-size--normal;
-      color: white;
-      padding: 5px 10px;
-
-      &:hover {
-        background-color: hsl(var(--hsl-b3));
-      }
+    &:hover {
+      background-color: hsl(var(--hsl-b3));
     }
   }
 
@@ -49,9 +46,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-
-    @media @desktop {
-      display: contents;
-    }
   }
 }

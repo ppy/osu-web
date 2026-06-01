@@ -11,8 +11,6 @@ import DiscussionsState from './discussions-state';
 import TypeFilters from './type-filters';
 import { UserFilter } from './user-filter';
 
-const bn = 'beatmapset-discussions-toolbar';
-
 interface Props {
   discussionsState: DiscussionsState;
   store: BeatmapsetDiscussionsStore;
@@ -35,23 +33,21 @@ export default class Toolbar extends React.Component<Props> {
 
   render() {
     return (
-      <>
-        <div className='beatmapset-discussions-toolbar'>
-          <div className='beatmapset-discussions-toolbar__group beatmapset-discussions-toolbar__group--filters'>
-            <UserFilter
-              discussionsState={this.discussionsState}
-              store={this.store}
-            />
-            <div className={`${bn}__type-filters`}>
-              <TypeFilters discussionsState={this.discussionsState} />
-            </div>
-          </div>
-          <div className='beatmapset-discussions-toolbar__group'>
-            {this.renderUserFilterToggles()}
-            {this.renderShowDeletedToggle()}
+      <div className='beatmapset-discussions-toolbar'>
+        <div className='beatmapset-discussions-toolbar__group beatmapset-discussions-toolbar__group--filters'>
+          <UserFilter
+            discussionsState={this.discussionsState}
+            store={this.store}
+          />
+          <div className='beatmapset-discussions-toolbar__type-filters'>
+            <TypeFilters discussionsState={this.discussionsState} />
           </div>
         </div>
-      </>
+        <div className='beatmapset-discussions-toolbar__group'>
+          {this.renderUserFilterToggles()}
+          {this.renderShowDeletedToggle()}
+        </div>
+      </div>
     );
   }
 
@@ -60,7 +56,7 @@ export default class Toolbar extends React.Component<Props> {
 
     return (
       <button
-        className={`${bn}__item ${bn}__item--link`}
+        className='beatmapset-discussions-toolbar__item'
         onClick={this.toggleShowDeleted}
         type='button'
       >
@@ -80,7 +76,7 @@ export default class Toolbar extends React.Component<Props> {
     return (
       <>
         <button
-          className={`${bn}__item ${bn}__item--link`}
+          className='beatmapset-discussions-toolbar__item'
           onClick={this.toggleIncludeReplies}
           type='button'
         >
@@ -92,7 +88,7 @@ export default class Toolbar extends React.Component<Props> {
           </span>
         </button>
         <button
-          className={`${bn}__item ${bn}__item--link`}
+          className='beatmapset-discussions-toolbar__item'
           onClick={this.toggleShowOtherReplies}
           type='button'
         >
