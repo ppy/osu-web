@@ -16,6 +16,29 @@ interface Props {
   store: BeatmapsetDiscussionsStore;
 }
 
+interface OptionButtonProps {
+  checked: boolean;
+  onClick: () => void;
+  text: string;
+}
+
+function OptionButton(props: OptionButtonProps) {
+  return (
+    <button
+      className='beatmapset-discussions-toolbar__item'
+      onClick={props.onClick}
+      type='button'
+    >
+      <span>
+        <span className={props.checked ? 'fas fa-check-square' : 'far fa-square'} />
+      </span>
+      <span>
+        {props.text}
+      </span>
+    </button>
+  );
+}
+
 @observer
 export default class Toolbar extends React.Component<Props> {
   private get discussionsState() {
@@ -55,18 +78,11 @@ export default class Toolbar extends React.Component<Props> {
     if (!canModeratePosts()) return null;
 
     return (
-      <button
-        className='beatmapset-discussions-toolbar__item'
+      <OptionButton
+        checked={this.discussionsState.showDeleted}
         onClick={this.toggleShowDeleted}
-        type='button'
-      >
-        <span>
-          <span className={this.discussionsState.showDeleted ? 'fas fa-check-square' : 'far fa-square'} />
-        </span>
-        <span>
-          {trans('beatmaps.discussions.show_deleted')}
-        </span>
-      </button>
+        text={trans('beatmaps.discussions.show_deleted')}
+      />
     );
   }
 
@@ -75,30 +91,16 @@ export default class Toolbar extends React.Component<Props> {
 
     return (
       <>
-        <button
-          className='beatmapset-discussions-toolbar__item'
+        <OptionButton
+          checked={this.discussionsState.repliesIncludeSelectedUsers}
           onClick={this.toggleIncludeReplies}
-          type='button'
-        >
-          <span>
-            <span className={this.discussionsState.repliesIncludeSelectedUsers ? 'fas fa-check-square' : 'far fa-square'} />
-          </span>
-          <span>
-            {trans('beatmaps.discussions.include_replies')}
-          </span>
-        </button>
-        <button
-          className='beatmapset-discussions-toolbar__item'
+          text={trans('beatmaps.discussions.include_replies')}
+        />
+        <OptionButton
+          checked={this.discussionsState.showOtherReplies}
           onClick={this.toggleShowOtherReplies}
-          type='button'
-        >
-          <span>
-            <span className={this.discussionsState.showOtherReplies ? 'fas fa-check-square' : 'far fa-square'} />
-          </span>
-          <span>
-            {trans('beatmaps.discussions.show_other_replies')}
-          </span>
-        </button>
+          text={trans('beatmaps.discussions.show_other_replies')}
+        />
       </>
     );
   }
