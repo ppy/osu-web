@@ -133,6 +133,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => 'default game mode',
         'keyboard' => 'keyboard',
         'mouse' => 'mouse',
         'tablet' => 'tablet',
