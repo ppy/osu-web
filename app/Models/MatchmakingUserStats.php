@@ -57,6 +57,7 @@ class MatchmakingUserStats extends Model
             ->newQuery()
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
+            ->where('plays', '>', 0)
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
