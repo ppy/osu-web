@@ -3,6 +3,8 @@
 
 .counter-box {
   --counter-box-border-colour: hsla(var(--hsl-b5), 0.25);
+  --counter-box-title-font-weight: 600;
+  --counter-box-title-margin-right: 30px;
   --line-colour: initial;
 
   @top: counter-box;
@@ -45,11 +47,13 @@
   }
 
   &--beatmap-discussions {
-    margin: 5px;
-    height: var(--box-height);
+    --counter-box-title-margin-right: 0;
+    min-width: 60px; // allows up to 3 digits without resizing.
   }
 
   &--info {
+    --counter-box-title-font-weight: normal;
+    --counter-box-title-margin-right: 0;
     padding: 10px 0;
     background-color: transparent;
     border: none;
@@ -67,6 +71,7 @@
 
   &__content {
     line-height: 1;
+    min-width: 0; // prevents line from squishing in beatmapset discussions toolbar.
   }
 
   &__count {
@@ -86,18 +91,9 @@
   }
 
   &__title {
-    margin-right: 30px;
-    font-weight: 600;
+    margin-right: var(--counter-box-title-margin-right);
+    font-weight: var(--counter-box-title-font-weight);
     font-size: @font-size--small;
     white-space: nowrap;
-
-    .@{top}--beatmap-discussions & {
-      margin-right: 10px;
-    }
-
-    .@{top}--info & {
-      font-weight: normal;
-      margin-right: 0;
-    }
   }
 }
