@@ -19,6 +19,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
+use App\Models\Forum\Forum;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Notification;
@@ -884,6 +885,21 @@ class BeatmapsetTest extends TestCase
 
         $this->assertFalse($beatmapset->fresh()->isQualified());
         Bus::assertNotDispatched(CheckBeatmapsetCovers::class);
+    }
+
+    public function testUpdatingDescriptionWithLongTitle(): void
+    {
+        $artist = str_repeat('b', 80);
+        $title = str_repeat('a', 80);
+        $beatmapset = $this->beatmapsetFactory()->create([
+            'artist' => $artist,
+            'title' => $title,
+        ]);
+        $forumId = $GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id'];
+        Forum::find($forumId) ?? Forum::factory()->create(['forum_id' => $forumId]);
+        $this->assertTrue($beatmapset->updateDescription('hello', $beatmapset->user));
+
+        $this->assertSame("{$artist} - {$title}", $beatmapset->fresh()->descriptionPost->topic->topic_title);
     }
 
     protected function setUp(): void
