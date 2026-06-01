@@ -44,7 +44,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <div class="account-edit-entry__checkboxes-label">
-                    {{ osu_trans('accounts.playstyles.default_game_mode._') }}
+                    {{ osu_trans('accounts.playstyles.default_ruleset') }}
                 </div>
                 <form
                     class="account-edit-entry__checkboxes js-account-edit js-account-edit-auto-submit"
