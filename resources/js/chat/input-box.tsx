@@ -211,6 +211,7 @@ export default class InputBox extends React.Component<Props> {
       return;
     }
   };
+
   private readonly handleKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (['ArrowDown', 'ArrowUp', 'Escape', 'Enter', 'Tab'].includes(e.key)) {
       return;
