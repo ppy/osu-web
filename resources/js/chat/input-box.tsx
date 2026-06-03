@@ -19,6 +19,8 @@ import { present } from 'utils/string';
 import MentionCompletionBox from './mention-completion-box';
 import MentionCompletionBoxState from './mention-completion-box-state';
 
+const mentionCompletionBoxNavigationKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter', 'Tab'];
+
 type Props = Record<string, never>;
 
 @observer
@@ -193,10 +195,25 @@ export default class InputBox extends React.Component<Props> {
     this.mentionCompletionBoxState.refreshState();
   };
 
+  @action
   private readonly handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (this.mentionCompletionBoxState.visible && ['ArrowDown', 'ArrowUp', 'Escape', 'Enter', 'Tab'].includes(e.key)) {
+    if (this.mentionCompletionBoxState.visible && mentionCompletionBoxNavigationKeys.includes(e.key)) {
       e.preventDefault();
-      this.mentionCompletionBoxState.handleKey(e.key);
+      switch (e.key) {
+        case 'ArrowDown':
+          this.mentionCompletionBoxState.shiftSelectedIndex(1);
+          break;
+        case 'ArrowUp':
+          this.mentionCompletionBoxState.shiftSelectedIndex(-1);
+          break;
+        case 'Escape':
+          this.mentionCompletionBoxState.visible = false;
+          break;
+        case 'Enter':
+        case 'Tab':
+          this.mentionCompletionBoxState.insertSelectedUsername();
+      }
+
       return;
     }
 
@@ -213,7 +230,8 @@ export default class InputBox extends React.Component<Props> {
   };
 
   private readonly handleKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (['ArrowDown', 'ArrowUp', 'Escape', 'Enter', 'Tab'].includes(e.key)) {
+    if (mentionCompletionBoxNavigationKeys.includes(e.key)) {
+      // handled in handleKeyDown
       return;
     }
 

@@ -78,19 +78,9 @@ export default class MentionCompletionBoxState {
   }
 
   @action
-  readonly handleKey = (key: string) => {
-    switch (key) {
-      case 'ArrowDown':
-        return void this.shiftSelectedIndex(1);
-      case 'ArrowUp':
-        return void this.shiftSelectedIndex(-1);
-      case 'Escape':
-        return void (this.visible = false);
-      case 'Enter':
-      case 'Tab':
-        return void this.insertUsername(this.users?.[this.selectedIndex]);
-    }
-  };
+  insertSelectedUsername() {
+    this.insertUsername(this.users?.[this.selectedIndex]);
+  }
 
   @action
   insertUsername(user?: UserSearchEntry) {
@@ -142,6 +132,15 @@ export default class MentionCompletionBoxState {
   }
 
   @action
+  shiftSelectedIndex(direction: number) {
+    const size = this.users?.length ?? 0;
+
+    this.selectedIndex = size === 0
+      ? 0
+      : modulo(this.selectedIndex + direction, size);
+  }
+
+  @action
   private readonly fetchSuggestions = () => {
     const query = this.query;
 
@@ -160,15 +159,6 @@ export default class MentionCompletionBoxState {
         this.fetching.delete(query);
       }));
   };
-
-  @action
-  private shiftSelectedIndex(direction: number) {
-    const size = this.users?.length ?? 0;
-
-    this.selectedIndex = size === 0
-      ? 0
-      : modulo(this.selectedIndex + direction, size);
-  }
 
   private updateQuery(newQuery: string) {
     if (this.query !== newQuery) {
