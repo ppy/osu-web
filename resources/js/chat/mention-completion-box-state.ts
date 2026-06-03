@@ -3,7 +3,7 @@
 
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction, untracked } from 'mobx';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { modulo } from 'utils/math';
@@ -46,7 +46,9 @@ export default class MentionCompletionBoxState {
     if (channel == null) return [];
 
     const users = new Map<number, UserSearchEntry>();
-    for (const message of channel.messages.slice().reverse()) {
+    const messages = untracked(() => channel.messages);
+    for (let i = messages.length - 1; i >= 0; i--) {
+      const message = messages[i];
       if (!users.has(message.senderId)) {
         const user = message.sender;
         users.set(message.senderId, {
