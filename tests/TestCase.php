@@ -316,26 +316,19 @@ class TestCase extends BaseTestCase
 
     protected function invokeMethod($obj, string $name, array $params = [])
     {
-        $method = new ReflectionMethod($obj, $name);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($obj, $params);
+        return new ReflectionMethod($obj, $name)->invokeArgs($obj, $params);
     }
 
     protected function invokeProperty($obj, string $name)
     {
-        $property = new ReflectionProperty($obj, $name);
-        $property->setAccessible(true);
-
-        return $property->getValue($obj);
+        return new ReflectionProperty($obj, $name)->getValue($obj);
     }
 
     protected function invokeSetProperty($obj, string $name, $value)
     {
         $property = new ReflectionProperty($obj, $name);
-        $property->setAccessible(true);
 
-        $property->setValue($obj, $value);
+        new ReflectionProperty($obj, $name)->setValue($obj, $value);
     }
 
     protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
