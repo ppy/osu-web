@@ -154,12 +154,13 @@ class Review
                 ];
 
             case 'paragraph':
-                if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
+                $message = app('chat-filters')->filter($message);
+                if (mb_strlen($message) > static::BLOCK_TEXT_LENGTH_LIMIT) {
                     throw new InvariantException(osu_trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
                 }
                 return [
                     'type' => 'paragraph',
-                    'text' => $block['text'],
+                    'text' => $message,
                 ];
 
             default:

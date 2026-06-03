@@ -125,7 +125,7 @@ class Comment extends Model implements Traits\ReportableInterface
     {
         $this->resetMemoized();
 
-        return $this->attributes['message'] = trim(unzalgo($value));
+        return $this->attributes['message'] = app('chat-filters')->filter(trim(unzalgo($value)));
     }
 
     public function votes()
