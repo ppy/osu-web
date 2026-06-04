@@ -16,12 +16,17 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { isModalShowing } from 'utils/modal-helper';
 import { present } from 'utils/string';
+import MentionCompletionBox from './mention-completion-box';
+import MentionCompletionBoxState from './mention-completion-box-state';
+
+const mentionCompletionBoxNavigationKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter', 'Tab'];
 
 type Props = Record<string, never>;
 
 @observer
 export default class InputBox extends React.Component<Props> {
   private readonly inputBoxRef = React.createRef<HTMLTextAreaElement>();
+  private readonly mentionCompletionBoxState;
 
   get allowMultiLine() {
     return this.isAnnouncement;
@@ -48,6 +53,8 @@ export default class InputBox extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
+    this.mentionCompletionBoxState = new MentionCompletionBoxState(this.inputBoxRef);
+
     makeObservable(this);
 
     disposeOnUnmount(
@@ -62,8 +69,11 @@ export default class InputBox extends React.Component<Props> {
     disposeOnUnmount(
       this,
       reaction(() => this.currentChannel, (newValue, oldValue) => {
-        if (newValue != null && newValue !== oldValue && core.windowSize.isDesktop) {
-          this.focusInput();
+        if (newValue != null && newValue !== oldValue) {
+          this.mentionCompletionBoxState.visible = false;
+          if (core.windowSize.isDesktop) {
+            this.focusInput();
+          }
         }
       }),
     );
@@ -73,19 +83,12 @@ export default class InputBox extends React.Component<Props> {
     this.startSendMessage();
   };
 
-  checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter') {
-      if (e.shiftKey && this.allowMultiLine) return;
-
-      e.preventDefault();
-      if (!this.sendDisabled) {
-        this.startSendMessage();
-      }
-    }
-  };
-
   componentDidMount() {
     this.focusInput();
+  }
+
+  componentDidUpdate() {
+    this.mentionCompletionBoxState.setCursorPosition();
   }
 
   focusInput() {
@@ -109,19 +112,24 @@ export default class InputBox extends React.Component<Props> {
 
     return (
       <div className='chat-input'>
-        <TextareaAutosize
-          autoComplete='off'
-          className={classWithModifiers('chat-input__box', { disabled: this.inputDisabled })}
-          disabled={this.inputDisabled}
-          innerRef={this.inputBoxRef}
-          maxLength={channel?.messageLengthLimit ?? maxMessageLength}
-          maxRows={channel?.type === 'ANNOUNCE' ? 10 : 3}
-          name='textbox'
-          onChange={this.handleChange}
-          onKeyDown={this.checkIfEnterPressed}
-          placeholder={this.inputDisabled ? trans('chat.input.disabled') : trans('chat.input.placeholder')}
-          value={channel?.inputText}
-        />
+        <div className='chat-input__box-container'>
+          <MentionCompletionBox state={this.mentionCompletionBoxState} />
+          <TextareaAutosize
+            autoComplete='off'
+            className={classWithModifiers('chat-input__box', { disabled: this.inputDisabled })}
+            disabled={this.inputDisabled}
+            innerRef={this.inputBoxRef}
+            maxLength={channel?.messageLengthLimit ?? maxMessageLength}
+            maxRows={channel?.type === 'ANNOUNCE' ? 10 : 3}
+            name='textbox'
+            onChange={this.handleChange}
+            onClick={this.handleClick}
+            onKeyDown={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
+            placeholder={this.inputDisabled ? trans('chat.input.disabled') : trans('chat.input.placeholder')}
+            value={channel?.inputText}
+          />
+        </div>
 
         <BigButton
           disabled={this.sendDisabled}
@@ -182,6 +190,53 @@ export default class InputBox extends React.Component<Props> {
 
     dispatch(new ChatMessageSendAction(message));
   }
+
+  private readonly handleClick = () => {
+    this.mentionCompletionBoxState.refreshState();
+  };
+
+  @action
+  private readonly handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (this.mentionCompletionBoxState.visible && mentionCompletionBoxNavigationKeys.includes(e.key)) {
+      e.preventDefault();
+      switch (e.key) {
+        case 'ArrowDown':
+          this.mentionCompletionBoxState.shiftSelectedIndex(1);
+          break;
+        case 'ArrowUp':
+          this.mentionCompletionBoxState.shiftSelectedIndex(-1);
+          break;
+        case 'Escape':
+          this.mentionCompletionBoxState.visible = false;
+          break;
+        case 'Enter':
+        case 'Tab':
+          this.mentionCompletionBoxState.insertSelectedUsername();
+      }
+
+      return;
+    }
+
+    if (e.key === 'Enter') {
+      if (e.shiftKey && this.allowMultiLine) return;
+
+      e.preventDefault();
+      if (!this.sendDisabled) {
+        this.startSendMessage();
+      }
+
+      return;
+    }
+  };
+
+  private readonly handleKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (mentionCompletionBoxNavigationKeys.includes(e.key)) {
+      // handled in handleKeyDown
+      return;
+    }
+
+    this.mentionCompletionBoxState.refreshState();
+  };
 
   @action
   private readonly startSendMessage = () => {
