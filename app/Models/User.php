@@ -1974,7 +1974,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             $newPostsCount = db_unsigned_increment('user_posts', $postsChangeCount);
         } else {
-            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
+            $newPostsCount = $this
+                ->forumPosts()
+                ->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))
+                ->whereHas('topic', fn ($q) => $q->withoutTrashed())
+                ->count();
         }
 
         $lastPost = $this->forumPosts()->select('post_time')->last();
