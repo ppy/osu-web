@@ -40,6 +40,39 @@
                 </form>
             </div>
         </div>
+
+        <div class="account-edit__input-group">
+            <div class="account-edit-entry account-edit-entry--no-label">
+                <div class="account-edit-entry__checkboxes-label">
+                    {{ osu_trans('accounts.playstyles.default_ruleset') }}
+                </div>
+                <form
+                    class="account-edit-entry__checkboxes js-account-edit js-account-edit-auto-submit"
+                    data-account-edit-type="radio"
+                    data-url="{{ route('account.options') }}"
+                    data-field="user[playmode]"
+                >
+                    @foreach (App\Models\Beatmap::MODES as $ruleset => $_rulesetId)
+                        <label class="account-edit-entry__checkbox">
+                            @include('objects._switch', ['locals' => [
+                                'checked' => $ruleset === default_mode(),
+                                'name' => 'user[playmode]',
+                                'type' => 'radio',
+                                'value' => $ruleset,
+                            ]])
+
+                            <span class="account-edit-entry__checkbox-label">
+                                {{ osu_trans("beatmaps.mode.{$ruleset}") }}
+                            </span>
+                        </label>
+                    @endforeach
+
+                    <div class="account-edit-entry__checkbox-status">
+                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 </div>
