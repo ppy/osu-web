@@ -233,6 +233,8 @@ class TeamsController extends Controller
             'flag:file',
             'header:file',
             'is_open:bool',
+            'name',
+            'short_name',
             'url',
         ]);
 
