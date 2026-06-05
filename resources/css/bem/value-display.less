@@ -9,6 +9,7 @@
   --value-color: hsl(var(--hsl-c1));
   --value-font-size-desktop: @font-size--title-small-4;
   --value-font-size: @font-size--title;
+  --value-margin-top: 0;
   display: flex;
   flex-direction: column;
   min-width: 60px;
@@ -43,6 +44,7 @@
     --value-color: hsl(var(--hsl-c2));
     --value-font-size-desktop: @font-size--new-header-title;
     --value-font-size: @font-size--large;
+    --value-margin-top: -0.1em;
 
     @media @desktop {
       flex: none;
@@ -85,5 +87,6 @@
     color: var(--value-color);
     font-size: var(--value-font-size);
     font-weight: 300;
+    margin-top: var(--value-margin-top);
   }
 }
