@@ -54,7 +54,7 @@
         @foreach ($scores as $index => $score)
             @php
                 $rank = $index === 0
-                    ? ($firstItem === 1 ? $firstItem : $score->rank())
+                    ? ($firstItem === 1 ? $firstItem : $score->getRank())
                     : ($score->rating === $prevRating ? $prevRank : $index + $firstItem);
                 $prevRank = $rank;
                 $prevRating = $score->rating;
