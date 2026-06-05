@@ -74,9 +74,9 @@ class MatchmakingUserStats extends Model
         return $this->elo_data['approximate_posterior']['sig'] >= static::MIN_SIG_PROVISIONAL;
     }
 
-    public function rank(): int
+    public function getRank(): int
     {
-        return 1 + static::default()
+        return $this->attributes['rank'] ?? 1 + static::default()
             ->where('rating', '>', $this->rating)
             ->where('pool_id', $this->pool_id)
             ->count();
