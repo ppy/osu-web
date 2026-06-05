@@ -92,7 +92,7 @@ class ModdingHistoryController extends Controller
             $search['query']->with([
                 'user',
                 'beatmapDiscussion',
-                'beatmapDiscussion.user',
+                'beatmapDiscussion.user.userGroups',
                 'beatmapDiscussion.beatmapset',
                 'beatmapDiscussion.startingPost',
             ])->get(),

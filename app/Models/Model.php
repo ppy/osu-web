@@ -137,7 +137,7 @@ abstract class Model extends BaseModel
         $query->getQuery()->offset = null;
         $query->limit(null);
 
-        return min($query->count(), $GLOBALS['cfg']['osu']['pagination']['max_count']);
+        return $query->countLimit($GLOBALS['cfg']['osu']['pagination']['max_count']);
     }
 
     public function refresh()

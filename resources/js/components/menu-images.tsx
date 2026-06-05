@@ -7,11 +7,8 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers, urlPresence } from 'utils/css';
+import { modulo } from 'utils/math';
 import MenuImage from './menu-image';
-
-function modulo(dividend: number, divisor: number): number {
-  return ((dividend % divisor) + divisor) % divisor;
-}
 
 const autoRotateIntervalMs = 6000;
 const bn = 'menu-images';
