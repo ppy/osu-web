@@ -1422,10 +1422,15 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
                 $title = $this->artist.' - '.$this->title;
 
                 $topic = Forum\Topic::createNew($forum, [
-                    'title' => $title,
+                    'title' => mb_substr($title, 0, 100),
                     'user' => $user,
                     'body' => '---------------',
                 ]);
+                // allow up to 255 characters title. The actual maximum length
+                // is 163 due to 80 characters limit for artist and title.
+                if (mb_strlen($title) > 100) {
+                    Forum\Topic::whereKey($topic->getKey())->update(['topic_title' => mb_substr($title, 0, 255)]);
+                }
                 $topic->lock();
                 $this->update(['thread_id' => $topic->getKey()]);
                 $post = $topic->firstPost;
