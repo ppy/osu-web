@@ -302,7 +302,7 @@ class Topic extends Model implements AfterCommit
 
     public function setTopicTitleAttribute($value)
     {
-        $this->attributes['topic_title'] = trim_unicode($value);
+        $this->attributes['topic_title'] = app('chat-filters')->filter(trim_unicode($value));
     }
 
     public function save(array $options = [])
