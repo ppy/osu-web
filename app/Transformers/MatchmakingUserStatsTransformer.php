@@ -23,7 +23,7 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
             'is_rating_provisional' => $stats->isRatingProvisional(),
             'plays' => $stats->plays,
             'pool_id' => $stats->pool_id,
-            'rank' => $stats->rank,
+            'rank' => $stats->getRank(),
             'rating' => $stats->rating,
             'total_points' => $stats->total_points,
             'user_id' => $stats->user_id,
