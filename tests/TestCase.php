@@ -135,6 +135,23 @@ class TestCase extends BaseTestCase
         ]);
     }
 
+    /**
+     * Helper for asserting notification receivers because the Queue and Event assertions don't tell us enough.
+     *
+     * @param array<Model>|Collection<Model>|Model $expected
+     */
+    protected function assertReceivers(
+        NewPrivateNotificationEvent|BroadcastNotificationBase $obj,
+        array|Collection|Model $expected
+    ): bool {
+        $includeIds = collect($expected instanceof Model ? [$expected] : $expected)->map->getKey()->sort()->values()->all();
+        $receiverIds = $obj->getReceiverIds();
+        sort($receiverIds);
+
+        $this->assertSame($includeIds, $receiverIds);
+        return true;
+    }
+
     protected function expectInvalidScopeException(?string $key)
     {
         if ($key === null) {
@@ -307,11 +324,6 @@ class TestCase extends BaseTestCase
         if ($exceptionClass !== null) {
             static::fail("Did not throw expected {$exceptionClass}");
         }
-    }
-
-    protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
-    {
-        return in_array($model->getKey(), $obj->getReceiverIds(), true);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])
