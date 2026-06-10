@@ -119,7 +119,7 @@ class DiscussionTest extends TestCase
 
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
-            fn (BeatmapsetDiscussionPostNew $job) => $this->receiversInclude($job, $watcher, $user)
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, $watcher)
         );
 
         $this->runFakeQueue();
@@ -127,7 +127,7 @@ class DiscussionTest extends TestCase
         // TODO: this should probably be changed to asserting "if job queued, then event is broadcast to receivers with option set"
         Event::assertDispatched(
             NewPrivateNotificationEvent::class,
-            fn (NewPrivateNotificationEvent $event) => $this->receiversInclude($event, $watcher, $user)
+            fn (NewPrivateNotificationEvent $event) => $this->assertReceivers($event, $watcher)
         );
     }
 
@@ -269,7 +269,7 @@ class DiscussionTest extends TestCase
         if ($expectsNotification) {
             Event::assertDispatched(
                 NewPrivateNotificationEvent::class,
-                fn (NewPrivateNotificationEvent $event) => $this->receiversInclude($event, $watcher)
+                fn (NewPrivateNotificationEvent $event) => $this->assertReceivers($event, $watcher)
             );
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);

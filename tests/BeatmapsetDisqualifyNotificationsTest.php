@@ -62,7 +62,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
         $this->runFakeQueue();
 
         Event::assertDispatched(NewPrivateNotificationEvent::class, fn (NewPrivateNotificationEvent $event) =>
-            $event->notification->name === Notification::BEATMAPSET_DISQUALIFY && $this->receiversInclude($event, $this->user));
+            $event->notification->name === Notification::BEATMAPSET_DISQUALIFY && $this->assertReceivers($event, $this->user));
     }
 
     /**
@@ -83,7 +83,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
             $this->runFakeQueue();
 
             Event::assertDispatched(NewPrivateNotificationEvent::class, fn (NewPrivateNotificationEvent $event) =>
-                $event->notification->name === Notification::BEATMAPSET_DISQUALIFY && $this->receiversInclude($event, $this->user));
+                $event->notification->name === Notification::BEATMAPSET_DISQUALIFY && $this->assertReceivers($event, $this->user));
         } else {
             // We want to assert the job was queued but because there should be no receivers, there won't be a notification generated.
             Queue::assertPushed(BeatmapsetDisqualify::class);
@@ -106,7 +106,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
         $this->runFakeQueue();
 
         Event::assertDispatched(NewPrivateNotificationEvent::class, fn (NewPrivateNotificationEvent $event) =>
-            $event->notification->name === Notification::BEATMAPSET_DISQUALIFY && $this->receiversInclude($event, $this->user));
+            $event->notification->name === Notification::BEATMAPSET_DISQUALIFY && $this->assertReceivers($event, $this->user));
     }
 
     public function testNotificationNotSentIfNotificationOptionsNotEnabled()

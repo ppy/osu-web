@@ -121,20 +121,16 @@ class ReplyTest extends TestCase
 
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
-            fn (BeatmapsetDiscussionPostNew $job) => $this->receiversInclude($job, [$this->mapper, $watcher], $user)
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, [$this->mapper, $watcher])
         );
 
         $this->runFakeQueue();
-
-        $includes = $push
-            ? ['excludes' => $user, 'includes' => [$this->mapper, $watcher]]
-            : ['excludes' => [$watcher, $user], 'includes' => $this->mapper];
 
         Event::assertDispatched(
             NewPrivateNotificationEvent::class,
             fn (NewPrivateNotificationEvent $event) =>
                 $event->notification->name === Notification::BEATMAPSET_DISCUSSION_POST_NEW
-                && $this->receiversInclude($event, ...$includes)
+                && $this->assertReceivers($event, $push ? [$this->mapper, $watcher] : $this->mapper)
         );
     }
 
@@ -154,11 +150,7 @@ class ReplyTest extends TestCase
 
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
-            fn (BeatmapsetDiscussionPostNew $job) => (
-                $includeStarter
-                    ? $this->receiversInclude($job, $starter)
-                    : $this->receiversInclude($job, excludes: $starter)
-            )
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, $includeStarter ? $starter : [])
         );
     }
 

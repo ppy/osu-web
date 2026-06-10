@@ -22,7 +22,6 @@ use App\Models\ScoreToken;
 use App\Models\User;
 use Artisan;
 use Carbon\CarbonInterface;
-use Ds\Set;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -134,6 +133,23 @@ class TestCase extends BaseTestCase
             'build_id' => 0,
             'ruleset_id' => $playlistItem->ruleset_id,
         ]);
+    }
+
+    /**
+     * Helper for asserting notification receivers because the Queue and Event assertions don't tell us enough.
+     *
+     * @param array<Model>|Collection<Model>|Model $expected
+     */
+    protected function assertReceivers(
+        NewPrivateNotificationEvent|BroadcastNotificationBase $obj,
+        array|Collection|Model $expected
+    ): bool {
+        $includeIds = collect($expected instanceof Model ? [$expected] : $expected)->map->getKey()->sort()->values()->all();
+        $receiverIds = $obj->getReceiverIds();
+        sort($receiverIds);
+
+        $this->assertSame($includeIds, $receiverIds);
+        return true;
     }
 
     protected function expectInvalidScopeException(?string $key)
@@ -308,24 +324,6 @@ class TestCase extends BaseTestCase
         if ($exceptionClass !== null) {
             static::fail("Did not throw expected {$exceptionClass}");
         }
-    }
-
-    protected function receiversInclude(
-        NewPrivateNotificationEvent|BroadcastNotificationBase $obj,
-        array|Collection|Model $includes = [],
-        array|Collection|Model $excludes = []
-    ): bool {
-        $excludes = collect($excludes instanceof Model ? [$excludes] : $excludes);
-        $includesSet = new Set(collect($includes instanceof Model ? [$includes] : $includes)->map->getKey());
-        $receiverIds = new Set($obj->getReceiverIds());
-
-        $extraIds = $receiverIds->diff($includesSet);
-        $missingIds = $includesSet->diff($receiverIds);
-        $this->assertSame([], $extraIds->toArray(), 'extra ids found.');
-        $this->assertSame([], $missingIds->toArray(), 'expected ids missing.');
-
-        return $missingIds->isEmpty() && $extraIds->isEmpty()
-            && $excludes->every(fn (Model $model) => !$receiverIds->contains($model->getKey()));
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])
