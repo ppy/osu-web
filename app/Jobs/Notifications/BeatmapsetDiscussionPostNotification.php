@@ -44,27 +44,11 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
         ];
     }
 
-    public function getListeningUserIds(): array
-    {
-        $userIds = $this->beatmapsetDiscussionPost->beatmapset->watches()->pluck('user_id');
-
-        $discussion = $this->beatmapsetDiscussionPost->beatmapDiscussion;
-        if ($discussion->canBeResolved() && $discussion->user_id !== null) {
-            $userIds->push($discussion->user_id);
-        }
-
-        return $userIds->all();
-    }
+    #[\Override]
+    abstract public function getListeningUserIds(): array;
 
     public function getNotifiable()
     {
         return $this->beatmapsetDiscussionPost->beatmapset;
-    }
-
-    public function handle()
-    {
-        $this->beatmapsetDiscussionPost->beatmapset->watches()->update(['last_notified' => $this->getTimestamp()]);
-
-        parent::handle();
     }
 }
