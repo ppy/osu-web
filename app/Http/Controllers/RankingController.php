@@ -222,9 +222,7 @@ class RankingController extends Controller
                 }
 
                 $class = UserStatistics\Model::getClass($mode, $params['variant']);
-                $stats = $class::with(['user', 'user.country', 'user.team'])
-                    ->where('rank_score', '>', 0)
-                    ->whereHas('user', fn ($q) => $q->default());
+                $stats = $class::with(['user', 'user.country', 'user.team'])->where('rank_score', '>', 0);
 
                 if ($params['country'] === null) {
                     // force to order by rank(ed)_score instead of sucking down entire users table first.

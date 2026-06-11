@@ -36,7 +36,7 @@ return [
     'matchmaking' => [
         'plays' => 'Plays',
         'points' => 'Points',
-        'provisional' => 'Not enough matches played to accurately determine rating',
+        'provisional' => 'Provisional rating due to an insufficient number of recent matches',
         'rating' => 'Rating',
         'wins' => 'Wins',
     ],
