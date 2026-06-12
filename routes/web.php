@@ -617,6 +617,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
         Route::get('rankings/kudosu', 'RankingController@kudosu');
+        Route::get('rankings/ranked-play/{mode}', 'Ranking\MatchmakingController@index')->name('rankings.matchmaking.index');
+        Route::get('rankings/ranked-play/{mode}/{pool}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking.show');
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
         Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);

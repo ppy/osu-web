@@ -12,8 +12,11 @@ use League\Fractal\Resource\ResourceInterface;
 
 class MatchmakingUserStatsTransformer extends TransformerAbstract
 {
+    const array RANKING_INCLUDES = UserStatisticsTransformer::RANKING_INCLUDES;
+
     protected array $availableIncludes = [
         'pool',
+        'user',
     ];
 
     public function transform(MatchmakingUserStats $stats): array
@@ -33,5 +36,10 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
     public function includePool(MatchmakingUserStats $stats): ResourceInterface
     {
         return $this->item($stats->pool, new MatchmakingPoolTransformer());
+    }
+
+    public function includeUser(MatchmakingUserStats $stats): ResourceInterface
+    {
+        return $this->item($stats->user, new UserCompactTransformer());
     }
 }
