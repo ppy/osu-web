@@ -6,6 +6,7 @@
 namespace Database\Factories;
 
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
 
 class BeatmapDiscussionFactory extends Factory
 {
@@ -62,5 +63,13 @@ class BeatmapDiscussionFactory extends Factory
     public function timeline()
     {
         return $this->state(static::DEFAULTS['timeline']);
+    }
+
+    public function withStarter()
+    {
+        return $this->has(BeatmapDiscussionPost::factory()
+            ->state(fn (array $attr, BeatmapDiscussion $discussion) => [
+                'user_id' => $discussion->user_id,
+            ]));
     }
 }
