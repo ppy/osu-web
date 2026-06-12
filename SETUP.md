@@ -38,7 +38,7 @@ location / {
 }
 ```
 
-Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#web-server-configuration) for non-nginx
+Consult the [laravel documentation](https://laravel.com/docs/11.x/deployment) for non-nginx
 
 ### Initialize database
 
