@@ -5,13 +5,19 @@
 
 @php
     $beatmapset = $post->beatmapDiscussion->beatmapset;
+    if ($beatmapset === null) {
+        $beatmapset = new App\Models\DeletedBeatmapset();
+        $beatmapset->beatmapset_id = $post->beatmapDiscussion->beatmapset_id;
+    }
+    $discussionUrl = route('beatmapsets.discussion', ['beatmapset' => $beatmapset->getKey()]);
+    $discussionUrl .= "#/{$post->beatmap_discussion_id}";
 @endphp
 
 <div class="beatmapset-activities__discussion-post">
     <div class="beatmap-discussion beatmap-discussion--single beatmapset-activities__post-grow">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
-                <a class="link link--no-underline" href="{{ route('beatmapsets.discussion', $beatmapset) }}#/{{ $post->beatmap_discussion_id }}">
+                <a class="link link--no-underline" href="{{ $discussionUrl }}">
                     @include('objects._beatmapset_cover', [
                         'beatmapset' => $beatmapset,
                         'modifiers' => null,
