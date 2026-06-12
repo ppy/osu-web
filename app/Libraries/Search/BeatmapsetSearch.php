@@ -20,6 +20,13 @@ use Ds\Set;
 
 class BeatmapsetSearch extends RecordSearch
 {
+    private array $tokens;
+
+    private static function isQuoted(string $value): bool
+    {
+        return str_starts_with($value, '"') && str_ends_with($value, '"');
+    }
+
     public function __construct(?BeatmapsetSearchParams $params = null)
     {
         parent::__construct(
@@ -27,6 +34,8 @@ class BeatmapsetSearch extends RecordSearch
             $params ?? new BeatmapsetSearchParams(),
             Beatmapset::class
         );
+
+        $this->tokens = QueryHelper::tokenise($params->queryString ?? '');
     }
 
     /**
@@ -34,34 +43,69 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function getQuery()
     {
-        static $partialMatchFields = [
+        static $fullMatchFields = [
             'artist',
-            'artist.*',
             'artist_unicode',
-            'artist_unicode.*',
             'creator',
             'title',
-            'title.*',
             'title_unicode',
+        ];
+
+        static $partialMatchFields = [
+            ...$fullMatchFields,
+            'artist.*',
+            'artist_unicode.*',
+            'title.*',
             'title_unicode.*',
             'tags^0.5',
         ];
 
         $query = new BoolQuery();
 
-        if (present($this->params->queryString)) {
-            $terms = explode(' ', $this->params->queryString);
-
+        if (!empty($this->tokens['include'])) {
+            $implodedInclude = implode(' ', $this->tokens['include']);
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
-            $query->must(
-                (new BoolQuery())
-                    // results must contain at least one of the terms and boosted by containing all of them,
-                    // or match the id of the beatmapset.
-                    ->shouldMatch(1)
-                    ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
-                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
-            );
+            $boolQuery = new BoolQuery()
+                // results boosted by containing all terms, or match the id of the beatmapset.
+                ->shouldMatch(1)
+                ->should(['term' => ['_id' => ['value' => $implodedInclude, 'boost' => 100]]])
+                ->should([
+                    'multi_match' => [
+                        'fields' => $fullMatchFields,
+                        'type' => 'phrase',
+                        'query' => $implodedInclude,
+                    ],
+                ]);
+
+            // Look for maybe relevant results.
+            // "Something like this but I'm not exactly sure" kind of search.
+            foreach ($this->tokens['include'] as $include) {
+                $isQuoted = static::isQuoted($include);
+                $boolQuery
+                    ->should([
+                        'multi_match' => [
+                            'boost' => $isQuoted ? 1 : 1 / count($this->tokens['include']),
+                            'fields' => $isQuoted ? $fullMatchFields : $partialMatchFields,
+                            'type' => $isQuoted ? 'phrase' : 'cross_fields',
+                            'query' => $include,
+                        ],
+                    ]);
+            }
+
+            $query->must($boolQuery);
+        }
+
+        // exclusion should be full matches only, and only on the main beatmapset fields.
+        if (!empty($this->tokens['exclude'])) {
+            foreach ($this->tokens['exclude'] as $exclude) {
+                $query->mustNot([
+                    'multi_match' => [
+                        'fields' => $fullMatchFields,
+                        'type' => static::isQuoted($exclude) ? 'phrase' : 'most_fields',
+                        'query' => $exclude,
+                    ],
+                ]);
+            }
         }
 
         $this->addBlockedUsersFilter($query);
@@ -97,6 +141,18 @@ class BeatmapsetSearch extends RecordSearch
                 'query' => $nested->toArray(),
             ],
         ]);
+
+        if (!empty($this->tokens['exclude'])) {
+            $query = [
+                'boosting' => [
+                    'positive' => $query->toArray(),
+                    'negative' => [
+                        'match' => ['tags' => implode(' ', $this->tokens['exclude'])],
+                    ],
+                    'negative_boost' => 0.5,
+                ],
+            ];
+        }
 
         if (present($this->params->queryString)) {
             $query = (new FunctionScore($query))
@@ -148,7 +204,7 @@ class BeatmapsetSearch extends RecordSearch
     private function addDifficultyFilter(BoolQuery $nested)
     {
         if ($this->params->difficulty !== null) {
-            $nested->must(QueryHelper::queryString($this->params->difficulty, ['beatmaps.version'], 'and'));
+            $nested->must(['match' => ['beatmaps.version' => ['query' => $this->params->difficulty, 'operator' => 'and']]]);
         }
     }
 
@@ -414,7 +470,15 @@ class BeatmapsetSearch extends RecordSearch
             $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
         }
 
-        $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));
+        // TODO: change matching logic to match query string keywords?
+        $subQuery->should([
+            'multi_match' => [
+                'fields' => $searchFields,
+                'query' => $value,
+                'operator' => 'and',
+                'type' => static::isQuoted($value) ? 'phrase' : 'most_fields',
+            ],
+        ]);
 
         $query->must($subQuery);
     }
@@ -443,7 +507,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         foreach (array_values($tagMap) as $tag) {
-            $query->filter(QueryHelper::queryString($tag, ['beatmaps.top_tags'], 'and'));
+            $query->filter(['match' => ['beatmaps.top_tags' => ['query' => $tags, 'operator' => 'and']]]);
         }
     }
 
