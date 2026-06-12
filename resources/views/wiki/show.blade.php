@@ -74,6 +74,20 @@
 
                 @if ($page->get() !== null)
                     {!! $page->get()['output'] !!}
+
+                    @if ($page->updatedAt() !== null)
+                        <div class="wiki-page__footer">
+                            @if ($page->isTranslation())
+                                @if ($page->isOutdatedTranslation() && $page->outdatedSinceDate() !== null)
+                                    {{ osu_trans('wiki.show.translation.updated_at_outdated', ['date' => i18n_date($page->updatedAt()), 'outdated_since' => i18n_date($page->outdatedSinceDate())]) }}
+                                @else
+                                    {{ osu_trans('wiki.show.translation.updated_at', ['date' => i18n_date($page->updatedAt())]) }}
+                                @endif
+                            @else
+                                {{ osu_trans('wiki.show.updated_at', ['date' => i18n_date($page->updatedAt())]) }}
+                            @endif
+                        </div>
+                    @endif
                 @else
                     <div class="wiki-content">
                         <p>
