@@ -44,7 +44,7 @@ class ReplyTest extends TestCase
         ];
     }
 
-    public static function dataProviderForReplyQueuesNotificationToStarter(): array
+    public static function dataProviderForReplyQueuesNotification(): array
     {
         return [
             ['praise', false],
@@ -112,6 +112,7 @@ class ReplyTest extends TestCase
         ]);
         $discussion = BeatmapDiscussion::factory()
             ->general()
+            ->withStarter()
             ->for($this->beatmapsetFactory())
             ->create(['user_id' => $this->mapper]);
 
@@ -134,13 +135,64 @@ class ReplyTest extends TestCase
         );
     }
 
-    #[DataProvider('dataProviderForReplyQueuesNotificationToStarter')]
+    #[DataProvider('dataProviderForReplyQueuesNotification')]
+    public function testReplyParticipants(string $messageType, bool $includeOthers)
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $usersNotificationEnabled = User::factory()->count(3)->create();
+        $userNotificationDisabled = User::factory()->create();
+        $userNotificationDisabled->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => ['push' => false],
+        ]);
+        $userReplyDisabled = User::factory()->create();
+        $userReplyDisabled->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => ['push' => true, UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY => false],
+        ]);
+        $participants = $listeners = [...$usersNotificationEnabled, $userNotificationDisabled, $userReplyDisabled];
+
+        $discussion = BeatmapDiscussion::factory()->general()->create([
+            'beatmapset_id' => $this->beatmapsetFactory(),
+            'message_type' => $messageType,
+            'user_id' => $participants[0]->getKey(),
+        ]);
+        foreach ($participants as $participant) {
+            $discussion->beatmapDiscussionPosts()->create([
+                'user_id' => $participant->getKey(),
+                'message' => static::TEST_MESSAGE,
+            ]);
+        }
+
+        new Reply($user, $discussion, static::TEST_MESSAGE)->handle();
+
+        $listeners = $includeOthers ? [...$usersNotificationEnabled, $userNotificationDisabled] : [];
+        Queue::assertPushed(
+            BeatmapsetDiscussionPostNew::class,
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, $listeners)
+        );
+
+        $this->runFakeQueue();
+
+        if ($includeOthers) {
+            Event::assertDispatched(
+                NewPrivateNotificationEvent::class,
+                fn (NewPrivateNotificationEvent $event) =>
+                    $event->notification->name === Notification::BEATMAPSET_DISCUSSION_POST_NEW
+                    && $this->assertReceivers($event, $usersNotificationEnabled)
+            );
+        } else {
+            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        }
+    }
+
+    #[DataProvider('dataProviderForReplyQueuesNotification')]
     public function testReplyQueuesNotificationToStarter(string $messageType, bool $includeStarter)
     {
         $user = User::factory()->create()->markSessionVerified();
         $starter = User::factory()->create();
 
-        $discussion = BeatmapDiscussion::factory()->general()->create([
+        $discussion = $this->discussionFactory()->general()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'message_type' => $messageType,
             'user_id' => $starter,
@@ -163,7 +215,7 @@ class ReplyTest extends TestCase
             'details' => [UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY => false],
         ]);
 
-        $discussion = BeatmapDiscussion::factory()->general()->create([
+        $discussion = $this->discussionFactory()->general()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'message_type' => 'problem',
             'user_id' => $starter,
@@ -183,7 +235,7 @@ class ReplyTest extends TestCase
     public function testReplyResolvedDiscussion(?string $group)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'resolved' => true,
             'user_id' => User::factory(),
@@ -202,7 +254,7 @@ class ReplyTest extends TestCase
     public function testReplyUnresolvedDiscussion(?string $group)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'resolved' => false,
             'user_id' => User::factory(),
@@ -221,7 +273,7 @@ class ReplyTest extends TestCase
     public function testResolveDiscussionByStarter(string $messageType, bool $expected)
     {
         $user = User::factory()->create()->markSessionVerified();
-        $discussion = BeatmapDiscussion::factory()->general()->create([
+        $discussion = $this->discussionFactory()->general()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'message_type' => $messageType,
             'user_id' => $user,
@@ -244,7 +296,7 @@ class ReplyTest extends TestCase
     public function testResolveDiscussionByMapper(string $state, bool $expected)
     {
         $starter = User::factory()->create();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $this->beatmapsetFactory()->$state(),
             'user_id' => $starter,
         ]);
@@ -268,7 +320,7 @@ class ReplyTest extends TestCase
         $user = User::factory()->create()->markSessionVerified();
         $beatmapset = $this->beatmapsetFactory()->$state()->create(['user_id' => $user]);
         $beatmap = $beatmapset->beatmaps->first();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmap_id' => $beatmap,
             'beatmapset_id' => $beatmapset,
             'user_id' => User::factory(),
@@ -291,7 +343,7 @@ class ReplyTest extends TestCase
     public function testResolveDiscussionByOtherUsers(?string $group, bool $expected)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'user_id' => User::factory(),
         ]);
@@ -319,7 +371,7 @@ class ReplyTest extends TestCase
             ->$state()
             ->create();
 
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $beatmapset,
             'resolved' => true,
             'user_id' => User::factory(),
@@ -339,7 +391,7 @@ class ReplyTest extends TestCase
     public function testReopenResolvedDiscussionByMapper()
     {
         $beatmapset = $this->beatmapsetFactory()->qualified()->create();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $beatmapset,
             'resolved' => true,
             'user_id' => $this->mapper,
@@ -360,7 +412,7 @@ class ReplyTest extends TestCase
     {
         $user = User::factory()->create()->markSessionVerified();
         $beatmapset = $this->beatmapsetFactory()->qualified()->create();
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $beatmapset,
             'resolved' => true,
             'user_id' => $user,
@@ -382,7 +434,7 @@ class ReplyTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
 
-        $discussion = BeatmapDiscussion::factory()->general()->mapperNote()->create([
+        $discussion = $this->discussionFactory()->general()->mapperNote()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'user_id' => $this->mapper,
         ]);
@@ -397,7 +449,7 @@ class ReplyTest extends TestCase
 
     public function testRequestingSameResolveStateDoesNotChangeResovled()
     {
-        $discussion = BeatmapDiscussion::factory()->general()->problem()->create([
+        $discussion = $this->discussionFactory()->general()->problem()->create([
             'beatmapset_id' => $this->beatmapsetFactory(),
             'resolved' => true,
             'user_id' => $this->mapper,
@@ -437,6 +489,11 @@ class ReplyTest extends TestCase
             ], $beatmapState)));
 
         return $factory;
+    }
+
+    private function discussionFactory()
+    {
+        return BeatmapDiscussion::factory()->withStarter();
     }
 
     private function getSystemPosts(array $posts, BeatmapDiscussion $discussion)
