@@ -956,6 +956,7 @@ class UsersController extends Controller
             ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
             'current_season_stats',
+            'current_user_attributes',
             'daily_challenge_user_stats',
             'matchmaking_stats.pool',
             'page',
