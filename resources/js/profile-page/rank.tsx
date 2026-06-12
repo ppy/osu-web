@@ -2,16 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ValueDisplay from 'components/value-display';
+import CountryJson from 'interfaces/country-json';
 import RankHighestJson from 'interfaces/rank-highest-json';
+import Ruleset from 'interfaces/ruleset';
 import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
+import { performanceRankingUrl, rankingPageFromRank } from 'utils/ranking';
 
 interface Props {
+  country?: CountryJson | null;
   highest?: RankHighestJson | null;
+  mode: Ruleset;
   stats: UserStatisticsJson;
   type: RankType;
 }
@@ -45,7 +50,7 @@ function globalTier(stats: UserStatisticsJson) {
                 : null;
 }
 
-export default function Rank({ highest, stats, type }: Props) {
+export default function Rank({ country, highest, mode, stats, type }: Props) {
   const key = `${type}_rank` as const;
   const rank = stats[key];
   const tooltip: string[] = [];
@@ -71,25 +76,38 @@ export default function Rank({ highest, stats, type }: Props) {
 
   const tier = type === 'global' ? globalTier(stats) : null;
   const tierVar = tier == null ? '' : `var(--level-tier-${tier})`;
+  const rankValueProps = {
+    className: classWithModifiers('rank-value', tier ?? 'base'),
+    'data-html-title': tooltip.join(''),
+    'data-tooltip-position': 'bottom left',
+    style: {
+      '--colour': tierVar,
+    } as React.CSSProperties,
+    title: '',
+  };
+  const href = rankingPageFromRank(rank) == null || (type === 'country' && country?.code == null)
+    ? null
+    : performanceRankingUrl({
+      country: type === 'country' ? country?.code : null,
+      mode,
+      rank,
+    });
+  const rankText = rank != null ? `#${formatNumber(rank)}` : '-';
 
   return (
     <ValueDisplay
       label={trans(`users.show.rank.${type}_simple`)}
       modifiers='rank'
       value={
-        <div
-          className={classWithModifiers('rank-value', tier ?? 'base')}
-          data-html-title={tooltip.join('')}
-          data-tooltip-position='bottom left'
-          style={{
-            '--colour': tierVar,
-          } as React.CSSProperties}
-          title=''
-        >
-          {rank != null ? (
-            `#${formatNumber(rank)}`
-          ) : '-'}
-        </div>
+        href == null ? (
+          <div {...rankValueProps}>
+            {rankText}
+          </div>
+        ) : (
+          <a {...rankValueProps} href={href}>
+            {rankText}
+          </a>
+        )
       }
     />
   );

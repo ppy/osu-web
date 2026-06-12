@@ -66,8 +66,19 @@ export default class Detail extends React.Component<Props> {
           <div>
             <div className='profile-detail__chart-numbers profile-detail__chart-numbers--top'>
               <div className='profile-detail__values'>
-                <Rank highest={this.user.rank_highest} stats={this.user.statistics} type='global' />
-                <Rank stats={this.user.statistics} type='country' />
+                <Rank
+                  country={this.user.country}
+                  highest={this.user.rank_highest}
+                  mode={this.props.controller.currentMode}
+                  stats={this.user.statistics}
+                  type='global'
+                />
+                <Rank
+                  country={this.user.country}
+                  mode={this.props.controller.currentMode}
+                  stats={this.user.statistics}
+                  type='country'
+                />
               </div>
               <div className='profile-detail__values'>
                 <Matchmaking allStats={this.user.matchmaking_stats} />

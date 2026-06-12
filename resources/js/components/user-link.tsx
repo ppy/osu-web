@@ -33,6 +33,7 @@ export default class UserLink extends React.PureComponent<Props> {
         data-reportable={JSON.stringify(this.props.reportable)}
         data-tooltip-position={this.props.tooltipPosition}
         data-user-id={this.props.user.id}
+        data-usercard-ruleset={this.props.mode}
         href={href}
       >
         {this.props.children ?? this.props.user.username}

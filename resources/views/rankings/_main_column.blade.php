@@ -78,6 +78,7 @@
         <a
             class="ranking-page-table-main__link js-usercard"
             data-tooltip-position="right center"
+            data-usercard-ruleset="{{ $params['mode'] }}"
             data-user-id="{{ $object->getKey() }}"
             href="{{ route('users.show', ['user' => $object->getKey(), 'mode' => $params['mode']]) }}"
         >
