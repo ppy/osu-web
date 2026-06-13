@@ -85,6 +85,10 @@
     margin: 20px 0;
   }
 
+  &--judging-score {
+    --input-padding-right: calc(var(--input-padding-base) + 4ch);
+  }
+
   &--search-box {
     font-size: @font-size--title-small-4;
     --input-padding: 15px var(--input-padding-base);
@@ -122,5 +126,14 @@
     position: absolute;
     width: 100%;
     pointer-events: var(--label-pointer-events);
+  }
+
+  &__suffix {
+    bottom: var(--input-padding-base);
+    color: hsl(var(--hsl-c2));
+    line-height: 1;
+    pointer-events: none;
+    position: absolute;
+    right: var(--input-padding-base);
   }
 }
