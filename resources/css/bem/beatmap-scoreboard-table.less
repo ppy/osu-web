@@ -99,6 +99,13 @@
       --row-background-color: hsl(var(--hsl-b3));
     }
 
+    &:hover,
+    &--menu-active {
+      .@{_top}__cell-content--zero {
+        opacity: 1;
+      }
+    }
+
     // @passive-row
     &--highlightable {
       .@{_top}--menu-active & {
@@ -191,6 +198,11 @@
     }
 
     .hit-stat-colours();
+
+    &--zero {
+      opacity: 0.4;
+      .fade-element(@hover-transition-duration, ease-in-out, opacity);
+    }
   }
 
   &__mods {
