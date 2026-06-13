@@ -14,6 +14,7 @@ import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
+import { popup } from 'utils/popup';
 import CurrentUserJudgeVote from './current-user-judge-vote';
 
 interface Props {
@@ -167,13 +168,17 @@ export default class Entry extends React.Component<Props> {
 
     this.xhr
       .fail(onError)
-      .done((json) => runInAction(() => {
-        this.store.updateEntry(json);
+      .done((json) => {
+        popup(trans('contest.judge.update_done'), 'info');
 
-        if (json.current_user_judge_vote != null) {
-          this.initialVote.updateWithJson(json.current_user_judge_vote);
-        }
-      })).always(action(() => {
+        runInAction(() => {
+          this.store.updateEntry(json);
+
+          if (json.current_user_judge_vote != null) {
+            this.initialVote.updateWithJson(json.current_user_judge_vote);
+          }
+        });
+      }).always(action(() => {
         this.xhr = undefined;
       }));
   };
