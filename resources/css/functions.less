@@ -351,3 +351,23 @@
   /* autoprefixer: ignore next */
   -webkit-box-orient: vertical;
 }
+
+.hit-stat-colours() {
+  @colours: {
+    hit-perfect: @beatmap-score--hsl-hit-perfect;
+    great: @beatmap-score--hsl-hit-great;
+    good: @beatmap-score--hsl-hit-good;
+    ok: @beatmap-score--hsl-hit-ok;
+    meh: @beatmap-score--hsl-hit-meh;
+    miss: @beatmap-score--hsl-hit-miss;
+    large-tick-hit: @beatmap-score--hsl-hit-large-tick-hit;
+    small-tick-miss: @beatmap-score--hsl-hit-small-tick-miss;
+  };
+
+  each(@colours, {
+    &--@{key} {
+      --default-color: hsl(@value);
+      color: hsl(@value);
+    }
+  });
+}
