@@ -105,13 +105,13 @@ interface ScoreStatistic {
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
 const statisticColourByAttribute: Partial<Record<ScoreStatisticsAttribute, ScoreStatisticColour>> = {
-  perfect: 'hit-perfect',
-  great: 'great',
   good: 'good',
-  ok: 'ok',
+  great: 'great',
+  large_tick_hit: 'large-tick-hit',
   meh: 'meh',
   miss: 'miss',
-  large_tick_hit: 'large-tick-hit',
+  ok: 'ok',
+  perfect: 'hit-perfect',
   small_tick_hit: 'large-tick-hit',
   small_tick_miss: 'small-tick-miss',
 };
