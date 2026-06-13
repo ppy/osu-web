@@ -34,5 +34,7 @@
                 </a>
             @endforeach
         </div>
+
+        @include('objects._pagination_v2', ['object' => $contests])
     </div>
 @endsection
