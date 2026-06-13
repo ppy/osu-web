@@ -163,10 +163,10 @@ export default class TopCard extends React.PureComponent<Props> {
             <div className='beatmap-score-top__stats beatmap-score-top__stats--wrappable'>
               {calculateStatisticsFor(this.props.score, 'leaderboard').map((attr) => (
                 <div key={attr.label.short} className='beatmap-score-top__stat'>
-                  <div className='beatmap-score-top__stat-header'>
+                  <div className={classWithModifiers('beatmap-score-top__stat-header', attr.colour)}>
                     {attr.label.short}
                   </div>
-                  <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller'>
+                  <div className={classWithModifiers('beatmap-score-top__stat-value', 'smaller', attr.colour)}>
                     {formatNumber(attr.value)}
                   </div>
                 </div>
