@@ -2,49 +2,53 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-home-livestream {
-  @_top: user-home-livestream;
+  .default-border-radius();
+  .default-box-shadow();
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background-color: @osu-colour-b4;
+  box-sizing: border-box;
+
+  &:hover {
+    .thicker-box-shadow();
+  }
 
   &__content {
+    .full-size();
+    background-size: cover;
+
     &:link {
       text-decoration: none;
     }
   }
 
-  &__image {
-    .default-border-radius();
-    .default-box-shadow();
+  &__info {
+    position: absolute;
     width: 100%;
-    padding-top: (100% * 9 / 16);
-    background-size: cover;
-
-    .@{_top}:hover & {
-      .thicker-box-shadow();
-    }
+    bottom: 0;
+    left: 0;
+    padding: 18px 24px;
+    background-image: linear-gradient(transparent, #000);
   }
 
   &__text {
-    margin: 5px 0 0;
-    text-align: center;
-    font-weight: 600;
+    margin: 0;
+    color: #fff;
 
     &--detail {
-      color: @osu-colour-f1;
-      font-size: @font-size--livestream-item-detail;
-    }
-
-    &--name {
-      color: @osu-colour-l1;
-      font-size: @font-size--livestream-item-name;
+      margin-top: 6px;
+      font-size: @font-size--user-home-livestream-detail;
 
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-weight: 400;
     }
 
-    &--title {
-      color: @osu-colour-l1;
-      font-size: @font-size--livestream-item-title;
+    &--name {
+      .default-text-shadow();
+      font-size: @font-size--user-home-livestream-name;
 
       overflow: hidden;
       text-overflow: ellipsis;
