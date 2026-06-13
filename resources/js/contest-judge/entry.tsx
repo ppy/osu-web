@@ -7,6 +7,7 @@ import TextareaAutosize from 'components/textarea-autosize';
 import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
 import { route } from 'laroute';
+import { clamp } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { ContestEntry } from 'models/contest-entry';
@@ -111,9 +112,9 @@ export default class Entry extends React.Component<Props> {
   };
 
   @action
-  private readonly handleRangeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  private readonly handleScoreInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const categoryId = Number(e.currentTarget.getAttribute('data-category-id'));
-    const value = Number(e.currentTarget.value);
+    const value = clamp(Number(e.currentTarget.value), 0, Number(e.currentTarget.max));
 
     const score = { contest_scoring_category_id: categoryId, value };
     this.currentVote.scores.set(categoryId, score);
@@ -121,35 +122,39 @@ export default class Entry extends React.Component<Props> {
 
   private readonly renderCategory = (category: ContestScoringCategoryJson) => {
     const currentScore = this.currentVote.scores.get(category.id);
+    const inputId = `contest-judge-score-${category.id}`;
 
     return (
-      <div key={category.id} className='contest-judge-entry__category'>
-        <div className='contest-judge-entry__label'>
-          <div title={category.description}>
-            <i className='fas fa-question-circle' />
-          </div>
-
-          {category.name}
+      <label
+        key={category.id}
+        className='input-container input-container--judging-score'
+        htmlFor={inputId}
+      >
+        <div className='input-container__label'>
+          <span className='contest-judge-entry__category-label'>
+            <i
+              className='fas fa-question-circle'
+              title={category.description}
+            />
+            <span>{category.name}</span>
+          </span>
         </div>
 
         <input
-          className='contest-judge-entry__slider'
+          className='input-text'
           data-category-id={category.id}
           disabled={!this.store.canJudge}
+          id={inputId}
+          inputMode='numeric'
           max={category.max_value}
-          onChange={this.handleRangeInputChange}
-          type='range'
-          value={currentScore?.value ?? 0}
+          onChange={this.handleScoreInputChange}
+          value={currentScore != null ? String(currentScore.value) : ''}
         />
 
-        <div className='contest-judge-entry__value'>
-          {
-            currentScore != null
-              ? `${currentScore.value}/${category.max_value}`
-              : trans('contest.judge.no_current_vote')
-          }
-        </div>
-      </div>
+        <span className='input-container__suffix'>
+          / {category.max_value}
+        </span>
+      </label>
     );
   };
 
