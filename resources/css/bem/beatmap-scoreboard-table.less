@@ -14,7 +14,6 @@
   --perfect-color: hsl(@beatmap-score--hsl-perfect);
   --row-background-color: hsl(var(--hsl-b4));
   --row-background-color-highlight: hsl(var(--hsl-b2));
-  --zero-color: fade(#fff, 40%);
 
   // Safari performance on __popup-menu is very bad, otherwise.
   .own-layer();
@@ -98,11 +97,6 @@
   &__body-row {
     &:nth-child(odd) {
       --row-background-color: hsl(var(--hsl-b3));
-    }
-
-    &:hover,
-    &--menu-active {
-      --zero-color: #fff;
     }
 
     // @passive-row
@@ -197,10 +191,6 @@
     }
 
     .hit-stat-colours();
-
-    &--zero {
-      --default-color: var(--zero-color);
-    }
   }
 
   &__mods {
