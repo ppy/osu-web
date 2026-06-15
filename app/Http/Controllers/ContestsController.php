@@ -12,8 +12,6 @@ use Auth;
 
 class ContestsController extends Controller
 {
-    private const PER_PAGE = 25;
-
     public function index()
     {
         $contests = Contest::orderBy('id', 'desc');
@@ -23,7 +21,7 @@ class ContestsController extends Controller
         }
 
         return ext_view('contests.index', [
-            'contests' => $contests->paginate(static::PER_PAGE),
+            'contests' => $contests->paginate(),
         ]);
     }
 
