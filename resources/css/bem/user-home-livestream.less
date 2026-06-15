@@ -4,24 +4,21 @@
 .user-home-livestream {
   .default-border-radius();
   .default-box-shadow();
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
   background-color: @osu-colour-b4;
+  background-size: cover;
   box-sizing: border-box;
+
+  &:link {
+    text-decoration: none;
+  }
 
   &:hover {
     .thicker-box-shadow();
-  }
-
-  &__content {
-    .full-size();
-    background-size: cover;
-
-    &:link {
-      text-decoration: none;
-    }
   }
 
   &__info {
@@ -29,30 +26,21 @@
     width: 100%;
     bottom: 0;
     left: 0;
+    display: grid;
+    gap: 6px;
     padding: 18px 24px;
     background-image: linear-gradient(transparent, #000);
   }
 
   &__text {
     margin: 0;
-    color: #fff;
-
-    &--detail {
-      margin-top: 6px;
-      font-size: @font-size--user-home-livestream-detail;
-
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--title-small;
+    .u-ellipsis-overflow();
 
     &--name {
       .default-text-shadow();
-      font-size: @font-size--user-home-livestream-name;
-
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      font-size: @font-size--large;
     }
   }
 }
