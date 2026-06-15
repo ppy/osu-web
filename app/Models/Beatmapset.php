@@ -1600,7 +1600,7 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
                 : explode(',', $rawValue);
         }
 
-        return $this->packs()->where('hidden', false)->pluck('tag')->all();
+        return $this->packs()->default()->pluck('tag')->all();
     }
 
     private function getTitleUnicode()
