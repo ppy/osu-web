@@ -17,6 +17,36 @@
         </div>
 
         <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
+            @if (isset($user))
+                <a
+                    class="navbar-mobile__icon js-click-menu js-react"
+                    data-click-menu-target="mobile-chat-notification"
+                    data-react="chat-icon"
+                    data-turbo-permanent
+                    data-type="mobile"
+                    id="notification-widget-chat-icon-mobile"
+                    href="{{ route('chat.index') }}"
+                >
+                    <span class="notification-icon notification-icon--mobile">
+                        <i class="fas fa-comment-alt"></i>
+                    </span>
+                </a>
+
+                <a
+                    class="navbar-mobile__icon js-click-menu js-react"
+                    data-click-menu-target="mobile-notification"
+                    data-react="main-notification-icon"
+                    data-turbo-permanent
+                    data-type="mobile"
+                    id="notification-widget-icon-mobile"
+                    href="{{ route('notifications.index') }}"
+                >
+                    <span class="notification-icon notification-icon--mobile">
+                        <i class="fas fa-bell"></i>
+                    </span>
+                </a>
+            @endif
+
             <button
                 type="button"
                 class="navbar-mobile__toggle js-click-menu"
@@ -87,36 +117,6 @@
                     <button class="mobile-menu-tab js-click-menu" data-click-menu-target="mobile-search">
                         <span class="fas fa-search"></span>
                     </button>
-
-                    <a
-                        class="mobile-menu-tab js-click-menu js-react"
-                        data-click-menu-target="mobile-chat-notification"
-                        data-react="chat-icon"
-                        data-turbo-permanent
-                        data-type='mobile'
-                        id="notification-widget-chat-icon-mobile"
-                        href="{{ route('chat.index') }}"
-                    >
-                        <span class="notification-icon notification-icon--mobile">
-                            <i class="fas fa-comment-alt"></i>
-                            <span class="notification-icon__count">...</span>
-                        </span>
-                    </a>
-
-                    <a
-                        class="mobile-menu-tab js-click-menu js-react"
-                        data-click-menu-target="mobile-notification"
-                        data-react="main-notification-icon"
-                        data-turbo-permanent
-                        data-type='mobile'
-                        id="notification-widget-icon-mobile"
-                        href="{{ route('notifications.index') }}"
-                    >
-                        <span class="notification-icon notification-icon--mobile">
-                            <i class="fas fa-inbox"></i>
-                            <span class="notification-icon__count">...</span>
-                        </span>
-                    </a>
                 @endif
             </div>
 

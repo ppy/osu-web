@@ -130,6 +130,13 @@ export default class ClickMenu {
       }
     }
 
+    if (
+      (this.current === 'mobile-chat-notification' || this.current === 'mobile-notification')
+      && !tree.includes('mobile-menu')
+    ) {
+      tree.push('mobile-menu');
+    }
+
     return tree;
   };
 

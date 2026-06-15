@@ -27,6 +27,32 @@
 
     &--buttons {
       flex: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  &__icon {
+    .link-plain();
+    .link-white();
+    flex: none;
+    position: relative;
+    .center-content();
+    width: 40px;
+    height: 40px;
+    margin: -5px;
+
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &.js-click-menu--active {
+      color: hsla(var(--hsl-c1), 50%);
+
+      .notification-icon {
+        color: inherit;
+      }
     }
   }
 
@@ -61,6 +87,7 @@
 
     &.js-click-menu--active {
       transform: rotateX(0.5turn);
+      color: hsla(var(--hsl-c1), 50%);
     }
   }
 

@@ -43,11 +43,14 @@ export default class Nav2
 
 
   autoMobileNav: (e, {previousTree, target, tree}) =>
+    wasShowingMobileNav = previousTree.indexOf('mobile-menu') != -1
+    @showingMobileNav = tree.indexOf('mobile-menu') != -1
+
     if target == 'mobile-menu'
       @clickMenu.show('mobile-nav')
-      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
 
-    @showingMobileNav = tree.indexOf('mobile-menu') != -1
+    if @showingMobileNav && !wasShowingMobileNav
+      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
 
     if @showingMobileNav
       document.body.classList.add('js-nav2--active')
