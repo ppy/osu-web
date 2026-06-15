@@ -6,14 +6,14 @@ There are a few different options to get started:
 
 ### Install prerequisites
 
-- MySQL 8.0+
-- PHP 8.0+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
+- PHP (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
+- Node.js
 - nginx (or other webserver)
-- Node.js 16
-- elasticsearch 6+
-- redis
+- MySQL 8.0+
+- Elasticsearch 7+
+- Redis
 
-Current targeted PHP and NodeJS versions can be found in [`.php-version`](.php-version) and [`.node-version`](.node-version).
+Current targeted PHP and Node.js versions can be found in [`.php-version`](.php-version) and [`.node-version`](.node-version).
 
 ### Clone the git repository
 
@@ -38,7 +38,7 @@ location / {
 }
 ```
 
-Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#web-server-configuration) for non-nginx
+Consult the [laravel documentation](https://laravel.com/docs/11.x/deployment) for non-nginx
 
 ### Initialize database
 
