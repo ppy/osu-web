@@ -68,6 +68,7 @@ class LookupController extends Controller
 
             $transformer->setMode($rulesetName);
             $includes[] = 'global_rank';
+            $includes[] = 'statistics.country_rank';
             $users->with(User::statisticsRelationName($rulesetName));
         }
 

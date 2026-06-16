@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Reportable from 'interfaces/reportable';
+import Ruleset, { ensureRuleset, rulesetIds } from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
 import * as _ from 'lodash';
 import { autorun, makeObservable, observable, runInAction } from 'mobx';
@@ -21,6 +22,10 @@ import { UserCard } from './user-card';
 interface Props {
   container: HTMLElement;
   lookup: string;
+}
+
+interface UserCardQtipApi {
+  target: JQuery<HTMLElement>;
 }
 
 const userCardTooltipClass = 'qtip--user-card';
@@ -171,13 +176,15 @@ function onRemoveUserCard(_event: unknown, element: HTMLElement | null) {
   }
 }
 
-function shouldShow(event: JQuery.Event, api: any) {
+function shouldShow(event: JQuery.Event, api: UserCardQtipApi) {
   if (tooltipWithActiveMenu != null || core.windowSize.isMobile) {
     return event.preventDefault();
   }
 
   // keyed React components can end up with reused DOM elements with a previously set tooltip.
-  const target = api.target[0] as HTMLElement;
+  const target = api.target[0];
+  if (target == null) return event.preventDefault();
+
   if (target._tooltip !== target.dataset.userId) {
     event.preventDefault();
     $(target).trigger('mouseover');
@@ -198,6 +205,7 @@ export function startListening() {
 @observer
 export class UserCardTooltip extends React.PureComponent<Props> {
   @observable private readonly activeKeyState = new ActiveKeyState<string>();
+  private readonly currentMode?: Ruleset;
   private readonly disposer?: () => void;
   @observable private user?: UserJson;
   private xhr?;
@@ -214,11 +222,13 @@ export class UserCardTooltip extends React.PureComponent<Props> {
     super(props);
     makeObservable(this);
 
+    this.currentMode = ensureRuleset(this.props.container.dataset.usercardRuleset ?? '');
+    const rulesetId = this.currentMode == null ? undefined : rulesetIds[this.currentMode];
     const currentUser = core.currentUser;
-    if (currentUser != null && this.props.lookup === currentUser.id.toString()) {
+    if (currentUser != null && this.props.lookup === currentUser.id.toString() && rulesetId == null) {
       this.user = currentUser;
     } else {
-      this.xhr = apiLookupUsers([this.props.lookup])
+      this.xhr = apiLookupUsers([this.props.lookup], undefined, rulesetId)
         .done((response) => runInAction(() => {
           this.user = response.users[0] ?? userNotFoundJson;
         }))
@@ -249,6 +259,7 @@ export class UserCardTooltip extends React.PureComponent<Props> {
           <KeyContext.Provider value={this.props.lookup}>
             <UserCard
               activated={activated}
+              currentMode={this.currentMode}
               reportable={this.reportable}
               user={this.user}
             />

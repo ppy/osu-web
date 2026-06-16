@@ -16,6 +16,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
+import { performanceRankingUrl } from 'utils/ranking';
 import SeasonStats from './season-stats';
 
 interface Props {
@@ -87,7 +88,11 @@ export default class Cover extends React.Component<Props> {
               {this.props.user.country?.code != null &&
                 <a
                   className='profile-info__flag'
-                  href={route('rankings', { country: this.props.user.country.code, mode: this.props.currentMode, type: 'performance' })}
+                  href={performanceRankingUrl({
+                    country: this.props.user.country.code,
+                    mode: this.props.currentMode,
+                    rank: this.props.user.statistics?.country_rank,
+                  })}
                 >
                   <FlagCountry country={this.props.user.country} />
                   <span className='profile-info__flag-text'>{this.props.user.country.name}</span>
