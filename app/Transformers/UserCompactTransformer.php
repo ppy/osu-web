@@ -62,6 +62,7 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'current_season_stats',
+        'current_user_attributes',
         'daily_challenge_user_stats',
         'favourite_beatmapset_count',
         'follow_user_mapping',
@@ -242,6 +243,14 @@ class UserCompactTransformer extends TransformerAbstract
         return $season === null
             ? $this->primitive(null)
             : $this->primitive((new SeasonStats($user, $season))->get());
+    }
+
+    public function includeCurrentUserAttributes(User $user): Primitive
+    {
+        $currentUser = \Auth::user();
+        return $this->primitive($currentUser === null ? null : [
+            'has_blocked' => $user->hasBlocked($currentUser),
+        ]);
     }
 
     public function includeDailyChallengeUserStats(User $user)
