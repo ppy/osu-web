@@ -1,23 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.profile-detail {
-  --gutter: @gutter-v2;
-  background-color: hsl(var(--hsl-b5));
-  padding: 10px var(--gutter);
+.profile-detail-stats {
   display: grid;
-  gap: 10px;
-
-  &:empty {
-    display: none;
-  }
-
-  .profile-info + & {
-    .inner-shadow-top();
-  }
+  align-items: start;
+  gap: 15px;
 
   @media @desktop {
-    --gutter: @gutter-v2-desktop;
+    grid-template-columns: 1fr auto auto;
   }
 
   &__chart {
@@ -60,16 +50,6 @@
     @media @desktop {
       height: 100%;
       width: var(--separator-size);
-    }
-  }
-
-  &__stats {
-    display: grid;
-    align-items: start;
-    gap: 15px;
-
-    @media @desktop {
-      grid-template-columns: 1fr auto auto;
     }
   }
 
