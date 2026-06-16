@@ -29,10 +29,10 @@ const commentsMaxLength = 3000;
 export default class Entry extends React.Component<Props> {
   @observable private readonly currentVote;
   @observable private readonly initialVote;
-  @observable private readonly store;
   @observable private savedFeedback: 'fading' | 'visible' | false = false;
-  @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
   private savedFeedbackTimeout?: number;
+  @observable private readonly store;
+  @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
 
   constructor(props: Props) {
     super(props);
@@ -64,6 +64,10 @@ export default class Entry extends React.Component<Props> {
 
   private get commentTooLong() {
     return this.currentVote.comment.length > commentsMaxLength;
+  }
+
+  componentWillUnmount() {
+    window.clearTimeout(this.savedFeedbackTimeout);
   }
 
   render() {
@@ -126,10 +130,6 @@ export default class Entry extends React.Component<Props> {
         </div>
       </div>
     );
-  }
-
-  componentWillUnmount() {
-    window.clearTimeout(this.savedFeedbackTimeout);
   }
 
   @action
