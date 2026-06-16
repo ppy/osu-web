@@ -52,13 +52,12 @@ class BlocksController extends Controller
         $currentUserId = $currentUser->getKey();
         $relationQuery = $currentUser->relations()->where('zebra_id', $targetId);
         \DB::transaction(function () use ($currentUserId, $relationQuery, $targetId) {
-            if (
-                UserRelation::where([
+            $deleted = UserRelation::where([
                 'friend' => true,
                 'user_id' => $targetId,
                 'zebra_id' => $currentUserId,
-                ])->delete() > 0
-            ) {
+            ])->delete();
+            if ($deleted > 0) {
                 dispatch(new UpdateUserFollowerCountCache($currentUserId))->afterCommit();
             }
 
