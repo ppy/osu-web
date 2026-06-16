@@ -10,6 +10,7 @@ use App\Libraries\CurrentStats;
 use App\Libraries\MenuContent;
 use App\Libraries\Search\AllSearch;
 use App\Libraries\Search\QuickSearch;
+use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Build;
@@ -130,7 +131,11 @@ class HomeController extends Controller
         if (Auth::check()) {
             $menuImages = json_collection(MenuContent::activeImages(), new MenuImageTransformer());
             $newBeatmapsets = Beatmapset::latestRanked();
-            $popularBeatmapsets = Beatmapset::popular()->get();
+
+            $popularBeatmapsetsByMode = [];
+            foreach (Beatmap::MODES as $mode => $_) {
+                $popularBeatmapsetsByMode[$mode] = Beatmapset::popular($mode)->get();
+            }
 
             $dailyChallenge = Room::dailyChallengeFor(CarbonImmutable::now());
 
@@ -141,7 +146,7 @@ class HomeController extends Controller
                 'menuImages',
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets',
+                'popularBeatmapsetsByMode',
                 'dailyChallenge',
                 'featuredStream',
             ));

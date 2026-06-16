@@ -3,11 +3,13 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Models\Beatmap;
     use App\Models\NewsPost;
 
     $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
     $currentUser = Auth::user();
     $queryForRecentBeatmapsets = 'ranked>'.json_date(Carbon\Carbon::now()->subDays(30));
+    $popularMode = default_mode();
 @endphp
 @extends('master')
 
@@ -130,17 +132,44 @@
                     </a>
                 </div>
 
-                <h3 class='user-home__beatmap-list-title'>
-                    {{ osu_trans('home.user.beatmaps.popular') }}
-                </h3>
+                <div data-popular-beatmaps>
+                    <div class="user-home__beatmap-list-header">
+                        <h3 class="user-home__beatmap-list-title">
+                            {{ osu_trans('home.user.beatmaps.popular') }}
+                        </h3>
 
-                <div class="user-home__beatmapsets">
-                    @foreach ($popularBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'popular'])
+                        <ul class="game-mode">
+                            @foreach (Beatmap::MODES as $ruleset => $rulesetId)
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="{{ class_with_modifiers('game-mode-link', ['active' => $ruleset === $popularMode]) }}"
+                                        data-popular-mode="{{ $ruleset }}"
+                                        title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
+                                    >
+                                        <span class="fal fa-extra-mode-{{ $ruleset }}"></span>
+                                    </button>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    @foreach (Beatmap::MODES as $mode => $rulesetId)
+                        <div
+                            @class([
+                                'user-home__beatmapsets',
+                                'u-hidden' => $mode !== $popularMode,
+                            ])
+                            data-popular-panel="{{ $mode }}"
+                        >
+                            @foreach ($popularBeatmapsetsByMode[$mode] as $beatmapset)
+                                @include('home._user_beatmapset', ['type' => 'popular'])
+                            @endforeach
+                            <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets, 'sort' => 'favourites_desc', 'm' => $rulesetId]) }}">
+                                {{ osu_trans('common.buttons.see_more') }}
+                            </a>
+                        </div>
                     @endforeach
-                    <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets, 'sort' => 'favourites_desc']) }}">
-                        {{ osu_trans('common.buttons.see_more') }}
-                    </a>
                 </div>
             </div>
         </div>

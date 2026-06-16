@@ -13,12 +13,41 @@
     align-items: flex-start;
   }
 
+  &__beatmap-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px 0 10px;
+
+    .game-mode {
+      position: static;
+      height: auto;
+      gap: 8px;
+    }
+
+    .game-mode-link {
+      font-size: @font-size--title-small-3;
+    }
+
+    button.game-mode-link {
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+  }
+
   &__beatmap-list-title {
     margin: 0;
     padding: 20px 0 10px;
     font-size: @font-size--title-small-3;
     color: @osu-colour-l1;
     font-weight: bold;
+
+    .user-home__beatmap-list-header & {
+      padding: 0;
+    }
   }
 
   &__beatmapsets {

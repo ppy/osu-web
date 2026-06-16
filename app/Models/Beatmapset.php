@@ -182,18 +182,24 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return $sizes;
     }
 
-    public static function popular()
+    public static function popular(?string $mode = null)
     {
-        $ids = cache_remember_mutexed('popularBeatmapsetIds', 300, [], function () {
-            return static::popularIds();
+        $mode ??= default_mode();
+
+        $ids = cache_remember_mutexed("popularBeatmapsetIds:{$mode}", 300, [], function () use ($mode) {
+            return static::popularIds($mode);
         });
 
         return static::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids);
     }
 
-    public static function popularIds()
+    public static function popularIds(?string $mode = null)
     {
+        $mode ??= default_mode();
+        $modeInt = Beatmap::MODES[$mode];
+
         $recentIds = static::ranked()
+            ->hasMode($modeInt)
             ->where('approved_date', '>', now()->subDays(30))
             ->where('nsfw', false)
             ->select('beatmapset_id');
