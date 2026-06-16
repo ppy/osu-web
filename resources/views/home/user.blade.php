@@ -134,7 +134,7 @@
 
                 <div data-popular-beatmaps>
                     <div class="user-home__beatmap-list-header">
-                        <h3 class="user-home__beatmap-list-title">
+                        <h3 class="user-home__beatmap-list-title user-home__beatmap-list-title--in-header">
                             {{ osu_trans('home.user.beatmaps.popular') }}
                         </h3>
 
