@@ -19,7 +19,7 @@ return [
         'nav_title' => 'judge',
         'no_current_vote' => 'you didn\'t vote yet.',
         'update' => 'update',
-        'update_done' => 'Updated vote',
+        'unsaved_changes' => 'unsaved changes',
         'validation' => [
             'missing_score' => 'missing score',
             'contest_vote_judged' => 'can\'t vote in judged contests',

@@ -4,8 +4,27 @@
 .contest-judge-entry {
   &__button {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
+    gap: 10px;
     text-transform: lowercase;
+  }
+
+  &__status {
+    font-weight: bold;
+
+    &--unsaved {
+      color: hsl(var(--hsl-orange-1));
+    }
+
+    &--saved {
+      color: @green;
+      transition: opacity 120ms ease-in-out;
+    }
+
+    &--fade-out {
+      opacity: 0;
+    }
   }
 
   &__categories {

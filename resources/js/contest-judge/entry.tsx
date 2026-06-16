@@ -3,6 +3,7 @@
 
 import BigButton from 'components/big-button';
 import InputContainer from 'components/input-container';
+import { Spinner } from 'components/spinner';
 import TextareaAutosize from 'components/textarea-autosize';
 import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
@@ -13,8 +14,8 @@ import { ContestEntry } from 'models/contest-entry';
 import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { popup } from 'utils/popup';
 import CurrentUserJudgeVote from './current-user-judge-vote';
 
 interface Props {
@@ -29,7 +30,9 @@ export default class Entry extends React.Component<Props> {
   @observable private readonly currentVote;
   @observable private readonly initialVote;
   @observable private readonly store;
+  @observable private savedFeedback: 'fading' | 'visible' | false = false;
   @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
+  private savedFeedbackTimeout?: number;
 
   constructor(props: Props) {
     super(props);
@@ -48,11 +51,15 @@ export default class Entry extends React.Component<Props> {
     return this.store.canJudge
       && !this.commentTooLong
       && this.currentVote.scores.size === this.store.scoringCategories.length
-      && (this.currentVote.comment !== this.initialVote.comment
-          || this.store.scoringCategories.some((category) => (
-            this.initialVote.scores.get(category.id)?.value !== this.currentVote.scores.get(category.id)?.value
-          ))
-      );
+      && this.hasUnsavedChanges;
+  }
+
+  @computed
+  private get hasUnsavedChanges() {
+    return this.currentVote.comment !== this.initialVote.comment
+      || this.store.scoringCategories.some((category) => (
+        this.initialVote.scores.get(category.id)?.value !== this.currentVote.scores.get(category.id)?.value
+      ));
   }
 
   private get commentTooLong() {
@@ -94,6 +101,21 @@ export default class Entry extends React.Component<Props> {
         </InputContainer>
 
         <div className='contest-judge-entry__button'>
+          {this.xhr != null && (
+            <div className='contest-judge-entry__status'>
+              <Spinner />
+            </div>
+          )}
+          {this.xhr == null && this.hasUnsavedChanges && (
+            <div className={classWithModifiers('contest-judge-entry__status', 'unsaved')}>
+              {trans('contest.judge.unsaved_changes')}
+            </div>
+          )}
+          {this.xhr == null && !this.hasUnsavedChanges && this.savedFeedback !== false && (
+            <div className={classWithModifiers('contest-judge-entry__status', 'saved', this.savedFeedback === 'fading' ? 'fade-out' : undefined)}>
+              {trans('common.saved')}
+            </div>
+          )}
           <BigButton
             disabled={!this.canSubmit}
             icon='fas fa-check'
@@ -106,9 +128,15 @@ export default class Entry extends React.Component<Props> {
     );
   }
 
+  componentWillUnmount() {
+    window.clearTimeout(this.savedFeedbackTimeout);
+  }
+
   @action
   private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.currentVote.comment = e.currentTarget.value;
+    this.savedFeedback = false;
+    window.clearTimeout(this.savedFeedbackTimeout);
   };
 
   @action
@@ -118,6 +146,8 @@ export default class Entry extends React.Component<Props> {
 
     const score = { contest_scoring_category_id: categoryId, value };
     this.currentVote.scores.set(categoryId, score);
+    this.savedFeedback = false;
+    window.clearTimeout(this.savedFeedbackTimeout);
   };
 
   private readonly renderCategory = (category: ContestScoringCategoryJson) => {
@@ -168,17 +198,22 @@ export default class Entry extends React.Component<Props> {
 
     this.xhr
       .fail(onError)
-      .done((json) => {
-        popup(trans('contest.judge.update_done'), 'info');
+      .done((json) => runInAction(() => {
+        this.store.updateEntry(json);
 
-        runInAction(() => {
-          this.store.updateEntry(json);
+        if (json.current_user_judge_vote != null) {
+          this.initialVote.updateWithJson(json.current_user_judge_vote);
+        }
 
-          if (json.current_user_judge_vote != null) {
-            this.initialVote.updateWithJson(json.current_user_judge_vote);
-          }
-        });
-      }).always(action(() => {
+        this.savedFeedback = 'visible';
+        window.clearTimeout(this.savedFeedbackTimeout);
+        this.savedFeedbackTimeout = window.setTimeout(action(() => {
+          this.savedFeedback = 'fading';
+          this.savedFeedbackTimeout = window.setTimeout(action(() => {
+            this.savedFeedback = false;
+          }), 120);
+        }), 3000);
+      })).always(action(() => {
         this.xhr = undefined;
       }));
   };
