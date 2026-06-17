@@ -169,6 +169,8 @@ class ReplyTest extends TestCase
             'user_id' => $starter,
         ]);
 
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
+
         new Reply($user, $discussion, static::TEST_MESSAGE)->handle();
 
         Queue::assertPushed(
