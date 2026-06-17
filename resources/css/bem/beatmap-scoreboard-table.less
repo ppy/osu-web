@@ -14,6 +14,7 @@
   --perfect-color: hsl(@beatmap-score--hsl-perfect);
   --row-background-color: hsl(var(--hsl-b4));
   --row-background-color-highlight: hsl(var(--hsl-b2));
+  --zero-opacity: 0.4;
 
   // Safari performance on __popup-menu is very bad, otherwise.
   .own-layer();
@@ -74,7 +75,9 @@
       white-space: nowrap;
     }
 
-    .hit-stat-colours();
+    .hit-stat-colours({
+      color: hsl(@value);
+    });
 
     &--hitstat-miss {
       width: 50px;
@@ -101,9 +104,7 @@
 
     &:hover,
     &--menu-active {
-      .@{_top}__cell-content--zero {
-        opacity: 1;
-      }
+      --zero-opacity: 1;
     }
 
     // @passive-row
@@ -197,11 +198,13 @@
       white-space: nowrap;
     }
 
-    .hit-stat-colours();
+    .hit-stat-colours({
+      --default-color: hsl(@value);
+      color: hsl(@value);
+    });
 
     &--zero {
-      opacity: 0.4;
-      .fade-element(@hover-transition-duration, ease-in-out, opacity);
+      opacity: var(--zero-opacity);
     }
   }
 

@@ -71,16 +71,6 @@ export function modDetails(mod: ScoreModJson) {
 
 type ScoreDisplayType = 'leaderboard' | 'single';
 
-type ScoreStatisticColour =
-  | 'good' // osu!mania only
-  | 'great'
-  | 'hit-perfect' // osu!mania only
-  | 'large-tick-hit' // osu!catch only
-  | 'meh'
-  | 'miss'
-  | 'ok'
-  | 'small-tick-miss'; // osu!catch only
-
 interface ScoreStatisticMapping {
   attributes: ScoreStatisticsAttribute[];
   basic: boolean;
@@ -92,8 +82,8 @@ interface ScoreStatisticMapping {
 }
 
 interface ScoreStatistic {
+  attribute: ScoreStatisticsAttribute;
   basic: boolean;
-  colour?: ScoreStatisticColour;
   label: {
     long: string;
     short: string;
@@ -104,20 +94,8 @@ interface ScoreStatistic {
 
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
-const statisticColourByAttribute: Partial<Record<ScoreStatisticsAttribute, ScoreStatisticColour>> = {
-  good: 'good',
-  great: 'great',
-  large_tick_hit: 'large-tick-hit',
-  meh: 'meh',
-  miss: 'miss',
-  ok: 'ok',
-  perfect: 'hit-perfect',
-  small_tick_hit: 'large-tick-hit',
-  small_tick_miss: 'small-tick-miss',
-};
-
-export function statisticColour(attributes: ScoreStatisticsAttribute[]): ScoreStatisticColour | undefined {
-  return statisticColourByAttribute[attributes[0]];
+export function hitStatisticModifier(attribute: ScoreStatisticsAttribute) {
+  return `hit-${attribute}`;
 }
 
 export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = {
@@ -163,8 +141,8 @@ export function calculateStatisticsFor(score: ScoreJson, type: ScoreDisplayType)
   return scoreStatisticsMapping[rulesetNames[score.ruleset_id]]
     .filter((mapping) => mapping.relevantTypes.includes(type))
     .map((mapping) => ({
+      attribute: mapping.attributes[0],
       basic: mapping.basic,
-      colour: statisticColour(mapping.attributes),
       label: mapping.label,
       maximumValue: mapping.basic ? undefined : mapping.attributes.reduce((sum, attribute) => sum + (score.maximum_statistics[attribute] ?? 0), 0),
       value: mapping.attributes.reduce((sum, attribute) => sum + (score.statistics[attribute] ?? 0), 0),

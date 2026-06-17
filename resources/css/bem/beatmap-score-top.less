@@ -95,7 +95,9 @@
       min-width: 30px;
     }
 
-    .hit-stat-colours();
+    .hit-stat-colours({
+      color: hsl(@value);
+    });
   }
 
   &__stat-value {
@@ -120,7 +122,9 @@
       font-weight: 500;
     }
 
-    .hit-stat-colours();
+    .hit-stat-colours({
+      color: hsl(@value);
+    });
   }
 
   &__stats {

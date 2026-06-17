@@ -352,22 +352,22 @@
   -webkit-box-orient: vertical;
 }
 
-.hit-stat-colours() {
+.hit-stat-colours(@rules) {
   @colours: {
-    hit-perfect: @beatmap-score--hsl-hit-perfect;
-    great: @beatmap-score--hsl-hit-great;
     good: @beatmap-score--hsl-hit-good;
-    ok: @beatmap-score--hsl-hit-ok;
+    great: @beatmap-score--hsl-hit-great;
+    large_tick_hit: @beatmap-score--hsl-hit-large-tick-hit;
     meh: @beatmap-score--hsl-hit-meh;
     miss: @beatmap-score--hsl-hit-miss;
-    large-tick-hit: @beatmap-score--hsl-hit-large-tick-hit;
-    small-tick-miss: @beatmap-score--hsl-hit-small-tick-miss;
+    ok: @beatmap-score--hsl-hit-ok;
+    perfect: @beatmap-score--hsl-hit-perfect;
+    small_tick_hit: @beatmap-score--hsl-hit-large-tick-hit;
+    small_tick_miss: @beatmap-score--hsl-hit-small-tick-miss;
   };
 
   each(@colours, {
-    &--@{key} {
-      --default-color: hsl(@value);
-      color: hsl(@value);
+    &--hit-@{key} {
+      @rules();
     }
   });
 }

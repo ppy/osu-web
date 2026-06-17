@@ -8,7 +8,7 @@ import { ActiveKeyState, ContainerContext, KeyContext } from 'stateful-activatio
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { scoreStatisticsMapping, statisticColour } from 'utils/score-helper';
+import { scoreStatisticsMapping, hitStatisticModifier } from 'utils/score-helper';
 import Controller from './controller';
 import TableRow from './table-row';
 
@@ -62,7 +62,7 @@ export default class Table extends React.Component<Props> {
                   .map((stat) => (
                     <th
                       key={stat.label.short}
-                      className={classWithModifiers(`${bn}__header`, ['hitstat', statisticColour(stat.attributes)])}
+                      className={classWithModifiers(`${bn}__header`, ['hitstat', hitStatisticModifier(stat.attributes[0])])}
                     >
                       {stat.label.short}
                     </th>

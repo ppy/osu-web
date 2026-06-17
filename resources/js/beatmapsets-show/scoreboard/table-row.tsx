@@ -19,7 +19,7 @@ import PpValue from 'scores/pp-value';
 import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank } from 'utils/score-helper';
+import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, hitStatisticModifier, rank } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -139,7 +139,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <TdLink
             key={stat.label.short}
             href={this.scoreUrl}
-            modifiers={mergeModifiers(stat.colour, stat.value === 0 ? 'zero' : null)}
+            modifiers={mergeModifiers(hitStatisticModifier(stat.attribute), stat.value === 0 ? 'zero' : null)}
           >
             {formatNumber(stat.value)}
           </TdLink>
