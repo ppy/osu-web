@@ -10,23 +10,42 @@ namespace Tests\Controllers;
 use App\Models\User;
 use Tests\TestCase;
 
-class FriendsControllerTest extends TestCase
+class BlocksControllerTest extends TestCase
 {
     public function testStore(): void
     {
         $user = User::factory()->create();
         $target = User::factory()->create();
 
-        $this->expectCountChange(fn () => $user->friends()->count(), 1);
+        $this->expectCountChange(fn () => $user->blocks()->count(), 1);
 
         $this
             ->actingAsVerified($user)
-            ->post(route('friends.store'), [
+            ->post(route('blocks.store'), [
                 'target' => $target->getKey(),
             ])->assertSuccessful();
     }
 
-    public function testStoreAlreadyFriend(): void
+    public function testStoreAlreadyBlocked(): void
+    {
+        $user = User::factory()->create();
+        $target = User::factory()->create();
+        $user->relations()->create([
+            'foe' => true,
+            'friend' => false,
+            'zebra_id' => $target->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => $user->blocks()->count(), 0);
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('blocks.store'), [
+                'target' => $target->getKey(),
+            ])->assertSuccessful();
+    }
+
+    public function testStoreFriends(): void
     {
         $user = User::factory()->create();
         $target = User::factory()->create();
@@ -35,54 +54,21 @@ class FriendsControllerTest extends TestCase
             'friend' => true,
             'zebra_id' => $target->getKey(),
         ]);
-
-        $this->expectCountChange(fn () => $user->friends()->count(), 0);
-
-        $this
-            ->actingAsVerified($user)
-            ->post(route('friends.store'), [
-                'target' => $target->getKey(),
-            ])->assertSuccessful();
-    }
-
-    public function testStoreBlocked(): void
-    {
-        $user = User::factory()->create();
-        $target = User::factory()->create();
-        $user->relations()->create([
-            'foe' => true,
-            'friend' => false,
-            'zebra_id' => $target->getKey(),
-        ]);
-
-        $this->expectCountChange(fn () => $user->friends()->count(), 1);
-        $this->expectCountChange(fn () => $user->blocks()->count(), -1);
-
-        $this
-            ->actingAsVerified($user)
-            ->post(route('friends.store'), [
-                'target' => $target->getKey(),
-            ])->assertSuccessful();
-    }
-
-    public function testStoreBlockedByTarget(): void
-    {
-        $user = User::factory()->create();
-        $target = User::factory()->create();
         $target->relations()->create([
-            'foe' => true,
-            'friend' => false,
+            'foe' => false,
+            'friend' => true,
             'zebra_id' => $user->getKey(),
         ]);
 
-        $this->expectCountChange(fn () => $user->friends()->count(), 0);
-        $this->expectCountChange(fn () => $target->blocks()->count(), 0);
+        $this->expectCountChange(fn () => $user->friends()->count(), -1);
+        $this->expectCountChange(fn () => $target->friends()->count(), -1);
+        $this->expectCountChange(fn () => $user->blocks()->count(), 1);
 
         $this
             ->actingAsVerified($user)
-            ->post(route('friends.store'), [
+            ->post(route('blocks.store'), [
                 'target' => $target->getKey(),
-            ])->assertStatus(422);
+            ])->assertSuccessful();
     }
 
     public function testStoreNonExistentTarget(): void
@@ -90,11 +76,11 @@ class FriendsControllerTest extends TestCase
         $user = User::factory()->create();
         $targetId = User::max('user_id') + 1;
 
-        $this->expectCountChange(fn () => $user->friends()->count(), 0);
+        $this->expectCountChange(fn () => $user->blocks()->count(), 0);
 
         $this
             ->actingAsVerified($user)
-            ->post(route('friends.store'), [
+            ->post(route('blocks.store'), [
                 'target' => $targetId,
             ])->assertStatus(404);
     }

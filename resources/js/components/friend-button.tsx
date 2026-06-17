@@ -19,7 +19,7 @@ const bn = 'user-action-button';
 
 interface Props {
   alwaysVisible: boolean;
-  container?: HTMLElement;
+  blocked?: boolean;
   followers?: number;
   modifiers?: Modifiers;
   userId: number;
@@ -74,6 +74,10 @@ export default class FriendButton extends React.Component<Props> {
 
   @computed
   private get title() {
+    if (this.props.blocked) {
+      return trans('friends.blocked');
+    }
+
     if (!this.isVisible) {
       return trans('friends.buttons.disabled');
     }
@@ -119,7 +123,7 @@ export default class FriendButton extends React.Component<Props> {
       : (this.friend.mutual ? 'mutual' : 'friend');
 
     const blockClass = classWithModifiers(bn, this.props.modifiers, extraModifier);
-    const disabled = !this.isVisible || this.loading || this.isFriendLimit && this.friend == null;
+    const disabled = !this.isVisible || this.loading || this.props.blocked || this.isFriendLimit && this.friend == null;
 
     return (
       <div title={this.title}>
