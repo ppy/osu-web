@@ -9,7 +9,7 @@ There are a few different options to get started:
 - PHP (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
 - Node.js
 - nginx (or other webserver)
-- MySQL 8.0+
+- MySQL 8.4+
 - Elasticsearch 7+
 - Redis
 

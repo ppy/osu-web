@@ -5,6 +5,8 @@
 
 namespace App\Jobs\Notifications;
 
+use App\Models\UserNotificationOption;
+
 class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostNotification
 {
     #[\Override]
@@ -14,7 +16,9 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostNotification
 
         $discussion = $this->beatmapsetDiscussionPost->beatmapDiscussion;
         if ($discussion->canBeResolved() && $discussion->user_id !== null) {
-            $userIds->push($discussion->user_id);
+            if ($discussion->user?->notificationOptions()->where('name', static::NOTIFICATION_OPTION_NAME)->first()?->details[UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY] ?? true) {
+                $userIds->push($discussion->user_id);
+            }
         }
 
         return $userIds->all();
