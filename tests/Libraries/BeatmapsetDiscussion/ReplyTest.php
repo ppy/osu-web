@@ -154,6 +154,31 @@ class ReplyTest extends TestCase
         );
     }
 
+    public function testReplyQueuesNotificationToStarterReplyDisabled()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $starter = User::factory()->create();
+        $starter->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => [UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY => false],
+        ]);
+
+        $discussion = BeatmapDiscussion::factory()->general()->create([
+            'beatmapset_id' => $this->beatmapsetFactory(),
+            'message_type' => 'problem',
+            'user_id' => $starter,
+        ]);
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
+
+        new Reply($user, $discussion, static::TEST_MESSAGE)->handle();
+
+        Queue::assertPushed(
+            BeatmapsetDiscussionPostNew::class,
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, [])
+        );
+    }
+
     #[DataProvider('dataProviderForUserGroups')]
     public function testReplyResolvedDiscussion(?string $group)
     {
