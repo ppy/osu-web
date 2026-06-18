@@ -4,7 +4,7 @@
 # TODO: migrate to store.ts.
 
 import { route } from 'laroute'
-import { StorePaypal } from 'store-paypal'
+import { fetchApprovalLink } from 'store-paypal'
 import { initXsolla } from 'store-xsolla'
 import { onError } from 'utils/ajax'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -43,7 +43,7 @@ export class StoreCheckout
     { orderId, provider, url } = params
     switch provider
       when 'paypal'
-        StorePaypal.fetchApprovalLink(orderId).then (link) ->
+        fetchApprovalLink(orderId).then (link) ->
           window.location.href = link
 
       when 'xsolla'
