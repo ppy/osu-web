@@ -6,25 +6,25 @@ import { htmlElementOrNull } from 'utils/html';
 
 const activeClass = 'js-is-active';
 
-export default class PopularBeatmapsRuleset {
+export default class PopularBeatmapsetsRuleset {
   constructor() {
-    $(document).on('click', '.js-popular-beatmaps-ruleset', this.onClick);
+    $(document).on('click', '.js-popular-beatmapsets-ruleset', this.onClick);
   }
 
   private readonly onClick = (event: JQuery.ClickEvent) => {
     const selectedButton = htmlElementOrNull(event.currentTarget)
-      ?? fail('popular beatmaps ruleset button is missing');
+      ?? fail('popular beatmapsets ruleset button is missing');
 
-    const container = selectedButton.closest('.js-popular-beatmaps')
-      ?? fail('popular beatmaps container is missing');
+    const container = selectedButton.closest('.js-popular-beatmapsets')
+      ?? fail('popular beatmapsets container is missing');
 
     const ruleset = selectedButton.dataset.popularRuleset;
 
-    for (const button of container.querySelectorAll<HTMLButtonElement>('.js-popular-beatmaps-ruleset')) {
+    for (const button of container.querySelectorAll<HTMLButtonElement>('.js-popular-beatmapsets-ruleset')) {
       button.classList.toggle(activeClass, button.dataset.popularRuleset === ruleset);
     }
 
-    for (const panel of container.querySelectorAll<HTMLElement>('.js-popular-beatmaps-panel')) {
+    for (const panel of container.querySelectorAll<HTMLElement>('.js-popular-beatmapsets-panel')) {
       panel.classList.toggle('u-hidden', panel.dataset.popularRuleset !== ruleset);
     }
   };

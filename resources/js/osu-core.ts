@@ -23,7 +23,7 @@ import ForumTopicTagEditor from 'core/forum/forum-topic-tag-editor';
 import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
-import PopularBeatmapsRuleset from 'core/popular-beatmaps-ruleset';
+import PopularBeatmapsetsRuleset from 'core/popular-beatmapsets-ruleset';
 import ReactTurbolinks from 'core/react-turbolinks';
 import Spoilerbox from 'core/spoilerbox';
 import StickyFooter from 'core/sticky-footer';
@@ -79,7 +79,7 @@ export default class OsuCore {
   readonly mobileToggle;
   readonly notificationsWorker;
   readonly osuAudio;
-  readonly popularBeatmapsRuleset;
+  readonly popularBeatmapsetsRuleset;
   readonly reactTurbolinks;
   readonly referenceLinkTooltip;
   readonly scorePins;
@@ -129,7 +129,7 @@ export default class OsuCore {
     this.forumTopicTagEditor = new ForumTopicTagEditor();
     this.localtime = new Localtime();
     this.mobileToggle = new MobileToggle();
-    this.popularBeatmapsRuleset = new PopularBeatmapsRuleset();
+    this.popularBeatmapsetsRuleset = new PopularBeatmapsetsRuleset();
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
     this.scorePins = new ScorePins();

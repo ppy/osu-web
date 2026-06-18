@@ -136,7 +136,7 @@
                     </a>
                 </div>
 
-                <div class="js-popular-beatmaps">
+                <div class="js-popular-beatmapsets">
                     <div class="user-home__beatmap-list-header">
                         <h3 class="user-home__beatmap-list-title">
                             {{ osu_trans('home.user.beatmaps.popular') }}
@@ -147,7 +147,7 @@
                                 <li>
                                     <button
                                         type="button"
-                                        class="{{ class_with_modifiers('game-mode-link', 'inherit-size', 'button') }} js-popular-beatmaps-ruleset{{ $ruleset === $popularRuleset ? ' js-is-active' : '' }}"
+                                        class="{{ class_with_modifiers('game-mode-link', 'inherit-size', 'button') }} js-popular-beatmapsets-ruleset{{ $ruleset === $popularRuleset ? ' js-is-active' : '' }}"
                                         data-popular-ruleset="{{ $ruleset }}"
                                         title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
                                     >
@@ -162,7 +162,7 @@
                         <div
                             @class([
                                 'user-home__beatmapsets',
-                                'js-popular-beatmaps-panel',
+                                'js-popular-beatmapsets-panel',
                                 'u-hidden' => $ruleset !== $popularRuleset,
                             ])
                             data-popular-ruleset="{{ $ruleset }}"
