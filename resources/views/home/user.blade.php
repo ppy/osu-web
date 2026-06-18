@@ -138,12 +138,12 @@
                             {{ osu_trans('home.user.beatmaps.popular') }}
                         </h3>
 
-                        <ul class="game-mode">
+                        <ul class="game-mode game-mode--inline">
                             @foreach (Beatmap::MODES as $ruleset => $rulesetId)
                                 <li>
                                     <button
                                         type="button"
-                                        class="{{ class_with_modifiers('game-mode-link', ['active' => $ruleset === $popularMode]) }} js-popular-beatmaps-mode"
+                                        class="{{ class_with_modifiers('game-mode-link', 'compact', 'button', ['active' => $ruleset === $popularMode]) }} js-popular-beatmaps-mode"
                                         data-popular-mode="{{ $ruleset }}"
                                         title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
                                     >
