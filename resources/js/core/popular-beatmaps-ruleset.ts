@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { fail } from 'utils/fail';
+import { htmlElementOrNull } from 'utils/html';
 
 const activeClass = 'js-is-active';
 
@@ -11,9 +12,8 @@ export default class PopularBeatmapsRuleset {
   }
 
   private readonly onClick = (event: JQuery.ClickEvent) => {
-    const selectedButton = event.currentTarget instanceof HTMLButtonElement
-      ? event.currentTarget
-      : fail('popular beatmaps ruleset button is missing');
+    const selectedButton = htmlElementOrNull(event.currentTarget)
+      ?? fail('popular beatmaps ruleset button is missing');
 
     const container = selectedButton.closest('.js-popular-beatmaps')
       ?? fail('popular beatmaps container is missing');
