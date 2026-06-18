@@ -41,6 +41,7 @@ import UserVerification from 'core/user/user-verification';
 import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
+import StoreCheckout from 'core-legacy/store-checkout';
 import type CurrentUserJson from 'interfaces/current-user-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
@@ -87,6 +88,7 @@ export default class OsuCore {
   readonly spoilerbox;
   readonly stickyFooter;
   readonly stickyHeader;
+  readonly storeCheckout;
   readonly syncHeight;
   readonly timeago;
   readonly turbolinksReload;
@@ -136,6 +138,7 @@ export default class OsuCore {
     this.spoilerbox = new Spoilerbox();
     this.stickyFooter = new StickyFooter();
     this.stickyHeader = new StickyHeader();
+    this.storeCheckout = new StoreCheckout();
     this.syncHeight = new SyncHeight();
     this.timeago = new Timeago();
     this.turbolinksReload = new TurbolinksReload();

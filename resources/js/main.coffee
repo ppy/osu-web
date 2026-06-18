@@ -39,7 +39,6 @@ jQuery.timeago.inWords = (distanceMillis) ->
 
 $(document).on 'turbo:load', ->
   BeatmapPack.initialize()
-  StoreCheckout.initialize()
 
 window.bbcodePreview ?= new BbcodePreview
 window.checkboxValidation ?= new CheckboxValidation
