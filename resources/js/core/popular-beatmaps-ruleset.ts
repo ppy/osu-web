@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { htmlElementOrNull } from 'utils/html';
+import { fail } from 'utils/fail';
 
 export default class PopularBeatmapsRuleset {
   constructor() {
@@ -9,11 +9,12 @@ export default class PopularBeatmapsRuleset {
   }
 
   private readonly onClick = (event: JQuery.ClickEvent) => {
-    const selectedButton = htmlElementOrNull(event.currentTarget);
-    if (!(selectedButton instanceof HTMLButtonElement)) return;
+    const selectedButton = event.currentTarget instanceof HTMLButtonElement
+      ? event.currentTarget
+      : fail('popular beatmaps ruleset button is missing');
 
-    const container = selectedButton.closest('.js-popular-beatmaps');
-    if (!(container instanceof HTMLElement)) return;
+    const container = selectedButton.closest('.js-popular-beatmaps')
+      ?? fail('popular beatmaps container is missing');
 
     const ruleset = selectedButton.dataset.popularRuleset;
 
