@@ -108,20 +108,24 @@
                 </div>
 
                 @if ($dailyChallenge)
-                    <h3 class="user-home__beatmap-list-title">
-                        <a href="{{ wiki_url("Gameplay/Daily_challenge") }}">
-                            {{ osu_trans('home.user.beatmaps.daily_challenge') }}
-                        </a>
-                    </h3>
+                    <div class="user-home__beatmap-list-header">
+                        <h3 class="user-home__beatmap-list-title">
+                            <a href="{{ wiki_url("Gameplay/Daily_challenge") }}">
+                                {{ osu_trans('home.user.beatmaps.daily_challenge') }}
+                            </a>
+                        </h3>
+                    </div>
 
                     <div class="user-home__beatmapsets">
                         @include('home._user_beatmapset', ['type' => 'daily_challenge', 'beatmapset' => $dailyChallenge->currentPlaylistItem->beatmap->beatmapset, 'dailyChallenge' => $dailyChallenge])
                     </div>
                 @endif
 
-                <h3 class='user-home__beatmap-list-title'>
-                    {{ osu_trans('home.user.beatmaps.new') }}
-                </h3>
+                <div class="user-home__beatmap-list-header">
+                    <h3 class="user-home__beatmap-list-title">
+                        {{ osu_trans('home.user.beatmaps.new') }}
+                    </h3>
+                </div>
 
                 <div class="user-home__beatmapsets">
                     @foreach ($newBeatmapsets as $beatmapset)
@@ -134,7 +138,7 @@
 
                 <div class="js-popular-beatmaps">
                     <div class="user-home__beatmap-list-header">
-                        <h3 class="user-home__beatmap-list-title user-home__beatmap-list-title--in-header">
+                        <h3 class="user-home__beatmap-list-title">
                             {{ osu_trans('home.user.beatmaps.popular') }}
                         </h3>
 
