@@ -1,66 +1,83 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-# TODO: migrate to store.ts.
+// TODO: migrate to store.ts.
 
-import { route } from 'laroute'
-import { fetchApprovalLink } from 'store-paypal'
-import { initXsolla } from 'store-xsolla'
-import { onError } from 'utils/ajax'
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { route } from 'laroute';
+import { fetchApprovalLink } from 'store-paypal';
+import { initXsolla } from 'store-xsolla';
+import { isJqXHR, onError } from 'utils/ajax';
+import { trans } from 'utils/lang';
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { popup } from 'utils/popup';
 
-export class StoreCheckout
-  @CHECKOUT_SELECTOR: '.js-store-checkout-button'
+const checkoutSelector = '.js-store-checkout-button';
 
-  @initialize: =>
-    # load scripts
-    init = {}
+interface PaymentParams {
+  orderId?: string;
+  provider?: string;
+}
 
-    for element in document.querySelectorAll(@CHECKOUT_SELECTOR)
-      provider = element.dataset.provider
-      orderNumber = element.dataset.orderNumber
-      switch provider
-        when 'free' then init['free'] = Promise.resolve()
-        when 'paypal' then init['paypal'] = Promise.resolve()
-        when 'xsolla' then init['xsolla'] = initXsolla(orderNumber)
+export default class StoreCheckout {
+  constructor() {
+    document.addEventListener('turbo:load', () => {
+      const init: Partial<Record<string, Promise<void>>> = {};
+      for (const element of document.querySelectorAll<HTMLElement>(checkoutSelector)) {
+        const { provider, orderNumber } = element.dataset;
+        switch (provider) {
+          case 'free': init.free = Promise.resolve(); break;
+          case 'paypal': init.paypal = Promise.resolve(); break;
+          case 'xsolla': init.xsolla = initXsolla(orderNumber); break;
+        }
+      }
 
-    $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
-      { orderId, provider } = event.target.dataset
-      # sanity
-      return unless provider?
-      showLoadingOverlay()
-      showLoadingOverlay.flush()
+      $(checkoutSelector).on('click.checkout', (event) => {
+        const { orderId, provider } = event.target.dataset;
+        // sanity
+        if (provider == null) {
+          return;
+        }
+        showLoadingOverlay();
+        showLoadingOverlay.flush();
 
-      init[provider]?.then ->
-        hide_from_activity = document.querySelector('.js-hide-from-activity')?.checked
-        $.post(route('store.checkout.store'), { hide_from_activity, provider, orderId })
-      .then =>
-        @startPayment(event.target.dataset)
-      .catch @handleError
+        init[provider]?.then(() => {
+          const hide_from_activity = document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked;
+          $.post(route('store.checkout.store'), { hide_from_activity, provider, orderId });
+        }).then(() => this.startPayment(event.target.dataset)).catch(this.handleError);
+      });
+    });
+  }
+
+  startPayment(params: PaymentParams) {
+    const { orderId, provider } = params;
+    switch (provider) {
+      case 'paypal':
+        return fetchApprovalLink(orderId).then((link) => window.location.href = link);
+
+      case 'xsolla':
+        return new Promise((resolve) => {
+          // FIXME: flickering when transitioning to widget
+          XPayStationWidget.open();
+          hideLoadingOverlay();
+          resolve(undefined);
+        });
+    }
+  }
 
 
-  @startPayment: (params) ->
-    { orderId, provider, url } = params
-    switch provider
-      when 'paypal'
-        fetchApprovalLink(orderId).then (link) ->
-          window.location.href = link
+  private readonly handleError = (error: unknown) => {
+    hideLoadingOverlay();
+    if (isJqXHR(error)) {
+      // check if 4xx ujs_redirect
+      if (error.getResponseHeader('content-type') === 'application/javascript') {
+        return;
+      }
 
-      when 'xsolla'
-        new Promise (resolve) ->
-          # FIXME: flickering when transitioning to widget
-          XPayStationWidget.open()
-          hideLoadingOverlay()
-          resolve()
+      // TODO: less unknown error, disable button
+      // TODO: handle error.message
+      onError(error);
+    }
 
-
-  @handleError: (error) ->
-    hideLoadingOverlay()
-    # errors from they jquery deferred will propagate here.
-    if error.getResponseHeader # check if 4xx ujs_redirect
-      type = error.getResponseHeader('Content-Type')
-      return if _.startsWith(type, 'application/javascript')
-
-    # TODO: less unknown error, disable button
-    # TODO: handle error.message
-    onError(error?.xhr)
+    popup(trans('errors.unknown'), 'danger');
+  };
+}
