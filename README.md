@@ -7,13 +7,6 @@
 
 The browser-facing portion of [osu!](https://osu.ppy.sh/home).
 
-## Requirements
-
-- A PHP environment ([version](.php-version))
-- NodeJS ([version](.node-version))
-- MySQL 8.0+
-- Elasticsearch
-
 ## Getting Started
 
 See the [setup guide](SETUP.md) for a rundown on how to get a development environment up.
