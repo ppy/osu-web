@@ -353,16 +353,17 @@
 }
 
 .hit-stat-colours(@rules) {
+  // cross-reference: https://github.com/ppy/osu/blob/9e5029a5e7b902d984ec0184e4f04b5b0c22079a/osu.Game/Graphics/OsuColour.cs#L114-L145
   @colours: {
-    good: @beatmap-score--hsl-hit-good;
-    great: @beatmap-score--hsl-hit-great;
-    large_tick_hit: @beatmap-score--hsl-hit-large-tick-hit;
-    meh: @beatmap-score--hsl-hit-meh;
-    miss: @beatmap-score--hsl-hit-miss;
-    ok: @beatmap-score--hsl-hit-ok;
-    perfect: @beatmap-score--hsl-hit-perfect;
-    small_tick_hit: @beatmap-score--hsl-hit-large-tick-hit;
-    small_tick_miss: @beatmap-score--hsl-hit-small-tick-miss;
+    good: var(--hsl-green-1);
+    great: var(--hsl-blue-2);
+    large_tick_hit: var(--hsl-blue-2);
+    meh: var(--hsl-orange-1);
+    miss: var(--hsl-red-1);
+    ok: var(--hsl-lime-2);
+    perfect: var(--hsl-blue-1);
+    small_tick_hit: var(--hsl-blue-2);
+    small_tick_miss: var(--hsl-f1);
   };
 
   each(@colours, {
