@@ -1,13 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { htmlElementOrNull } from 'utils/html';
+
 export default class PopularBeatmapsRuleset {
   constructor() {
     $(document).on('click', '.js-popular-beatmaps-ruleset', this.onClick);
   }
 
   private readonly onClick = (event: JQuery.ClickEvent) => {
-    const selectedButton = event.currentTarget;
+    const selectedButton = htmlElementOrNull(event.currentTarget);
     if (!(selectedButton instanceof HTMLButtonElement)) return;
 
     const container = selectedButton.closest('.js-popular-beatmaps');
