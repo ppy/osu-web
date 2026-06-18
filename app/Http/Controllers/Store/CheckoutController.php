@@ -51,6 +51,7 @@ class CheckoutController extends Controller
     {
         $params = get_params(request()->all(), null, [
             'hide_from_activity:bool',
+            'hideFromActivity:bool',
             'orderId:int',
             'provider',
             'shopifyCheckoutId',
@@ -62,8 +63,10 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.cart.show'));
         }
 
-        if ($params['hide_from_activity'] !== null) {
-            $order->setGiftsHidden($params['hide_from_activity']);
+        $hideFromActivity = $params['hideFromActivity'] ?? $params['hide_from_activity'];
+
+        if ($hideFromActivity) {
+            $order->setGiftsHidden($hideFromActivity);
         }
 
         $checkout = new OrderCheckout($order, $params['provider'], $params['shopifyCheckoutId']);
