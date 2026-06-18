@@ -132,7 +132,7 @@
                     </a>
                 </div>
 
-                <div class="js-popular-beatmapsets">
+                <div class="js-popular-beatmapsets u-contents">
                     <h3 class="user-home__beatmap-list-header">
                         {{ osu_trans('home.user.beatmaps.popular') }}
 
