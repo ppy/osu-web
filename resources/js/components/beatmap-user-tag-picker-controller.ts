@@ -14,7 +14,7 @@ export interface TagGroup {
   tags: BeatmapTag[];
 }
 
-export default class UserTagPickerController {
+export default class BeatmapUserTagPickerController {
   @observable query: string = '';
   @observable tags: BeatmapTag[] = [];
 
