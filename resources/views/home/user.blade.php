@@ -108,24 +108,20 @@
                 </div>
 
                 @if ($dailyChallenge)
-                    <div class="user-home__beatmap-list-header">
-                        <h3 class="user-home__beatmap-list-title">
-                            <a href="{{ wiki_url("Gameplay/Daily_challenge") }}">
-                                {{ osu_trans('home.user.beatmaps.daily_challenge') }}
-                            </a>
-                        </h3>
-                    </div>
+                    <h3 class="user-home__beatmap-list-header">
+                        <a href="{{ wiki_url("Gameplay/Daily_challenge") }}">
+                            {{ osu_trans('home.user.beatmaps.daily_challenge') }}
+                        </a>
+                    </h3>
 
                     <div class="user-home__beatmapsets">
                         @include('home._user_beatmapset', ['type' => 'daily_challenge', 'beatmapset' => $dailyChallenge->currentPlaylistItem->beatmap->beatmapset, 'dailyChallenge' => $dailyChallenge])
                     </div>
                 @endif
 
-                <div class="user-home__beatmap-list-header">
-                    <h3 class="user-home__beatmap-list-title">
-                        {{ osu_trans('home.user.beatmaps.new') }}
-                    </h3>
-                </div>
+                <h3 class="user-home__beatmap-list-header">
+                    {{ osu_trans('home.user.beatmaps.new') }}
+                </h3>
 
                 <div class="user-home__beatmapsets">
                     @foreach ($newBeatmapsets as $beatmapset)
@@ -137,30 +133,30 @@
                 </div>
 
                 <div class="js-popular-beatmapsets">
-                    <div class="user-home__beatmap-list-header">
-                        <h3 class="user-home__beatmap-list-title">
-                            {{ osu_trans('home.user.beatmaps.popular') }}
-                        </h3>
+                    <h3 class="user-home__beatmap-list-header">
+                        {{ osu_trans('home.user.beatmaps.popular') }}
 
-                        <ul class="game-mode game-mode--inline">
-                            @foreach (Beatmap::MODES as $ruleset => $rulesetId)
-                                <li>
-                                    <button
-                                        type="button"
-                                        @class([
-                                            class_with_modifiers('game-mode-link', 'inherit-size', 'button'),
-                                            'js-popular-beatmapsets-ruleset',
-                                            'js-is-active' => $ruleset === $popularRuleset,
-                                        ])
-                                        data-popular-ruleset="{{ $ruleset }}"
-                                        title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
-                                    >
-                                        <span class="fal fa-extra-mode-{{ $ruleset }}"></span>
-                                    </button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
+                        <div class="user-home__beatmap-list-header-controls">
+                            <ul class="game-mode game-mode--inline">
+                                @foreach (Beatmap::MODES as $ruleset => $rulesetId)
+                                    <li>
+                                        <button
+                                            type="button"
+                                            @class([
+                                                class_with_modifiers('game-mode-link', 'inherit-size', 'button'),
+                                                'js-popular-beatmapsets-ruleset',
+                                                'js-is-active' => $ruleset === $popularRuleset,
+                                            ])
+                                            data-popular-ruleset="{{ $ruleset }}"
+                                            title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
+                                        >
+                                            <span class="fal fa-extra-mode-{{ $ruleset }}"></span>
+                                        </button>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </h3>
 
                     @foreach (Beatmap::MODES as $ruleset => $rulesetId)
                         <div
