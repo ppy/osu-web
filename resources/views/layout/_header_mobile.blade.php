@@ -134,27 +134,33 @@
                     data-click-menu-id="mobile-search"
                     data-react="quick-search"
                 ></div>
-
-                <div
-                    class="mobile-menu__item js-click-menu js-react"
-                    data-click-menu-id="mobile-chat-notification"
-                    data-notification-widget="{{ json_encode(['only' => 'channel']) }}"
-                    data-react="notification-widget"
-                    data-visibility="hidden"
-                    data-turbo-permanent
-                    id="notification-widget-chat-mobile"
-                ></div>
-
-                <div
-                    class="mobile-menu__item js-click-menu js-react"
-                    data-click-menu-id="mobile-notification"
-                    data-notification-widget="{{ json_encode(['excludes' => ['channel']]) }}"
-                    data-react="notification-widget"
-                    data-visibility="hidden"
-                    data-turbo-permanent
-                    id="notification-widget-mobile"
-                ></div>
             @endif
         </div>
     </div>
+
+    @if (isset($user))
+        <div class="mobile-menu mobile-menu--notifications">
+            <div
+                class="mobile-menu__item js-click-menu js-react"
+                data-click-menu-id="mobile-chat-notification"
+                data-notification-widget="{{ json_encode(['only' => 'channel']) }}"
+                data-react="notification-widget"
+                data-visibility="hidden"
+                data-visibility-animation="none"
+                data-turbo-permanent
+                id="notification-widget-chat-mobile"
+            ></div>
+
+            <div
+                class="mobile-menu__item js-click-menu js-react"
+                data-click-menu-id="mobile-notification"
+                data-notification-widget="{{ json_encode(['excludes' => ['channel']]) }}"
+                data-react="notification-widget"
+                data-visibility="hidden"
+                data-visibility-animation="none"
+                data-turbo-permanent
+                id="notification-widget-mobile"
+            ></div>
+        </div>
+    @endif
 </div>

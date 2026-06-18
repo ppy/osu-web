@@ -100,16 +100,6 @@ export default class ClickMenu {
     e.preventDefault();
 
     const target = menu.dataset.clickMenuTarget;
-
-    if (
-      target != null
-      && target === this.current
-      && (target === 'mobile-chat-notification' || target === 'mobile-notification')
-    ) {
-      this.show();
-      return;
-    }
-
     let next = target;
 
     if (target != null) {
@@ -138,13 +128,6 @@ export default class ClickMenu {
       } else {
         tree.push(traverseId);
       }
-    }
-
-    if (
-      (this.current === 'mobile-chat-notification' || this.current === 'mobile-notification')
-      && !tree.includes('mobile-menu')
-    ) {
-      tree.push('mobile-menu');
     }
 
     return tree;

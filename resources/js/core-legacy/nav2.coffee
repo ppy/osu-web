@@ -43,25 +43,44 @@ export default class Nav2
 
 
   autoMobileNav: (e, {previousTree, target, tree}) =>
-    wasShowingMobileNav = previousTree.indexOf('mobile-menu') != -1
-    @showingMobileNav = tree.indexOf('mobile-menu') != -1
-
     if target == 'mobile-menu'
       @clickMenu.show('mobile-nav')
 
-    if @showingMobileNav && !wasShowingMobileNav
-      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
+    @showingMobileNav = tree.indexOf('mobile-menu') != -1
+    showingNotification = @mobileNotificationInTree(tree)
 
-    if @showingMobileNav
+    @slideMobilePanel @clickMenu.menu('mobile-menu'), @showingMobileNav, previousTree.indexOf('mobile-menu') != -1
+    @slideMobilePanel '.mobile-menu--notifications', showingNotification, @mobileNotificationInTree(previousTree)
+
+    if @showingMobileNav || showingNotification
       document.body.classList.add('js-nav2--active')
       blackoutToggle(this, true)
-    else if previousTree.indexOf('mobile-menu') != -1
+    else if @mobileOverlayInTree(previousTree)
       blackoutToggle(this, false)
-      Timeout.set 0, =>
-        $(@clickMenu.menu('mobile-menu')).finish().slideUp 150, =>
-          # use actual state instead of always removing the class in case
-          # the menu is shown again right after it's closed
-          document.body.classList.toggle('js-nav2--active', @showingMobileNav)
+
+
+  mobileNotificationInTree: (tree) ->
+    tree.indexOf('mobile-chat-notification') != -1 || tree.indexOf('mobile-notification') != -1
+
+
+  mobileOverlayInTree: (tree) ->
+    tree.indexOf('mobile-menu') != -1 || @mobileNotificationInTree(tree)
+
+
+  slideMobilePanel: (element, showing, wasShowing) ->
+    return if showing == wasShowing
+
+    Timeout.set 0, =>
+      $el = $(element)
+
+      if showing
+        $el.finish().slideDown(150)
+      else
+        $el.finish().slideUp(150, @syncMobileNav2Active)
+
+
+  syncMobileNav2Active: =>
+    document.body.classList.toggle('js-nav2--active', @mobileOverlayInTree(@clickMenu.tree()))
 
 
   centerPopup: (popup, reference) ->
