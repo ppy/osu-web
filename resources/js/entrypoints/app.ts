@@ -17,4 +17,3 @@ import 'osu-core-singleton';
 import 'main.coffee';
 
 import 'register-components';
-import 'popular-beatmaps-mode';
