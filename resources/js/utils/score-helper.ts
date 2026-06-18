@@ -94,10 +94,6 @@ interface ScoreStatistic {
 
 const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
-export function hitStatisticModifier(attribute: ScoreStatisticsAttribute) {
-  return `hit-${attribute}`;
-}
-
 export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = {
   fruits: [
     { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },

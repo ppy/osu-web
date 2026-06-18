@@ -10,7 +10,7 @@ import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { accuracy, isPerfectCombo, calculateStatisticsFor, hitStatisticModifier } from 'utils/score-helper';
+import { accuracy, isPerfectCombo, calculateStatisticsFor } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -67,7 +67,7 @@ export default function Stats(props: Props) {
           {basicStats
             .map((attr) => (
               <div key={attr.label.long} className='score-stats__stat'>
-                <div className={classWithModifiers('score-stats__stat-row', 'label', hitStatisticModifier(attr.attribute))}>
+                <div className={classWithModifiers('score-stats__stat-row', 'label', `hit-${attr.attribute}`)}>
                   {attr.label.long}
                 </div>
                 <div className='score-stats__stat-row'>
@@ -81,7 +81,7 @@ export default function Stats(props: Props) {
             {extraStats
               .map((attr) => (
                 <div key={attr.label.long} className='score-stats__stat'>
-                  <div className={classWithModifiers('score-stats__stat-row', 'label', hitStatisticModifier(attr.attribute))}>
+                  <div className={classWithModifiers('score-stats__stat-row', 'label', `hit-${attr.attribute}`)}>
                     {attr.label.long}
                   </div>
                   <div className='score-stats__stat-row'>
