@@ -11,59 +11,39 @@ import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { popup } from 'utils/popup';
 
-const checkoutSelector = '.js-store-checkout-button';
-
 interface PaymentParams {
   orderId?: string;
   provider?: string;
 }
 
+type TriggeredEvent = JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>;
+
 export default class StoreCheckout {
   constructor() {
     document.addEventListener('turbo:load', () => {
-      const init: Partial<Record<string, Promise<void>>> = {};
-      for (const element of document.querySelectorAll<HTMLElement>(checkoutSelector)) {
-        const { provider, orderNumber } = element.dataset;
-        switch (provider) {
-          case 'free': init.free = Promise.resolve(); break;
-          case 'paypal': init.paypal = Promise.resolve(); break;
-          case 'xsolla': init.xsolla = initXsolla(orderNumber); break;
-        }
-      }
-
-      $(checkoutSelector).on('click.checkout', (event) => {
-        const { orderId, provider } = event.target.dataset;
-        // sanity
-        if (provider == null) {
-          return;
-        }
-        showLoadingOverlay();
-        showLoadingOverlay.flush();
-
-        init[provider]?.then(() => {
-          const hide_from_activity = document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked;
-          $.post(route('store.checkout.store'), { hide_from_activity, provider, orderId });
-        }).then(() => this.startPayment(event.target.dataset)).catch(this.handleError);
-      });
+      $(document).on('click.checkout', '.js-store-checkout-button', (event: TriggeredEvent) => void this.handleCheckoutClick(event));
     });
   }
 
-  startPayment(params: PaymentParams) {
-    const { orderId, provider } = params;
-    switch (provider) {
-      case 'paypal':
-        return fetchApprovalLink(orderId).then((link) => window.location.href = link);
+  private async handleCheckoutClick(event: TriggeredEvent) {
+    const { orderId, orderNumber, provider } = event.target.dataset;
+    // sanity
+    if (provider == null) return;
+    showLoadingOverlay();
+    showLoadingOverlay.flush();
 
-      case 'xsolla':
-        return new Promise((resolve) => {
-          // FIXME: flickering when transitioning to widget
-          XPayStationWidget.open();
-          hideLoadingOverlay();
-          resolve(undefined);
-        });
+    if (provider === 'xsolla' && orderNumber != null) {
+      await initXsolla(orderNumber);
+    }
+
+    const hideFromActivity = document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked;
+    await $.post(route('store.checkout.store'), { hideFromActivity, orderId, provider });
+    try {
+      this.startPayment(event.target.dataset);
+    } catch (error) {
+      this.handleError(error);
     }
   }
-
 
   private readonly handleError = (error: unknown) => {
     hideLoadingOverlay();
@@ -80,4 +60,19 @@ export default class StoreCheckout {
 
     popup(trans('errors.unknown'), 'danger');
   };
+
+  private startPayment(params: PaymentParams) {
+    const { orderId, provider } = params;
+    switch (provider) {
+      case 'paypal':
+        fetchApprovalLink(orderId).then((link) => window.location.href = link);
+        break;
+
+      case 'xsolla':
+        // FIXME: flickering when transitioning to widget
+        XPayStationWidget.open();
+        hideLoadingOverlay();
+        break;
+    }
+  }
 }
