@@ -203,9 +203,8 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return $popularByRuleset;
     }
 
-    public static function popularIds(?string $ruleset = null)
+    public static function popularIds(string $ruleset)
     {
-        $ruleset ??= default_mode();
         $rulesetId = Beatmap::MODES[$ruleset];
 
         $recentIds = static::ranked()
