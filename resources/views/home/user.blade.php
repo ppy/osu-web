@@ -9,7 +9,7 @@
     $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
     $currentUser = Auth::user();
     $queryForRecentBeatmapsets = 'ranked>'.json_date(Carbon\Carbon::now()->subDays(30));
-    $popularMode = default_mode();
+    $popularRuleset = default_mode();
 @endphp
 @extends('master')
 
@@ -143,8 +143,8 @@
                                 <li>
                                     <button
                                         type="button"
-                                        class="{{ class_with_modifiers('game-mode-link', 'compact', 'button', ['active' => $ruleset === $popularMode]) }} js-popular-beatmaps-mode"
-                                        data-popular-mode="{{ $ruleset }}"
+                                        class="{{ class_with_modifiers('game-mode-link', 'compact', 'button', ['active' => $ruleset === $popularRuleset]) }} js-popular-beatmaps-ruleset"
+                                        data-popular-ruleset="{{ $ruleset }}"
                                         title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
                                     >
                                         <span class="fal fa-extra-mode-{{ $ruleset }}"></span>
@@ -154,16 +154,16 @@
                         </ul>
                     </div>
 
-                    @foreach (Beatmap::MODES as $mode => $rulesetId)
+                    @foreach (Beatmap::MODES as $ruleset => $rulesetId)
                         <div
                             @class([
                                 'user-home__beatmapsets',
                                 'js-popular-beatmaps-panel',
-                                'u-hidden' => $mode !== $popularMode,
+                                'u-hidden' => $ruleset !== $popularRuleset,
                             ])
-                            data-popular-panel="{{ $mode }}"
+                            data-popular-ruleset="{{ $ruleset }}"
                         >
-                            @foreach ($popularBeatmapsetsByMode[$mode] as $beatmapset)
+                            @foreach ($popularBeatmapsetsByRuleset[$ruleset] as $beatmapset)
                                 @include('home._user_beatmapset', ['type' => 'popular'])
                             @endforeach
                             <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets, 'sort' => 'favourites_desc', 'm' => $rulesetId]) }}">
