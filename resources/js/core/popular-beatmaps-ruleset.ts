@@ -3,6 +3,8 @@
 
 import { fail } from 'utils/fail';
 
+const activeClass = 'js-is-active';
+
 export default class PopularBeatmapsRuleset {
   constructor() {
     $(document).on('click', '.js-popular-beatmaps-ruleset', this.onClick);
@@ -19,7 +21,7 @@ export default class PopularBeatmapsRuleset {
     const ruleset = selectedButton.dataset.popularRuleset;
 
     for (const button of container.querySelectorAll<HTMLButtonElement>('.js-popular-beatmaps-ruleset')) {
-      button.classList.toggle('game-mode-link--active', button.dataset.popularRuleset === ruleset);
+      button.classList.toggle(activeClass, button.dataset.popularRuleset === ruleset);
     }
 
     for (const panel of container.querySelectorAll<HTMLElement>('.js-popular-beatmaps-panel')) {

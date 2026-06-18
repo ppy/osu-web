@@ -143,7 +143,7 @@
                                 <li>
                                     <button
                                         type="button"
-                                        class="{{ class_with_modifiers('game-mode-link', 'compact', 'button', ['active' => $ruleset === $popularRuleset]) }} js-popular-beatmaps-ruleset"
+                                        class="{{ class_with_modifiers('game-mode-link', 'compact', 'button') }} js-popular-beatmaps-ruleset{{ $ruleset === $popularRuleset ? ' js-is-active' : '' }}"
                                         data-popular-ruleset="{{ $ruleset }}"
                                         title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
                                     >
