@@ -25,7 +25,7 @@ interface XsollaTokenResponse {
 }
 
 function fetchScript() {
-  return core.turbolinksReload.load('https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js');
+  return core.turbolinksReload.load('https://cdn.xsolla.net/payments-bucket-prod/embed/1.5.4/widget.min.js');
 }
 
 function fetchToken(orderNumber: string) {
