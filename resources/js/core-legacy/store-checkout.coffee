@@ -5,7 +5,7 @@
 
 import { route } from 'laroute'
 import { StorePaypal } from 'store-paypal'
-import { StoreXsolla } from 'store-xsolla'
+import { initXsolla } from 'store-xsolla'
 import { onError } from 'utils/ajax'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
@@ -22,7 +22,7 @@ export class StoreCheckout
       switch provider
         when 'free' then init['free'] = Promise.resolve()
         when 'paypal' then init['paypal'] = Promise.resolve()
-        when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
+        when 'xsolla' then init['xsolla'] = initXsolla(orderNumber)
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
       { orderId, provider } = event.target.dataset
