@@ -194,10 +194,21 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             return $idsByRuleset;
         });
 
+        $allIds = collect($idsByRuleset)->flatten()->unique();
+        $beatmapsetsById = static::whereIn('beatmapset_id', $allIds)->get()->keyBy('beatmapset_id');
+
         $popularByRuleset = [];
 
         foreach ($idsByRuleset as $ruleset => $ids) {
-            $popularByRuleset[$ruleset] = static::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids)->get();
+            $beatmapsets = [];
+
+            foreach ($ids as $id) {
+                $beatmapset = $beatmapsetsById[$id] ?? null;
+
+                if ($beatmapset !== null) $beatmapsets[] = $beatmapset;
+            }
+
+            $popularByRuleset[$ruleset] = $beatmapsets;
         }
 
         return $popularByRuleset;
