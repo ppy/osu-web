@@ -205,7 +205,9 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             foreach ($ids as $id) {
                 $beatmapset = $beatmapsetsById[$id] ?? null;
 
-                if ($beatmapset !== null) $beatmapsets[] = $beatmapset;
+                if ($beatmapset !== null) {
+                    $beatmapsets[] = $beatmapset;
+                }
             }
 
             $popularByRuleset[$ruleset] = $beatmapsets;
