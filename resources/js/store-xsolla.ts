@@ -14,6 +14,7 @@ declare global {
       };
       init: (config: XsollaTokenResponse) => void;
       on: (event: string, callback: () => void) => void;
+      open(): void;
     };
   }
 }

@@ -6,7 +6,7 @@
 <div class="store-payment-method">
     <div class="store-payment-method__cell">
         <button type="button"
-                class="js-store-checkout-button store-payment-button store-payment-button--xsolla"
+                class="js-store-payment-button store-payment-button store-payment-button--xsolla"
                 data-provider="xsolla"
                 data-order-id="{{ $order->order_id }}"
                 data-order-number="{{ $order->getOrderNumber() }}"

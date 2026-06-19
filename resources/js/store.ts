@@ -5,6 +5,9 @@ import { Cart, CartCreatePayload } from '@shopify/hydrogen-react/storefront-api-
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { toShopifyVariantGid } from 'shopify-gid';
+import { fetchApprovalLink } from 'store-paypal';
+import { initXsolla } from 'store-xsolla';
+import { isJqXHR, onError } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
@@ -17,12 +20,18 @@ declare global {
   }
 }
 
-type ClickEvent = JQuery.ClickEvent<Document, unknown, HTMLElement, HTMLElement>;
+interface PaymentParams {
+  orderId?: string;
+  provider?: string;
+}
+
+type TriggeredEvent = JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>;
 
 export class Store {
   private constructor() {
-    $(document).on('click', '.js-store-checkout', (event: ClickEvent) => void this.beginCheckout(event));
-    $(document).on('click', '.js-store-resume-checkout', (event: ClickEvent) => this.resumeCheckout(event));
+    $(document).on('click.store', '.js-store-checkout', (event: TriggeredEvent) => void this.beginCheckout(event));
+    $(document).on('click.store', '.js-store-resume-checkout', (event: TriggeredEvent) => this.resumeCheckout(event));
+    $(document).on('click.store', '.js-store-payment-button', (event: TriggeredEvent) => void this.handlePaymentClick(event));
 
     $(document).on('turbo:load', () => {
       $('.js-store-checkout').prop('disabled', false);
@@ -32,10 +41,10 @@ export class Store {
   }
 
   static init(sharedContext: Window) {
-    sharedContext.Store = sharedContext.Store ?? new Store();
+    sharedContext.Store ??= new Store();
   }
 
-  async beginCheckout(event: ClickEvent) {
+  private async beginCheckout(event: TriggeredEvent) {
     if (event.target == null) return;
 
     const dataset = event.target.dataset;
@@ -59,7 +68,7 @@ export class Store {
     Turbo.visit(route('store.checkout.show', { checkout: orderId }));
   }
 
-  async beginShopifyCheckout(orderId: string) {
+  private async beginShopifyCheckout(orderId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
@@ -114,7 +123,50 @@ export class Store {
     window.location.href = data.cartCreate.cart.checkoutUrl;
   }
 
-  resumeCheckout(event: ClickEvent) {
+  private collectShopifyCartLines() {
+    return $('.js-store-order-item').map((_, element) => ({
+      merchandiseId: toShopifyVariantGid(element.dataset.shopifyId),
+      quantity: Number(element.dataset.quantity),
+    })).get();
+  }
+
+  private readonly handleError = (error: unknown) => {
+    hideLoadingOverlay();
+    if (isJqXHR(error)) {
+      // check if 4xx ujs_redirect
+      if (error.getResponseHeader('content-type') === 'application/javascript') {
+        return;
+      }
+
+      // TODO: less unknown error, disable button
+      // TODO: handle error.message
+      onError(error);
+    }
+
+    popup(trans('errors.unknown'), 'danger');
+  };
+
+  private async handlePaymentClick(event: TriggeredEvent) {
+    const { orderId, orderNumber, provider } = event.target.dataset;
+    // sanity
+    if (provider == null) return;
+    showLoadingOverlay();
+    showLoadingOverlay.flush();
+
+    if (provider === 'xsolla' && orderNumber != null) {
+      await initXsolla(orderNumber);
+    }
+
+    const hideFromActivity = document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked;
+    await $.post(route('store.checkout.store'), { hideFromActivity, orderId, provider });
+    try {
+      this.startPayment(event.target.dataset);
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  private resumeCheckout(event: TriggeredEvent) {
     if (event.target == null) return;
 
     const target = event.target;
@@ -134,7 +186,7 @@ export class Store {
     }
   }
 
-  async resumeShopifyCheckout(cartId: string) {
+  private async resumeShopifyCheckout(cartId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
@@ -168,17 +220,25 @@ export class Store {
     }
   }
 
-  private collectShopifyCartLines() {
-    return $('.js-store-order-item').map((_, element) => ({
-      merchandiseId: toShopifyVariantGid(element.dataset.shopifyId),
-      quantity: Number(element.dataset.quantity),
-    })).get();
-  }
-
   private shopifyCartInput(orderId: string) {
     return {
       attributes: [{ key: 'orderId', value: orderId }],
       lines: this.collectShopifyCartLines(),
     };
+  }
+
+  private startPayment(params: PaymentParams) {
+    const { orderId, provider } = params;
+    switch (provider) {
+      case 'paypal':
+        fetchApprovalLink(orderId).then((link) => window.location.href = link);
+        break;
+
+      case 'xsolla':
+        // FIXME: flickering when transitioning to widget
+        window.XPayStationWidget.open();
+        hideLoadingOverlay();
+        break;
+    }
   }
 }

@@ -24,7 +24,6 @@ import Menu from 'core-legacy/menu'
 import NavButton from 'core-legacy/nav-button'
 import Nav2 from 'core-legacy/nav2'
 import Search from 'core-legacy/search'
-import { StoreCheckout } from 'core-legacy/store-checkout'
 import TooltipDefault from 'core-legacy/tooltip-default'
 import { navigate } from 'utils/turbolinks'
 
