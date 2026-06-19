@@ -20,11 +20,6 @@ declare global {
   }
 }
 
-interface PaymentParams {
-  orderId?: string;
-  provider?: string;
-}
-
 type TriggeredEvent = JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>;
 
 export class Store {
@@ -40,8 +35,8 @@ export class Store {
     $('.js-store-checkout').prop('disabled', false);
   }
 
-  static init(sharedContext: Window) {
-    sharedContext.Store ??= new Store();
+  static init() {
+    window.Store ??= new Store();
   }
 
   private async beginCheckout(event: TriggeredEvent) {
@@ -130,10 +125,40 @@ export class Store {
     })).get();
   }
 
-  private readonly handleError = (error: unknown) => {
-    hideLoadingOverlay();
-    if (isJqXHR(error)) {
-      // check if 4xx ujs_redirect
+  private async handlePaymentClick(event: TriggeredEvent) {
+    const { orderId, orderNumber, provider } = event.target.dataset;
+    // sanity
+    if (provider == null || orderId == null) throw new Error();
+    showLoadingOverlay();
+    showLoadingOverlay.flush();
+
+    if (provider === 'xsolla') {
+      if (orderNumber == null) throw new Error('missing orderNumber');
+      await initXsolla(orderNumber);
+    }
+
+    const hide_from_activity = document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked;
+    await $.post(route('store.checkout.store'), { hide_from_activity, orderId, provider });
+    try {
+      switch (provider) {
+        case 'paypal': {
+          const link = await fetchApprovalLink(orderId);
+          window.location.href = link;
+          break;
+        }
+        case 'xsolla':
+          // FIXME: flickering when transitioning to widget
+          window.XPayStationWidget.open();
+          hideLoadingOverlay();
+          break;
+      }
+    } catch (error) {
+      hideLoadingOverlay();
+      if (!isJqXHR(error)) {
+        popup(trans('errors.unknown'), 'danger');
+        return;
+      }
+
       if (error.getResponseHeader('content-type') === 'application/javascript') {
         return;
       }
@@ -141,28 +166,6 @@ export class Store {
       // TODO: less unknown error, disable button
       // TODO: handle error.message
       onError(error);
-    }
-
-    popup(trans('errors.unknown'), 'danger');
-  };
-
-  private async handlePaymentClick(event: TriggeredEvent) {
-    const { orderId, orderNumber, provider } = event.target.dataset;
-    // sanity
-    if (provider == null) return;
-    showLoadingOverlay();
-    showLoadingOverlay.flush();
-
-    if (provider === 'xsolla' && orderNumber != null) {
-      await initXsolla(orderNumber);
-    }
-
-    const hideFromActivity = document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked;
-    await $.post(route('store.checkout.store'), { hideFromActivity, orderId, provider });
-    try {
-      this.startPayment(event.target.dataset);
-    } catch (error) {
-      this.handleError(error);
     }
   }
 
@@ -225,20 +228,5 @@ export class Store {
       attributes: [{ key: 'orderId', value: orderId }],
       lines: this.collectShopifyCartLines(),
     };
-  }
-
-  private startPayment(params: PaymentParams) {
-    const { orderId, provider } = params;
-    switch (provider) {
-      case 'paypal':
-        fetchApprovalLink(orderId).then((link) => window.location.href = link);
-        break;
-
-      case 'xsolla':
-        // FIXME: flickering when transitioning to widget
-        window.XPayStationWidget.open();
-        hideLoadingOverlay();
-        break;
-    }
   }
 }

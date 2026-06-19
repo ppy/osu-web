@@ -3,4 +3,4 @@
 
 import { Store } from 'store';
 
-Store.init(window);
+Store.init();
