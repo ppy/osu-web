@@ -18,7 +18,7 @@ import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
-import { getArtist, getTitle } from 'utils/beatmapset-helper';
+import { getArtist, getTitle, showVisual } from 'utils/beatmapset-helper';
 import { trans, transChoice } from 'utils/lang';
 import BeatmapList from './beatmap-list';
 import Chart from './chart';
@@ -71,6 +71,7 @@ export class Header extends React.Component<Props> {
           />
         )}
         <HeaderV4
+          backgroundImage={showVisual(this.beatmapset) ? this.beatmapset.covers.slimcover : null}
           links={headerLinks('discussions', this.beatmapset)}
           linksAppend={(
             <PlaymodeTabs

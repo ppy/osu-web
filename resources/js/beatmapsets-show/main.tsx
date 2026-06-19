@@ -11,6 +11,7 @@ import { action, autorun, computed, IReactionDisposer, makeObservable, observabl
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { showVisual } from 'utils/beatmapset-helper';
 import { generate, setHash } from 'utils/beatmapset-page-hash';
 import { trans } from 'utils/lang';
 import { reloadPage } from 'utils/turbolinks';
@@ -212,6 +213,11 @@ export default class Main extends React.Component<Props> {
   private renderPageHeader() {
     return (
       <HeaderV4
+        backgroundImage={
+          showVisual(this.controller.beatmapset, !this.controller.state.showingNsfwWarning)
+            ? this.controller.beatmapset.covers.slimcover
+            : null
+        }
         links={headerLinks('show', this.controller.beatmapset)}
         linksAppend={this.headerLinksAppend}
         theme='beatmapset'
