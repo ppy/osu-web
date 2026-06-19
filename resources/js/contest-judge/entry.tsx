@@ -3,7 +3,6 @@
 
 import BigButton from 'components/big-button';
 import InputContainer from 'components/input-container';
-import { Spinner } from 'components/spinner';
 import TextareaAutosize from 'components/textarea-autosize';
 import ContestEntryJson from 'interfaces/contest-entry-json';
 import ContestScoringCategoryJson from 'interfaces/contest-scoring-category-json';
@@ -29,9 +28,8 @@ const commentsMaxLength = 3000;
 export default class Entry extends React.Component<Props> {
   @observable private readonly currentVote;
   @observable private readonly initialVote;
-  @observable private savedFeedback: 'fading' | 'visible' | false = false;
-  private savedFeedbackTimeout?: number;
   @observable private readonly store;
+  @observable private timeout?: number;
   @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
 
   constructor(props: Props) {
@@ -66,8 +64,22 @@ export default class Entry extends React.Component<Props> {
     return this.currentVote.comment.length > commentsMaxLength;
   }
 
+  @computed
+  private get statusText() {
+    return this.hasUnsavedChanges
+      ? trans('contest.judge.unsaved_changes')
+      : this.timeout != null
+        ? trans('common.saved')
+        : null;
+  }
+
+  @computed
+  private get statusVisible() {
+    return this.hasUnsavedChanges || this.timeout != null;
+  }
+
   componentWillUnmount() {
-    window.clearTimeout(this.savedFeedbackTimeout);
+    window.clearTimeout(this.timeout);
   }
 
   render() {
@@ -105,19 +117,12 @@ export default class Entry extends React.Component<Props> {
         </InputContainer>
 
         <div className='contest-judge-entry__button'>
-          {this.xhr != null && (
-            <div className='contest-judge-entry__status'>
-              <Spinner />
-            </div>
-          )}
-          {this.xhr == null && this.hasUnsavedChanges && (
-            <div className={classWithModifiers('contest-judge-entry__status', 'unsaved')}>
-              {trans('contest.judge.unsaved_changes')}
-            </div>
-          )}
-          {this.xhr == null && !this.hasUnsavedChanges && this.savedFeedback !== false && (
-            <div className={classWithModifiers('contest-judge-entry__status', 'saved', this.savedFeedback === 'fading' ? 'fade-out' : undefined)}>
-              {trans('common.saved')}
+          {this.statusVisible && (
+            <div className={classWithModifiers('contest-judge-entry__status', {
+              saved: !this.hasUnsavedChanges,
+              unsaved: this.hasUnsavedChanges,
+            })}>
+              {this.statusText}
             </div>
           )}
           <BigButton
@@ -135,8 +140,6 @@ export default class Entry extends React.Component<Props> {
   @action
   private readonly handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.currentVote.comment = e.currentTarget.value;
-    this.savedFeedback = false;
-    window.clearTimeout(this.savedFeedbackTimeout);
   };
 
   @action
@@ -146,8 +149,6 @@ export default class Entry extends React.Component<Props> {
 
     const score = { contest_scoring_category_id: categoryId, value };
     this.currentVote.scores.set(categoryId, score);
-    this.savedFeedback = false;
-    window.clearTimeout(this.savedFeedbackTimeout);
   };
 
   private readonly renderCategory = (category: ContestScoringCategoryJson) => {
@@ -205,13 +206,10 @@ export default class Entry extends React.Component<Props> {
           this.initialVote.updateWithJson(json.current_user_judge_vote);
         }
 
-        this.savedFeedback = 'visible';
-        window.clearTimeout(this.savedFeedbackTimeout);
-        this.savedFeedbackTimeout = window.setTimeout(action(() => {
-          this.savedFeedback = 'fading';
-          this.savedFeedbackTimeout = window.setTimeout(action(() => {
-            this.savedFeedback = false;
-          }), 120);
+        window.clearTimeout(this.timeout);
+        this.timeout = window.setTimeout(action(() => {
+          window.clearTimeout(this.timeout);
+          this.timeout = undefined;
         }), 3000);
       })).always(action(() => {
         this.xhr = undefined;
