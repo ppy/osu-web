@@ -54,12 +54,9 @@
                         @if ($order->isPaymentRequested())
                             <button
                                 class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
-                                data-order-id="{{ $order->getKey() }}"
-                                data-provider="{{ $order->getPaymentProvider() }}"
                                 data-provider-reference="{{ $order->getTransactionId() }}"
-                                data-status="{{ $order->status }}"
                             >
-                                {{ $order->isPaymentRequested() ? osu_trans('store.order.resume') : osu_trans('store.order.invoice') }}
+                                {{ osu_trans('store.order.resume') }}
                             </button>
                         @else
                             {{-- TODO: remove after legacy carts migrated/check failed migration --}}

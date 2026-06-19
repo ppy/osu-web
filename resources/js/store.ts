@@ -3,11 +3,10 @@
 
 import { Cart, CartCreatePayload } from '@shopify/hydrogen-react/storefront-api-types';
 import { route } from 'laroute';
-import core from 'osu-core-singleton';
 import { toShopifyVariantGid } from 'shopify-gid';
 import { fetchApprovalLink } from 'store-paypal';
 import { initXsolla } from 'store-xsolla';
-import { isJqXHR, onError } from 'utils/ajax';
+import { error, isJqXHR, onError } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
@@ -21,6 +20,59 @@ declare global {
 }
 
 type TriggeredEvent = JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>;
+
+const createCartGraphql = `
+  mutation CreateCart($input: CartInput) {
+    cartCreate(input: $input) {
+      cart {
+        id
+        checkoutUrl
+        lines(first: 10) {
+          edges {
+            node {
+              id
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                }
+              }
+            }
+          }
+        }
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  }
+`;
+
+const getCartGraphql = `
+  query ($cartId: ID!) {
+    cart(id: $cartId) {
+      id
+      checkoutUrl
+      attributes {
+        key
+        value
+      }
+    }
+  }
+`;
+
+function generateShopifyCartInputVariables(orderId: string) {
+  return {
+    attributes: [{ key: 'orderId', value: orderId }],
+    lines: $('.js-store-order-item').map((_, element) => ({
+      merchandiseId: toShopifyVariantGid(element.dataset.shopifyId),
+      quantity: Number(element.dataset.quantity),
+    })).get(),
+  };
+}
 
 export class Store {
   private constructor() {
@@ -49,57 +101,27 @@ export class Store {
       throw new Error('orderId is missing');
     }
 
-    if (shouldShopify) {
-      try {
-        await this.beginShopifyCheckout(orderId);
-      } catch (error) {
-        hideLoadingOverlay();
-        core.userVerification.showOnError(error, createClickCallback(event.target));
-      }
-
+    if (!shouldShopify) {
+      Turbo.visit(route('store.checkout.show', { checkout: orderId }));
       return;
     }
 
-    Turbo.visit(route('store.checkout.show', { checkout: orderId }));
+    try {
+      await this.beginShopifyCheckout(orderId);
+    } catch (err) {
+      hideLoadingOverlay();
+      if (!isJqXHR(err)) throw err;
+      error(err, err.statusText, createClickCallback(event.target));
+    }
   }
 
   private async beginShopifyCheckout(orderId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
-
-    const operation = `
-      mutation CreateCart($input: CartInput) {
-        cartCreate(input: $input) {
-          cart {
-            id
-            checkoutUrl
-            lines(first: 10) {
-              edges {
-                node {
-                  id
-                  merchandise {
-                    ... on ProductVariant {
-                      id
-                      title
-                    }
-                  }
-                }
-              }
-            }
-            cost {
-              totalAmount {
-                amount
-                currencyCode
-              }
-            }
-          }
-        }
-      }
-    `;
-
     // create shopify checkout.
     // error returned will be a JSON string in error.message
-    const response = await storefrontClient().request(operation, { variables: { input: this.shopifyCartInput(orderId) } });
+    const input = generateShopifyCartInputVariables(orderId);
+    const response = await storefrontClient().request(createCartGraphql, { variables: { input } });
     const data = response.data as { cartCreate: CartCreatePayload };
 
     if (response.errors != null || data.cartCreate.cart == null) {
@@ -116,13 +138,6 @@ export class Store {
 
     await $.post(route('store.checkout.store'), params);
     window.location.href = data.cartCreate.cart.checkoutUrl;
-  }
-
-  private collectShopifyCartLines() {
-    return $('.js-store-order-item').map((_, element) => ({
-      merchandiseId: toShopifyVariantGid(element.dataset.shopifyId),
-      quantity: Number(element.dataset.quantity),
-    })).get();
   }
 
   private async handlePaymentClick(event: TriggeredEvent) {
@@ -152,61 +167,33 @@ export class Store {
           hideLoadingOverlay();
           break;
       }
-    } catch (error) {
+    } catch (err) {
       hideLoadingOverlay();
-      if (!isJqXHR(error)) {
+      if (!isJqXHR(err)) {
         popup(trans('errors.unknown'), 'danger');
         return;
       }
 
-      if (error.getResponseHeader('content-type') === 'application/javascript') {
+      if (err.getResponseHeader('content-type') === 'application/javascript') {
         return;
       }
 
       // TODO: less unknown error, disable button
       // TODO: handle error.message
-      onError(error);
+      onError(err);
     }
   }
 
   private resumeCheckout(event: TriggeredEvent) {
-    if (event.target == null) return;
-
-    const target = event.target;
-    const { provider, providerReference, shopifyUrl, status } = target.dataset;
-
-    // TODO: replace the links with just links...
-    if (provider === 'shopify' && status !== 'cancelled') {
-      if (shopifyUrl != null) {
-        window.location.href = shopifyUrl;
-      } else if (providerReference != null) {
-        this.resumeShopifyCheckout(providerReference);
-      } else {
-        // TODO: show error.
-      }
-    } else {
-      Turbo.visit(route('store.invoice.show', { invoice: target.dataset.orderId }));
-    }
+    const cartId = event.target.dataset.providerReference;
+    if (cartId == null) throw new Error('cartId is missing');
+    this.resumeShopifyCheckout(cartId);
   }
 
   private async resumeShopifyCheckout(cartId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
-
-    const operation = `
-      query ($cartId: ID!) {
-        cart(id: $cartId) {
-          id
-          checkoutUrl
-          attributes {
-            key
-            value
-          }
-        }
-      }
-    `;
-
-    const response = await storefrontClient().request(operation, { variables: { cartId } });
+    const response = await storefrontClient().request(getCartGraphql, { variables: { cartId } });
     const data = response.data as { cart?: Cart };
 
     if (response.errors != null || data.cart == null) {
@@ -221,12 +208,5 @@ export class Store {
     } else {
       window.location.href = data.cart.checkoutUrl;
     }
-  }
-
-  private shopifyCartInput(orderId: string) {
-    return {
-      attributes: [{ key: 'orderId', value: orderId }],
-      lines: this.collectShopifyCartLines(),
-    };
   }
 }
