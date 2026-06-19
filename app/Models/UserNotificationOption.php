@@ -26,6 +26,7 @@ class UserNotificationOption extends Model
         Notification::BEATMAPSET_DISQUALIFY,
     ];
 
+    const BEATMAPSET_DISCUSSION_REPLY = 'beatmapset_discussion_reply';
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const CHANNEL_ANNOUNCEMENT = 'channel_announcement';
     const CHANNEL_MENTION = 'channel_mention';
@@ -100,6 +101,12 @@ class UserNotificationOption extends Model
         if ($this->name === Notification::COMMENT_NEW) {
             if (isset($value[static::COMMENT_REPLY])) {
                 $details[static::COMMENT_REPLY] = get_bool($value[static::COMMENT_REPLY]);
+            }
+        }
+
+        if ($this->name === static::BEATMAPSET_MODDING) {
+            if (isset($value[static::BEATMAPSET_DISCUSSION_REPLY])) {
+                $details[static::BEATMAPSET_DISCUSSION_REPLY] = get_bool($value[static::BEATMAPSET_DISCUSSION_REPLY]);
             }
         }
 
