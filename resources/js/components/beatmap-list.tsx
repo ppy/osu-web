@@ -12,7 +12,7 @@ import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
-import DiscussionsState from './discussions-state';
+import DiscussionsState from '../beatmap-discussions/discussions-state';
 
 interface Props {
   discussionsState: DiscussionsState;

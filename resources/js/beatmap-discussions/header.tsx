@@ -3,6 +3,7 @@
 
 import headerLinks from 'beatmapsets-show/header-links';
 import BeatmapBasicStats from 'components/beatmap-basic-stats';
+import BeatmapList from 'components/beatmap-list';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
@@ -20,7 +21,6 @@ import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans, transChoice } from 'utils/lang';
-import BeatmapList from './beatmap-list';
 import Chart from './chart';
 import DiscussionsState from './discussions-state';
 import { Nominations } from './nominations';
