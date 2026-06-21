@@ -12,6 +12,7 @@ import HeaderV4 from 'components/header-v4';
 import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
 import StringWithComponent from 'components/string-with-component';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { route } from 'laroute';
@@ -19,6 +20,7 @@ import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { getArtist, getTitle } from 'utils/beatmapset-helper';
 import { trans, transChoice } from 'utils/lang';
 import Chart from './chart';
@@ -34,6 +36,11 @@ interface Props {
 
 @observer
 export class Header extends React.Component<Props> {
+  @computed
+  private get beatmaps() {
+    return this.discussionsState.groupedBeatmaps.get(this.discussionsState.currentBeatmap.mode) ?? [];
+  }
+
   private get beatmapset() {
     return this.discussionsState.beatmapset;
   }
@@ -93,10 +100,19 @@ export class Header extends React.Component<Props> {
     );
   }
 
+  private readonly getCount = (beatmap: BeatmapExtendedJson) => this.discussionsState.unresolvedDiscussionCounts.byBeatmap[beatmap.id];
+
+  private readonly makeBeatmapUrl = (beatmap: BeatmapExtendedJson) => makeUrl({ beatmap, filter: this.discussionsState.currentFilter });
+
   @action
   private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: Ruleset) => {
     event.preventDefault();
     this.discussionsState.changeGameMode(mode);
+  };
+
+  private readonly onSelectBeatmap = (beatmapId: number) => {
+    this.discussionsState.currentBeatmapId = beatmapId;
+    this.discussionsState.changeDiscussionPage('timeline');
   };
 
   private renderHeaderBottom() {
@@ -166,8 +182,12 @@ export class Header extends React.Component<Props> {
           <div className={`${bn}__filters`}>
             <div className={`${bn}__filter-group`}>
               <BeatmapList
-                discussionsState={this.discussionsState}
-                users={this.users}
+                beatmaps={this.beatmaps}
+                beatmapset={this.beatmapset}
+                currentBeatmap={this.currentBeatmap}
+                getCount={this.getCount}
+                makeBeatmapUrl={this.makeBeatmapUrl}
+                onSelectBeatmap={this.onSelectBeatmap}
               />
             </div>
           </div>
