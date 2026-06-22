@@ -171,6 +171,12 @@ class Review
 
     private function parseDocument()
     {
+        $maxBlocks = $GLOBALS['cfg']['osu']['beatmapset']['discussion_review_max_blocks'];
+        $blockCount = count($this->document);
+        if ($blockCount > $maxBlocks) {
+            throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
+        }
+
         $output = [];
         // create the issues for the embeds first
         foreach ($this->document as $block) {
@@ -182,12 +188,6 @@ class Review
         $minIssues = $GLOBALS['cfg']['osu']['beatmapset']['discussion_review_min_issues'];
         if (empty($childIds) || count($childIds) < $minIssues) {
             throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
-        }
-
-        $maxBlocks = $GLOBALS['cfg']['osu']['beatmapset']['discussion_review_max_blocks'];
-        $blockCount = count($this->document);
-        if ($blockCount > $maxBlocks) {
-            throw new InvariantException(osu_trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
         }
 
         return [$output, $childIds];
