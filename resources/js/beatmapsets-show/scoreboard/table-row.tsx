@@ -16,7 +16,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import { accuracy, displayMods, hasMenu, isPerfectCombo, calculateStatisticsFor, rank } from 'utils/score-helper';
@@ -139,7 +139,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           <TdLink
             key={stat.label.short}
             href={this.scoreUrl}
-            modifiers={stat.value === 0 ? 'zero' : null}
+            modifiers={mergeModifiers(`hit-${stat.attribute}`, { zero: stat.value === 0 })}
           >
             {formatNumber(stat.value)}
           </TdLink>

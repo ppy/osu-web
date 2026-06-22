@@ -82,6 +82,7 @@ interface ScoreStatisticMapping {
 }
 
 interface ScoreStatistic {
+  attribute: ScoreStatisticsAttribute;
   basic: boolean;
   label: {
     long: string;
@@ -136,6 +137,7 @@ export function calculateStatisticsFor(score: ScoreJson, type: ScoreDisplayType)
   return scoreStatisticsMapping[rulesetNames[score.ruleset_id]]
     .filter((mapping) => mapping.relevantTypes.includes(type))
     .map((mapping) => ({
+      attribute: mapping.attributes[0],
       basic: mapping.basic,
       label: mapping.label,
       maximumValue: mapping.basic ? undefined : mapping.attributes.reduce((sum, attribute) => sum + (score.maximum_statistics[attribute] ?? 0), 0),
