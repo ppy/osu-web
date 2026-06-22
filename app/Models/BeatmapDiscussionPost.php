@@ -276,8 +276,6 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 
     public function setMessageAttribute($value)
     {
-        $value = is_string($value) ? app('chat-filters')->filter($value) : $value;
-
         // don't shoot me ;_;
         if ($this->system || is_array($value)) {
             $value = json_encode($value);
