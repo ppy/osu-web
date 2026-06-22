@@ -94,12 +94,13 @@ class Review
         $userId = $this->user->getKey();
 
         $newDiscussion = new BeatmapDiscussion([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'user_id' => $userId,
-            'resolved' => false,
-            'message_type' => $discussionType,
-            'timestamp' => $timestamp,
             'beatmap_id' => $beatmapId,
+            'beatmapset_id' => $this->beatmapset->getKey(),
+            'message_type' => $discussionType,
+            'parent_id' => $this->discussion?->getKey(),
+            'resolved' => false,
+            'timestamp' => $timestamp,
+            'user_id' => $userId,
         ]);
 
         $this->maybeSetProblemDiscussion($newDiscussion);
@@ -202,10 +203,13 @@ class Review
                     'review',
                     json_encode($output)
                 );
+                // associate embeds created from parsing with new parent review.
+                BeatmapDiscussion::whereIn('id', $childIds)
+                    ->update(['parent_id' => $this->discussion->getKey()]);
             } else {
                 // ensure all referenced embeds belong to this discussion
-                $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $this->discussion->getKey())->count();
-                if ($externalEmbeds > 0) {
+                $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', $this->discussion->getKey())->count() !== count($childIds);
+                if ($externalEmbeds) {
                     throw new InvariantException(osu_trans('beatmap_discussions.review.validation.external_references'));
                 }
 
@@ -220,10 +224,6 @@ class Review
                     ->whereNotIn('id', $childIds)
                     ->update(['parent_id' => null]);
             }
-
-            // associate children with parent
-            BeatmapDiscussion::whereIn('id', $childIds)
-                ->update(['parent_id' => $this->discussion->getKey()]);
 
             $this->handleProblemDiscussion();
 
