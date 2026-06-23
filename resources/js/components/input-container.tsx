@@ -34,7 +34,7 @@ const InputContainer = observer((props: React.PropsWithChildren<Props>) => {
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
       {(labelText != null || props.maxLength != null) && (
         <div className='input-container__label'>
-          {labelText}
+          {labelText ?? <span />}
           {props.maxLength != null && (
             <MessageLengthCounter
               maxLength={props.maxLength}
