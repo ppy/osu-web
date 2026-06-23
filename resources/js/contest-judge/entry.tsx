@@ -118,10 +118,7 @@ export default class Entry extends React.Component<Props> {
 
         <div className='contest-judge-entry__button'>
           {this.statusVisible && (
-            <div className={classWithModifiers('contest-judge-entry__status', {
-              saved: !this.hasUnsavedChanges,
-              unsaved: this.hasUnsavedChanges,
-            })}>
+            <div className={classWithModifiers('contest-judge-entry__status', this.hasUnsavedChanges ? undefined : 'saved')}>
               {this.statusText}
             </div>
           )}
