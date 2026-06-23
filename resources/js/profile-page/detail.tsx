@@ -37,9 +37,11 @@ export default class Detail extends React.Component<Props> {
 
         <Badges badges={user.badges} />
 
-        <div className='profile-detail'>
-          <DetailStats user={user} />
-        </div>
+        {!user.is_bot && (
+          <div className='profile-detail'>
+            <DetailStats user={user} />
+          </div>
+        )}
 
         <DetailBar user={user} />
 
