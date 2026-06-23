@@ -10,6 +10,7 @@ import MessageLengthCounter from './message-length-counter';
 interface CommonProps {
   for?: string;
   hasError?: boolean;
+  label?: React.ReactNode;
   labelKey?: string;
   modifiers?: Modifiers;
   showError?: boolean;
@@ -27,20 +28,19 @@ type Props = CommonProps & ({
 // TODO: show error message
 const InputContainer = observer((props: React.PropsWithChildren<Props>) => {
   const error = props.hasError && props.showError;
+  const labelText = props.label ?? (props.labelKey != null ? trans(props.labelKey) : null);
 
   return (
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
-      {props.labelKey != null && (
-        <div className='input-container__label'>
-          {trans(props.labelKey)}
-          {props.maxLength != null && (
-            <MessageLengthCounter
-              maxLength={props.maxLength}
-              message={props.input}
-            />
-          )}
-        </div>
-      )}
+      <div className='input-container__label'>
+        {labelText ?? <span />}
+        {props.maxLength != null && (
+          <MessageLengthCounter
+            maxLength={props.maxLength}
+            message={props.input}
+          />
+        )}
+      </div>
       {props.children}
     </label>
   );
