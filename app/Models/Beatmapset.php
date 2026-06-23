@@ -182,18 +182,46 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return $sizes;
     }
 
-    public static function popular()
+    public static function popularByRuleset(): array
     {
-        $ids = cache_remember_mutexed('popularBeatmapsetIds', 300, [], function () {
-            return static::popularIds();
+        $idsByRuleset = cache_remember_mutexed('popularBeatmapsetIdsByRuleset', 300, [], function () {
+            $idsByRuleset = [];
+
+            foreach (array_keys(Beatmap::MODES) as $ruleset) {
+                $idsByRuleset[$ruleset] = static::popularIds($ruleset);
+            }
+
+            return $idsByRuleset;
         });
 
-        return static::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids);
+        $allIds = collect($idsByRuleset)->flatten()->unique();
+        $beatmapsetsById = static::whereIn('beatmapset_id', $allIds)->get()->keyBy('beatmapset_id');
+
+        $popularByRuleset = [];
+
+        foreach ($idsByRuleset as $ruleset => $ids) {
+            $beatmapsets = [];
+
+            foreach ($ids as $id) {
+                $beatmapset = $beatmapsetsById[$id] ?? null;
+
+                if ($beatmapset !== null) {
+                    $beatmapsets[] = $beatmapset;
+                }
+            }
+
+            $popularByRuleset[$ruleset] = $beatmapsets;
+        }
+
+        return $popularByRuleset;
     }
 
-    public static function popularIds()
+    public static function popularIds(string $ruleset)
     {
+        $rulesetId = Beatmap::MODES[$ruleset];
+
         $recentIds = static::ranked()
+            ->hasMode($rulesetId)
             ->where('approved_date', '>', now()->subDays(30))
             ->where('nsfw', false)
             ->select('beatmapset_id');
