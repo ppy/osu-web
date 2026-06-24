@@ -114,7 +114,10 @@ export default class Entry extends React.Component<Props> {
   @action
   private readonly handleScoreInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const categoryId = Number(e.currentTarget.getAttribute('data-category-id'));
-    const value = clamp(Number(e.currentTarget.value), 0, Number(e.currentTarget.max));
+
+    let value = Number(e.currentTarget.value);
+    if (!Number.isInteger(value)) return;
+    value = clamp(value, 0, Number(e.currentTarget.max));
 
     const score = { contest_scoring_category_id: categoryId, value };
     this.currentVote.scores.set(categoryId, score);
@@ -122,7 +125,7 @@ export default class Entry extends React.Component<Props> {
 
   private readonly renderCategory = (category: ContestScoringCategoryJson) => {
     const currentScore = this.currentVote.scores.get(category.id);
-    const inputId = `contest-judge-score-${category.id}`;
+    const inputId = `contest-judge-score-${this.props.entry.id}-${category.id}`;
 
     return (
       <label
@@ -148,7 +151,7 @@ export default class Entry extends React.Component<Props> {
           inputMode='numeric'
           max={category.max_value}
           onChange={this.handleScoreInputChange}
-          value={currentScore != null ? String(currentScore.value) : ''}
+          value={currentScore?.value ?? ''}
         />
 
         <span className='input-container__suffix'>

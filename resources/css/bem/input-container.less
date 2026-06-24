@@ -87,6 +87,7 @@
 
   &--judging-score {
     --input-padding-right: calc(var(--input-padding-base) + 4ch);
+    --input-text-align: right;
   }
 
   &--search-box {
@@ -129,11 +130,10 @@
   }
 
   &__suffix {
-    bottom: var(--input-padding-base);
     color: hsl(var(--hsl-c2));
-    line-height: 1;
     pointer-events: none;
     position: absolute;
     right: var(--input-padding-base);
+    top: var(--label-height);
   }
 }
