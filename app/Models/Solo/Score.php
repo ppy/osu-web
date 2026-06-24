@@ -81,11 +81,18 @@ class Score extends Model implements Traits\ReportableInterface
 
     public static function createFromJsonOrExplode(array $params): static
     {
+        $mods = $params['mods'] ?? [];
+        $totalScoreWithoutMods = $params['total_score_without_mods'] ?? null;
+
+        if (empty($mods)) {
+            $totalScoreWithoutMods = null;
+        }
+
         $params['data'] = [
             'maximum_statistics' => $params['maximum_statistics'] ?? [],
-            'mods' => $params['mods'] ?? [],
+            'mods' => $mods,
             'statistics' => $params['statistics'] ?? [],
-            'total_score_without_mods' => $params['total_score_without_mods'] ?? null,
+            'total_score_without_mods' => $totalScoreWithoutMods,
         ];
         unset(
             $params['maximum_statistics'],
