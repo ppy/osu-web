@@ -25,6 +25,7 @@ interface BeatmapJsonDefaultAttributes {
   beatmapset_id: number;
   difficulty_rating: number;
   id: number;
+  lazer_only: boolean;
   mode: Ruleset;
   status: string;
   total_length: number;
@@ -41,6 +42,7 @@ export function deletedBeatmap(mode: Ruleset): BeatmapJson {
     beatmapset_id: 0,
     difficulty_rating: 0,
     id: 0,
+    lazer_only: false,
     mode,
     status: '',
     total_length: 0,

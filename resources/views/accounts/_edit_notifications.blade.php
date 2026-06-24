@@ -36,30 +36,35 @@
                 </label>
             </div>
 
-            <div
-                class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
-                data-url="{{ route('account.notification-options') }}"
-            >
-                <label class="account-edit-entry__checkbox">
-                    @php
-                        $name = App\Models\Notification::COMMENT_NEW;
-                        $option = UserNotificationOption::COMMENT_REPLY;
-                    @endphp
-                    @include('objects._switch', ['locals' => [
-                        'additionalClass'=> 'js-account-edit__input',
-                        'checked' => $notificationOptions[$name]->details[$option] ?? true,
-                        'name' => "user_notification_option[{$name}][details][{$option}]",
-                    ]])
+            @php
+                $subOptions = [
+                    \App\Models\Notification::COMMENT_NEW => UserNotificationOption::COMMENT_REPLY,
+                    UserNotificationOption::BEATMAPSET_MODDING => UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY,
+                ];
+            @endphp
 
-                    <span class="account-edit-entry__checkbox-label">
-                        {{ osu_trans('accounts.notifications.comment_reply') }}
-                    </span>
+            @foreach ($subOptions as $name => $option)
+                <div
+                    class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-auto-submit"
+                    data-url="{{ route('account.notification-options') }}"
+                >
+                    <label class="account-edit-entry__checkbox">
+                        @include('objects._switch', ['locals' => [
+                            'additionalClass'=> 'js-account-edit__input',
+                            'checked' => $notificationOptions[$name]->details[$option] ?? true,
+                            'name' => "user_notification_option[{$name}][details][{$option}]",
+                        ]])
 
-                    <div class="account-edit-entry__checkbox-status">
-                        @include('accounts._edit_entry_status', ['modifiers' => ['left']])
-                    </div>
-                </label>
-            </div>
+                        <span class="account-edit-entry__checkbox-label">
+                            {{ osu_trans("accounts.notifications.$option") }}
+                        </span>
+
+                        <div class="account-edit-entry__checkbox-status">
+                            @include('accounts._edit_entry_status', ['modifiers' => ['left']])
+                        </div>
+                    </label>
+                </div>
+            @endforeach
         </div>
 
         <div class="account-edit__input-group">

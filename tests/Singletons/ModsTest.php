@@ -34,6 +34,14 @@ class ModsTest extends TestCase
         $this->assertSame('WU', $parsed[0]->acronym);
     }
 
+    public function testParseInputArrayInvalidAcronymType()
+    {
+        $input = [['acronym' => ['WU'], 'settings' => []]];
+
+        $this->expectException(InvariantException::class);
+        app('mods')->parseInputArray(Ruleset::osu->value, $input);
+    }
+
     public function testParseInputArrayInvalidMod()
     {
         $input = [['acronym' => 'XYZ', 'settings' => []]];
