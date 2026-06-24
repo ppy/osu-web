@@ -128,12 +128,10 @@ export default class Entry extends React.Component<Props> {
     const inputId = `contest-judge-score-${this.props.entry.id}-${category.id}`;
 
     return (
-      <label
+      <InputContainer
         key={category.id}
-        className='input-container input-container--judging-score'
-        htmlFor={inputId}
-      >
-        <div className='input-container__label'>
+        for={inputId}
+        label={(
           <span className='contest-judge-entry__category-label'>
             <i
               className='fas fa-question-circle'
@@ -141,8 +139,9 @@ export default class Entry extends React.Component<Props> {
             />
             <span>{category.name}</span>
           </span>
-        </div>
-
+        )}
+        modifiers='judging-score'
+      >
         <input
           className='input-text'
           data-category-id={category.id}
@@ -157,7 +156,7 @@ export default class Entry extends React.Component<Props> {
         <span className='input-container__suffix'>
           / {category.max_value}
         </span>
-      </label>
+      </InputContainer>
     );
   };
 
