@@ -49,24 +49,35 @@ class BlocksController extends Controller
             abort(404);
         }
 
+        $currentUserId = $currentUser->getKey();
         $relationQuery = $currentUser->relations()->where('zebra_id', $targetId);
+        \DB::transaction(function () use ($currentUserId, $relationQuery, $targetId) {
+            $deleted = UserRelation::where([
+                'friend' => true,
+                'user_id' => $targetId,
+                'zebra_id' => $currentUserId,
+            ])->delete();
+            if ($deleted > 0) {
+                dispatch(new UpdateUserFollowerCountCache($currentUserId))->afterCommit();
+            }
 
-        $existingRelation = $relationQuery->first();
-        if ($existingRelation) {
-            $existingRelation->update([
-                'foe' => true,
-                'friend' => false,
-            ]);
+            $existingRelation = $relationQuery->first();
+            if ($existingRelation !== null) {
+                $existingRelation->update([
+                    'foe' => true,
+                    'friend' => false,
+                ]);
 
-            // users get unfollowed when blocked, so update follower count
-            dispatch(new UpdateUserFollowerCountCache($targetId));
-        } else {
-            UserRelation::create([
-                'user_id' => $currentUser->getKey(),
-                'zebra_id' => $targetId,
-                'foe' => true,
-            ]);
-        }
+                // users get unfollowed when blocked, so update follower count
+                dispatch(new UpdateUserFollowerCountCache($targetId))->afterCommit();
+            } else {
+                UserRelation::create([
+                    'user_id' => $currentUserId,
+                    'zebra_id' => $targetId,
+                    'foe' => true,
+                ]);
+            }
+        });
 
         return [
             'user_relation' => json_item(
