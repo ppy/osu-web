@@ -534,24 +534,10 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUserPreferences(User $user)
     {
-        static $fields = [
-            'audio_autoplay',
-            'audio_muted',
-            'audio_volume',
-            'beatmapset_card_size',
-            'beatmapset_download',
-            'beatmapset_show_anime_cover',
-            'beatmapset_show_nsfw',
-            'beatmapset_title_show_original',
-            'comments_show_deleted',
-            'forum_posts_show_deleted',
-            'legacy_score_only',
-            'profile_cover_expanded',
-            'scoring_mode',
-            'user_list_filter',
-            'user_list_sort',
-            'user_list_view',
-        ];
+        static $fields = array_values(array_diff(array_keys(UserProfileCustomization::DEFAULTS), [
+            'comments_sort',
+            'extras_order',
+        ]));
 
         $customization = $user->userProfileCustomization;
 
