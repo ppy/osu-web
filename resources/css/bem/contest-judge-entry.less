@@ -21,6 +21,18 @@
     gap: 5px;
   }
 
+  &__input {
+    .reset-input();
+    color: hsl(var(--hsl-c1));
+    text-align: right;
+    flex: 1;
+  }
+
+  &__input-suffix {
+    color: hsl(var(--hsl-c2));
+    pointer-events: none;
+  }
+
   &__title {
     margin-bottom: 10px;
     font-size: @font-size--large;

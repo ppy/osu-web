@@ -142,20 +142,19 @@ export default class Entry extends React.Component<Props> {
         )}
         modifiers='judging-score'
       >
-        <input
-          className='input-text'
-          data-category-id={category.id}
-          disabled={!this.store.canJudge}
-          id={inputId}
-          inputMode='numeric'
-          max={category.max_value}
-          onChange={this.handleScoreInputChange}
-          value={currentScore?.value ?? ''}
-        />
-
-        <span className='input-container__suffix'>
-          / {category.max_value}
-        </span>
+        <div className='input-text input-text--contest-judge-score'>
+          <input
+            className='contest-judge-entry__input'
+            data-category-id={category.id}
+            disabled={!this.store.canJudge}
+            id={inputId}
+            inputMode='numeric'
+            max={category.max_value}
+            onChange={this.handleScoreInputChange}
+            value={currentScore?.value ?? ''}
+          />
+          <span className='contest-judge-entry__input-suffix'>/ {category.max_value}</span>
+        </div>
       </InputContainer>
     );
   };
