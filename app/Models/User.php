@@ -731,12 +731,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function setOsuPlaystyleAttribute($value)
     {
         $styles = 0;
-
-        if ($value !== null) {
-            foreach (self::PLAYSTYLES as $type => $bit) {
-                if (in_array($type, $value, true)) {
-                    $styles += $bit;
-                }
+        if (is_array($value)) {
+            foreach (array_unique($value) as $style) {
+                $styles += static::PLAYSTYLES[$style] ?? 0;
             }
         }
 
