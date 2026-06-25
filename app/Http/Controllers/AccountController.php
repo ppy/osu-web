@@ -258,7 +258,7 @@ class AccountController extends Controller
             $params,
             'user_profile_customization',
             // type validation is done by each setters
-            array_keys(UserProfileCustomization::DEFAULTS),
+            array_map(fn ($key) => $key.':any', array_keys(UserProfileCustomization::DEFAULTS)),
         );
 
         $profileCustomization = $user->userProfileCustomization()->createOrFirst();
