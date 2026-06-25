@@ -77,7 +77,7 @@ export default function Stats(props: Props) {
             ))}
         </div>
         {extraStats.length > 0
-          ? <div className='score-stats__group-row'>
+          ? <div className={classWithModifiers('score-stats__group-row', `extra-${props.beatmap.mode}`)}>
             {extraStats
               .map((attr) => (
                 <div key={attr.label.long} className='score-stats__stat'>
