@@ -104,7 +104,7 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
                 ];
 
                 Cache::put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $handled = $exceptionHandler !== null && $exceptionHandler($e);
 
                 if (!$handled) {
