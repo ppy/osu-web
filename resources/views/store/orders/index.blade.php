@@ -58,10 +58,15 @@
                             >
                                 {{ osu_trans('store.order.resume') }}
                             </button>
+                        @elseif ($order->isCancelled())
+                            {{-- Show generic invoice for cancelled shopify orders with no shopify information --}}
+                            <a class="btn-osu-big btn-osu-big--rounded-thin" href="{{ route('store.invoice.show', ['invoice' => $order->getKey()]) }}">
+                                {{ osu_trans('store.order.invoice') }}
+                            </a>
                         @else
-                            {{-- TODO: remove after legacy carts migrated/check failed migration --}}
+                            {{-- Shouldn't get to here normally, but dev can be in a weird state --}}
                             <button class="btn-osu-big btn-osu-big--rounded-thin" disabled>
-                                Temporarily unavailable
+                                {{ osu_trans('store.order.unavailable') }}
                             </button>
                         @endif
                     @elseif ($order->hasInvoice())
