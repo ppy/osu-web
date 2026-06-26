@@ -8,9 +8,8 @@ import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { popup } from 'utils/popup';
-import storefrontClient from './shopify-client';
-import { toShopifyVariantGid } from './shopify-gid';
 import { fetchApprovalLink } from './store-paypal';
+import { createShopifyCart, getShopifyCart } from './store-shopify';
 import { initXsolla } from './store-xsolla';
 
 declare global {
@@ -20,59 +19,6 @@ declare global {
 }
 
 type TriggeredEvent = JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>;
-
-const createCartGraphql = `
-  mutation CreateCart($input: CartInput) {
-    cartCreate(input: $input) {
-      cart {
-        id
-        checkoutUrl
-        lines(first: 10) {
-          edges {
-            node {
-              id
-              merchandise {
-                ... on ProductVariant {
-                  id
-                  title
-                }
-              }
-            }
-          }
-        }
-        cost {
-          totalAmount {
-            amount
-            currencyCode
-          }
-        }
-      }
-    }
-  }
-`;
-
-const getCartGraphql = `
-  query ($cartId: ID!) {
-    cart(id: $cartId) {
-      id
-      checkoutUrl
-      attributes {
-        key
-        value
-      }
-    }
-  }
-`;
-
-function generateShopifyCartInputVariables(orderId: string) {
-  return {
-    attributes: [{ key: 'orderId', value: orderId }],
-    lines: $('.js-store-order-item').map((_, element) => ({
-      merchandiseId: toShopifyVariantGid(element.dataset.shopifyId),
-      quantity: Number(element.dataset.quantity),
-    })).get(),
-  };
-}
 
 export default class Store {
   private constructor() {
@@ -120,8 +66,7 @@ export default class Store {
     showLoadingOverlay.flush();
     // create shopify checkout.
     // error returned will be a JSON string in error.message
-    const input = generateShopifyCartInputVariables(orderId);
-    const response = await storefrontClient().request(createCartGraphql, { variables: { input } });
+    const response = await createShopifyCart(orderId, Array.from(document.querySelectorAll('.js-store-order-item')));
     const data = response.data as { cartCreate: CartCreatePayload };
 
     if (response.errors != null || data.cartCreate.cart == null) {
@@ -193,7 +138,7 @@ export default class Store {
   private async resumeShopifyCheckout(cartId: string) {
     showLoadingOverlay();
     showLoadingOverlay.flush();
-    const response = await storefrontClient().request(getCartGraphql, { variables: { cartId } });
+    const response = await getShopifyCart(cartId);
     const data = response.data as { cart?: Cart };
 
     if (response.errors != null || data.cart == null) {
