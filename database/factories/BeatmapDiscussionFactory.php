@@ -7,6 +7,8 @@ namespace Database\Factories;
 
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
+use App\Models\Beatmapset;
+use App\Models\User;
 
 class BeatmapDiscussionFactory extends Factory
 {
@@ -28,11 +30,25 @@ class BeatmapDiscussionFactory extends Factory
 
     protected $model = BeatmapDiscussion::class;
 
+    public function configure(): static
+    {
+        return $this->afterCreating(
+            fn (BeatmapDiscussion $discussion) => $discussion->beatmapDiscussionPosts()->save(
+                BeatmapDiscussionPost::factory()->state(['user_id' => $discussion->user_id])->make()
+            )
+        );
+    }
+
     public function definition(): array
     {
-        return array_merge(array_rand_val(static::DEFAULTS), [
+
+
+        return [
+            ...array_rand_val(static::DEFAULTS),
+            'beatmapset_id' => Beatmapset::factory(),
             'resolved' => false,
-        ]);
+            'user_id' => User::factory(),
+        ];
     }
 
     public function general()
@@ -63,13 +79,5 @@ class BeatmapDiscussionFactory extends Factory
     public function timeline()
     {
         return $this->state(static::DEFAULTS['timeline']);
-    }
-
-    public function withStarter()
-    {
-        return $this->has(BeatmapDiscussionPost::factory()
-            ->state(fn (array $attr, BeatmapDiscussion $discussion) => [
-                'user_id' => $discussion->user_id,
-            ]));
     }
 }
