@@ -3,15 +3,15 @@
 
 import { Cart, CartCreatePayload } from '@shopify/hydrogen-react/storefront-api-types';
 import { route } from 'laroute';
-import { toShopifyVariantGid } from 'shopify-gid';
-import { fetchApprovalLink } from 'store-paypal';
-import { initXsolla } from 'store-xsolla';
 import { error, isJqXHR, onError } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { popup } from 'utils/popup';
 import storefrontClient from './shopify-client';
+import { toShopifyVariantGid } from './shopify-gid';
+import { fetchApprovalLink } from './store-paypal';
+import { initXsolla } from './store-xsolla';
 
 declare global {
   interface Window {
