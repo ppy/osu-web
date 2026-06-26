@@ -24,13 +24,7 @@ interface XsollaTokenResponse {
   sandbox: boolean;
 }
 
-function fetchScript() {
-  return core.turbolinksReload.load('https://cdn.xsolla.net/payments-bucket-prod/embed/1.5.4/widget.min.js');
-}
-
-function fetchToken(orderNumber: string) {
-  return $.post(route('payments.xsolla.token'), { orderNumber }) as JQuery.jqXHR<XsollaTokenResponse>;
-}
+const xsollaWidgetUrl = 'https://cdn.xsolla.net/payments-bucket-prod/embed/1.5.4/widget.min.js';
 
 function onXsollaReady(orderNumber: string) {
   let done = false;
@@ -46,7 +40,8 @@ function onXsollaReady(orderNumber: string) {
 
 export async function initXsolla(orderNumber: string) {
   const [tokenResponse] = await Promise.all([
-    fetchToken(orderNumber), fetchScript(),
+    $.post(route('payments.xsolla.token'), { orderNumber }) as JQuery.jqXHR<XsollaTokenResponse>,
+    core.turbolinksReload.load(xsollaWidgetUrl),
   ]);
   onXsollaReady(orderNumber);
   window.XPayStationWidget.init(tokenResponse);
