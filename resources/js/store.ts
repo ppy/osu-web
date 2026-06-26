@@ -74,7 +74,7 @@ function generateShopifyCartInputVariables(orderId: string) {
   };
 }
 
-export class Store {
+export default class Store {
   private constructor() {
     $(document).on('click.store', '.js-store-checkout', (event: TriggeredEvent) => void this.beginCheckout(event));
     $(document).on('click.store', '.js-store-resume-checkout', (event: TriggeredEvent) => this.resumeCheckout(event));
