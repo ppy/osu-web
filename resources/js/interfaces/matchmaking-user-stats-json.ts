@@ -12,7 +12,8 @@ interface MatchmakingUserStatsJsonDefaultAttributes {
   is_rating_provisional: boolean;
   plays: number;
   pool_id: number;
-  rank: null | number;
+  rank: number;
+  rank_percent: number;
   rating: number;
   total_points: number;
   user_id: number;

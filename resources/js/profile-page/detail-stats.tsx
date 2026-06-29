@@ -24,8 +24,6 @@ export default class DetailStats extends React.PureComponent<Props> {
   render() {
     const user = this.props.user;
 
-    if (user.is_bot) return null;
-
     return (
       <div className='profile-detail-stats'>
         <div>
