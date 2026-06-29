@@ -14,6 +14,7 @@ import { ContestEntry } from 'models/contest-entry';
 import * as React from 'react';
 import ContestJudgeStore from 'stores/contest-judge-store';
 import { onError } from 'utils/ajax';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import CurrentUserJudgeVote from './current-user-judge-vote';
 
@@ -29,6 +30,7 @@ export default class Entry extends React.Component<Props> {
   @observable private readonly currentVote;
   @observable private readonly initialVote;
   @observable private readonly store;
+  @observable private timeout?: number;
   @observable private xhr?: JQuery.jqXHR<ContestEntryJson>;
 
   constructor(props: Props) {
@@ -48,15 +50,37 @@ export default class Entry extends React.Component<Props> {
     return this.store.canJudge
       && !this.commentTooLong
       && this.currentVote.scores.size === this.store.scoringCategories.length
-      && (this.currentVote.comment !== this.initialVote.comment
-          || this.store.scoringCategories.some((category) => (
-            this.initialVote.scores.get(category.id)?.value !== this.currentVote.scores.get(category.id)?.value
-          ))
-      );
+      && this.hasUnsavedChanges;
+  }
+
+  @computed
+  private get hasUnsavedChanges() {
+    return this.currentVote.comment !== this.initialVote.comment
+      || this.store.scoringCategories.some((category) => (
+        this.initialVote.scores.get(category.id)?.value !== this.currentVote.scores.get(category.id)?.value
+      ));
   }
 
   private get commentTooLong() {
     return this.currentVote.comment.length > commentsMaxLength;
+  }
+
+  @computed
+  private get statusText() {
+    return this.hasUnsavedChanges
+      ? trans('contest.judge.unsaved_changes')
+      : this.timeout != null
+        ? trans('common.saved')
+        : null;
+  }
+
+  @computed
+  private get statusVisible() {
+    return this.hasUnsavedChanges || this.timeout != null;
+  }
+
+  componentWillUnmount() {
+    window.clearTimeout(this.timeout);
   }
 
   render() {
@@ -94,6 +118,11 @@ export default class Entry extends React.Component<Props> {
         </InputContainer>
 
         <div className='contest-judge-entry__button'>
+          {this.statusVisible && (
+            <div className={classWithModifiers('contest-judge-entry__status', { saved: !this.hasUnsavedChanges })}>
+              {this.statusText}
+            </div>
+          )}
           <BigButton
             disabled={!this.canSubmit}
             icon='fas fa-check'
@@ -179,6 +208,12 @@ export default class Entry extends React.Component<Props> {
         if (json.current_user_judge_vote != null) {
           this.initialVote.updateWithJson(json.current_user_judge_vote);
         }
+
+        window.clearTimeout(this.timeout);
+        this.timeout = window.setTimeout(action(() => {
+          window.clearTimeout(this.timeout);
+          this.timeout = undefined;
+        }), 3000);
       })).always(action(() => {
         this.xhr = undefined;
       }));

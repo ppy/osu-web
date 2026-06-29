@@ -7,6 +7,9 @@
   grid-template-columns: 1fr 1fr;
   gap: 4px 20px;
   align-self: center;
+  background-color: hsl(var(--hsl-b4));
+  border-radius: @border-radius-large;
+  padding: 18px 12px;
 
   @media @desktop {
     grid-template-columns: auto auto;
@@ -22,5 +25,10 @@
 
   &__key {
     font-weight: normal; // undo default from dt
+  }
+
+  &__value {
+    color: hsl(var(--hsl-c2));
+    font-weight: bold;
   }
 }
