@@ -3,11 +3,13 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Models\Beatmap;
     use App\Models\NewsPost;
 
     $newsPostLargePreviews = NewsPost::LANDING_LIMIT;
     $currentUser = Auth::user();
     $queryForRecentBeatmapsets = 'ranked>'.json_date(Carbon\Carbon::now()->subDays(30));
+    $popularRuleset = default_mode();
 @endphp
 @extends('master')
 
@@ -106,7 +108,7 @@
                 </div>
 
                 @if ($dailyChallenge)
-                    <h3 class="user-home__beatmap-list-title">
+                    <h3 class="user-home__beatmap-list-header">
                         <a href="{{ wiki_url("Gameplay/Daily_challenge") }}">
                             {{ osu_trans('home.user.beatmaps.daily_challenge') }}
                         </a>
@@ -117,7 +119,7 @@
                     </div>
                 @endif
 
-                <h3 class='user-home__beatmap-list-title'>
+                <h3 class="user-home__beatmap-list-header">
                     {{ osu_trans('home.user.beatmaps.new') }}
                 </h3>
 
@@ -130,17 +132,47 @@
                     </a>
                 </div>
 
-                <h3 class='user-home__beatmap-list-title'>
-                    {{ osu_trans('home.user.beatmaps.popular') }}
-                </h3>
+                <div class="js-popular-beatmapsets u-contents">
+                    <h3 class="user-home__beatmap-list-header">
+                        {{ osu_trans('home.user.beatmaps.popular') }}
 
-                <div class="user-home__beatmapsets">
-                    @foreach ($popularBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'popular'])
+                        <ul class="game-mode game-mode--inline">
+                            @foreach (Beatmap::MODES as $ruleset => $rulesetId)
+                                <li>
+                                    <button
+                                        type="button"
+                                        @class([
+                                            class_with_modifiers('game-mode-link', 'inherit-size', 'button'),
+                                            'js-popular-beatmapsets-ruleset',
+                                            'js-is-active' => $ruleset === $popularRuleset,
+                                        ])
+                                        data-popular-ruleset="{{ $ruleset }}"
+                                        title="{{ osu_trans("beatmaps.mode.{$ruleset}") }}"
+                                    >
+                                        <span class="fal fa-extra-mode-{{ $ruleset }}"></span>
+                                    </button>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </h3>
+
+                    @foreach (Beatmap::MODES as $ruleset => $rulesetId)
+                        <div
+                            @class([
+                                'user-home__beatmapsets',
+                                'js-popular-beatmapsets-panel',
+                                'u-hidden' => $ruleset !== $popularRuleset,
+                            ])
+                            data-popular-ruleset="{{ $ruleset }}"
+                        >
+                            @foreach ($popularBeatmapsetsByRuleset[$ruleset] as $beatmapset)
+                                @include('home._user_beatmapset', ['type' => 'popular'])
+                            @endforeach
+                            <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets, 'sort' => 'favourites_desc', 'm' => $rulesetId]) }}">
+                                {{ osu_trans('common.buttons.see_more') }}
+                            </a>
+                        </div>
                     @endforeach
-                    <a href="{{ route('beatmapsets.index', ['q' => $queryForRecentBeatmapsets, 'sort' => 'favourites_desc']) }}">
-                        {{ osu_trans('common.buttons.see_more') }}
-                    </a>
                 </div>
             </div>
         </div>

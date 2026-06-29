@@ -2,21 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-detail {
-  --gutter: @gutter-v2;
-  background-color: hsl(var(--hsl-b5));
-  padding: 10px var(--gutter);
-  display: grid;
-  gap: 10px;
-
-  &:empty {
-    display: none;
-  }
+  padding: 10px var(--page-gutter);
 
   .profile-info + & {
     .inner-shadow-top();
-  }
-
-  @media @desktop {
-    --gutter: @gutter-v2-desktop;
   }
 }

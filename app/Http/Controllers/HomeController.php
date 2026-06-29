@@ -130,7 +130,7 @@ class HomeController extends Controller
         if (Auth::check()) {
             $menuImages = json_collection(MenuContent::activeImages(), new MenuImageTransformer());
             $newBeatmapsets = Beatmapset::latestRanked();
-            $popularBeatmapsets = Beatmapset::popular()->get();
+            $popularBeatmapsetsByRuleset = Beatmapset::popularByRuleset();
 
             $dailyChallenge = Room::dailyChallengeFor(CarbonImmutable::now());
 
@@ -141,7 +141,7 @@ class HomeController extends Controller
                 'menuImages',
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets',
+                'popularBeatmapsetsByRuleset',
                 'dailyChallenge',
                 'featuredStream',
             ));
