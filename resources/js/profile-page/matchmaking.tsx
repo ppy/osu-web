@@ -12,6 +12,27 @@ import { trans } from 'utils/lang';
 import { qtipPosition } from 'utils/qtip-helper';
 import { ProfilePageMatchmakingStatsJson } from './extra-page-props';
 
+function tier(stats: ProfilePageMatchmakingStatsJson) {
+  const rank = stats.rank;
+  const percent = stats.rank_percent;
+
+  if (rank <= 100) {
+    return 'lustrous';
+  }
+
+  return percent < 0.05
+    ? 'radiant'
+    : percent < 0.2
+      ? 'rhodium'
+      : percent < 0.5
+        ? 'platinum'
+        : percent < 0.75
+          ? 'gold'
+          : percent < 0.95
+            ? 'silver'
+            : 'bronze';
+}
+
 function poolDisplayName(pool: MatchmakingPoolJson) {
   const variantName = rulesetVariantIdToName[pool.variant_id];
 
@@ -22,8 +43,19 @@ function poolDisplayName(pool: MatchmakingPoolJson) {
   return `${prefix}${pool.name}`;
 }
 
-function rankText(rank: null | number) {
-  return rank == null ? '-' : `#${formatNumber(rank)}`;
+function rankText(stats: null | ProfilePageMatchmakingStatsJson) {
+  return stats == null
+    ? '-'
+    : (
+      <span
+        className='u-fancy-text'
+        style={{
+          '--colour': `var(--level-tier-${tier(stats)})`,
+        } as React.CSSProperties}
+      >
+        #{formatNumber(stats.rank)}
+      </span>
+    );
 }
 
 function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
@@ -50,7 +82,7 @@ function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
             {poolDisplayName(stats.pool)}
           </div>
           <div className='matchmaking-popup__value'>
-            {rankText(stats.rank)}
+            {rankText(stats)}
           </div>
           <div className='matchmaking-popup__value'>
             {formatNumber(stats.first_placements)}
@@ -84,16 +116,12 @@ export default class Matchmaking extends React.Component<Props> {
     if (this.props.allStats.length === 0) {
       return null;
     }
-    let highestRank: null | number = null;
+
+    let highestRankStats: null | ProfilePageMatchmakingStatsJson = null;
     for (const stats of this.props.allStats) {
-      const rank = stats.rank;
       // only show active stats for profile page
-      if (stats.pool.active && rank != null) {
-        if (highestRank == null) {
-          highestRank = rank;
-        } else if (rank < highestRank) {
-          highestRank = rank;
-        }
+      if (stats.pool.active && (highestRankStats == null || stats.rank < highestRankStats.rank)) {
+        highestRankStats = stats;
       }
     }
 
@@ -107,8 +135,8 @@ export default class Matchmaking extends React.Component<Props> {
           {trans('users.show.matchmaking.title')}
         </div>
         <div className='daily-challenge__value-box'>
-          <div className='daily-challenge__value'>
-            {rankText(highestRank)}
+          <div className='daily-challenge__value daily-challenge__value--plain'>
+            {rankText(highestRankStats)}
           </div>
         </div>
       </div>

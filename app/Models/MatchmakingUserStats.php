@@ -81,4 +81,21 @@ class MatchmakingUserStats extends Model
             ->where('pool_id', $this->pool_id)
             ->count();
     }
+
+    public function getRankPercent(?int $rank = null): float
+    {
+        $rank ??= $this->getRank();
+
+        $count = cache_remember_mutexed(
+            "matchmaking_user_count:{$this->pool_id}",
+            600,
+            1,
+            fn () => static
+                ::where('pool_id', $this->pool_id)
+                ->where('plays', '>', 0)
+                ->count(),
+        );
+
+        return min(1, $rank / max(1, $count ?? 1));
+    }
 }
