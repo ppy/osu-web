@@ -9,6 +9,7 @@ use App\Models\Contest;
 use App\Models\ContestJudgeVote;
 use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
+use App\Transformers\UserContestEntryTransformer;
 use ZipStream\ZipStream;
 
 class ContestsController extends Controller
@@ -50,7 +51,7 @@ class ContestsController extends Controller
 
         return ext_view('admin.contests.show', [
             'contest' => $contest,
-            'entries' => json_collection($entries, 'UserContestEntry', ['user']),
+            'entries' => json_collection($entries, new UserContestEntryTransformer(), ['user']),
             'judgeVoteCounts' => $judgeVoteCounts ?? null,
         ]);
     }

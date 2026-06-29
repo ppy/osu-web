@@ -7,6 +7,7 @@ namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Transformers\BeatmapsetDescriptionTransformer;
 use Tests\TestCase;
 
 class BeatmapsetDescriptionTransformerTest extends TestCase
@@ -22,7 +23,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetDescription');
+        $json = json_item($this->beatmapset, new BeatmapsetDescriptionTransformer());
 
         $this->assertArrayNotHasKey('bbcode', $json);
     }
@@ -35,7 +36,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetDescription');
+        $json = json_item($this->beatmapset, new BeatmapsetDescriptionTransformer());
 
         if ($visible) {
             $this->assertArrayHasKey('bbcode', $json);
@@ -46,7 +47,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
 
     public function testUserIsGuest()
     {
-        $json = json_item($this->beatmapset, 'BeatmapsetDescription');
+        $json = json_item($this->beatmapset, new BeatmapsetDescriptionTransformer());
 
         $this->assertArrayHasKey('description', $json);
         $this->assertArrayNotHasKey('bbcode', $json);
@@ -56,7 +57,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
     {
         $this->actAsUser($this->mapper);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetDescription');
+        $json = json_item($this->beatmapset, new BeatmapsetDescriptionTransformer());
 
         $this->assertArrayHasKey('description', $json);
         $this->assertArrayHasKey('bbcode', $json);
@@ -66,7 +67,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
     {
         $this->actAsUser(User::factory()->create());
 
-        $json = json_item($this->beatmapset, 'BeatmapsetDescription');
+        $json = json_item($this->beatmapset, new BeatmapsetDescriptionTransformer());
 
         $this->assertArrayHasKey('description', $json);
         $this->assertArrayNotHasKey('bbcode', $json);
