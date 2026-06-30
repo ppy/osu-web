@@ -23,9 +23,5 @@ export const showLoadingOverlay = debounce(() => {
 export function hideLoadingOverlay() {
   showLoadingOverlay.cancel();
 
-  const el = getOverlayElement();
-
-  if (el == null) return;
-
-  el.classList.remove('loading-overlay--visible');
+  getOverlayElement()?.classList.remove('loading-overlay--visible');
 }
