@@ -12,14 +12,13 @@ function getOverlayElement() {
 }
 
 export function showImmediateLoadingOverlay() {
-  const el = getOverlayElement();
-
-  if (el == null) return;
-
-  el.classList.add('loading-overlay--visible');
+  showLoadingOverlay();
+  showLoadingOverlay.flush();
 }
 
-export const showLoadingOverlay = debounce(showImmediateLoadingOverlay, 5000, { maxWait: 5000 });
+export const showLoadingOverlay = debounce(() => {
+  getOverlayElement()?.classList.add('loading-overlay--visible');
+}, 5000, { maxWait: 5000 });
 
 export function hideLoadingOverlay() {
   showLoadingOverlay.cancel();
