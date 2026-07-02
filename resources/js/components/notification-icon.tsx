@@ -18,12 +18,16 @@ export default function NotificationIcon(props: Props) {
     mobile: props.type === 'mobile',
   };
 
+  const showCount = props.type !== 'mobile' || (props.ready && props.count > 0);
+
   return (
     <span className={classWithModifiers('notification-icon', modifiers)}>
       <i className={props.iconClassName} />
-      <span className='notification-icon__count'>
-        {props.ready ? formatNumber(props.count) : '...'}
-      </span>
+      {showCount && (
+        <span className='notification-icon__count'>
+          {props.ready ? formatNumber(props.count) : '...'}
+        </span>
+      )}
     </span>
   );
 }
