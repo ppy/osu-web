@@ -30,7 +30,7 @@ class OsuMarkdown
 {
     use Memoizes;
 
-    const VERSION = 14;
+    const VERSION = 15;
 
     const DEFAULT_COMMONMARK_CONFIG = [
         'allow_unsafe_links' => false,
@@ -96,6 +96,13 @@ class OsuMarkdown
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'record_first_image' => true,
+                'style_block_allowed_classes' => [
+                    'alert-caution',
+                    'alert-note',
+                    'alert-notice',
+                    'alert-tip',
+                    'alert-warning',
+                ],
             ],
             'osu_markdown' => [
                 'block_modifiers' => ['news'],
@@ -125,7 +132,14 @@ class OsuMarkdown
                 'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
-                'style_block_allowed_classes' => ['infobox'],
+                'style_block_allowed_classes' => [
+                    'alert-caution',
+                    'alert-note',
+                    'alert-notice',
+                    'alert-tip',
+                    'alert-warning',
+                    'infobox',
+                ],
                 'title_from_document' => true,
                 'with_gallery' => true,
             ],
