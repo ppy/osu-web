@@ -24,6 +24,10 @@ return [
         'label' => 'Featured Artist',
     ],
 
+    'exclusive_badge' => [
+        'label' => 'osu! original',
+    ],
+
     'index' => [
         'title' => 'Beatmaps Listing',
         'guest_title' => 'Beatmaps',
