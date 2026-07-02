@@ -40,6 +40,17 @@
       grid-auto-columns: 1fr;
       grid-gap: 2px;
     }
+
+    &--extra-osu {
+      .@{_top}__group--stats & {
+        @media @mobile {
+          grid-auto-flow: unset;
+          grid-auto-columns: unset;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 10px 2px;
+        }
+      }
+    }
   }
 
   &__stat {
