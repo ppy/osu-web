@@ -9,6 +9,9 @@ use App\Interfaces\CommentableInterface;
 use App\Models\Comment;
 use App\Models\CommentVote;
 use App\Models\User;
+use App\Transformers\CommentableMetaTransformer;
+use App\Transformers\CommentTransformer;
+use App\Transformers\UserCompactTransformer;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -107,21 +110,23 @@ class CommentBundle
         $allComments = $comments->concat($includedComments)->concat($pinnedComments);
         $allComments->load('commentable');
 
+        $commentTransformer = new CommentTransformer();
+        $userTransformer = new UserCompactTransformer();
         $result = [
-            'comments' => json_collection($comments, 'Comment'),
+            'comments' => json_collection($comments, $commentTransformer),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
-            'included_comments' => json_collection($includedComments, 'Comment'),
-            'pinned_comments' => json_collection($pinnedComments, 'Comment'),
+            'included_comments' => json_collection($includedComments, $commentTransformer),
+            'pinned_comments' => json_collection($pinnedComments, $commentTransformer),
             'user_votes' => $this->getUserVotes($allComments),
             'user_follow' => $this->getUserFollow(),
-            'users' => json_collection($this->getUsers($allComments), 'UserCompact'),
+            'users' => json_collection($this->getUsers($allComments), $userTransformer),
             'sort' => $this->params->sort,
             'cursor' => $this->params->cursorHelper->next($comments),
         ];
 
         if ($this->params->userId !== null) {
-            $result['user'] = json_item(User::find($this->params->userId), 'UserCompact');
+            $result['user'] = json_item(User::find($this->params->userId), $userTransformer);
         }
 
         if ($this->params->parentId === 0 || $this->params->parentId === null) {
@@ -136,7 +141,7 @@ class CommentBundle
             $commentables[] = $this->commentable;
         }
         $commentables = $commentables->uniqueStrict('commentable_identifier')->concat([null]);
-        $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
+        $result['commentable_meta'] = json_collection($commentables, new CommentableMetaTransformer());
 
         return $result;
     }

@@ -11,6 +11,7 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\User;
 use App\Transformers\Chat\ChannelTransformer;
+use App\Transformers\UserCompactTransformer;
 
 class ChatController extends Controller
 {
@@ -47,7 +48,7 @@ class ChatController extends Controller
                 $sendToJson = [
                     'can_message_error' => ($channel?->checkCanMessage($user) ?? priv_check('ChatPmStart', $targetUser))->message(),
                     'channel_id' => $channel?->getKey(),
-                    'target' => json_item($targetUser, 'UserCompact'),
+                    'target' => json_item($targetUser, new UserCompactTransformer()),
                 ];
             }
         } elseif ($params['channel_id'] !== null) {

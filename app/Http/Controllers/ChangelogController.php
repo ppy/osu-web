@@ -10,6 +10,8 @@ use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\UpdateStream;
+use App\Transformers\BuildHistoryChartTransformer;
+use App\Transformers\BuildTransformer;
 use App\Transformers\UpdateStreamTransformer;
 use Cache;
 
@@ -180,7 +182,7 @@ class ChangelogController extends Controller
             'changelog_entries.github_user',
             ...static::changelogEntryMessageIncludes($params['message_formats']),
         ];
-        $buildsJson = json_collection($builds, 'Build', $buildJsonIncludes);
+        $buildsJson = json_collection($builds, new BuildTransformer(), $buildJsonIncludes);
 
         $indexJson = [
             'streams' => $updateStreams,
@@ -390,7 +392,7 @@ class ChangelogController extends Controller
 
     private function buildJson(Build $build): array
     {
-        return json_item($build, 'Build', [
+        return json_item($build, new BuildTransformer(), [
             'changelog_entries',
             'changelog_entries.github_user',
             ...static::changelogEntryMessageIncludes(get_arr(request('message_formats'))),
@@ -438,7 +440,7 @@ class ChangelogController extends Controller
         }
 
         return [
-            'build_history' => json_collection($history, 'BuildHistoryChart'),
+            'build_history' => json_collection($history, new BuildHistoryChartTransformer()),
             'order' => $chartOrder,
             'stream_name' => $streamName ?? null,
             'streams' => $streams ?? null,

@@ -20,8 +20,10 @@ use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
 use App\Models\UserProfileCustomization;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\GithubUserTransformer;
 use App\Transformers\LegacyApiKeyTransformer;
 use App\Transformers\LegacyIrcKeyTransformer;
+use App\Transformers\OAuth\ClientTransformer;
 use Auth;
 use DB;
 use Mail;
@@ -111,8 +113,8 @@ class AccountController extends Controller
         $sessions = SessionStore::sessions($user->getKey());
         $currentSessionId = \Session::getId();
 
-        $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
-        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
+        $authorizedClients = json_collection(Client::forUser($user), new ClientTransformer(), 'user');
+        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), new ClientTransformer(), ['redirect', 'secret']);
 
         $legacyApiKey = $user->apiKeys()->available()->first();
         $legacyApiKeyJson = $legacyApiKey === null ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());
@@ -123,7 +125,7 @@ class AccountController extends Controller
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
         $githubUser = GithubUser::canAuthenticate() && $user->githubUser !== null
-            ? json_item($user->githubUser, 'GithubUser')
+            ? json_item($user->githubUser, new GithubUserTransformer())
             : null;
 
         return ext_view('accounts.edit', compact(
