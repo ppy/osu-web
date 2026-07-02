@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { FilterKey } from 'beatmapset-search-filters';
+import BeatmapUserTagPicker from 'components/beatmap-user-tag-picker';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import PopupMenu from 'components/popup-menu';
 import PopupMenuState from 'components/popup-menu-state';
@@ -16,7 +17,6 @@ import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
-import UserTagPicker from './user-tag-picker';
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -217,7 +217,12 @@ export class SearchPanel extends React.Component<Props> {
             <i className='fas fa-tag' />
           </button>
           <PopupMenu direction='left' skipButton state={this.tagPopupMenuState}>
-            {() => <UserTagPicker />}
+            {() => (<BeatmapUserTagPicker
+              isTagEnabled={this.controller.filters.tagEnabled}
+              onDisabled={this.controller.filters.tagRemove}
+              onEnabled={this.controller.filters.tagAdd}
+              showAllRulesets={this.controller.filters.mode === null}
+            />)}
           </PopupMenu>
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
