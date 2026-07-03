@@ -379,7 +379,19 @@ class OsuMarkdown
                 'class' => "{$blockClass}__paragraph",
             ],
             StyleBlock\Element::class => [
-                'class' => static fn (StyleBlock\Element $node) => "{$blockClass}__{$node->getClassName()}",
+                'class' => static function (StyleBlock\Element $node) use ($blockClass) {
+                    $className = $node->getClassName();
+
+                    if (starts_with($className, 'alert-')) {
+                        $type = explode('-', $className)[1] ?? null;
+
+                        if ($type !== null) {
+                            return class_with_modifiers("{$blockClass}__alert", [$type]);
+                        }
+                    }
+
+                    return "{$blockClass}__{$className}";
+                },
             ],
             Table::class => [
                 'class' => "{$blockClass}__table",
