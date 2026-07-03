@@ -382,11 +382,11 @@ class OsuMarkdown
                 'class' => static function (StyleBlock\Element $node) use ($blockClass) {
                     $className = $node->getClassName();
 
-                    if (starts_with($className, 'alert-')) {
-                        $type = explode('-', $className)[1] ?? null;
+                    if (str_starts_with($className, 'alert-')) {
+                        $type = explode('-', $className, 2)[1] ?? null;
 
                         if ($type !== null) {
-                            return class_with_modifiers("{$blockClass}__alert", [$type]);
+                            return class_with_modifiers("{$blockClass}__alert", $type);
                         }
                     }
 
