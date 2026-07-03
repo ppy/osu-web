@@ -21,7 +21,7 @@ import SeasonStats from './season-stats';
 interface Props {
   coverUrl: string | null;
   currentMode: Ruleset;
-  editor?: JSX.Element;
+  editor?: React.ReactNode;
   isUpdatingCover?: boolean;
   modifiers?: Modifiers;
   user: UserExtendedJson;

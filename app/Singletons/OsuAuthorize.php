@@ -2055,17 +2055,15 @@ class OsuAuthorize
                 return 'ok';
             }
 
-            if ($user->getKey() !== $page->poster_id) {
-                return $prefix.'not_owner';
-            }
-
             // Some user pages (posts) are orphaned and don't have parent topic.
             if ($page->post_edit_locked || optional($page->topic)->isLocked() ?? false) {
                 return $prefix.'locked';
             }
         }
 
-        return 'ok';
+        return $user->getKey() === $pageOwner->getKey()
+            ? 'ok'
+            : $prefix.'not_owner';
     }
 
     public function checkUserReport(?User $user, ReportableInterface $model): string
