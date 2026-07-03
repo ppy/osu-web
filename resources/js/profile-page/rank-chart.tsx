@@ -22,8 +22,8 @@ const options = makeOptionsNumber({
   infoBoxFormatX: formatX,
   infoBoxFormatY: formatY,
   marginBottom: 15,
-  marginLeft: 15, // referenced in css .profile-detail__col--bottom-left
-  marginRight: 15,
+  marginLeft: 0,
+  marginRight: 0,
   marginTop: 15,
   modifiers: 'profile-page',
   scaleX: scaleLinear(),
