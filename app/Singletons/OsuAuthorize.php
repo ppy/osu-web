@@ -1147,7 +1147,7 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param Comment $comment
+     * @param CommentableInterface $commentable
      * @return string
      * @throws AuthorizationCheckException
      */
@@ -1159,6 +1159,10 @@ class OsuAuthorize
 
         if ($commentable->commentLocked()) {
             return 'comment.store.disabled';
+        }
+
+        if ($commentable instanceof Beatmapset && $commentable->user?->hasBlocked($user)) {
+            return 'comment.blocked';
         }
 
         return 'ok';

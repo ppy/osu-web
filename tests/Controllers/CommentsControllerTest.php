@@ -15,9 +15,9 @@ use Tests\TestCase;
 
 class CommentsControllerTest extends TestCase
 {
-    private $user;
-    private $minPlays;
-    private $beatmapset;
+    private User $user;
+    private int $minPlays;
+    private Beatmapset $beatmapset;
     private $params;
 
     /**
@@ -106,6 +106,26 @@ class CommentsControllerTest extends TestCase
             ->be($this->user)
             ->post(route('comments.store'), $this->params)
             ->assertSuccessful();
+    }
+
+    public function testStoreBlockedByBeatmapsetOwner()
+    {
+        $this->prepareForStore();
+
+        $otherUser = User::factory()->create();
+        $otherUser->relations()->create([
+            'foe' => true,
+            'zebra_id' => $this->user->getKey(),
+        ]);
+
+        $this->beatmapset->update(['user_id' => $otherUser->getKey()]);
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->be($this->user)
+            ->post(route('comments.store'), $this->params)
+            ->assertStatus(403);
     }
 
     public function testStoreDownloadLimitedBeatmapset()
