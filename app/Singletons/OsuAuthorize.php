@@ -1123,6 +1123,19 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkCommentReply(?User $user, Comment $parent): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($parent->user->hasBlocked($user)) {
+            return 'comment.blocked';
+        }
+
+        return 'ok';
+    }
+
     public function checkCommentRestore(?User $user, Comment $comment): string
     {
         if ($this->doCheckUser($user, 'CommentModerate')->can()) {

@@ -205,6 +205,34 @@ class CommentsControllerTest extends TestCase
         $this->assertSame($previousComments + 1, $this->beatmapset->comments()->count());
     }
 
+    public function testStoreReplyBlockedByCommentOwner()
+    {
+        $this->prepareForStore();
+
+        $otherUser = User::factory()->create();
+        $otherUser->relations()->create([
+            'foe' => true,
+            'zebra_id' => $this->user->getKey(),
+        ]);
+
+        $parent = $this->beatmapset->comments()->create([
+            'user_id' => $otherUser->getKey(),
+            'message' => 'Hello.',
+        ]);
+
+        $params = ['comment' => [
+            'parent_id' => $parent->getKey(),
+            'message' => 'This is a reply',
+        ]];
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->be($this->user)
+            ->post(route('comments.store'), $params)
+            ->assertStatus(403);
+    }
+
     public function testStoreReplyDownloadLimitedBeatmapset()
     {
         $this->prepareForStore();
