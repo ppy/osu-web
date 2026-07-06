@@ -52,6 +52,10 @@ export default class CommentEditor extends React.Component<Props> {
   }
 
   private get canNewCommentReason() {
+    if (this.mode === 'reply' &&
+      this.props.controller.getUser(this.props.parent?.userId)?.current_user_attributes?.has_blocked) {
+      return trans('authorization.comment.blocked');
+    }
     return this.props.commentableMeta == null
       ? null
       : 'current_user_attributes' in this.props.commentableMeta

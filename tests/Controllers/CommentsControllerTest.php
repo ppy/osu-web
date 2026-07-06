@@ -15,9 +15,9 @@ use Tests\TestCase;
 
 class CommentsControllerTest extends TestCase
 {
-    private $user;
-    private $minPlays;
-    private $beatmapset;
+    private User $user;
+    private int $minPlays;
+    private Beatmapset $beatmapset;
     private $params;
 
     /**
@@ -108,6 +108,26 @@ class CommentsControllerTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function testStoreBlockedByBeatmapsetOwner()
+    {
+        $this->prepareForStore();
+
+        $otherUser = User::factory()->create();
+        $otherUser->relations()->create([
+            'foe' => true,
+            'zebra_id' => $this->user->getKey(),
+        ]);
+
+        $this->beatmapset->update(['user_id' => $otherUser->getKey()]);
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->be($this->user)
+            ->post(route('comments.store'), $this->params)
+            ->assertStatus(403);
+    }
+
     public function testStoreDownloadLimitedBeatmapset()
     {
         $this->prepareForStore();
@@ -183,6 +203,34 @@ class CommentsControllerTest extends TestCase
             ->assertStatus(200);
 
         $this->assertSame($previousComments + 1, $this->beatmapset->comments()->count());
+    }
+
+    public function testStoreReplyBlockedByCommentOwner()
+    {
+        $this->prepareForStore();
+
+        $otherUser = User::factory()->create();
+        $otherUser->relations()->create([
+            'foe' => true,
+            'zebra_id' => $this->user->getKey(),
+        ]);
+
+        $parent = $this->beatmapset->comments()->create([
+            'user_id' => $otherUser->getKey(),
+            'message' => 'Hello.',
+        ]);
+
+        $params = ['comment' => [
+            'parent_id' => $parent->getKey(),
+            'message' => 'This is a reply',
+        ]];
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->be($this->user)
+            ->post(route('comments.store'), $params)
+            ->assertStatus(403);
     }
 
     public function testStoreReplyDownloadLimitedBeatmapset()
