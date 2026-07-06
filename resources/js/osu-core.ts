@@ -21,6 +21,7 @@ import ForumPostInput from 'core/forum/forum-post-input';
 import ForumPostReport from 'core/forum/forum-post-report';
 import ForumTopicTagEditor from 'core/forum/forum-topic-tag-editor';
 import Localtime from 'core/localtime';
+import MobileMenu from 'core/mobile-menu';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
 import PopularBeatmapsetsRuleset from 'core/popular-beatmapsets-ruleset';
@@ -76,6 +77,7 @@ export default class OsuCore {
   readonly forumPostReport;
   readonly forumTopicTagEditor;
   readonly localtime;
+  readonly mobileMenu;
   readonly mobileToggle;
   readonly notificationsWorker;
   readonly osuAudio;
@@ -129,6 +131,7 @@ export default class OsuCore {
     this.forumTopicTagEditor = new ForumTopicTagEditor();
     this.localtime = new Localtime();
     this.mobileToggle = new MobileToggle();
+    this.mobileMenu = new MobileMenu();
     this.popularBeatmapsetsRuleset = new PopularBeatmapsetsRuleset();
     this.browserTitleWithNotificationCount = new BrowserTitleWithNotificationCount(this);
     this.referenceLinkTooltip = new ReferenceLinkTooltip();
