@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Spotlight;
+use App\Transformers\SpotlightTransformer;
 
 /**
  * @group Ranking
@@ -33,7 +34,7 @@ class SpotlightsController extends Controller
     public function index()
     {
         return [
-            'spotlights' => json_collection(Spotlight::orderBy('chart_id', 'desc')->get(), 'Spotlight'),
+            'spotlights' => json_collection(Spotlight::orderBy('chart_id', 'desc')->get(), new SpotlightTransformer()),
         ];
     }
 }

@@ -14,6 +14,13 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Traits\Memoizes;
+use App\Transformers\BeatmapDiscussionPostTransformer;
+use App\Transformers\BeatmapDiscussionTransformer;
+use App\Transformers\BeatmapsetEventTransformer;
+use App\Transformers\BeatmapsetTransformer;
+use App\Transformers\BeatmapTransformer;
+use App\Transformers\KudosuHistoryTransformer;
+use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -90,13 +97,13 @@ class ModdingHistoryEventsBundle
             $array = [
                 'events' => json_collection(
                     $this->getEvents(),
-                    'BeatmapsetEvent',
+                    new BeatmapsetEventTransformer(),
                     ['discussion.starting_post', 'beatmapset.user']
                 ),
                 'reviewsConfig' => Review::config(),
                 'users' => json_collection(
                     $this->getUsers(),
-                    'UserCompact',
+                    new UserCompactTransformer(),
                     ['groups']
                 ),
             ];
@@ -104,23 +111,23 @@ class ModdingHistoryEventsBundle
             if ($this->withExtras) {
                 $array['beatmaps'] = json_collection(
                     $this->getBeatmaps(),
-                    'Beatmap'
+                    new BeatmapTransformer()
                 );
 
                 $array['beatmapsets'] = json_collection(
                     $this->getBeatmapsets(),
-                    'Beatmapset'
+                    new BeatmapsetTransformer()
                 );
 
                 $array['discussions'] = json_collection(
                     $this->getDiscussions(),
-                    'BeatmapDiscussion',
+                    new BeatmapDiscussionTransformer(),
                     ['starting_post', 'current_user_attributes']
                 );
 
                 $array['posts'] = json_collection(
                     $this->getPosts(),
-                    'BeatmapDiscussionPost',
+                    new BeatmapDiscussionPostTransformer(),
                     // TODO: should get beatmapset from top level beatmapset key instead of embedded property.
                     ['beatmap_discussion.beatmapset.availability']
                 );
@@ -139,7 +146,7 @@ class ModdingHistoryEventsBundle
                         ->get();
 
                     $array['extras'] = [
-                        'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory'),
+                        'recentlyReceivedKudosu' => json_collection($kudosu, new KudosuHistoryTransformer()),
                     ];
                     // only recentlyReceivedKudosu is set, do we even need it?
                     // every other item has a show more link that goes to a listing.

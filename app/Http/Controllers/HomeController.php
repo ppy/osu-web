@@ -19,6 +19,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use App\Transformers\MenuImageTransformer;
+use App\Transformers\NewsPostTransformer;
 use Auth;
 use Carbon\CarbonImmutable;
 use DeviceDetector\DeviceDetector;
@@ -146,7 +147,7 @@ class HomeController extends Controller
                 'featuredStream',
             ));
         } else {
-            $news = json_collection($news, 'NewsPost');
+            $news = json_collection($news, new NewsPostTransformer());
 
             return ext_view('home.landing', ['stats' => new CurrentStats(), 'news' => $news]);
         }
