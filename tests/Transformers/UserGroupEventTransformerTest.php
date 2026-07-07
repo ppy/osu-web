@@ -9,20 +9,21 @@ namespace Tests\Transformers;
 
 use App\Models\User;
 use App\Models\UserGroupEvent;
+use App\Transformers\UserGroupEventTransformer;
 use Tests\TestCase;
 
 class UserGroupEventTransformerTest extends TestCase
 {
     public function testActorNameNotInRoot(): void
     {
-        $eventJson = json_item(UserGroupEvent::factory()->create(), 'UserGroupEvent');
+        $eventJson = json_item(UserGroupEvent::factory()->create(), new UserGroupEventTransformer());
 
         $this->assertArrayNotHasKey('actor_name', $eventJson);
     }
 
     public function testActorNotVisibleWhenGuest(): void
     {
-        $eventJson = json_item(UserGroupEvent::factory()->create(), 'UserGroupEvent');
+        $eventJson = json_item(UserGroupEvent::factory()->create(), new UserGroupEventTransformer());
 
         $this->assertArrayNotHasKey('actor', $eventJson);
     }
@@ -31,7 +32,7 @@ class UserGroupEventTransformerTest extends TestCase
     {
         $this->actAsUser(User::factory()->create());
 
-        $eventJson = json_item(UserGroupEvent::factory()->create(), 'UserGroupEvent');
+        $eventJson = json_item(UserGroupEvent::factory()->create(), new UserGroupEventTransformer());
 
         $this->assertArrayNotHasKey('actor', $eventJson);
     }
@@ -42,7 +43,7 @@ class UserGroupEventTransformerTest extends TestCase
 
         $this->actAsUser(User::factory()->withGroup($event->group->identifier)->create());
 
-        $eventJson = json_item($event, 'UserGroupEvent');
+        $eventJson = json_item($event, new UserGroupEventTransformer());
 
         $this->assertArrayHasKey('actor', $eventJson);
     }

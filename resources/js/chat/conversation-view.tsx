@@ -42,7 +42,7 @@ export default class ConversationView extends React.Component<Props> {
     const channel = this.currentChannel;
     if (channel == null) return [];
 
-    const conversationStack: JSX.Element[] = [];
+    const conversationStack: React.ReactNode[] = [];
     let currentGroup: Message[] = [];
     let unreadMarkerShown = false;
     let currentDay: string;
