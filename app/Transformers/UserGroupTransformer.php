@@ -14,7 +14,7 @@ class UserGroupTransformer extends TransformerAbstract
         // TODO: "group" should be an include. implemented like this for now
         // to keep API backward-compatible
         return array_merge(
-            json_item($userGroup->group, 'Group'),
+            json_item($userGroup->group, new GroupTransformer()),
             ['playmodes' => $userGroup->playmodes],
         );
     }

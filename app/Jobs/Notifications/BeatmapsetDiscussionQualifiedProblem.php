@@ -13,6 +13,7 @@ class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetDiscussionPostNotif
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
 
+    #[\Override]
     public function getListeningUserIds(): array
     {
         $beatmap = $this->beatmapsetDiscussionPost->beatmap;

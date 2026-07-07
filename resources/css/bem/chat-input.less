@@ -18,6 +18,7 @@
 
   align-items: center;
   display: flex;
+  gap: 10px;
 
   @media @mobile {
     position: fixed;
@@ -30,14 +31,9 @@
     .reset-input();
     .default-border-radius();
     .default-box-shadow();
-    max-height: 100%;
-    max-width: 100%;
-    min-width: 0;
     background: @osu-colour-b6;
     padding: 10px;
-    margin-right: 10px;
     font-family: @font-content;
-    flex: 1;
     resize: none;
 
     &::placeholder {
@@ -47,5 +43,14 @@
     &--disabled {
       opacity: 0.8;
     }
+  }
+
+  &__box-container {
+    position: relative;
+    display: grid;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex: 1;
   }
 }

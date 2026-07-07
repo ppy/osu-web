@@ -228,7 +228,7 @@ class Mods
         $filteredMods = [];
 
         foreach ($mods as $mod) {
-            if (!present($mod['acronym'] ?? null)) {
+            if (!is_string(presence($mod['acronym'] ?? null))) {
                 throw new InvariantException('invalid mod array');
             }
 

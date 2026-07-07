@@ -5,12 +5,15 @@ import Comments from 'components/comments';
 import HeaderV4 from 'components/header-v4';
 import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
+import StringWithComponent from 'components/string-with-component';
 import Ruleset, { rulesets } from 'interfaces/ruleset';
-import { action, autorun, computed, IReactionDisposer, makeObservable, observable } from 'mobx';
+import { action, autorun, computed, IReactionDisposer, makeObservable, observable, untracked } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { generate, setHash } from 'utils/beatmapset-page-hash';
 import { trans } from 'utils/lang';
+import { reloadPage } from 'utils/turbolinks';
 import Controller from './controller';
 import Header from './header';
 import headerLinks from './header-links';
@@ -27,6 +30,12 @@ interface Props {
 export default class Main extends React.Component<Props> {
   @observable private readonly controller: Controller;
   private setHashDisposer?: IReactionDisposer;
+
+  @computed
+  private get showEnableLazerModeLink() {
+    // enabling lazer mode requires full page reload.
+    return this.controller.currentBeatmap.lazer_only && untracked(() => core.userPreferences.get('legacy_score_only'));
+  }
 
   @computed
   private get headerLinksAppend() {
@@ -85,6 +94,19 @@ export default class Main extends React.Component<Props> {
     );
   }
 
+
+  private handleEnableLazerMode(this: void, event: React.SyntheticEvent) {
+    event.preventDefault();
+    const request = core.userPreferences.set('legacy_score_only', false);
+
+    if (request == null) {
+      // the page is in weird state
+      reloadPage();
+    } else {
+      request.done(reloadPage);
+    }
+  }
+
   @action
   private readonly onClickPlaymode = (e: React.MouseEvent, mode: Ruleset) => {
     e.preventDefault();
@@ -111,6 +133,37 @@ export default class Main extends React.Component<Props> {
     );
   }
 
+  private renderLazerOnlyMessage() {
+    return (
+      <div className='beatmapset-hype'>
+        <div className='beatmapset-hype__box beatmapset-hype__box--description'>
+          <div className='beatmapset-hype__description-row beatmapset-hype__description-row--status'>
+            <div className='beatmapset-status beatmapset-status--lazer-only'>
+              {trans('beatmapsets.show.lazer_only.title')}
+            </div>
+          </div>
+          <p className='beatmapset-hype__description-row beatmapset-hype__description-row--current'>
+            {trans('beatmapsets.show.lazer_only.description')}
+          </p>
+          {this.showEnableLazerModeLink && (
+            <p className='beatmapset-hype__description-row'>
+              <StringWithComponent
+                mappings={{
+                  enable_link: (
+                    <a href='#' onClick={this.handleEnableLazerMode}>
+                      {trans('beatmapsets.show.lazer_only.scoreboard_switch_mode.enable_link')}
+                    </a>
+                  ),
+                }}
+                pattern={trans('beatmapsets.show.lazer_only.scoreboard_switch_mode._')}
+              />
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   private renderPage() {
     return (
       <>
@@ -125,7 +178,13 @@ export default class Main extends React.Component<Props> {
               </div>
             }
 
-            {this.controller.currentBeatmap.is_scoreable &&
+            {this.controller.currentBeatmap.lazer_only && (
+              <div className='page-extra page-extra--compact'>
+                {this.renderLazerOnlyMessage()}
+              </div>
+            )}
+
+            {this.controller.currentBeatmap.is_scoreable && !this.showEnableLazerModeLink &&
               <div className='page-extra'>
                 <ScoreboardMain
                   beatmap={this.controller.currentBeatmap}

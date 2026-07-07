@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Transformers\EventTransformer;
 
 /**
  * @group Events
@@ -63,7 +64,7 @@ class EventsController extends Controller
             ->getWithHasMore();
 
         return [
-            'events' => json_collection($events, 'Event'),
+            'events' => json_collection($events, new EventTransformer()),
             ...cursor_for_response($cursorHelper->next($events, $hasMore)),
         ];
     }

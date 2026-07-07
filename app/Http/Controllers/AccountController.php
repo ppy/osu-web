@@ -18,9 +18,12 @@ use App\Models\GithubUser;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
+use App\Models\UserProfileCustomization;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\GithubUserTransformer;
 use App\Transformers\LegacyApiKeyTransformer;
 use App\Transformers\LegacyIrcKeyTransformer;
+use App\Transformers\OAuth\ClientTransformer;
 use Auth;
 use DB;
 use Mail;
@@ -110,8 +113,8 @@ class AccountController extends Controller
         $sessions = SessionStore::sessions($user->getKey());
         $currentSessionId = \Session::getId();
 
-        $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
-        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
+        $authorizedClients = json_collection(Client::forUser($user), new ClientTransformer(), 'user');
+        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), new ClientTransformer(), ['redirect', 'secret']);
 
         $legacyApiKey = $user->apiKeys()->available()->first();
         $legacyApiKeyJson = $legacyApiKey === null ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());
@@ -122,7 +125,7 @@ class AccountController extends Controller
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
         $githubUser = GithubUser::canAuthenticate() && $user->githubUser !== null
-            ? json_item($user->githubUser, 'GithubUser')
+            ? json_item($user->githubUser, new GithubUserTransformer())
             : null;
 
         return ext_view('accounts.edit', compact(
@@ -253,26 +256,12 @@ class AccountController extends Controller
             abort(422, 'invalid value specified for user[playmode]');
         }
 
-        $profileParams = get_params($params, 'user_profile_customization', [
-            'audio_autoplay:bool',
-            'audio_muted:bool',
-            'audio_volume:float',
-            'beatmapset_card_size:string',
-            'beatmapset_download:string',
-            'beatmapset_show_anime_cover:bool',
-            'beatmapset_show_nsfw:bool',
-            'beatmapset_title_show_original:bool',
-            'comments_show_deleted:bool',
-            'comments_sort:string',
-            'extras_order:string[]',
-            'forum_posts_show_deleted:bool',
-            'legacy_score_only:bool',
-            'profile_cover_expanded:bool',
-            'scoring_mode:string',
-            'user_list_filter:string',
-            'user_list_sort:string',
-            'user_list_view:string',
-        ]);
+        $profileParams = get_params(
+            $params,
+            'user_profile_customization',
+            // type validation is done by each setters
+            array_map(fn ($key) => $key.':any', array_keys(UserProfileCustomization::DEFAULTS)),
+        );
 
         $profileCustomization = $user->userProfileCustomization()->createOrFirst();
         $user->setRelation('userProfileCustomization', $profileCustomization);

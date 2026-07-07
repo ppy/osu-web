@@ -156,6 +156,16 @@ return [
             'video' => 'This beatmap contains video',
         ],
 
+        'lazer_only' => [
+            'title' => 'Lazer Only',
+            'description' => 'Due to specific mechanics, this beatmap can only be played on osu!lazer.',
+
+            'scoreboard_switch_mode' => [
+                '_' => ':enable_link to view scores set on this beatmap.',
+                'enable_link' => 'Enable lazer mode',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'This beatmap contains explicit, offensive, or disturbing content. Would you like to view it anyway?',
             'title' => 'Explicit Content',

@@ -29,6 +29,7 @@ import QuickSearch from 'quick-search/main';
 import QuickSearchWorker from 'quick-search/worker';
 import * as React from 'react';
 import StoreSupporterTag from 'store/store-supporter-tag';
+import { fail } from 'utils/fail';
 import { parseJson } from 'utils/json';
 import { mapBy } from 'utils/map';
 import { getInt } from 'utils/math';
@@ -39,11 +40,7 @@ function reqJson<T>(input: string|undefined): T {
 }
 
 function reqStr(input: string|undefined) {
-  if (input == null) {
-    throw new Error('unexpected undefined value');
-  }
-
-  return input;
+  return input ?? fail('unexpected undefined value');
 }
 
 core.reactTurbolinks.register('artist-track', (container) => (

@@ -9,25 +9,27 @@
   background-repeat: no-repeat;
   background-size: contain;
 
-  .all(@rank, @prefix) {
-    &--@{rank} {
-      .bg(@prefix);
+  each({
+    XH: "SS-Silver";
+    X: "SS";
+    SH: "S-Silver";
+    S: "S";
+    A: "A";
+    B: "B";
+    C: "C";
+    D: "D";
+    F: "F";
+
+    rank-ssh: "SS-Silver";
+    rank-ss: "SS";
+    rank-sh: "S-Silver";
+    rank-s: "S";
+    rank-a: "A";
+  }, {
+    &--@{key} {
+      background-image: url("~@images/badges/score-ranks-v2019/GradeSmall-@{value}.svg?3");
     }
-  }
-
-  .bg(@filename) {
-    background-image: url("~@images/badges/score-ranks-v2019/GradeSmall-@{filename}.svg?3");
-  }
-
-  .all(~"XH", "SS-Silver");
-  .all(~"X", "SS");
-  .all(~"SH", "S-Silver");
-  .all(~"S", "S");
-  .all(~"A", "A");
-  .all(~"B", "B");
-  .all(~"C", "C");
-  .all(~"D", "D");
-  .all(~"F", "F");
+  });
 
   &--daily-challenge {
     display: inline-block;

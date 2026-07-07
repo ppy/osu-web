@@ -65,6 +65,26 @@ class FriendsControllerTest extends TestCase
             ])->assertSuccessful();
     }
 
+    public function testStoreBlockedByTarget(): void
+    {
+        $user = User::factory()->create();
+        $target = User::factory()->create();
+        $target->relations()->create([
+            'foe' => true,
+            'friend' => false,
+            'zebra_id' => $user->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => $user->friends()->count(), 0);
+        $this->expectCountChange(fn () => $target->blocks()->count(), 0);
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('friends.store'), [
+                'target' => $target->getKey(),
+            ])->assertStatus(422);
+    }
+
     public function testStoreNonExistentTarget(): void
     {
         $user = User::factory()->create();

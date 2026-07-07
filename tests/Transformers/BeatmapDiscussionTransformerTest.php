@@ -7,6 +7,7 @@ namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Transformers\BeatmapDiscussionTransformer;
 use Tests\TestCase;
 
 class BeatmapDiscussionTransformerTest extends TestCase
@@ -22,7 +23,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
 
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
+        $json = json_item($this->deletedBeatmapDiscussion, new BeatmapDiscussionTransformer());
 
         $this->assertEmpty($json);
     }
@@ -35,7 +36,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
+        $json = json_item($this->deletedBeatmapDiscussion, new BeatmapDiscussionTransformer());
 
         if ($visible) {
             $this->assertNotEmpty($json);

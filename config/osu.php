@@ -5,6 +5,14 @@ if ($profileScoresNotice !== null) {
     $profileScoresNotice = markdown_plain($profileScoresNotice);
 }
 
+$clientMinVersions = [];
+foreach (explode(',', env('CLIENT_MIN_VERSIONS') ?? '') as $entry) {
+    if ($entry !== '') {
+        [$platform, $minVersion] = explode('=', $entry, 2);
+        $clientMinVersions[$platform] = (int) $minVersion;
+    }
+}
+
 $clientTokenKeys = [];
 foreach (explode(',', env('CLIENT_TOKEN_KEYS') ?? '') as $entry) {
     if ($entry !== '') {
@@ -115,6 +123,7 @@ return [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
         'download_stream' => get_int(env('CLIENT_DOWNLOAD_STREAM')) ?? 7,
+        'min_versions' => $clientMinVersions,
         'token_keys' => $clientTokenKeys,
         'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
         'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
