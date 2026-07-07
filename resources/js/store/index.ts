@@ -21,9 +21,9 @@ type TriggeredEvent = JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTML
 
 export default class Store {
   private constructor() {
-    $(document).on('click.store', '.js-store-checkout', (event: TriggeredEvent) => void this.beginCheckout(event));
-    $(document).on('click.store', '.js-store-resume-checkout', (event: TriggeredEvent) => this.resumeCheckout(event));
-    $(document).on('click.store', '.js-store-payment-button', (event: TriggeredEvent) => void this.handlePaymentClick(event));
+    $(document).on('click', '.js-store-checkout', this.beginCheckout);
+    $(document).on('click', '.js-store-resume-checkout', this.resumeCheckout);
+    $(document).on('click', '.js-store-payment-button', this.handlePaymentClick);
 
     $(document).on('turbo:load', () => {
       $('.js-store-checkout').prop('disabled', false);
@@ -36,7 +36,7 @@ export default class Store {
     window.Store ??= new Store();
   }
 
-  private async beginCheckout(event: TriggeredEvent) {
+  private readonly beginCheckout = async (event: TriggeredEvent) => {
     if (event.target == null) return;
 
     const dataset = event.target.dataset;
@@ -58,7 +58,7 @@ export default class Store {
       if (!isJqXHR(err)) throw err;
       error(err, err.statusText, createClickCallback(event.target));
     }
-  }
+  };
 
   private async beginShopifyCheckout(orderId: string) {
     showLoadingOverlay();
@@ -84,7 +84,7 @@ export default class Store {
     window.location.href = data.cartCreate.cart.checkoutUrl;
   }
 
-  private async handlePaymentClick(event: TriggeredEvent) {
+  private readonly handlePaymentClick = async (event: TriggeredEvent) => {
     const { orderId, orderNumber, provider } = event.target.dataset;
     // sanity
     if (provider == null || orderId == null) throw new Error();
@@ -126,13 +126,13 @@ export default class Store {
       // TODO: handle error.message
       onError(err);
     }
-  }
+  };
 
-  private resumeCheckout(event: TriggeredEvent) {
+  private readonly resumeCheckout = (event: TriggeredEvent) => {
     const cartId = event.target.dataset.providerReference;
     if (cartId == null) throw new Error('cartId is missing');
     this.resumeShopifyCheckout(cartId);
-  }
+  };
 
   private async resumeShopifyCheckout(cartId: string) {
     showLoadingOverlay();
