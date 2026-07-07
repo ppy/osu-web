@@ -12,8 +12,8 @@ declare global {
         CLOSE: string;
         STATUS_DONE: string;
       };
-      init: (config: XsollaTokenResponse) => void;
-      on: (event: string, callback: () => void) => void;
+      init(config: XsollaTokenResponse): void;
+      on(event: string, callback: () => void): void;
       open(): void;
     };
   }

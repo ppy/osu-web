@@ -3,6 +3,7 @@
 
 import { route } from 'laroute';
 import { error, isJqXHR, onError } from 'utils/ajax';
+import { fail } from 'utils/fail';
 import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
@@ -37,14 +38,9 @@ export default class Store {
   }
 
   private readonly beginCheckout = async (event: TriggeredEvent) => {
-    if (event.target == null) return;
-
-    const dataset = event.target.dataset;
-    const orderId = dataset.orderId;
-    const shouldShopify = dataset.shopify === '1';
-    if (orderId == null) {
-      throw new Error('orderId is missing');
-    }
+    const target = event.target;
+    const orderId = target.dataset.orderId ?? fail('orderId is missing');
+    const shouldShopify = target.dataset.shopify === '1';
 
     if (!shouldShopify) {
       Turbo.visit(route('store.checkout.show', { checkout: orderId }));
@@ -56,7 +52,7 @@ export default class Store {
     } catch (err) {
       hideLoadingOverlay();
       if (!isJqXHR(err)) throw err;
-      error(err, err.statusText, createClickCallback(event.target));
+      error(err, err.statusText, createClickCallback(target));
     }
   };
 
@@ -129,8 +125,7 @@ export default class Store {
   };
 
   private readonly resumeCheckout = (event: TriggeredEvent) => {
-    const cartId = event.target.dataset.providerReference;
-    if (cartId == null) throw new Error('cartId is missing');
+    const cartId = event.target.dataset.providerReference ?? fail('cartId is missing');
     this.resumeShopifyCheckout(cartId);
   };
 
