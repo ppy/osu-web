@@ -12,25 +12,67 @@ import { trans } from 'utils/lang';
 import { qtipPosition } from 'utils/qtip-helper';
 import { ProfilePageMatchmakingStatsJson } from './extra-page-props';
 
+const tiers = [
+  ['Bronze', [
+    ['I', 1],
+    ['II', 0.98],
+    ['III', 0.96],
+  ]],
+
+  ['Silver', [
+    ['I', 0.95],
+    ['II', 0.875],
+    ['III', 0.8],
+  ]],
+
+  ['Gold', [
+    ['I', 0.75],
+    ['II', 0.65],
+    ['III', 0.55],
+  ]],
+
+  ['Platinum', [
+    ['I', 0.5],
+    ['II', 0.4],
+    ['III', 0.3],
+  ]],
+
+  ['Rhodium', [
+    ['I', 0.2],
+    ['II', 0.15],
+    ['III', 0.1],
+  ]],
+
+  ['Radiant', [
+    ['I', 0.05],
+    ['II', 0.025],
+    ['III', 0.01],
+  ]],
+] as const;
+
 function tier(stats: ProfilePageMatchmakingStatsJson) {
   const rank = stats.rank;
   const percent = stats.rank_percent;
 
   if (rank <= 100) {
-    return 'lustrous';
+    return { colour: 'lustrous', title: 'Lustrous' };
   }
 
-  return percent < 0.05
-    ? 'radiant'
-    : percent < 0.2
-      ? 'rhodium'
-      : percent < 0.5
-        ? 'platinum'
-        : percent < 0.75
-          ? 'gold'
-          : percent < 0.95
-            ? 'silver'
-            : 'bronze';
+  for (let i = tiers.length - 1; i >= 0; i--) {
+    const [mainTitle, levels] = tiers[i];
+    for (let j = levels.length - 1; j >= 0; j--) {
+      const [level, minPercent] = levels[j];
+      if (percent <= minPercent) {
+        return {
+          colour: mainTitle.toLowerCase(),
+          title: `${mainTitle} ${level}`,
+        };
+      }
+    }
+  }
+
+  // this shouldn't be reachable
+  throw new Error('no matching tier');
 }
 
 function poolDisplayName(pool: MatchmakingPoolJson) {
@@ -50,7 +92,7 @@ function rankText(stats: null | ProfilePageMatchmakingStatsJson) {
       <span
         className='u-fancy-text'
         style={{
-          '--colour': `var(--level-tier-${tier(stats)})`,
+          '--colour': `var(--level-tier-${tier(stats).colour})`,
         } as React.CSSProperties}
       >
         #{formatNumber(stats.rank)}
