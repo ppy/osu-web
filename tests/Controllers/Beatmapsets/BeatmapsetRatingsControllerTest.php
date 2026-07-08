@@ -5,8 +5,6 @@
 
 namespace Tests\Controllers\Beatmapsets;
 
-use App\Models\Beatmap;
-use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetUserRating;
 use App\Models\User;
@@ -27,8 +25,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
 
     public function testIndexWithoutUserRating()
     {
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => 1,
+        $beatmapset = Beatmapset::factory()->ranked()->create([
             'rating' => 4.37,
         ]);
         $user = User::factory()->create();
@@ -45,8 +42,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
 
     public function testIndexWithUserRating()
     {
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => 1,
+        $beatmapset = Beatmapset::factory()->ranked()->create([
             'rating' => 7.43,
         ]);
         $user = User::factory()->create();
@@ -69,9 +65,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
 
     public function testIndexUnrankedBeatmap()
     {
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => 0,
-        ]);
+        $beatmapset = Beatmapset::factory()->pending()->create();
         $user = User::factory()->create();
 
         $this->actAsScopedUser($user);
@@ -83,7 +77,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
 
     public function testStore()
     {
-        $beatmapset = Beatmapset::factory()->create(['approved' => 1]);
+        $beatmapset = Beatmapset::factory()->ranked()->create();
         $firstUser = User::factory()->create();
         $secondUser = User::factory()->create();
 
@@ -112,17 +106,11 @@ class BeatmapsetRatingsControllerTest extends TestCase
     {
         $beatmapsetOwner = User::factory()->create();
         $beatmapOwner = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => 1,
-            'user_id' => $beatmapsetOwner->getKey(),
-        ]);
-        $beatmap = Beatmap::factory()->create([
-            'beatmapset_id' => $beatmapset->getKey(),
-        ]);
-        BeatmapOwner::factory()->create([
-            'beatmap_id' => $beatmap->getKey(),
-            'user_id' => $beatmapOwner->getKey(),
-        ]);
+        $beatmapset = Beatmapset::factory()
+            ->ranked()
+            ->owner($beatmapsetOwner)
+            ->withBeatmaps('osu', 1, $beatmapOwner)
+            ->create();
 
         $this->actAsScopedUser($beatmapOwner);
 
@@ -136,10 +124,10 @@ class BeatmapsetRatingsControllerTest extends TestCase
     public function testStoreFailsIfBeatmapsetOwnerVotes()
     {
         $user = User::factory()->create();
-        $beatmapset = Beatmapset::factory()->create([
-            'approved' => 1,
-            'user_id' => $user->getKey(),
-        ]);
+        $beatmapset = Beatmapset::factory()
+            ->ranked()
+            ->owner($user)
+            ->create();
 
         $this->actAsScopedUser($user);
 
@@ -152,7 +140,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
 
     public function testStoreFailsIfBeatmapsetUnranked()
     {
-        $beatmapset = Beatmapset::factory()->create(['approved' => 0]);
+        $beatmapset = Beatmapset::factory()->pending()->create();
         $user = User::factory()->create();
 
         $this->actAsScopedUser($user);
@@ -167,7 +155,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
     #[DataProvider('dataProviderForInvalidRatings')]
     public function testStoreFailsIfRatingInvalid($rating)
     {
-        $beatmapset = Beatmapset::factory()->create(['approved' => 1]);
+        $beatmapset = Beatmapset::factory()->ranked()->create();
         $user = User::factory()->create();
 
         $this->actAsScopedUser($user);
@@ -181,7 +169,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
 
     public function testStoreFailsIfUserAlreadyRated()
     {
-        $beatmapset = Beatmapset::factory()->create(['approved' => 1]);
+        $beatmapset = Beatmapset::factory()->ranked()->create();
         $user = User::factory()->create();
         BeatmapsetUserRating::create([
             'beatmapset_id' => $beatmapset->getKey(),
