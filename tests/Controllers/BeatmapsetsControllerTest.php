@@ -200,10 +200,10 @@ class BeatmapsetsControllerTest extends TestCase
             'download_disabled_url' => $downloadDisabledUrl,
         ]);
         $owner = $beatmapset->user;
-        $beatmapset->updateDescription('old description', $owner);
+        $beatmapset->description()->update('old description', $owner);
 
         $newDescription = 'new description';
-        $expectedDescription = $ok ? $newDescription : $beatmapset->editableDescription();
+        $expectedDescription = $ok ? $newDescription : $beatmapset->description()->bbcode()->toEditor();
 
         $this->actingAsVerified($owner)
             ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
@@ -212,7 +212,7 @@ class BeatmapsetsControllerTest extends TestCase
 
         $beatmapset->refresh();
 
-        $this->assertSame($expectedDescription, $beatmapset->editableDescription());
+        $this->assertSame($expectedDescription, $beatmapset->description()->bbcode()->toEditor());
     }
 
     /**
