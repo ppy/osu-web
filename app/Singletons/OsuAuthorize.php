@@ -648,6 +648,38 @@ class OsuAuthorize
         return 'ok';
     }
 
+    /**
+     * @param User|null $user
+     * @param Beatmapset $beatmapset
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkBeatmapsetRate(?User $user, Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        static $prefix = 'beatmapset.rate.';
+
+        if (!$beatmapset->isScoreable()) {
+            return $prefix.'status';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id) {
+            return $prefix.'owner';
+        }
+
+        $beatmapset->loadMissing('beatmaps.beatmapOwners');
+
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($beatmap->isOwner($user)) {
+                return $prefix.'owner';
+            }
+        }
+
+        return 'ok';
+    }
+
     public function checkBeatmapsetRemoveFromLoved(?User $user): string
     {
         // admin only (:

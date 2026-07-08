@@ -31,9 +31,7 @@ class BeatmapsetRatingsController extends Controller
         $beatmapset = Beatmapset::findOrFail($beatmapsetId);
         $user = \Auth::user();
 
-        if (!$beatmapset->isScoreable()) {
-            throw new InvariantException('Cannot rate this beatmap set.');
-        }
+        priv_check('BeatmapsetRate', $beatmapset)->ensureCan();
 
         $userRating = BeatmapsetUserRating::where([
             'beatmapset_id' => $beatmapset->getKey(),
