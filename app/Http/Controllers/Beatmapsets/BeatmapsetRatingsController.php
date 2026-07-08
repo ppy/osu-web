@@ -45,7 +45,7 @@ class BeatmapsetRatingsController extends Controller
     {
         $rating = get_int(request('rating'));
         if ($rating === null || $rating < 1 || $rating > 10) {
-            throw new InvariantException('Invalid rating.');
+            throw new InvariantException(osu_trans('beatmapsets.rate.invalid'));
         }
 
         $beatmapset = Beatmapset::findOrFail($beatmapsetId);
@@ -58,7 +58,7 @@ class BeatmapsetRatingsController extends Controller
             'user_id' => $user->getKey(),
         ]);
         if ($userRating->exists()) {
-            throw new InvariantException("You've already rated this beatmap set.");
+            throw new InvariantException(osu_trans('beatmapsets.rate.already'));
         }
 
         BeatmapsetUserRating::create([

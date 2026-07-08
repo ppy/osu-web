@@ -64,6 +64,11 @@ return [
         'label' => 'Explicit',
     ],
 
+    'rate' => [
+        'already' => "You've already rated this beatmap set.",
+        'invalid' => 'Invalid rating.',
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 
