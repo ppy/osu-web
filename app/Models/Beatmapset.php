@@ -515,6 +515,12 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return "https://b.ppy.sh/preview/{$this->getKey()}.mp3";
     }
 
+    public function recalculateRating(): void
+    {
+        $rating = $this->userRatings()->avg('rating');
+        $this->update(['rating' => $rating]);
+    }
+
     public function removeCover($targetFilename): void
     {
         \Storage::delete($this->coverPath().$targetFilename);

@@ -8,10 +8,21 @@ namespace Tests\Controllers\Beatmapsets;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetUserRating;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetRatingsControllerTest extends TestCase
 {
+    public static function dataProviderForInvalidRatings(): array
+    {
+        return [
+            'not a number' => ['hax'],
+            'negative' => [-5],
+            'too low' => [0],
+            'too high' => [11],
+        ];
+    }
+
     public function testStore()
     {
         $beatmapset = Beatmapset::factory()->create(['approved' => 1]);
@@ -21,26 +32,22 @@ class BeatmapsetRatingsControllerTest extends TestCase
         $this->expectCountChange(fn () => $beatmapset->userRatings()->count(), 2);
 
         $this->actAsScopedUser($firstUser);
-        $request = $this->post(
+        $this->post(
             route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
             ['rating' => 2]
-        );
-
-        $request->assertSuccessful()
+        )->assertSuccessful()
             ->assertJson(['updated_rating' => 2]);
         $beatmapset->refresh();
-        $this->assertEquals(2, $beatmapset->rating);
+        $this->assertSame(2.0, $beatmapset->rating);
 
         $this->actAsScopedUser($secondUser);
-        $request = $this->post(
+        $this->post(
             route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
             ['rating' => 5]
-        );
-
-        $request->assertSuccessful()
+        )->assertSuccessful()
             ->assertJson(['updated_rating' => 3.5]);
         $beatmapset->refresh();
-        $this->assertEquals(3.5, $beatmapset->rating);
+        $this->assertSame(3.5, $beatmapset->rating);
     }
 
     public function testStoreFailsIfBeatmapsetUnranked()
@@ -57,9 +64,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
             ->assertJson(['error' => 'Cannot rate this beatmap set.']);
     }
 
-    /**
-     * @dataProvider dataProviderForInvalidRatings
-     */
+    #[DataProvider('dataProviderForInvalidRatings')]
     public function testStoreFailsIfRatingInvalid($rating)
     {
         $beatmapset = Beatmapset::factory()->create(['approved' => 1]);
@@ -91,15 +96,5 @@ class BeatmapsetRatingsControllerTest extends TestCase
             ['rating' => 2]
         )->assertStatus(422)
             ->assertJson(['error' => "You've already rated this beatmap set."]);
-    }
-
-    public static function dataProviderForInvalidRatings(): array
-    {
-        return [
-            'not a number' => ['hax'],
-            'negative' => [-5],
-            'too low' => [0],
-            'too high' => [11],
-        ];
     }
 }

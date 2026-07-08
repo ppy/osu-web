@@ -23,9 +23,13 @@ class BeatmapsetRatingsController extends Controller
 
     public function store($beatmapsetId)
     {
+        $rating = get_int(request('rating'));
+        if ($rating === null || $rating < 1 || $rating > 10) {
+            throw new InvariantException('Invalid rating.');
+        }
+
         $beatmapset = Beatmapset::findOrFail($beatmapsetId);
         $user = \Auth::user();
-        $request = request()->all();
 
         if (!$beatmapset->isScoreable()) {
             throw new InvariantException('Cannot rate this beatmap set.');
@@ -39,28 +43,12 @@ class BeatmapsetRatingsController extends Controller
             throw new InvariantException("You've already rated this beatmap set.");
         }
 
-        $rating = get_int($request['rating']);
-        if ($rating === null || $rating < 1 || $rating > 10) {
-            throw new InvariantException('Invalid rating.');
-        }
-
         BeatmapsetUserRating::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'rating' => $rating,
             'user_id' => $user->getKey(),
         ]);
-        self::recalculateBeatmapsetRating($beatmapset);
-        return response()->json([
-            'updated_rating' => $beatmapset->rating,
-        ]);
-    }
-
-    private static function recalculateBeatmapsetRating(Beatmapset $beatmapset)
-    {
-        $rating = BeatmapsetUserRating::where([
-            'beatmapset_id' => $beatmapset->getKey(),
-        ])->avg('rating');
-        $beatmapset->update(['rating' => $rating]);
-        $beatmapset->refresh();
+        $beatmapset->recalculateRating();
+        return ['updated_rating' => $beatmapset->rating];
     }
 }
