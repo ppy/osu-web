@@ -5,6 +5,8 @@
 
 namespace Tests\Controllers\Beatmapsets;
 
+use App\Models\Beatmap;
+use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetUserRating;
 use App\Models\User;
@@ -50,6 +52,48 @@ class BeatmapsetRatingsControllerTest extends TestCase
         $this->assertSame(3.5, $beatmapset->rating);
     }
 
+    public function testStoreFailsIfBeatmapOwnerVotes()
+    {
+        $beatmapsetOwner = User::factory()->create();
+        $beatmapOwner = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => 1,
+            'user_id' => $beatmapsetOwner->getKey(),
+        ]);
+        $beatmap = Beatmap::factory()->create([
+            'beatmapset_id' => $beatmapset->getKey(),
+        ]);
+        BeatmapOwner::factory()->create([
+            'beatmap_id' => $beatmap->getKey(),
+            'user_id' => $beatmapOwner->getKey(),
+        ]);
+
+        $this->actAsScopedUser($beatmapOwner);
+
+        $this->post(
+            route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
+            ['rating' => 10]
+        )->assertStatus(403)
+            ->assertJson(['error' => 'You cannot rate a beatmap set you are involved with.']);
+    }
+
+    public function testStoreFailsIfBeatmapsetOwnerVotes()
+    {
+        $user = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => 1,
+            'user_id' => $user->getKey(),
+        ]);
+
+        $this->actAsScopedUser($user);
+
+        $this->post(
+            route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
+            ['rating' => 10]
+        )->assertStatus(403)
+            ->assertJson(['error' => 'You cannot rate a beatmap set you are involved with.']);
+    }
+
     public function testStoreFailsIfBeatmapsetUnranked()
     {
         $beatmapset = Beatmapset::factory()->create(['approved' => 0]);
@@ -60,8 +104,8 @@ class BeatmapsetRatingsControllerTest extends TestCase
         $this->post(
             route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
             ['rating' => 2]
-        )->assertStatus(422)
-            ->assertJson(['error' => 'Cannot rate this beatmap set.']);
+        )->assertStatus(403)
+            ->assertJson(['error' => 'You cannot rate a beatmap set with this status.']);
     }
 
     #[DataProvider('dataProviderForInvalidRatings')]
