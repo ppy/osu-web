@@ -8,6 +8,11 @@ import { reloadPage } from 'utils/turbolinks';
 Turbo.config.drive.progressBarDelay = 0;
 
 // loading animation overlay
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    hideLoadingOverlay();
+  }
+});
 document.addEventListener('turbo:visit', showLoadingOverlay);
 document.addEventListener('turbo:before-cache', hideLoadingOverlay);
 document.addEventListener('turbo:load', hideLoadingOverlay);
