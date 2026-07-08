@@ -1,10 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Cart, CartCreatePayload } from '@shopify/hydrogen-react/storefront-api-types';
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 import { fail } from 'utils/fail';
 import { parseJson } from 'utils/json';
 import { present } from 'utils/string';
+
+interface CreateShopifyCartOperation {
+  cartCreate: CartCreatePayload;
+}
+
+interface GetShopifyCartOperation {
+  cart: Cart;
+}
 
 interface ShopifyStorefrontOptions {
   apiVersion: string;
@@ -64,11 +73,11 @@ export function createShopifyCart(orderId: string, elements: HTMLElement[]) {
     })),
   };
 
-  return storefrontClient().request(createCartGraphql, { variables: { input } });
+  return storefrontClient().request<CreateShopifyCartOperation>(createCartGraphql, { variables: { input } });
 }
 
 export function getShopifyCart(cartId: string) {
-  return storefrontClient().request(getCartGraphql, { variables: { cartId } });
+  return storefrontClient().request<GetShopifyCartOperation>(getCartGraphql, { variables: { cartId } });
 }
 
 export function storefrontClient() {

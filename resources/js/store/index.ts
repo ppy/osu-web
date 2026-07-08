@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Cart, CartCreatePayload } from '@shopify/hydrogen-react/storefront-api-types';
 import { route } from 'laroute';
 import { error, isJqXHR, onError } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
@@ -67,9 +66,9 @@ export default class Store {
     // create shopify checkout.
     // error returned will be a JSON string in error.message
     const response = await createShopifyCart(orderId, Array.from(document.querySelectorAll('.js-store-order-item')));
-    const data = response.data as { cartCreate: CartCreatePayload };
+    const data = response.data;
 
-    if (response.errors != null || data.cartCreate.cart == null) {
+    if (response.errors != null || data?.cartCreate.cart == null) {
       hideLoadingOverlay();
       popup(trans('errors.checkout.generic'), 'danger');
       return;
@@ -139,9 +138,9 @@ export default class Store {
     showLoadingOverlay();
     showLoadingOverlay.flush();
     const response = await getShopifyCart(cartId);
-    const data = response.data as { cart?: Cart };
+    const data = response.data;
 
-    if (response.errors != null || data.cart == null) {
+    if (response.errors != null || data == null) {
       hideLoadingOverlay();
       popup(trans('errors.checkout.generic'), 'danger');
       return;
