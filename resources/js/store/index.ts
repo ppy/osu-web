@@ -100,6 +100,7 @@ export default class Store {
       });
       switch (provider) {
         case 'paypal': {
+          // hideLoadingOverlay() is not called to keep it visible during the redirect.
           const link = await fetchApprovalLink(orderId);
           window.location.href = link;
           break;
