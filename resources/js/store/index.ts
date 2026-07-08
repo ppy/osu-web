@@ -71,9 +71,9 @@ export default class Store {
     }
 
     const params = {
-      orderId,
+      order_id: orderId,
       provider: 'shopify',
-      shopifyCheckoutId: data.cartCreate.cart.id,
+      shopify_checkout_id: data.cartCreate.cart.id,
     };
 
     await $.post(route('store.checkout.store'), params);
@@ -92,9 +92,12 @@ export default class Store {
       await initXsolla(orderNumber);
     }
 
-    const hide_from_activity = document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked;
-    await $.post(route('store.checkout.store'), { hide_from_activity, orderId, provider });
     try {
+      await $.post(route('store.checkout.store'), {
+        hide_from_activity: document.querySelector<HTMLInputElement>('.js-hide-from-activity')?.checked,
+        order_id: orderId,
+        provider,
+      });
       switch (provider) {
         case 'paypal': {
           const link = await fetchApprovalLink(orderId);
