@@ -26,16 +26,13 @@ class BeatmapsetRatingsController extends Controller
         $user = \Auth::user();
         $beatmapset = Beatmapset::findOrFail($beatmapsetId);
 
-        if (!$beatmapset->isScoreable()) {
-            return ['allow_rating' => false];
-        }
-
         $userRating = BeatmapsetUserRating::where([
             'beatmapset_id' => $beatmapset->getKey(),
             'user_id' => $user->getKey(),
         ])->first();
+
         return [
-            'allow_rating' => true,
+            'disallow_rating_reason' => priv_check('BeatmapsetRate', $beatmapset)->message(),
             'total_rating' => $beatmapset->rating,
             'user_rating' => $userRating?->rating,
         ];

@@ -23,6 +23,44 @@ class BeatmapsetRatingsControllerTest extends TestCase
         ];
     }
 
+    public function testIndexForBeatmapOwner()
+    {
+        $beatmapsetOwner = User::factory()->create();
+        $beatmapOwner = User::factory()->create();
+        $beatmapset = Beatmapset::factory()
+            ->ranked()
+            ->owner($beatmapsetOwner)
+            ->withBeatmaps('osu', 1, $beatmapOwner)
+            ->create(['rating' => 3.43]);
+
+        $this->actAsScopedUser($beatmapOwner);
+
+        $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
+            ->assertSuccessful()
+            ->assertJson([
+                'disallow_rating_reason' => 'You cannot rate a beatmap set you are involved with.',
+                'total_rating' => 3.43,
+            ]);
+    }
+
+    public function testIndexForBeatmapsetOwner()
+    {
+        $user = User::factory()->create();
+        $beatmapset = Beatmapset::factory()
+            ->ranked()
+            ->owner($user)
+            ->create(['rating' => 9.84]);
+
+        $this->actAsScopedUser($user);
+
+        $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
+            ->assertSuccessful()
+            ->assertJson([
+                'disallow_rating_reason' => 'You cannot rate a beatmap set you are involved with.',
+                'total_rating' => 9.84,
+            ]);
+    }
+
     public function testIndexWithoutUserRating()
     {
         $beatmapset = Beatmapset::factory()->ranked()->create([
@@ -35,7 +73,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
         $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
             ->assertSuccessful()
             ->assertJson([
-                'allow_rating' => true,
+                'disallow_rating_reason' => null,
                 'total_rating' => 4.37,
             ]);
     }
@@ -57,7 +95,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
         $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
             ->assertSuccessful()
             ->assertJson([
-                'allow_rating' => true,
+                'disallow_rating_reason' => null,
                 'total_rating' => 7.43,
                 'user_rating' => 7,
             ]);
@@ -72,7 +110,7 @@ class BeatmapsetRatingsControllerTest extends TestCase
 
         $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
             ->assertSuccessful()
-            ->assertJson(['allow_rating' => false]);
+            ->assertJson(['disallow_rating_reason' => 'You cannot rate a beatmap set with this status.']);
     }
 
     public function testStore()
