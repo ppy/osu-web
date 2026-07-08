@@ -21,6 +21,26 @@ class BeatmapsetRatingsController extends Controller
         $this->middleware('auth');
     }
 
+    public function index($beatmapsetId)
+    {
+        $user = \Auth::user();
+        $beatmapset = Beatmapset::findOrFail($beatmapsetId);
+
+        if (!$beatmapset->isScoreable()) {
+            return ['allow_rating' => false];
+        }
+
+        $userRating = BeatmapsetUserRating::where([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $user->getKey(),
+        ])->first();
+        return [
+            'allow_rating' => true,
+            'total_rating' => $beatmapset->rating,
+            'user_rating' => $userRating?->rating,
+        ];
+    }
+
     public function store($beatmapsetId)
     {
         $rating = get_int(request('rating'));

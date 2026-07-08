@@ -25,6 +25,62 @@ class BeatmapsetRatingsControllerTest extends TestCase
         ];
     }
 
+    public function testIndexWithoutUserRating()
+    {
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => 1,
+            'rating' => 4.37,
+        ]);
+        $user = User::factory()->create();
+
+        $this->actAsScopedUser($user);
+
+        $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
+            ->assertSuccessful()
+            ->assertJson([
+                'allow_rating' => true,
+                'total_rating' => 4.37,
+            ]);
+    }
+
+    public function testIndexWithUserRating()
+    {
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => 1,
+            'rating' => 7.43,
+        ]);
+        $user = User::factory()->create();
+        BeatmapsetUserRating::create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'user_id' => $user->getKey(),
+            'rating' => 7,
+        ]);
+
+        $this->actAsScopedUser($user);
+
+        $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
+            ->assertSuccessful()
+            ->assertJson([
+                'allow_rating' => true,
+                'total_rating' => 7.43,
+                'user_rating' => 7,
+            ]);
+    }
+
+    public function testIndexUnrankedBeatmap()
+    {
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => 0,
+        ]);
+        $user = User::factory()->create();
+
+        $this->actAsScopedUser($user);
+
+        $this->get(route('api.beatmapsets.ratings.index', ['beatmapset' => $beatmapset->getKey()]))
+            ->assertSuccessful()
+            ->assertJson(['allow_rating' => false]);
+    }
+
     public function testStore()
     {
         $beatmapset = Beatmapset::factory()->create(['approved' => 1]);
