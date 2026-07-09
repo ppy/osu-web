@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Global Ranking',
             'highest' => 'Highest rank: :rank on :date',
         ],
+        'score_processing' => [
+            '_' => 'A new Star Rating / PP algorithm is :link. Scores set will not immediately reflect on your profile.',
+            'link' => 'being deployed',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
             'total_score' => 'Total score',
