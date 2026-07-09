@@ -50,19 +50,11 @@ class BeatmapsetRatingsController extends Controller
 
         priv_check('BeatmapsetRate', $beatmapset)->ensureCan();
 
-        $userRating = BeatmapsetUserRating::where([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $user->getKey(),
-        ]);
-        if ($userRating->exists()) {
-            throw new InvariantException(osu_trans('beatmapsets.rate.already'));
-        }
-
-        BeatmapsetUserRating::create([
+        BeatmapsetUserRating::upsert([
             'beatmapset_id' => $beatmapset->getKey(),
             'rating' => $rating,
             'user_id' => $user->getKey(),
-        ]);
+        ], uniqueBy: ['beatmapset_id', 'user_id'], update: ['rating']);
         $beatmapset->recalculateRating();
         return ['updated_rating' => $beatmapset->rating];
     }

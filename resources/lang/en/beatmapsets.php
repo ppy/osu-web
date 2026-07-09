@@ -65,7 +65,6 @@ return [
     ],
 
     'rate' => [
-        'already' => "You've already rated this beatmap set.",
         'invalid' => 'Invalid rating.',
     ],
 

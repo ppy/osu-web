@@ -138,6 +138,14 @@ class BeatmapsetRatingsControllerTest extends TestCase
             ->assertJson(['updated_rating' => 3.5]);
         $beatmapset->refresh();
         $this->assertSame(3.5, $beatmapset->rating);
+
+        $this->post(
+            route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
+            ['rating' => 8]
+        )->assertSuccessful()
+            ->assertJson(['updated_rating' => 5]);
+        $beatmapset->refresh();
+        $this->assertSame(5.0, $beatmapset->rating);
     }
 
     public function testStoreFailsIfBeatmapOwnerVotes()
@@ -203,24 +211,5 @@ class BeatmapsetRatingsControllerTest extends TestCase
             ['rating' => $rating]
         )->assertStatus(422)
             ->assertJson(['error' => 'Invalid rating.']);
-    }
-
-    public function testStoreFailsIfUserAlreadyRated()
-    {
-        $beatmapset = Beatmapset::factory()->ranked()->create();
-        $user = User::factory()->create();
-        BeatmapsetUserRating::create([
-            'beatmapset_id' => $beatmapset->getKey(),
-            'user_id' => $user->getKey(),
-            'rating' => 8,
-        ]);
-
-        $this->actAsScopedUser($user);
-
-        $this->post(
-            route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
-            ['rating' => 2]
-        )->assertStatus(422)
-            ->assertJson(['error' => "You've already rated this beatmap set."]);
     }
 }
