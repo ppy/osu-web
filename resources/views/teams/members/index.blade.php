@@ -35,7 +35,7 @@
                             >
                                 <span class="team-members-manage__avatar">
                                     <span
-                                        class="avatar avatar--full avatar--guest"
+                                        class="{{ class_with_modifiers('avatar', 'full', 'guest', ['no-border' => $user->has_alpha]) }}"
                                         {!! background_image($user->user_avatar) !!}
                                     ></span>
                                 </span>
@@ -136,7 +136,7 @@
                                 >
                                     <span class="team-members-manage__avatar">
                                         <span
-                                            class="avatar avatar--full avatar--guest"
+                                            class="{{ class_with_modifiers('avatar', 'full', 'guest', ['no-border' => $user->has_alpha]) }}"
                                             {!! background_image($user->user_avatar) !!}
                                         ></span>
                                     </span>

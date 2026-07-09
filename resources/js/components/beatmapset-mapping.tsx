@@ -19,6 +19,7 @@ interface Props {
 
 interface DisplayUser {
   avatar_url?: string;
+  has_alpha?: boolean;
   id?: number;
   username: string;
 }
@@ -31,6 +32,7 @@ export default class BeatmapsetMapping extends React.PureComponent<Props> {
     if (user != null) {
       displayUser.id = user.id;
       displayUser.avatar_url = user.avatar_url;
+      displayUser.has_alpha = user.has_alpha;
     }
 
     return (

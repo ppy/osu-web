@@ -44,7 +44,7 @@
                     >
                         <span class="mobile-menu-tab__avatar">
                             <span
-                                class="avatar avatar--full-rounded"
+                                class="{{ class_with_modifiers('avatar', 'full-rounded', ['no-border' => $user->has_alpha]) }}"
                                 style="background-image: url('{{ $user->user_avatar }}');"
                             ></span>
                         </span>

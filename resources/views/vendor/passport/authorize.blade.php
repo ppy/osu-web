@@ -25,7 +25,7 @@
                 >
                     <div class="dialog-form__user-avatar">
                         <div
-                            class="avatar avatar--full-circle"
+                            class="{{ class_with_modifiers('avatar', 'full-circle', ['no-border' => $user->has_alpha]) }}"
                             style="background-image: url('{{ $user->user_avatar }}')"
                         ></div>
                     </div>

@@ -73,6 +73,7 @@ use Request;
  * @property-read GithubUser|null $githubUser
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
+ * @property bool $has_alpha
  * @property bool $hide_presence
  * @property bool $lock_email_changes
  * @property-read Collection<UserMonthlyPlaycount> $monthlyPlaycounts
@@ -850,6 +851,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'userpage_post_id' => $this->getRawAttribute($key),
 
             // boolean, default to false for null value
+            'has_alpha',
             'lock_email_changes',
             'osu_subscriber',
             'user_allow_pm',

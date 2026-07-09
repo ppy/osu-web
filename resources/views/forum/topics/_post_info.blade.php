@@ -8,7 +8,7 @@
             <div class="forum-post-info__row forum-post-info__row--avatar">
                 <a
                     href="{{ route("users.show", $user) }}"
-                    class="avatar avatar--forum"
+                    class="{{ class_with_modifiers('avatar', 'forum', ['no-border' => $user->has_alpha]) }}"
                     style="background-image: url('{{ $user->user_avatar }}');"
                 ></a>
             </div>

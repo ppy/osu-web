@@ -138,6 +138,7 @@ class UserCompactTransformer extends TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
             'default_group' => $user->defaultGroup()->identifier,
+            'has_alpha' => $user->has_alpha,
             'id' => $user->user_id,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),

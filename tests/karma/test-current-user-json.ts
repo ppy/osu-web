@@ -18,6 +18,7 @@ const testCurrentUserJson: CurrentUserJson = {
   follow_user_mapping: [],
   friends: [],
   groups: [],
+  has_alpha: false,
   has_supported: false,
   id: 1,
   interests: null,
