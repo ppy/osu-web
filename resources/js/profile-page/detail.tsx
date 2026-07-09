@@ -43,10 +43,27 @@ export default class Detail extends React.Component<Props> {
           </div>
         )}
 
+        {this.renderScoresNotice()}
+
         <DetailBar user={user} />
 
         <Links user={user} />
       </>
+    );
+  }
+
+  private renderScoresNotice() {
+    if (this.props.controller.scoresNotice == null) return null;
+
+    return (
+      <div className='wiki-notice wiki-notice--profile-page-extra'>
+        <span className='fas fa-exclamation-circle' />
+        {' '}
+        <div
+          dangerouslySetInnerHTML={{ __html: this.props.controller.scoresNotice }}
+          className='wiki-notice__markdown-inline-content'
+        />
+      </div>
     );
   }
 }
