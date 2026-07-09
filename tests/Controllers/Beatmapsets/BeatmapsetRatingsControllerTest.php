@@ -5,6 +5,8 @@
 
 namespace Tests\Controllers\Beatmapsets;
 
+use App\Models\Beatmap;
+use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetUserRating;
 use App\Models\User;
@@ -157,6 +159,31 @@ class BeatmapsetRatingsControllerTest extends TestCase
             ->owner($beatmapsetOwner)
             ->withBeatmaps('osu', 1, $beatmapOwner)
             ->create();
+
+        $this->actAsScopedUser($beatmapOwner);
+
+        $this->post(
+            route('api.beatmapsets.ratings.store', ['beatmapset' => $beatmapset->getKey()]),
+            ['rating' => 10]
+        )->assertStatus(403)
+            ->assertJson(['error' => 'You cannot rate a beatmap set you are involved with.']);
+    }
+
+    public function testStoreFailsIfBeatmapCoOwnerVotes()
+    {
+        $beatmapsetOwner = User::factory()->create();
+        $beatmapOwner = User::factory()->create();
+        $beatmapset = Beatmapset::factory()
+            ->ranked()
+            ->owner($beatmapsetOwner)
+            ->create();
+        $beatmap = Beatmap::factory()
+            ->owner($beatmapsetOwner)
+            ->create(['beatmapset_id' => $beatmapset->getKey()]);
+        BeatmapOwner::create([
+            'beatmap_id' => $beatmap->getKey(),
+            'user_id' => $beatmapOwner->getKey(),
+        ]);
 
         $this->actAsScopedUser($beatmapOwner);
 

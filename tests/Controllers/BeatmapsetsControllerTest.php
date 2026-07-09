@@ -6,6 +6,7 @@
 namespace Tests\Controllers;
 
 use App\Models\Beatmap;
+use App\Models\BeatmapOwner;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\Genre;
@@ -93,6 +94,26 @@ class BeatmapsetsControllerTest extends TestCase
         $nominator = User::factory()->withGroup('bng', [$beatmap->mode])->create();
 
         $beatmap->update(['user_id' => $nominator->getKey()]);
+
+        $this->actingAsVerified($nominator)
+            ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
+            ->assertStatus(403);
+
+        $this->assertSame(0, $beatmapset->beatmapsetNominations()->current()->count());
+    }
+
+    public function testBeatmapsetNominateCoOwnedBeatmap()
+    {
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => Beatmapset::STATES['pending'],
+        ]);
+        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset->getKey()]);
+        $nominator = User::factory()->withGroup('bng', [$beatmap->mode])->create();
+
+        BeatmapOwner::create([
+            'beatmap_id' => $beatmap->getKey(),
+            'user_id' => $nominator->getKey(),
+        ]);
 
         $this->actingAsVerified($nominator)
             ->put(route('beatmapsets.nominate', ['beatmapset' => $beatmapset->getKey(), 'playmodes' => [$beatmap->mode]]))
