@@ -943,6 +943,20 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         });
     }
 
+    /**
+     * Whether the supplied user has any direct involvement with this beatmap set,
+     * which is understood as being either the owner of the entire set, or an owner of one of the beatmaps in it.
+     *
+     * @param User $user The user to check.
+     * @return bool true if the user is directly involved with the set, false otherwise.
+     */
+    public function hasUserInvolvement(User $user): bool
+    {
+        $result = $user->getKey() === $this->user_id;
+        $result = $result || $this->beatmaps()->where('user_id', $user->getKey())->exists();
+        return $result || BeatmapOwner::where('user_id', $user->getKey())->whereIn('beatmap_id', $this->beatmaps()->select('beatmap_id'))->exists();
+    }
+
     public function allBeatmaps()
     {
         return $this->hasMany(Beatmap::class)->withTrashed();

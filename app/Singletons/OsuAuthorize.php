@@ -624,17 +624,8 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        $userId = $user->getKey();
-        if ($userId === $beatmapset->user_id) {
+        if ($beatmapset->hasUserInvolvement($user)) {
             return $prefix.'owner';
-        }
-
-        $beatmapset->loadMissing('beatmaps.beatmapOwners');
-
-        foreach ($beatmapset->beatmaps as $beatmap) {
-            if ($beatmap->isOwner($user)) {
-                return $prefix.'owner';
-            }
         }
 
         if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
@@ -665,16 +656,8 @@ class OsuAuthorize
             return $prefix.'status';
         }
 
-        if ($user->getKey() === $beatmapset->user_id) {
+        if ($beatmapset->hasUserInvolvement($user)) {
             return $prefix.'owner';
-        }
-
-        $beatmapset->loadMissing('beatmaps.beatmapOwners');
-
-        foreach ($beatmapset->beatmaps as $beatmap) {
-            if ($beatmap->isOwner($user)) {
-                return $prefix.'owner';
-            }
         }
 
         return 'ok';
