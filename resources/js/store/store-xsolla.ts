@@ -12,37 +12,44 @@ declare global {
         CLOSE: string;
         STATUS_DONE: string;
       };
-      init(config: XsollaTokenResponse): void;
+      init(config: XsollaOptions): void;
       on(event: string, callback: () => void): void;
       open(): void;
     };
   }
 }
 
-interface XsollaTokenResponse {
+interface XsollaOptions {
   access_token: string;
   sandbox: boolean;
 }
 
+export interface XsollaParams extends XsollaOptions {
+  order_number: string;
+}
+
 const xsollaWidgetUrl = 'https://cdn.xsolla.net/payments-bucket-prod/embed/1.5.4/widget.min.js';
 
-function onXsollaReady(orderNumber: string) {
+export function openXsollaWidget(response: XsollaParams) {
   let done = false;
+  // FIXME: flickering when transitioning to widget
+  window.XPayStationWidget.init({
+    access_token: response.access_token,
+    sandbox: response.sandbox,
+  });
+
   window.XPayStationWidget.on(window.XPayStationWidget.eventTypes.STATUS_DONE, () => done = true);
   window.XPayStationWidget.on(window.XPayStationWidget.eventTypes.CLOSE, () => {
     if (done) {
       showLoadingOverlay();
       showLoadingOverlay.flush();
-      window.location.href = route('payments.xsolla.completed', { foreignInvoice: orderNumber });
+      window.location.href = route('payments.xsolla.completed', { foreignInvoice: response.order_number });
     }
   });
+
+  window.XPayStationWidget.open();
 }
 
-export async function initXsolla(orderNumber: string) {
-  const [tokenResponse] = await Promise.all([
-    $.post(route('payments.xsolla.token'), { orderNumber }) as JQuery.jqXHR<XsollaTokenResponse>,
-    core.turbolinksReload.load(xsollaWidgetUrl),
-  ]);
-  onXsollaReady(orderNumber);
-  window.XPayStationWidget.init(tokenResponse);
+export function loadXsollaWidget() {
+  return core.turbolinksReload.load(xsollaWidgetUrl);
 }

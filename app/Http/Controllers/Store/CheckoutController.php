@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Store;
 
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\PaymentCompleted;
+use App\Libraries\Payments\PaypalCreatePayment;
+use App\Libraries\Payments\XsollaCreateToken;
 use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
 use Auth;
@@ -82,9 +84,20 @@ class CheckoutController extends Controller
 
         if ((float) $order->getTotal() === 0.0) {
             return $this->freeCheckout($checkout);
+        } else if ($params['provider'] === Order::PROVIDER_PAYPAL) {
+            return [
+                'paypal_approve_url' => new PaypalCreatePayment($order)->run(),
+                'provider' => Order::PROVIDER_PAYPAL,
+            ];
+        } else if ($params['provider'] === Order::PROVIDER_XSOLLA) {
+            return [
+                ...new XsollaCreateToken($order, \Auth::user())->run(),
+                'order_number' => $order->getOrderNumber(),
+                'provider' => Order::PROVIDER_XSOLLA,
+            ];
         }
 
-        return 'ok';
+        return response()->noContent();
     }
 
     private function freeCheckout($checkout)

@@ -9,7 +9,6 @@
                 class="js-store-payment-button store-payment-button store-payment-button--xsolla"
                 data-provider="xsolla"
                 data-order-id="{{ $order->order_id }}"
-                data-order-number="{{ $order->getOrderNumber() }}"
         >
         </button>
     </div>

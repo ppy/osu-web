@@ -401,13 +401,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'paypal.', 'prefix' => 'paypal'], function () {
             Route::get('approved', 'PaypalController@approved')->name('approved');
             Route::get('declined', 'PaypalController@declined')->name('declined');
-            Route::post('create', 'PaypalController@create')->name('create');
             Route::post('ipn', 'PaypalController@ipn')->name('ipn');
         });
 
         Route::group(['as' => 'xsolla.', 'prefix' => 'xsolla'], function () {
             Route::get('completed', 'XsollaController@completed')->name('completed');
-            Route::post('token', 'XsollaController@token')->name('token');
             Route::post('callback', 'XsollaController@callback')->name('callback');
         });
 
