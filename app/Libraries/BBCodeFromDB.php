@@ -61,8 +61,12 @@ class BBCodeFromDB
         preg_match_all("#\[audio:{$this->uid}\](?<url>[^[]+)\[/audio:{$this->uid}\]#", $text, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
-            $proxiedSrc = proxy_media(html_entity_decode_better($match['url']));
-            $tag = '<audio controls="controls" data-modifiers="bbcode" preload="none" src="'.$proxiedSrc.'"></audio>';
+            $tag = tag('audio', [
+                'controls' => 'controls',
+                'data-modifiers' => 'bbcode',
+                'preload' => 'none',
+                'src' => proxy_media(html_entity_decode_better($match['url'])),
+            ]);
 
             $text = str_replace($match[0], $tag, $text);
         }
