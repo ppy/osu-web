@@ -1449,7 +1449,7 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function json_collection($model, TransformerAbstract $transformer, array|string|null $includes = null)
+function json_collection($model, TransformerAbstract|callable $transformer, array|string|null $includes = null)
 {
     $manager = new League\Fractal\Manager(new App\Libraries\Transformers\ScopeFactory());
     if ($includes !== null) {
@@ -1463,7 +1463,7 @@ function json_collection($model, TransformerAbstract $transformer, array|string|
     return $manager->createData($collection)->toArray();
 }
 
-function json_item($model, TransformerAbstract $transformer, array|string|null $includes = null)
+function json_item($model, TransformerAbstract|callable $transformer, array|string|null $includes = null)
 {
     return json_collection([$model], $transformer, $includes)[0] ?? null;
 }
