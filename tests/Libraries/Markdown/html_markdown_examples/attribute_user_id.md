@@ -1,5 +1,5 @@
-::peppy::{user-id=2}
+::peppy::{user=2}
 
-::name with space::{user-id=3}
+::name with space::{user=3}
 
-::name **bold** _italic_::{user-id=4}
+::name **bold** _italic_::{user=4}

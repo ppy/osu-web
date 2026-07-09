@@ -38,7 +38,7 @@ class Renderer implements NodeRendererInterface, ConfigurationAwareInterface
             return $this->createFlagElement($code);
         }
 
-        $userId = presence($this->attrs->get('user-id', null));
+        $userId = presence($this->attrs->get('user', null));
         if ($userId !== null) {
             return $this->createProfileElement($userId);
         }
@@ -66,7 +66,7 @@ class Renderer implements NodeRendererInterface, ConfigurationAwareInterface
 
     private function createProfileElement(string $userId)
     {
-        $this->attrs->remove('user-id');
+        $this->attrs->remove('user');
 
         $blockClass = $this->config->get('osu_extension/block_name');
         $this->attrs->set('class', "{$blockClass}__link js-usercard");

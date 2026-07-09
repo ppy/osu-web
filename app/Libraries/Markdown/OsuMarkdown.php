@@ -128,7 +128,7 @@ class OsuMarkdown
         ],
         'wiki' => [
             'osu_extension' => [
-                'attributes_allowed' => ['flag', 'id', 'user-id'],
+                'attributes_allowed' => ['flag', 'id', 'user'],
                 'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
