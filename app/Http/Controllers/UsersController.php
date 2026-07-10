@@ -583,6 +583,7 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'score_processing_notice_url',
                 'session_verification_method',
                 'session_verified',
                 ...$this->showUserIncludes(),
@@ -676,7 +677,7 @@ class UsersController extends Controller
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'scores_notice' => $GLOBALS['cfg']['osu']['user']['profile_scores_notice'],
+                'score_processing_notice_url' => $GLOBALS['cfg']['osu']['score']['processing_notice_url'],
                 'user' => $userArray,
                 'user_cover_presets' => $userCoverPresets ?? [],
             ];
