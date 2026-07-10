@@ -515,6 +515,12 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return "https://b.ppy.sh/preview/{$this->getKey()}.mp3";
     }
 
+    public function recalculateRating(): void
+    {
+        $rating = $this->userRatings()->avg('rating');
+        $this->update(['rating' => $rating]);
+    }
+
     public function removeCover($targetFilename): void
     {
         \Storage::delete($this->coverPath().$targetFilename);
@@ -935,6 +941,20 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             $this->favourite_count = db_unsigned_increment('favourite_count', -$deleted);
             $this->save();
         });
+    }
+
+    /**
+     * Whether the supplied user has any direct involvement with this beatmap set,
+     * which is understood as being either the owner of the entire set, or an owner of one of the beatmaps in it.
+     *
+     * @param User $user The user to check.
+     * @return bool true if the user is directly involved with the set, false otherwise.
+     */
+    public function hasUserInvolvement(User $user): bool
+    {
+        $result = $user->getKey() === $this->user_id;
+        $result = $result || $this->beatmaps()->where('user_id', $user->getKey())->exists();
+        return $result || BeatmapOwner::where('user_id', $user->getKey())->whereIn('beatmap_id', $this->beatmaps()->select('beatmap_id'))->exists();
     }
 
     public function allBeatmaps()
