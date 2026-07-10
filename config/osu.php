@@ -1,8 +1,11 @@
 <?php
 
-$profileScoresNotice = presence(env('USER_PROFILE_SCORES_NOTICE'));
-if ($profileScoresNotice !== null) {
-    $profileScoresNotice = markdown_plain($profileScoresNotice);
+$clientMinVersions = [];
+foreach (explode(',', env('CLIENT_MIN_VERSIONS') ?? '') as $entry) {
+    if ($entry !== '') {
+        [$platform, $minVersion] = explode('=', $entry, 2);
+        $clientMinVersions[$platform] = (int) $minVersion;
+    }
 }
 
 $clientTokenKeys = [];
@@ -115,6 +118,7 @@ return [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
         'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
         'download_stream' => get_int(env('CLIENT_DOWNLOAD_STREAM')) ?? 7,
+        'min_versions' => $clientMinVersions,
         'token_keys' => $clientTokenKeys,
         'token_lifetime' => (get_float(env('CLIENT_TOKEN_LIFETIME_HOUR')) ?? 0.25) * 3600,
         'token_queue' => env('CLIENT_TOKEN_QUEUE') ?? 'token-queue',
@@ -267,7 +271,6 @@ return [
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
-        'profile_scores_notice' => $profileScoresNotice,
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
@@ -335,6 +338,9 @@ return [
         'country_performance_weighting_factor' => floatval(env('COUNTRY_PERFORMANCE_WEIGHTING_FACTOR', 0.99)),
         'team_performance_user_count' => get_int(env('TEAM_PERFORMANCE_USER_COUNT')) ?? 48,
         'team_performance_weighting_factor' => get_float(env('TEAM_PERFORMANCE_WEIGHTING_FACTOR')) ?? 0.96,
+    ],
+    'score' => [
+        'processing_notice_url' => presence(env('SCORE_PROCESSING_NOTICE_URL')),
     ],
     'screenshots' => [
         'shared_secret' => presence(env('SCREENSHOTS_SHARED_SECRET')) ?? '1234567890abcd',

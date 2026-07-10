@@ -28,6 +28,7 @@ use App\Models\Traits;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use LaravelRedis;
 
@@ -143,6 +144,30 @@ class Score extends Model implements Traits\ReportableInterface
         $params['ranked'] = $params['passed'] && $beatmap !== null && $beatmap->approved > 0;
 
         return $params;
+    }
+
+    public static function preloadDifficultyRatings(Collection $scores, string $rulesetName): Collection
+    {
+        // Technically the ruleset can be derived from the scores but the
+        // parameter should imply that the scores must have uniform ruleset.
+        $rulesetId = Beatmap::MODES[$rulesetName];
+
+        if ($rulesetId !== 0) {
+            $preload = false;
+            foreach ($scores as $score) {
+                if ($score->beatmap->playmode !== $rulesetId) {
+                    $preload = true;
+                    break;
+                }
+            }
+            if ($preload) {
+                $scores->loadMissing([
+                    'beatmap.baseDifficultyRatings' => fn ($q) => $q->where('mode', $rulesetId),
+                ]);
+            }
+        }
+
+        return $scores;
     }
 
     public function beatmap()

@@ -731,12 +731,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function setOsuPlaystyleAttribute($value)
     {
         $styles = 0;
-
-        if ($value !== null) {
-            foreach (self::PLAYSTYLES as $type => $bit) {
-                if (in_array($type, $value, true)) {
-                    $styles += $bit;
-                }
+        if (is_array($value)) {
+            foreach (array_unique($value) as $style) {
+                $styles += static::PLAYSTYLES[$style] ?? 0;
             }
         }
 
@@ -1974,7 +1971,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             $newPostsCount = db_unsigned_increment('user_posts', $postsChangeCount);
         } else {
-            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
+            $newPostsCount = $this
+                ->forumPosts()
+                ->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))
+                ->whereHas('topic', fn ($q) => $q->withoutTrashed())
+                ->count();
         }
 
         $lastPost = $this->forumPosts()->select('post_time')->last();

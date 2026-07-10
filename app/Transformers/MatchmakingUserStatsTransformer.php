@@ -18,12 +18,15 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
 
     public function transform(MatchmakingUserStats $stats): array
     {
+        $rank = $stats->getRank();
+
         return [
             'first_placements' => $stats->first_placements,
             'is_rating_provisional' => $stats->isRatingProvisional(),
             'plays' => $stats->plays,
             'pool_id' => $stats->pool_id,
-            'rank' => $stats->rank,
+            'rank' => $rank,
+            'rank_percent' => $stats->getRankPercent($rank),
             'rating' => $stats->rating,
             'total_points' => $stats->total_points,
             'user_id' => $stats->user_id,

@@ -10,6 +10,7 @@ namespace App\Models\LegacyScoreFirst;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\Solo\Score;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 abstract class Model extends BaseModel
@@ -19,6 +20,11 @@ abstract class Model extends BaseModel
     public $incrementing = false;
     public $timestamps = false;
     protected $primaryKey = 'beatmap_id';
+
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereHas('beatmap')->whereHas('score');
+    }
 
     public function beatmap(): BelongsTo
     {

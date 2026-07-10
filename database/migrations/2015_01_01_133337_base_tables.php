@@ -168,7 +168,6 @@ class BaseTables extends Migration
             $table->primary(['user_id', 'beatmapset_id']);
             $table->index(['beatmapset_id', 'rating'], 'split_ratings');
         });
-        $this->setRowFormat('osu_user_beatmapset_ratings', 'COMPRESSED');
 
         Schema::create('osu_changelog', function (Blueprint $table) {
             $table->mediumIncrements('changelog_id');
@@ -264,7 +263,6 @@ class BaseTables extends Migration
         });
         DB::statement('ALTER TABLE `osu_events` DROP PRIMARY KEY, ADD PRIMARY KEY (`event_id`, `date`)');
         $this->comment('osu_events', 'holds events up to one month in the past');
-        $this->setRowFormat('osu_events', 'COMPRESSED');
 
         Schema::create('osu_favouritemaps', function (Blueprint $table) {
             $table->mediumInteger('user_id')->unsigned();
@@ -290,7 +288,6 @@ class BaseTables extends Migration
             $table->index('giver_id', 'giver_id');
             $table->index(['receiver_id', 'date'], 'receiver_id');
         });
-        $this->setRowFormat('osu_kudos_exchange', 'COMPRESSED');
 
         Schema::create('osu_languages', function (Blueprint $table) {
             $table->integer('language_id', true);
@@ -614,7 +611,6 @@ class BaseTables extends Migration
             $table->integer('banner_id')->unsigned()->nullable();
             $table->index(['user_id', 'timestamp'], 'user_id_2');
         });
-        $this->setRowFormat('osu_user_banhistory', 'COMPRESSED');
 
         Schema::create('osu_user_beatmap_playcount', function (Blueprint $table) {
             $table->mediumInteger('user_id')->unsigned();
@@ -622,7 +618,6 @@ class BaseTables extends Migration
             $table->smallInteger('playcount')->unsigned();
             $table->primary(['user_id', 'beatmap_id']);
         });
-        $this->setRowFormat('osu_user_beatmap_playcount', 'COMPRESSED');
 
         Schema::create('osu_user_donations', function (Blueprint $table) {
             $table->mediumInteger('user_id')->unsigned();
@@ -654,7 +649,6 @@ class BaseTables extends Migration
 
             $table->primary(['user_id', 'year_month']);
         });
-        $this->setRowFormat('osu_user_month_playcount', 'COMPRESSED');
 
         Schema::create('osu_user_performance_rank', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
@@ -780,7 +774,6 @@ class BaseTables extends Migration
 
             $table->primary(['user_id', 'year_month']);
         });
-        $this->setRowFormat('osu_user_replayswatched', 'COMPRESSED');
 
         Schema::create('osu_user_security', function (Blueprint $table) {
             $table->unsignedMediumInteger('user_id');
@@ -1281,7 +1274,6 @@ class BaseTables extends Migration
             $table->index('reportee_id', 'reportee_id');
             $table->index('user_id', 'user_id');
         });
-        $this->setRowFormat('phpbb_log', 'COMPRESSED');
 
         Schema::create('phpbb_topics_watch', function (Blueprint $table) {
             $table->unsignedMediumInteger('user_id')->default(0);
@@ -1292,7 +1284,6 @@ class BaseTables extends Migration
             $table->index('notify_status', 'notify_stat');
             $table->primary(['user_id', 'topic_id']);
         });
-        $this->setRowFormat('phpbb_topics_watch', 'COMPRESSED');
 
         DB::statement('
             CREATE TABLE weak_passwords
@@ -1375,11 +1366,6 @@ class BaseTables extends Migration
         Schema::drop('phpbb_log');
         Schema::drop('phpbb_topics_watch');
         Schema::drop('weak_passwords');
-    }
-
-    private function setRowFormat($table, $format)
-    {
-        DB::statement("ALTER TABLE `{$table}` ROW_FORMAT={$format};");
     }
 
     private function addBinary($table, $columnname, $size, $nullable = false, $after = null)

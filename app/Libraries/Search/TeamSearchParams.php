@@ -12,9 +12,6 @@ use App\Libraries\Elasticsearch\Sort;
 
 class TeamSearchParams extends SearchParams
 {
-    const string DEFAULT_SORT_FIELD = 'relevance';
-    const array VALID_SORT_FIELDS = ['relevance', 'name', 'short-name'];
-
     public $size = 20;
 
     public string $sortField;
@@ -22,7 +19,7 @@ class TeamSearchParams extends SearchParams
 
     public static function defaultSortOrder(string $field): string
     {
-        return $field === 'relevance' ? 'desc' : 'asc';
+        return $field === 'relevance' || $field === 'created' ? 'desc' : 'asc';
     }
 
     public function isCacheable(): bool
@@ -36,15 +33,16 @@ class TeamSearchParams extends SearchParams
         $field = $options[0];
         $order = $options[1] ?? null;
 
-        $this->sortField = in_array($field, static::VALID_SORT_FIELDS, true)
+        $this->sortField = in_array($field, $this->validSortFields(), true)
             ? $field
-            : static::DEFAULT_SORT_FIELD;
+            : (present($this->queryString) ? 'relevance' : 'created');
 
         $this->sortOrder = in_array($order, ['asc', 'desc'], true)
             ? $order
             : static::defaultSortOrder($this->sortField);
 
         $this->sorts = match ($this->sortField) {
+            'created' => [new Sort('id', $this->sortOrder)],
             'name' => [new Sort('name.raw', $this->sortOrder)],
             'relevance' => [
                 new Sort('_score', $this->sortOrder),
@@ -52,5 +50,12 @@ class TeamSearchParams extends SearchParams
             ],
             'short-name' => [new Sort('short_name.raw', $this->sortOrder)],
         };
+    }
+
+    public function validSortFields(): array
+    {
+        return present($this->queryString)
+            ? ['relevance', 'created', 'name', 'short-name']
+            : ['created', 'name', 'short-name'];
     }
 }

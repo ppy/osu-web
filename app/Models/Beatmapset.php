@@ -182,18 +182,46 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return $sizes;
     }
 
-    public static function popular()
+    public static function popularByRuleset(): array
     {
-        $ids = cache_remember_mutexed('popularBeatmapsetIds', 300, [], function () {
-            return static::popularIds();
+        $idsByRuleset = cache_remember_mutexed('popularBeatmapsetIdsByRuleset', 300, [], function () {
+            $idsByRuleset = [];
+
+            foreach (array_keys(Beatmap::MODES) as $ruleset) {
+                $idsByRuleset[$ruleset] = static::popularIds($ruleset);
+            }
+
+            return $idsByRuleset;
         });
 
-        return static::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids);
+        $allIds = collect($idsByRuleset)->flatten()->unique();
+        $beatmapsetsById = static::whereIn('beatmapset_id', $allIds)->get()->keyBy('beatmapset_id');
+
+        $popularByRuleset = [];
+
+        foreach ($idsByRuleset as $ruleset => $ids) {
+            $beatmapsets = [];
+
+            foreach ($ids as $id) {
+                $beatmapset = $beatmapsetsById[$id] ?? null;
+
+                if ($beatmapset !== null) {
+                    $beatmapsets[] = $beatmapset;
+                }
+            }
+
+            $popularByRuleset[$ruleset] = $beatmapsets;
+        }
+
+        return $popularByRuleset;
     }
 
-    public static function popularIds()
+    public static function popularIds(string $ruleset)
     {
+        $rulesetId = Beatmap::MODES[$ruleset];
+
         $recentIds = static::ranked()
+            ->hasMode($rulesetId)
             ->where('approved_date', '>', now()->subDays(30))
             ->where('nsfw', false)
             ->select('beatmapset_id');
@@ -1422,10 +1450,15 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
                 $title = $this->artist.' - '.$this->title;
 
                 $topic = Forum\Topic::createNew($forum, [
-                    'title' => $title,
+                    'title' => mb_substr($title, 0, 100),
                     'user' => $user,
                     'body' => '---------------',
                 ]);
+                // allow up to 255 characters title. The actual maximum length
+                // is 163 due to 80 characters limit for artist and title.
+                if (mb_strlen($title) > 100) {
+                    Forum\Topic::whereKey($topic->getKey())->update(['topic_title' => mb_substr($title, 0, 255)]);
+                }
                 $topic->lock();
                 $this->update(['thread_id' => $topic->getKey()]);
                 $post = $topic->firstPost;
@@ -1595,7 +1628,7 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
                 : explode(',', $rawValue);
         }
 
-        return $this->packs()->pluck('tag')->all();
+        return $this->packs()->default()->pluck('tag')->all();
     }
 
     private function getTitleUnicode()

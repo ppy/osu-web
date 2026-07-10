@@ -19,10 +19,15 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserAchievement;
+use App\Transformers\BeatmapPlaycountTransformer;
+use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\EventTransformer;
+use App\Transformers\KudosuHistoryTransformer;
 use App\Transformers\ScoreReplayStatsTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -388,7 +393,7 @@ class UsersController extends Controller
         }
 
         return [
-            'users' => json_collection($users ?? [], 'UserCompact', $includes),
+            'users' => json_collection($users ?? [], new UserCompactTransformer(), $includes),
         ];
     }
 
@@ -578,6 +583,7 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'score_processing_notice_url',
                 'session_verification_method',
                 'session_verified',
                 ...$this->showUserIncludes(),
@@ -671,7 +677,7 @@ class UsersController extends Controller
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'scores_notice' => $GLOBALS['cfg']['osu']['user']['profile_scores_notice'],
+                'score_processing_notice_url' => $GLOBALS['cfg']['osu']['score']['processing_notice_url'],
                 'user' => $userArray,
                 'user_cover_presets' => $userCoverPresets ?? [],
             ];
@@ -760,7 +766,7 @@ class UsersController extends Controller
         switch ($page) {
             // BeatmapPlaycount
             case 'beatmapPlaycounts':
-                $transformer = 'BeatmapPlaycount';
+                $transformer = new BeatmapPlaycountTransformer();
                 $query = $this->user->beatmapPlaycounts()
                     ->with('beatmap', 'beatmap.beatmapset')
                     ->whereHas('beatmap')
@@ -770,42 +776,42 @@ class UsersController extends Controller
 
             // Beatmapset
             case 'favouriteBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsFavourite();
                 break;
             case 'graveyardBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsGraveyard()
                     ->orderBy('last_update', 'desc');
                 break;
             case 'guestBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsGuest()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'lovedBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsLoved()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'nominatedBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsNominated()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'rankedBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsRanked()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'pendingBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsPending()
                     ->orderBy('last_update', 'desc');
@@ -813,13 +819,13 @@ class UsersController extends Controller
 
             // Event
             case 'recentActivity':
-                $transformer = 'Event';
+                $transformer = new EventTransformer();
                 $query = $this->user->events()->recent(ScoreSearchParams::showLegacyForUser(\Auth::user()));
                 break;
 
             // KudosuHistory
             case 'recentlyReceivedKudosu':
-                $transformer = 'KudosuHistory';
+                $transformer = new KudosuHistoryTransformer();
                 $query = $this->user->receivedKudosu()
                     ->with('post', 'post.topic', 'giver')
                     ->with(['kudosuable' => function (MorphTo $morphTo) {
@@ -847,6 +853,7 @@ class UsersController extends Controller
                     $offset,
                     ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD
                 );
+                Score::preloadDifficultyRatings($collection, $this->mode);
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
@@ -855,10 +862,11 @@ class UsersController extends Controller
                 $query = $this
                     ->user
                     ->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))
+                    ->default()
                     ->with(prefix_strings('score.', ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->orderByDesc('score_id');
                 $userRelationColumn = 'user';
-                $collectionFn = fn ($scoreFirst) => $scoreFirst->map->score;
+                $collectionFn = fn ($scoreFirst) => Score::preloadDifficultyRatings($scoreFirst->map->score, $this->mode);
                 break;
             case 'scoresPinned':
                 $transformer = new ScoreTransformer();
@@ -869,7 +877,7 @@ class UsersController extends Controller
                     ->withVisibleScore()
                     ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->reorderBy('display_order', 'asc');
-                $collectionFn = fn ($pins) => $pins->map->score;
+                $collectionFn = fn ($pins) => Score::preloadDifficultyRatings($pins->map->score, $this->mode);
                 $userRelationColumn = 'user';
                 break;
             case 'scoresRecent':
@@ -880,6 +888,7 @@ class UsersController extends Controller
                     ->reorderBy('ended_at', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
+                $collectionFn = fn ($scores) => Score::preloadDifficultyRatings($scores, $this->mode);
                 break;
         }
 
@@ -952,6 +961,7 @@ class UsersController extends Controller
             ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
             'current_season_stats',
+            'current_user_attributes',
             'daily_challenge_user_stats',
             'matchmaking_stats.pool',
             'page',

@@ -2,12 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .line-chart {
+  --hover-circle-radius: 6px; // also used in charts/line-chart.js
   @_top: line-chart;
-  @_marker-radius: 6px;
-  @_marker-radius-profile-page: 10px;
   @_line-width: 3px;
   @_line-width-profile-page: 2px;
   .full-size();
+
+  &--profile-page {
+    --hover-circle-radius: 10px;
+  }
 
   &__axis {
     font-family: inherit;
@@ -22,23 +25,22 @@
   &__hover-area {
     position: absolute;
     display: grid;
+    margin: calc(var(--hover-circle-radius) * -1);
+    padding: var(--hover-circle-radius);
   }
 
   &__hover-circle {
-    .circle(@_marker-radius * 2);
+    .circle(calc(var(--hover-circle-radius) * 2));
     background-color: #fff;
     border: @_line-width solid @pink-darker;
-    top: (-@_marker-radius);
-    left: (-@_marker-radius);
+    top: calc(var(--hover-circle-radius) * -1);
+    left: calc(var(--hover-circle-radius) * -1);
     position: relative;
 
     .@{_top}--profile-page & {
-      .circle(@_marker-radius-profile-page * 2);
       background-color: @osu-colour-b5;
       border-color: @yellow;
       border-width: (@_line-width-profile-page * 2);
-      top: (-@_marker-radius-profile-page);
-      left: (-@_marker-radius-profile-page);
     }
   }
 

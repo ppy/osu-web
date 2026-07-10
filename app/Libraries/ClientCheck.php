@@ -40,6 +40,11 @@ class ClientCheck
                 throw new ClientCheckParseTokenException('invalid client hash');
             }
 
+            $minVersion = static::getMinVersion($build);
+            if ($minVersion !== null && $input['version'] < $minVersion) {
+                throw new ClientCheckParseTokenException('invalid version');
+            }
+
             $ret['buildId'] = $build->getKey();
 
             $computed = hash_hmac(
@@ -113,6 +118,13 @@ class ClientCheck
         return $GLOBALS['cfg']['osu']['client']['token_keys'][$build->platform()]
             ?? $GLOBALS['cfg']['osu']['client']['token_keys']['default']
             ?? '';
+    }
+
+    public static function getMinVersion(Build $build): ?int
+    {
+        return $GLOBALS['cfg']['osu']['client']['min_versions'][$build->platform()]
+            ?? $GLOBALS['cfg']['osu']['client']['min_versions']['default']
+            ?? null;
     }
 
     private static function getMultipartData(Request $request): ?array

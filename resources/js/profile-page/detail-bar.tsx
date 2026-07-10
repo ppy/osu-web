@@ -29,6 +29,7 @@ export default class DetailBar extends React.Component<Props> {
       <div className='profile-detail-bar'>
         <FriendButton
           alwaysVisible
+          blocked={this.props.user.current_user_attributes?.has_blocked}
           followers={this.props.user.follower_count}
           modifiers='profile-page'
           userId={this.props.user.id}

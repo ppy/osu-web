@@ -57,6 +57,7 @@ class MatchmakingUserStats extends Model
             ->newQuery()
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
+            ->where('plays', '>', 0)
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
@@ -71,5 +72,30 @@ class MatchmakingUserStats extends Model
     public function isRatingProvisional(): bool
     {
         return $this->elo_data['approximate_posterior']['sig'] >= static::MIN_SIG_PROVISIONAL;
+    }
+
+    public function getRank(): int
+    {
+        return $this->attributes['rank'] ?? 1 + static::default()
+            ->where('rating', '>', $this->rating)
+            ->where('pool_id', $this->pool_id)
+            ->count();
+    }
+
+    public function getRankPercent(?int $rank = null): float
+    {
+        $rank ??= $this->getRank();
+
+        $count = cache_remember_mutexed(
+            "matchmaking_user_count:{$this->pool_id}",
+            600,
+            1,
+            fn () => static
+                ::where('pool_id', $this->pool_id)
+                ->where('plays', '>', 0)
+                ->count(),
+        );
+
+        return min(1, $rank / max(1, $count ?? 1));
     }
 }

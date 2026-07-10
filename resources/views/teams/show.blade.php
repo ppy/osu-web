@@ -299,26 +299,14 @@
                         @endif
                         <div class="team-info-entry">
                             <div class="profile-rank-count profile-rank-count--team">
-                                <div>
-                                    <div class="score-rank score-rank--XH score-rank--profile-page"></div>
-                                    {{ i18n_number_format($extraStatistics['xh_rank_count']) }}
-                                </div>
-                                <div>
-                                    <div class="score-rank score-rank--X score-rank--profile-page"></div>
-                                    {{ i18n_number_format($extraStatistics['x_rank_count']) }}
-                                </div>
-                                <div>
-                                    <div class="score-rank score-rank--SH score-rank--profile-page"></div>
-                                    {{ i18n_number_format($extraStatistics['sh_rank_count']) }}
-                                </div>
-                                <div>
-                                    <div class="score-rank score-rank--S score-rank--profile-page"></div>
-                                    {{ i18n_number_format($extraStatistics['s_rank_count']) }}
-                                </div>
-                                <div>
-                                    <div class="score-rank score-rank--A score-rank--profile-page"></div>
-                                    {{ i18n_number_format($extraStatistics['a_rank_count']) }}
-                                </div>
+                                @foreach (['xh', 'x', 'sh', 's', 'a'] as $grade)
+                                    <div class="profile-rank-count__item">
+                                        <div class="profile-rank-count__rank">
+                                            <div class="score-rank score-rank--{{ strtoupper($grade) }}"></div>
+                                        </div>
+                                        {{ i18n_number_format($extraStatistics["{$grade}_rank_count"]) }}
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

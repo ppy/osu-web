@@ -13,7 +13,7 @@ use App\Transformers\UserCompactTransformer;
 class UserSearch extends RecordSearch
 {
     private const BOOST_GROUPS = [
-        2 => ['alumni', 'loved', 'beatmap_spotlights', 'tournament_staff'],
+        2 => ['alumni', 'loved', 'bsc', 'tc'],
         5 => ['ppy', 'gmt', 'nat', 'bng', 'bng_limited', 'dev', 'support', 'featured_artist'],
     ];
 

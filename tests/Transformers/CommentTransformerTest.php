@@ -7,6 +7,7 @@ namespace Tests\Transformers;
 
 use App\Models\Comment;
 use App\Models\User;
+use App\Transformers\CommentTransformer;
 use Tests\TestCase;
 
 class CommentTransformerTest extends TestCase
@@ -20,7 +21,7 @@ class CommentTransformerTest extends TestCase
         $comment = Comment::factory()->deleted()->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($comment, 'Comment');
+        $json = json_item($comment, new CommentTransformer());
 
         $this->assertArrayNotHasKey('message', $json);
         $this->assertArrayNotHasKey('message_html', $json);
@@ -35,7 +36,7 @@ class CommentTransformerTest extends TestCase
         $comment = Comment::factory()->deleted()->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($comment, 'Comment');
+        $json = json_item($comment, new CommentTransformer());
 
         if ($visible) {
             $this->assertArrayHasKey('message', $json);

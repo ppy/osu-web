@@ -62,6 +62,7 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'current_season_stats',
+        'current_user_attributes',
         'daily_challenge_user_stats',
         'favourite_beatmapset_count',
         'follow_user_mapping',
@@ -92,6 +93,7 @@ class UserCompactTransformer extends TransformerAbstract
         'rank_highest',
         'ranked_beatmapset_count',
         'replays_watched_counts',
+        'score_processing_notice_url',
         'scores_best_count',
         'scores_first_count',
         'scores_pinned_count',
@@ -242,6 +244,14 @@ class UserCompactTransformer extends TransformerAbstract
         return $season === null
             ? $this->primitive(null)
             : $this->primitive((new SeasonStats($user, $season))->get());
+    }
+
+    public function includeCurrentUserAttributes(User $user): Primitive
+    {
+        $currentUser = \Auth::user();
+        return $this->primitive($currentUser === null ? null : [
+            'has_blocked' => $user->hasBlocked($currentUser),
+        ]);
     }
 
     public function includeDailyChallengeUserStats(User $user)
@@ -451,6 +461,11 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
+    public function includeScoreProcessingNoticeUrl()
+    {
+        return $this->primitive($GLOBALS['cfg']['osu']['score']['processing_notice_url']);
+    }
+
     public function includeScoresBestCount(User $user)
     {
         return $this->primitive($user->profileCount()->get('scoresBest', $this->mode));
@@ -525,24 +540,10 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUserPreferences(User $user)
     {
-        static $fields = [
-            'audio_autoplay',
-            'audio_muted',
-            'audio_volume',
-            'beatmapset_card_size',
-            'beatmapset_download',
-            'beatmapset_show_anime_cover',
-            'beatmapset_show_nsfw',
-            'beatmapset_title_show_original',
-            'comments_show_deleted',
-            'forum_posts_show_deleted',
-            'legacy_score_only',
-            'profile_cover_expanded',
-            'scoring_mode',
-            'user_list_filter',
-            'user_list_sort',
-            'user_list_view',
-        ];
+        static $fields = array_values(array_diff(array_keys(UserProfileCustomization::DEFAULTS), [
+            'comments_sort',
+            'extras_order',
+        ]));
 
         $customization = $user->userProfileCustomization;
 
