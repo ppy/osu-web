@@ -26,7 +26,7 @@ return [
 
         'hype' => [
             'discussion_locked' => "Esse beatmap está bloqueado para discussão e não pode ser hypado",
-            'guest' => 'Precisa estar conectado para hypar.',
+            'guest' => 'Você precisa entrar para hypar.',
             'hyped' => 'Você já hypou este beatmap.',
             'limit_exceeded' => 'Você usou todo seu hype.',
             'not_hypeable' => 'Este beatmap não pode ser hypado',
@@ -137,7 +137,7 @@ return [
         'word_not_allowed' => 'Essa escolha de :attribute não é permitida.',
 
         'attributes' => [
-            'default_ruleset_id' => 'Regras padrão',
+            'default_ruleset_id' => 'Modalidade padrão',
             'is_open' => 'Aplicação para equipe',
             'name' => 'Nome',
             'short_name' => 'Nome curto',

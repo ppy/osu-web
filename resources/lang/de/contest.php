@@ -19,6 +19,7 @@ return [
         'nav_title' => 'Bewerten',
         'no_current_vote' => 'Du hast noch nicht abgestimmt.',
         'update' => 'aktualisieren',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'fehlende Punktzahl',
             'contest_vote_judged' => 'Abstimmen bei bewerteten Wettbewerben nicht möglich',

@@ -15,8 +15,8 @@ return [
             'title' => 'Por que eu deveria apoiar osu!? Para onde vai o dinheiro?',
 
             'team' => [
-                'title' => 'Apoie a Equipe',
-                'description' => 'Um pequeno time de desenvolvedores desenvolve e mantém o osu! rodando. Seu apoio vai permitir que eles possam, você sabe... viver.',
+                'title' => 'Apoie a equipe',
+                'description' => 'Uma pequena equipe desenvolve e mantém o osu! rodando. Seu apoio vai permitir que eles possam, você sabe... viver.',
             ],
             'infra' => [
                 'title' => 'Infraestrutura do Servidor',
@@ -55,7 +55,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => 'Ranking Nacional',
+                'title' => 'Classificação nacional',
                 'description' => 'Conquiste seu país antes de conquistar o mundo.',
             ],
 

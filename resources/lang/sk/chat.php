@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '',
+    'searching_users' => '',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',

@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => '削除された投稿',
             'total_posts' => '全ての投稿',
-            'total_watches' => '',
+            'total_watches' => '総購読者数',
 
             'feature_vote' => [
                 'current' => '現在の優先度： +:count',

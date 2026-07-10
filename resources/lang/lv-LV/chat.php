@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'ielādē lietotājus...',
+    'searching_users' => '',
     'talking_in' => 'runā :channel',
     'talking_with' => 'runā ar :name',
     'title_compact' => 'čats',

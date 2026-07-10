@@ -19,6 +19,7 @@ return [
         'nav_title' => 'penilai',
         'no_current_vote' => 'anda belum mengundi.',
         'update' => 'kemas kini',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'markah tiada',
             'contest_vote_judged' => 'tidak boleh mengundi dalam peraduan berpenilai',

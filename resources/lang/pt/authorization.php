@@ -207,7 +207,7 @@ return [
             'not_member' => 'Não faz parte da equipa.',
         ],
         'store' => [
-            'require_supporter_tag' => 'A etiqueta osu!supporter é necessária para criar uma equipa.',
+            'require_supporter_tag' => 'A etiqueta de apoiante do osu! é necessária para criar uma equipa.',
         ],
     ],
 
@@ -216,7 +216,7 @@ return [
             'edit' => [
                 'locked' => 'A página de utilizador está bloqueada.',
                 'not_owner' => 'Só é possível editar a própria página de utilizador.',
-                'require_supporter_tag' => 'É necessária uma etiqueta osu!supporter.',
+                'require_supporter_tag' => 'É necessária uma etiqueta de apoiante do osu!.',
             ],
         ],
         'update_email' => [

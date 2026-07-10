@@ -30,7 +30,7 @@ return [
         'nomination_reset' => 'Vấn đề mới :discussion (:text) đã kích hoạt đặt lại đề cử.',
         'nomination_reset_received' => ' Đề cử bởi :user đã được đặt lại bởi :source_user (:text)',
         'nomination_reset_received_profile' => ' Đề cử đã được đặt lại bởi :user (:text)',
-        'offset_edit' => 'Độ trễ chơi online đã thay đổi từ :old thành:new.',
+        'offset_edit' => 'Độ trễ chơi trực tuyến đã thay đổi từ :old thành:new.',
         'qualify' => 'Beatmap này đã đạt được số đề cử (nominations) cần thiết và đã qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',
         'remove_from_loved' => 'Yêu thích bị loại bỏ bởi :user. (:text)',

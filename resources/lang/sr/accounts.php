@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'примајте обавештења за нове проблеме на квалификованим мапама следећих модова',
         'beatmapset_disqualify' => 'примајте обавештења када мапе од следећих модова су дисквалификоване',
         'comment_reply' => 'примајте обавештења за одговоре на ваше коментаре',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'тастатура',
         'mouse' => 'миш',
         'tablet' => 'таблет',

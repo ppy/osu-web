@@ -69,7 +69,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'الخرائط',
+            '_' => 'خرائط الموسيقى',
         ],
         'community' => [
             '_' => 'المجتمع',
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'الإعدادات',
+            'create_team' => '',
             'follows' => 'قوائم المشاهدة',
             'friends' => 'الأصدقاء',
             'legacy_score_only_toggle' => 'وضع ليزر',

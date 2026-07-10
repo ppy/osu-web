@@ -25,12 +25,12 @@ return [
 
         'info' => [
             'logout' => [
-                '_' => 'Możesz również :link.',
-                'link' => 'wyloguj się',
+                '_' => 'Możesz się także :link.',
+                'link' => 'wylogować',
             ],
             'mail_fallback' => [
-                '_' => 'Jeżeli nie możesz uzyskać dostępu do aplikacji, :link.',
-                'link' => 'zamiast tego, możesz się zweryfikować używając e-maila ',
+                '_' => 'Jeżeli nie masz dostępu do aplikacji, :link.',
+                'link' => 'możesz zweryfikować się poprzez wiadomość e-mail',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Wprowadzono nieprawidłowy kod weryfikacyjny.',
         'retries_exceeded' => 'Wprowadzono nieprawidłowy kod weryfikacyjny. Liczba prób została przekroczona, w związku z czym wysłaliśmy nowy kod weryfikacyjny.',
         'reissued' => 'Wygenerowano nowy kod weryfikacyjny. Sprawdź swoją skrzynkę odbiorczą.',
-        'totp_used_key' => 'Kod weryfikacyjny został już użyty. Proszę poczekać i użyć nowego.',
-        'totp_gone' => 'Token uwierzytelniania został usunięty, zmieniam na weryfikację e-mailem. E-mail weryfikacyjny został wysłany.',
+        'totp_used_key' => 'Kod weryfikacyjny został już użyty. Poczekaj chwilę i użyj nowego kodu.',
+        'totp_gone' => 'Token uwierzytelniający został usunięty - zmieniam na weryfikację poprzez wiadomość e-mail. Wiadomość z kodem weryfikacyjnym została wysłana na adres e-mail.',
         'unknown' => 'Wystąpił nieoczekiwany błąd. Wysłano nowy kod weryfikacyjny.',
     ],
 ];

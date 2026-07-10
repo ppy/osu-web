@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Mga Setting',
+            'create_team' => '',
             'follows' => 'Tala ng mga binabantayan',
             'friends' => 'Mga Kaibigan',
             'legacy_score_only_toggle' => 'Lazer mode',

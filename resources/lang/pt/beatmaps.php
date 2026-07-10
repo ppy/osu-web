@@ -26,6 +26,7 @@ return [
         'edited' => 'Editado pela última vez por :editor :update_time.',
         'guest' => 'Dificuldade de convidado feita por :user',
         'kudosu_denied' => 'A obtenção de kudosu foi‑lhe recusada.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi eliminada, pelo que já não pode ser discutida.',
         'message_placeholder_locked' => 'A discussão para este mapa foi desativada.',
         'message_placeholder_silenced' => "Não pode publicar discussões enquanto estiver silenciado.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Resolvida',
         'restore' => 'restaurar',
         'show_deleted' => 'Exibir discussões eliminadas',
+        'show_other_replies' => '',
         'title' => 'Discussões',
         'unresolved_count' => ':count_delimited problema por resolver|:count_delimited problemas por resolver',
 
@@ -247,7 +249,7 @@ return [
             'login_required' => 'Inicie sessão para procurar.',
             'options' => 'Mais opções de pesquisa',
             'rank_filter_note' => 'As contagens de melhores classificações do perfil e os resultados apresentados nesta página baseiam‑se nas suas pontuações "normalizadas" (também conhecidas como "lazer") mais altas nos mapas.',
-            'supporter_filter' => 'Filtrar por :filters requer uma etiqueta osu!supporter',
+            'supporter_filter' => 'Filtrar por :filters requer uma etiqueta de apoiante do osu! ativa',
             'not-found' => 'sem resultados',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
@@ -275,7 +277,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrar por :filters requer um :link ativo',
-                'link_text' => 'etiqueta de osu!supporter',
+                'link_text' => 'etiqueta de apoiante do osu!',
             ],
             'tag_picker' => [
                 'tooltip' => 'explorar etiquetas de utilizador',

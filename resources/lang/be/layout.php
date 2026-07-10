@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налады',
+            'create_team' => '',
             'follows' => 'Падпіскі',
             'friends' => 'Сябры',
             'legacy_score_only_toggle' => 'Рэжым Lazer',

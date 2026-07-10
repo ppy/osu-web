@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'đang chờ người dùng...',
+    'searching_users' => '',
     'talking_in' => 'đang trò chuyện ở :channel',
     'talking_with' => 'đang trò chuyện với :name',
     'title_compact' => 'tin nhắn',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Tham gia kênh để hiển thị tin nhắn',
+        'join' => 'Tham gia kênh',
     ],
 
     'input' => [

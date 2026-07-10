@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => 'Accesso anticipato',
-                'description' => 'Ottieni l\'accesso anticipato a nuove versioni con nuove funzionalità prima che vengano rilasciate!<br/><br/>Questo include l\'accesso anticipato anche a nuove funzionalità sul sito web!',
+                'description' => 'Ottieni l\'accesso anticipato a nuove versioni con nuove funzionalità prima del pubblico!<br/><br/>Questo include l\'accesso anticipato anche a nuove funzionalità sul sito web!',
             ],
 
             'customisation' => [

@@ -26,6 +26,7 @@ return [
         'edited' => 'Naposledy upravené uživateľom :editor :update_time.',
         'guest' => 'Obtiažnosť hosťa od :user',
         'kudosu_denied' => 'Odopretý od získania kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Táto obtiažnosť bola vymazaná, takže už nemôže byť diskutovaná.',
         'message_placeholder_locked' => 'Diskusia o tejto mape boli vypnuté.',
         'message_placeholder_silenced' => "Není možné zverejniť diskusiu, keď stlmený.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Vyriešený',
         'restore' => 'obnoviť',
         'show_deleted' => 'Zobraziť zmazané',
+        'show_other_replies' => '',
         'title' => 'Diskusie',
         'unresolved_count' => '',
 

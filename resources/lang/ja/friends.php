@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'blocked' => '',
     'title_compact' => 'フレンド',
     'too_many' => 'フレンド数の上限に達しました。',
 

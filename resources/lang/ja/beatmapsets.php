@@ -156,6 +156,16 @@ return [
             'video' => 'このビートマップには動画が含まれています',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'このビートマップには過激な表現、攻撃的、または不穏なコンテンツが含まれています。それでも表示しますか？',
             'title' => '過激な表現を含むコンテンツ',

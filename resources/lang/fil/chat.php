@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'naglo-load ng mga user...',
+    'searching_users' => '',
     'talking_in' => 'nakikipag-usap sa :channel',
     'talking_with' => 'kausap si :name',
     'title_compact' => 'chat',

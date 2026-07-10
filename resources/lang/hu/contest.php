@@ -19,6 +19,7 @@ return [
         'nav_title' => 'bíró',
         'no_current_vote' => 'még nem szavaztál.',
         'update' => 'frissités',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'hiányzó pontszám',
             'contest_vote_judged' => 'bírált versenyeken nem szavazhat',

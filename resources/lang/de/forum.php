@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Gelöschte Beiträge',
             'total_posts' => 'Beiträge insgesamt',
-            'total_watches' => '',
+            'total_watches' => 'Abonnenten insgesamt',
 
             'feature_vote' => [
                 'current' => 'Aktuelle Priorität: +:count',

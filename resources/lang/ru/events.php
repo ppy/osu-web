@@ -10,7 +10,7 @@ return [
     'beatmapset_delete' => ':beatmapset была удалена.',
     'beatmapset_revive' => ':user воскресил карту :beatmapset.',
     'beatmapset_update' => ':user обновил(а) карту ":beatmapset"',
-    'beatmapset_upload' => ':user опубликовал(а) карту ":beatmapset"',
+    'beatmapset_upload' => ':user опубликовал карту ":beatmapset"',
     'empty' => "Этот пользователь за последнее время не сделал ничего интересного!",
     'rank' => ':user занял :rank на карте :beatmap (:mode)',
     'rank_lost' => ':user потерял первенство на карте :beatmap (:mode)',

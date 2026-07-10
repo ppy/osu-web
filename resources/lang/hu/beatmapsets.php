@@ -156,6 +156,16 @@ return [
             'video' => 'Ez a beatmap videót tartalmaz',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Ez a beatmap szókimondó, sértő vagy felkavaró tartalmú. Továbbra is meg szeretnéd tekinteni?',
             'title' => 'Felnőtt tartalom',

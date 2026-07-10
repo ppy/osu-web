@@ -8,7 +8,7 @@ return [
     'heading' => 'Cabeçalho',
     'help' => 'Ajuda',
     'image' => 'Imagem',
-    'imagemap' => 'Mapa de Imagem',
+    'imagemap' => 'Mapa de imagem',
     'italic' => 'Itálico',
     'link' => 'Link',
     'list' => 'Lista',

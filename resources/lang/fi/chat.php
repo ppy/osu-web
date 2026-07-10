@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'ladataan käyttäjiä...',
+    'searching_users' => '',
     'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustelu :name:n kanssa',
     'title_compact' => 'viestit',

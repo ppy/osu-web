@@ -38,6 +38,7 @@ return [
     ],
 
     'teams' => [
+        'created' => '',
         'relevance' => 'Pertinenza',
         'name' => 'Nome',
         'short-name' => 'Sigla',

@@ -19,6 +19,7 @@ return [
         'nav_title' => 'juiz',
         'no_current_vote' => 'você ainda não votou.',
         'update' => 'atualizar',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'pontuação faltando',
             'contest_vote_judged' => 'não é possível votar em concursos já julgados',

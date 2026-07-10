@@ -26,6 +26,7 @@ return [
         'edited' => 'נערך לאחרונה על ידי :editor :update_time.',
         'guest' => '',
         'kudosu_denied' => 'נדחה מקבלת kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'רמת הקושי הזאת נמחקה לכן לא ניתן לדון בה.',
         'message_placeholder_locked' => 'דיון למפה זו בוטל.',
         'message_placeholder_silenced' => "לא ניתן לדון בזמן שמושתק.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'נפתר',
         'restore' => 'שחזר',
         'show_deleted' => 'הצג שנמחק',
+        'show_other_replies' => '',
         'title' => 'דיונים',
         'unresolved_count' => '',
 

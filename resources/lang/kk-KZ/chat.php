@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'қолданушыларды жүктеу...',
+    'searching_users' => '',
     'talking_in' => ':channel-де сөйлесуде',
     'talking_with' => ':name-мен сөйлесу',
     'title_compact' => 'чат',
