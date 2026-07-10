@@ -508,8 +508,9 @@ return [
             'highest' => 'Highest rank: :rank on :date',
         ],
         'score_processing' => [
-            '_' => 'A new Star Rating / PP algorithm is :link. Scores set will not immediately reflect on your profile.',
-            'link' => 'being deployed',
+            'title' => 'A new Star Rating / PP algorithm is :link.',
+            'title_link' => 'being deployed',
+            'message' => 'Recent scores may not be immediately reflected in user profiles.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
