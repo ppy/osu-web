@@ -48,6 +48,7 @@ class OsuAuthorize
         static $set;
 
         $set ??= new Ds\Set([
+            'BeatmapsetRate',
             'ChannelPart',
             'ContestJudge',
             'IsNotOAuth',
