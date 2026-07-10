@@ -42,10 +42,10 @@ export default class Detail extends React.Component<Props> {
         {!user.is_bot && (
           <div className='profile-detail'>
             <DetailStats user={user} />
+
+            {this.renderScoresNotice()}
           </div>
         )}
-
-        {this.renderScoresNotice()}
 
         <DetailBar user={user} />
 
