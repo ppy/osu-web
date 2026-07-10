@@ -8,6 +8,7 @@ namespace Tests\Transformers;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use App\Transformers\BeatmapsetEventTransformer;
 use Tests\TestCase;
 
 class BeatmapsetEventTransformerTest extends TestCase
@@ -27,7 +28,7 @@ class BeatmapsetEventTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($event, 'BeatmapsetEvent');
+        $json = json_item($event, new BeatmapsetEventTransformer());
 
         if ($visibleWithOAuth) {
             $this->assertArrayHasKey('user_id', $json);
@@ -48,7 +49,7 @@ class BeatmapsetEventTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($event, 'BeatmapsetEvent');
+        $json = json_item($event, new BeatmapsetEventTransformer());
 
         if ($visibleWithoutOAuth) {
             $this->assertArrayHasKey('user_id', $json);

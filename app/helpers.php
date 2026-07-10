@@ -11,6 +11,7 @@ use App\Libraries\Base64Url;
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use App\Models\UserSummary;
+use App\Transformers\TransformerAbstract;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Database\Migrations\Migration;
@@ -1448,7 +1449,7 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function json_collection($model, $transformer, $includes = null)
+function json_collection($model, TransformerAbstract|callable $transformer, array|string|null $includes = null)
 {
     $manager = new League\Fractal\Manager(new App\Libraries\Transformers\ScopeFactory());
     if ($includes !== null) {
@@ -1456,19 +1457,13 @@ function json_collection($model, $transformer, $includes = null)
     }
     $manager->setSerializer(new App\Serializers\ApiSerializer());
 
-    // da bess
-    if (is_string($transformer)) {
-        $transformer = 'App\Transformers\\'.str_replace('/', '\\', $transformer).'Transformer';
-        $transformer = new $transformer();
-    }
-
     // we're using collection instead of item here, so we can peek at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
 
     return $manager->createData($collection)->toArray();
 }
 
-function json_item($model, $transformer, $includes = null)
+function json_item($model, TransformerAbstract|callable $transformer, array|string|null $includes = null)
 {
     return json_collection([$model], $transformer, $includes)[0] ?? null;
 }

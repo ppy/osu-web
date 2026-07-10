@@ -493,9 +493,9 @@ class TopicsController extends Controller
 
         if ($isJsonRequest) {
             return array_merge([
-                'posts' => json_collection($posts, 'Forum\Post', ['body']),
+                'posts' => json_collection($posts, new PostTransformer(), ['body']),
                 'search' => ['limit' => $params['limit'], 'sort' => $cursorHelper->getSortName()],
-                'topic' => json_item($topic, 'Forum\Topic'),
+                'topic' => json_item($topic, new TopicTransformer()),
             ], cursor_for_response($nextCursor));
         }
 
