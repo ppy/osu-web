@@ -150,7 +150,7 @@ class BBCodeFromDB
             function ($m) {
                 $unescaped = html_entity_decode_better(BBCodeForDB::extraUnescape($m[1]));
                 $parsed = preg_replace_callback(
-                    '#\[imagemap\]\n\s*(?<imageUrl>https?://.+)\n(?<links>(?:\s*(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\s*\[/imagemap\]\n?#',
+                    '#^\[imagemap\]\n\s*(?<imageUrl>https?://.+)\n(?<links>(?:\s*(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\s*\[/imagemap\]\n?$#',
                     function ($map) {
                         $links = array_filter(
                             array_map(
