@@ -510,7 +510,7 @@ return [
         'score_processing' => [
             'title' => 'A new Star Rating / PP algorithm is :link.',
             'title_link' => 'being deployed',
-            'message' => 'Scores set will not immediately reflect on your profile.',
+            'message' => 'Recent scores may not be immediately reflected in user profiles.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
