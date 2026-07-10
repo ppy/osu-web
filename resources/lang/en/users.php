@@ -416,13 +416,13 @@ return [
                 'not_ranked' => 'Only ranked beatmaps award pp',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'View Details',
-                'title' => 'Ranks',
+                'title' => 'Scores',
 
                 'best' => [
                     'title' => 'Best Performance',
                 ],
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => 'First Place Scores',
                 ],
                 'pin' => [
                     'to_0' => 'Unpin',
