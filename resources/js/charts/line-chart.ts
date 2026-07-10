@@ -113,7 +113,7 @@ export default class LineChart<X extends Date | number> {
   constructor(area: HTMLElement, public options: Options<X>) {
     this.area = select(area)
       .classed(classWithModifiers(bn, this.options.modifiers), true);
-    this.hoverCircleRadius = parseInt(this.area.style('--hover-circle-radius'), 10);
+    this.hoverCircleRadius = parseInt(window.getComputedStyle(area).getPropertyValue('--hover-circle-radius'), 10);
 
     this.svg = this.area.append('svg');
 
