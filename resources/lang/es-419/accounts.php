@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
         'comment_reply' => 'recibir notificaciones de las respuestas a tus comentarios',
@@ -100,12 +101,12 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
+            'beatmap_owner_change' => 'cuando se te ha añadido como un mapper invitado en una dificultad de un mapa',
+            'beatmapset:modding' => 'cuando las discusiones de mapas que estás observando reciben actualizaciones, o cuando haya un problema o sugerencia en tu propio mapa.',
+            'channel_mention' => 'cuando te mencionan en un canal público',
+            'channel_message' => 'cuando recibes un nuevo mensaje privado',
+            'channel_team' => 'cuando tu canal de chat de equipo tiene un nuevo mensaje',
+            'comment_new' => 'cuando hay un nuevo comentario en un ítem que estás siguiendo',
             'forum_topic_reply' => '',
             'mapping' => '',
             'news_post' => '',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'teclado',
         'mouse' => 'ratón',
         'tablet' => 'tableta',

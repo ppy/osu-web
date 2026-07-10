@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Celkové umiestnenie',
             'highest' => '',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

@@ -19,6 +19,7 @@ return [
         'nav_title' => 'dommer',
         'no_current_vote' => 'du har ikke stemt enda.',
         'update' => 'oppdater',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'manglende score',
             'contest_vote_judged' => 'kan ikke stemme i dømmede konkurranser',

@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '유저 불러오는 중...',
+    'searching_users' => '',
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',
     'title_compact' => '채팅',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => '채널에 참여하시면 메시지를 조회할 수 있어요.',
+        'join' => '채널에 참여',
     ],
 
     'input' => [

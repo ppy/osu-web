@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '加载用户中...',
+    'searching_users' => '',
     'talking_in' => '在 :channel 中聊天',
     'talking_with' => '与 :name 聊天',
     'title_compact' => '聊天',
@@ -51,8 +52,9 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => '加入频道以查看其消息。
+',
+        'join' => '加入频道',
     ],
 
     'input' => [

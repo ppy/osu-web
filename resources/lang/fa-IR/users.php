@@ -507,6 +507,10 @@ return [
             'global_simple' => 'رتبه جهانی',
             'highest' => '',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

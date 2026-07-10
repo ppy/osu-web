@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Рейтинг в мире',
             'highest' => 'Наивысший: :rank от :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',
             'total_score' => 'Всего очков',

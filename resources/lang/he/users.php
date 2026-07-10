@@ -509,6 +509,10 @@ return [
             'global_simple' => 'דירוג עולמי',
             'highest' => '',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

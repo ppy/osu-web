@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'загрузка карыстальнікаў...',
+    'searching_users' => '',
     'talking_in' => 'размаўляе ў :channel',
     'talking_with' => 'размаўляе з :name',
     'title_compact' => 'чат',

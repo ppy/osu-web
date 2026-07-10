@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
         'beatmapset_disqualify' => 'ontvang meldingen voor wanneer beatmaps van de volgende modes zijn gediskwalificeerd',
         'comment_reply' => 'ontvang meldingen voor reacties op uw reacties',
@@ -88,7 +89,7 @@ return [
             '_' => 'verzend methodes',
             'beatmap_owner_change' => 'gast moeilijkheid',
             'beatmapset:modding' => 'beatmap modding',
-            'channel_mention' => '',
+            'channel_mention' => 'chat vermelding',
             'channel_message' => 'privéberichten',
             'channel_team' => 'Team chat berichten',
             'comment_new' => 'nieuwe reacties',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'wanneer je wordt toegevoegd als een gast mapper op een beatmap moeilijkheid',
+            'beatmapset:modding' => 'wanneer beatmap discussies die je volgt updates ontvangen, of er is een probleem of suggestie op je eigen beatmap.',
+            'channel_mention' => 'wanneer je wordt genoemd in een openbaar kanaal',
+            'channel_message' => 'wanneer je een nieuw privébericht ontvangt',
+            'channel_team' => 'wanneer je team chat kanaal een nieuw bericht heeft',
+            'comment_new' => 'wanneer er een nieuw commentaar is op een item dat je volgt',
+            'forum_topic_reply' => 'wanneer forum onderwerpen die je bekijkt nieuwe reacties ontvangen',
+            'mapping' => 'wanneer een mapper die je volgt een beatmap upload',
+            'news_post' => 'wanneer er nieuwe nieuwsberichten zijn',
         ],
     ],
 
@@ -119,7 +120,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'laat anime stijl beatmap covers zien',
         'beatmapset_show_nsfw' => 'verberg waarschuwingen voor expliciete inhoud in beatmaps',
         'beatmapset_title_show_original' => 'beatmap metadata in originele taal weergeven',
         'title' => 'Opties',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'toetsenbord',
         'mouse' => 'muis',
         'tablet' => 'tablet',
@@ -165,17 +167,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Authenticator App',
+        'usage_note' => 'Gebruik de Authenticator App in plaats van e-mail voor verificatie. E-mail verificatie zal nog steeds beschikbaar zijn als een terugval.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Verwijderen',
+            'setup' => 'Authenticator App toevoegen',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'status',
+            'not_set' => 'Niet geconfigureerd',
+            'set' => 'Geconfigureerd',
         ],
     ],
 

@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Pangkat Dunia',
             'highest' => 'Pangkat tertinggi: :rank pada :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => ':value tertinggi',
             'total_score' => 'Jumlah markah',

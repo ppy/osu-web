@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Все',
         'label' => 'По пользователям',
+        'multiple' => '',
     ],
 ];

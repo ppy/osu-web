@@ -259,7 +259,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'Muốn đặt về màu mặc định? Sẽ cần supporter tag để đổi sang màu khác.',
+                'reset_no_supporter' => 'Muốn đặt về màu mặc định? Sẽ cần thẻ supporter để đổi sang màu khác.',
                 'title' => 'Màu sắc',
 
                 'supporter' => [
@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Hạng Toàn Cầu',
             'highest' => 'Hạng cao nhất: :rank vào :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
             'total_score' => 'Tổng điểm',
@@ -540,8 +544,8 @@ return [
 
     'status' => [
         'all' => 'Tất cả',
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => 'Trực Tuyến',
+        'offline' => 'Ngoại Tuyến',
     ],
     'store' => [
         'from_client' => 'vui lòng đăng kí thông qua game!',

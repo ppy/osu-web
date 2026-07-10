@@ -181,7 +181,7 @@ return [
             'insults' => 'Uráží mě / ostatní',
             'multiple_accounts' => 'Používání více účtů',
             'nonsense' => 'Nesmysl',
-            'other' => 'Jiný (napište níže)',
+            'other' => 'Jiný (napiš níže)',
             'spam' => 'Spamování',
             'unwanted_content' => 'Nevhodný obsah',
         ],
@@ -506,6 +506,10 @@ return [
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
             'highest' => 'Nejvyšší rank :rank v :date',
+        ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',

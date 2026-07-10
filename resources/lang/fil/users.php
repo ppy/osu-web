@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Pandaigdigang Ranggo',
             'highest' => 'Pinakamataas na ranggo: :rank sa :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

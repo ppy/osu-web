@@ -153,7 +153,7 @@ return [
         'username' => 'زائر',
         'error' => 'تحتاج إلى تسجيل الدخول للقيام بذلك.',
     ],
-    'logout_confirm' => 'أتريد تسجيل الخروج حقاً؟ :(',
+    'logout_confirm' => 'أتريد تسجيل الخروج حقا؟ :(',
     'report' => [
         'button_text' => 'اِبلاغ',
         'comments' => 'تعليقات إضافية',
@@ -260,7 +260,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'هل تريد إعادة تعيين اللون إلى الافتراضي؟ ستحتاج إلى osu!supporter لتغييره إلى لون مختلف.',
+                'reset_no_supporter' => 'إعادة تعيين اللون إلى الافتراضي؟ ستكون علامة الداعم مطلوبة لتغيير اللون إلى لون مختلف.',
                 'title' => 'اللون',
 
                 'supporter' => [
@@ -281,7 +281,7 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'بواسطة :artist',
-                'title' => 'الخرائط',
+                'title' => 'خرائط الايقاع',
 
                 'favourite' => [
                     'title' => 'الخرائط المفضلة',
@@ -499,7 +499,7 @@ return [
         ],
         'post_count' => [
             '_' => 'ساهم بـ :link',
-            'count' => ':count_delimited منشور في المنتدى|:count_delimited منشورات المنتدى',
+            'count' => ':count_delimited منشور منتدى":count_delimited منشورات المنتدى',
         ],
         'rank' => [
             'country' => 'ترتيب الدولة لـ :mode',
@@ -507,6 +507,10 @@ return [
             'global' => 'الترتيب العالمي لـ :mode',
             'global_simple' => 'الترتيب العالمي',
             'highest' => 'أعلى ترتيب: :rank في :date',
+        ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '',

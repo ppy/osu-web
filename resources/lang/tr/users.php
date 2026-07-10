@@ -403,7 +403,7 @@ return [
                 'show_more' => 'daha fazla gönderi gör',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Dereceli Oynanan Maçlar',
             ],
             'recent_activity' => [
                 'title' => 'Son',
@@ -506,6 +506,10 @@ return [
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
             'highest' => ':date tarihinde en yüksek rank: :rank',
+        ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'İlk :value',

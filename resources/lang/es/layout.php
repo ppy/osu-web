@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configuración',
+            'create_team' => '',
             'follows' => 'Listas de seguimiento',
             'friends' => 'Amigos',
             'legacy_score_only_toggle' => 'Modo lazer',

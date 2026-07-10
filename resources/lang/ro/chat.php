@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'se incarcă utilizatorii...',
+    'searching_users' => '',
     'talking_in' => 'vorbești în :channel',
     'talking_with' => 'vorbești cu :name',
     'title_compact' => 'chat',

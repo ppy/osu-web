@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Jouez avec des amis, qu'ils soient nouveaux ou plus anciens. Vous n'avez pas encore rejoint d'équipe. Vous pouvez rejoindre une équipe existante en visitant leur page d'équipe, ou créer votre propre équipe à partir de cette page.",
+            'search_link' => '',
             'title' => 'Équipe !',
         ],
     ],

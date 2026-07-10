@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Global rankning',
             'highest' => 'Högsta rank: :rank den :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Topp :value',
             'total_score' => 'Totalpoäng',

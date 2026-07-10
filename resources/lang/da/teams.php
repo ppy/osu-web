@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Spil sammen med eksisterende eller nye venner. Du er ikke i et team lige nu. Du kan melde dig ind i et team ved at besøge teamets side, eller lav dit eget team fra denne side.",
+            'search_link' => '',
             'title' => 'Team!',
         ],
     ],

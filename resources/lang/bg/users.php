@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Глобално класиране',
             'highest' => 'Най-висок ранг: :rank на :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',
             'total_score' => 'Общ резултат',

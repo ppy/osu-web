@@ -38,6 +38,7 @@ return [
     ],
 
     'teams' => [
+        'created' => '',
         'relevance' => 'Συνάφεια',
         'name' => 'Όνομα',
         'short-name' => 'Σύντομο όνομα',

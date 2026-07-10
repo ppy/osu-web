@@ -5,8 +5,8 @@
 
 return [
     'empty' => [
-        'active' => 'Hiện không có ván osu!(lazer) :type_group: nào đang diễn ra!',
-        'ended' => 'Chưa có ván osu!(lazer) :type_group: nào hoàn thành!',
+        'active' => 'Hiện không tham gia ván osu!(lazer) :type_group nào!',
+        'ended' => 'Chưa hoàn thành ván osu!(lazer) :type_group nào!',
         'playlists' => 'danh sách phát',
         'ranked-play' => 'chơi xếp hạng',
         'realtime' => 'nhiều người chơi',
@@ -16,7 +16,7 @@ return [
         'hosted_by' => 'chủ phòng :user',
         'invalid_password' => 'Mật khẩu phòng không đúng',
         'map_count' => ':count_delimited map|:count_delimited map',
-        'player_count' => ':count_delimited người_chơi|:count_delimited người chơi',
+        'player_count' => ':count_delimited người chơi|:count_delimited người chơi',
         'time_left' => ':time thời gian còn lại',
         'view_history' => 'Xem Lịch Sử',
         'view_summary' => 'Xem Thống Kê',
@@ -29,7 +29,7 @@ return [
 
         'status' => [
             'active' => 'đang hoạt động',
-            'ended' => 'đã dừng',
+            'ended' => 'đã kết thúc',
             'soon' => 'sớm kết thúc',
         ],
     ],

@@ -97,7 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "",
+            'inactive' => "Je account is lange tijd niet gebruikt.",
             'inactive_different_country' => "Je account is lange tijd niet gebruikt.",
         ],
     ],
@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Actief',
+            'ended' => 'Afgelopen',
         ],
     ],
 
@@ -168,16 +168,16 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Rapporteer graag copyright overschrijding via een DMCA claim aan :mail als per :policy.',
+                'policy' => 'het osu! auteursrechtbeleid',
             ],
-            'message_2' => '',
+            'message_2' => 'Dit geldt voor gevallen waarin audio tracks, visuele inhoud of beatmap content wordt gebruikt zonder de juiste toestemming.',
         ],
 
         'options' => [
             'cheating' => 'Valsspelen',
-            'copyright_infringement' => '',
-            'inappropriate_chat' => '',
+            'copyright_infringement' => 'Copyrightschending',
+            'inappropriate_chat' => 'Ongepast chatgedrag',
             'insults' => 'Beledigen van mij / anderen',
             'multiple_accounts' => 'Meerdere accounts gebruiken',
             'nonsense' => 'Nonsense',
@@ -214,28 +214,28 @@ return [
             'to_1' => 'Omslagfoto tonen',
         ],
         'daily_challenge' => [
-            'daily' => '',
-            'daily_streak_best' => '',
-            'daily_streak_current' => '',
-            'playcount' => '',
-            'title' => '',
-            'top_10p_placements' => '',
-            'top_50p_placements' => '',
-            'weekly' => '',
-            'weekly_streak_best' => '',
-            'weekly_streak_current' => '',
+            'daily' => 'Dagelijkse Reeks',
+            'daily_streak_best' => 'Beste Dagelijkse Reeks',
+            'daily_streak_current' => 'Huidige Dagelijkse Reeks',
+            'playcount' => 'Totale deelname',
+            'title' => 'Dagelijkse\nUitdaging',
+            'top_10p_placements' => 'Top 10% Plaatsing',
+            'top_50p_placements' => 'Top 50% Plaatsing',
+            'weekly' => 'Wekelijkse Reeks',
+            'weekly_streak_best' => 'Beste wekelijkse reeks',
+            'weekly_streak_current' => 'Huidige wekelijkse reeks',
 
             'unit' => [
-                'day' => '',
-                'week' => '',
+                'day' => ':valued',
+                'week' => ':valuew',
             ],
         ],
         'edit' => [
             'cover' => [
                 'button' => 'Verander Profiel Cover',
                 'defaults_info' => 'In de toekomst zullen er meer cover opties beschikbaar zijn',
-                'holdover_remove_confirm' => "",
-                'title' => '',
+                'holdover_remove_confirm' => "De eerder geselecteerde omslag is niet meer beschikbaar voor selectie. Je kunt deze niet meer selecteren na het overschakelen naar een andere omslag. Doorgaan?",
+                'title' => 'Omslag',
 
                 'upload' => [
                     'broken_file' => 'Afbeelding verwerken mislukt. Controleer de geüploade afbeelding en probeer opnieuw.',
@@ -259,12 +259,12 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => '',
-                'title' => '',
+                'reset_no_supporter' => 'Kleur herstellen naar standaard? De supporter tag is vereist om deze in een andere kleur te veranderen.',
+                'title' => 'Kleur',
 
                 'supporter' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'osu!supporters',
                 ],
             ],
         ],
@@ -334,7 +334,7 @@ return [
                     'count_label' => 'Aantal Replays Bekeken',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Meest Bekeken Replays',
                 ],
             ],
             'kudosu' => [
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'bekijk meer berichten',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Ranked Spelen Rondes',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'title' => 'Ranked Spelen',
         ],
 
         'not_found' => [
@@ -507,9 +507,13 @@ return [
             'global_simple' => 'Wereldwijde Ranking',
             'highest' => 'Hoogste rank: :rank op :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'total_score' => 'Totale score',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',

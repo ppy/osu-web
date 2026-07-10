@@ -34,7 +34,7 @@ return [
     'blocks' => [
         'banner_text' => '你已经屏蔽此用户。',
         'comment_text' => '此评论已隐藏。',
-        'blocked_count' => '被屏蔽的用户（:count）',
+        'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
         'hide_comment' => '隐藏',
         'forum_post_text' => '此帖子已被隐藏。',
@@ -75,7 +75,7 @@ return [
         'warning' => "如果您确实存在违规行为，请注意通常存在一个月的封禁冷静期，在此期间我们将不接受任何的解除封禁申请。在此之后您可自行判断是否需要联系我们。请注意：在已有账户被封停后创建新账户<strong>将导致封禁冷静期延长一个月</strong>，且<strong>每创建一个新账户均属额外违规行为</strong>。我们强烈建议不要误入歧途！",
 
         'if_mistake' => [
-            '_' => '若您认为此处理存在误判，欢迎通过向 :email 发送电子邮件或点击本页面右下角的问号来联系我们。同时，我们的处理方式基于了充分的数据支持且经过严格审核。如认定您的申诉存在主观恶意，我们保留不予受理的权利。',
+            '_' => '如果您认为此处理存在误判，欢迎联系我们（向 :email 发送电子邮件，或点击本页面右下角的问号）。请注意，我们在作出处理之前，通常已经收集到了充分的证据，并经过了严格的审核。并且，如果我们认定您的申诉存在主观恶意，将保留不予受理的权利。',
             'email' => '电子邮件',
         ],
 
@@ -92,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '按游戏模式筛选成员',
+        'by_game_mode' => '成员按游戏模式筛选',
     ],
 
     'force_reactivation' => [
@@ -136,7 +136,7 @@ return [
         'modding_description_empty' => '玩家没有任何谱面...',
 
         'description' => [
-            '_' => '排名（:ruleset）: :global | :country',
+            '_' => '排名 (:ruleset): :global | :country',
             'country' => '地区 :rank',
             'global' => '全球 :rank',
         ],
@@ -150,9 +150,9 @@ return [
         'login_link' => '点击登录',
         'login_text' => '登录',
         'username' => '游客',
-        'error' => '登录以继续。',
+        'error' => '登录以继续',
     ],
-    'logout_confirm' => '确定要退出登录吗？o(TヘTo)',
+    'logout_confirm' => '确定要退出吗？o(TヘTo)',
     'report' => [
         'button_text' => '举报',
         'comments' => '附加信息',
@@ -193,12 +193,12 @@ return [
     ],
     'show' => [
         'age' => ':age 岁',
-        'change_avatar' => '点击以更换头像！',
+        'change_avatar' => '点击以更换头像',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册于 :date',
-        'lastvisit' => '最后活跃于 :date',
+        'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
@@ -292,16 +292,16 @@ return [
                     'title' => '客串制作的谱面',
                 ],
                 'loved' => [
-                    'title' => '社区喜爱（Loved）谱面',
+                    'title' => '社区喜爱 (Loved) 谱面',
                 ],
                 'nominated' => [
-                    'title' => '提名并上架（Ranked）的谱面',
+                    'title' => '提名并上架 (Ranked) 的谱面',
                 ],
                 'pending' => [
-                    'title' => '待定（Pending）谱面',
+                    'title' => '待定 (Pending) 谱面',
                 ],
                 'ranked' => [
-                    'title' => '上架（Ranked）谱面',
+                    'title' => '上架 (Ranked) 谱面',
                 ],
             ],
             'discussions' => [
@@ -327,7 +327,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
-                    'title' => '最近 24 小时游玩',
+                    'title' => '最近24小时游玩',
                 ],
                 'replays_watched_counts' => [
                     'title' => '回放被观看记录',
@@ -413,7 +413,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
-                'not_ranked' => '只能在上架（Ranked）谱面中获得表现分（PP）',
+                'not_ranked' => '只能在上架 (Ranked) 谱面中获得表现分 (PP)',
                 'pp_weight' => '权重：:percentage',
                 'view_details' => '查看详情',
                 'title' => '成绩',
@@ -435,8 +435,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '最近三个月给予的投票',
-                'received' => '最近三个月所得投票',
+                'given' => '投出的票（最近三个月）',
+                'received' => '收到的票（最近三个月）',
                 'title' => '投票',
                 'title_longer' => '最近投票',
                 'vote_count' => ':count_delimited 票',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '排位模式',
+            'title' => '匹配模式',
         ],
 
         'not_found' => [
@@ -507,6 +507,10 @@ return [
             'global_simple' => '全球排名',
             'highest' => ':date 达成生涯最高排名 :rank',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '排名前 :value',
             'total_score' => '总分',
@@ -527,9 +531,9 @@ return [
             'total_score' => '总分',
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
-            'loved_beatmapset_count' => '社区喜爱（Loved）谱面',
-            'pending_beatmapset_count' => '待定（Pending）谱面',
-            'ranked_beatmapset_count' => '上架（Ranked）谱面',
+            'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
+            'pending_beatmapset_count' => '待定 (Pending) 谱面',
+            'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],
     ],
 

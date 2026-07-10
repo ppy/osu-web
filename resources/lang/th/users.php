@@ -508,6 +508,10 @@ return [
             'global_simple' => 'อันดับทั่วโลก',
             'highest' => 'อันดับสูงสุด: :rank เมื่อ :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
             'total_score' => 'คะแนนรวมทั้งหมด',

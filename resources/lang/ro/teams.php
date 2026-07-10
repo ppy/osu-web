@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Jucați împreună cu prieteni, existenți sau noi. Nu sunteți într-o echipă momentan. Alătură-te unei echipe existente vizitând pagina echipei sau creează-ți propria echipă de pe această pagină.",
+            'search_link' => '',
             'title' => 'Echipă!',
         ],
     ],
@@ -157,11 +158,11 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'first_places' => '',
+            'empty_slots' => ':count_delimited slot disponibil|:count_delimited sloturi disponibile|:count_delimited de sloturi disponibile',
+            'first_places' => 'Primul loc',
             'leader' => 'Liderul Echipei',
             'rank' => 'Rang',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Beatmap-uri clasate',
         ],
     ],
 

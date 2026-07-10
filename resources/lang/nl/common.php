@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'authorise' => 'Autorisatie',
         'authorising' => 'Autoriseren...',
-        'back' => '',
+        'back' => 'Terug',
         'back_to_previous' => 'Terug naar vorige positie',
         'back_to_top' => 'Terug naar boven',
         'cancel' => 'Annuleren',
@@ -39,7 +39,7 @@ return [
         'pin' => 'vastzetten',
         'post' => 'Plaatsen',
         'read_more' => 'lees meer',
-        'refresh' => '',
+        'refresh' => 'Vernieuwen',
         'reply' => 'Beantwoord',
         'reply_reopen' => 'Beantwoord en Heropen',
         'reply_resolve' => 'Beantwoord en Los op',
@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited minuut|:count_delimited minuten',
         'months' => ':count_delimited maand|:count_delimited maanden',
         'notifications' => ':count_delimited melding|:count_delimited meldingen',
-        'player' => '',
+        'player' => ':count_delimited speler|:count_delimited spelers',
         'plus_others' => '+ :count_delimited andere!|+ :count_delimited anderen!',
         'post' => ':count_delimited bericht|:count_delimited berichten',
         'second_short_unit' => 'second|seconden',
@@ -95,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'm',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'j',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

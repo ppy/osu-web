@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Inställningar',
+            'create_team' => '',
             'follows' => 'Bevakningslistor',
             'friends' => 'Vänner',
             'legacy_score_only_toggle' => 'Lazer läge',

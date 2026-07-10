@@ -19,6 +19,7 @@ return [
         'nav_title' => '심사',
         'no_current_vote' => '아직은 투표할 수 없습니다.',
         'update' => '적용',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => '존재하지 않는 점수',
             'contest_vote_judged' => '심사된 콘테스트에는 투표할 수 없습니다',

@@ -26,6 +26,7 @@ return [
         'edited' => 'En son :editor tarafından :update_time tarihinde düzenlendi.',
         'guest' => ':user kullanıcısının konuk zorluğu',
         'kudosu_denied' => 'Kudosu almaktan mahrum bırakıldı.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Bu zorluk seviyesi silindi o yüzden hakkında daha fazla tartışılamaz.',
         'message_placeholder_locked' => 'Bu beatmap için tartışma devre dışı bırakıldı.',
         'message_placeholder_silenced' => "Susturulduğunuzda tartışma gönderisi gönderemezsiniz.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Çözüldü',
         'restore' => 'restore et',
         'show_deleted' => 'Silineni göster',
+        'show_other_replies' => '',
         'title' => 'Tartışmalar',
         'unresolved_count' => ':count_delimited çözülmemiş sorunlar',
 

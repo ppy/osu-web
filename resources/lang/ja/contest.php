@@ -19,6 +19,7 @@ return [
         'nav_title' => '判定',
         'no_current_vote' => 'あなたはまだ投票していません。',
         'update' => '更新',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'スコアが欠損している',
             'contest_vote_judged' => '判定されたコンテストに投票できません',
@@ -30,9 +31,9 @@ return [
         '_' => '判定結果',
         'creator' => '作成者',
         'score' => 'スコア',
-        'score_std' => '',
+        'score_std' => '標準得点',
         'total_score' => '合計スコア',
-        'total_score_std' => '',
+        'total_score_std' => '標準得点の合計',
     ],
 
     'voting' => [

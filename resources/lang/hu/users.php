@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Globális Rangsor',
             'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

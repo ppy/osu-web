@@ -19,6 +19,7 @@ return [
         'nav_title' => 'tiesāt',
         'no_current_vote' => 'tu vēl nebalsoji.',
         'update' => 'atjaunināt',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'trūkst rezultāts',
             'contest_vote_judged' => 'nevar balsot vērtētos konkursos',

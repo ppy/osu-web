@@ -26,6 +26,7 @@ return [
         'edited' => 'Τελευταία επεξεργασία από: :editor :update_time.',
         'guest' => 'Δυσκολία επισκέπτη από :user',
         'kudosu_denied' => 'Αδύνατη η απόκτηση kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Η δυσκολία αυτή έχει διαγραφεί για αυτό δεν συζητιέται πλέον.',
         'message_placeholder_locked' => 'Η συζήτηση για αυτό το beatmap έχει απενεργοποιηθεί.',
         'message_placeholder_silenced' => "Δεν είναι δυνατή η δημοσίευση συζήτησης ενώ σιγασμένη.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Επιλύθηκε',
         'restore' => 'επαναφορά',
         'show_deleted' => 'Εμφάνιση διαγραμμένου',
+        'show_other_replies' => '',
         'title' => 'Συζητήσεις',
         'unresolved_count' => ':count_delimited ανεπίλυτο πρόβλημα|:count_delimited ανεπίλυτα προβλήματα',
 

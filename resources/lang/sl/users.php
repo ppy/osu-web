@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Svetovna lestvica',
             'highest' => 'Najvišja uvrstitev: :rank dne :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

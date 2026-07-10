@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Por favor, contate a :accounts se precisar atualizar o seu email.',
+                '_' => 'Entre em contato com :accounts caso precise atualizar o seu email.',
                 'accounts' => 'equipe de suporte de contas',
             ],
         ],
@@ -28,7 +28,7 @@ return [
         'legacy_api' => [
             'api' => 'api',
             'irc' => 'irc',
-            'title' => 'API Legada',
+            'title' => 'API legada',
         ],
 
         'password' => [
@@ -70,45 +70,46 @@ return [
         'unlink' => 'Desconectar conta do GitHub',
 
         'error' => [
-            'already_linked' => 'Esta conta do GitHub já está vinculada a um usuário diferente.',
+            'already_linked' => 'Esta conta do GitHub já está vinculada a outro usuário.',
             'no_contribution' => 'Não é possível vincular a conta GitHub sem qualquer histórico de contribuição nos repositórios do osu!.',
-            'unverified_email' => 'Por favor, verifique seu e-mail principal no GitHub e, após isso, tente vincular sua conta novamente.',
+            'unverified_email' => 'Verifique seu email principal no GitHub e tente vincular sua conta novamente.',
         ],
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'receber notificações para novos problemas em beatmaps qualificados dos seguintes modos',
         'beatmapset_disqualify' => 'receber notificações quando os beatmaps dos seguintes modos forem desqualificados',
-        'comment_reply' => 'receber notificações das respostas aos seus comentários',
+        'comment_reply' => 'receber notificações de respostas aos seus comentários',
         'news_post' => 'receber notificações para novos posts',
         'title' => 'Notificações',
-        'topic_auto_subscribe' => 'automaticamente ativar as notificações em tópicos que você criar no fórum',
+        'topic_auto_subscribe' => 'automaticamente ativar as notificações em tópicos que você criar ou responder no fórum',
 
         'options' => [
             '_' => 'opções de entrega',
             'beatmap_owner_change' => 'dificuldade do convidado',
-            'beatmapset:modding' => 'modding em beatmap',
-            'channel_mention' => 'menções no chat',
+            'beatmapset:modding' => 'modding de beatmap',
+            'channel_mention' => 'menções no bate-papo',
             'channel_message' => 'mensagens privadas',
-            'channel_team' => 'mensagens do bate-papo do time',
+            'channel_team' => 'mensagens do bate-papo da equipe',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
-            'mail' => 'email',
-            'mapping' => 'mapper do beatmap',
+            'mail' => 'correio',
+            'mapping' => 'criador do beatmap',
             'news_post' => 'novos posts',
             'push' => 'push',
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'quando você é adicionado como mapper convidado em uma dificuldade de um beatmap',
+            'beatmapset:modding' => 'quando as discussões de beatmap que você está assistindo recebem atualizações, ou houver um problema ou sugestão no seu próprio beatmap',
+            'channel_mention' => 'quando você for mencionado em um canal público',
+            'channel_message' => 'quando você receber uma nova mensagem privada',
+            'channel_team' => 'quando o canal de bate-papo da sua equipe tiver uma nova mensagem',
+            'comment_new' => 'quando houver um novo comentário sobre um item que você está seguindo',
+            'forum_topic_reply' => 'quando tópicos do fórum que você está assistindo receberem novas respostas',
+            'mapping' => 'quando um mapper que você segue enviar um beatmap',
+            'news_post' => 'quando houver novas postagens de notícias',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'teclado',
         'mouse' => 'mouse',
         'tablet' => 'mesa digitalizadora',
@@ -142,14 +144,14 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquear mensagens de pessoas que não estão na sua lista de amigos',
-        'hide_online' => 'esconder sua presença online',
+        'hide_online' => 'ocultar sua presença online',
         'hide_online_info' => 'isso corresponde ao modo "aparecer offline" no osu!lazer',
         'title' => 'Privacidade',
     ],
 
     'security' => [
         'current_session' => 'atual',
-        'end_session' => 'Finalizar Sessão',
+        'end_session' => 'Finalizar sessão',
         'end_session_confirmation' => 'Isso vai encerrar imediatamente sua sessão neste dispositivo. Você tem certeza?',
         'last_active' => 'Última atividade:',
         'title' => 'Segurança',
@@ -181,7 +183,7 @@ return [
 
     'verification_completed' => [
         'text' => 'Você já pode fechar esta aba/janela',
-        'title' => 'A Verificação foi concluída',
+        'title' => 'A verificação foi concluída',
     ],
 
     'verification_invalid' => [

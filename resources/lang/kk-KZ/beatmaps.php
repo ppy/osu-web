@@ -26,6 +26,7 @@ return [
         'edited' => ':editor :update_time уақытында өзгертті.',
         'guest' => ':user ұсынған қонақтық қиындық',
         'kudosu_denied' => 'Кудосу алуға рұқсат берілмеді.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Бұл қиындық жойылды, сондықтан оны бұдан былай талқылауға болмайды.',
         'message_placeholder_locked' => 'Бұл карта үшін пікірталас өшірілген.',
         'message_placeholder_silenced' => "Бітеулі кезде пікірталас жүргізуге болмайды.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Шешілді',
         'restore' => 'қалпына келтіру',
         'show_deleted' => 'Жойылғандарды көрсету',
+        'show_other_replies' => '',
         'title' => 'Пікірталастар',
         'unresolved_count' => '',
 

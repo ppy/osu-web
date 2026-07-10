@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Tothom',
         'label' => 'Filtra per usuari',
+        'multiple' => '',
     ],
 ];

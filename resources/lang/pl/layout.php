@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ustawienia',
+            'create_team' => '',
             'follows' => 'Listy obserwowanych',
             'friends' => 'Znajomi',
             'legacy_score_only_toggle' => 'Tryb „lazer”',

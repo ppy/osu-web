@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "与新老朋友一起游戏吧。你目前并未加入任何战队，但可以在这里访问其他战队的主页并加入，或是直接创建你自己的战队。",
+            'search_link' => '',
             'title' => '战队！',
         ],
     ],
@@ -99,7 +100,7 @@ return [
 
             'applications' => [
                 'accept_confirm' => '确定将玩家 :user 添加进战队吗？',
-                'created_at' => '申请于',
+                'created_at' => '申请日期：',
                 'empty' => '目前没有加入请求。',
                 'empty_slots' => '剩余名额',
                 'empty_slots_overflow' => ':count_delimited 名玩家超限',
@@ -161,7 +162,7 @@ return [
             'first_places' => '第一名',
             'leader' => '队长',
             'rank' => '排名',
-            'ranked_beatmapsets' => '已上架（Ranked）谱面',
+            'ranked_beatmapsets' => '已上架 (Ranked) 谱面',
         ],
     ],
 

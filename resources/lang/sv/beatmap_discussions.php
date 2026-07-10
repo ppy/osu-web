@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Allihopa',
         'label' => 'Filtrera efter användare',
+        'multiple' => '',
     ],
 ];

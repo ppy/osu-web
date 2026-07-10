@@ -105,7 +105,7 @@ return [
             'loved' => 'adorado há :timeago',
             'qualified' => 'qualificado há :timeago',
             'ranked' => 'classificado há :timeago',
-            'submitted' => 'submetido há :timeago',
+            'submitted' => 'submetido a :timeago',
             'updated' => 'atualizado há :timeago',
         ],
 
@@ -141,7 +141,7 @@ return [
             'description' => 'Descrição',
             'genre' => 'Género',
             'language' => 'Língua',
-            'mapper_tags' => 'Etiquetas do mapeador',
+            'mapper_tags' => 'Etiquetas do criador de mapas',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
             'nominators' => 'Nomeadores',
             'nsfw' => 'Conteúdo explícito',
@@ -154,6 +154,16 @@ return [
             'success_rate_plays' => ':passes de :count_delimited partida|:passes de :count_delimited partidas',
             'user_tags' => 'Etiquetas do utilizador',
             'video' => 'Este mapa contém um vídeo',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
@@ -174,7 +184,7 @@ return [
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obtém!',
-            'supporter-only' => 'Precisa de ser um osu!supporter para aceder às classificações de amigos e países!',
+            'supporter-only' => 'Precisa de ser um apoiante do osu! para aceder às classificações de amigos e países!',
             'team' => 'Classificação da equipa',
             'title' => 'Tabela de pontuações',
 

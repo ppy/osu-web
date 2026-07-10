@@ -36,7 +36,7 @@ return [
     'matchmaking' => [
         'plays' => 'مرات اللعب',
         'points' => 'النقاط',
-        'provisional' => 'لم يتم لعب عدد كافٍ من المباريات لتحديد التصنيف بدقة',
+        'provisional' => '',
         'rating' => 'التقييم',
         'wins' => 'مرات الفوز
 ',
@@ -59,8 +59,8 @@ return [
         'charts' => 'الأضواء القديمة',
         'featured' => 'مميّز
 ',
-        'season_room' => 'غرفة الموسم',
-        'seasons' => 'مواسم',
+        'season_room' => '',
+        'seasons' => '',
     ],
 
     'type' => [
@@ -78,22 +78,22 @@ return [
         'empty' => 'لا توجد غرف في هذا الموسم حتى الآن.',
         'ongoing' => 'هذا الموسم لا يزال جاريا (سيتم إضافة المزيد من قوائم التشغيل).',
         'room_count' => 'عدد قوائم التشغيل',
-        'summary' => 'عرض ملخص الموسم',
+        'summary' => '',
         'url' => 'عرض المزيد من المعلومات عن هذا الموسم.',
         'validation' => [
-            'not_enough_factors' => 'لا توجد عوامل تقييم كافية لإجراء الحساب بشكل صحيح',
+            'not_enough_factors' => '',
         ],
     ],
 
     'spotlight' => [
         'end_date' => 'تاريخ الانتهاء',
-        'map_count' => 'عدد الخرائط',
+        'map_count' => 'تعداد الخريطة',
         'participants' => 'المشاركون',
         'start_date' => 'تاريخ البداية',
     ],
 
     'stat' => [
-        'accuracy' => 'الدِقَّة',
+        'accuracy' => 'ألدِقة',
         'active_users' => 'المستخدمين النشطين',
         'country' => 'الدولة',
         'division' => '',

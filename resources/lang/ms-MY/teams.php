@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Main bersama-sama dengan rakan yang ada mahupun yang baharu. Anda kini tiada dalam mana-mana pasukan. Masuk pasukan yang ada dengan melawati halaman pasukan mereka atau cipta pasukan sendiri dari halaman ini.",
+            'search_link' => '',
             'title' => 'Pasukan!',
         ],
     ],

@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Pelaa yhdessä kavereidesi kanssa; entisten tai uusien. Et ole tällä hetkellä tiimissä. Liity olemassa olevaan tiimiin vierailemalla heidän tiimisivullaan tai luo oma tiimisi tältä sivulta.",
+            'search_link' => '',
             'title' => 'Tiimi!',
         ],
     ],

@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => ':value teratas',
             'total_score' => 'Jumlah skor',

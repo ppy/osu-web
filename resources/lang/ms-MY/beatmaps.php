@@ -26,6 +26,7 @@ return [
         'edited' => 'Suntingan terkini oleh :editor :update_time.',
         'guest' => 'Kesukaran tamu oleh :user',
         'kudosu_denied' => 'Pemerolehan kudosu ditolak.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Kesukaran ini tidak boleh dibincangkan lagi kerana telah dipadam.',
         'message_placeholder_locked' => 'Perbincangan untuk peta rentak ini telah dilumpuhkan.',
         'message_placeholder_silenced' => "Perbincangan tidak boleh dihantar ketika didiamkan.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Selesai',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tunjuk padaman',
+        'show_other_replies' => '',
         'title' => 'Perbincangan',
         'unresolved_count' => ':count_delimited isu tidak selesai',
 

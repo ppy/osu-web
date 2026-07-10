@@ -38,6 +38,7 @@ return [
     ],
 
     'teams' => [
+        'created' => '',
         'relevance' => 'ความเกี่ยวข้อง',
         'name' => 'ชื่อ',
         'short-name' => 'ชื่อย่อ',

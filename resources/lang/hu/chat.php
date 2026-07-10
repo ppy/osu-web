@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'felhasználók betöltése...',
+    'searching_users' => '',
     'talking_in' => 'beszélgetés :channel csatornában',
     'talking_with' => 'beszélgetés :name felhasználóval',
     'title_compact' => 'csevegés',

@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Globālās Pozīcijas',
             'highest' => 'Augstākais novietojums: :rank :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
             'total_score' => 'Kopējais punktu skaits',

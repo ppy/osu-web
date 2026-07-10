@@ -77,18 +77,18 @@ return [
 
             'beatmapset_state' => [
                 '_' => '谱面状态更改',
-                'beatmapset_disqualify' => '谱面 ":title" 已下架（DQ）。',
-                'beatmapset_disqualify_compact' => '谱面已下架（DQ）',
-                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱（Loved）',
-                'beatmapset_love_compact' => '谱面已推荐进入社区喜爱（Loved）',
+                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)',
+                'beatmapset_disqualify_compact' => '谱面已下架 (DQ)',
+                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱 (Loved)',
+                'beatmapset_love_compact' => '谱面已推荐进入社区喜爱 (Loved)',
                 'beatmapset_nominate' => '谱面 ":title" 已提名。',
                 'beatmapset_nominate_compact' => '谱面被提名',
                 'beatmapset_qualify' => '谱面 ":title" 已经得到足够数量的提名，并进入上架队列',
                 'beatmapset_qualify_compact' => '谱面已进入上架队列',
-                'beatmapset_rank' => '谱面 ":title" 已上架（Ranked）',
-                'beatmapset_rank_compact' => '谱面已上架（Ranked）',
-                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱（Loved）',
-                'beatmapset_remove_from_loved_compact' => '谱面已移出社区喜爱（Loved）',
+                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)。',
+                'beatmapset_rank_compact' => '谱面已上架 (Ranked)',
+                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱 (Loved)',
+                'beatmapset_remove_from_loved_compact' => '谱面已移出社区喜爱 (Loved)',
                 'beatmapset_reset_nominations' => '谱面 ":title" 的提名已重置',
                 'beatmapset_reset_nominations_compact' => '提名已重置',
             ],
@@ -140,9 +140,9 @@ return [
                 '_' => '新的战队信息',
 
                 'team' => [
-                    'channel_team' => ':username 说：":title"',
-                    'channel_team_compact' => ':username 说：":title"',
-                    'channel_team_group' => ':username 说：":title"',
+                    'channel_team' => ':username 说：“:title”',
+                    'channel_team_compact' => ':username 说：“:title”',
+                    'channel_team_group' => ':username 说：“:title”',
                 ],
             ],
         ],
@@ -173,7 +173,7 @@ return [
             ],
 
             'news_post' => [
-                '_' => '新闻（:series）',
+                '_' => '新闻 (:series)',
 
                 'news_post_new' => ':title',
                 'news_post_new_compact' => ':title',
@@ -251,13 +251,13 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '谱面 ":title" 已下架（DQ）',
-                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱（Loved）',
-                'beatmapset_nominate' => '谱面 ":title" 已被提名',
+                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)。',
+                'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱 (Loved)',
+                'beatmapset_nominate' => '谱面 ":title" 已提名。',
                 'beatmapset_qualify' => '谱面 ":title" 已经得到足够数量的提名，并进入上架队列',
-                'beatmapset_rank' => '谱面 ":title" 已上架（Ranked）',
-                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱（Loved）',
-                'beatmapset_reset_nominations' => '谱面 ":title" 的提名已被重置',
+                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)。',
+                'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱 (Loved)',
+                'beatmapset_reset_nominations' => '谱面 ":title" 的提名已重置',
             ],
 
             'comment' => [

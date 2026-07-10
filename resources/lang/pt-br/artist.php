@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => 'osu! beatmaps',
+        'beatmaps' => 'Beatmaps do osu!',
         'osu' => 'perfil do osu!',
         'site' => 'Site oficial',
     ],
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Músicas',
         'count' => ':count música|:count músicas',
-        'original' => 'osu! original',
+        'original' => 'Original do osu!',
         'original_badge' => 'ORIGINAL',
     ],
 
@@ -47,21 +47,21 @@ return [
 
             'exclusive_only' => [
                 'all' => 'Tudo',
-                'exclusive_only' => 'osu! original',
+                'exclusive_only' => 'Original do osu!',
             ],
 
             'form' => [
-                'advanced' => 'Pesquisa Avançada',
+                'advanced' => 'Pesquisa avançada',
                 'album' => 'Álbum',
                 'artist' => 'Artista',
-                'bpm_gte' => 'BPM Mínimo',
-                'bpm_lte' => 'BPM Máximo',
+                'bpm_gte' => 'BPM mínimo',
+                'bpm_lte' => 'BPM máximo',
                 'empty' => 'Não foram encontradas músicas dentro do critério específico.',
                 'exclusive_only' => 'Tipo',
                 'genre' => 'Gênero',
                 'genre_all' => 'Todos',
-                'length_gte' => 'Duração Mínima ',
-                'length_lte' => 'Duração Máxima',
+                'length_gte' => 'Duração mínima',
+                'length_lte' => 'Duração máxima',
             ],
         ],
     ],

@@ -5,7 +5,7 @@
 
 return [
     'mode' => [
-        'artist_track' => 'Faixa de Artista em Destaque',
+        'artist_track' => 'Música do Artista em Destaque',
         'beatmapset' => 'Mapa',
         'forum_post' => 'Fórum',
         'other' => 'Outro',
@@ -21,7 +21,7 @@ return [
         'no_results' => [
             '_' => 'Sem resultados para :mode',
 
-            'artist_track' => 'Faixas de Artistas em Destaque',
+            'artist_track' => 'Músicas do Artista em Destaque',
             'beatmapset' => 'Mapas',
             'forum_post' => 'Fóruns',
             'other' => 'Outros',

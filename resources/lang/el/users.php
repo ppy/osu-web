@@ -507,6 +507,10 @@ return [
             'global_simple' => 'Παγκόσμια Κατάταξη',
             'highest' => 'Υψηλότερη κατάταξη: :rank στο :date',
         ],
+        'score_processing' => [
+            '_' => '',
+            'link' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Κορυφαίο :value',
             'total_score' => 'Συνολικό σκορ',

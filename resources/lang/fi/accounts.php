@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen kelpuutetuissa rytmikartoissa',
         'beatmapset_disqualify' => 'vastaanota ilmoituksia, kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'näppäimistö',
         'mouse' => 'hiiri',
         'tablet' => 'piirtopöytä',

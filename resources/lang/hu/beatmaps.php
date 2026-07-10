@@ -26,6 +26,7 @@ return [
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
         'guest' => 'Vendég nehézséget készítette: :user',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
         'message_placeholder_silenced' => "Nem hozhatsz létre beszélgetést, amíg némítva vagy.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Megoldott',
         'restore' => 'visszaállítás',
         'show_deleted' => 'Töröltek megjelenítése',
+        'show_other_replies' => '',
         'title' => 'Megbeszélések',
         'unresolved_count' => ':count_delimited megoldatlan probléma|:count_delimited megoldatlan probléma',
 

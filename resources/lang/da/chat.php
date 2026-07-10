@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'indlæser brugere...',
+    'searching_users' => '',
     'talking_in' => 'taler i :channel',
     'talking_with' => 'taler med:name',
     'title_compact' => 'chat',

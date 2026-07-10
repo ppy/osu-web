@@ -187,7 +187,7 @@ return [
         'gift_message' => 'thêm một lời nhắn vào món quà của bạn!( lên tới :length chữ)',
 
         'require_login' => [
-            '_' => 'Bạn cần phải :link để nhận một osu!supporter tag!',
+            '_' => 'Bạn cần phải :link để nhận một thẻ osu!supporter!',
             'link_text' => 'đăng nhập',
         ],
     ],
