@@ -9,8 +9,10 @@ namespace App\Http\Controllers\Beatmapsets;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller;
+use App\Libraries\ClientCheck;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetUserRating;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BeatmapsetRatingsController extends Controller
 {
@@ -40,7 +42,15 @@ class BeatmapsetRatingsController extends Controller
 
     public function store($beatmapsetId)
     {
-        $rating = get_int(request('rating'));
+        $request = \Request::instance();
+
+        try {
+            ClientCheck::parseToken($request);
+        } catch (HttpException $e) {
+            abort(403);
+        }
+
+        $rating = get_int($request['rating'] ?? null);
         if ($rating === null || $rating < 1 || $rating > 10) {
             throw new InvariantException(osu_trans('beatmapsets.rate.invalid'));
         }
