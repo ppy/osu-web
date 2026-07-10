@@ -66,12 +66,14 @@ export default class Detail extends React.Component<Props> {
             mappings={{
               link: (
                 <a href={this.props.controller.scoreProcessingNoticeUrl}>
-                  {trans('users.show.score_processing.link')}
+                  {trans('users.show.score_processing.title_link')}
                 </a>
               ),
             }}
-            pattern={trans('users.show.score_processing._')}
+            pattern={trans('users.show.score_processing.title')}
           />
+          {' '}
+          {trans('users.show.score_processing.message')}
         </div>
       </div>
     );
