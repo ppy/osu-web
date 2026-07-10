@@ -509,8 +509,9 @@ return [
             'highest' => 'أعلى ترتيب: :rank في :date',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '',

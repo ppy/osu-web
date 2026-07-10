@@ -509,8 +509,9 @@ return [
             'highest' => 'อันดับสูงสุด: :rank เมื่อ :date',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',

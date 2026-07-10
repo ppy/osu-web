@@ -508,8 +508,9 @@ return [
             'highest' => '最高排名:rank於:date',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '前 :value',

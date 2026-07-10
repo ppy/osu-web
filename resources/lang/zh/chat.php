@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => '加载用户中...',
-    'searching_users' => '',
+    'searching_users' => '正在搜索用户...',
     'talking_in' => '在 :channel 中聊天',
     'talking_with' => '与 :name 聊天',
     'title_compact' => '聊天',

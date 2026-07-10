@@ -508,8 +508,9 @@ return [
             'highest' => 'Най-висок ранг: :rank на :date',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',

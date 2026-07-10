@@ -19,7 +19,7 @@ return [
         'nav_title' => '打分',
         'no_current_vote' => '你尚未投票。',
         'update' => '更新',
-        'unsaved_changes' => '',
+        'unsaved_changes' => '未保存的更改',
         'validation' => [
             'missing_score' => '缺失分数',
             'contest_vote_judged' => '不能在已打分的竞赛中投票。',

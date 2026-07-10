@@ -509,8 +509,9 @@ return [
             'highest' => '최고 순위: :rank, :date에 달성',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '상위 :value',

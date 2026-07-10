@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'domyślny tryb gry',
         'keyboard' => 'klawiatura',
         'mouse' => 'mysz',
         'tablet' => 'tablet',

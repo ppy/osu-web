@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => '在你参与的谱面讨论被回复时接收通知',
         'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审 (Qualified) 谱面上的新问题通知：',
         'beatmapset_disqualify' => '接收以下游戏模式谱面下架 (DQ) 时的通知：',
         'comment_reply' => '在你的评论被回复时接收通知',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => '默认游戏模式',
         'keyboard' => '键盘',
         'mouse' => '鼠标',
         'tablet' => '数位板',

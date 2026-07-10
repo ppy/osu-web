@@ -157,12 +157,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => '仅 Lazer',
+            'description' => '由于特殊机制，此谱面仅可在 osu!lazer 上游玩。',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link 以查看此谱面的成绩。',
+                'enable_link' => '启用 Lazer 模式',
             ],
         ],
 

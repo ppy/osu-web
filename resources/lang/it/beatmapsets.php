@@ -158,7 +158,7 @@ return [
 
         'lazer_only' => [
             'title' => '',
-            'description' => '',
+            'description' => 'A cause di meccaniche specifiche, questa beatmap può essere giocata solo su osu!lazer.',
 
             'scoreboard_switch_mode' => [
                 '_' => '',

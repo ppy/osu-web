@@ -508,8 +508,9 @@ return [
             'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '',

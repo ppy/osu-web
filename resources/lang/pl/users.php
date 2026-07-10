@@ -508,8 +508,9 @@ return [
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Wśród :value najlepszych',

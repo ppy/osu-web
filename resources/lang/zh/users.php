@@ -508,8 +508,9 @@ return [
             'highest' => ':date 达成生涯最高排名 :rank',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '排名前 :value',

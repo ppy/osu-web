@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '按用户筛选',
-        'multiple' => '',
+        'multiple' => ':count_delimited 名玩家已选择',
     ],
 ];

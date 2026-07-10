@@ -26,7 +26,7 @@ return [
         'edited' => ':editor 最后在 :update_time 编辑。',
         'guest' => ':user 制作的客串难度',
         'kudosu_denied' => 'kudosu 已收回',
-        'include_replies' => '',
+        'include_replies' => '包括回复',
         'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论。',
         'message_placeholder_locked' => '该谱面下的讨论已关闭。',
         'message_placeholder_silenced' => "禁言时无法发布讨论。",
@@ -38,7 +38,7 @@ return [
         'resolved' => '已解决',
         'restore' => '恢复',
         'show_deleted' => '显示已删除的消息',
-        'show_other_replies' => '',
+        'show_other_replies' => '显示其他回复',
         'title' => '讨论',
         'unresolved_count' => ':count_delimited 未解决的问题',
 

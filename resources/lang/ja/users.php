@@ -511,8 +511,9 @@ CAPTCHA認証を成功させてから再試行してください。
             'highest' => '最高ランク: :rank (:dateに取得)',
         ],
         'score_processing' => [
-            '_' => '',
-            'link' => '',
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'トップ :value',
