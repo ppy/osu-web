@@ -39,7 +39,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 use romanzipp\Turnstile\Validator as TurnstileValidator;
 use Sentry\State\Scope;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @group Users
@@ -111,14 +110,6 @@ class UsersController extends Controller
         ]);
 
         parent::__construct();
-    }
-
-    private static function storeClientDisabledError()
-    {
-        return response([
-            'error' => osu_trans('users.store.from_web'),
-            'url' => route('users.create'),
-        ], 403);
     }
 
     public function create()
@@ -198,7 +189,10 @@ class UsersController extends Controller
     public function store()
     {
         if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['client']) {
-            return static::storeClientDisabledError();
+            return response([
+                'error' => osu_trans('users.store.from_web'),
+                'url' => route('users.create'),
+            ], 403);
         }
 
         $request = \Request::instance();
@@ -207,13 +201,7 @@ class UsersController extends Controller
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        try {
-            $clientTokenData = ClientCheck::parseToken($request);
-        } catch (HttpException $e) {
-            return static::storeClientDisabledError();
-        }
-
-        return $this->storeUser($request->all(), $clientTokenData);
+        return $this->storeUser($request->all(), ClientCheck::parseToken($request));
     }
 
     public function storeWeb()
@@ -698,11 +686,7 @@ class UsersController extends Controller
 
         abort_unless($achievement->client_side, 422, 'achievement cannot be unlocked');
 
-        try {
-            ClientCheck::parseToken($request);
-        } catch (HttpException $e) {
-            abort(403);
-        }
+        ClientCheck::parseToken($request);
 
         $unlocked = UserAchievement::unlock($user, $achievement);
         abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
