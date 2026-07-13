@@ -156,6 +156,16 @@ return [
             'video' => 'Tämä rytmikartta sisältää videon',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Tämä rytmikartta sisältää sopimatonta, loukkaavaa tai järkyttävää sisältöä. Haluatko kuitenkin nähdä sen?',
             'title' => 'Sopimatonta sisältöä',

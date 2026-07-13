@@ -342,6 +342,33 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/beatmapsets/{beatmapset}/ratings",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\Beatmapsets\\BeatmapsetRatingsController@index",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/beatmapsets/{beatmapset}/ratings",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Beatmapsets\\BeatmapsetRatingsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/blocks",
         "methods": [
             "GET",

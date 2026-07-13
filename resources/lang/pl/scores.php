@@ -17,7 +17,7 @@ return [
             'played_on' => 'Zagrane na',
             'submitted_on' => 'Data przesłania',
             'watched' => 'Obejrzano',
-            'watched_count' => ':count_delimited raz|:count_delimited razy',
+            'watched_count' => ':count_delimited raz|:count_delimited razy|:count_delimited razy',
 
             'rank' => [
                 'country' => 'Pozycja w rankingu krajowym',

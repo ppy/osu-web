@@ -30,20 +30,20 @@ return [
             'only_unresolved' => 'Mostrar apenas discussões não resolvidas',
             'show_review_embeds' => 'Mostrar publicações de revisão',
             'types' => 'Tipos de mensagem',
-            'username' => 'Nome de Usuário',
+            'username' => 'Nome de usuário',
 
             'beatmapset_status' => [
-                '_' => 'Status do Beatmap',
+                '_' => 'Status do beatmap',
                 'all' => 'Todos',
                 'disqualified' => 'Desqualificado',
-                'never_qualified' => 'Nunca Qualificado',
+                'never_qualified' => 'Nunca qualificado',
                 'qualified' => 'Qualificado',
                 'ranked' => 'Ranqueado',
             ],
 
             'user' => [
                 'label' => 'Usuário',
-                'overview' => 'Supervisão de atividades',
+                'overview' => 'Visão geral de atividades',
             ],
         ],
     ],
@@ -56,13 +56,13 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Nenhuma das postagens corresponde ao que procuro',
+        'confirm' => 'Nenhuma das publicações abordam minha questão',
         'notice' => 'Existem postagens próximas de :timestamp (:existing_timestamps). Por favor, visualize-as antes de postar.',
         'unsaved' => ':count nesta revisão',
     ],
 
     'owner_editor' => [
-        'button' => 'Dono da Dificuldade',
+        'button' => 'Dono da dificuldade',
         'reset_confirm' => 'Redefinir o proprietário para esta dificuldade?',
         'user' => 'Dono',
         'version' => 'Dificuldade',
@@ -85,7 +85,7 @@ return [
     'review' => [
         'block_count' => ':used / :max blocos usados',
         'go_to_parent' => 'Ver Publicação de Revisão',
-        'go_to_child' => 'Ver Discussão',
+        'go_to_child' => 'Ver discussão',
         'validation' => [
             'block_too_large' => 'cada bloco só pode conter até :limit caracteres',
             'external_references' => 'revisão contém referências a problemas que não pertencem a esta revisão',
@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Todos',
         'label' => 'Filtrar por usuário',
+        'multiple' => '',
     ],
 ];

@@ -80,7 +80,7 @@ return [
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Favoritar este beatmap',
-            'favourite_login' => 'Inicie a sessão favoritar este beatmap',
+            'favourite_login' => 'entre para favoritar este beatmap',
             'logged-out' => 'Você precisa conectar-se antes de baixar qualquer beatmap!',
             'mapped_by' => 'mapeado por :mapper',
             'mapped_by_guest' => 'dificuldade de convidado feita por :mapper',
@@ -96,7 +96,7 @@ return [
 
             'login_required' => [
                 'bottom' => 'para acessar mais funcionalidades',
-                'top' => 'Conectar-se',
+                'top' => 'Entrar',
             ],
         ],
 
@@ -141,7 +141,7 @@ return [
             'description' => 'Descrição',
             'genre' => 'Gênero',
             'language' => 'Idioma',
-            'mapper_tags' => 'Tags de Mapeadores',
+            'mapper_tags' => 'Etiquetas de criador',
             'no_scores' => 'Dados ainda sendo calculados...',
             'nominators' => 'Nominadores',
             'nsfw' => 'Conteúdo explícito',
@@ -154,6 +154,16 @@ return [
             'success_rate_plays' => ':passes da :count_delimited jogada├:passes das :count_delimited jogadas',
             'user_tags' => 'Tags de Usuários',
             'video' => 'Esse beatmap contém vídeo',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
@@ -175,7 +185,7 @@ return [
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
             'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
-            'team' => 'Classificação dos equipes',
+            'team' => 'Classificação da equipe',
             'title' => 'Placar',
 
             'headers' => [

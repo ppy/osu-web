@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Visi',
         'label' => 'Filtrēt pēc lietotāja',
+        'multiple' => '',
     ],
 ];

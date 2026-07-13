@@ -36,7 +36,7 @@ return [
     'matchmaking' => [
         'plays' => 'Vezes jogadas',
         'points' => 'Pontos',
-        'provisional' => 'Partidas insuficientes para determinar com precisão a classificação',
+        'provisional' => 'Partidas insuficientes para determinar precisamente a classificação',
         'rating' => 'Classificação',
         'wins' => 'Vitórias',
     ],
@@ -66,7 +66,7 @@ return [
         'daily_challenge' => 'desafio diário',
         'global' => 'global',
         'kudosu' => 'kudosu',
-        'matchmaking' => 'jogo rápido',
+        'matchmaking' => 'competitivo',
         'playlists' => 'playlists',
         'team' => 'equipe',
         'top_plays' => 'recordes',

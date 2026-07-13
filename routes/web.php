@@ -486,6 +486,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+                Route::apiResource('{beatmapset}/ratings', 'BeatmapsetRatingsController', ['only' => ['index', 'store']]);
             });
         });
 

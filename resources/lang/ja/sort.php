@@ -38,6 +38,7 @@ return [
     ],
 
     'teams' => [
+        'created' => '',
         'relevance' => '関連性',
         'name' => '名前',
         'short-name' => '略称',

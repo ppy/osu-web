@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'загрузка пользователей...',
+    'searching_users' => '',
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат с :name',
     'title_compact' => 'чат',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Подпишитесь на этот канал, чтобы начать читать сообщения.',
+        'join' => 'Подписаться',
     ],
 
     'input' => [

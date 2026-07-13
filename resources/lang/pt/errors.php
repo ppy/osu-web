@@ -8,7 +8,7 @@ return [
     'missing_route' => 'URL inválido ou método de pedido incorreto.',
     'no_restricted_access' => 'Não pode realizar esta ação enquanto a sua conta estiver em estado restrito.',
     'param_too_large' => 'O parâmetro :name tem um máximo de :count_delimited artigo|O parâmetro :name tem um máximo de :count_delimited artigos',
-    'supporter_only' => 'Tem de ser um osu!supporter para usar esta funcionalidade.',
+    'supporter_only' => 'Tem de ser um apoiante do osu! para usar esta funcionalidade.',
     'unknown' => 'Ocorreu um erro desconhecido.',
 
     'codes' => [

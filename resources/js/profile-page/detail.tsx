@@ -2,8 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
+import StringWithComponent from 'components/string-with-component';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import Badges from './badges';
 import Controller from './controller';
 import Cover from './cover';
@@ -43,10 +45,37 @@ export default class Detail extends React.Component<Props> {
           </div>
         )}
 
+        {this.renderScoresNotice()}
+
         <DetailBar user={user} />
 
         <Links user={user} />
       </>
+    );
+  }
+
+  private renderScoresNotice() {
+    if (this.props.controller.scoreProcessingNoticeUrl == null) return null;
+
+    return (
+      <div className='wiki-notice wiki-notice--profile-page-extra'>
+        <span className='fas fa-exclamation-circle' />
+        {' '}
+        <div className='wiki-notice__markdown-inline-content'>
+          <StringWithComponent
+            mappings={{
+              link: (
+                <a href={this.props.controller.scoreProcessingNoticeUrl}>
+                  {trans('users.show.score_processing.title_link')}
+                </a>
+              ),
+            }}
+            pattern={trans('users.show.score_processing.title')}
+          />
+          {' '}
+          {trans('users.show.score_processing.message')}
+        </div>
+      </div>
     );
   }
 }

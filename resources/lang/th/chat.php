@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'กำลังโหลดผู้ใช้...',
+    'searching_users' => '',
     'talking_in' => 'กำลังสนทนาใน :channel',
     'talking_with' => 'กำลังสนทนากับ :name',
     'title_compact' => 'ห้องสนทนา',

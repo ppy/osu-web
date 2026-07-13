@@ -156,6 +156,16 @@ return [
             'video' => 'Šī ritma-mape satur video',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Šajā ritma-mapē ir atklāts, aizskarošs vai  satraucošs saturs. Vai tomēr vēlaties to skatīt?',
             'title' => 'Nepiemērots Saturs',

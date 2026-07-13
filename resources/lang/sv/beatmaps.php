@@ -26,6 +26,7 @@ return [
         'edited' => 'Senast redigerad av :editor :update_time.',
         'guest' => 'Gästsvårighetsgrad av :user',
         'kudosu_denied' => 'Nekad från att skaffa kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Denna svårighetsgrad har tagits bort så den kan inte längre diskuteras.',
         'message_placeholder_locked' => 'Diskussioner för denna beatmap har inaktiverats.',
         'message_placeholder_silenced' => "Kan inte lägga upp diskussionen medan du är tystad.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Löst',
         'restore' => 'återställ',
         'show_deleted' => 'Visa borttagna',
+        'show_other_replies' => '',
         'title' => 'Diskussioner',
         'unresolved_count' => ':count_delimited olösta problem|:count_delimited olösta problem',
 

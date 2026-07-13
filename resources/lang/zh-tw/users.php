@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '排名模式',
+            'title' => '排位模式',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => '最高排名:rank於:date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '前 :value',

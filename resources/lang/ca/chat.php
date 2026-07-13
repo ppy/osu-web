@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'carregant usuaris...',
+    'searching_users' => '',
     'talking_in' => 'parlant en :channel',
     'talking_with' => 'parlant amb :name',
     'title_compact' => 'xat',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Uniu-vos al canal per a veure els seus missatges.',
+        'join' => 'Uneix-me al canal',
     ],
 
     'input' => [

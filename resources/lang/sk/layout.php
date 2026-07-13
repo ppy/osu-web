@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavenia',
+            'create_team' => '',
             'follows' => '',
             'friends' => 'Priatelia',
             'legacy_score_only_toggle' => '',

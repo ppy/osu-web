@@ -48,6 +48,7 @@ class OsuAuthorize
         static $set;
 
         $set ??= new Ds\Set([
+            'BeatmapsetRate',
             'ChannelPart',
             'ContestJudge',
             'IsNotOAuth',
@@ -624,17 +625,8 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        $userId = $user->getKey();
-        if ($userId === $beatmapset->user_id) {
+        if ($beatmapset->hasUserInvolvement($user)) {
             return $prefix.'owner';
-        }
-
-        $beatmapset->loadMissing('beatmaps.beatmapOwners');
-
-        foreach ($beatmapset->beatmaps as $beatmap) {
-            if ($beatmap->isOwner($user)) {
-                return $prefix.'owner';
-            }
         }
 
         if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
@@ -643,6 +635,30 @@ class OsuAuthorize
 
         if ($user->beatmapsetNominationsToday() >= $GLOBALS['cfg']['osu']['beatmapset']['user_daily_nominations']) {
             return $prefix.'exhausted';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Beatmapset $beatmapset
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkBeatmapsetRate(?User $user, Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        static $prefix = 'beatmapset.rate.';
+
+        if (!$beatmapset->isScoreable()) {
+            return $prefix.'status';
+        }
+
+        if ($beatmapset->hasUserInvolvement($user)) {
+            return $prefix.'owner';
         }
 
         return 'ok';

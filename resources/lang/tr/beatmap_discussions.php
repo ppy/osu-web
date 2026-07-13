@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Herkes',
         'label' => 'Kullanıcıya göre filtrele',
+        'multiple' => '',
     ],
 ];

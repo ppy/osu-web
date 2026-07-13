@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => 'Czy na pewno chcesz przypiąć tę transmisję na żywo?',
-        'unpin' => "Czy na pewno chcesz odpiąć tę transmisję na żywo?",
+        'pin' => 'Czy na pewno chcesz przypiąć tę transmisję na żywo na stronie głównej?',
+        'unpin' => "Czy na pewno chcesz odpiąć tę transmisję na żywo ze strony głównej?",
     ],
 
     'top-headers' => [

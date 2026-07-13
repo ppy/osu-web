@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Semua orang',
         'label' => 'Tapis menurut pengguna',
+        'multiple' => '',
     ],
 ];

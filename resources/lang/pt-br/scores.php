@@ -20,7 +20,7 @@ return [
             'watched_count' => ':count_delimited vez|:count_delimited vezes',
 
             'rank' => [
-                'country' => 'Ranking Nacional',
+                'country' => 'Classificação nacional',
                 'global' => 'Ranking Global',
             ],
         ],

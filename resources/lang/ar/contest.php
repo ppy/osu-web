@@ -19,6 +19,7 @@ return [
         'nav_title' => 'تحكيم',
         'no_current_vote' => 'لم تصوت بعد.',
         'update' => 'تحديث',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'درجة مفقودة',
             'contest_vote_judged' => 'لا يمكنك التصويت في المسابقات ذات التحكيم',

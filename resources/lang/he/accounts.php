@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'לקבל הודעת בעת תקלה במפה מאומתת במודים הנלווים',
         'beatmapset_disqualify' => 'קבלת התראות עבור כאשר מפות השייכות למצבי המשחק הבאים נפסלות',
         'comment_reply' => 'קבל התראות עבור מענות לתגובות שלכם',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'מקלדת',
         'mouse' => 'עכבר',
         'tablet' => 'לוח גרפי',

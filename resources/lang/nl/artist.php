@@ -47,7 +47,7 @@ return [
 
             'exclusive_only' => [
                 'all' => 'Alles',
-                'exclusive_only' => '',
+                'exclusive_only' => 'osu! origineel',
             ],
 
             'form' => [
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'Minimale BPM',
                 'bpm_lte' => 'Maximale BPM',
                 'empty' => 'Er zijn geen nummers gevonden die aan de zoekcriteria voldoen.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'Type',
                 'genre' => 'Genre',
                 'genre_all' => 'Alles',
                 'length_gte' => 'Minimale Lengte',

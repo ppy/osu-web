@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => ':count_delimited odpowiedź jest ukryta.|:count_delimited odpowiedzi jest ukrytych.',
+    'hidden_replies' => ':count_delimited odpowiedź jest ukryta.|:count_delimited odpowiedzi są ukryte.|:count_delimited odpowiedzi jest ukrytych.',
 
     'authorizations' => [
         'update' => [
@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Wszyscy',
         'label' => 'Filtruj według użytkownika',
+        'multiple' => '',
     ],
 ];

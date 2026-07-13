@@ -507,6 +507,11 @@ return [
             'global_simple' => 'Globalni rang',
             'highest' => 'Najviši položaj: :rank na :date',
         ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

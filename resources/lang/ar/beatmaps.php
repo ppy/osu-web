@@ -26,6 +26,7 @@ return [
         'edited' => 'التعديل الأخير تم بواسطة :editor:update_time.',
         'guest' => 'صعوبة ضيف من :user',
         'kudosu_denied' => 'ممنوع من جمع كودوسو.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'تم حذف هذه الصعوبة لذا لا يمكن مناقشتها بعد الان.',
         'message_placeholder_locked' => 'المناقشة لحزمة المراحل تم ايقافها.',
         'message_placeholder_silenced' => "لا يمكن نشر مناقشه عندما تكون صامتاََ.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'تم حله',
         'restore' => 'استعادة',
         'show_deleted' => 'عرض المحذوف',
+        'show_other_replies' => '',
         'title' => 'مناقشات',
         'unresolved_count' => '',
 

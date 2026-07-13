@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'تنظیمات',
+            'create_team' => '',
             'follows' => '',
             'friends' => 'دوستان',
             'legacy_score_only_toggle' => '',

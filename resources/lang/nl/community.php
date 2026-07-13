@@ -138,14 +138,14 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Bedankt voor je doorgaande steun! Tot nu toe heb je een totaal van :dollars bijgedragen, waardoor je de "Supporter" tag voor :duration hebt verdiend.',
             'not_yet' => "Je hebt nog nooit een osu!supporter tag gehad :(",
             'valid_until' => 'Je huidige osu!supporter tag is geldig tot :date!',
             'was_valid_until' => 'Je osu!supporter tag was geldig tot :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Uit uw totale bijdragen, heb je :dollars aan tags gegeven aan :users die :duration omvat. Dat is ongelooflijk gul!',
+                'users' => ':count_delimited andere gebruiker|:count_delimited andere gebruikers',
             ],
         ],
     ],

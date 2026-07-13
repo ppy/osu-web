@@ -132,16 +132,16 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Deze :attribute bevat ongeldige tekens.',
+        'used' => 'Deze keuze :attribute wordt al gebruikt.',
+        'word_not_allowed' => 'Deze keuze voor :attribute is niet toegestaan.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
-            'name' => '',
-            'short_name' => '',
-            'url' => '',
+            'default_ruleset_id' => 'Standaard spelmodus',
+            'is_open' => 'Team aanvraag',
+            'name' => 'Naam',
+            'short_name' => 'Korte naam',
+            'url' => 'URL',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Ranked beatmaps kunnen niet worden gerapporteerd',
         'not_in_channel' => 'Je zit niet in dit kanaal.',
-        'in_team' => '',
+        'in_team' => 'Je maakt deel uit van het team.',
         'reason_not_valid' => ':reason is niet geldig voor dit rapporttype.',
         'self' => "Je kunt jezelf niet rapporteren!",
     ],

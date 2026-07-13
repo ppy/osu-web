@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'User laden...',
+    'searching_users' => '',
     'talking_in' => 'in :channel reden',
     'talking_with' => 'Chat mit :name',
     'title_compact' => 'Chat',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Betrete diesen Channel, um dessen Nachrichten zu sehen.',
+        'join' => 'Channel betreten',
     ],
 
     'input' => [

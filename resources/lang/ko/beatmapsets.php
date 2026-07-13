@@ -156,6 +156,16 @@ return [
             'video' => '이 비트맵은 영상을 포함합니다.',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => '이 비트맵은 노골적, 폭력적 혹은 혐오감이 들 수 있는 내용을 포함하고 있습니다. 그래도 보시겠어요?',
             'title' => '부적절한 내용',

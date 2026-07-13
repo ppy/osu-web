@@ -26,6 +26,7 @@ return [
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
         'guest' => 'ระดับความยากโดย :user',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ kudosu',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน',
         'message_placeholder_silenced' => "ไม่สามารถโพสต์การสนทนาในขณะที่โดนเงียบ",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'แก้ไขแล้ว',
         'restore' => 'กู้คืน',
         'show_deleted' => 'แสดงรายการที่ถูกลบ',
+        'show_other_replies' => '',
         'title' => 'การสนทนา',
         'unresolved_count' => ':count_delimited ปัญหาที่ยังไม่ได้รับการแก้ไข|:count_delimited ปัญหาที่ยังไม่ได้รับการแก้ไข',
 

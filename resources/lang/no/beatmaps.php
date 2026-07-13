@@ -26,6 +26,7 @@ return [
         'edited' => 'Sist endret av :editor :update_time.',
         'guest' => 'Gjest vanskelighetsgrad av :user',
         'kudosu_denied' => 'Avvist fra å få kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Denne vanskelighetsgraden har blitt slettet så den kan ikke bli diskutert lenger.',
         'message_placeholder_locked' => 'Diskusjon for dette beatmappet har blitt deaktivert.',
         'message_placeholder_silenced' => "Kan ikke publisere diskusjonen mens du er dempet.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Løst',
         'restore' => 'gjenopprett',
         'show_deleted' => 'Vis slettede',
+        'show_other_replies' => '',
         'title' => 'Diskusjoner',
         'unresolved_count' => '',
 

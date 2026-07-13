@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'receber notificações sobre novos problemas em mapas qualificados dos seguintes modos',
         'beatmapset_disqualify' => 'receber notificações sempre que mapas dos seguintes modos sejam desqualificados',
         'comment_reply' => 'receber notificações quando houver respostas aos seus comentários',
@@ -95,20 +96,20 @@ return [
             'forum_topic_reply' => 'resposta num tópico',
             'mail' => 'correio',
             'mapping' => 'criador de mapas',
-            'news_post' => 'novas publicações',
+            'news_post' => 'publicações de notícias',
             'push' => 'alerta',
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'quando for adicionado como um criador de mapas convidado numa dificuldade de um mapa',
+            'beatmapset:modding' => 'quando uma discussão sobre um mapa que está a observar recebe atualizações, ou quando surge um problema ou uma sugestão no seu próprio mapa',
+            'channel_mention' => 'quando for mencionado num canal público',
+            'channel_message' => 'quando receber uma nova mensagem privada',
+            'channel_team' => 'quando o canal de conversa da sua equipa tiver uma nova mensagem',
+            'comment_new' => 'quando houver um novo comentário num artigo que está a seguir',
+            'forum_topic_reply' => 'quando os tópicos do fórum que está a seguir receberem novas respostas',
+            'mapping' => 'quando um criador de mapas que está a seguir enviar um mapa',
+            'news_post' => 'quando houver novas publicações de notícias',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'teclado',
         'mouse' => 'rato',
         'tablet' => 'tablet',

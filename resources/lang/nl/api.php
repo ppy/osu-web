@@ -24,7 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Maak en bewerk forumonderwerpen en berichten namens u.',
-            'write_manage' => '',
+            'write_manage' => 'Beheer forum onderwerpen en berichten namens jou.',
         ],
 
         'friends' => [
@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Creëer en beheer multiplayer ruimtes namens jou.',
         ],
 
         'public' => 'Openbare gegevens lezen namens jou.',

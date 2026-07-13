@@ -140,7 +140,7 @@ return [
             ],
 
             'data' => [
-                'add_tag' => 'đã thêm nhãn ":tag"',
+                'add_tag' => 'đã thêm thẻ ":tag"',
                 'announcement' => 'chủ đề được ghim và đánh dấu là thông báo',
                 'edit_topic' => 'tới :title',
                 'fork' => 'từ :topic',
@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Bài Đăng Đã Bị Xóa',
             'total_posts' => 'Tổng Bài Đăng',
-            'total_watches' => '',
+            'total_watches' => 'Tổng số người theo dõi',
 
             'feature_vote' => [
                 'current' => 'Độ Ưu Tiên: +:count',

@@ -35,10 +35,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '下架（DQ）',
-                'never_qualified' => '从未过审（Qualified）',
-                'qualified' => '过审（Qualified）',
-                'ranked' => '上架（Ranked）',
+                'disqualified' => '下架 (DQ)',
+                'never_qualified' => '从未过审 (Qualified)',
+                'qualified' => '过审 (Qualified)',
+                'ranked' => '上架 (Ranked)',
             ],
 
             'user' => [
@@ -57,7 +57,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
-        'notice' => '发表讨论前，请检查 :timestamp 附近（:existing_timestamps）已存在的讨论记录。',
+        'notice' => '发表讨论前，请检查 :timestamp 附近 (:existing_timestamps) 已存在的讨论记录。',
         'unsaved' => '此审阅中有 :count',
     ],
 
@@ -72,7 +72,7 @@ return [
         'checking' => '正在检查更新......',
         'has_updates' => '讨论有更新，点击刷新。',
         'no_updates' => '没有更新。',
-        'updating' => '更新中......',
+        'updating' => '更新中...',
     ],
 
     'reply' => [
@@ -106,12 +106,13 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '常规',
+        'general' => '常规（当前难度）',
         'general_all' => '常规（所有难度）',
     ],
 
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '按用户筛选',
+        'multiple' => ':count_delimited 名玩家已选择',
     ],
 ];

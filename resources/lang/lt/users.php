@@ -507,6 +507,11 @@ return [
             'global_simple' => 'Pasaulinis Reitingas',
             'highest' => 'Aukščiausias reitingas: :rank kada: :date',
         ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
             'total_score' => 'Visi taškai',

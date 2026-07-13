@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Jokainen',
         'label' => 'Suodata käyttäjien mukaan',
+        'multiple' => '',
     ],
 ];
