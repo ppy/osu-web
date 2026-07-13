@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use App\Libraries\ClientCheck;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetUserRating;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BeatmapsetRatingsController extends Controller
 {
@@ -44,11 +43,7 @@ class BeatmapsetRatingsController extends Controller
     {
         $request = \Request::instance();
 
-        try {
-            ClientCheck::parseToken($request);
-        } catch (HttpException $e) {
-            abort(403);
-        }
+        ClientCheck::parseToken($request);
 
         $rating = get_int($request['rating'] ?? null);
         if ($rating === null || $rating < 1 || $rating > 10) {
