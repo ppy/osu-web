@@ -11,7 +11,6 @@ import {
   extent,
   Line,
   line,
-  pointer,
   ScaleContinuousNumeric,
   scaleLinear,
   ScaleTime,
@@ -23,7 +22,6 @@ import { clamp } from 'lodash';
 import core from 'osu-core-singleton';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { fadeIn, fadeOut } from 'utils/fade';
-import { getInt } from 'utils/math';
 
 const bn = 'line-chart';
 
@@ -100,7 +98,6 @@ export default class LineChart<X extends Date | number> {
   private readonly hover: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverArea: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverCircle: Selection<HTMLDivElement, unknown, null, undefined>;
-  private hoverCircleRadius?: number;
   private readonly hoverInfoBox: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverInfoBoxX: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverInfoBoxY: Selection<HTMLDivElement, unknown, null, undefined>;
@@ -270,10 +267,7 @@ export default class LineChart<X extends Date | number> {
   }
 
   private readonly onHover = (event: DragEvent | MouseEvent) => {
-    this.hoverCircleRadius ??= getInt(this.area.style('--hover-circle-radius'));
-    if (this.hoverCircleRadius == null) return;
-
-    const relativeX = pointer(event)[0] - this.hoverCircleRadius;
+    const relativeX = event.clientX - (this.hover.node()?.getBoundingClientRect().left ?? 0);
     // invert of scaleX should give X. Without the cast it'll be union of possible types of X instead.
     const x = this.options.scaleX.invert(relativeX) as X;
     const i = clamp(this.lookupIndexFromX(x), 1, this.data.length - 1);
