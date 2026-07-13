@@ -11,7 +11,6 @@ import {
   extent,
   Line,
   line,
-  pointer,
   ScaleContinuousNumeric,
   scaleLinear,
   ScaleTime,
@@ -99,7 +98,6 @@ export default class LineChart<X extends Date | number> {
   private readonly hover: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverArea: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverCircle: Selection<HTMLDivElement, unknown, null, undefined>;
-  private readonly hoverCircleRadius;
   private readonly hoverInfoBox: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverInfoBoxX: Selection<HTMLDivElement, unknown, null, undefined>;
   private readonly hoverInfoBoxY: Selection<HTMLDivElement, unknown, null, undefined>;
@@ -113,7 +111,6 @@ export default class LineChart<X extends Date | number> {
   constructor(area: HTMLElement, public options: Options<X>) {
     this.area = select(area)
       .classed(classWithModifiers(bn, this.options.modifiers), true);
-    this.hoverCircleRadius = parseInt(window.getComputedStyle(area).getPropertyValue('--hover-circle-radius'), 10);
 
     this.svg = this.area.append('svg');
 
@@ -270,7 +267,7 @@ export default class LineChart<X extends Date | number> {
   }
 
   private readonly onHover = (event: DragEvent | MouseEvent) => {
-    const relativeX = pointer(event)[0] - this.hoverCircleRadius;
+    const relativeX = event.clientX - (this.hover.node()?.getBoundingClientRect().left ?? 0);
     // invert of scaleX should give X. Without the cast it'll be union of possible types of X instead.
     const x = this.options.scaleX.invert(relativeX) as X;
     const i = clamp(this.lookupIndexFromX(x), 1, this.data.length - 1);
