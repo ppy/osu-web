@@ -23,6 +23,7 @@ $sentryLogSampleRateInversed = $sentryLogSampleRate <= 0 ? null : (int) (100 / $
 
 // osu config~
 return [
+    'one_time_key' => get_bool(env('OSU_ONE_TIME_KEY')) ?? false,
     'achievement' => [
         'icon_prefix' => env('USER_ACHIEVEMENT_ICON_PREFIX', 'https://assets.ppy.sh/user-achievements/'),
     ],
