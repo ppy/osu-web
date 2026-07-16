@@ -527,12 +527,12 @@ export default class Main {
 
   @action
   private readonly toggleAutoplay = () => {
-    void this.userPreferences.set('audio_autoplay', !this.userPreferences.get('audio_autoplay'));
+    void this.userPreferences.toggle('audio_autoplay');
   };
 
   @action
   private readonly toggleMute = () => {
-    void this.userPreferences.set('audio_muted', !this.userPreferences.get('audio_muted'));
+    void this.userPreferences.toggle('audio_muted');
   };
 
   private readonly togglePlay = () => {
