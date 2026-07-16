@@ -9,14 +9,14 @@ import core from 'osu-core-singleton';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { TagGroup } from './user-tag-picker-controller';
+import { TagGroup } from './beatmap-tag-picker-controller';
 
 const controller = core.beatmapTagPickerController;
 const beatmapsetSearchController = core.beatmapsetSearchController;
 
 const onChange = action((e: React.ChangeEvent<HTMLInputElement>) => controller.query = e.target.value);
 
-export default observer(function UserTagPicker() {
+export default observer(function BeatmapTagPicker() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -24,17 +24,17 @@ export default observer(function UserTagPicker() {
   }, []);
 
   return (
-    <div className='user-tag-picker'>
+    <div className='beatmap-tag-picker'>
       <input
         ref={inputRef}
-        className='user-tag-picker__search'
+        className='beatmap-tag-picker__search'
         name='tag-search'
         onChange={onChange}
         placeholder={trans('beatmaps.listing.search.tag_picker.prompt')}
         value={controller.query}
       />
-      <div className='user-tag-picker__scroll-area u-fancy-scrollbar'>
-        <div className='user-tag-picker__list'>
+      <div className='beatmap-tag-picker__scroll-area u-fancy-scrollbar'>
+        <div className='beatmap-tag-picker__list'>
           {controller.groups.map((group) => <UserTagGroup key={group.name} group={group} />)}
         </div>
       </div>
@@ -45,7 +45,7 @@ export default observer(function UserTagPicker() {
 const UserTagGroup = observer(function UserTagGroup({ group }: { group: TagGroup }) {
   return (
     <>
-      <span className='user-tag-picker__category'>{group.name}</span>
+      <span className='beatmap-tag-picker__category'>{group.name}</span>
       {group.tags.map((tag) => <UserTag key={tag.id} tag={tag} />)}
     </>
   );
@@ -65,9 +65,9 @@ const UserTag = observer(function UserTag({ tag }: { tag: BeatmapTag }) {
 
   const hasAllRulesets = tag.rulesetIds.length === rulesets.length;
 
-  return (<div className={classWithModifiers('user-tag-picker__tag', { active })} onClick={onClick}>
-    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--name'>{tag.tagName}</span>
-    <span className='user-tag-picker__tag-info user-tag-picker__tag-info--description'>
+  return (<div className={classWithModifiers('beatmap-tag-picker__tag', { active })} onClick={onClick}>
+    <span className='beatmap-tag-picker__tag-info beatmap-tag-picker__tag-info--name'>{tag.tagName}</span>
+    <span className='beatmap-tag-picker__tag-info beatmap-tag-picker__tag-info--description'>
       {beatmapsetSearchController.filters.mode === null && !hasAllRulesets && tag.rulesetIds.map((rulesetId) => (<React.Fragment key={rulesetId}>
         <span className={`fal fa-extra-mode-${rulesetNames[rulesetId]}`} />{' '}
       </React.Fragment>))}
