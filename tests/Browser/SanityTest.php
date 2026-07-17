@@ -573,6 +573,8 @@ class SanityTest extends DuskTestCase
             'authenticator-app.edit',
             'chat.index',
             'client-verifications.create',
+            'device-auth',
+            'device-auth.completed',
             'messages.users.show',
             'store.checkout.show',
             'store.invoice.show',

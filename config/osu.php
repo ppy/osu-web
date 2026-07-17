@@ -28,6 +28,7 @@ return [
     ],
 
     'api' => [
+        'device_auth_client_id' => env('API_DEVICE_AUTH_CLIENT_ID'),
         // changing the throttle rate doesn't reset any existing timers,
         // changing the prefix key is the only way to invalidate them.
         'throttle' => [
