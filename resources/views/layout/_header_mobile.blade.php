@@ -19,8 +19,8 @@
         <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
             @if (isset($user))
                 <a
-                    class="mobile-menu-tab mobile-menu-tab--navbar js-mobile-menu js-react"
-                    data-mobile-menu-target="mobile-chat-notification"
+                    class="mobile-menu-tab mobile-menu-tab--navbar js-mobile-menu--button js-react"
+                    data-mobile-menu="mobile-chat-notification"
                     data-react="chat-icon"
                     data-turbo-permanent
                     data-type='mobile'
@@ -34,8 +34,8 @@
                 </a>
 
                 <a
-                    class="mobile-menu-tab mobile-menu-tab--navbar js-mobile-menu js-react"
-                    data-mobile-menu-target="mobile-notification"
+                    class="mobile-menu-tab mobile-menu-tab--navbar js-mobile-menu--button js-react"
+                    data-mobile-menu="mobile-notification"
                     data-react="main-notification-icon"
                     data-turbo-permanent
                     data-type='mobile'
@@ -50,8 +50,8 @@
             @endif
             <button
                 type="button"
-                class="navbar-mobile__toggle js-mobile-menu"
-                data-mobile-menu-target="mobile-menu"
+                class="navbar-mobile__toggle js-mobile-menu--button"
+                data-mobile-menu="mobile-menu"
             >
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-mobile__toggle-icon">
@@ -66,7 +66,7 @@
             @if (isset($user))
                 <div
                     class="mobile-menu__item js-mobile-menu js-react"
-                    data-mobile-menu-id="mobile-chat-notification"
+                    data-mobile-menu="mobile-chat-notification"
                     data-notification-widget="{{ json_encode(['only' => 'channel']) }}"
                     data-react="notification-widget"
                     data-turbo-permanent
@@ -75,7 +75,7 @@
 
                 <div
                     class="mobile-menu__item js-mobile-menu js-react"
-                    data-mobile-menu-id="mobile-notification"
+                    data-mobile-menu="mobile-notification"
                     data-notification-widget="{{ json_encode(['excludes' => ['channel']]) }}"
                     data-react="notification-widget"
                     data-turbo-permanent
@@ -83,13 +83,13 @@
                 ></div>
             @endif
 
-            <div class="mobile-menu__item js-mobile-menu" data-mobile-menu-default="mobile-nav" data-mobile-menu-id="mobile-menu">
+            <div class="mobile-menu__item js-mobile-menu" data-mobile-menu-default="mobile-nav" data-mobile-menu="mobile-menu">
                 <div class="mobile-menu__tabs">
                     @if (isset($user))
                         <a
+                            class="mobile-menu-tab mobile-menu-tab--user js-mobile-menu--button"
+                            data-mobile-menu="mobile-user"
                             href="{{ route('users.show', $user->user_id) }}"
-                            data-mobile-menu-target="mobile-user"
-                            class="mobile-menu-tab mobile-menu-tab--user js-mobile-menu"
                         >
                             <span class="mobile-menu-tab__avatar">
                                 <span
@@ -116,7 +116,10 @@
                         @endif
                     @else
                         <button
-                            class="mobile-menu-tab mobile-menu-tab--user js-user-link"
+                            class="mobile-menu-tab
+                                mobile-menu-tab--user
+                                js-click-menu--close
+                                js-user-link"
                         >
                             <span class="mobile-menu-tab__avatar">
                                 <span class="avatar avatar--full-rounded avatar--guest"></span>
@@ -128,29 +131,29 @@
                         </button>
                     @endif
 
-                    <button class="mobile-menu-tab js-mobile-menu" data-mobile-menu-target="mobile-nav">
+                    <button class="mobile-menu-tab js-mobile-menu--button" data-mobile-menu="mobile-nav">
                         <span class="fas fa-sitemap"></span>
                     </button>
 
                     @if (isset($user))
-                        <button class="mobile-menu-tab js-mobile-menu" data-mobile-menu-target="mobile-search">
+                        <button class="mobile-menu-tab js-mobile-menu--button" data-mobile-menu="mobile-search">
                             <span class="fas fa-search"></span>
                         </button>
                     @endif
                 </div>
 
-                <div class="mobile-menu__item js-mobile-menu" data-mobile-menu-id="mobile-user">
+                <div class="mobile-menu__item js-mobile-menu" data-mobile-menu="mobile-user">
                     @include('layout.header_mobile.user')
                 </div>
 
-                <div class="mobile-menu__item js-mobile-menu" data-mobile-menu-id="mobile-nav">
+                <div class="mobile-menu__item js-mobile-menu" data-mobile-menu="mobile-nav">
                     @include('layout.header_mobile.nav')
                 </div>
 
                 @if (isset($user))
                     <div
                         class="mobile-menu__item mobile-menu__item--search js-mobile-menu js-react"
-                        data-mobile-menu-id="mobile-search"
+                        data-mobile-menu="mobile-search"
                         data-react="quick-search"
                     ></div>
                 @endif
