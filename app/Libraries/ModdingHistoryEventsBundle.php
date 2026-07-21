@@ -32,39 +32,38 @@ class ModdingHistoryEventsBundle
 
     const KUDOSU_PER_PAGE = 5;
 
-    protected $isModerator;
-    protected $isKudosuModerator;
-    protected $searchParams;
+    protected array $extraParams;
+    protected bool $isModerator;
+    protected array $searchParams;
 
     private $params;
     private $total;
     private $user;
     private $withExtras = false; // TODO: change to includes list instead.
 
-    public static function forProfile(User $user, array $searchParams)
+    public static function forProfile(User $user, array $searchParams, array $extraParams)
     {
         $searchParams['limit'] = 10;
         $searchParams['sort'] = 'id_desc';
 
-        $obj = static::forListing($user, $searchParams);
+        $obj = static::forListing($user, $searchParams, $extraParams);
         $obj->withExtras = true;
 
         return $obj;
     }
 
-    public static function forListing(?User $user, array $searchParams)
+    public static function forListing(?User $user, array $searchParams, array $extraParams)
     {
         $obj = new static();
         $obj->user = $user;
         $obj->searchParams = $searchParams;
-        $obj->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $obj->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
 
-        $obj->searchParams['is_moderator'] = $obj->isModerator;
+        $obj->extraParams = [
+            'is_kudosu_moderator' => priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can(),
+            'is_moderator' => priv_check('BeatmapDiscussionModerate')->can(),
+        ];
 
-        if (!$obj->isModerator) {
-            $obj->searchParams['with_deleted'] = false;
-        }
+        $obj->isModerator = $obj->extraParams['is_moderator'];
 
         return $obj;
     }
@@ -219,7 +218,7 @@ class ModdingHistoryEventsBundle
                 return collect();
             }
 
-            $parents = BeatmapDiscussion::search($this->searchParams);
+            $parents = BeatmapDiscussion::search($this->searchParams, $this->extraParams);
             $parents['query']->with($includes);
 
             if ($this->isModerator) {
@@ -245,7 +244,7 @@ class ModdingHistoryEventsBundle
     private function getEvents()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $events = BeatmapsetEvent::search($this->searchParams);
+            $events = BeatmapsetEvent::search($this->searchParams, $this->extraParams);
             // beatmapset has global scopes with deleted_at and active but these are not indexed,
             // which makes whereHas('beatmapset') unusable.
             $events['query'] = $events['query']->with([
@@ -275,7 +274,7 @@ class ModdingHistoryEventsBundle
                 return collect();
             }
 
-            $posts = BeatmapDiscussionPost::search($this->searchParams);
+            $posts = BeatmapDiscussionPost::search($this->searchParams, $this->extraParams);
             $posts['query']->with([
                 'beatmapDiscussion.beatmap',
                 'beatmapDiscussion.beatmapset',
