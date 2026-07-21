@@ -10,7 +10,7 @@ import Ruleset from 'interfaces/ruleset';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { route } from 'laroute';
 import { times } from 'lodash';
-import { computed, makeObservable } from 'mobx';
+import { makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -33,11 +33,6 @@ function doNothing() {
 
 @observer
 export default class Cover extends React.Component<Props> {
-  @computed
-  get showCover() {
-    return core.userPreferences.get('profile_cover_expanded');
-  }
-
   constructor(props: Props) {
     super(props);
 
@@ -45,9 +40,11 @@ export default class Cover extends React.Component<Props> {
   }
 
   render() {
+    const showCover = core.userPreferences.get('profile_cover_expanded');
+
     return (
-      <div className={classWithModifiers('profile-info', this.props.modifiers, { cover: this.showCover })}>
-        {this.showCover &&
+      <div className={classWithModifiers('profile-info', this.props.modifiers, { cover: showCover })}>
+        {showCover &&
           <div className='profile-info__bg' style={{ backgroundImage: urlPresence(this.props.coverUrl) }}>
             {this.props.isUpdatingCover &&
               <div className='profile-info__spinner'>
@@ -114,10 +111,10 @@ export default class Cover extends React.Component<Props> {
             <button
               className='btn-circle btn-circle--page-toggle'
               onClick={this.onCoverExpandedToggle}
-              title={trans(`users.show.cover.to_${this.showCover ? '0' : '1'}`)}
+              title={trans(`users.show.cover.to_${showCover ? '0' : '1'}`)}
               type='button'
             >
-              <span className={this.showCover ? 'fas fa-chevron-up' : 'fas fa-chevron-down'} />
+              <span className={showCover ? 'fas fa-chevron-up' : 'fas fa-chevron-down'} />
             </button>
           </div>
         </div>
@@ -126,7 +123,7 @@ export default class Cover extends React.Component<Props> {
   }
 
   private readonly onCoverExpandedToggle = () => {
-    void core.userPreferences.set('profile_cover_expanded', !this.showCover);
+    void core.userPreferences.toggle('profile_cover_expanded');
   };
 
   private renderAvatar() {

@@ -7,6 +7,10 @@ import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { onErrorWithCallback } from 'utils/ajax';
 
+type BooleanUserPreferencesKey = {
+  [k in keyof UserPreferencesJson]: UserPreferencesJson[k] extends boolean ? k : never;
+}[keyof UserPreferencesJson];
+
 const localStorageKey = 'userPreferences';
 
 export default class UserPreferences {
@@ -58,6 +62,11 @@ export default class UserPreferences {
       this.current = user.user_preferences ?? defaultUserPreferencesJson();
       this.updateStorage();
     }
+  }
+
+  @action
+  toggle(key: BooleanUserPreferencesKey) {
+    this.set(key, !this.get(key));
   }
 
   private fromStorage(): Partial<UserPreferencesJson> {
