@@ -153,7 +153,7 @@ class AccountControllerTest extends TestCase
             ->putJson(route('api.me.options'), [
                 'user_profile_customization' => [
                     'beatmapset_show_anime_cover' => false,
-                ]
+                ],
             ])
             ->assertSuccessful()
             ->assertJson(['user_preferences' => [
@@ -169,7 +169,7 @@ class AccountControllerTest extends TestCase
             ->putJson(route('api.me.options'), [
             'user_profile_customization' => [
                 'beatmapset_show_anime_cover' => false,
-            ]
+            ],
         ])
             ->assertStatus(403);
     }
@@ -179,7 +179,7 @@ class AccountControllerTest extends TestCase
         $this->putJson(route('api.me.options'), [
             'user_profile_customization' => [
                 'beatmapset_show_anime_cover' => false,
-            ]
+            ],
         ])
             ->assertStatus(401);
     }
