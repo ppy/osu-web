@@ -574,6 +574,7 @@ class UsersController extends Controller
                 'score_processing_notice_url',
                 'session_verification_method',
                 'session_verified',
+                'user_preferences',
                 ...$this->showUserIncludes(),
                 ...array_map(
                     fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
