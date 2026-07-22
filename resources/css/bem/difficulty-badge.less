@@ -16,7 +16,7 @@
   &--beatmapset {
     display: inline-flex;
     height: auto;
-    vertical-align: bottom;
+    vertical-align: middle;
     margin-bottom: 3px;
     padding-top: 1px;
     padding-bottom: $padding-top;
@@ -34,5 +34,6 @@
     // Font width is at most 0.67em for the numbers.
     // Lastly add 0.25em for decimal separator.
     min-width: 0.67em * 3 + 0.25em;
+    transform: translateY(-0.5px);
   }
 }
