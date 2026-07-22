@@ -19,6 +19,7 @@ return [
         'nav_title' => 'vertintojas',
         'no_current_vote' => 'dar nebalsavote.',
         'update' => 'atnaujinti',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'nenurodyti taškai',
             'contest_vote_judged' => 'negalite balsuoti jau vertintuose konkursuose',

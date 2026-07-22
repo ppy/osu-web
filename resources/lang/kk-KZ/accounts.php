@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'келесі режимдердің білікті карталарындағы жаңа мәселелерге байланысты хабарландырулар алу',
         'beatmapset_disqualify' => 'келесі режимдердің карталары дисквалификацияланған жағдайда хабарландырулар алу',
         'comment_reply' => 'пікірлеріңіздің жауаптары туралы хабарландырулар алу',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'пернетақта',
         'mouse' => 'тышқан',
         'tablet' => 'графикалық планшет',

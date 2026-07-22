@@ -188,7 +188,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '无法报告上架（Ranked）谱面中的问题',
+        'no_ranked_beatmapset' => '无法报告上架 (Ranked) 谱面中的问题',
         'not_in_channel' => '尚未加入此频道。',
         'in_team' => '你是该战队成员。',
         'reason_not_valid' => '此次举报不接受“:reason”作为有效理由。',

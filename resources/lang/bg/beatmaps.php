@@ -26,6 +26,7 @@ return [
         'edited' => 'Последно редактирано от :editor :update_time.',
         'guest' => 'Трудност, предложена от :user',
         'kudosu_denied' => 'Забранено получаване на kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Тази трудност е изтрита, затова вече не може да се обсъжда.',
         'message_placeholder_locked' => 'Изключена е дискусията за този бийтмап.',
         'message_placeholder_silenced' => "Не може да публикувате дискусии, докато сте заглушени.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Решени',
         'restore' => 'възстанови',
         'show_deleted' => 'Покажи изтрити',
+        'show_other_replies' => '',
         'title' => 'Дискусии',
         'unresolved_count' => ':count_delimited нерешен проблем|:count_delimited нерешени проблеми',
 

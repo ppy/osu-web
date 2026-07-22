@@ -25,7 +25,7 @@ return [
     ],
 
     'message' => [
-        'button' => '',
+        'button' => 'Rapporteer Bericht',
         'title' => '',
     ],
 

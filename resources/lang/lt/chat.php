@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'įkeliami vartotojai...',
+    'searching_users' => '',
     'talking_in' => 'pokalbis :channel',
     'talking_with' => 'pokalbis su :name',
     'title_compact' => 'pokalbiai',

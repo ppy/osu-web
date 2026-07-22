@@ -507,6 +507,11 @@ return [
             'global_simple' => 'Maailmanlaajuinen sijoitus',
             'highest' => 'Korkein sija :rank oli :date',
         ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '',
             'total_score' => '',

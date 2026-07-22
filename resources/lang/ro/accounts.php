@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'primește notificări pentru probleme noi pe hărți calificate pentru modurile următoare',
         'beatmapset_disqualify' => 'primește notificări când beatmap-urile din modurile următoare sunt descalificate',
         'comment_reply' => 'primește notificări pentru răspunsurile la comentariile tale',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'tastatură',
         'mouse' => 'mouse',
         'tablet' => 'tabletă',

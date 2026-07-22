@@ -107,7 +107,7 @@ return [
             'submit' => 'Odeslat',
 
             'necropost' => [
-                'default' => 'Tohle téma bylo neaktivní už nějakou dobu. Napište pouze jesli k tomu máš důvod.',
+                'default' => 'Tohle téma je neaktivní už nějakou dobu. Napiš sem pouze, jesli k tomu máš určitý důvod.',
 
                 'new_topic' => [
                     '_' => "Toto téma je už nějakou dobu neaktivní. Pokud nemáš specifický důvod k postnutí zde, prosím :create.",
@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Odstraněné příspěvky',
             'total_posts' => 'Celkem příspěvků',
-            'total_watches' => '',
+            'total_watches' => 'Celkem odběratelů',
 
             'feature_vote' => [
                 'current' => 'Aktuální priorita: +:count',

@@ -897,7 +897,7 @@ class BeatmapsetTest extends TestCase
         ]);
         $forumId = $GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id'];
         Forum::find($forumId) ?? Forum::factory()->create(['forum_id' => $forumId]);
-        $this->assertTrue($beatmapset->updateDescription('hello', $beatmapset->user));
+        $this->assertTrue($beatmapset->description()->update('hello', $beatmapset->user));
 
         $this->assertSame("{$artist} - {$title}", $beatmapset->fresh()->descriptionPost->topic->topic_title);
     }

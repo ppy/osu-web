@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Mindenki',
         'label' => 'Szűrés felhasználó szerint',
+        'multiple' => '',
     ],
 ];

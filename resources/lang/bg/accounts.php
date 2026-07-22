@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'показване на известие при нов проблем с квалифициран бийтмап от следните видове игра:',
         'beatmapset_disqualify' => 'показване на известие, когато бийтмап от следните видове игра е дисквалифициран:',
         'comment_reply' => 'показване на известие при отговор към мой коментар',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'клавиатура',
         'mouse' => 'мишка',
         'tablet' => 'таблет',

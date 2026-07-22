@@ -26,6 +26,7 @@ return [
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'guest' => 'Chế độ khách bởi :user',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Độ khó này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng thảo luận của beatmap này đã bị vô hiệu hóa.',
         'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Đã giải quyết',
         'restore' => 'khôi phục',
         'show_deleted' => 'Hiển thị bình luận đã xóa',
+        'show_other_replies' => '',
         'title' => 'Góc Thảo Luận',
         'unresolved_count' => ':count_delimited vấn đề chưa được giải quyết|:count_delimited vấn đề chưa được giải quyết',
 
@@ -246,7 +248,7 @@ return [
             'login_required' => 'Đăng nhập để tìm kiếm.',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
             'rank_filter_note' => 'Số lượng top rank và kết quả hiển thị trên trang này dựa trên các điểm số “chuẩn hoá” cao nhất của bạn (còn gọi là “lazer”) trên beatmap.',
-            'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
+            'supporter_filter' => 'Lọc theo :filters cần một thẻ supporter đang hoạt động',
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
@@ -274,7 +276,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Lọc theo :filters cần một :link đang hoạt động',
-                'link_text' => 'osu!supporter tag',
+                'link_text' => 'thẻ osu!supporter',
             ],
             'tag_picker' => [
                 'tooltip' => 'duyệt các thẻ của người dùng',

@@ -19,6 +19,7 @@ return [
         'nav_title' => 'arvioi',
         'no_current_vote' => 'et äänestänyt vielä.',
         'update' => 'päivitä',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'puuttuva pisteytys',
             'contest_vote_judged' => 'et voi äänestää tuomaroiduissa kilpailuissa',

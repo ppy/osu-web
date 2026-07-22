@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'seleções de música',
-            'ranked-play' => 'ranqueado',
+            'ranked-play' => 'competitivo',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],
@@ -137,7 +137,7 @@ return [
         ],
         '401' => [
             'error' => "Você não deveria estar aqui.",
-            'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.',
+            'description' => 'Você bem que poderia tentar voltar... ou quem sabe entrar.',
         ],
         '405' => [
             'error' => 'Página não encontrada',
@@ -177,7 +177,7 @@ return [
         'login' => [
             'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
-            'title' => 'Conecte-se para continuar',
+            'title' => 'Entre para continuar',
             'username' => 'nome de usuário',
 
             'error' => [
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configurações',
+            'create_team' => '',
             'follows' => 'Observações',
             'friends' => 'Amigos',
             'legacy_score_only_toggle' => 'Modo Lazer',
@@ -204,7 +205,7 @@ return [
             'profile' => 'Meu Perfil',
             'scoring_mode_toggle' => 'Pontuação clássica',
             'scoring_mode_toggle_tooltip' => 'Ajuste o valor das pontuações para parecerem  uma pontuação ilimitada clássica',
-            'team' => 'Meu Time',
+            'team' => 'Minha equipe',
         ],
     ],
 

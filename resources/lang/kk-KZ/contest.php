@@ -19,6 +19,7 @@ return [
         'nav_title' => 'төреші',
         'no_current_vote' => '',
         'update' => 'жаңарту',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'ұпай жоқ',
             'contest_vote_judged' => '',

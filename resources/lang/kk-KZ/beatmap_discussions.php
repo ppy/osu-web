@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Әркім',
         'label' => 'Пайдаланушы бойынша іріктеу',
+        'multiple' => '',
     ],
 ];

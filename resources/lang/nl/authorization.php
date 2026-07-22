@@ -62,7 +62,7 @@ return [
 
     'beatmap_tag' => [
         'store' => [
-            'no_score' => '',
+            'no_score' => 'Je moet een score behalen op een beatmap om een label toe te voegen.',
         ],
     ],
 
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Je kan een verwijderde post niet bewerken.',
                 'locked' => 'De post is afgesloten voor bewerkingen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'no_permission' => '',
+                'no_permission' => 'Geen toestemming om te bewerken.',
                 'not_owner' => 'Alleen de eigenaar kan de post bewerken.',
                 'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.',
             ],
@@ -179,14 +179,14 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Alleen eigenaar van de ruimte kan hem sluiten.',
         ],
     ],
 
     'score' => [
         'pin' => [
             'disabled_type' => "Kan dit type score niet vastzetten",
-            'failed' => "",
+            'failed' => "Kan geen niet-geslaagde score vastmaken.",
             'not_owner' => 'Enkel de eigenaar van de score kan deze vastzetten.',
             'too_many' => 'Te veel scores vastgezet.',
         ],
@@ -197,17 +197,17 @@ return [
             'store' => [
                 'already_member' => "Je zit al in dit team.",
                 'already_other_member' => "Je zit al in een ander team.",
-                'currently_applying' => '',
+                'currently_applying' => 'Je hebt een team deelname verzoek in afwachting.',
                 'team_closed' => 'Dit team is gesloten. Op dit moment kan je niet vragen om lid te worden.',
                 'team_full' => "Dit team zit vol. Het kan geen nieuwe leden toelaten.",
             ],
         ],
         'part' => [
             'is_leader' => "De teamcaptain kan het team niet verlaten.",
-            'not_member' => '',
+            'not_member' => 'Geen lid van het team.',
         ],
         'store' => [
-            'require_supporter_tag' => '',
+            'require_supporter_tag' => 'osu!supporter tag is vereist om een team te maken.',
         ],
     ],
 

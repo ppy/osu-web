@@ -6,7 +6,7 @@
 return [
     'play_more' => 'Que tal jogar um pouco de osu! em vez disso?',
     'require_login' => 'Por favor, inicie a sessão para continuar.',
-    'require_verification' => 'Por favor verifique para prosseguir.',
+    'require_verification' => 'Por favor, verifique para prosseguir.',
     'restricted' => "Não é possível fazer isso enquanto restrito.",
     'silenced' => "Não é possível fazer isso enquanto silenciado.",
     'unauthorized' => 'Acesso negado.',
@@ -72,7 +72,7 @@ return [
         'moderated' => 'O canal atual está sendo moderado.',
         'no_access' => 'Você não tem acesso a esse canal.',
         'no_announce' => 'Você não tem permissão para publicar anunciados.',
-        'receive_friends_only' => 'O usuário pode não ser capaz de te responder, porque você só está aceitando mensagens de pessoas em sua lista de amigos.',
+        'receive_friends_only' => 'O usuário pode não ser capaz de te responder porque você só está aceitando mensagens de pessoas em sua lista de amigos.',
         'restricted' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
         'silenced' => 'Você não pode enviar mensagens enquanto silenciado, restrito ou banido.',
     ],
@@ -87,7 +87,7 @@ return [
     ],
 
     'contest' => [
-        'judging_not_active' => 'Votos para este concurso não estão ativo.',
+        'judging_not_active' => 'A avaliação deste concurso não está ativa.',
         'voting_over' => 'Não é possível alterar o voto após o fim do período de votação.',
 
         'entry' => [
@@ -195,11 +195,11 @@ return [
     'team' => [
         'application' => [
             'store' => [
-                'already_member' => "Você já faz parte do time.",
-                'already_other_member' => "Você já faz parte de um time diferente.",
-                'currently_applying' => 'Você tem pedido de adesão de equipe pendente.',
-                'team_closed' => 'A equipe não está aceitando nenhum pedido de adesão.',
-                'team_full' => "A equipe está cheia e não pode mais aceitar nenhum membro.",
+                'already_member' => "Você já faz parte da equipe.",
+                'already_other_member' => "Você já faz parte de outra equipe.",
+                'currently_applying' => 'Você tem uma solicitação de entrada em equipe pendente.',
+                'team_closed' => 'A equipe não está aceitando nenhuma solicitação de entrada.',
+                'team_full' => "A equipe está cheia e não pode aceitar mais membros.",
             ],
         ],
         'part' => [
@@ -207,7 +207,7 @@ return [
             'not_member' => 'Não é um membro da equipe.',
         ],
         'store' => [
-            'require_supporter_tag' => 'osu!supporter tag necessária para se criar uma equipe.',
+            'require_supporter_tag' => 'É necessário uma etiqueta osu!supporter para criar uma equipe.',
         ],
     ],
 
@@ -216,7 +216,7 @@ return [
             'edit' => [
                 'locked' => 'A página do usuário está trancada.',
                 'not_owner' => 'Só é possível editar sua própria página de usuário.',
-                'require_supporter_tag' => 'É necessário possuir uma osu!supporter tag.',
+                'require_supporter_tag' => 'É necessário possuir uma etiqueta osu!supporter.',
             ],
         ],
         'update_email' => [

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'blocked' => '',
     'title_compact' => '好友',
     'too_many' => '好友數量達到最大上限。',
 

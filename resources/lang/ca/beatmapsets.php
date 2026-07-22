@@ -156,6 +156,16 @@ return [
             'video' => 'Aquest mapa conté vídeo',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Aquest mapa conté llenguatge explícit o ofensiu. Tot i això voleu veure\'l?',
             'title' => 'Contingut explícit',
@@ -181,7 +191,7 @@ return [
             'headers' => [
                 'accuracy' => 'Precisió',
                 'combo' => 'Max Combo',
-                'miss' => 'Miss',
+                'miss' => 'Errada',
                 'mods' => 'Mods',
                 'pin' => 'Fixar',
                 'player' => 'Jugador',

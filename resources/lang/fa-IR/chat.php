@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '',
+    'searching_users' => '',
     'talking_in' => 'در حال گفت و گو در کانال :channel',
     'talking_with' => 'در حال گفت و گو با :name',
     'title_compact' => 'چت',

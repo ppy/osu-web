@@ -156,6 +156,16 @@ return [
             'video' => 'Ang beatmap na ito ay may bidyo',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Ang beatmap na ito ay naglalaman ng mga bagay na hindi angkop sa lahat ng manonood. Nais mo bang magpatuloy?',
             'title' => 'Maselang Nilalaman',

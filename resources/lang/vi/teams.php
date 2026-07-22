@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Chơi cùng với bạn; bạn cũ hay mới. Bạn đang không có đội. Truy cập vào trang của một nhóm bất kỳ để tham gia nhóm ấy hoặc tự tạo nhóm của mình từ trang này.",
+            'search_link' => '',
             'title' => 'Đội!',
         ],
     ],

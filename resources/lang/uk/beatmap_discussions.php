@@ -114,5 +114,6 @@ return [
     'user_filter' => [
         'everyone' => 'Всі',
         'label' => 'Фільтрувати по користувачах',
+        'multiple' => '',
     ],
 ];

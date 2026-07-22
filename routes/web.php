@@ -305,6 +305,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('clients/{client}/reset-secret', 'ClientsController@resetSecret')->name('clients.reset-secret');
     });
 
+    if ($GLOBALS['cfg']['osu']['one_time_key']) {
+        Route::get('one-time-key', 'OneTimeKeyController@create')->name('one-time-key');
+        Route::post('one-time-key', 'OneTimeKeyController@store');
+        Route::post('one-time-key/check', 'OneTimeKeyController@check');
+    }
+
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
     Route::get('rankings/ranked-play/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');
@@ -484,6 +490,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+                Route::apiResource('{beatmapset}/ratings', 'BeatmapsetRatingsController', ['only' => ['index', 'store']]);
             });
         });
 
@@ -601,6 +608,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
+        //  PUT /api/v2/me/options
+        Route::put('me/options', 'AccountController@updateOptions')->name('me.options');
         //  PUT /api/v2/me/achievements/:achievementId
         Route::put('me/achievements/{achievementId}', 'UsersController@unlockClientSideAchievement')->name('unlock-client-side-achievement');
 

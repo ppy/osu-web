@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Gebruiker',
-                    'cover_presets' => '',
+                    'cover_presets' => 'Profiel Omslag Voorinstellingen',
                 ],
             ],
         ],

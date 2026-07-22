@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'memuatkan pengguna...',
+    'searching_users' => '',
     'talking_in' => 'berbual dalam :channel',
     'talking_with' => 'berbual dengan :name',
     'title_compact' => 'bualan',

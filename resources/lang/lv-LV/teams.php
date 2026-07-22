@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Spēlē kopā ar draugiem; esošajiem vai jauniem. Tu pašlaik neesi komandā. Pievienojies esoša komandā, apmeklējot komandas lapu, vai izveido savu komandu šeit.",
+            'search_link' => '',
             'title' => 'Komanda!',
         ],
     ],

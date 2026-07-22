@@ -14,7 +14,7 @@ return [
 
         'player' => [
             'by' => 'Joué par',
-            'played_on' => 'Joué dans',
+            'played_on' => 'Réalisé sur',
             'submitted_on' => 'Réalisé le',
             'watched' => 'Vu',
             'watched_count' => ':count_delimited fois|:count_delimited fois',

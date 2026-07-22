@@ -14,11 +14,12 @@ return [
     ],
 
     'judge' => [
-        'comments' => '',
+        'comments' => 'reacties',
         'hide_judged' => 'verberg beoordeelde items',
         'nav_title' => 'beoordeel',
         'no_current_vote' => 'je hebt nog niet gestemd.',
         'update' => 'werk bij',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'ontbrekende score',
             'contest_vote_judged' => 'kan niet stemmen in beoordeelde wedstrijden',
@@ -30,9 +31,9 @@ return [
         '_' => 'Beoordelingsresultaten',
         'creator' => 'maker',
         'score' => 'Score',
-        'score_std' => '',
+        'score_std' => 'Gestandaardiseerde Score',
         'total_score' => 'totale score',
-        'total_score_std' => '',
+        'total_score_std' => 'totale gestandaardiseerde score',
     ],
 
     'voting' => [
@@ -69,11 +70,11 @@ return [
         'silenced_or_restricted' => 'Je kan niet meedoen aan wedstrijden als je restricted of silenced bent.',
         'preparation' => 'We zijn nog bezig met de voorbereidingen van deze wedstrijd. Heb nog even geduld alsjeblieft!',
         'drop_here' => 'Sleep je inzending hier',
-        'allowed_extensions' => '',
-        'max_size' => '',
-        'required_dimensions' => '',
+        'allowed_extensions' => ':types bestanden worden geaccepteerd',
+        'max_size' => 'Max grootte: :limit',
+        'required_dimensions' => 'Afmetingen moeten :widthx:height zijn',
         'download' => 'Download .osz',
-        'wrong_file_type' => '',
+        'wrong_file_type' => 'Alleen :types bestanden worden geaccepteerd voor deze wedstrijd.',
         'wrong_dimensions' => 'Inzendingen voor deze wedstrijd moeten :widthx:height zijn',
         'too_big' => 'Inzendingen voor deze wedstrijd kunnen maar :limit zijn.',
     ],
@@ -86,7 +87,7 @@ return [
         'list' => 'stemmen',
         'count' => ':count_delimited stem|:count_delimited stemmen',
         'points' => ':count_delimited punt|:count_delimited punten',
-        'points_float' => '',
+        'points_float' => ':points punten',
     ],
 
     'dates' => [
@@ -107,7 +108,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Bekijk info en inzendingen',
         ],
     ],
 ];

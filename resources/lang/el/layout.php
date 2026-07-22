@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ρυθμίσεις',
+            'create_team' => '',
             'follows' => 'Λίστες Παρακολούθησης',
             'friends' => 'Φίλοι',
             'legacy_score_only_toggle' => 'Λειτουργία Lazer',

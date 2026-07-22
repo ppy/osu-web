@@ -30,7 +30,7 @@ return [
             'more_simple' => 'Ver mais resultados de busca de trilhas de artistas em destaque',
         ],
         'beatmapset' => [
-            'login_required' => 'Inicie a sessão para procurar por beatmaps',
+            'login_required' => 'Entre para procurar por beatmaps',
             'more' => ':count mais resultados de beatmaps',
             'more_simple' => 'Veja mais resultados de busca de beatmaps',
             'title' => 'Beatmaps',
@@ -39,7 +39,7 @@ return [
         'forum_post' => [
             'all' => 'Todos os fóruns',
             'link' => 'Procurar no fórum',
-            'login_required' => 'Inicie a sessão para pesquisar no fórum',
+            'login_required' => 'Entre para pesquisar no fórum',
             'more_simple' => 'Veja mais resultados de busca nos fóruns',
             'title' => 'Fórum',
 
@@ -63,12 +63,12 @@ return [
         ],
 
         'team' => [
-            'login_required' => 'Inicie a sessão para procurar times',
+            'login_required' => 'Entre para procurar equipes',
             'more_simple' => 'Ver mais resultados de busca de equipes',
         ],
 
         'user' => [
-            'login_required' => 'Inicie a sessão para procurar usuários',
+            'login_required' => 'Entre para procurar usuários',
             'more' => ':count mais resultados de busca por usuários',
             'more_simple' => 'Veja mais resultados de busca por usuários',
             'more_hidden' => 'O limite de busca por jogador é limitado em :max. Tente refinar mais a sua pesquisa.',
@@ -111,7 +111,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crie uma conta',
-                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta',
+                'description' => 'siga as instruções quando iniciar o jogo para entrar ou criar uma nova conta',
             ],
             'download' => [
                 'title' => 'baixar o jogo',

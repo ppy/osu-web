@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Jeder',
         'label' => 'Nach Benutzer filtern',
+        'multiple' => '',
     ],
 ];

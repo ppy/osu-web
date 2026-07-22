@@ -58,7 +58,7 @@ return [
         'charts' => '',
         'featured' => '',
         'season_room' => '',
-        'seasons' => '',
+        'seasons' => 'сезоны',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'па картах дня',
         'global' => 'глабальны',
         'kudosu' => 'кудосу',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'ранкавана гульня',
+        'playlists' => 'плэйлісты',
         'team' => 'па камандах',
         'top_plays' => '',
     ],

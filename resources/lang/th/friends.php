@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'blocked' => '',
     'title_compact' => 'เพื่อน',
     'too_many' => 'จำนวนเพื่อนถึงขีดจำกัดแล้ว',
 

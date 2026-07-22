@@ -19,6 +19,7 @@ return [
         'nav_title' => 'evaluator',
         'no_current_vote' => 'nu ai votat încă.',
         'update' => 'actualizează',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'scor lipsă',
             'contest_vote_judged' => 'nu poți vota în concursuri evaluate',

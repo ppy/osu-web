@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
+            'create_team' => '',
             'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
             'legacy_score_only_toggle' => 'Lazer-tila',

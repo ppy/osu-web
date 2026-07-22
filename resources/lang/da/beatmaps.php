@@ -26,6 +26,7 @@ return [
         'edited' => 'Sidst redigeret af :editor :update_time.',
         'guest' => 'Gæst sværhedsgrad af :user',
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Denne sværhedsgrad er blevet slettet så den kan ikke blive diskuteret længere.',
         'message_placeholder_locked' => 'Diskussion for dette beatmap er blevet deaktiveret.',
         'message_placeholder_silenced' => "Kan ikke skrive diskussion, mens du er tavs.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'show_deleted' => 'Vis slettede',
+        'show_other_replies' => '',
         'title' => 'Diskussioner',
         'unresolved_count' => ':count_delimited uløst problematik|:count_delimited uløst problemer',
 

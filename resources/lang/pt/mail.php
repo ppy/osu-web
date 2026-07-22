@@ -64,11 +64,11 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => 'A pessoa que lhe ofereceu esta etiqueta pode optar por permanecer anónima, pelo que não foi mencionada nesta notificação.',
         'anonymous_gift_maybe_not' => 'Mas provavelmente já sabe quem é ;).',
-        'duration' => 'Graças a essa pessoa, tem acesso ao osu!direct e a outros benefícios de osu!supporter durante os próximos :duration.',
+        'duration' => 'Graças a essa pessoa, tem acesso ao osu!direct e a outros benefícios de apoiante do osu! durante os próximos :duration.',
         'features' => 'Pode encontrar mais detalhes sobre estas funcionalidades aqui:',
-        'gifted' => 'Alguém acabou de lhe oferecer uma etiqueta de osu!supporter!',
+        'gifted' => 'Alguém acabou de lhe oferecer uma etiqueta de apoiante do osu!!',
         'gift_message' => 'A pessoa que lhe ofereceu esta etiqueta deixou-lhe uma mensagem:',
-        'subject' => 'Recebeu uma etiqueta osu!supporter de presente!',
+        'subject' => 'Recebeu uma etiqueta de apoiante do osu! de presente!',
     ],
 
     'user_email_updated' => [

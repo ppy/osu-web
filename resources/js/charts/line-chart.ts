@@ -11,7 +11,6 @@ import {
   extent,
   Line,
   line,
-  pointer,
   ScaleContinuousNumeric,
   scaleLinear,
   ScaleTime,
@@ -84,8 +83,6 @@ function makeSharedDefaultOptions<X extends Date | number>(options: Partial<Opti
   };
 }
 
-const hoverAreaMarginBleed = 10;
-
 export default class LineChart<X extends Date | number> {
   data: { x: X; y: number }[] = [];
 
@@ -144,9 +141,8 @@ export default class LineChart<X extends Date | number> {
       .classed(`${bn}__hover-area`, true)
       .style('top', `${this.options.marginTop}px`)
       .style('bottom', `${this.options.marginBottom}px`)
-      .style('left', `${this.options.marginLeft - hoverAreaMarginBleed}px`)
-      .style('right', `${this.options.marginRight - hoverAreaMarginBleed}px`)
-      .style('padding', `0 ${hoverAreaMarginBleed}px`)
+      .style('left', `${this.options.marginLeft}px`)
+      .style('right', `${this.options.marginRight}px`)
       .on('mouseout', this.hoverEnd)
       .on('mousemove', this.onHover)
       .on('drag', this.onHover);
@@ -271,7 +267,7 @@ export default class LineChart<X extends Date | number> {
   }
 
   private readonly onHover = (event: DragEvent | MouseEvent) => {
-    const relativeX = pointer(event)[0] - hoverAreaMarginBleed;
+    const relativeX = event.clientX - (this.hover.node()?.getBoundingClientRect().left ?? 0);
     // invert of scaleX should give X. Without the cast it'll be union of possible types of X instead.
     const x = this.options.scaleX.invert(relativeX) as X;
     const i = clamp(this.lookupIndexFromX(x), 1, this.data.length - 1);

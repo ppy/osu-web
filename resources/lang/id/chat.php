@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'memuat pengguna...',
+    'searching_users' => '',
     'talking_in' => 'berbicara di :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'obrolan',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Bergabunglah ke kanal ini untuk melihat isi pesan di dalamnya.',
+        'join' => 'Gabung Kanal',
     ],
 
     'input' => [

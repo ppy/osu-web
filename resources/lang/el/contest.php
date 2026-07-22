@@ -19,6 +19,7 @@ return [
         'nav_title' => 'γνώμη',
         'no_current_vote' => 'δεν έχεις ψηφίσει ακόμα.',
         'update' => 'ενημέρωση',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'χαμένο σκορ',
             'contest_vote_judged' => 'δεν μπορείς να ψηφίσει σε κρίσιμους διαγωνισμούς',

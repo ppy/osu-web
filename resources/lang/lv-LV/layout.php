@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Iestatījumi',
+            'create_team' => '',
             'follows' => 'Vērošanas saraksts',
             'friends' => 'Draugi',
             'legacy_score_only_toggle' => 'Lazer režīms',

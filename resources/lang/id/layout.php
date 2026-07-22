@@ -129,7 +129,7 @@ return [
         ],
         '404' => [
             'error' => 'Halaman Tidak Ditemukan',
-            'description' => "Maaf, namun halaman yang kamu minta tidak ada di sini!",
+            'description' => "Maaf, halaman yang kamu minta tidak ada di sini!",
         ],
         '403' => [
             'error' => "Kamu tidak seharusnya berada di sini.",
@@ -141,7 +141,7 @@ return [
         ],
         '405' => [
             'error' => 'Halaman Tidak Ditemukan',
-            'description' => "Maaf, namun halaman yang kamu minta tidak ada di sini!",
+            'description' => "Maaf, halaman yang kamu minta tidak ada di sini!",
         ],
         '422' => [
             'error' => 'Parameter permintaan tidak valid',
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Pengaturan',
+            'create_team' => '',
             'follows' => 'Daftar Pengamatan',
             'friends' => 'Teman',
             'legacy_score_only_toggle' => 'Mode lazer',

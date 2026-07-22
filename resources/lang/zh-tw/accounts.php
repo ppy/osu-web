@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => '接收以下模式的合格圖譜新問題通知',
         'beatmapset_disqualify' => '在以下模式的圖譜被標記為取消資格時收到通知',
         'comment_reply' => '接收您留言被回覆的通知',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => '當你以客串譜師的身分新增至一個圖譜難度',
+            'beatmapset:modding' => '當你正在關注的圖譜討論區有任何更動，或者你的圖譜被提出問題或建議。',
+            'channel_mention' => '當你在公開頻道裡被提及',
+            'channel_message' => '當你收到新的私人訊息',
+            'channel_team' => '當你的團隊聊天室頻道有新的訊息',
+            'comment_new' => '當你追蹤的項目有新的留言',
+            'forum_topic_reply' => '當你正在關注的論壇主題有新的回覆',
+            'mapping' => '當你追蹤的譜師發布新的圖譜',
+            'news_post' => '當有新的貼文被發佈',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => '鍵盤',
         'mouse' => '滑鼠',
         'tablet' => '繪圖板',

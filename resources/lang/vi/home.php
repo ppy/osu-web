@@ -7,7 +7,7 @@ return [
     'landing' => [
         'download' => 'Tải ngay',
         'online' => '<strong>:players</strong> đang chơi trong <strong>:games</strong> games',
-        'peak' => 'Đỉnh điểm, :count người chơi online',
+        'peak' => 'Đỉnh điểm, :count người chơi trực tuyến',
         'players' => '<strong>:count</strong> người chơi đã đăng kí',
         'title' => 'chào mừng',
         'see_more_news' => 'xem các bản tin khác',
@@ -135,9 +135,9 @@ return [
         ],
         'header' => [
             'stats' => [
-                'friends' => 'Bạn Bè Đang Online',
+                'friends' => 'Bạn Bè Đang Trực Tuyến',
                 'games' => 'Phòng',
-                'online' => 'Người Chơi Đang Online',
+                'online' => 'Người Chơi Đang Trực Tuyến',
             ],
         ],
         'beatmaps' => [

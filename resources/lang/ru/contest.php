@@ -19,6 +19,7 @@ return [
         'nav_title' => 'судья',
         'no_current_vote' => 'вы пока ещё не проголосовали.',
         'update' => 'сохранить',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'балл отсутствует',
             'contest_vote_judged' => 'нельзя проголосовать в конкурсе, который вы судили',

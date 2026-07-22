@@ -6,9 +6,9 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => 'Convencido! :D',
+            'title' => 'Estou convencido! :D',
             'support' => 'apoie o osu!',
-            'gift' => 'ou ofereça o "supporter" a outros jogadores',
+            'gift' => 'ou ofereça a etiqueta de apoiante a outros jogadores',
             'instructions' => 'clique no botão do coração para proceder à osu!store',
         ],
         'why-support' => [
@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Filtrar por modificações',
-                'description' => 'Associar‑se apenas a pessoas que jogam com HDHR? Sem problema!',
+                'description' => 'Deseja associar‑se apenas a pessoas que jogam com HDHR? Sem problema!',
             ],
 
             'auto_downloads' => [
@@ -81,12 +81,12 @@ return [
 
             'customisation' => [
                 'title' => 'Personalização',
-                'description' => "Destaque‑se o carregar uma imagem de capa personalizada, criar uma secção “sobre mim” totalmente personalizável ou até alterar a cor do seu perfil para a que preferir.",
+                'description' => "Destaque‑se ao carregar uma imagem de capa personalizada, criar uma secção “sobre mim” totalmente personalizável ou até alterar a cor do seu perfil para a que preferir.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Filtros de mapa',
-                'description' => 'Filtra as pesquisas de mapas por mapas jogados e não jogados, ou pela classificação alcançada.',
+                'description' => 'Filtre as pesquisas de mapas por mapas jogados e não jogados, ou pela classificação alcançada.',
             ],
 
             'yellow_fellow' => [
@@ -121,15 +121,15 @@ return [
 
             'more_favourites' => [
                 'title' => 'Mais favoritos',
-                'description' => 'O número máximo de mapas que pode adicionar aos favoritos aumentou de :normally &rarr; :supporter',
+                'description' => 'O número máximo de mapas que pode adicionar aos favoritos é aumentado de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Mais amigos',
-                'description' => 'O número máximo de amigos que pode ter aumentou de :normally &rarr; :supporter',
+                'description' => 'O número máximo de amigos que pode ter é aumentado de :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Carregar mais mapas',
-                'description' => 'O número de mapas pendentes que pode ter ao mesmo tempo é calculado a partir de um valor base, mais um bónus adicional por cada mapa classificado que tenha (até um limite).<br/><br/>Normalmente, este valor é :base mais :bonus por mapa classificado (até :bonus_max). Com o supporter, aumenta para :supporter_base mais :supporter_bonus por mapa classificado (até :supporter_bonus_max).',
+                'description' => 'O número de mapas pendentes que pode ter ao mesmo tempo é calculado a partir de um valor base, mais um bónus adicional por cada mapa classificado que tenha (até um limite).<br/><br/>Normalmente, este valor é :base mais :bonus por mapa classificado (até :bonus_max). Com a etiqueta de apoiante do osu!, este aumenta para :supporter_base mais :supporter_bonus por mapa classificado (até :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classificações de amigos',
@@ -138,10 +138,10 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => 'Obrigado pelo seu apoio contínuo! Até agora, contribuiu um total de :dollars, o que lhe garantiu a etiqueta de "Apoiador" por :duration.',
-            'not_yet' => "Nunca teve uma etiqueta de osu!supporter :(",
-            'valid_until' => 'A sua etiqueta de osu!supporter é válida até :date!',
-            'was_valid_until' => 'A sua etiqueta de osu!supporter foi válida até :date.',
+            'contribution_with_duration' => 'Obrigado pelo seu apoio contínuo! Até agora, contribuiu um total de :dollars, o que lhe garantiu a etiqueta de apoiante do osu! por :duration.',
+            'not_yet' => "Nunca teve uma etiqueta de apoiante do osu! :(",
+            'valid_until' => 'A sua etiqueta de apoiante do osu! é válida até :date!',
+            'was_valid_until' => 'A sua etiqueta de apoiante do osu! foi válida até :date.',
 
             'gifted' => [
                 '_' => 'Das suas contribuições totais, ofereceu etiquetas no valor de :dollars a :users, cobrindo :duration. Isso é incrivelmente generoso!',

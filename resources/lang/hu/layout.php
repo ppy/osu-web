@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Beállítások',
+            'create_team' => '',
             'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
             'legacy_score_only_toggle' => 'Lazer mód',

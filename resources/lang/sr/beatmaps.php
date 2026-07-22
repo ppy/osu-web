@@ -26,6 +26,7 @@ return [
         'edited' => 'Последњи пут измењено од стране :editor у :update_time.',
         'guest' => 'Гостојућа тежина од :user',
         'kudosu_denied' => 'Добијање кудосу је одбијено.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Ова тежина мапе је обрисана и не може се више дискутовати о њој.',
         'message_placeholder_locked' => 'Дискусија за ову мапу је искључена.',
         'message_placeholder_silenced' => "Не можете постовати на дискусију док сте мутирани.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Решено',
         'restore' => 'поврати',
         'show_deleted' => 'Покажи обрисане',
+        'show_other_replies' => '',
         'title' => 'Дискусије',
         'unresolved_count' => ':count_delimited недовршен проблем|:count_delimited недовршени проблеми',
 

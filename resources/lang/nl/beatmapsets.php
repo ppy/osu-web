@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Niet zo snel, speel meer.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Geen download servers beschikbaar.',
     ],
 
     'featured_artist_badge' => [
@@ -41,21 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Proef nomineurs kunnen niet meerdere regels nomineren.',
+        'full_nomination_required' => 'Je moet een volledige nominator zijn om de eindnominatie van een spelmodus uit te voeren.',
         'hybrid_requires_modes' => 'Een hybride beatmapset vereist dat je minimaal één speelmodus selecteert om voor te nomineren.',
         'incorrect_mode' => 'Je hebt geen toestemming om te nomineren voor modus: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Deze beatmap heeft ongeldige nominaties en kan niet gekwalificeerd zijn in deze staat.',
+        'invalid_ruleset' => 'Deze nominatie heeft ongeldige spelmodi.',
         'too_many' => 'Nominatievereising is al vervuld.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Nominatie eisen voor niet-hoofd spelmodus is al vervuld.',
 
         'dialog' => [
             'confirmation' => 'Weet je zeker dat je deze Beatmap wilt nomineren?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Door deze beatmap met verschillende nominators te kwalificeren, wordt de kwalificatie rij positie gereset.',
             'header' => 'Nomineer Beatmap',
             'hybrid_warning' => 'opmerking: je mag maar één keer nomineren, dus zorg er alsjeblieft voor dat je nomineert voor alle spelmodi die je van plan bent te nomineren',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'De hoofd spelmodus is momenteel: :ruleset',
             'which_modes' => 'Welke modi nomineren?',
         ],
     ],
@@ -69,7 +69,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Bekijk afbeelding op volledige grootte',
-            'page' => '',
+            'page' => 'Bekijk admin pagina',
         ],
 
         'deleted_banner' => [
@@ -141,19 +141,29 @@ return [
             'description' => 'Beschrijving',
             'genre' => 'Genre',
             'language' => 'Taal',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Mapper Labels',
             'no_scores' => 'Data nog aan het berekenen...',
             'nominators' => 'Nominatoren',
             'nsfw' => 'Expliciete inhoud',
             'offset' => 'Online offset',
-            'pack_tags' => '',
+            'pack_tags' => 'Beatmap Pakketten',
             'points-of-failure' => 'Faalpunten',
             'source' => 'Bron',
             'storyboard' => 'Deze beatmap bevat verhaalborden',
             'success-rate' => 'Slagingspercentage',
-            'success_rate_plays' => '',
-            'user_tags' => '',
+            'success_rate_plays' => ':passes van :count_delimited gespeeld:passes van :count_delimited gespeeld',
+            'user_tags' => 'Gebruiker Labels',
             'video' => 'Deze beatmap bevat een video',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
@@ -175,7 +185,7 @@ return [
             'global' => 'Globale Ranking',
             'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
             'supporter-only' => 'Je moet een osu!supporter zijn om toegang te krijgen tot land- en vriendenrankings, net als mod-specifieke ranglijsten!',
-            'team' => '',
+            'team' => 'Team Ranglijst',
             'title' => 'Scorebord',
 
             'headers' => [
@@ -197,7 +207,7 @@ return [
                 'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',
                 'loading' => 'Scoren aan het laden...',
-                'team' => '',
+                'team' => 'Niemand uit jouw team heeft nog een score behaald op deze map!',
                 'unranked' => 'Ongerankte beatmap.',
             ],
             'score' => [
@@ -226,8 +236,8 @@ return [
             'rating-spread' => 'Rating Verspreiding',
             'nominations' => 'Nominaties',
             'playcount' => 'Playcount',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Favorieten',
+            'no_favourites' => 'Nog geen favorieten',
         ],
 
         'status' => [

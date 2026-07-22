@@ -68,7 +68,7 @@ return [
         'discussion' => 'Discusión',
 
         'admin' => [
-            'full_size_cover' => 'Ver imagen de portada a tamaño completo',
+            'full_size_cover' => 'Ver la imagen de fondo a tamaño completo',
             'page' => 'Ver la página de administración',
         ],
 
@@ -154,6 +154,16 @@ return [
             'success_rate_plays' => ':passes de :count_delimited jugada|:passes de :count_delimited jugadas',
             'user_tags' => 'Etiquetas de los usuarios',
             'video' => 'Este mapa contiene vídeo',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [

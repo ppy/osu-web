@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'a carregar utilizadores...',
+    'searching_users' => '',
     'talking_in' => 'a falar em :channel',
     'talking_with' => 'a falar com :name',
     'title_compact' => 'conversa',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Junte‑se ao canal para ver as mensagens.',
+        'join' => 'Entrar no canal',
     ],
 
     'input' => [

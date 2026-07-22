@@ -156,6 +156,16 @@ return [
             'video' => 'Acest beatmap conține un video',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Acest beatmap conține conținut obscen, ofensiv sau deranjant. Doriți să-l vedeți oricum?',
             'title' => 'Conținut obscen',

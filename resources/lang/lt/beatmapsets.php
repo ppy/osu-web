@@ -156,6 +156,16 @@ return [
             'video' => 'Šis beatmap\'as turi vaizdo įrašą',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Šiame beatmap\'e yra eksplicitinio, įžeidžiančio ar nerimą keliančio turinio. Vis tiek rodyti?',
             'title' => 'Eksplicitinis Turinys',

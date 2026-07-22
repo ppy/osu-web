@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap Qualified di mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi untuk balasan baru pada komentar yang kamu tulis',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'pada saat kamu ditambahkan sebagai mapper tamu pada tingkat kesulitan beatmap',
+            'beatmapset:modding' => 'pada saat halaman diskusi beatmap yang kamu amati menerima pembaruan, atau apabila terdapat masalah atau saran pada beatmap milikmu',
+            'channel_mention' => 'pada saat namamu dipanggil di kanal publik',
+            'channel_message' => 'pada saat kamu menerima pesan pribadi baru',
+            'channel_team' => 'pada saat kanal percakapan timmu memiliki pesan baru',
+            'comment_new' => 'pada saat terdapat komentar baru pada item yang kamu ikuti',
+            'forum_topic_reply' => 'pada saat topik forum yang kamu amati menerima balasan baru',
+            'mapping' => 'pada saat mapper yang kamu ikuti mengunggah beatmap',
+            'news_post' => 'pada saat terdapat postingan berita baru',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'keyboard',
         'mouse' => 'mouse',
         'tablet' => 'tablet',

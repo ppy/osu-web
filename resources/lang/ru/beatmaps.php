@@ -26,6 +26,7 @@ return [
         'edited' => 'Последний раз редактировал :editor :update_time.',
         'guest' => 'Гостевая сложность от :user',
         'kudosu_denied' => 'Отказано в получении кудосу.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Эта сложность была удалена, и поэтому обсуждать её больше нельзя.',
         'message_placeholder_locked' => 'Возможность обсуждения этой карты закрыта.',
         'message_placeholder_silenced' => "Запрещено публиковать посты в обсуждении, пока вы заглушены.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'show_deleted' => 'Показать удалённые',
+        'show_other_replies' => '',
         'title' => 'Обсуждение',
         'unresolved_count' => ':count_delimited нерешённых проблем|:count_delimited нерешённая проблема|:count_delimited нерешённые проблемы',
 

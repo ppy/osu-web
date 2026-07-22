@@ -153,7 +153,7 @@ return [
             'store' => 'Магазин osu!store',
         ],
         'livestream' => [
-            'title' => 'Прямой эфир',
+            'title' => 'Сейчас в эфире',
         ],
         'show' => [
             'admin' => [

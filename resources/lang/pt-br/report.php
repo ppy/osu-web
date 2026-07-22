@@ -35,7 +35,7 @@ return [
     ],
 
     'team' => [
-        'button' => 'Denunciar Equipe',
+        'button' => 'Denunciar equipe',
         'title' => 'Denunciar equipe de :username?',
     ],
 

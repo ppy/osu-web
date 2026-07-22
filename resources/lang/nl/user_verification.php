@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Voer de code van uw Authenticator App in.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Je kan ook :link.',
+                'link' => 'uitloggen',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Als je je app niet kan openen, :link.',
+                'link' => 'je kunt via e-mail verifiëren in plaats daarvan',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Onjuiste verificatiecode.',
         'retries_exceeded' => 'Onjuiste verificatiecode. Limiet opnieuw proberen overschreden, nieuwe verificatie e-mail verstuurd.',
         'reissued' => 'Verificatiecode is hermaakt, nieuwe verificatie e-mail verstuurd.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'Verificatiecode is al gebruikt. Wacht even en gebruik een nieuwe.',
+        'totp_gone' => 'Verificatie token is verwijderd, schakel over naar email verificatie. Verificatie email is verzonden.',
         'unknown' => 'Onbekend probleem trad op, nieuwe verificatie e-mail verstuurd.',
     ],
 ];

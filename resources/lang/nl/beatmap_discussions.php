@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited reactie is verborgen.|:count_delimited antwoorden zijn verborgen.',
 
     'authorizations' => [
         'update' => [
@@ -69,10 +69,10 @@ return [
     ],
 
     'refresh' => [
-        'checking' => '',
-        'has_updates' => '',
-        'no_updates' => '',
-        'updating' => '',
+        'checking' => 'Controleren op updates...',
+        'has_updates' => 'De discussie heeft updates, klik om te vernieuwen.',
+        'no_updates' => 'Geen updates.',
+        'updating' => 'Updaten...',
     ],
 
     'reply' => [
@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Iedereen',
         'label' => 'Filter op gebruiker',
+        'multiple' => '',
     ],
 ];

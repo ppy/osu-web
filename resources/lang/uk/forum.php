@@ -288,7 +288,7 @@ return [
         'show' => [
             'deleted-posts' => 'Видалено відповідей',
             'total_posts' => 'Всього відповідей',
-            'total_watches' => '',
+            'total_watches' => 'Всього підписників',
 
             'feature_vote' => [
                 'current' => 'Поточний пріоритет: +:count',

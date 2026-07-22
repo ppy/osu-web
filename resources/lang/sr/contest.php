@@ -19,6 +19,7 @@ return [
         'nav_title' => 'судија',
         'no_current_vote' => 'ниси још гласао.',
         'update' => 'ажурирај',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',

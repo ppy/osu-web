@@ -20,7 +20,7 @@ return [
     ],
 
     'card' => [
-        'members' => ':count_delimited عضو|:count_delimited أعضاء',
+        'members' => '',
     ],
 
     'create' => [
@@ -34,12 +34,13 @@ return [
 
         'intro' => [
             'description' => "العب مع أصدقائك، سواء الحاليين أو الجدد. أنت لست ضمن فريق حاليًا. انضم إلى فريق موجود بزيارة صفحته أو أنشئ فريقك الخاص من هذه الصفحة.",
+            'search_link' => '',
             'title' => 'فريق!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'تم حذف الفريق.',
+        'ok' => '',
     ],
 
     'edit' => [
@@ -47,7 +48,7 @@ return [
         'title' => 'إعدادات الفريق',
 
         'description' => [
-            'label' => 'الوصف',
+            'label' => '',
             'title' => 'وصف الفريق',
         ],
 
@@ -57,20 +58,20 @@ return [
         ],
 
         'header' => [
-            'label' => 'صورة الغلاف',
-            'title' => 'تعيين صورة الغلاف',
+            'label' => '',
+            'title' => '',
         ],
 
         'settings' => [
-            'application_help' => 'ما إذا كان سيُسمح للأشخاص بالتقدم للانضمام إلى الفريق',
+            'application_help' => '',
             'default_ruleset_help' => '',
-            'flag_help' => 'الحد الأقصى للحجم: :width×:height',
-            'header_help' => 'الحد الأقصى للحجم: :width×:height',
+            'flag_help' => '',
+            'header_help' => '',
             'title' => 'إعدادات الفريق',
 
             'application_state' => [
-                'state_0' => 'مغلق',
-                'state_1' => 'مفتوح',
+                'state_0' => '',
+                'state_1' => '',
             ],
         ],
     ],
@@ -99,27 +100,27 @@ return [
 
             'applications' => [
                 'accept_confirm' => 'هل تريد إضافة المستخدم :user إلى الفريق؟',
-                'created_at' => 'تم الطلب في',
-                'empty' => 'لا توجد طلبات انضمام في الوقت الحالي.',
-                'empty_slots' => 'الفتحات المتاحة',
-                'empty_slots_overflow' => ':count_delimited تجاوز المستخدم|:count_delimited تجاوز المستخدمين',
+                'created_at' => '',
+                'empty' => '',
+                'empty_slots' => '',
+                'empty_slots_overflow' => '',
                 'reject_confirm' => 'هل تريد رفض طلب الانضمام من المستخدم :user؟',
-                'title' => 'طلبات الانضمام',
+                'title' => '',
             ],
 
             'table' => [
-                'joined_at' => 'تاريخ الانضمام',
-                'remove' => 'إزالة',
+                'joined_at' => '',
+                'remove' => '',
                 'remove_confirm' => 'هل تريد إزالة المستخدم :user من الفريق؟',
                 'set_leader' => 'نقل قيادة الفريق',
                 'set_leader_confirm' => 'هل تريد نقل قيادة الفريق إلى المستخدم :user؟',
-                'status' => 'الحالة',
-                'title' => 'الأعضاء الحاليون',
+                'status' => '',
+                'title' => '',
             ],
 
             'status' => [
-                'status_0' => 'غير نشط',
-                'status_1' => 'نشط',
+                'status_0' => '',
+                'status_1' => '',
             ],
         ],
 
@@ -129,20 +130,20 @@ return [
     ],
 
     'part' => [
-        'ok' => 'غادر الفريق ;_;',
+        'ok' => '',
     ],
 
     'show' => [
         'bar' => [
             'chat' => 'محادثة الفريق',
             'destroy' => 'تفكيك الفريق',
-            'join' => 'أطلب الانضمام',
-            'join_cancel' => 'إلغاء طلب الانضمام',
+            'join' => '',
+            'join_cancel' => '',
             'part' => 'مغادرة الفريق',
         ],
 
         'info' => [
-            'created' => 'تأسَّس',
+            'created' => '',
         ],
 
         'members' => [
@@ -151,16 +152,16 @@ return [
         ],
 
         'sections' => [
-            'about' => 'نبذة عنا!',
+            'about' => '',
             'info' => 'معلومات',
-            'members' => 'الأعضاء',
+            'members' => '',
         ],
 
         'statistics' => [
-            'empty_slots' => ':count_delimited فتحة متاحة|:count_delimited فتحات متاحة',
-            'first_places' => 'المراكز الأولى',
+            'empty_slots' => '',
+            'first_places' => '',
             'leader' => 'قائد الفريق',
-            'rank' => 'الترتيب',
+            'rank' => '',
             'ranked_beatmapsets' => 'خرائط الإيقاع المصنّفة',
         ],
     ],

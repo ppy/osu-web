@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Ktokoľvek',
         'label' => 'Filtrovať podľa užívateľa',
+        'multiple' => '',
     ],
 ];

@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'ทุกคน',
         'label' => 'กรองโดยผู้ใช้',
+        'multiple' => '',
     ],
 ];

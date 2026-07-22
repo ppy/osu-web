@@ -19,6 +19,7 @@ return [
         'nav_title' => 'evaluar',
         'no_current_vote' => 'aún no has votado.',
         'update' => 'actualizar',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'puntuación faltante',
             'contest_vote_judged' => 'no puedes votar en concursos ya evaluados',

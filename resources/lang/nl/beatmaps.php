@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Ongeldige spelmodus opgegeven.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Te veel gast mappers.',
     ],
 
     'discussion-votes' => [
@@ -26,19 +26,21 @@ return [
         'edited' => 'Laatst bewerkt door :editor :update_time.',
         'guest' => 'Gast moeilijkheidsgraad door :user',
         'kudosu_denied' => 'Verkrijgen van kudosu ontzegd.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Deze moeilijkheidsgraad is verwijderd en mag niet meer besproken worden.',
         'message_placeholder_locked' => 'Discussie voor deze beatmap is uitgeschakeld.',
         'message_placeholder_silenced' => "Kan discussie niet plaatsen als je account niet in goede staat is.",
         'message_type_select' => 'Selecteer Commentaartype',
         'reply_notice' => 'Druk op enter om te antwoorden.',
-        'reply_resolve_notice' => '',
+        'reply_resolve_notice' => 'Druk op enter om te antwoorden. Druk op ctrl+enter om te antwoorden en op te lossen.',
         'reply_placeholder' => 'Type hier je reactie',
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
         'restore' => 'herstel',
         'show_deleted' => 'Toon verwijderde',
+        'show_other_replies' => '',
         'title' => 'Discussies',
-        'unresolved_count' => '',
+        'unresolved_count' => ':count_delimited ongelezen opmerking|:count_delimited opmerkingen',
 
         'collapse' => [
             'all-collapse' => 'Alles invouwen',
@@ -245,7 +247,7 @@ return [
             'prompt' => 'typ sleutelwoorden in...',
             'login_required' => 'Log in om te zoeken.',
             'options' => 'Meer Zoekopties',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Profiel top rang nummers en resultaten die op deze pagina worden weergegeven zijn gebaseerd op je hoogste "gestandaardiseerde" (aka "lazer") scores op beatmaps.',
             'supporter_filter' => 'Filteren met :filters vereist een actieve osu!supporter tag',
             'not-found' => 'geen resultaten',
             'not-found-quote' => '... nope, niets gevonden.',
@@ -277,8 +279,8 @@ return [
                 'link_text' => 'osu!supporter tag',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'gebruiker labels bekijken',
+                'prompt' => 'typ om te zoeken',
             ],
         ],
     ],
@@ -296,7 +298,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'niet ingesteld',
     ],
     'status' => [
         'any' => 'Alles',

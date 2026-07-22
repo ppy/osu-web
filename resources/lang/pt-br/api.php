@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => 'Crie e gerencie quartos multijogador em seu nome.',
+            'write_manage' => 'Criar e gerir salas multijogador em seu nome.',
         ],
 
         'public' => 'Ler dados públicos em seu nome.',

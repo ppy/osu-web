@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en mapes qualificats dels següents modes',
         'beatmapset_disqualify' => 'rebre notificacions per quan els mapes dels següents modes siguin desqualificats',
         'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'quan se us afegeixi com a mapejador convidat a la dificultat d\'un mapa',
+            'beatmapset:modding' => 'quan les discussions de mapes que vigileu rebin actualitzacions o hi hagi algun suggeriment o problema amb els vostres mapes',
+            'channel_mention' => 'quan se us mencioni en un canal públic',
+            'channel_message' => 'quan rebeu un missatge privat nou',
+            'channel_team' => 'quan el canal de xat del vostre equip tingui un missatge nou',
+            'comment_new' => 'quan hi hagi un comentari nou en un element que seguiu',
+            'forum_topic_reply' => 'quan els temes del fòrum que vigileu rebin respostes',
+            'mapping' => 'quan un mapejador que seguiu pugi un mapa',
+            'news_post' => 'quan hi hagi missatges nous',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'teclat',
         'mouse' => 'ratolí',
         'tablet' => 'tauleta',

@@ -230,7 +230,7 @@ export default class Comment extends React.Component<Props> {
   };
 
   private readonly onShowDeletedToggleClick = () => {
-    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'));
+    core.userPreferences.toggle('comments_show_deleted');
   };
 
   @action

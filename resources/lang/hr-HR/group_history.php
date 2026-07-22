@@ -5,7 +5,7 @@
 
 return [
     'none' => '',
-    'view' => '',
+    'view' => 'Prikaz povijesti grupe',
 
     'event' => [
         'actor' => '',

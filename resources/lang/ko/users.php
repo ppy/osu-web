@@ -508,6 +508,11 @@ return [
             'global_simple' => '세계 순위',
             'highest' => '최고 순위: :rank, :date에 달성',
         ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => '상위 :value',
             'total_score' => '총 점수',

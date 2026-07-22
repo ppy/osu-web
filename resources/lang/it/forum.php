@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Post cancellati',
             'total_posts' => 'Post totali',
-            'total_watches' => '',
+            'total_watches' => 'Iscritti totali',
 
             'feature_vote' => [
                 'current' => 'Priorità Attuale: +:count',

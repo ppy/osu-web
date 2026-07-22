@@ -26,6 +26,7 @@ return [
         'edited' => 'Zadnje uređeno od :editor :update_time.',
         'guest' => 'Gostova težina od :user',
         'kudosu_denied' => 'Zabranjeno dobivanje kudosua.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Ova težina je izbrisana pa se o njoj više ne može raspravljati.',
         'message_placeholder_locked' => 'Rasprava za ovu beatmapu je isključena.',
         'message_placeholder_silenced' => "Ne možeš objavljivati raspravu dok si utišan/a.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Riješeno',
         'restore' => 'obnovi',
         'show_deleted' => 'Prikaži izbrisano',
+        'show_other_replies' => '',
         'title' => 'Rasprave',
         'unresolved_count' => '',
 

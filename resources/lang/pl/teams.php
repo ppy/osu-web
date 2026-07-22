@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Graj wspólnie ze swoimi przyjaciółmi. Nie jesteś aktualnie w żadnym zespole. Możesz dołączyć do istniejącego zespołu poprzez odwiedzenie jego strony lub utworzyć swój własny z wykorzystaniem poniższego kreatora.",
+            'search_link' => '',
             'title' => 'Graj w zespole!',
         ],
     ],
@@ -161,7 +162,7 @@ return [
             'first_places' => 'Pierwsze miejsca',
             'leader' => 'Lider zespołu',
             'rank' => 'Pozycja w rankingu',
-            'ranked_beatmapsets' => 'Mapy rankingowe',
+            'ranked_beatmapsets' => 'Rankingowe beatmapy',
         ],
     ],
 

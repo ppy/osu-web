@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Bermainlah bersama teman-temanmu; baik yang sudah akrab atau yang baru kamu kenal. Kamu tidak sedang berada di dalam tim. Bergabunglah dengan tim yang sudah ada dengan mengunjungi halaman tim mereka atau buat tim kamu sendiri dari halaman ini.",
+            'search_link' => '',
             'title' => 'Tim!',
         ],
     ],

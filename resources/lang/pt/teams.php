@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Jogue com amigos, sejam eles já existentes ou novos. De momento, não pertence a nenhuma equipa. Junte‑se a uma equipa existente visitando a página dessa equipa ou crie a sua própria equipa a partir desta página.",
+            'search_link' => '',
             'title' => 'Equipa!',
         ],
     ],

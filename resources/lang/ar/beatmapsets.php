@@ -44,8 +44,8 @@ return [
         'bng_limited_too_many_rulesets' => 'لا يمكن للمرشِّح تحت فترة التجربة ترشيح عدة قواعد.',
         'full_nomination_required' => 'عليك أن تكون مرشِّحاً مكتملاً من أجل الترشيح النهائي لقاعدة.',
         'hybrid_requires_modes' => 'تحتاج الخرائط الهجينة إلى تحديد وضع تشغيل واحد على الأقل لِتَرشيحِها.',
-        'incorrect_mode' => 'ليس لديك إذن للترشيح في الوضع: :mode',
-        'invalid_limited_nomination' => 'تحتوي خريطة الإيقاع هذه على ترشيحات غير صالحة، ولا يمكن تأهيلها في هذه الحالة.',
+        'incorrect_mode' => 'ليس لديك الصلاحيّات للترشيح للوضع: :mode',
+        'invalid_limited_nomination' => 'لخريطة الإيقاع هذه ترشيحات لاغية تمنع تأهيلها حالياً.',
         'invalid_ruleset' => 'يشمل هذا الترشيح أنماط لاغية.',
         'too_many' => 'تم استيفاء متطلبات الترشيح بالفعل.',
         'too_many_non_main_ruleset' => 'تم استيفاء متطلبات الترشيح الخاصة بنمط اللعب غير الأساسي بالفعل.',
@@ -81,9 +81,9 @@ return [
             'by_artist' => 'بواسطة :artist',
             'favourite' => 'تفضيل هذه الخريطة',
             'favourite_login' => 'قم بتسجيل الدخول لتفضيل هذه الخريطة',
-            'logged-out' => 'يجب عليك تسجيل الدخول قبل تنزيل أي خريطة!',
+            'logged-out' => 'تحتاج إلى تسجيل الدخول قبل تنزيل أي خريطة!',
             'mapped_by' => 'نشأت بواسطة :mapper',
-            'mapped_by_guest' => 'صعوبة الضيف بواسطة :mapper',
+            'mapped_by_guest' => 'صعوبة إضافية بواسطة :mapper',
             'unfavourite' => 'إلغاء تفضيل هذه الخريطة',
             'updated_timeago' => 'آخر تحديث :timeago',
 
@@ -154,6 +154,16 @@ return [
             'success_rate_plays' => '',
             'user_tags' => 'وسوم المستخدم',
             'video' => 'تحتوي هذه الخريطة على فيديو',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [

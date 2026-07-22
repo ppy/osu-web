@@ -62,11 +62,11 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'Người tặng bạn tag này đã chọn ẩn danh, cho nên họ không được nhắc tới trong thông báo này.',
+        'anonymous_gift' => 'Người tặng bạn thẻ này đã chọn ẩn danh, cho nên họ không được nhắc tới trong thông báo này.',
         'anonymous_gift_maybe_not' => 'Nhưng chắc bạn cũng đã biết người đó là ai rồi ;).',
         'duration' => 'Nhờ họ, bạn có quyền truy cập osu!direct và các quyền lợi osu!supporter khác trong :duration tiếp theo.',
         'features' => 'Bạn có thể tìm thêm thông tin về những tính năng này tại đây:',
-        'gifted' => 'Ai đó vừa mới tặng bạn một osu!supporter tag!',
+        'gifted' => 'Ai đó vừa mới tặng bạn một thẻ osu!supporter!',
         'gift_message' => 'Người đã tặng bạn cái thẻ này để lại một tin nhắn:',
         'subject' => 'Bạn đã được tặng một osu!supporter tag!',
     ],

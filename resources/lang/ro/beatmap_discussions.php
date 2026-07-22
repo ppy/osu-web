@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Toată lumea',
         'label' => 'Filtrare după utilizator',
+        'multiple' => '',
     ],
 ];

@@ -120,7 +120,7 @@ return [
 
         'beta' => [
             'main' => 'O acesso beta está atualmente restrito a utilizadores privilegiados.',
-            'small' => '(osu!supporters terão acesso em breve)',
+            'small' => '(apoiantes do osu! terão acesso em breve)',
         ],
     ],
 
@@ -196,7 +196,7 @@ return [
         'change_avatar' => 'mude o seu avatar!',
         'first_members' => 'Aqui desde o começo',
         'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_supporter' => 'apoiante do osu!',
         'joined_at' => 'Juntou-se em :date',
         'lastvisit' => 'Visto pela última vez em :date',
         'lastvisit_online' => 'Atualmente online',
@@ -248,7 +248,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Carregamento disponível apenas para :link',
-                        'link' => 'osu!supporters',
+                        'link' => 'apoiantes do osu!',
                     ],
                 ],
             ],
@@ -264,7 +264,7 @@ return [
 
                 'supporter' => [
                     '_' => 'Temas de cores personalizadas disponíveis apenas no :link',
-                    'link' => 'osu!supporters',
+                    'link' => 'apoiantes do osu!',
                 ],
             ],
         ],
@@ -493,7 +493,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'Precisa de ser um :link para desbloquear esta funcionalidade.',
-                'link' => 'osu!supporter',
+                'link' => 'apoiante do osu!',
             ],
         ],
         'post_count' => [
@@ -506,6 +506,11 @@ return [
             'global' => 'Classificação global para :mode',
             'global_simple' => 'Classificação global',
             'highest' => 'Classificação mais alta: :rank em :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Topo :value',

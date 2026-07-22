@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Tópicos Fixados',
+    'pinned_topics' => 'Tópicos fixados',
     'slogan' => "é perigoso jogar sozinho.",
     'subforums' => 'Subfóruns',
-    'title' => 'osu! fóruns',
+    'title' => 'Foruns',
 
     'covers' => [
         'edit' => 'Editar capa',
@@ -26,10 +26,10 @@ return [
 
     'forums' => [
         'forums' => 'Fóruns',
-        'latest_post' => 'Última Publicação',
+        'latest_post' => 'Última publicação',
 
         'index' => [
-            'title' => 'Índice do Fórum',
+            'title' => 'Índice do fórum',
         ],
 
         'topics' => [
@@ -39,16 +39,16 @@ return [
 
     'mark_as_read' => [
         'forum' => 'Marcar fórum como lido',
-        'forums' => 'Marcar fóruns como lido',
+        'forums' => 'Marcar fóruns como lidos',
         'busy' => 'Marcando como lido...',
     ],
 
     'post' => [
-        'confirm_destroy' => 'Deseja mesmo a excluir publicação?',
-        'confirm_restore' => 'Deseja mesmo restaurar a publicação?',
+        'confirm_destroy' => 'Tem certeza que deseja excluir essa publicação?',
+        'confirm_restore' => 'Tem certeza que deseja restaurar essa publicação?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
-        'posted_at' => 'publicado :when',
-        'posted_by_in' => 'postado por :username em :forum',
+        'posted_at' => 'publicado a :when',
+        'posted_by_in' => 'publicado por :username em :forum',
 
         'actions' => [
             'destroy' => 'Excluir publicação',
@@ -76,8 +76,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Realmente excluir tópico?',
-        'confirm_restore' => 'Realmente restaurar tópico?',
+        'confirm_destroy' => 'Tem certeza que deseja excluir esse tópico?',
+        'confirm_restore' => 'Tem certeza que deseja restaurar esse tópico?',
         'deleted' => 'tópico excluído',
         'go_to_latest' => 'ver a ultima publicação',
         'go_to_unread' => 'ver primeira publicação não lida',
@@ -86,7 +86,7 @@ return [
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
         'new_topic' => 'Criar novo tópico',
-        'new_topic_login' => 'Conecte-se para criar um novo tópico',
+        'new_topic_login' => 'Entre para publicar um novo tópico',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
         'reply_title_prefix' => 'Re',
@@ -211,7 +211,7 @@ return [
         '_' => 'Tópicos',
 
         'actions' => [
-            'login_reply' => 'Conecte-se para Responder',
+            'login_reply' => 'Entre para responder',
             'reply' => 'Responder',
             'reply_with_quote' => 'Citar publicação na resposta',
             'search' => 'Pesquisar',
@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Publicações Excluídas',
             'total_posts' => 'Total de publicações',
-            'total_watches' => '',
+            'total_watches' => 'Inscritos totais',
 
             'feature_vote' => [
                 'current' => 'Prioridade Atual: +:count',

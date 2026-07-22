@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => '删除主题',
             'total_posts' => '讨论总数',
-            'total_watches' => '',
+            'total_watches' => '订阅总数',
 
             'feature_vote' => [
                 'current' => '当前优先级: +:count',

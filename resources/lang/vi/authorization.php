@@ -73,8 +73,8 @@ return [
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
         'no_announce' => 'Bạn không có quyền đăng thông báo.',
         'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
-        'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
-        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị tắt tiếng, bị hạn chế hoặc bị cấm.',
+        'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị cấm ngôn, bị hạn chế hoặc bị cấm.',
+        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị cấm ngôn, bị hạn chế hoặc bị cấm.',
     ],
 
     'comment' => [
@@ -92,7 +92,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
-            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm bài dự thi nào nữa và sẽ sớm mở bình chọn.',
+            'over' => 'Cảm ơn bạn đã tham gia! Thời gian nộp bài dự thi đã kết thúc và cổng bình chọn sẽ sớm được mở.',
         ],
     ],
 
@@ -207,7 +207,7 @@ return [
             'not_member' => 'Không phải thành viên của một đội.',
         ],
         'store' => [
-            'require_supporter_tag' => 'cần tag osu!supporter để tạo đội.',
+            'require_supporter_tag' => 'cần thẻ osu!supporter để tạo đội.',
         ],
     ],
 
@@ -216,7 +216,7 @@ return [
             'edit' => [
                 'locked' => 'Trang người dùng này đã bị khóa.',
                 'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
-                'require_supporter_tag' => 'phải có osu!supporter.',
+                'require_supporter_tag' => 'phải có thẻ osu!supporter.',
             ],
         ],
         'update_email' => [

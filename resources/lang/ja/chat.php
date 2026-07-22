@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'ユーザーの読み込み中・・・',
+    'searching_users' => '',
     'talking_in' => ':channelで会話中',
     'talking_with' => ':nameと会話中',
     'title_compact' => 'チャット',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'メッセージを表示するには、チャンネルに参加してください。',
+        'join' => 'チャンネルに参加',
     ],
 
     'input' => [

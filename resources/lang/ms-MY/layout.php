@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Tetapan',
+            'create_team' => '',
             'follows' => 'Senarai Ikutan',
             'friends' => 'Kawan',
             'legacy_score_only_toggle' => 'Mod lazer',

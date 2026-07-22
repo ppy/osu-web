@@ -156,6 +156,16 @@ return [
             'video' => 'Peta rentak ini mengandungi video',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Peta rentak ini mengandungi kandungan tidak senonoh, menyinggung atau tidak sesuai untuk pemain tertentu. Adakah anda masih ingin melihatnya?',
             'title' => 'Kandungan Tidak Senonoh',

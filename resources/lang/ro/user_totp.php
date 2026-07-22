@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Finalizează',
+        'key' => 'Scanați codul QR cu aplicația de autentificare și introduceți cheia de verificare',
+        'key_copy' => 'Sau faceți clic pe acest link pentru a copia cheia pentru aplicația de autentificare',
+        'key_link' => 'Utilizați acest link dacă folosiți telefonul mobil',
+        'password' => 'Pentru a seta verificarea cu aplicația de autentificare, vă rugăm să introduceți parola curentă',
+        'start' => 'Continuă',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Nu aveți configurată verificarea cu aplicația de autentificare.',
+        'ok' => 'Verificarea cu aplicația de autentificare eliminată.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Introduceți parola curentă pentru a elimina verificarea cu aplicația de autentificare.',
+        'start' => 'Elimină',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Deja aveți configurată verificarea cu aplicația de autentificare.',
+        'ok' => 'Verificarea cu aplicația de autentificare a fost configurată',
+        'restart' => 'A apărut o eroare. Vă rugăm să reporniți procesul.',
     ],
 ];

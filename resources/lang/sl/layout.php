@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavitve',
+            'create_team' => '',
             'follows' => 'Opazovani seznami',
             'friends' => 'Prijatelji',
             'legacy_score_only_toggle' => '',

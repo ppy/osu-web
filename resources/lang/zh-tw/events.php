@@ -23,7 +23,7 @@ return [
         'approved' => '核准',
         'loved' => '加入社群喜愛',
         'qualified' => '列為合格圖譜並上架',
-        'ranked' => '列為正式上架',
+        'ranked' => '已進榜',
     ],
 
     'value' => [

@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Juga amb els teus amics; veterans o principiants. Actualment no pertanys a cap equip. Uneix-te a un visitant la nostra pàgina d'equips, o crea el teu propi des d'aquesta pàgina.",
+            'search_link' => '',
             'title' => 'Equip!',
         ],
     ],

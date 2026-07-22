@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => 'Regras especificadas inválidas.',
+    'invalid_ruleset' => 'Modalidade especificada inválida.',
 
     'change_owner' => [
         'too_many' => 'Muitos mappers convidados.',
@@ -26,6 +26,7 @@ return [
         'edited' => 'Última vez editado por :editor :update_time.',
         'guest' => 'Dificuldade de convidado feita por :user',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desabilitada.',
         'message_placeholder_silenced' => "Não é possível postar na discussão enquanto silenciado.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Resolvido',
         'restore' => 'restaurar',
         'show_deleted' => 'Mostrar excluídos',
+        'show_other_replies' => '',
         'title' => 'Discussões',
         'unresolved_count' => ':count_delimited problemas não resolvidos',
 
@@ -89,7 +91,7 @@ return [
         'message_type_title' => [
             'disqualify' => 'Enviar desqualificação',
             'hype' => 'Enviar Hype!',
-            'mapper_note' => 'Enviar Nota',
+            'mapper_note' => 'Enviar nota',
             'nomination_reset' => 'Remover todas as Nomeações',
             'praise' => 'Enviar elogio',
             'problem' => 'Enviar problema',
@@ -101,7 +103,7 @@ return [
         'mode' => [
             'events' => 'Histórico',
             'general' => 'Geral :scope',
-            'reviews' => 'Revisões',
+            'reviews' => 'Análises',
             'timeline' => 'Linha do tempo',
             'scopes' => [
                 'general' => 'Esta dificuldade',
@@ -243,7 +245,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'digite em palavras-chave...',
-            'login_required' => 'Conecte-se para pesquisar.',
+            'login_required' => 'Entre para pesquisar.',
             'options' => 'Mais opções de busca',
             'rank_filter_note' => 'A classificação do perfil e os resultados exibidos nesta página são baseados nas suas notas mais altas "padronizadas" (também conhecido como "lazer") em beatmaps.',
             'supporter_filter' => 'Filtrar por :filters requer uma osu!supporter tag ativa',

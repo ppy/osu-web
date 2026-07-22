@@ -507,6 +507,11 @@ return [
             'global_simple' => 'Глабальны рэйтынг',
             'highest' => 'Найвышэйшы ранг: :rank, :date',
         ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',
             'total_score' => 'Усяго ачкоў',

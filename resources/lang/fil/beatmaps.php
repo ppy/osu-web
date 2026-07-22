@@ -26,6 +26,7 @@ return [
         'edited' => 'Huling na-edit ni :editor :update_time.',
         'guest' => 'Guest difficulty ni :user',
         'kudosu_denied' => 'Natanggi sa pagtamo ng kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Ang difficulty na ito ay naburo na kaya ito\'y hindi na madidiscuss.',
         'message_placeholder_locked' => 'Ang talakayan para sa beatmap na ito ay isinara na.',
         'message_placeholder_silenced' => "Hindi maaaring magpost ng diskusyon habang pinatahimik.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Nalutas',
         'restore' => 'ibalik',
         'show_deleted' => 'Ipakita ang tinanggal',
+        'show_other_replies' => '',
         'title' => 'Diskusyon',
         'unresolved_count' => ':count_delimited hindi nalutas na isyu|:count_delimited hindi nalutas na isyu',
 

@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Czas trwania jest zbyt długi.',
             'name_too_long' => 'Nazwa pokoju jest zbyt długa.',
-            'too_many_playlist_items' => 'Za dużo elementów w liście odtwarzania.',
+            'too_many_playlist_items' => 'Zbyt wiele beatmap w tej grze asynchronicznej.',
         ],
 
         'status' => [

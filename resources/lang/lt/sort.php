@@ -38,6 +38,7 @@ return [
     ],
 
     'teams' => [
+        'created' => '',
         'relevance' => 'Aktualumas',
         'name' => 'Pavadinimas',
         'short-name' => 'Trumpasis Pavadinimas',

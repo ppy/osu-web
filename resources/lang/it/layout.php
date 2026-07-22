@@ -196,13 +196,14 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Impostazioni',
+            'create_team' => '',
             'follows' => 'Iscrizioni',
             'friends' => 'Amici',
             'legacy_score_only_toggle' => 'Modalità lazer',
             'legacy_score_only_toggle_tooltip' => 'La modalità lazer mostra i punteggi di lazer con un nuovo algoritmo dei punti',
             'logout' => 'Esci',
             'profile' => 'Profilo',
-            'scoring_mode_toggle' => 'Punti classici',
+            'scoring_mode_toggle' => 'Punteggio classico',
             'scoring_mode_toggle_tooltip' => 'Adatta i valori dei punti facendoli assomigliare al punteggio illimitato classico',
             'team' => 'Squadra',
         ],

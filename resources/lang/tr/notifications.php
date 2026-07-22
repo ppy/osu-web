@@ -128,9 +128,9 @@ return [
                 '_' => 'Sohbet etiketlenmesi',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username şurda senden bahsetti :name ":title"',
+                    'channel_mention_compact' => ':username ":title" ',
+                    'channel_mention_group' => 'şurda bahsedildi :name',
                 ],
             ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => ':username\'dan yeni bir mesaj aldın',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username şurda senden bahsetti :name ":title"',
             ],
 
             'channel_team' => [
