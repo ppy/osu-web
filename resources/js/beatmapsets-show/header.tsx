@@ -283,22 +283,23 @@ export default class Header extends React.Component<Props> {
     const beatmap = this.controller.hoveredBeatmap ?? this.controller.currentBeatmap;
 
     return (
-      <span className='beatmapset-header__diff-name'>
+      <div className="beatmapset-diff-details">
         <DifficultyBadge modifiers='beatmapset' rating={beatmap.difficulty_rating} />
-        {' '}
-        {beatmap.version}
-
+        <span className='beatmapset-diff-details__name'>
+          {' '}
+          {beatmap.version}
+        </span>
         {hasGuestOwners(beatmap, this.controller.beatmapset) && (
-          <span className='beatmapset-header__diff-extra'>
-            <StringWithComponent
-              mappings={{
-                mapper: <UserLinkList users={this.controller.owners(beatmap)} />,
-              }}
-              pattern={trans('beatmapsets.show.details.mapped_by')}
-            />
-          </span>
-        )}
-      </span>
+            <span className='beatmapset-diff-details__extra'>
+              <StringWithComponent
+                mappings={{
+                  mapper: <UserLinkList users={this.controller.owners(beatmap)} />,
+                }}
+                pattern={trans('beatmapsets.show.details.mapped_by')}
+              />
+            </span>
+          )}
+      </div>
     );
   }
 
