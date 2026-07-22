@@ -2,21 +2,30 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-diff-details {
-  margin-bottom: 1px;
+  display: flex;
+  flex: 0 0 0;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  vertical-align: bottom;
 
-    &__extra {
-      margin-left: 5px;
-      font-size: @font-size--small-2;
-      font-weight: 600;
-    }
+    &__text {
+      font-size: @font-size--title-small-3;
+      margin-left: 0.3em; // space
+      margin-bottom: 2px;
+        .default-text-shadow();
 
-    &__name {
-      font-size: 17px;
-      font-weight: 600;
-      overflow-wrap: anywhere;
+      &--extra {
+        margin-left: 5px;
+        font-size: @font-size--small-2;
+        font-weight: 600;
+      }
+      &--name {
+        font-weight: 600;
+        overflow-wrap: anywhere;
 
-      color: hsl(var(--hsl-c1));
+        color: hsl(var(--hsl-c1));
 
-      .default-text-shadow();
+      }
     }
 }

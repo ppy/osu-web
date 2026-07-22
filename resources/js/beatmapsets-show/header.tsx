@@ -285,12 +285,12 @@ export default class Header extends React.Component<Props> {
     return (
       <div className="beatmapset-diff-details">
         <DifficultyBadge modifiers='beatmapset' rating={beatmap.difficulty_rating} />
-        <span className='beatmapset-diff-details__name'>
-          {' '}
+        <div className='beatmapset-diff-details__text'>
+          <span className='beatmapset-diff-details__text--name'>
           {beatmap.version}
-        </span>
-        {hasGuestOwners(beatmap, this.controller.beatmapset) && (
-            <span className='beatmapset-diff-details__extra'>
+          </span>
+          {hasGuestOwners(beatmap, this.controller.beatmapset) && (
+            <span className='beatmapset-diff-details__text--extra'>
               <StringWithComponent
                 mappings={{
                   mapper: <UserLinkList users={this.controller.owners(beatmap)} />,
@@ -299,6 +299,8 @@ export default class Header extends React.Component<Props> {
               />
             </span>
           )}
+        </div>
+
       </div>
     );
   }
