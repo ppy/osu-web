@@ -7,6 +7,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import { rulesetNames } from 'interfaces/ruleset';
 import { ScoreReplayStatsJsonForUser } from 'interfaces/score-replay-stats-json';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
@@ -30,6 +31,7 @@ export default function ScoreReplayStatsEntry(props: Props) {
 
   return (
     <div className='play-detail'>
+      <a className='play-detail__bg-link' href={route('scores.show', { score: score.id })} />
       <div className='play-detail__group play-detail__group--top'>
         <div className='play-detail__icon play-detail__icon--main'>
           <div className={`score-rank score-rank--full score-rank--${scoreRank}`} />
@@ -69,7 +71,7 @@ export default function ScoreReplayStatsEntry(props: Props) {
               <span className='play-detail__accuracy'>
                 {formatNumber(accuracy(score), 2, { style: 'percent' })}
               </span>
-              <span className='play-detail__weighted-pp'>
+              <span className='play-detail__weighted-pp u-hover'>
                 {shouldShowPp(beatmap) ? (
                   <PpValue
                     score={score}

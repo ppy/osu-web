@@ -78,6 +78,10 @@
     gap: 15px;
   }
 
+  &__bg-link {
+    .full-size();
+  }
+
   &__detail {
     flex: 1;
     min-width: 0;
@@ -87,10 +91,10 @@
 
   &__group {
     padding: @_padding-vertical @_padding-horizontal;
+    position: relative;
+    pointer-events: none;
 
     &--bottom {
-      position: relative;
-
       @media @desktop {
         display: flex;
         padding: 0;
@@ -171,6 +175,7 @@
     right: 0;
     width: 40px;
     height: @_icon-height;
+    pointer-events: auto;
 
     @media @desktop {
       top: 0;
@@ -187,6 +192,7 @@
     font-size: @font-size--title-small-3;
     font-weight: 700;
     color: @osu-colour-h1;
+    pointer-events: auto;
 
     @media @desktop {
       .center-content();
@@ -243,6 +249,7 @@
   &__time {
     color: @osu-colour-f1;
     flex: none;
+    pointer-events: auto;
   }
 
   &__title {
@@ -251,6 +258,7 @@
     display: block;
     align-self: flex-start;
     max-width: 100%;
+    pointer-events: auto;
   }
 
   &__weighted-pp {
