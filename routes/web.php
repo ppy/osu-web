@@ -305,6 +305,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('clients/{client}/reset-secret', 'ClientsController@resetSecret')->name('clients.reset-secret');
     });
 
+    if ($GLOBALS['cfg']['osu']['one_time_key']) {
+        Route::get('one-time-key', 'OneTimeKeyController@create')->name('one-time-key');
+        Route::post('one-time-key', 'OneTimeKeyController@store');
+        Route::post('one-time-key/check', 'OneTimeKeyController@check');
+    }
+
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
     Route::get('rankings/ranked-play/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');

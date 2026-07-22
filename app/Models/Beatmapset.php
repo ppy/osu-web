@@ -21,14 +21,13 @@ use App\Jobs\Notifications\BeatmapsetRemoveFromLoved;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Jobs\RemoveBeatmapsetBestScores;
 use App\Jobs\RemoveBeatmapsetSoloScores;
-use App\Libraries\BBCodeFromDB;
 use App\Libraries\Beatmapset\BeatmapsetMainRuleset;
+use App\Libraries\Beatmapset\Description;
 use App\Libraries\Beatmapset\NominateBeatmapset;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageUrl;
 use App\Libraries\Transactions\AfterCommit;
-use App\Models\Forum\Post;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use App\Transformers\BeatmapsetTransformer;
@@ -166,6 +165,8 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
     protected $primaryKey = 'beatmapset_id';
     protected $table = 'osu_beatmapsets';
 
+    private Description $description;
+
     public static function coverSizes()
     {
         static $sizes;
@@ -247,15 +248,6 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
 
             return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
         });
-    }
-
-    public static function removeMetadataText($text)
-    {
-        // TODO: see if can be combined with description extraction thingy without
-        // exploding
-        static $pattern = '/^(.*?)-{15}/s';
-
-        return preg_replace($pattern, '', $text);
     }
 
     public static function isValidBackgroundImage(string $path): bool
@@ -1450,82 +1442,9 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         return $this->hasMany(FavouriteBeatmapset::class);
     }
 
-    public function description()
+    public function description(): Description
     {
-        return $this->getBBCode()?->toHTML();
-    }
-
-    public function editableDescription()
-    {
-        return $this->getBBCode()?->toEditor();
-    }
-
-    public function updateDescription($bbcode, $user)
-    {
-        return DB::transaction(function () use ($bbcode, $user) {
-            $post = $this->descriptionPost;
-
-            if ($post === null) {
-                $forum = Forum\Forum::findOrFail($GLOBALS['cfg']['osu']['forum']['beatmap_description_forum_id']);
-                $title = $this->artist.' - '.$this->title;
-
-                $topic = Forum\Topic::createNew($forum, [
-                    'title' => mb_substr($title, 0, 100),
-                    'user' => $user,
-                    'body' => '---------------',
-                ]);
-                // allow up to 255 characters title. The actual maximum length
-                // is 163 due to 80 characters limit for artist and title.
-                if (mb_strlen($title) > 100) {
-                    Forum\Topic::whereKey($topic->getKey())->update(['topic_title' => mb_substr($title, 0, 255)]);
-                }
-                $topic->lock();
-                $this->update(['thread_id' => $topic->getKey()]);
-                $post = $topic->firstPost;
-            }
-
-            $split = preg_split('/-{15}/', $post->post_text, 2);
-
-            $options = [
-                'withGallery' => true,
-                'ignoreLineHeight' => true,
-            ];
-
-            $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
-            $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
-
-            return $post
-                ->skipBeatmapPostRestrictions()
-                ->update([
-                    'post_text' => $newBody,
-                    'post_edit_user' => $user === null ? null : $user->getKey(),
-                ]);
-        });
-    }
-
-    private function extractDescription($post)
-    {
-        // Any description (after the first match) that matches
-        // '/-{15}/' within its body doesn't get split anymore,
-        // and gets stored in $split[1] anyways
-        $split = preg_split('/-{15}/', $post->post_text, 2);
-
-        // Return empty description if the pattern was not found
-        // (mostly older beatmapsets)
-        return ltrim($split[1] ?? '');
-    }
-
-    private function getBBCode()
-    {
-        $post = $this->descriptionPost ?? new Post();
-        $description = $this->extractDescription($post);
-
-        $options = [
-            'withGallery' => true,
-            'ignoreLineHeight' => true,
-        ];
-
-        return new BBCodeFromDB($description, $post->bbcode_uid, $options);
+        return $this->description ??= new Description($this);
     }
 
     public function getDisplayArtist(?User $user)
