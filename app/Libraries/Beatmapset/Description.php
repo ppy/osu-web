@@ -10,6 +10,7 @@ namespace App\Libraries\Beatmapset;
 use App\Libraries\BBCodeFromDB;
 use App\Models\Beatmapset;
 use App\Models\Forum;
+use App\Models\User;
 
 class Description
 {
@@ -44,7 +45,7 @@ class Description
         return new BBCodeFromDB($description, $post->bbcode_uid, static::BBCODE_OPTIONS);
     }
 
-    public function update($bbcode, $user)
+    public function update(string $bbcode, User $user): bool
     {
         return \DB::transaction(function () use ($bbcode, $user) {
             $post = $this->beatmapset->descriptionPost;
@@ -77,7 +78,7 @@ class Description
                 ->skipBeatmapPostRestrictions()
                 ->update([
                     'post_text' => $newBody,
-                    'post_edit_user' => $user === null ? null : $user->getKey(),
+                    'post_edit_user' => $user->getKey(),
                 ]);
         });
     }
