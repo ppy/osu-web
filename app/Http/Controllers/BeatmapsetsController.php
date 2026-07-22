@@ -271,7 +271,7 @@ class BeatmapsetsController extends Controller
 
             $description = $params['description'];
 
-            if (!$beatmapset->updateDescription($description, Auth::user())) {
+            if (!$beatmapset->description()->update($description, Auth::user())) {
                 abort(422, 'failed updating description');
             }
 
