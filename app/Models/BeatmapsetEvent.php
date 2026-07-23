@@ -212,6 +212,7 @@ class BeatmapsetEvent extends Model
                     static::LANGUAGE_EDIT,
                     static::NSFW_TOGGLE,
                     static::OFFSET_EDIT,
+                    static::TAGS_EDIT,
 
                     static::ISSUE_RESOLVE,
                     static::ISSUE_REOPEN,
@@ -226,6 +227,9 @@ class BeatmapsetEvent extends Model
                     static::APPROVE, // not actually used
 
                     static::KUDOSU_RECALCULATE,
+
+                    static::DISCUSSION_LOCK,
+                    static::DISCUSSION_UNLOCK,
 
                     static::DISCUSSION_DELETE,
                     static::DISCUSSION_RESTORE,

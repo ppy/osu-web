@@ -11,9 +11,9 @@ use App\Jobs\EsDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\Beatmapset\Description as BeatmapsetDescription;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
-use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Traits;
 use App\Models\User;
@@ -172,7 +172,7 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         // unescape html entities
         // strip remaining bbcode
         // strip any html tags left
-        $text = Beatmapset::removeMetadataText($this->post_text);
+        $text = BeatmapsetDescription::removeMetadataText($this->post_text);
         $text = BBCodeFromDB::removeBlockQuotes($text);
         $text = html_entity_decode_better($text);
         $text = BBCodeFromDB::removeBBCodeTags($text);

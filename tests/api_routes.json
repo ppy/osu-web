@@ -1573,6 +1573,19 @@
         ]
     },
     {
+        "uri": "api/v2/me/options",
+        "methods": [
+            "PUT"
+        ],
+        "controller": "App\\Http\\Controllers\\AccountController@updateOptions",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/me/achievements/{achievementId}",
         "methods": [
             "PUT"
