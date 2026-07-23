@@ -7,6 +7,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import { rulesetNames } from 'interfaces/ruleset';
 import { ScoreJsonForUser } from 'interfaces/score-json';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
@@ -57,6 +58,8 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
 
     return (
       <div className={blockClass} {...additionalAttributes}>
+        <a className={`${bn}__bg-link`} href={route('scores.show', { score: score.id })} />
+
         {this.renderPinSortableHandle()}
         <div className={`${bn}__group ${bn}__group--top`}>
           <div className={`${bn}__icon ${bn}__icon--main`}>
@@ -114,7 +117,9 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
 
           <div className={`${bn}__mods-pp`}>
             <div className={`${bn}__mods`}>
-              <Mods mods={displayMods(score, false)} />
+              <div className='u-contents u-hover'>
+                <Mods mods={displayMods(score, false)} />
+              </div>
             </div>
 
             <div className={`${bn}__pp`}>
