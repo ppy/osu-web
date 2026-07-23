@@ -11,6 +11,8 @@ use App\Events\ChatChannelEvent;
 use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Libraries\User\AvatarHelper;
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
+use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Models\UserRelation;
 use Event;
@@ -55,6 +57,22 @@ class ChannelTest extends TestCase
             ChannelAnnouncement::class,
             fn (ChannelAnnouncement $job) => in_array($user->getKey(), $job->getReceiverIds(), true)
         );
+    }
+
+    public function testClose(): void
+    {
+        $message = Message::factory()->create();
+        $channel = $message->channel;
+        $channel->addUser($message->sender);
+        $channel->userChannels()->create(['user_id' => 0]);
+
+        $this->expectCountChange(fn () => Channel::count(), 0);
+        $this->expectCountChange(fn () => Message::count(), 0);
+        $this->expectCountChange(fn () => UserChannel::count(), -2);
+
+        $channel->close();
+
+        $this->assertSame(0, $channel->userChannels()->count());
     }
 
     public function testCreatePM()
