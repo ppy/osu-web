@@ -3,6 +3,7 @@
 
 import FlagCountry from 'components/flag-country';
 import Mods from 'components/mods';
+import { PlayDetailMenu } from 'components/play-detail-menu';
 import UserLink from 'components/user-link';
 import { PlaylistItemJsonForMultiplayerEvent } from 'interfaces/playlist-item-json';
 import { rulesetNames } from 'interfaces/ruleset';
@@ -13,7 +14,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { calculateStatisticsFor, rank } from 'utils/score-helper';
+import { calculateStatisticsFor, hasMenu, rank } from 'utils/score-helper';
 import { Data } from './content';
 
 interface Props {
@@ -126,6 +127,9 @@ export default observer(function Score(props: Props) {
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'rank')}>
           <div className={classWithModifiers('score-rank', 'profile-page', rank(props.score))} />
+        </div>
+        <div className={classWithModifiers('mp-history-player-score__info-box', 'menu')}>
+          {hasMenu(props.score) && <PlayDetailMenu score={props.score} user={user} />}
         </div>
       </div>
     </div>
