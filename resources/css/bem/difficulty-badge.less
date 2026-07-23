@@ -8,9 +8,20 @@
   padding: 0 0.5em;
   display: flex;
   align-items: center;
-  font-weight: 800;
+  font-weight: 700;
   font-size: ~"max(0.82em, @{font-size--normal})";
+  text-shadow: none;
   height: 100%;
+
+  &--beatmapset {
+    display: inline-flex;
+    height: auto;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    padding-top: 1px;
+    padding-bottom: $padding-top;
+    font-size: 13px; // the default size (13.94px or 14px) has weird geometry
+  }
 
   &__icon {
     font-size: 0.6em; // icon size
@@ -23,5 +34,6 @@
     // Font width is at most 0.67em for the numbers.
     // Lastly add 0.25em for decimal separator.
     min-width: 0.67em * 3 + 0.25em;
+    transform: translateY(-0.5px);
   }
 }

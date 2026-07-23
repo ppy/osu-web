@@ -10,7 +10,6 @@ use App\Exceptions\Store\OrderException;
 use App\Exceptions\Store\PaymentRejectedException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\NotificationType;
-use App\Libraries\Payments\PaypalCreatePayment;
 use App\Libraries\Payments\PaypalExecutePayment;
 use App\Libraries\Payments\PaypalPaymentProcessor;
 use App\Libraries\Payments\PaypalSignature;
@@ -69,16 +68,6 @@ class PaypalController extends Controller
         }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
-    }
-
-    // Begin process of approving a payment.
-    public function create()
-    {
-        $orderId = get_int(request('order_id'));
-
-        $order = auth()->user()->orders()->paymentRequested()->findOrFail($orderId);
-
-        return (new PaypalCreatePayment($order))->run();
     }
 
     // Payment declined by user.
