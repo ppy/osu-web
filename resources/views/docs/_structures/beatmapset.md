@@ -43,6 +43,7 @@ recent_favourites       |                                                       
 related_users           |                                                              | |
 user                    |                                                              | |
 track_id                | integer                                                      | |
+is_exclusive_track      | boolean                                                      | |
 
 <div id="beatmapset-covers" data-unique="beatmapset-covers"></div>
 

@@ -41,6 +41,7 @@ class BeatmapsetSearchParams extends SearchParams
     public ?array $ranked = null;
     public bool $showFeaturedArtists = false;
     public bool $showFollows = false;
+    public bool $showExclusiveTracks = false;
     public bool $showRecommended = false;
     public bool $showSpotlights = false;
     public ?string $source = null;
