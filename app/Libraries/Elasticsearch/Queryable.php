@@ -9,8 +9,6 @@ interface Queryable
 {
     /**
      * Returns the built query as an associative array.
-     *
-     * @return array
      */
     public function toArray(): array;
 }

@@ -189,7 +189,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
     private function getDefaultSortField(): string
     {
-        if (present($this->queryString) || present($this->artist) || present($this->creator) || present($this->title) || present($this->source)) {
+        if (present($this->queryString) || present($this->includes->artist) || present($this->includes->creator) || present($this->includes->title) || present($this->includes->source)) {
             return 'relevance';
         }
 
@@ -206,42 +206,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
     private function parseQuery(): void
     {
-        static $optionMap = [
-            'ar' => 'ar',
-            'artist' => 'artist',
-            'bpm' => 'bpm',
-            'circles' => 'countNormal',
-            'created' => 'created',
-            'creator' => 'creator',
-            'cs' => 'cs',
-            'difficulty' => 'difficulty',
-            'dr' => 'drain',
-            'favourites' => 'favouriteCount',
-            'featured_artist' => 'featuredArtist',
-            'keys' => 'keys',
-            'length' => 'totalLength',
-            'od' => 'accuracy',
-            'ranked' => 'ranked',
-            'sliders' => 'countSlider',
-            'source' => 'source',
-            'stars' => 'difficultyRating',
-            'status' => 'statusRange',
-            'tag' => 'tags',
-            'title' => 'title',
-            'updated' => 'updated',
-        ];
+        $parser = new BeatmapsetQueryParser($this->requestQuery);
 
-        $parsed = BeatmapsetQueryParser::parse($this->requestQuery);
-
-        $this->queryString = $parsed['keywords'];
-
-        foreach ($parsed['options'] as $optionKey => $optionValue) {
-            $propName = $optionMap[$optionKey] ?? null;
-
-            if ($propName !== null) {
-                $this->$propName = $optionValue;
-            }
-        }
+        $this->queryString = $parser->keywords;
+        $this->includes = $parser->includes;
+        $this->excludes = $parser->excludes;
     }
 
     private function parseSort(?string $value): void
