@@ -6,16 +6,21 @@
   .link-plain();
 
   --height: 40px;
+  --hover-line-bottom: -2px;
+  --hover-line-margin: 25%;
   flex: none;
   color: @osu-colour-l3;
   width: var(--height);
   height: var(--height);
   position: relative;
-  --hover-line-margin: 25%;
 
   &--link-button {
     .center-content();
     display: flex;
+  }
+
+  &--navbar {
+    --hover-line-bottom: -5px;
   }
 
   &--user {
@@ -49,7 +54,7 @@
       background-color: @osu-colour-h1;
       left: var(--hover-line-margin);
       right: $left;
-      bottom: -2px;
+      bottom: var(--hover-line-bottom);
       z-index: 1; // inside z-index--nav-bar
     }
   }
