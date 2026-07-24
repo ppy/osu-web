@@ -13,7 +13,7 @@
     <div class="{{$bn}}__avatar">
         @if (isset($user))
             <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
-                <span class="avatar avatar--full-rounded" style="background-image: url({{$user->user_avatar}})"></span>
+                <span class="{{ class_with_modifiers('avatar', 'full-rounded', ['no-border' => $user->has_alpha]) }}" style="background-image: url({{$user->user_avatar}})"></span>
             </a>
         @else
             <span class="{{$bn}}__user-link">

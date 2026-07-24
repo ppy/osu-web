@@ -9,7 +9,7 @@
     {!! require_login('store.username_change.require_login._', 'store.username_change.require_login.link_text') !!}
 @else
 <div class="js-username-change username-change">
-    <div style="background-image: url('{{ $user->user_avatar }}');" class="avatar avatar--centered"></div>
+    <div style="background-image: url('{{ $user->user_avatar }}');" class="{{ class_with_modifiers('avatar', 'centered', ['no-border' => $user->has_alpha]) }}"></div>
     <div>
         <input type="hidden" name="item[product_id]" value="{{ $product->getKey() }}" />
         <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />

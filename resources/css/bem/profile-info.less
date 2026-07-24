@@ -59,6 +59,10 @@
     align-self: flex-start;
     .default-box-shadow();
 
+    &:has(.avatar--no-border) {
+      box-shadow: none;
+    }
+
     @media @desktop {
       margin-bottom: var(--vertical-padding);
       align-self: flex-end;

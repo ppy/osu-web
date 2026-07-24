@@ -84,7 +84,7 @@
             @if ($showAvatar ?? false)
                 <span class="ranking-page-table-main__flag">
                     <span
-                        class="avatar avatar--dynamic-size"
+                        class="{{ class_with_modifiers('avatar', 'dynamic-size', ['no-border' => $object->has_alpha]) }}"
                         {!! background_image($object->user_avatar) !!}
                     ></span>
                 </span>

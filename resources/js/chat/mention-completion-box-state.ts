@@ -13,6 +13,7 @@ const searchRe = /(?<=^|\s|'|"|,|\.|\/)@([A-Za-z0-9-[\]_]*)/;
 
 export interface UserSearchEntry {
   avatar_url: string;
+  has_alpha?: boolean;
   id: number;
   username: string;
 }
@@ -53,6 +54,7 @@ export default class MentionCompletionBoxState {
         const user = message.sender;
         users.set(message.senderId, {
           avatar_url: user.avatarUrl,
+          has_alpha: user.hasAlpha,
           id: user.id,
           username: user.username,
         });

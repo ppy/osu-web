@@ -13,7 +13,7 @@ import { qtipPosition, PositionAt } from 'utils/qtip-helper';
 interface Props {
   count: number;
   title?: string;
-  users: Partial<Pick<UserJson, 'avatar_url' | 'id' | 'username'>>[];
+  users: Partial<Pick<UserJson, 'avatar_url' | 'has_alpha' | 'id' | 'username'>>[];
 }
 
 export function createTooltip(targetFn: () => HTMLElement | null, propsFn: () => Props, positionAt: PositionAt) {

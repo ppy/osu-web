@@ -5,11 +5,11 @@ import BeatmapsetListView from 'components/beatmapset-list-view';
 import FollowToggle from 'components/follow-toggle';
 import FollowsSubtypes from 'components/follows-subtypes';
 import HeaderV4 from 'components/header-v4';
+import UserAvatar from 'components/user-avatar';
 import homeLinks from 'home-links';
 import FollowMappingJson from 'interfaces/follow-mapping-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { urlPresence } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -55,12 +55,7 @@ export default class Main extends React.PureComponent<Props> {
             href={route('users.show', { user: follow.user.id })}
           >
             <span className='follow-mapper__avatar'>
-              <span
-                className='avatar avatar--full-rounded'
-                style={{
-                  backgroundImage: urlPresence(follow.user.avatar_url),
-                }}
-              />
+              <UserAvatar modifiers='full-rounded' user={follow.user} />
             </span>
 
             <span className='u-ellipsis-overflow'>
