@@ -55,15 +55,16 @@ class BeatmapDiscussionVote extends Model
             ->get();
     }
 
-    public static function search($rawParams = [])
+    public static function search($rawParams = [], array $extraParams = [])
     {
         [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
-        $isModerator = $rawParams['is_moderator'] ?? false;
+        $extraParams['current_user_id'] ??= null;
+        $extraParams['is_moderator'] ??= false;
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];
-            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
             $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
@@ -116,7 +117,7 @@ class BeatmapDiscussionVote extends Model
         }
 
         // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
-        if (!isset($user) && !$isModerator) {
+        if (!isset($user) && !$extraParams['is_moderator']) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });
