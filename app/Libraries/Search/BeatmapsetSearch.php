@@ -49,8 +49,11 @@ class BeatmapsetSearch extends RecordSearch
 
         $query = new BoolQuery();
 
-        if (present($this->params->queryString)) {
-            $terms = explode(' ', $this->params->queryString);
+        $queryString = $this->params->queryString;
+        if (present($queryString)) {
+            // force exclusion even in `or` query
+            $queryString = preg_replace('/(^|\s)-/u', ' +-', $queryString);
+            $terms = explode(' ', $queryString);
 
             // the subscoping is not necessary but prevents unintentional accidents when combining other matchers
             $query->must(
@@ -58,9 +61,9 @@ class BeatmapsetSearch extends RecordSearch
                     // results must contain at least one of the terms and boosted by containing all of them,
                     // or match the id of the beatmapset.
                     ->shouldMatch(1)
-                    ->should(['term' => ['_id' => ['value' => $this->params->queryString, 'boost' => 100]]])
-                    ->should(QueryHelper::queryString($this->params->queryString, $partialMatchFields, 'or', 1 / count($terms)))
-                    ->should(QueryHelper::queryString($this->params->queryString, [], 'and'))
+                    ->should(['term' => ['_id' => ['value' => $queryString, 'boost' => 100]]])
+                    ->should(QueryHelper::queryString($queryString, $partialMatchFields, 'or', 1 / count($terms)))
+                    ->should(QueryHelper::queryString($queryString, [], 'and'))
             );
         }
 
