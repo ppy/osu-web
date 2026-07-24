@@ -40,4 +40,13 @@
     display: flex;
     background-color: @osu-colour-d4;
   }
+
+  &--notifications {
+    background-color: @osu-colour-b5;
+
+    .mobile-menu__item {
+      max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
+      overflow-y: auto;
+    }
+  }
 }
