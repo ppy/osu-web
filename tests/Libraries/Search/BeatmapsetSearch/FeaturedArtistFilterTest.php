@@ -17,8 +17,8 @@ class FeaturedArtistFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [['q' => 'featured_artist=1'], [0, 2, 4]],
-            [['c' => 'featured_artists'], [0, 1, 2, 3, 4, 5]],
+            [['q' => 'featured_artist=1'], [4, 2, 0]],
+            [['c' => 'featured_artists'], [5, 4, 3, 2, 1, 0]],
         ];
     }
 
