@@ -9,7 +9,18 @@ Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->wh
 Route::get('media-url', 'ProxyMediaController')->name('media-url');
 Route::get('ss/{screenshot}/{hash?}', 'ScreenshotsController@show')->name('screenshots.show');
 
+if ($GLOBALS['cfg']['osu']['api']['device_auth_client_id'] !== null) {
+    Route::post('device/authorisation', 'DeviceAuthController@authorisation');
+    Route::post('device/token', 'DeviceAuthController@token');
+}
+
 Route::group(['middleware' => ['web']], function () {
+    if ($GLOBALS['cfg']['osu']['api']['device_auth_client_id'] !== null) {
+        Route::get('device', 'DeviceAuthController@create')->name('device-auth');
+        Route::post('device', 'DeviceAuthController@store');
+        Route::get('device/completed', 'DeviceAuthController@completed')->name('device-auth.completed');
+    }
+
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
         Route::post('/beatmapsets/{beatmapset}/covers/regenerate', 'BeatmapsetsController@regenerateCovers')->name('beatmapsets.covers.regenerate');
