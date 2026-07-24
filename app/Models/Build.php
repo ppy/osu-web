@@ -79,7 +79,9 @@ class Build extends Model implements CommentableInterface
             'allow_bancho' => $stream->default_allow_bancho,
         ]);
 
-        $lastChange = Carbon::parse($data['release']['created_at']);
+        // GitHub seems to use the same time as the last changelog entry
+        // except it's sometimes off by one second or so.
+        $lastChange = Carbon::parse($data['release']['created_at'])->addMinutes(1);
 
         $changelogEntry = new ChangelogEntry();
 
