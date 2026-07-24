@@ -28,8 +28,10 @@ class StartParser implements BlockStartParserInterface
             return BlockStart::none();
         }
 
+        $fence = $cursor->match('/^:{3,}/');
+
         $cursor->advanceToEnd();
 
-        return BlockStart::of(new Parser($className))->at($cursor);
+        return BlockStart::of(new Parser($className, strlen($fence)))->at($cursor);
     }
 }
