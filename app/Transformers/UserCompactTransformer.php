@@ -360,10 +360,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeKudosu(User $user): ResourceInterface
     {
-        return $this->primitive([
-            'available' => $user->osu_kudosavailable,
-            'total' => $user->osu_kudostotal,
-        ]);
+        return $this->item($user, new UserKudosuTransformer());
     }
 
     public function includeLovedBeatmapsetCount(User $user)
