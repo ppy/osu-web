@@ -81,16 +81,19 @@ class BeatmapsetEvent extends Model
         ]);
     }
 
-    public static function search($rawParams = [])
+    public static function search($rawParams = [], array $extraParams = [])
     {
         [$query, $params] = static::searchQueryAndParams($rawParams);
 
         $searchByUser = present($rawParams['user'] ?? null);
-        $isModerator = $rawParams['is_moderator'] ?? false;
+
+        $extraParams['current_user_id'] ??= null;
+        $extraParams['is_kudosu_moderator'] ??= false;
+        $extraParams['is_moderator'] ??= false;
 
         if ($searchByUser) {
             $params['user'] = $rawParams['user'];
-            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
             $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
@@ -139,10 +142,10 @@ class BeatmapsetEvent extends Model
 
         if ($searchByUser) {
             $allowedTypes = static::types('public');
-            if ($isModerator) {
+            if ($extraParams['is_moderator']) {
                 $allowedTypes = array_merge($allowedTypes, static::types('moderation'));
             }
-            if ($rawParams['is_kudosu_moderator'] ?? false) {
+            if ($extraParams['is_kudosu_moderator']) {
                 $allowedTypes = array_merge($allowedTypes, static::types('kudosuModeration'));
             }
         } else {

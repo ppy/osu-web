@@ -14,7 +14,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
 {
-    protected $searchParams;
+    protected array $extraParams;
+    protected array $searchParams;
     protected $user;
 
     public function __construct()
@@ -23,17 +24,17 @@ class ModdingHistoryController extends Controller
             $this->user = FindForProfilePage::find($request->route('user'));
 
             $userId = $this->user->getKey();
-            $this->searchParams = array_merge(request()->query(), [
-                'current_user_id' => $userId,
+            $this->searchParams = [
+                ...\Request::query(),
                 'user' => $userId,
-            ]);
+            ];
 
             // This bit isn't needed when ModdingHistoryEventsBundle is used.
-            $this->searchParams['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
-            $this->searchParams['is_kudosu_moderator'] = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
-            if (!$this->searchParams['is_moderator']) {
-                $this->searchParams['with_deleted'] = false;
-            }
+            $this->extraParams = [
+                'current_user_id' => $userId,
+                'is_kudosu_moderator' => priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can(),
+                'is_moderator' => priv_check('BeatmapDiscussionModerate')->can(),
+            ];
 
             return $next($request);
         });
@@ -45,7 +46,7 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        $jsonChunks = ModdingHistoryEventsBundle::forProfile($user, $this->searchParams)->toArray();
+        $jsonChunks = ModdingHistoryEventsBundle::forProfile($user, $this->searchParams, $this->extraParams)->toArray();
 
         set_opengraph($this->user, 'modding');
 
@@ -59,7 +60,7 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        $search = BeatmapDiscussionPost::search($this->searchParams);
+        $search = BeatmapDiscussionPost::search($this->searchParams, $this->extraParams);
         unset($search['params']['user']);
         $posts = new LengthAwarePaginator(
             $search['query']->with([
@@ -86,7 +87,7 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        $search = BeatmapDiscussionVote::search($this->searchParams);
+        $search = BeatmapDiscussionVote::search($this->searchParams, $this->extraParams);
         unset($search['params']['user']);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
@@ -115,7 +116,7 @@ class ModdingHistoryController extends Controller
         $this->searchParams['receiver'] = $user->getKey();
         unset($this->searchParams['user']);
 
-        $search = BeatmapDiscussionVote::search($this->searchParams);
+        $search = BeatmapDiscussionVote::search($this->searchParams, $this->extraParams);
         unset($search['params']['user']);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
