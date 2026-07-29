@@ -5,6 +5,7 @@ import ScoreJson from 'interfaces/score-json';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
+import { classWithModifiers } from "../utils/css";
 
 interface Props {
   score: ScoreJson;
@@ -18,7 +19,7 @@ export default function PpValue({ score, suffix }: Props) {
 
   if (
     score.type === 'solo_score' &&
-    (!score.preserve || !score.ranked || (score.pp == null && score.processed))
+    (!score.ranked || (score.pp == null && score.processed))
   ) {
     return <span title={trans('scores.status.no_pp')}>-</span>;
   }
@@ -31,8 +32,11 @@ export default function PpValue({ score, suffix }: Props) {
     );
   }
 
+  const nonPreserved = score.type === 'solo_score' && !score.preserve;
   return (
-    <span title={formatNumber(score.pp)}>
+    <span
+      className={classWithModifiers('pp-value', { 'non-preserved': nonPreserved })}
+      title={nonPreserved ? trans('scores.status.non_best') : formatNumber(score.pp)}>
       {formatNumber(Math.round(score.pp))}
       {suffix}
     </span>
