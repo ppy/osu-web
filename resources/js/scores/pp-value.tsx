@@ -5,7 +5,7 @@ import ScoreJson from 'interfaces/score-json';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { classWithModifiers } from "../utils/css";
+import { classWithModifiers } from '../utils/css';
 
 interface Props {
   score: ScoreJson;
