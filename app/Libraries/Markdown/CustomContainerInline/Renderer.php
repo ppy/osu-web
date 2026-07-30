@@ -10,20 +10,12 @@ use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
-use League\Config\ConfigurationAwareInterface;
-use League\Config\ConfigurationInterface;
 
-class Renderer implements NodeRendererInterface, ConfigurationAwareInterface
+class Renderer implements NodeRendererInterface
 {
     private DataInterface $attrs;
     private ChildNodeRendererInterface $childRenderer;
-    private ConfigurationInterface $config;
     private Node $node;
-
-    public function setConfiguration(ConfigurationInterface $configuration): void
-    {
-        $this->config = $configuration;
-    }
 
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
@@ -40,7 +32,7 @@ class Renderer implements NodeRendererInterface, ConfigurationAwareInterface
 
         $userId = presence($this->attrs->get('user', null));
         if ($userId !== null) {
-            return $this->createProfileElement($userId);
+            return $this->createUserLinkElement($userId);
         }
 
         return new HtmlElement(
@@ -64,13 +56,11 @@ class Renderer implements NodeRendererInterface, ConfigurationAwareInterface
         return new HtmlElement('span', $this->attrs->export(), '');
     }
 
-    private function createProfileElement(string $userId)
+    private function createUserLinkElement(string $userId)
     {
         $this->attrs->remove('user');
 
-        $blockClass = $this->config->get('osu_extension/block_name');
-        $this->attrs->set('class', "{$blockClass}__link js-usercard");
-
+        $this->attrs->append('class', 'js-usercard');
         $this->attrs->set('data-user-id', $userId);
 
         $url = route('users.show', $userId);
