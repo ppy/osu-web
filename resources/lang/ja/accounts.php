@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
         'beatmapset_disqualify' => '次のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
         'comment_reply' => 'コメントへの返信の通知を受け取る',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'ビートマップの難易度作成にゲストマッパーとして参加したとき',
+            'beatmapset:modding' => 'ウォッチ中のビートマップのディスカッションが更新されたとき、または自分のビートマップに問題や提案があったとき。',
+            'channel_mention' => '公開チャンネルでメンションされたとき',
+            'channel_message' => '新着のプライベートメッセージが届いたとき',
+            'channel_team' => 'チームのチャットチャンネルに新しいメッセージが届いたとき',
+            'comment_new' => 'フォロー中のアイテムに新しいコメントが投稿されたとき',
+            'forum_topic_reply' => 'ウォッチ中のフォーラムトピックに新しい返信があったとき',
+            'mapping' => 'フォロー中のマッパーが譜面をアップロードしたとき',
+            'news_post' => '新しいニュースが投稿されたとき',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'キーボード',
         'mouse' => 'マウス',
         'tablet' => 'ペンタブ',

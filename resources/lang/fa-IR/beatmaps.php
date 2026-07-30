@@ -26,6 +26,7 @@ return [
         'edited' => 'آخرین بار ویرایش شده توسط :editor در :update_time.',
         'guest' => 'درجه سختی میهمان توسط :user',
         'kudosu_denied' => 'منع شده از دریافت kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'این درجه سختی پاک شده است و دیگر در مورد آن گفتگویی نمی شود.',
         'message_placeholder_locked' => 'گفتگو در مورد این بیت مپ غیرفعال شده است.',
         'message_placeholder_silenced' => "نمی توانید در حالتی که ساکت شده اید رای بدهید.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'حل شده',
         'restore' => 'بازگردانی',
         'show_deleted' => 'نمایش پاک شده ها',
+        'show_other_replies' => '',
         'title' => 'گفتگو ها',
         'unresolved_count' => '',
 

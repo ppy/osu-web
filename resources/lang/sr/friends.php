@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'blocked' => '',
     'title_compact' => 'пријатељи',
     'too_many' => 'Ограничење листе пријатеља је достигнуто',
 

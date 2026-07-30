@@ -45,6 +45,7 @@ import type CurrentUserJson from 'interfaces/current-user-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
+import Store from 'store';
 import RootDataStore from 'stores/root-data-store';
 import { parseJsonNullable } from 'utils/json';
 import UserTagPickerController from './beatmaps/user-tag-picker-controller';
@@ -87,6 +88,7 @@ export default class OsuCore {
   readonly spoilerbox;
   readonly stickyFooter;
   readonly stickyHeader;
+  store?: Store;
   readonly syncHeight;
   readonly timeago;
   readonly turbolinksReload;

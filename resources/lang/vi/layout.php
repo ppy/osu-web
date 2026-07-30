@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Cài Đặt',
+            'create_team' => '',
             'follows' => 'Danh sách theo dõi',
             'friends' => 'Bạn bè',
             'legacy_score_only_toggle' => 'Chế độ lazer',

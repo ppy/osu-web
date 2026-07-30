@@ -19,6 +19,7 @@ return [
         'nav_title' => 'juger',
         'no_current_vote' => 'vous n\'avez pas encore voté.',
         'update' => 'enregistrer',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'score manquant',
             'contest_vote_judged' => 'vous ne pouvez pas voter dans un concours qui utilise le système de jugement',

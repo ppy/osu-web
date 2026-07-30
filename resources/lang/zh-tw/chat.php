@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '正在載入使用者... ',
+    'searching_users' => '',
     'talking_in' => '在 :channel 聊天',
     'talking_with' => '與 :name 聊天',
     'title_compact' => '聊天',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => '請加入頻道來閱讀訊息。',
+        'join' => '加入頻道',
     ],
 
     'input' => [

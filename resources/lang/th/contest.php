@@ -19,6 +19,7 @@ return [
         'nav_title' => 'ตัดสิน',
         'no_current_vote' => 'คุณยังไม่ได้โหวต',
         'update' => 'อัปเดต',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'คะแนนที่ขาดหายไป',
             'contest_vote_judged' => 'ไม่สามารถโหวตในคอนเทสต์ที่มีการตัดสินแล้ว',

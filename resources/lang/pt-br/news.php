@@ -25,7 +25,7 @@ return [
         'fanart_contests' => 'concursos de arte',
         'featured_artists' => 'Anúncios de artistas em destaque',
         'game_updates' => 'atualizações do site e do client',
-        'mappers_guild' => 'Mappers\' Guild',
+        'mappers_guild' => 'Guilda dos Mappers',
         'monthly_beatmapping_contest' => 'Concurso mensal de beatmaps',
         'merch_runs' => 'produtos do osu!',
         'miscellaneous' => 'anúncios diversos',

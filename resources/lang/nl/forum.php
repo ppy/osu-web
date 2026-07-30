@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Topic echt herstellen?',
         'deleted' => 'topic verwijderd',
         'go_to_latest' => 'bekijk nieuwste post',
-        'go_to_unread' => '',
+        'go_to_unread' => 'eerste ongelezen bericht weergeven',
         'has_replied' => 'Je hebt gereageerd op dit onderwerp',
         'in_forum' => 'in :forum ',
         'latest_post' => ':when door :user',
@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Verwijderde posts',
             'total_posts' => 'Alle posts',
-            'total_watches' => '',
+            'total_watches' => 'Totaal aantal abonnees',
 
             'feature_vote' => [
                 'current' => 'Prioriteit: +:count',

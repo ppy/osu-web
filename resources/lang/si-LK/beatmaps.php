@@ -26,6 +26,7 @@ return [
         'edited' => '',
         'guest' => '',
         'kudosu_denied' => '',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => '',
         'message_placeholder_locked' => '',
         'message_placeholder_silenced' => "",
@@ -37,6 +38,7 @@ return [
         'resolved' => '',
         'restore' => '',
         'show_deleted' => '',
+        'show_other_replies' => '',
         'title' => '',
         'unresolved_count' => '',
 

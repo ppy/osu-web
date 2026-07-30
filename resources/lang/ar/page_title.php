@@ -82,7 +82,7 @@ return [
             'get_download' => 'تنزيل',
             'index' => 'لوحة التحكم',
             'search' => 'البحث',
-            'support_the_game' => 'إدعم اللعبة',
+            'support_the_game' => 'أِدعَم اللعبة',
             'testflight' => 'مشروع الأختبار',
         ],
         'legacy_matches_controller' => [

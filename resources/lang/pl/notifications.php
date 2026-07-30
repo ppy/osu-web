@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => 'Wspomnienie na czacie',
+                '_' => 'Wzmianka na czacie',
 
                 'public' => [
-                    'channel_mention' => ':username wspomniał o tobie na :name ":title"',
+                    'channel_mention' => ':username wspomniał Cię na kanale :name „:title”',
                     'channel_mention_compact' => ':username „:title”',
-                    'channel_mention_group' => 'wspomniano w :name',
+                    'channel_mention_group' => 'wspomniano na kanale :name',
                 ],
             ],
 
@@ -171,7 +171,7 @@ return [
             ],
 
             'news_post' => [
-                '_' => 'Wiadomości  (:series)',
+                '_' => 'Aktualności (:series)',
 
                 'news_post_new' => ':title',
                 'news_post_new_compact' => ':title',
@@ -270,7 +270,7 @@ return [
                 'channel_message' => 'Otrzymujesz nową wiadomość od użytkownika :username',
             ],
             'channel_mention' => [
-                'channel_mention' => ':username wspomniał o tobie na :name ":title"',
+                'channel_mention' => ':username wspomniał Cię na kanale :name „:title”',
             ],
 
             'channel_team' => [

@@ -66,7 +66,7 @@ return [
             'cancelled' => [
                 'title' => '已取消您的订单',
                 'line_1' => [
-                    '_' => "如果并不是您本人取消，请联系 :link 并提供您的订单号（#:order_number）。",
+                    '_' => "如果并不是您本人取消，请联系 :link 并提供您的订单号 (#:order_number)。",
                     'link_text' => 'osu!store 支持',
                 ],
             ],
@@ -193,7 +193,7 @@ return [
     ],
 
     'username_change' => [
-        'check' => '输入玩家名并检查是否可用！',
+        'check' => '输入玩家名并检查是否可用',
         'checking' => '正在检查 :username 是否可用...',
         'placeholder' => '想要使用的玩家名',
         'label' => '新玩家名',

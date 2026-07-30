@@ -156,6 +156,16 @@ return [
             'video' => 'Táto beatmapa obsahuje video',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Táto beatmapa obsahuje explicitný, urážlivý alebo rušivý obsah. Chcete ju napriek tomu zobraziť?',
             'title' => 'Explicitný obsah',

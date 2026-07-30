@@ -7,13 +7,13 @@ return [
     'invalid_scope' => [
         'all_scope_no_client_credentials' => '',
         'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
+        'client_missing_owner' => 'Ang client ay may nawawalang owner.',
+        'client_unauthorized' => 'Ang client ay hindi ina-awtorisa.',
+        'delegate_bot_only' => 'Ang Delegation with Client Credentials ay magagamit lang sa bots.',
         'client_credentials_only' => '',
         'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
+        'delegate_required' => 'kailangan ang delegate scope.',
+        'empty' => 'Ang tokens na walang scopes ay hindi pwede.',
         'bot_only' => '',
     ],
 ];

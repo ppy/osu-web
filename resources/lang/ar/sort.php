@@ -38,9 +38,10 @@ return [
     ],
 
     'teams' => [
+        'created' => '',
         'relevance' => 'الصِلة',
         'name' => 'الاسم',
-        'short-name' => 'الاسم المختصر',
+        'short-name' => '',
     ],
 
     'users' => [

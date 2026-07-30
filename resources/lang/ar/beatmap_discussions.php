@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'الجميع',
         'label' => 'الفرز حسب المستخدم',
+        'multiple' => '',
     ],
 ];

@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Setări',
+            'create_team' => '',
             'follows' => 'Pagini Abonate',
             'friends' => 'Prieteni',
             'legacy_score_only_toggle' => 'Mod lazer',

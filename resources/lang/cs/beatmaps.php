@@ -7,7 +7,7 @@ return [
     'invalid_ruleset' => 'Zadán neplatný ruleset.',
 
     'change_owner' => [
-        'too_many' => 'Příliš mnoho mapper hostů.',
+        'too_many' => 'Příliš mnoho hostujících autorů.',
     ],
 
     'discussion-votes' => [
@@ -26,17 +26,19 @@ return [
         'edited' => 'Naposledy upravil :editor v :update_time.',
         'guest' => 'Obtížnost hosta od :user',
         'kudosu_denied' => 'Odepřen od získávání kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
         'message_placeholder_locked' => 'Diskuze o této mapě byly vypnuty.',
         'message_placeholder_silenced' => "Nelze odeslat diskuzi když jste ztišeni.",
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
         'reply_resolve_notice' => 'Stiskni enter pro odpověď. Stiskni ctrl+enter pro odpověď a označení jako vyřešené.',
-        'reply_placeholder' => 'Napiš svou odpověď sem',
+        'reply_placeholder' => 'Sem napiš svou odpověď',
         'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlas',
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
         'show_deleted' => 'Zobrazit smazané',
+        'show_other_replies' => '',
         'title' => 'Diskuze',
         'unresolved_count' => ':count_delimited nevyřešený problém|:count_delimited nevyřešené problémy|:count_delimited nevyřešených problémů',
 

@@ -142,7 +142,7 @@ return [
         ],
         'beatmaps' => [
             'daily_challenge' => '每日挑战谱面',
-            'new' => '新上架（Ranked）谱面',
+            'new' => '新上架 (Ranked) 谱面',
             'popular' => '热门谱面',
             'by_user' => '作者：:user',
             'resets' => ':ends 重置',

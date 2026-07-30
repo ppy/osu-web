@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Indstillinger',
+            'create_team' => '',
             'follows' => 'Overvågningsliste',
             'friends' => 'Venner',
             'legacy_score_only_toggle' => 'Lazer tilstand',

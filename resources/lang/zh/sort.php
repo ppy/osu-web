@@ -38,6 +38,7 @@ return [
     ],
 
     'teams' => [
+        'created' => '创建时间',
         'relevance' => '相关性',
         'name' => '名称',
         'short-name' => '简称',

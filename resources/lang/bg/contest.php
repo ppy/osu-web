@@ -19,6 +19,7 @@ return [
         'nav_title' => 'жури',
         'no_current_vote' => 'не сте гласували все още.',
         'update' => 'обнови',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'липсващ резултат',
             'contest_vote_judged' => 'не може да гласувате ако сте жури',

@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Postingan yang Dihapus',
             'total_posts' => 'Jumlah Postingan',
-            'total_watches' => '',
+            'total_watches' => 'Jumlah Pelanggan',
 
             'feature_vote' => [
                 'current' => 'Prioritas Saat Ini: +:count',

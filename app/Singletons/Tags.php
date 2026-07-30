@@ -10,6 +10,7 @@ namespace App\Singletons;
 use App\Models\Tag;
 use App\Traits\Memoizes;
 use App\Transformers\TagTransformer;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class Tags
@@ -29,6 +30,16 @@ class Tags
         $allById = $this->memoize(
             'allById',
             fn () => $this->all()->keyBy('id'),
+        );
+
+        return $allById[$id] ?? null;
+    }
+
+    public function getJson(int $id): ?array
+    {
+        $allById = $this->memoize(
+            'allByIdJson',
+            fn () => Arr::keyBy($this->json(), 'id'),
         );
 
         return $allById[$id] ?? null;

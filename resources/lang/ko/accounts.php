@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'Qualified 비트맵에 문제가 생길 경우 알림을 수신할 모드',
         'beatmapset_disqualify' => '비트맵이 Disqualified 처리됐을 때 알림을 수신할 모드',
         'comment_reply' => '댓글에 답글이 달리면 알림 받기',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => '사용자가 비트맵 난이도의 게스트 맵퍼로 추가되었을 때',
+            'beatmapset:modding' => '사용자가 조회하고 있는 비트맵 토론이 업데이트되거나, 사용자가 제작한 비트맵에 문제 또는 요청이 있을 때.',
+            'channel_mention' => 'public 채널에서 사용자가 언급되었을 때',
+            'channel_message' => '새용자가 새로운 개인 메시지를 수신받았을 때',
+            'channel_team' => '사용자의 팀 채팅에 새로운 메시지가 있을 때',
+            'comment_new' => '사용자가 팔로우하고 있는 요소에 새로운 댓글이 게시되었을 때',
+            'forum_topic_reply' => '사용자가 보고 있는 포럼 주제에 새로운 답신이 있을 때',
+            'mapping' => '사용자가 팔로우하고 있는 맵퍼가 새로운 비트맵을 게시했을 때',
+            'news_post' => '새로운 뉴스가 게시되었을 때',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => '키보드',
         'mouse' => '마우스',
         'tablet' => '태블릿',

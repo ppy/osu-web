@@ -156,6 +156,16 @@ return [
             'video' => 'Ta beatmapa vsebuje videoposnetek',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Ta beatmapa vsebuje eksplicitno, žaljivo ali neželeno vsebino. Ali si vseeno želiš ogledati beatmapo?',
             'title' => 'Eksplicitna Vsebina',

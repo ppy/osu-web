@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'Erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
         'beatmapset_disqualify' => 'Erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
         'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'wenn du als Gastmapper auf einem Schwierigkeitsgrad hinzugefügt wirst',
+            'beatmapset:modding' => 'wenn gemerkte Beatmapdiskussionen Updates bekommen, oder es ein Problem oder Vorschlag für deine Beatmap gibt',
+            'channel_mention' => 'wenn du in einem öffentlichen Channel erwähnt wurdest',
+            'channel_message' => 'wenn du eine neue private Nachricht erhältst',
+            'channel_team' => 'wenn es in deinem Teamchat eine neue Nachricht gibt',
+            'comment_new' => 'wenn ein neuer Kommentar auf einem gefolgten Beitrag erscheint',
+            'forum_topic_reply' => 'wenn gemerkte Forenposts neue Antworten erhalten',
+            'mapping' => 'wenn ein Mapper, dem du folgst, eine Beatmap hochlädt',
+            'news_post' => 'wenn es Neuigkeiten gibt',
         ],
     ],
 
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'Tastatur',
         'mouse' => 'Maus',
         'tablet' => 'Tablet',

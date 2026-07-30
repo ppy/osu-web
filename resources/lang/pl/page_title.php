@@ -53,7 +53,7 @@ return [
             'discussion' => 'dyskusja beatmapy',
             'index' => 'lista beatmap',
             'show' => 'informacje o beatmapie',
-            'versions' => 'historia beatmapy',
+            'versions' => 'historia wersji beatmapy',
         ],
         'changelog_controller' => [
             '_' => 'zmiany',
@@ -72,7 +72,7 @@ return [
             'judge' => 'ocena prac konkursowych',
         ],
         'group_history_controller' => [
-            '_' => 'historia grupy',
+            '_' => 'historia grup',
         ],
         'groups_controller' => [
             'show' => 'grupy',

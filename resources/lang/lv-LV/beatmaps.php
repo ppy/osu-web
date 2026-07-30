@@ -26,6 +26,7 @@ return [
         'edited' => 'Pēdējo reizi rediģēja :editor :update_time.',
         'guest' => 'Viesa grūtības līmenis: :user',
         'kudosu_denied' => 'Liegts saņemt kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Šis grūtības līmenis ir izdzēsts, tāpēc to vairs nevar apspriest.',
         'message_placeholder_locked' => 'Šīs ritma-mapes diskusijas ir izslēgtas.',
         'message_placeholder_silenced' => "Nevar publicēt diskusiju, kamēr apklusināts.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Atrisināts',
         'restore' => 'atjaunot',
         'show_deleted' => 'Rādīt dzēstos',
+        'show_other_replies' => '',
         'title' => 'Diskusijas',
         'unresolved_count' => ':count_delimited neatrisināta problēma|:count_delimited neatrisinātas problēmas',
 

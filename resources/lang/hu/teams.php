@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "",
+            'search_link' => '',
             'title' => 'Csapat!',
         ],
     ],

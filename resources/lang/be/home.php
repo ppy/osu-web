@@ -141,7 +141,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Бітмапа Штодзённага Выпрабавання',
             'new' => 'Новыя ранкаваныя бітмапы',
             'popular' => 'Папулярныя бітмапы',
             'by_user' => 'ад :user',
