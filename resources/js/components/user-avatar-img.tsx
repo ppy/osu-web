@@ -18,14 +18,30 @@ interface Props {
 export default class UserAvatarImg extends React.PureComponent<Props> {
   @observable private avatarLoaded = false;
 
+  private get url() {
+    return presence(this.props.user.avatar_url); // assumes loading user has empty avatar_url.
+  }
+
   constructor(props: Props) {
     super(props);
+
+    // Check if image is already loaded from cache to avoid showing the spinner and transitions, especially in back/forward navigation.
+    const url = this.url;
+    if (url != null) {
+      const image = new Image();
+      image.loading = 'lazy';
+      image.src = url;
+      if (image.complete && image.naturalWidth > 0) {
+        this.avatarLoaded = true;
+      }
+    }
+
     makeObservable(this);
   }
 
   render() {
     const extraModifiers = this.avatarLoaded ? 'loaded' : null;
-    const url = presence(this.props.user.avatar_url); // assumes loading user has empty avatar_url.
+    const url = this.url;
 
     return (
       <div className={classWithModifiers('user-avatar', this.props.modifiers)}>
