@@ -3,17 +3,26 @@
 
 .user-avatar {
   @transition: opacity ease-in-out 220ms;
-  --avatar-border-radius: 6px;
-  --avatar-size: 60px;
+  --avatar-border-radius: @border-radius-base;
+  --avatar-size: 70px;
 
   width: var(--avatar-size);
   height: var(--avatar-size);
   flex: none;
   position: relative;
 
+  &--card {
+    --avatar-border-radius: 6px;
+    --avatar-size: 60px;
+  }
+
   &--full-circle {
     --avatar-size: 100%;
     --avatar-border-radius: 50%;
+  }
+
+  &--has-box-shadow {
+    .default-box-shadow();
   }
 
   &--list {
