@@ -51,7 +51,7 @@
     "laravel/dusk": "*",
     "mockery/mockery": "*",
     "nunomaduro/collision": "^8.1",
-    "phpunit/phpunit": ">=10.0",
+    "phpunit/phpunit": "^11.5.15",
     "scriptfusion/pip": "^3.5",
     "slevomat/coding-standard": "^8.15",
     "spatie/laravel-ignition": "^2.0",
