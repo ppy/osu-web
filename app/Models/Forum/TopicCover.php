@@ -9,7 +9,6 @@ use App\Casts\LegacyFilename;
 use App\Libraries\Uploader;
 use App\Models\User;
 use DB;
-use Exception;
 
 /**
  * @property \Carbon\Carbon|null $created_at
@@ -107,7 +106,7 @@ class TopicCover extends Model
     {
         try {
             return $this->topic->forum->cover->defaultTopicCover->url();
-        } catch (Exception $_e) {
+        } catch (\Throwable) {
             // do nothing
         }
     }
