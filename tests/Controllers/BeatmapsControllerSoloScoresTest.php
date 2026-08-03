@@ -304,10 +304,10 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                     "{$type}:userModsNC",
                     "{$type}:otherUserModsNCPFHigherScore",
                 ], ['mods' => ['NC']], $route],
-                "{$type}: mods with nomods" => [[
+                "{$type}: mods with nomods (the same as just nomods)" => [[
                     "{$type}:user",
-                    "{$type}:otherUserModsNCPFHigherScore",
                     "{$type}:friend",
+                    "{$type}:otherUser",
                     "{$type}:otherUser2Later",
                     "{$type}:otherUser3SameCountry",
                 ], ['mods' => ['NC', 'NM']], $route],

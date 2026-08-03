@@ -155,45 +155,28 @@ class ScoreSearch extends RecordSearch
         // CL is currently considered a "preference" mod
         $allMods->remove('CL', 'PF', 'SD', 'MR');
 
-        $allSearchMods = [];
-        foreach ($mods as $mod) {
-            if ($mod === 'NM') {
-                if (!isset($noModSubQuery)) {
-                    $noModSubQuery = new BoolQuery();
-                    foreach ($allMods->toArray() as $excludedMod) {
-                        $noModSubQuery->mustNot(['term' => ['mods' => $excludedMod]]);
-                    }
+        if (array_search('NM', $mods, true) === false) {
+            $allSearchMods = [];
+            foreach ($mods as $mod) {
+                $searchMods = [$mod];
+                $impliedBy = array_search_null($mod, $modsHelper::IMPLIED_MODS);
+                if ($impliedBy !== null) {
+                    $searchMods[] = $impliedBy;
                 }
-                continue;
+                $query->filter(['terms' => ['mods' => $searchMods]]);
+                $allSearchMods = [...$allSearchMods, ...$searchMods];
             }
-            $modsSubQuery ??= new BoolQuery();
-            $searchMods = [$mod];
-            $impliedBy = array_search_null($mod, $modsHelper::IMPLIED_MODS);
-            if ($impliedBy !== null) {
-                $searchMods[] = $impliedBy;
-            }
-            $modsSubQuery->filter(['terms' => ['mods' => $searchMods]]);
-            $allSearchMods = [...$allSearchMods, ...$searchMods];
-        }
 
-        if (isset($modsSubQuery)) {
             $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
             if (count($excludedMods) > 0) {
                 foreach ($excludedMods as $excludedMod) {
-                    $modsSubQuery->mustNot(['term' => ['mods' => $excludedMod]]);
+                    $query->mustNot(['term' => ['mods' => $excludedMod]]);
                 }
             }
-        }
-
-        foreach ([$noModSubQuery ?? null, $modsSubQuery ?? null] as $subQuery) {
-            if ($subQuery !== null) {
-                $shouldSubQueries ??= (new BoolQuery())->shouldMatch(1);
-                $shouldSubQueries->should($subQuery);
+        } else {
+            foreach ($allMods->toArray() as $excludedMod) {
+                $query->mustNot(['term' => ['mods' => $excludedMod]]);
             }
-        }
-
-        if (isset($shouldSubQueries)) {
-            $query->must($shouldSubQueries);
         }
     }
 }
