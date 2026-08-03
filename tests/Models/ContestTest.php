@@ -92,9 +92,12 @@ class ContestTest extends TestCase
     public static function dataProviderForTestMaxFilesize(): array
     {
         return [
-            ['art', 8 * 1024 * 1024],
-            ['beatmap', 32 * 1024 * 1024],
-            ['music', 16 * 1024 * 1024],
+            ['art', null, 8 * 1024 * 1024],
+            ['beatmap', null, 32 * 1024 * 1024],
+            ['music', null, 16 * 1024 * 1024],
+            ['art', 4 * 1024 * 1024, 4 * 1024 * 1024],
+            ['beatmap', 64 * 1024 * 1024, 64 * 1024 * 1024],
+            ['music', 2 * 1024 * 1024, 2 * 1024 * 1024],
         ];
     }
 
@@ -270,10 +273,14 @@ class ContestTest extends TestCase
     /**
      * @dataProvider dataProviderForTestMaxFilesize
      */
-    public function testMaxFilesize(string $type, int $expectedResult): void
+    public function testMaxFilesize(string $type, ?int $maxFilesize, int $expectedResult): void
     {
+        $extraOptions = $maxFilesize === null
+            ? null
+            : ['max_filesize' => $maxFilesize];
         $contest = Contest::factory()->create([
             'type' => $type,
+            'extra_options' => $extraOptions,
         ]);
         $this->assertSame($expectedResult, $contest->getMaxFilesize());
     }

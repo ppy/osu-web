@@ -18,7 +18,7 @@ class BeatmapsetEventsController extends Controller
 
     public function index()
     {
-        $bundle = ModdingHistoryEventsBundle::forListing(null, request()->all());
+        $bundle = ModdingHistoryEventsBundle::forListing(null, \Request::all(), []);
         $jsonChunks = $bundle->toArray();
         $paginator = $bundle->getPaginator();
         $params = $bundle->getParams();

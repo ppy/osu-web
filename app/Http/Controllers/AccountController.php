@@ -263,7 +263,7 @@ class AccountController extends Controller
             array_map(fn ($key) => $key.':any', array_keys(UserProfileCustomization::DEFAULTS)),
         );
 
-        $profileCustomization = $user->userProfileCustomization()->createOrFirst();
+        $profileCustomization = $user->userProfileCustomization()->firstOrCreate();
         $user->setRelation('userProfileCustomization', $profileCustomization);
 
         try {
