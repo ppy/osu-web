@@ -18,7 +18,7 @@ class BBCodeForDB
         '@' => '&#64;',
     ];
 
-    public $text;
+    public string $text;
     public $uid;
 
     // "11111111111111111111111111111"
@@ -39,9 +39,9 @@ class BBCodeForDB
         return strtr($text, $mapping);
     }
 
-    public function __construct($text = '')
+    public function __construct(?string $text = '')
     {
-        $this->text = $text;
+        $this->text = $text ?? '';
         $this->uid = $GLOBALS['cfg']['osu']['bbcode']['uid'];
     }
 

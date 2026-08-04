@@ -92,7 +92,7 @@ class Client extends PassportClient
             }
         }
 
-        if (mb_strlen(trim($this->name)) === 0) {
+        if (mb_strlen(trim($this->name ?? '')) === 0) {
             $this->validationErrors()->add('name', 'required');
         }
 
