@@ -2,22 +2,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-rank-count {
-  display: flex;
-  text-align: center;
+  --rank-size: 22px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   font-weight: bold;
   font-size: @font-size--normal;
   gap: 4px;
-  flex-wrap: wrap;
   justify-content: center;
   margin: auto;
-
-  @media @desktop {
-    font-size: @font-size--normal;
-    margin: 0;
-  }
 
   &--team {
     gap: 10px;
     padding-top: 10px;
+  }
+
+  &__item {
+    display: grid;
+    justify-items: center;
+  }
+
+  &__rank {
+    display: contents;
+    font-size: var(--rank-size);
   }
 }

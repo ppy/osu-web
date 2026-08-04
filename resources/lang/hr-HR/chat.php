@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'učitavanje korisnika...',
+    'searching_users' => '',
     'talking_in' => 'razgovaranje u :channel',
     'talking_with' => 'razgovaranje sa :name',
     'title_compact' => 'razgovor',

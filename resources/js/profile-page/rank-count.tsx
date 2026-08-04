@@ -14,8 +14,10 @@ export default function RankCount({ stats }: Props) {
   return (
     <div className='profile-rank-count'>
       {grades.map((grade) => (
-        <div key={grade}>
-          <div className={classWithModifiers('score-rank', `rank-${grade}`, 'profile-page')} />
+        <div key={grade} className='profile-rank-count__item'>
+          <div className='profile-rank-count__rank'>
+            <div className={classWithModifiers('score-rank', `rank-${grade}`)} />
+          </div>
           {formatNumber(stats.grade_counts[grade])}
         </div>
       ))}

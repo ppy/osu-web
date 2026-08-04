@@ -16,7 +16,7 @@ return [
     'rank_lost' => ':user perdeu o primeiro lugar em :beatmap (:mode)',
     'user_support_again' => ':user voltou a escolher apoiar o osu! — obrigado pela sua generosidade!',
     'user_support_first' => ':user apoiou o osu! – obrigado pela sua generosidade!',
-    'user_support_gift' => ':user recebeu de presente o osu!supporter!',
+    'user_support_gift' => ':user recebeu de presente a etiqueta de apoiante do osu!',
     'username_change' => ':previousUsername mudou o nome de utilizador para :user!',
 
     'beatmapset_status' => [

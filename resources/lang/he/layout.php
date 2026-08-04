@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'הגדרות',
+            'create_team' => '',
             'follows' => 'רשימת מעקב',
             'friends' => 'חברים',
             'legacy_score_only_toggle' => '',

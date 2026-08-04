@@ -19,6 +19,7 @@ return [
         'nav_title' => '',
         'no_current_vote' => '',
         'update' => 'azuriraj',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => '',
             'contest_vote_judged' => '',

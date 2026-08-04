@@ -26,6 +26,7 @@ return [
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'guest' => 'Gościnny poziom trudności autorstwa :user',
         'kudosu_denied' => 'Odmówiono przyznania kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Nie możesz zamieszczać dyskusji dla usuniętego poziomu trudności.',
         'message_placeholder_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone.',
         'message_placeholder_silenced' => "Nie możesz zamieszczać dyskusji po tym, jak twoje konto zostało uciszone.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Rozwiązane',
         'restore' => 'przywróć',
         'show_deleted' => 'Pokaż usunięte',
+        'show_other_replies' => '',
         'title' => 'Dyskusje',
         'unresolved_count' => ':count_delimited nierozwiązany problem|:count_delimited nierozwiązane problemy|:count_delimited nierozwiązanych problemów',
 
@@ -245,7 +247,7 @@ return [
             'prompt' => 'wpisz poszukiwaną frazę...',
             'login_required' => 'Zaloguj się, aby wyszukać.',
             'options' => 'Więcej opcji wyszukiwania',
-            'rank_filter_note' => 'Najwyższe miejsca w rankingu oraz wyniki widoczne na tej stronie są oparte na twoim najwyższszym \'standaryzowanym (aka \'lazerowym\') wyniku na beatmapach',
+            'rank_filter_note' => 'Liczniki ocen na profilach oraz wyniki wyszukiwania wyświetlane na tej stronie są oparte o wyniki wykorzystujące nowy system punktacji (tryb „lazer”).',
             'supporter_filter' => 'Użycie wybranych filtrów (:filters) wymaga aktywnego statusu donatora osu!',
             'not-found' => 'brak wyników',
             'not-found-quote' => '...niczego nie znaleziono.',
@@ -277,9 +279,8 @@ return [
                 'link_text' => 'statusu donatora osu!',
             ],
             'tag_picker' => [
-                'tooltip' => 'przeglądaj tagi użytkowników
-',
-                'prompt' => 'pisz, aby szukać',
+                'tooltip' => 'przeglądaj tagi użytkowników',
+                'prompt' => 'napisz, aby wyszukać',
             ],
         ],
     ],

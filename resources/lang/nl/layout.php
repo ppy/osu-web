@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'discussie',
-            'versions' => '',
+            'versions' => 'versie geschiedenis',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'afspeellijsten',
-            'ranked-play' => '',
+            'ranked-play' => 'gerangschikte modus',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],
@@ -115,7 +115,7 @@ return [
             'copyright' => 'Copyright (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Privacy',
-            'rules' => '',
+            'rules' => 'Regels',
             'server_status' => 'Server Status',
             'source_code' => 'Broncode',
             'terms' => 'Gebruikersvoorwaarden',
@@ -196,15 +196,16 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Instellingen',
+            'create_team' => '',
             'follows' => 'Volglijsten',
             'friends' => 'Vrienden',
             'legacy_score_only_toggle' => 'Lazermodus',
             'legacy_score_only_toggle_tooltip' => 'Lazermodus toont scores gezet op lazer met een nieuw scoringsalgoritme',
             'logout' => 'Log Uit',
             'profile' => 'Mijn Profiel',
-            'scoring_mode_toggle' => '',
-            'scoring_mode_toggle_tooltip' => '',
-            'team' => '',
+            'scoring_mode_toggle' => 'Klassieke score',
+            'scoring_mode_toggle_tooltip' => 'Pas de score waarden aan om meer te voelen als de klassieke onbegrensde score',
+            'team' => 'Mijn Team',
         ],
     ],
 

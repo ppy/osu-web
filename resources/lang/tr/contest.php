@@ -19,6 +19,7 @@ return [
         'nav_title' => 'yargıç',
         'no_current_vote' => 'henüz oy vermedin.',
         'update' => 'güncelle',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'eksik skor',
             'contest_vote_judged' => 'değerlendirilen girişlere oy veremezsiniz',

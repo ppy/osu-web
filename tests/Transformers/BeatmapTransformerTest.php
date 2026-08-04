@@ -8,6 +8,7 @@ namespace Tests\Transformers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Transformers\BeatmapTransformer;
 use Tests\TestCase;
 
 class BeatmapTransformerTest extends TestCase
@@ -23,7 +24,7 @@ class BeatmapTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($this->deletedBeatmap, 'Beatmap');
+        $json = json_item($this->deletedBeatmap, new BeatmapTransformer());
 
         $this->assertEmpty($json);
     }
@@ -36,7 +37,7 @@ class BeatmapTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($this->deletedBeatmap, 'Beatmap');
+        $json = json_item($this->deletedBeatmap, new BeatmapTransformer());
 
         if ($visible) {
             $this->assertNotEmpty($json);

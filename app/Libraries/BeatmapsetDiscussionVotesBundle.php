@@ -62,7 +62,7 @@ class BeatmapsetDiscussionVotesBundle extends BeatmapsetDiscussionsBundleBase
     private function getVotes()
     {
         return $this->memoize(__FUNCTION__, function () {
-            ['query' => $query, 'params' => $params] = BeatmapDiscussionVote::search($this->params);
+            ['query' => $query, 'params' => $params] = BeatmapDiscussionVote::search($this->params, $this->extraParams);
 
             $votes = $query->with([
                 'user.userGroups',

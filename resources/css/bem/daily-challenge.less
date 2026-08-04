@@ -39,6 +39,11 @@
   &__value {
     .fancy-text(var(--colour));
     --colour: hsl(var(--hsl-c2));
+
+    &--plain {
+      background: initial;
+      color: var(--colour);
+    }
   }
 
   &__value-box {

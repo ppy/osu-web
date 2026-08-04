@@ -9,6 +9,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Transformers\BeatmapDiscussionPostTransformer;
 use Tests\TestCase;
 
 class BeatmapDiscussionPostTransformerTest extends TestCase
@@ -27,7 +28,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($this->deletedPost, 'BeatmapDiscussionPost');
+        $json = json_item($this->deletedPost, new BeatmapDiscussionPostTransformer());
         $this->assertEmpty($json);
     }
 
@@ -39,7 +40,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($this->deletedPost, 'BeatmapDiscussionPost');
+        $json = json_item($this->deletedPost, new BeatmapDiscussionPostTransformer());
 
         if ($visible) {
             $this->assertNotEmpty($json);

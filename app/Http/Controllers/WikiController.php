@@ -10,6 +10,7 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Wiki\WikiSitemap;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
+use App\Transformers\WikiPageTransformer;
 use Request;
 
 /**
@@ -102,7 +103,7 @@ class WikiController extends Controller
                 return response(null, 404);
             }
 
-            return json_item($page, 'WikiPage');
+            return json_item($page, new WikiPageTransformer());
         }
 
         set_opengraph($page);

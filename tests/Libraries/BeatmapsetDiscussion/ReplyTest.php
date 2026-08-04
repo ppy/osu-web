@@ -44,7 +44,7 @@ class ReplyTest extends TestCase
         ];
     }
 
-    public static function dataProviderForReplyQueuesNotificationToStarter(): array
+    public static function dataProviderForReplyQueuesNotification(): array
     {
         return [
             ['praise', false],
@@ -134,7 +134,58 @@ class ReplyTest extends TestCase
         );
     }
 
-    #[DataProvider('dataProviderForReplyQueuesNotificationToStarter')]
+    #[DataProvider('dataProviderForReplyQueuesNotification')]
+    public function testReplyParticipants(string $messageType, bool $includeOthers)
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $usersNotificationEnabled = User::factory()->count(3)->create();
+        $userNotificationDisabled = User::factory()->create();
+        $userNotificationDisabled->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => ['push' => false],
+        ]);
+        $userReplyDisabled = User::factory()->create();
+        $userReplyDisabled->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => ['push' => true, UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY => false],
+        ]);
+        $participants = $listeners = [...$usersNotificationEnabled, $userNotificationDisabled, $userReplyDisabled];
+
+        $discussion = BeatmapDiscussion::factory()->general()->create([
+            'beatmapset_id' => $this->beatmapsetFactory(),
+            'message_type' => $messageType,
+            'user_id' => $participants[0]->getKey(),
+        ]);
+        foreach ($participants as $participant) {
+            $discussion->beatmapDiscussionPosts()->create([
+                'user_id' => $participant->getKey(),
+                'message' => static::TEST_MESSAGE,
+            ]);
+        }
+
+        new Reply($user, $discussion, static::TEST_MESSAGE)->handle();
+
+        $listeners = $includeOthers ? [...$usersNotificationEnabled, $userNotificationDisabled] : [];
+        Queue::assertPushed(
+            BeatmapsetDiscussionPostNew::class,
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, $listeners)
+        );
+
+        $this->runFakeQueue();
+
+        if ($includeOthers) {
+            Event::assertDispatched(
+                NewPrivateNotificationEvent::class,
+                fn (NewPrivateNotificationEvent $event) =>
+                    $event->notification->name === Notification::BEATMAPSET_DISCUSSION_POST_NEW
+                    && $this->assertReceivers($event, $usersNotificationEnabled)
+            );
+        } else {
+            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        }
+    }
+
+    #[DataProvider('dataProviderForReplyQueuesNotification')]
     public function testReplyQueuesNotificationToStarter(string $messageType, bool $includeStarter)
     {
         $user = User::factory()->create()->markSessionVerified();

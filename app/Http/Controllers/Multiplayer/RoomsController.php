@@ -18,6 +18,7 @@ use App\Transformers\BeatmapsetCompactTransformer;
 use App\Transformers\Multiplayer\PlaylistItemTransformer;
 use App\Transformers\Multiplayer\RealtimeRoomEventTransformer;
 use App\Transformers\Multiplayer\RoomTransformer;
+use App\Transformers\Multiplayer\UserScoreAggregateTransformer;
 use App\Transformers\UserCompactTransformer;
 use Ds\Map;
 use Ds\Set;
@@ -220,12 +221,12 @@ class RoomsController extends Controller
         return [
             'leaderboard' => json_collection(
                 $room->topScores()->paginate($limit),
-                'Multiplayer\UserScoreAggregate',
+                new UserScoreAggregateTransformer(),
                 ['user.country', 'user.cover', 'user.team']
             ),
             'user_score' => $userScore !== null ? json_item(
                 $userScore,
-                'Multiplayer\UserScoreAggregate',
+                new UserScoreAggregateTransformer(),
                 ['position', 'user.country', 'user.cover', 'user.team']
             ) : null,
         ];

@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Libraries\CommentBundle;
 use App\Models\NewsPost;
+use App\Transformers\NewsPostTransformer;
 
 /**
  * @group News
@@ -94,7 +95,7 @@ class NewsController extends Controller
         }
 
         $postsJson = [
-            'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
+            'news_posts' => json_collection($posts, new NewsPostTransformer(), ['preview']),
             'news_sidebar' => $this->sidebarMeta($posts[0] ?? null),
             'search' => $search['params'],
             ...cursor_for_response($search['cursorHelper']->next($posts, $hasMore)),
@@ -188,7 +189,7 @@ class NewsController extends Controller
             abort(404);
         }
 
-        $postJson = json_item($post, 'NewsPost', ['content', 'navigation']);
+        $postJson = json_item($post, new NewsPostTransformer(), ['content', 'navigation']);
 
         if (is_json_request()) {
             return $postJson;
@@ -246,7 +247,7 @@ class NewsController extends Controller
 
                 return [
                     'current_year' => $currentYear,
-                    'news_posts' => json_collection($posts, 'NewsPost'),
+                    'news_posts' => json_collection($posts, new NewsPostTransformer()),
                     'years' => $years,
                 ];
             }

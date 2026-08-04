@@ -39,15 +39,16 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
         'system' => 'boolean',
     ];
 
-    public static function search($rawParams = [])
+    public static function search($rawParams = [], array $extraParams = [])
     {
         [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
-        $isModerator = $rawParams['is_moderator'] ?? false;
+        $extraParams['current_user_id'] ??= null;
+        $extraParams['is_moderator'] ??= false;
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];
-            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
             $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
@@ -91,7 +92,8 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
             $query->where('beatmap_discussion_id', $params['beatmapset_discussion_id']);
         }
 
-        $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
+        $params['with_deleted'] = $extraParams['is_moderator']
+            && (get_bool($rawParams['with_deleted'] ?? null) ?? false);
 
         if (!$params['with_deleted']) {
             // $query->visible() may be slow for listing; calls visibleBeatmapDiscussion which calls more scopes...
@@ -99,7 +101,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
         }
 
         // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
-        if (!isset($params['user']) && !$isModerator) {
+        if (!isset($params['user']) && !$extraParams['is_moderator']) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });

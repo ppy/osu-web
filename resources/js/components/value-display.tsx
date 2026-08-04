@@ -7,10 +7,10 @@ import { Modifiers, classWithModifiers } from 'utils/css';
 const bn = 'value-display';
 
 interface Props {
-  description?: JSX.Element;
+  description?: React.ReactNode;
   label: string;
   modifiers?: Modifiers;
-  value: string | number | JSX.Element;
+  value: React.ReactNode;
 }
 
 export default function ValueDisplay({ description, label, modifiers, value }: Props) {

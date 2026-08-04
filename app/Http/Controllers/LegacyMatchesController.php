@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\User;
 use App\Transformers\LegacyMatch\EventTransformer;
+use App\Transformers\LegacyMatch\LegacyMatchTransformer;
 use App\Transformers\UserCompactTransformer;
 
 /**
@@ -81,7 +82,7 @@ class LegacyMatchesController extends Controller
             ->getWithHasMore();
 
         return [
-            'matches' => json_collection($matches, 'LegacyMatch\LegacyMatch'),
+            'matches' => json_collection($matches, new LegacyMatchTransformer()),
             'params' => [
                 'limit' => $limit,
                 'sort' => $cursorHelper->getSortName(),
@@ -214,7 +215,7 @@ class LegacyMatchesController extends Controller
             ->first();
 
         return [
-            'match' => json_item($match, 'LegacyMatch\LegacyMatch'),
+            'match' => json_item($match, new LegacyMatchTransformer()),
             'events' => $events,
             'users' => $users,
             'first_event_id' => $eventEndIds->first_event_id ?? 0,

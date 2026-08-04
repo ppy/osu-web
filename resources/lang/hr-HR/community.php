@@ -65,7 +65,7 @@ return [
             ],
 
             'auto_downloads' => [
-                'title' => '',
+                'title' => 'Automatska Preuzimanja',
                 'description' => '',
             ],
 

@@ -106,10 +106,10 @@ return [
         '_' => 'Conectar-se',
         'button' => 'Conectar',
         'button_posting' => 'Conectando...',
-        'email_login_disabled' => 'O login com email está desativado no momento. Por favor use o nome de usuário.',
+        'email_login_disabled' => 'O login com email está desativado no momento. Por favor, utilize seu nome de usuário.',
         'failed' => 'Login incorreto',
         'forgot' => 'Esqueceu sua senha?',
-        'info' => 'Por favor, conecte-se para continuar',
+        'info' => 'Entre para continuar',
         'invalid_captcha' => 'Captcha inválido, atualize a página e tente novamente.',
         'locked_ip' => 'seu endereço IP está bloqueado. Por favor, espere alguns minutos.',
         'password' => 'Senha',
@@ -147,8 +147,8 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'clique para conectar-se',
-        'login_text' => 'conectar-se',
+        'login_link' => 'clique para entrar',
+        'login_text' => 'entrar',
         'username' => 'Visitante',
         'error' => 'Você precisa estar conectado para fazer isso.',
     ],
@@ -206,7 +206,7 @@ return [
         'plays_with' => 'Joga com :devices',
 
         'comments_count' => [
-            '_' => 'Publicado :link',
+            '_' => 'Publicou :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
         ],
         'cover' => [
@@ -283,10 +283,10 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos',
+                    'title' => 'Beatmaps favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no Cemitério',
+                    'title' => 'Beatmaps no cemitério',
                 ],
                 'guest' => [
                     'title' => 'Beatmaps de Participação de Visitantes',
@@ -356,7 +356,7 @@ return [
                         ],
 
                         'delete' => [
-                            'reset' => 'Perdeu :amount por postagem deletada em :post',
+                            'reset' => 'Perdeu :amount pela publicação deletada em :post',
                         ],
 
                         'restore' => [
@@ -376,13 +376,13 @@ return [
 
                     'forum_post' => [
                         'give' => 'Recebeu :amount de :giver por uma publicação em :post',
-                        'reset' => 'Kudosu reiniciado por :giver na publicação :post',
-                        'revoke' => 'Kudosu negado por :giver na publicação :post',
+                        'reset' => 'Kudosu reiniciado por :giver pela publicação :post',
+                        'revoke' => 'Kudosu negado por :giver pela publicação :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => 'Baseado na quantidade de contribuições realizadas pelo usuário em moderações de beatmaps. Veja :link para mais informações.',
+                    '_' => 'Baseado no quanto o usuário contribuiu à moderação do beatmap. Veja :link para mais informações.',
                     'link' => 'esta página',
                 ],
             ],
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'ver mais publicações',
             ],
             'ranked-play' => [
-                'title' => 'Partidas Ranqueadas',
+                'title' => 'Partidas competitivas',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Jogo Rápido',
+            'title' => 'Competitivo',
         ],
 
         'not_found' => [
@@ -502,10 +502,15 @@ return [
         ],
         'rank' => [
             'country' => 'Ranking nacional de :mode',
-            'country_simple' => 'Ranking Nacional',
+            'country_simple' => 'Classificação nacional',
             'global' => 'Ranking global de :mode',
-            'global_simple' => 'Ranking Global',
+            'global_simple' => 'Classificação global',
             'highest' => 'Maior classificação: :rank em :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',

@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan masalah baharu pada peta rentak layak untuk mod berikut',
         'beatmapset_disqualify' => 'terima pemberitahuan ketika peta rentak mod berikut tersingkir',
         'comment_reply' => 'terima pemberitahuan untuk balasan pada komen',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'kekunci',
         'mouse' => 'tetikus',
         'tablet' => 'tablet',

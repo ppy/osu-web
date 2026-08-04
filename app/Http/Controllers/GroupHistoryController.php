@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroupEvent;
+use App\Transformers\GroupTransformer;
+use App\Transformers\UserGroupEventTransformer;
 
 class GroupHistoryController extends Controller
 {
@@ -69,8 +71,8 @@ class GroupHistoryController extends Controller
         );
         $json = [
             ...cursor_for_response($cursorHelper->next($events, $hasMore)),
-            'events' => json_collection($events, 'UserGroupEvent'),
-            'groups' => json_collection($groups, 'Group'),
+            'events' => json_collection($events, new UserGroupEventTransformer()),
+            'groups' => json_collection($groups, new GroupTransformer()),
             'params' => $params,
         ];
 

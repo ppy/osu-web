@@ -507,6 +507,11 @@ return [
             'global_simple' => 'Global Rang',
             'highest' => 'Højeste rang :rank på :date',
         ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
             'total_score' => 'Samlet score',

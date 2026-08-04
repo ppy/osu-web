@@ -87,7 +87,7 @@ return [
                 'beatmapset_rank_compact' => 'O beatmap foi ranqueado',
                 'beatmapset_remove_from_loved' => '":title" foi removido dos Loved',
                 'beatmapset_remove_from_loved_compact' => 'O beatmap foi removido dos Loved',
-                'beatmapset_reset_nominations' => 'Um problema publicado por :username reiniciou a nomeação do beatmap ":title" ',
+                'beatmapset_reset_nominations' => 'A nomeação de ":title" foi reiniciada',
                 'beatmapset_reset_nominations_compact' => 'A nomeação foi reiniciada',
             ],
 
@@ -135,12 +135,12 @@ return [
             ],
 
             'channel_team' => [
-                '_' => 'Nova mensagem do time',
+                '_' => 'Nova mensagem da equipe',
 
                 'team' => [
-                    'channel_team' => ':username diz ":title"',
-                    'channel_team_compact' => ':username diz ":title"',
-                    'channel_team_group' => ':username diz ":title"',
+                    'channel_team' => ':username disse ":title"',
+                    'channel_team_compact' => ':username disse ":title"',
+                    'channel_team_group' => ':username disse ":title"',
                 ],
             ],
         ],
@@ -190,17 +190,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => 'Solicitação para participar de equipe',
+                '_' => 'Solicitação de entrada em equipe',
 
                 'team_application_accept' => "Você agora é membro da equipe :title",
                 'team_application_accept_compact' => "Você agora é membro da equipe :title",
 
-                'team_application_group' => 'Atualizações de solicitações para se juntar ao time',
+                'team_application_group' => 'Atualizações de solicitações de entrada em equipe',
 
-                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
-                'team_application_reject_compact' => 'Seu pedido para se juntar à equipe :title foi recusado',
-                'team_application_store' => ':title pediu para se juntar ao seu time',
-                'team_application_store_compact' => ':title pediu para se juntar ao seu time',
+                'team_application_reject' => 'Sua solicitação para se juntar à equipe :title foi recusada',
+                'team_application_reject_compact' => 'Sua solicitação para se juntar à equipe :title foi recusada',
+                'team_application_store' => ':title pediu para se juntar à sua equipe',
+                'team_application_store_compact' => ':title pediu para se juntar à sua equipe',
             ],
         ],
 
@@ -274,7 +274,7 @@ return [
             ],
 
             'channel_team' => [
-                'channel_team' => 'Há uma nova mensagem no time ":name"',
+                'channel_team' => 'Há uma nova mensagem na equipe ":name"',
             ],
         ],
 
@@ -299,8 +299,8 @@ return [
         'team' => [
             'team_application' => [
                 'team_application_accept' => "Você agora é membro da equipe :title",
-                'team_application_reject' => 'Seu pedido para se juntar à equipe :title foi recusado',
-                'team_application_store' => ':title pediu para se juntar ao seu time',
+                'team_application_reject' => 'Sua solicitação para se juntar à equipe :title foi recusada',
+                'team_application_store' => ':title pediu para se juntar à sua equipe',
             ],
         ],
 

@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'motta varsler for nye problemer på kvalifiserte beatmaps av følgende moduser',
         'beatmapset_disqualify' => 'få varsler når beatmaperav de følgende moduser er diskvalifisert',
         'comment_reply' => 'motta varsler for svar på dine kommentarer',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'tastatur',
         'mouse' => 'mus',
         'tablet' => 'tegnebrett',

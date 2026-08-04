@@ -22,7 +22,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsScopedUser($this->viewer, [$scope]);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact', ['has_favourited']);
+        $json = json_item($this->beatmapset, new BeatmapsetCompactTransformer(), ['has_favourited']);
         $this->assertArrayNotHasKey('has_favourited', $json);
     }
 
@@ -30,7 +30,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsScopedUser($this->viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact', ['has_favourited']);
+        $json = json_item($this->beatmapset, new BeatmapsetCompactTransformer(), ['has_favourited']);
         $this->assertArrayHasKey('has_favourited', $json);
     }
 
@@ -38,7 +38,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsUser($this->viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact', ['has_favourited']);
+        $json = json_item($this->beatmapset, new BeatmapsetCompactTransformer(), ['has_favourited']);
         $this->assertArrayHasKey('has_favourited', $json);
     }
 
@@ -49,7 +49,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsScopedUser($this->viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact', [$property]);
+        $json = json_item($this->beatmapset, new BeatmapsetCompactTransformer(), [$property]);
         $this->assertArrayNotHasKey($property, $json);
     }
 
@@ -60,7 +60,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsUser($this->viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact', [$property]);
+        $json = json_item($this->beatmapset, new BeatmapsetCompactTransformer(), [$property]);
         $this->assertArrayHasKey($property, $json);
     }
 

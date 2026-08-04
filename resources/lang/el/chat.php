@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'φόρτωση χρηστών...',
+    'searching_users' => '',
     'talking_in' => 'μιλάτε στο: :channel',
     'talking_with' => 'μιλάτε με: :name',
     'title_compact' => 'συνομιλία',

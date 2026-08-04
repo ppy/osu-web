@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => '当前页面尚未支持所选语言（:language），已显示英文版本。',
+        'fallback_translation' => '请求的页面还没有没有被翻译为您的语言（:language）。 正在显示其英文版本。',
         'incomplete_or_outdated' => '此页内容尚不完整或已过时。如果你能协助完善，欢迎对本文内容进行修缮！',
         'missing' => '请求访问的页面“:keyword”无法找到。',
         'missing_title' => '未找到',

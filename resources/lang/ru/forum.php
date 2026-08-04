@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Удалено ответов',
             'total_posts' => 'Всего ответов',
-            'total_watches' => '',
+            'total_watches' => 'Всего подписчиков',
 
             'feature_vote' => [
                 'current' => 'Текущий приоритет: +:count',

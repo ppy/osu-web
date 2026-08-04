@@ -19,6 +19,7 @@ return [
         'nav_title' => 'суддзя',
         'no_current_vote' => 'вы яшчэ не прагаласавалі.',
         'update' => 'абнавіць',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'адсутны вынік',
             'contest_vote_judged' => 'нельга прагаласаваць у конкурсе, які вы судзілі',
@@ -70,7 +71,7 @@ return [
         'preparation' => 'Падрыхтоўваем гэты конкурс. Калі ласка, пачакайце!',
         'drop_here' => 'Перацягніце файл сюды',
         'allowed_extensions' => '',
-        'max_size' => '',
+        'max_size' => 'Максімальны памер: :limit',
         'required_dimensions' => '',
         'download' => 'Спампаваць .osz',
         'wrong_file_type' => 'Толькі :types файлы дазволены для гэтага конкурсу.',

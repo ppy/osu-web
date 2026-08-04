@@ -7,25 +7,25 @@ return [
     'create' => [
         'finish' => 'Zakończ',
         'key' => 'Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej i wprowadź klucz weryfikacyjny',
-        'key_copy' => 'Lub kliknij ten link, aby skopiować klucz dla aplikacji uwierzytelniającej',
-        'key_link' => 'Użyj tego linku, jeśli używasz telefonu',
-        'password' => 'Aby skonfigurować weryfikację aplikacji uwierzytelniającej, wprowadź swoje hasło',
+        'key_copy' => 'Możesz także skorzystać z tego linku, aby skopiować klucz dla aplikacji uwierzytelniającej',
+        'key_link' => 'Użyj tego linku, jeżeli korzystasz z urządzenia mobilnego',
+        'password' => 'Aby skonfigurować weryfikację poprzez aplikację uwierzytelniającą, wprowadź swoje hasło',
         'start' => 'Kontynuuj',
     ],
 
     'destroy' => [
-        'missing' => 'Brak skonfigurowanej weryfikacji aplikacji uwierzytelniającej.',
-        'ok' => 'Weryfikacja uwierzytelniająca została usunięta.',
+        'missing' => 'Nie masz skonfigurowanej weryfikacji poprzez aplikację uwierzytelniającą.',
+        'ok' => 'Usunięto weryfikację poprzez aplikację uwierzytelniającą.',
     ],
 
     'edit' => [
-        'password' => 'Wprowadź swoje hasło, aby usunąć weryfikacje uwierzytelniającą.',
+        'password' => 'Wprowadź swoje hasło, aby usunąć weryfikację poprzez aplikację uwierzytelniającą.',
         'start' => 'Usuń',
     ],
 
     'store' => [
-        'existing' => 'Masz już skonfigurowaną weryfikacje uwierzytelniającą.',
-        'ok' => 'Weryfikacja uwierzytelniająca została skonfigurowana',
-        'restart' => 'Wystąpił bląd. Uruchom ponownie proces.',
+        'existing' => 'Masz już skonfigurowaną weryfikację poprzez aplikację uwierzytelniającą.',
+        'ok' => 'Weryfikacja poprzez aplikację uwierzytelniającą została skonfigurowana',
+        'restart' => 'Wystąpił bląd - spróbuj ponownie.',
     ],
 ];

@@ -14,6 +14,13 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Traits\Memoizes;
+use App\Transformers\BeatmapDiscussionPostTransformer;
+use App\Transformers\BeatmapDiscussionTransformer;
+use App\Transformers\BeatmapsetEventTransformer;
+use App\Transformers\BeatmapsetTransformer;
+use App\Transformers\BeatmapTransformer;
+use App\Transformers\KudosuHistoryTransformer;
+use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -25,39 +32,37 @@ class ModdingHistoryEventsBundle
 
     const KUDOSU_PER_PAGE = 5;
 
-    protected $isModerator;
-    protected $isKudosuModerator;
-    protected $searchParams;
+    protected array $extraParams;
+    protected bool $isModerator;
+    protected array $searchParams;
 
     private $params;
     private $total;
     private $user;
     private $withExtras = false; // TODO: change to includes list instead.
 
-    public static function forProfile(User $user, array $searchParams)
+    public static function forProfile(User $user, array $searchParams, array $extraParams)
     {
         $searchParams['limit'] = 10;
         $searchParams['sort'] = 'id_desc';
 
-        $obj = static::forListing($user, $searchParams);
+        $obj = static::forListing($user, $searchParams, $extraParams);
         $obj->withExtras = true;
 
         return $obj;
     }
 
-    public static function forListing(?User $user, array $searchParams)
+    public static function forListing(?User $user, array $searchParams, array $extraParams)
     {
         $obj = new static();
         $obj->user = $user;
         $obj->searchParams = $searchParams;
-        $obj->isModerator = priv_check('BeatmapDiscussionModerate')->can();
-        $obj->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
 
-        $obj->searchParams['is_moderator'] = $obj->isModerator;
+        $extraParams['is_kudosu_moderator'] ??= priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
+        $extraParams['is_moderator'] ??= priv_check('BeatmapDiscussionModerate')->can();
+        $obj->extraParams = $extraParams;
 
-        if (!$obj->isModerator) {
-            $obj->searchParams['with_deleted'] = false;
-        }
+        $obj->isModerator = $obj->extraParams['is_moderator'];
 
         return $obj;
     }
@@ -90,13 +95,13 @@ class ModdingHistoryEventsBundle
             $array = [
                 'events' => json_collection(
                     $this->getEvents(),
-                    'BeatmapsetEvent',
+                    new BeatmapsetEventTransformer(),
                     ['discussion.starting_post', 'beatmapset.user']
                 ),
                 'reviewsConfig' => Review::config(),
                 'users' => json_collection(
                     $this->getUsers(),
-                    'UserCompact',
+                    new UserCompactTransformer(),
                     ['groups']
                 ),
             ];
@@ -104,23 +109,23 @@ class ModdingHistoryEventsBundle
             if ($this->withExtras) {
                 $array['beatmaps'] = json_collection(
                     $this->getBeatmaps(),
-                    'Beatmap'
+                    new BeatmapTransformer()
                 );
 
                 $array['beatmapsets'] = json_collection(
                     $this->getBeatmapsets(),
-                    'Beatmapset'
+                    new BeatmapsetTransformer()
                 );
 
                 $array['discussions'] = json_collection(
                     $this->getDiscussions(),
-                    'BeatmapDiscussion',
+                    new BeatmapDiscussionTransformer(),
                     ['starting_post', 'current_user_attributes']
                 );
 
                 $array['posts'] = json_collection(
                     $this->getPosts(),
-                    'BeatmapDiscussionPost',
+                    new BeatmapDiscussionPostTransformer(),
                     // TODO: should get beatmapset from top level beatmapset key instead of embedded property.
                     ['beatmap_discussion.beatmapset.availability']
                 );
@@ -139,7 +144,7 @@ class ModdingHistoryEventsBundle
                         ->get();
 
                     $array['extras'] = [
-                        'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory'),
+                        'recentlyReceivedKudosu' => json_collection($kudosu, new KudosuHistoryTransformer()),
                     ];
                     // only recentlyReceivedKudosu is set, do we even need it?
                     // every other item has a show more link that goes to a listing.
@@ -212,7 +217,7 @@ class ModdingHistoryEventsBundle
                 return collect();
             }
 
-            $parents = BeatmapDiscussion::search($this->searchParams);
+            $parents = BeatmapDiscussion::search($this->searchParams, $this->extraParams);
             $parents['query']->with($includes);
 
             if ($this->isModerator) {
@@ -238,7 +243,7 @@ class ModdingHistoryEventsBundle
     private function getEvents()
     {
         return $this->memoize(__FUNCTION__, function () {
-            $events = BeatmapsetEvent::search($this->searchParams);
+            $events = BeatmapsetEvent::search($this->searchParams, $this->extraParams);
             // beatmapset has global scopes with deleted_at and active but these are not indexed,
             // which makes whereHas('beatmapset') unusable.
             $events['query'] = $events['query']->with([
@@ -268,7 +273,7 @@ class ModdingHistoryEventsBundle
                 return collect();
             }
 
-            $posts = BeatmapDiscussionPost::search($this->searchParams);
+            $posts = BeatmapDiscussionPost::search($this->searchParams, $this->extraParams);
             $posts['query']->with([
                 'beatmapDiscussion.beatmap',
                 'beatmapDiscussion.beatmapset',

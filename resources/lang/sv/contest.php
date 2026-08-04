@@ -19,6 +19,7 @@ return [
         'nav_title' => 'bedöm',
         'no_current_vote' => 'du har inte röstat ännu.',
         'update' => 'uppdatera',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'saknar resultat',
             'contest_vote_judged' => 'kan inte rösta i bedömda tävlingar',

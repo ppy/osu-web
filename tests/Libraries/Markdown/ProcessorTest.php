@@ -71,9 +71,16 @@ class ProcessorTest extends TestCase
             (new OsuMarkdown(
                 'default',
                 osuExtensionConfig: [
-                    'attributes_allowed' => ['flag', 'id'],
+                    'attributes_allowed' => ['flag', 'id', 'user'],
                     'custom_container_inline' => true,
-                    'style_block_allowed_classes' => ['class-name'],
+                    'style_block_allowed_classes' => [
+                        'alert-caution',
+                        'alert-note',
+                        'alert-notice',
+                        'alert-tip',
+                        'alert-warning',
+                        'class-name',
+                    ],
                 ],
                 osuMarkdownConfig: [
                     'enable_footnote' => true,

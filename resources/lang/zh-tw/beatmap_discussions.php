@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '依使用者篩選',
+        'multiple' => '',
     ],
 ];

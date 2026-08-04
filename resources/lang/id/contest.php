@@ -19,6 +19,7 @@ return [
         'nav_title' => 'juri',
         'no_current_vote' => 'kamu belum memberikan suaramu.',
         'update' => 'perbarui',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'skor hilang',
             'contest_vote_judged' => 'kamu tidak bisa memberikan suara pada kontes yang dinilai oleh juri',

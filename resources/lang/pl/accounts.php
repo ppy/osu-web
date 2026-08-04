@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
         'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
         'comment_reply' => 'otrzymuj powiadomienia o odpowiedziach do twoich komentarzy',
@@ -88,7 +89,7 @@ return [
             '_' => 'opcje wysyłania',
             'beatmap_owner_change' => 'gościnny poziom trudności',
             'beatmapset:modding' => 'dyskusje beatmap',
-            'channel_mention' => 'wspomnienie na czacie',
+            'channel_mention' => 'wzmianka na czacie',
             'channel_message' => 'wiadomości prywatne na czacie',
             'channel_team' => 'wiadomości na czacie zespołu',
             'comment_new' => 'nowe komentarze',
@@ -100,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'gdy uzyskasz status gościnnego twórcy poziomu trudności beatmapy',
+            'beatmapset:modding' => 'gdy w obserwowanych dyskusjach pojawią się nowe aktualizacje lub zostanie zgłoszony problem bądź sugestia dla twojej beatmapy',
+            'channel_mention' => 'gdy otrzymasz wzmiankę na kanale publicznym',
+            'channel_message' => 'gdy otrzymasz nową wiadomość prywatną',
+            'channel_team' => 'gdy na czacie twojego zespołu pojawi się nowa wiadomość',
+            'comment_new' => 'gdy w obserwowanej zawartości pojawi się nowy komentarz',
+            'forum_topic_reply' => 'gdy w obserwowanych wątkach na forum pojawią się nowe odpowiedzi',
+            'mapping' => 'gdy obserwowany twórca utworzy nową beatmapę',
+            'news_post' => 'gdy pojawią się nowe aktualności',
         ],
     ],
 
@@ -119,7 +120,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => 'Pokazuj okładki stylizowane anime w beatmapach',
+        'beatmapset_show_anime_cover' => 'pokaż tła beatmap w stylu anime',
         'beatmapset_show_nsfw' => 'ukryj ostrzeżenia o treściach dla pełnoletnich w beatmapach',
         'beatmapset_title_show_original' => 'pokaż metadane beatmapy w oryginalnym języku',
         'title' => 'Ustawienia strony',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => 'domyślny tryb gry',
         'keyboard' => 'klawiatura',
         'mouse' => 'mysz',
         'tablet' => 'tablet',
@@ -166,7 +168,7 @@ return [
 
     'user_totp' => [
         'title' => 'Aplikacja uwierzytelniająca',
-        'usage_note' => 'Użyj aplikacji uwierzytelniającej zamiast e-mailu, aby się zweryfikować. Weryfikacja przez e-mail będzie nadal dostępna jako opcja zapasowa.',
+        'usage_note' => 'Użyj aplikacji uwierzytelniającej jako główną metodę weryfikacji. Weryfikacja poprzez wiadomości e-mail nadal będzie dostępna jako opcja zapasowa.',
 
         'button' => [
             'remove' => 'Usuń',

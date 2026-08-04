@@ -10,19 +10,15 @@
   mask-position: center;
   mask-repeat: no-repeat;
 
-  &--arrow-cycle {
-    mask-image: url("~@image_resources/icons/primitives/arrow-cycle.svg");
-  }
-
-  &--download {
-    mask-image: url("~@image_resources/icons/primitives/download.svg");
-  }
-
-  &--plus {
-    mask-image: url("~@image_resources/icons/primitives/plus.svg");
-  }
-
-  &--trash {
-    mask-image: url("~@image_resources/icons/primitives/trash.svg");
-  }
+  each(
+    arrow-cycle
+    download
+    plus
+    trash,
+    {
+      &--@{value} {
+        mask-image: url("~@image_resources/icons/primitives/@{value}.svg");
+      }
+    }
+  );
 }

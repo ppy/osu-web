@@ -26,6 +26,7 @@ return [
         'edited' => 'Uredil :editor :update_time.',
         'guest' => 'Gostiteljeva težavnost od :user',
         'kudosu_denied' => 'Zavrnjena pridobitev kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Ta težavnost je bila odstranjena in razprava ni več mogoča.',
         'message_placeholder_locked' => 'Razprava ta to beatmapo je bila onemogočena.',
         'message_placeholder_silenced' => "Objava pogovora ni mogoča medtem, ko si utišan.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Rešeno',
         'restore' => 'povrni',
         'show_deleted' => 'Prikaži izbrisano',
+        'show_other_replies' => '',
         'title' => 'Razprave',
         'unresolved_count' => '',
 

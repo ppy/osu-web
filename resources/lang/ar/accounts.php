@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'تلقي إشعارات عن مشاكل جديدة في الخرائط المؤهلة على الأنماط التالية',
         'beatmapset_disqualify' => 'تلقي إشعارات عندما تكون الخرائط للأنماط التالية غير مؤهلة',
         'comment_reply' => 'تلقي إشعارات الردود على تعليقاتك',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'لوحة المفاتيح',
         'mouse' => 'الفأرة',
         'tablet' => 'لوحة وقلم رقمي',

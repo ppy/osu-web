@@ -27,7 +27,7 @@ class Page implements WikiObject
     use Memoizes, Traits\Es\WikiPageSearch;
 
     const CACHE_DURATION = 5 * 60 * 60;
-    const VERSION = 9;
+    const VERSION = 10;
 
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',

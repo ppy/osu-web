@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Forum\Post;
+use App\Transformers\Forum\PostTransformer;
 use Auth;
 use DB;
 use Request;
@@ -129,7 +130,7 @@ class PostsController extends Controller
         $post->refresh();
 
         if (is_api_request()) {
-            return json_item($post, 'Forum\Post', ['body']);
+            return json_item($post, new PostTransformer(), ['body']);
         }
 
         return ext_view('forum.topics._posts', [

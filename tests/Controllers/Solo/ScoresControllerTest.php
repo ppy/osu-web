@@ -196,6 +196,76 @@ class ScoresControllerTest extends TestCase
         )->assertStatus(422);
     }
 
+    public function testTotalScoreWithoutModsIsNotStoredWhenModsNotPresent()
+    {
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
+
+        $this->expectCountChange(fn () => Score::count(), 1);
+
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 1000000,
+                'total_score_without_mods' => 1000000,
+            ]
+        )->assertSuccessful()
+            ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
+
+        $score = $scoreToken->fresh()->score;
+        $this->assertNotNull($score);
+        $this->assertNull($score->data->totalScoreWithoutMods);
+    }
+
+    public function testTotalScoreWithoutModsIsStoredWhenModsPresent()
+    {
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
+
+        $this->expectCountChange(fn () => Score::count(), 1);
+
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                ],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 1230000,
+                'total_score_without_mods' => 1000000,
+            ]
+        )->assertSuccessful()
+            ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
+
+        $score = $scoreToken->fresh()->score;
+        $this->assertNotNull($score);
+        $this->assertSame(1000000, $score->data->totalScoreWithoutMods);
+    }
+
     public function tearDown(): void
     {
         parent::tearDown();

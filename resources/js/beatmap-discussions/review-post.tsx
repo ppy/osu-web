@@ -15,7 +15,7 @@ interface Props {
 
 export class ReviewPost extends React.Component<Props> {
   render() {
-    const docBlocks: JSX.Element[] = [];
+    const docBlocks: React.ReactNode[] = [];
 
     try {
       const doc = JSON.parse(this.props.post.message) as PersistedBeatmapDiscussionReview;

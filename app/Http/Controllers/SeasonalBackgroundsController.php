@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
+use App\Transformers\SeasonalBackgroundTransformer;
 use Carbon\Carbon;
 use stdClass;
 
@@ -24,7 +25,7 @@ class SeasonalBackgroundsController extends Controller
         return [
             'ends_at' => json_time(Carbon::parse($GLOBALS['cfg']['osu']['seasonal']['ends_at'])),
 
-            'backgrounds' => json_collection($backgrounds, 'SeasonalBackground'),
+            'backgrounds' => json_collection($backgrounds, new SeasonalBackgroundTransformer()),
         ];
     }
 }

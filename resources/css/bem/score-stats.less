@@ -35,14 +35,16 @@
 
   &__group-row {
     .@{_top}__group--stats & {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 1fr;
-      grid-gap: 2px;
+      display: flex;
+      gap: 10px 2px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 
   &__stat {
+    flex: 1;
+    max-width: 50%;
     display: flex;
     flex-direction: column;
     text-align: center;

@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'ładowanie użytkowników...',
+    'searching_users' => '',
     'talking_in' => 'rozmowa na kanale :channel',
     'talking_with' => 'rozmowa z użytkownikiem :name',
     'title_compact' => 'czat',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Dołącz do kanału, aby wyświetlić przesłane wiadomości.',
+        'join' => 'Dołącz do kanału',
     ],
 
     'input' => [
