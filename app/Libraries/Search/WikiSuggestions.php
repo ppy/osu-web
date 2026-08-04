@@ -43,7 +43,7 @@ class WikiSuggestions extends Search
                 'boost' => 1000,
                 'filter' => [
                     'match' => [
-                        'locale' => app()->getLocale(),
+                        'locale' => $this->params->locale ?? app()->getLocale(),
                     ],
                 ],
             ]])
