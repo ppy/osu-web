@@ -9,8 +9,12 @@ import { navigate } from 'utils/turbolinks';
 import { wikiUrl } from 'utils/url';
 import { WikiSearchController } from 'wiki-search-controller';
 
+interface Props {
+  locale: string;
+}
+
 @observer
-export class WikiSearch extends React.Component {
+export class WikiSearch extends React.Component<Props> {
   private readonly controller = new WikiSearchController();
   private readonly ref = React.createRef<HTMLDivElement>();
   private readonly selectedRef = React.createRef<HTMLAnchorElement>();
@@ -32,7 +36,7 @@ export class WikiSearch extends React.Component {
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.controller.updateQuery(event.target.value);
+    this.controller.updateQuery(event.target.value, this.props.locale);
   };
 
   handleEsc = (e: KeyboardEvent) => {
