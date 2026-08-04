@@ -19,7 +19,7 @@ class WikiSuggestions extends Search
             $params
         );
 
-        $this->source(['title', 'path']);
+        $this->source(['locale', 'title', 'path']);
         $this->highlight(
             (new Highlight())
                 ->field('title.autocomplete')

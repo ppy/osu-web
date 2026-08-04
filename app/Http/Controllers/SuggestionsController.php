@@ -46,6 +46,7 @@ class SuggestionsController extends Controller
         foreach ($search->response() as $hit) {
             $response[] = [
                 'highlight' => $hit->highlights('title.autocomplete')[0],
+                'locale' => $hit->source('locale'),
                 'path' => $hit->source('path'),
                 'title' => $hit->source('title'),
             ];

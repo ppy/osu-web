@@ -48,7 +48,7 @@ export class WikiSearch extends React.Component {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        navigate(wikiUrl(this.controller.selectedItem.path));
+        navigate(wikiUrl(this.controller.selectedItem.path, this.controller.selectedItem.locale));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       e.preventDefault();
@@ -104,7 +104,7 @@ export class WikiSearch extends React.Component {
                 ref={active ? this.selectedRef : undefined}
                 className={classWithModifiers('wiki-search__suggestion', { active })}
                 data-index={index}
-                href={wikiUrl(item.path)}
+                href={wikiUrl(item.path, item.locale)}
               >
                 <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
               </a>

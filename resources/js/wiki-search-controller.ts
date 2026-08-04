@@ -7,6 +7,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 
 interface SuggestionJson {
   highlight: string;
+  locale: string;
   path: string;
   title: string;
 }
