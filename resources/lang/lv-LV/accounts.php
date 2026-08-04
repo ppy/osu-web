@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu spēles veida ritma-kartēmmap',
         'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šāda spēles veida  ritma-kartes',
         'comment_reply' => 'saņemt paziņojumus par atbildēm uz saviem komentāriem',
@@ -88,8 +89,8 @@ return [
             '_' => 'piegādes opcijas',
             'beatmap_owner_change' => 'viesa grūtības līmenis',
             'beatmapset:modding' => 'ritma-karšu modifikācijas',
-            'channel_message' => 'privātās tērzētavas ziņas',
             'channel_mention' => '',
+            'channel_message' => 'privātās tērzētavas ziņas',
             'channel_team' => 'komandas tērzētavas ziņas',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'ritma-kartes izveidotājs',
             'news_post' => '',
             'push' => 'piespiestu',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'tastatūra',
         'mouse' => 'pele',
         'tablet' => 'grafiskā planšete',

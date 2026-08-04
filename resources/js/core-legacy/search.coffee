@@ -31,7 +31,7 @@ export default class Search
     input = e.currentTarget
     value = input.value.trim()
 
-    return if value in ['', input.dataset.searchCurrent?.trim()]
+    return if value == input.dataset.searchCurrent?.trim()
 
     input.dataset.searchCurrent = value
     @submit()

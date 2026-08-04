@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'memuat pengguna...',
+    'searching_users' => '',
     'talking_in' => 'berbicara di :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'obrolan',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Tidak ada apa-apa di sini. Mungkin kamu sudah meninggalkan kanal percakapan ini, atau kanal yang ingin kamu tuju sudah tidak ada...',
         'title' => 'kanal percakapan tidak ditemukan',
+    ],
+
+    'not_joined' => [
+        'message' => 'Bergabunglah ke kanal ini untuk melihat isi pesan di dalamnya.',
+        'join' => 'Gabung Kanal',
     ],
 
     'input' => [

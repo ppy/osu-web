@@ -37,7 +37,7 @@ class TopPlaysController extends Controller
                     ->with('user.team')
                     ->with('beatmap.beatmapset')
                     ->whereHas('user', fn ($q) => $q->default())
-                    ->whereHas('beatmap.beatmapset')
+                    ->whereHas('beatmap')
                     ->orderByDesc('pp')
                     ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, static::PAGE_SIZE * static::PAGES);
 

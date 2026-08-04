@@ -106,7 +106,7 @@ export default class Comments extends React.Component<Props> {
   };
 
   private onToggleShowDeleted(this: void) {
-    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'));
+    core.userPreferences.toggle('comments_show_deleted');
   }
 
   private renderComment(comment: CommentModel, expandReplies?: boolean) {

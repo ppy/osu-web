@@ -202,7 +202,7 @@ export default class Main extends React.Component<Props> {
             <Detail controller={this.controller} />
           </div>
 
-          <div ref={this.pagesOffsetRef} className='page-extra-tabs'>
+          <div ref={this.pagesOffsetRef} className='sticky-toolbar'>
             {this.displayExtraTabs && (
               <>
                 {

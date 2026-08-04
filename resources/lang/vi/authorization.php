@@ -73,8 +73,8 @@ return [
         'no_access' => 'Bạn không có quyền truy cập vào kênh này.',
         'no_announce' => 'Bạn không có quyền đăng thông báo.',
         'receive_friends_only' => 'Người này có thể không trả lời được vì bạn đang chỉ chấp nhận tin nhắn từ người trong danh sách bạn bè.',
-        'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
-        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị silenced, bị hạn chế hoặc bị cấm (ban).',
+        'restricted' => 'Bạn không thể gửi tin nhắn trong khi bị cấm ngôn, bị hạn chế hoặc bị cấm.',
+        'silenced' => 'Bạn không thể gửi tin nhắn trong khi bị cấm ngôn, bị hạn chế hoặc bị cấm.',
     ],
 
     'comment' => [
@@ -92,7 +92,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
-            'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm bài dự thi nào nữa và sẽ sớm mở bình chọn.',
+            'over' => 'Cảm ơn bạn đã tham gia! Thời gian nộp bài dự thi đã kết thúc và cổng bình chọn sẽ sớm được mở.',
         ],
     ],
 
@@ -113,7 +113,7 @@ return [
                 'deleted' => 'Không thể chỉnh sửa bài đăng đã bị xóa.',
                 'locked' => 'Bài đăng đã bị khóa chỉnh sửa.',
                 'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
-                'no_permission' => 'Không có quyền chỉnh sửa',
+                'no_permission' => 'Không có quyền chỉnh sửa.',
                 'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
                 'topic_locked' => 'Không thể chỉnh sửa bài đăng của một chủ đề bị khóa.',
             ],
@@ -152,8 +152,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Vui lòng đăng nhập để bình chọn.',
-                    'restricted' => "Không thể bình chọn trong khi bị hạn chế",
-                    'silenced' => "Không thể bình chọn khi im lặng",
+                    'restricted' => "Không thể bình chọn trong khi bị hạn chế.",
+                    'silenced' => "Không thể bình chọn khi im lặng.",
                 ],
             ],
 
@@ -207,7 +207,7 @@ return [
             'not_member' => 'Không phải thành viên của một đội.',
         ],
         'store' => [
-            'require_supporter_tag' => 'cần tag osu!supporter để tạo đội.',
+            'require_supporter_tag' => 'cần thẻ osu!supporter để tạo đội.',
         ],
     ],
 
@@ -216,7 +216,7 @@ return [
             'edit' => [
                 'locked' => 'Trang người dùng này đã bị khóa.',
                 'not_owner' => 'Chỉ có thể chỉnh sửa trang người dùng của bạn.',
-                'require_supporter_tag' => 'phải có osu!supporter.',
+                'require_supporter_tag' => 'phải có thẻ osu!supporter.',
             ],
         ],
         'update_email' => [

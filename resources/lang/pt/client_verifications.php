@@ -6,13 +6,13 @@
 return [
     'completed' => [
         'home' => 'Ir para o painel de controlo',
-        'logout' => 'Terminar sessão',
-        'text' => 'Agora podes fechar este separador/janela',
-        'title' => 'A verificação do cliente osu! foi concluída',
+        'logout' => 'Terminar a sessão',
+        'text' => 'Pode fechar este separador/janela agora',
+        'title' => 'A verificação do cliente do osu! foi concluída',
     ],
 
     'create' => [
-        'confirm' => 'Clica no botão de autorizar abaixo para finalizar a verificação do cliente.',
+        'confirm' => 'Clique no botão de autorizar abaixo para concluir a verificação do cliente.',
         'title' => 'Verificação do cliente osu!',
     ],
 ];

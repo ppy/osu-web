@@ -237,7 +237,7 @@ class ScoreTest extends TestCase
             'beatmap_id' => 1,
             'ended_at' => json_time(now()),
             'max_combo' => 100,
-            'mods' => [],
+            'mods' => [['acronym' => 'DT']],
             'passed' => true,
             'rank' => 'S',
             'ruleset_id' => 1,

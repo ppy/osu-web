@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'інфармацыя',
             'discussions' => 'абмеркаванне',
-            'versions' => '',
+            'versions' => 'гісторыя версій',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'модынг',
             'playlists' => 'плэйлісты',
-            'ranked-play' => '',
+            'ranked-play' => 'ранкавана гульня',
             'realtime' => 'мультыплэер',
             'show' => 'інфармацыя',
         ],
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налады',
+            'create_team' => '',
             'follows' => 'Падпіскі',
             'friends' => 'Сябры',
             'legacy_score_only_toggle' => 'Рэжым Lazer',

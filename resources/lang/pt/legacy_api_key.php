@@ -8,7 +8,7 @@ return [
     'none' => 'Nenhuma chave.',
 
     'docs' => [
-        '_' => 'Documentação disponível em :github.',
+        '_' => 'A documentação está disponível no :github.',
         'github' => 'GitHub',
     ],
 
@@ -23,8 +23,8 @@ return [
     ],
 
     'warning' => [
-        'line1' => 'Não partilhe isto com outros.',
-        'line2' => "É equivalente a partilhar a sua palavra-passe.",
-        'line3' => 'A sua conta pode ser comprometida.',
+        'line1' => 'Não partilhe isto com outras pessoas.',
+        'line2' => "Equivale a divulgar a sua palavra‑passe.",
+        'line3' => 'A sua conta pode vir a estar comprometida.',
     ],
 ];

@@ -36,13 +36,13 @@ return [
     'matchmaking' => [
         'plays' => 'Liczba zagrań',
         'points' => 'Punkty',
-        'provisional' => 'Za mało rozegranych meczów, aby dokładnie określić ranking',
+        'provisional' => 'Zbyt mało rozegranych meczów, aby wyznaczyć dokładny ranking',
         'rating' => 'Ranking',
         'wins' => 'Wygrane',
     ],
 
     'multiplayer' => [
-        'room_name' => 'Nazwa Pokoju',
+        'room_name' => 'Nazwa pokoju',
     ],
 
     'performance' => [
@@ -50,14 +50,14 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => 'Dane są nadal obliczane...',
-        'last_updated' => 'Ostatnio uaktualniono',
+        'empty' => 'Przeliczanie...',
+        'last_updated' => 'Ostatnia aktualizacja',
     ],
 
     'playlists' => [
-        'charts' => 'wyróżnienia (stare)',
+        'charts' => 'wyróżnione (stare)',
         'featured' => 'wyróżnione',
-        'season_room' => 'pokój sezonowy',
+        'season_room' => 'sezon',
         'seasons' => 'sezony',
     ],
 
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'wyzwanie dnia',
         'global' => 'globalny',
         'kudosu' => 'kudosu',
-        'matchmaking' => 'szybka gra',
-        'playlists' => 'playlisty',
+        'matchmaking' => 'gra rankingowa',
+        'playlists' => 'gra asynchroniczna',
         'team' => 'zespołów',
         'top_plays' => 'najlepsze wyniki',
     ],
@@ -76,7 +76,7 @@ return [
         'empty' => 'Brak gier w tym sezonie.',
         'ongoing' => 'Ten sezon nadal trwa - wkrótce zostanie dodanych więcej gier.',
         'room_count' => 'Liczba gier',
-        'summary' => 'Zobacz Podsumowanie Sezonu',
+        'summary' => 'Pokaż podsumowanie sezonu',
         'url' => 'Dowiedz się więcej o tym sezonie.',
         'validation' => [
             'not_enough_factors' => 'brak wystarczającej liczby parametrów do przeprowadzenia obliczeń',

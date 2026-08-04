@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'กำลังโหลดผู้ใช้...',
+    'searching_users' => '',
     'talking_in' => 'กำลังสนทนาใน :channel',
     'talking_with' => 'กำลังสนทนากับ :name',
     'title_compact' => 'ห้องสนทนา',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'ไม่มีอะไรที่นี่ บางทีคุณอาจออกจากช่องหรือไม่มีใครอยู่...',
         'title' => 'ไม่พบช่อง',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

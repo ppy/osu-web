@@ -79,6 +79,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'tumanggap ng mga notipikasyon sa mga bagong problema sa mga kwalipikadong beatmap sa mga sumusunod na mode',
         'beatmapset_disqualify' => 'tumanggap ng mga notipikasyon kung kailan ang mga beatmap sa mga sumusunod na mode ay na diskwalipika',
         'comment_reply' => 'tumanggap ng mga notipikasyon para sa mga tugon sa iyong mga komento',
@@ -90,8 +91,8 @@ return [
             '_' => 'mga opsyon sa pagpapaalam',
             'beatmap_owner_change' => 'guest na difficulty',
             'beatmapset:modding' => 'pagmo-mod ng beatmap',
-            'channel_message' => 'mga pribadong mensahe',
             'channel_mention' => '',
+            'channel_message' => 'mga pribadong mensahe',
             'channel_team' => '',
             'comment_new' => 'mga bagong komento',
             'forum_topic_reply' => 'tugon sa paksa',
@@ -99,6 +100,18 @@ return [
             'mapping' => 'mapper ng beatmap',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -123,6 +136,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'keyboard',
         'mouse' => 'mouse',
         'tablet' => 'tablet',

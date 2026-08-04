@@ -35,6 +35,7 @@ export default class Gallery
     pswp = new PhotoSwipe container,
       PhotoSwipeUI_Default
       @data galleryId
+      errorMsg: '<div class="pswp__error-msg">The image could not be loaded.</div>',
       showHideOpacity: true
       getThumbBoundsFn: @thumbBoundsFn(galleryId)
       index: index

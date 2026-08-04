@@ -18,8 +18,11 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotificationOption;
 use Event;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 use Tests\TestCase;
 
@@ -29,10 +32,84 @@ class ReplyTest extends TestCase
 
     private User $mapper;
 
-    public function testWatchersGetNotification()
+    public static function dataProviderForReopeningProblemDoesNotDisqualifyOrResetNominations(): array
+    {
+        return [
+            ['bng', 'pending'],
+            ['bng', 'qualified'],
+            ['bng_limited', 'pending'],
+            ['bng_limited', 'qualified'],
+            [null, 'pending'],
+            [null, 'qualified'],
+        ];
+    }
+
+    public static function dataProviderForReplyQueuesNotification(): array
+    {
+        return [
+            ['praise', false],
+            ['problem', true],
+            ['suggestion', true],
+        ];
+    }
+
+    public static function dataProviderForResolveDiscussionByStarter(): array
+    {
+        return [
+            ['praise', false],
+            ['problem', true],
+            ['suggestion', true],
+        ];
+    }
+
+    public static function dataProviderForResolveDiscussionByMapper(): array
+    {
+        return [
+            ['pending', true],
+            ['qualified', false],
+        ];
+    }
+
+    public static function dataProviderForResolveDiscussionByOtherUsers(): array
+    {
+        return [
+            ['bng', false],
+            ['bng_limited', false],
+            ['gmt', true],
+            ['nat', true],
+            [null, false],
+        ];
+    }
+
+    public static function dataProviderForUserGroups(): array
+    {
+        return [
+            ['admin'],
+            ['bng'],
+            ['bng_limited'],
+            ['gmt'],
+            ['nat'],
+            [null],
+        ];
+    }
+
+    public static function dataProviderForWatchersGetNotification(): array
+    {
+        return [
+            [true],
+            [false],
+        ];
+    }
+
+    #[DataProvider('dataProviderForWatchersGetNotification')]
+    public function testWatchersGetNotification(bool $push)
     {
         $user = User::factory()->create()->markSessionVerified();
         $watcher = User::factory()->create();
+        $watcher->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => ['push' => $push],
+        ]);
         $discussion = BeatmapDiscussion::factory()
             ->general()
             ->for($this->beatmapsetFactory())
@@ -44,27 +121,71 @@ class ReplyTest extends TestCase
 
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
-            fn (BeatmapsetDiscussionPostNew $job) => (
-                $this->inReceivers($watcher, $job)
-                && !$this->inReceivers($user, $job)
-            )
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, [$this->mapper, $watcher])
         );
 
         $this->runFakeQueue();
 
-        // TODO: this should probably be changed to asserting "if job queued, then event is broadcast to receivers with option set"
         Event::assertDispatched(
             NewPrivateNotificationEvent::class,
-            fn (NewPrivateNotificationEvent $event) => (
-                $this->inReceivers($watcher, $event)
-                && !$this->inReceivers($user, $event)
-            )
+            fn (NewPrivateNotificationEvent $event) =>
+                $event->notification->name === Notification::BEATMAPSET_DISCUSSION_POST_NEW
+                && $this->assertReceivers($event, $push ? [$this->mapper, $watcher] : $this->mapper)
         );
     }
 
-    /**
-     * @dataProvider replyQueuesNotificationDataProviderToStarter
-     */
+    #[DataProvider('dataProviderForReplyQueuesNotification')]
+    public function testReplyParticipants(string $messageType, bool $includeOthers)
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $usersNotificationEnabled = User::factory()->count(3)->create();
+        $userNotificationDisabled = User::factory()->create();
+        $userNotificationDisabled->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => ['push' => false],
+        ]);
+        $userReplyDisabled = User::factory()->create();
+        $userReplyDisabled->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => ['push' => true, UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY => false],
+        ]);
+        $participants = $listeners = [...$usersNotificationEnabled, $userNotificationDisabled, $userReplyDisabled];
+
+        $discussion = BeatmapDiscussion::factory()->general()->create([
+            'beatmapset_id' => $this->beatmapsetFactory(),
+            'message_type' => $messageType,
+            'user_id' => $participants[0]->getKey(),
+        ]);
+        foreach ($participants as $participant) {
+            $discussion->beatmapDiscussionPosts()->create([
+                'user_id' => $participant->getKey(),
+                'message' => static::TEST_MESSAGE,
+            ]);
+        }
+
+        new Reply($user, $discussion, static::TEST_MESSAGE)->handle();
+
+        $listeners = $includeOthers ? [...$usersNotificationEnabled, $userNotificationDisabled] : [];
+        Queue::assertPushed(
+            BeatmapsetDiscussionPostNew::class,
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, $listeners)
+        );
+
+        $this->runFakeQueue();
+
+        if ($includeOthers) {
+            Event::assertDispatched(
+                NewPrivateNotificationEvent::class,
+                fn (NewPrivateNotificationEvent $event) =>
+                    $event->notification->name === Notification::BEATMAPSET_DISCUSSION_POST_NEW
+                    && $this->assertReceivers($event, $usersNotificationEnabled)
+            );
+        } else {
+            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        }
+    }
+
+    #[DataProvider('dataProviderForReplyQueuesNotification')]
     public function testReplyQueuesNotificationToStarter(string $messageType, bool $includeStarter)
     {
         $user = User::factory()->create()->markSessionVerified();
@@ -80,17 +201,36 @@ class ReplyTest extends TestCase
 
         Queue::assertPushed(
             BeatmapsetDiscussionPostNew::class,
-            fn (BeatmapsetDiscussionPostNew $job) => (
-                $includeStarter
-                    ? $this->inReceivers($starter, $job)
-                    : !$this->inReceivers($starter, $job)
-            )
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, $includeStarter ? $starter : [])
         );
     }
 
-    /**
-     * @dataProvider userGroupsDataProvider
-     */
+    public function testReplyQueuesNotificationToStarterReplyDisabled()
+    {
+        $user = User::factory()->create()->markSessionVerified();
+        $starter = User::factory()->create();
+        $starter->notificationOptions()->create([
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
+            'details' => [UserNotificationOption::BEATMAPSET_DISCUSSION_REPLY => false],
+        ]);
+
+        $discussion = BeatmapDiscussion::factory()->general()->create([
+            'beatmapset_id' => $this->beatmapsetFactory(),
+            'message_type' => 'problem',
+            'user_id' => $starter,
+        ]);
+
+        $this->expectCountChange(fn () => BeatmapDiscussionPost::count(), 1);
+
+        new Reply($user, $discussion, static::TEST_MESSAGE)->handle();
+
+        Queue::assertPushed(
+            BeatmapsetDiscussionPostNew::class,
+            fn (BeatmapsetDiscussionPostNew $job) => $this->assertReceivers($job, [])
+        );
+    }
+
+    #[DataProvider('dataProviderForUserGroups')]
     public function testReplyResolvedDiscussion(?string $group)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -109,9 +249,7 @@ class ReplyTest extends TestCase
         $this->assertTrue($discussion->fresh()->resolved);
     }
 
-    /**
-     * @dataProvider userGroupsDataProvider
-     */
+    #[DataProvider('dataProviderForUserGroups')]
     public function testReplyUnresolvedDiscussion(?string $group)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -130,9 +268,7 @@ class ReplyTest extends TestCase
         $this->assertFalse($discussion->fresh()->resolved);
     }
 
-    /**
-     * @dataProvider resolveDiscussionByStarterDataProvider
-     */
+    #[DataProvider('dataProviderForResolveDiscussionByStarter')]
     public function testResolveDiscussionByStarter(string $messageType, bool $expected)
     {
         $user = User::factory()->create()->markSessionVerified();
@@ -155,9 +291,7 @@ class ReplyTest extends TestCase
         $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
-    /**
-     * @dataProvider resolveDiscussionByMapperDataProvider
-     */
+    #[DataProvider('dataProviderForResolveDiscussionByMapper')]
     public function testResolveDiscussionByMapper(string $state, bool $expected)
     {
         $starter = User::factory()->create();
@@ -179,9 +313,7 @@ class ReplyTest extends TestCase
         $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
-    /**
-     * @dataProvider resolveDiscussionByMapperDataProvider
-     */
+    #[DataProvider('dataProviderForResolveDiscussionByMapper')]
     public function testResolveDiscussionByGuestMapper(string $state, bool $expected)
     {
         $user = User::factory()->create()->markSessionVerified();
@@ -206,9 +338,7 @@ class ReplyTest extends TestCase
         $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
-    /**
-     * @dataProvider resolveDiscussionByOtherUsersDataProvider
-     */
+    #[DataProvider('dataProviderForResolveDiscussionByOtherUsers')]
     public function testResolveDiscussionByOtherUsers(?string $group, bool $expected)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -230,9 +360,7 @@ class ReplyTest extends TestCase
         $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
-    /**
-     * @dataProvider reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider
-     */
+    #[DataProvider('dataProviderForReopeningProblemDoesNotDisqualifyOrResetNominations')]
     public function testReopeningProblemDoesNotDisqualifyOrResetNominations(?string $group, string $state)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -300,9 +428,7 @@ class ReplyTest extends TestCase
         $this->assertCount(1, $this->getSystemPosts($posts, $discussion));
     }
 
-    /**
-     * @dataProvider userGroupsDataProvider
-     */
+    #[DataProvider('dataProviderForUserGroups')]
     public function testReplyToMapperNoteByOtherUsers(?string $group)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -339,67 +465,6 @@ class ReplyTest extends TestCase
 
         // stays unresolved
         $this->assertFalse($discussion->fresh()->resolved);
-    }
-
-    public static function reopeningProblemDoesNotDisqualifyOrResetNominationsDataProvider()
-    {
-        return [
-            ['bng', 'pending'],
-            ['bng', 'qualified'],
-            ['bng_limited', 'pending'],
-            ['bng_limited', 'qualified'],
-            [null, 'pending'],
-            [null, 'qualified'],
-        ];
-    }
-
-    public static function replyQueuesNotificationDataProviderToStarter()
-    {
-        return [
-            ['praise', false],
-            ['problem', true],
-            ['suggestion', true],
-        ];
-    }
-
-    public static function resolveDiscussionByStarterDataProvider()
-    {
-        return [
-            ['praise', false],
-            ['problem', true],
-            ['suggestion', true],
-        ];
-    }
-
-    public static function resolveDiscussionByMapperDataProvider()
-    {
-        return [
-            ['pending', true],
-            ['qualified', false],
-        ];
-    }
-
-    public static function resolveDiscussionByOtherUsersDataProvider()
-    {
-        return [
-            ['bng', false],
-            ['bng_limited', false],
-            ['gmt', true],
-            ['nat', true],
-            [null, false],
-        ];
-    }
-
-    public static function userGroupsDataProvider()
-    {
-        return [
-            ['admin'],
-            ['bng'],
-            ['bng_limited'],
-            ['gmt'],
-            ['nat'],
-            [null],
-        ];
     }
 
     protected function setUp(): void

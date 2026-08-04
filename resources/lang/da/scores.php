@@ -14,10 +14,10 @@ return [
 
         'player' => [
             'by' => 'Spillet af',
-            'played_on' => '',
+            'played_on' => 'Spillet på',
             'submitted_on' => 'Indsendt den',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Set',
+            'watched_count' => ':count_delimited gang|:count_delimited gange',
 
             'rank' => [
                 'country' => 'Lande Rang',

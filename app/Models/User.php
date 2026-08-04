@@ -18,7 +18,7 @@ use App\Libraries\Uploader;
 use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\Cover;
 use App\Libraries\User\DatadogLoginAttempt;
-use App\Libraries\User\ProfileBeatmapset;
+use App\Libraries\User\ProfileCount;
 use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
@@ -731,12 +731,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function setOsuPlaystyleAttribute($value)
     {
         $styles = 0;
-
-        if ($value !== null) {
-            foreach (self::PLAYSTYLES as $type => $bit) {
-                if (in_array($type, $value, true)) {
-                    $styles += $bit;
-                }
+        if (is_array($value)) {
+            foreach (array_unique($value) as $style) {
+                $styles += static::PLAYSTYLES[$style] ?? 0;
             }
         }
 
@@ -1406,22 +1403,22 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function scoresFirstOsu()
     {
-        return $this->hasMany(LegacyScoreFirst\Osu::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Osu::class);
     }
 
     public function scoresFirstFruits()
     {
-        return $this->hasMany(LegacyScoreFirst\Fruits::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Fruits::class);
     }
 
     public function scoresFirstMania()
     {
-        return $this->hasMany(LegacyScoreFirst\Mania::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Mania::class);
     }
 
     public function scoresFirstTaiko()
     {
-        return $this->hasMany(LegacyScoreFirst\Taiko::class)->default();
+        return $this->hasMany(LegacyScoreFirst\Taiko::class);
     }
 
     public function beatmapLeaders()
@@ -1974,7 +1971,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             $newPostsCount = db_unsigned_increment('user_posts', $postsChangeCount);
         } else {
-            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
+            $newPostsCount = $this
+                ->forumPosts()
+                ->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))
+                ->whereHas('topic', fn ($q) => $q->withoutTrashed())
+                ->count();
         }
 
         $lastPost = $this->forumPosts()->select('post_time')->last();
@@ -2236,15 +2237,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function profileBeatmapsetsNominated()
     {
-        return Beatmapset::withStates(['approved', 'ranked'])
+        return Beatmapset::withStates(['approved', 'ranked', 'qualified'])
             ->whereHas('beatmapsetNominations', fn ($q) => $q->current()->where('user_id', $this->getKey()))
             ->with('beatmaps');
     }
 
-    public function profileBeatmapsetCountByGroupedStatus(string $status)
+    public function profileCount(): ProfileCount
     {
-        return $this->memoize(__FUNCTION__, fn () =>
-            ProfileBeatmapset::countByGroupedStatus($this))[$status] ?? 0;
+        return $this->memoize(__FUNCTION__, fn () => new ProfileCount($this));
     }
 
     public function isSessionVerified()

@@ -8,6 +8,7 @@ namespace App\Libraries;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use App\Transformers\NotificationTransformer;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -55,7 +56,7 @@ class NotificationsBundle
         $this->fillStackTotal();
 
         $response = [
-            'notifications' => json_collection($this->userNotifications->load('notification'), 'Notification'),
+            'notifications' => json_collection($this->userNotifications->load('notification'), new NotificationTransformer()),
             'stacks' => array_values($this->stacks),
             'timestamp' => json_time(now()),
             'types' => array_values($this->types),

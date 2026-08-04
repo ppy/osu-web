@@ -56,10 +56,17 @@
                     {{ i18n_number_format($stats->playcount) }}
                 </td>
                 <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $sort !== 'score']) }}">
-                    {{ i18n_number_format(round($stats->ranked_score)) }}
+                    {{ i18n_number_format($stats->ranked_score) }}
                 </td>
+                @php
+                    $performance = $stats->rank_score;
+                @endphp
                 <td class="{{ class_with_modifiers('ranking-page-table__column', ['dimmed' => $sort !== 'performance']) }}">
-                    {{ i18n_number_format($stats->rank_score) ?? '-' }}
+                    @if ($performance === null)
+                        -
+                    @else
+                        {{ i18n_number_format(round($performance)) }}
+                    @endif
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                     @php

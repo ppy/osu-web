@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیت مپ های واجد شرایط در نوع های زیر',
         'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیت مپ های نوع زیر، رد صلاحیت میشوند',
         'comment_reply' => 'دریافت اعلانات برای پاسخ ها به کامنت شما',
@@ -88,8 +89,8 @@ return [
             '_' => 'تنظیمات ارسال',
             'beatmap_owner_change' => 'درجه سختی میهمان',
             'beatmapset:modding' => 'مودینگ بیت مپ',
-            'channel_message' => 'پیام های خصوصی چت',
             'channel_mention' => '',
+            'channel_message' => 'پیام های خصوصی چت',
             'channel_team' => '',
             'comment_new' => 'نظرات جدید',
             'forum_topic_reply' => 'پاسخ موضوع',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'سازنده بیت مپ',
             'news_post' => '',
             'push' => 'اعلان push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'صفحه کلید',
         'mouse' => 'ماوس',
         'tablet' => 'تبلت',

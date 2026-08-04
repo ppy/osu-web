@@ -42,7 +42,7 @@ return [
 
     'nominate' => [
         'bng_limited_too_many_rulesets' => '见习谱面提名成员 (PBN) 无法提名多模式谱面。',
-        'full_nomination_required' => '只有正式谱面审核成员 (Full)，才能作出所属游戏模式的最终提名。',
+        'full_nomination_required' => '只有正式谱面审核成员 (Full)，才能提供所属游戏模式的最终提名。',
         'hybrid_requires_modes' => '您需要在多模式谱面中选择至少一个游戏模式并提名。',
         'incorrect_mode' => '您没有提名 :mode 模式的权限。',
         'invalid_limited_nomination' => '谱面含有无效提名，无法在此状态下过审 (Qualified)。',
@@ -146,14 +146,24 @@ return [
             'nominators' => '提名者',
             'nsfw' => '不良内容',
             'offset' => '在线偏移值',
-            'pack_tags' => '所属曲包',
+            'pack_tags' => '曲包',
             'points-of-failure' => '失败位置',
             'source' => '来源',
             'storyboard' => '此谱面包含故事板',
             'success-rate' => '成功率',
-            'success_rate_plays' => '在 :count_delimited 次游玩中通过了 :passes 次',
+            'success_rate_plays' => '在 :count_delimited 次游玩中通过了 :passes 次|在 :count_delimited 次游玩中通过了 :passes 次',
             'user_tags' => '玩家标签',
             'video' => '此谱面包含视频',
+        ],
+
+        'lazer_only' => [
+            'title' => '仅 Lazer',
+            'description' => '由于特殊机制，此谱面仅可在 osu!lazer 上游玩。',
+
+            'scoreboard_switch_mode' => [
+                '_' => ':enable_link 以查看此谱面的成绩。',
+                'enable_link' => '启用 Lazer 模式',
+            ],
         ],
 
         'nsfw_warning' => [

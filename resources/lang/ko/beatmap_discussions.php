@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited 댓글은 숨겨져 있어요.|:count_delimited 댓글들은 숨겨져 있어요.',
 
     'authorizations' => [
         'update' => [
@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => '모두',
         'label' => '사용자순 필터링',
+        'multiple' => '',
     ],
 ];

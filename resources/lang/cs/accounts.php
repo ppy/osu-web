@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map následujících módů',
         'beatmapset_disqualify' => 'dostávat oznámení, když beatmapy následujících módů jsou diskvalifikované',
         'comment_reply' => 'dostávat oznámení na odpovědi k tvým komentářům',
@@ -88,8 +89,8 @@ return [
             '_' => 'možnosti doručení',
             'beatmap_owner_change' => 'obtížnost hosta',
             'beatmapset:modding' => 'módování beatmap',
+            'channel_mention' => 'zmínka v chatu',
             'channel_message' => 'soukromé zprávy',
-            'channel_mention' => '',
             'channel_team' => 'zprávy týmového chatu',
             'comment_new' => 'nové komentáře',
             'forum_topic_reply' => 'odpověď v tématu',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'tvůrce beatmapy',
             'news_post' => 'články o novinkách',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => 'když jsi přidán jako hostující autor na obtížnost beatmapy',
+            'beatmapset:modding' => 'když diskuse beatmap, které sleduješ, obdrží aktualizace nebo když obdržíš problém nebo návrh k vlastní beatmapě',
+            'channel_mention' => 'když jsi zmíněn ve veřejném kanálu',
+            'channel_message' => 'když obdržíš novou soukromou zprávu',
+            'channel_team' => 'když chatovací kanál tvého týmu má novou zprávu',
+            'comment_new' => 'když se objeví nový komentář u položky, kterou sleduješ',
+            'forum_topic_reply' => 'když témata fóra, která sleduješ, obdrží nové odpovědi',
+            'mapping' => 'když autor, kterého sleduješ, nahraje beatmapu',
+            'news_post' => 'když se objeví nové články o novinkách',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'klávesnice',
         'mouse' => 'myš',
         'tablet' => 'tablet',

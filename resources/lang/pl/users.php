@@ -403,7 +403,7 @@ return [
                 'show_more' => 'zobacz więcej postów',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Mecze gry rankingowej',
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Szybka Gra',
+            'title' => 'Gra rankingowa',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Wśród :value najlepszych',

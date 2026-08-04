@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '',
+    'searching_users' => '',
     'talking_in' => 'מדבר ב- :channel',
     'talking_with' => 'מדבר עם :name',
     'title_compact' => 'צ\'אט',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => '',
         'title' => '',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

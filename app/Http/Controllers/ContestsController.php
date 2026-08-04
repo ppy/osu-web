@@ -21,7 +21,7 @@ class ContestsController extends Controller
         }
 
         return ext_view('contests.index', [
-            'contests' => $contests->get(),
+            'contests' => $contests->paginate(),
         ]);
     }
 

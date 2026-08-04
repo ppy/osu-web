@@ -37,15 +37,16 @@ export default class Stats extends React.PureComponent<Props> {
   }
 
   private formatValue(key: EntryKey) {
-    const val = key === 'hits_per_play'
-      ? getHitsPerPlay(this.props.stats)
-      : this.props.stats[key];
+    switch (key) {
+      case 'hit_accuracy':
+        return formatNumber(this.props.stats.accuracy, 2, { style: 'percent' });
 
-    if (key === 'hit_accuracy') {
-      return formatNumber(this.props.stats.accuracy, 2, { style: 'percent' });
+      case 'hits_per_play':
+        return formatNumber(getHitsPerPlay(this.props.stats));
+
+      default:
+        return formatNumber(this.props.stats[key]);
     }
-
-    return formatNumber(val);
   }
 
   private readonly renderEntry = (key: EntryKey) => (

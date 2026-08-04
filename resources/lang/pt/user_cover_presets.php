@@ -18,12 +18,12 @@ return [
         'create_form' => [
             'files' => 'Ficheiros',
             'submit' => 'Guardar',
-            'title' => 'Adicionar novo',
+            'title' => 'Adicionar Novo',
         ],
 
         'item' => [
-            'click_to_disable' => 'Clica para desativar',
-            'click_to_enable' => 'Clicar para ativar',
+            'click_to_disable' => 'Clique para desativar',
+            'click_to_enable' => 'Clique para ativar',
             'enabled' => 'Ativado',
             'disabled' => 'Desativado',
             'image_store' => 'Definir imagem',

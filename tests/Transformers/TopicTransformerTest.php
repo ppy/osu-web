@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests\Transformers;
 
 use App\Models\Forum\Topic;
+use App\Transformers\Forum\TopicTransformer;
 use Tests\TestCase;
 
 class TopicTransformerTest extends TestCase
@@ -15,7 +16,7 @@ class TopicTransformerTest extends TestCase
     public function testPollDoesNotExist(): void
     {
         $topic = Topic::factory()->create();
-        $topicJson = json_item($topic, 'Forum\Topic');
+        $topicJson = json_item($topic, new TopicTransformer());
 
         $this->assertNull($topicJson['poll']);
     }
@@ -23,7 +24,7 @@ class TopicTransformerTest extends TestCase
     public function testPollExists(): void
     {
         $topic = Topic::factory()->poll()->withPost()->create();
-        $topicJson = json_item($topic, 'Forum\Topic');
+        $topicJson = json_item($topic, new TopicTransformer());
 
         $this->assertIsArray($topicJson['poll']);
     }

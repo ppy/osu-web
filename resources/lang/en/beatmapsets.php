@@ -64,6 +64,10 @@ return [
         'label' => 'Explicit',
     ],
 
+    'rate' => [
+        'invalid' => 'Invalid rating.',
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 
@@ -154,6 +158,16 @@ return [
             'success_rate_plays' => ':passes of :count_delimited play|:passes of :count_delimited plays',
             'user_tags' => 'User Tags',
             'video' => 'This beatmap contains video',
+        ],
+
+        'lazer_only' => [
+            'title' => 'Lazer Only',
+            'description' => 'Due to specific mechanics, this beatmap can only be played on osu!lazer.',
+
+            'scoreboard_switch_mode' => [
+                '_' => ':enable_link to view scores set on this beatmap.',
+                'enable_link' => 'Enable lazer mode',
+            ],
         ],
 
         'nsfw_warning' => [

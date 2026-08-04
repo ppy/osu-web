@@ -404,7 +404,7 @@ return [
                 'show_more' => '글 더 보기',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => '랭크 플레이 기록',
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
@@ -507,6 +507,11 @@ return [
             'global' => ':mode 세계 순위',
             'global_simple' => '세계 순위',
             'highest' => '최고 순위: :rank, :date에 달성',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '상위 :value',

@@ -6,35 +6,35 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Não é possível enviar uma mensagem em branco.',
-            'limit_exceeded' => 'Estás a enviar mensagens demasiado rápido. Espera um pouco antes de tentares novamente.',
-            'too_long' => 'A mensagem que estás a tentar enviar é demasiado longa.',
+            'empty' => 'Não é possível enviar uma mensagem vazia.',
+            'limit_exceeded' => 'Está a enviar mensagens demasiado rapidamente, por favor, aguarde um momento antes de tentar novamente.',
+            'too_long' => 'A mensagem que está a tentar enviar é demasiado longa.',
         ],
     ],
 
     'scopes' => [
-        'bot' => 'Agir como um bot de chat.',
-        'identify' => 'Identificar-te e ler o teu perfil público.',
+        'bot' => 'Atuar como um robô de conversação.',
+        'identify' => 'Identificar‑lo e ler o seu perfil público.',
 
         'chat' => [
-            'read' => 'Ler mensagens em teu nome.',
-            'write' => 'Enviar mensagens em teu nome.',
-            'write_manage' => 'Entrar e sair de canais em teu nome.',
+            'read' => 'Ler mensagens em seu nome.',
+            'write' => 'Enviar mensagens em seu nome.',
+            'write_manage' => 'Entrar e sair de canais em seu nome.',
         ],
 
         'forum' => [
-            'write' => 'Criar e editar tópicos e publicações do fórum em teu nome.',
-            'write_manage' => '',
+            'write' => 'Criar e editar tópicos e publicações do fórum em seu nome.',
+            'write_manage' => 'Gerir tópicos e publicações do fórum em seu nome.',
         ],
 
         'friends' => [
-            'read' => 'Ver quem estás a seguir.',
+            'read' => 'Ver quem está a seguir.',
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Criar e gerir salas multijogador em seu nome.',
         ],
 
-        'public' => 'Ler dados públicos em teu nome.',
+        'public' => 'Ler dados públicos em seu nome.',
     ],
 ];

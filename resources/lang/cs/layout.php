@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'módování',
             'playlists' => 'playlisty',
-            'ranked-play' => '',
+            'ranked-play' => 'hodnocená hra',
             'realtime' => 'multiplayer',
             'show' => 'informace',
         ],
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavení',
+            'create_team' => '',
             'follows' => 'Sledované položky',
             'friends' => 'Přátelé',
             'legacy_score_only_toggle' => 'Lazer režim',

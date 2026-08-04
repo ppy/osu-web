@@ -6,17 +6,17 @@
 return [
     'invalid' => ':attribute especificado inválido.',
     'not_negative' => ':attribute não pode ser negativo.',
-    'required' => ':attribute é necessário.',
-    'too_long' => ':attribute limite máximo excedido - só pode ser até :limit caracteres.',
-    'url' => 'Insere um URL válido.',
+    'required' => ':attribute é obrigatório.',
+    'too_long' => ':attribute excedeu o comprimento máximo — só pode ter até :limit caracteres.',
+    'url' => 'Por favor, insira um URL válido.',
     'wrong_confirmation' => 'A confirmação não corresponde.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'A marca de tempo está especificada mas o beatmap está em falta.',
-        'beatmapset_no_hype' => "O beatmap não pode ser hypeado.",
-        'hype_requires_null_beatmap' => 'O hype tem que ser feito na secção Geral (todas as dificuldades).',
-        'invalid_beatmap_id' => 'Dificuldade especificada inválida.',
-        'invalid_beatmapset_id' => 'Beatmap especificado inválido.',
+        'beatmap_missing' => 'A marca de tempo foi especificada, mas falta a dificuldade do mapa.',
+        'beatmapset_no_hype' => "O mapa não pode ser hypeado.",
+        'hype_requires_null_beatmap' => 'O hype deve ser feito na secção Geral (todas as dificuldades).',
+        'invalid_beatmap_id' => 'Dificuldade inválida especificada.',
+        'invalid_beatmapset_id' => 'Mapa inválido especificado.',
         'locked' => 'A discussão está bloqueada.',
 
         'attributes' => [
@@ -25,23 +25,23 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Este mapa está bloqueado presentemente para ser discutido e não pode ser hypeado",
-            'guest' => 'Tens que estar com a sessão iniciada para hypear.',
-            'hyped' => 'Já hypeaste este beatmap.',
-            'limit_exceeded' => 'Usaste todo o teu hype.',
-            'not_hypeable' => 'Este beatmap não pode ser hypeado',
-            'owner' => 'Nada de hypear o teu próprio beatmap.',
+            'discussion_locked' => "Este mapa está atualmente bloqueado para discussão e não pode ser hypeado",
+            'guest' => 'É necessário iniciar a sessão para hypear.',
+            'hyped' => 'Já hypeou este mapa.',
+            'limit_exceeded' => 'Já usou todo o seu hype.',
+            'not_hypeable' => 'Este mapa não pode ser hypeado',
+            'owner' => 'Não pode hypear o seu próprio mapa.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'A marca de tempo especificada ultrapassa a duração do beatmap.',
+            'exceeds_beatmapset_length' => 'A marca de tempo especificada ultrapassa a duração do mapa.',
             'negative' => "A marca de tempo não pode ser negativa.",
         ],
     ],
 
     'beatmapset_discussion_post' => [
         'discussion_locked' => 'A discussão está bloqueada.',
-        'first_post' => 'Não é possível eliminar uma publicação inicial.',
+        'first_post' => 'Não pode apagar a publicação inicial.',
 
         'attributes' => [
             'message' => 'A mensagem',
@@ -49,8 +49,8 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => 'Não é permitido responder a comentários eliminados.',
-        'top_only' => 'Não é permitido afixar uma resposta a um comentário.',
+        'deleted_parent' => 'Não pode responder a um comentário eliminado.',
+        'top_only' => 'Não pode afixar uma resposta a um comentário.',
 
         'attributes' => [
             'message' => 'A mensagem',
@@ -63,7 +63,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Só se pode votar numa característica solicitada.',
+            'not_feature_topic' => 'Só pode votar num pedido de funcionalidade.',
             'not_enough_feature_votes' => 'Votos insuficientes.',
         ],
 
@@ -72,11 +72,11 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Não é permitido eliminar a publicação dos metadados do beatmap.',
-            'beatmapset_post_no_edit' => 'Não é permitido editar a publicação dos metadados do beatmap.',
-            'first_post_no_delete' => 'Não é possível apagar a publicação inicial',
-            'missing_topic' => 'Está a faltar um tópico na publicação',
-            'only_quote' => 'A tua resposta contém apenas uma citação.',
+            'beatmapset_post_no_delete' => 'Não é permitido eliminar a publicação dos metadados do mapa.',
+            'beatmapset_post_no_edit' => 'Não é permitido editar a publicação dos metadados do mapa.',
+            'first_post_no_delete' => 'Não pode apagar a publicação inicial',
+            'missing_topic' => 'A publicação não tem tópico',
+            'only_quote' => 'A sua resposta contém apenas uma citação.',
 
             'attributes' => [
                 'post_text' => 'Corpo da publicação',
@@ -90,13 +90,13 @@ return [
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Uma opção duplicada não é permitida.',
-            'grace_period_expired' => 'Não é possível editar uma sondagem depois de mais de :limit horas',
-            'hiding_results_forever' => 'Não é possível esconder os resultados duma sondagem que nunca irá terminar.',
-            'invalid_max_options' => 'As opções por cada utilizador não podem exceder o número de opções disponíveis.',
-            'minimum_one_selection' => 'É necessária pelo menos uma opção por cada utilizador.',
+            'duplicate_options' => 'Não é permitido repetir a mesma opção.',
+            'grace_period_expired' => 'Não pode editar uma sondagem após mais de :limit horas.',
+            'hiding_results_forever' => 'Não pode ocultar os resultados de uma sondagem que nunca termina.',
+            'invalid_max_options' => 'A opção por utilizador não pode exceder o número de opções disponíveis.',
+            'minimum_one_selection' => 'É necessário pelo menos uma opção por utilizador.',
             'minimum_two_options' => 'São necessárias pelo menos duas opções.',
-            'too_many_options' => 'Número máximo de opções permitidas excedido.',
+            'too_many_options' => 'Excedeu o número máximo de opções permitidas.',
 
             'attributes' => [
                 'title' => 'Título da sondagem',
@@ -104,25 +104,25 @@ return [
         ],
 
         'topic_vote' => [
-            'required' => 'Seleciona uma opção quando estiveres a votar.',
-            'too_many' => 'Foram selecionadas opções a mais do que as permitidas.',
+            'required' => 'Selecione uma opção ao votar.',
+            'too_many' => 'Selecionou mais opções do que o permitido.',
         ],
     ],
 
     'legacy_api_key' => [
-        'exists' => 'De momento, só é fornecida uma chave por utilizador.',
+        'exists' => 'É fornecida apenas uma chave de API por utilizador, por agora.',
 
         'attributes' => [
-            'api_key' => 'chave API',
+            'api_key' => 'chave da api',
             'app_name' => 'nome da aplicação',
-            'app_url' => 'URL da aplicação',
+            'app_url' => 'url da aplicação',
         ],
     ],
 
     'oauth' => [
         'client' => [
-            'too_many' => 'Excedeste o n.º máximo de aplicações OAuth autorizadas.',
-            'url' => 'Insere um URL válido.',
+            'too_many' => 'Excedeu o número máximo de aplicações OAuth autorizadas.',
+            'url' => 'Insira um URL válido.',
 
             'attributes' => [
                 'name' => 'Nome da aplicação',
@@ -132,67 +132,67 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => 'Esta :attribute contém caracteres inválidos.',
+        'invalid_characters' => 'Esta escolha :attribute contém caracteres inválidos.',
         'used' => 'Esta escolha :attribute já foi utilizada.',
         'word_not_allowed' => 'Esta escolha :attribute não é permitida.',
 
         'attributes' => [
-            'default_ruleset_id' => 'Regras padrão',
+            'default_ruleset_id' => 'Modos de jogo por padrão',
             'is_open' => 'Candidatura à equipa',
             'name' => 'Nome',
             'short_name' => 'Nome abreviado',
-            'url' => 'Hiperligação',
+            'url' => 'URL',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'A palavra-passe não pode conter o nome de utilizador.',
-        'email_already_used' => 'Endereço de email já usado.',
-        'email_not_allowed' => 'Endereço de email não permitido.',
-        'invalid_country' => 'País inexistente na base de dados.',
-        'invalid_discord' => 'Nome de utilizador do Discord inválido.',
-        'invalid_email' => "Não parece que seja um endereço de email válido.",
-        'invalid_twitter' => 'Nome de utilizador do Twitter inválido.',
+        'contains_username' => 'A palavra‑passe não pode conter o nome de utilizador.',
+        'email_already_used' => 'O endereço de e-mail já está a ser utilizado.',
+        'email_not_allowed' => 'O endereço de e-mail não é permitido.',
+        'invalid_country' => 'O país não consta na base de dados.',
+        'invalid_discord' => 'O nome de utilizador do Discord é inválido.',
+        'invalid_email' => "Não parece ser um endereço de e-mail válido.",
+        'invalid_twitter' => 'O nome de utilizador do Twitter é inválido.',
         'too_short' => 'A nova palavra-passe é demasiado curta.',
-        'unknown_duplicate' => 'Nome de utilizador e endereço de e-mail já usados.',
-        'username_available_in' => 'Este nome de utilizador irá estar disponível para uso em :duration.',
-        'username_available_soon' => 'Este nome de utilizador irá estar disponível para uso em qualquer momento!',
+        'unknown_duplicate' => 'O nome de utilizador ou o endereço de e-mail já está a ser utilizado.',
+        'username_available_in' => 'Este nome de utilizador ficará disponível para utilização dentro de :duration.',
+        'username_available_soon' => 'Este nome de utilizador ficará disponível para utilização a qualquer momento!',
         'username_invalid_characters' => 'O nome de utilizador solicitado contém caracteres inválidos.',
-        'username_in_use' => 'Este nome de utilizador já está a ser usado!',
-        'username_locked' => 'Este nome de utilizador já está a ser usado!', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => 'Só podes usar underscores ou espaços. Não podes usar ambos!',
-        'username_no_spaces' => "O nome de utilizador não pode começar ou acabar com espaços!",
-        'username_not_allowed' => 'Esta escolha para nome de utilizador não é permitida.',
+        'username_in_use' => 'O nome de utilizador já está a ser utilizado!',
+        'username_locked' => 'O nome de utilizador já está a ser utilizado!', // TODO: language for this should be slightly different.
+        'username_no_space_userscore_mix' => 'Por favor, utilize apenas subtraços ou espaços, não ambos!',
+        'username_no_spaces' => "O nome de utilizador não pode começar nem terminar com espaços!",
+        'username_not_allowed' => 'Esta escolha de nome de utilizador não é permitida.',
         'username_too_short' => 'O nome de utilizador solicitado é demasiado curto.',
         'username_too_long' => 'O nome de utilizador solicitado é demasiado longo.',
         'weak' => 'A palavra-passe está na lista-negra.',
         'wrong_current_password' => 'A palavra-passe atual está incorreta.',
-        'wrong_email_confirmation' => 'A confirmação do email não corresponde.',
+        'wrong_email_confirmation' => 'A confirmação do e-mail não corresponde.',
         'wrong_password_confirmation' => 'A confirmação da palavra-passe não corresponde.',
-        'too_long' => 'Comprimento máximo excedido - só pode ser até :limit caracteres.',
+        'too_long' => 'Excedeu o comprimento máximo — só pode ter até :limit caracteres.',
 
         'attributes' => [
             'username' => 'Nome de utilizador',
-            'user_email' => 'Endereço de email',
+            'user_email' => 'Endereço de e-mail',
             'password' => 'Palavra-passe',
         ],
 
         'change_username' => [
-            'restricted' => 'Não podes mudar o teu nome de utilizador enquanto estiveres restrito.',
+            'restricted' => 'Não pode alterar o seu nome de utilizador enquanto estiver com restrições.',
             'supporter_required' => [
-                '_' => 'Tens de ter :link para mudar o teu nome!',
-                'link_text' => 'ajudaste o osu!',
+                '_' => 'Tem de ter :link para mudar o seu nome!',
+                'link_text' => 'ajudou o osu!',
             ],
-            'username_is_same' => 'Este já é o teu nome de utilizador, tontinho!',
+            'username_is_same' => 'Este já é o seu nome de utilizador, tontinho!',
         ],
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Os beatmaps classificados não podem ser denunciados',
-        'not_in_channel' => 'Não estás neste canal.',
-        'in_team' => 'Fazes parte da equipa.',
+        'no_ranked_beatmapset' => 'Os mapas classificados não podem ser reportados',
+        'not_in_channel' => 'Não está neste canal.',
+        'in_team' => 'Faz parte da equipa.',
         'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
-        'self' => "Não te podes denunciar a ti mesmo!",
+        'self' => "Não é permitido reportar‑se a si próprio!",
     ],
 
     'store' => [

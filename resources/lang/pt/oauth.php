@@ -7,16 +7,16 @@ return [
     'cancel' => 'Cancelar',
 
     'authorise' => [
-        'app_owner' => 'um aplicativo de :owner',
-        'request' => 'está a solicitar permissão para aceder à tua conta.',
+        'app_owner' => 'uma aplicação de :owner',
+        'request' => 'está a solicitar permissão para aceder à sua conta.',
         'scopes_title' => 'Esta aplicação será capaz de:',
         'title' => 'Pedido de autorização',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => 'Tens a certeza de que desejas revogar as permissões deste cliente?',
+        'confirm_revoke' => 'Tem a certeza de que deseja revogar as permissões deste cliente?',
         'scopes_title' => 'Esta aplicação pode:',
-        'owned_by' => 'Proprietário de :user',
+        'owned_by' => 'Pertencente a :user',
         'none' => 'Sem clientes',
 
         'revoked' => [
@@ -28,29 +28,29 @@ return [
     'client' => [
         'id' => 'ID do cliente',
         'name' => 'Nome da aplicação',
-        'redirect' => 'URL da recolha da aplicação',
-        'reset' => 'Redefinir o segredo do cliente',
-        'reset_failed' => 'Falha ao redefinir o segredo do cliente',
-        'secret' => 'Segredo do cliente',
+        'redirect' => 'URLs de retorno da aplicação',
+        'reset' => 'Repor a chave secreta do cliente',
+        'reset_failed' => 'Falha ao repor a chave secreta do cliente',
+        'secret' => 'Chave secreta do cliente',
 
         'secret_visible' => [
-            'false' => 'Mostrar o segredo do cliente',
-            'true' => 'Ocultar o segredo do cliente',
+            'false' => 'Mostrar a chave secreta do cliente',
+            'true' => 'Ocultar a chave secreta do cliente',
         ],
     ],
 
     'new_client' => [
         'header' => 'Registar uma nova aplicação OAuth',
-        'register' => 'Aplicação de registo',
+        'register' => 'Registar aplicação',
         'terms_of_use' => [
-            '_' => 'Ao usares a API, estás a aceitar o que está neste :link.',
+            '_' => 'Ao usar a API, está a concordar com o que está em :link.',
             'link' => 'Termos de uso',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Tens a certeza que queres eliminar este cliente?',
-        'confirm_reset' => 'Tens a certeza que desejas redefinir o segredo do cliente? Isto irá revogar todos os tokens existentes.',
+        'confirm_delete' => 'Tem a certeza que quer eliminar este cliente?',
+        'confirm_reset' => 'Tem a certeza que deseja redefinir a chave secreta do cliente? Isto irá revogar todos os tokens existentes.',
         'new' => 'Nova aplicação OAuth',
         'none' => 'Sem clientes',
 

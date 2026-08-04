@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '在你参与的谱面讨论被回复时接收通知',
         'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审 (Qualified) 谱面上的新问题通知：',
         'beatmapset_disqualify' => '接收以下游戏模式谱面下架 (DQ) 时的通知：',
         'comment_reply' => '在你的评论被回复时接收通知',
@@ -88,26 +89,38 @@ return [
             '_' => '推送设置',
             'beatmap_owner_change' => '客串难度',
             'beatmapset:modding' => '谱面摸图',
+            'channel_mention' => '聊天提及',
             'channel_message' => '私信',
-            'channel_mention' => '',
             'channel_team' => '战队聊天消息',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
             'mail' => '邮件',
             'mapping' => '谱师',
-            'news_post' => '新闻帖子',
+            'news_post' => '新闻发布',
             'push' => '推送',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '被添加为谱面的客串谱师',
+            'beatmapset:modding' => '关注的谱面讨论有更新，或自己的谱面有新问题或建议。',
+            'channel_mention' => '在公共频道中被提及',
+            'channel_message' => '收到新的私信',
+            'channel_team' => '战队聊天频道有新消息',
+            'comment_new' => '关注的评论区有新评论',
+            'forum_topic_reply' => '关注的论坛主题有新回复',
+            'mapping' => '关注的谱师上传了新谱面',
+            'news_post' => '有新闻帖子发布',
         ],
     ],
 
     'oauth' => [
         'authorized_clients' => '已授权的第三方应用',
-        'own_clients' => '拥有的客户端',
+        'own_clients' => '自己创建的客户端',
         'title' => '开放授权',
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '显示动漫风格的谱面封面',
+        'beatmapset_show_anime_cover' => '显示二次元风格谱面封面',
         'beatmapset_show_nsfw' => '隐藏不良内容谱面提示',
         'beatmapset_title_show_original' => '以原语言显示谱面信息',
         'title' => '选项',
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '默认游戏模式',
         'keyboard' => '键盘',
         'mouse' => '鼠标',
         'tablet' => '数位板',

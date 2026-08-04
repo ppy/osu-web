@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modowanie',
             'playlists' => 'tryb asynchroniczny',
-            'ranked-play' => '',
+            'ranked-play' => 'gra rankingowa',
             'realtime' => 'tryb wieloosobowy',
             'show' => 'informacje',
         ],
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ustawienia',
+            'create_team' => 'Utwórz zespół',
             'follows' => 'Listy obserwowanych',
             'friends' => 'Znajomi',
             'legacy_score_only_toggle' => 'Tryb „lazer”',

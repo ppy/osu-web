@@ -44,7 +44,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             'pp' => $stats->rank_score,
             'pp_exp' => 0,
             'ranked_score' => $stats->ranked_score,
-            'hit_accuracy' => $stats->hit_accuracy,
+            'hit_accuracy' => $stats->hit_accuracy, // deprecated. Use `accuracy` field instead
             'accuracy' => $stats->accuracy_normalised,
             'play_count' => $stats->playcount,
             'play_time' => $stats->total_seconds_played,

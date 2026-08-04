@@ -24,7 +24,7 @@ return [
 
         'forum' => [
             'write' => 'Kurti ir redaguoti forumo temas ir įrašus jūsų vardu.',
-            'write_manage' => '',
+            'write_manage' => 'Modifikuoti forumo temas ir įrašus jūsų vardu.',
         ],
 
         'friends' => [
@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Kurti ir modifikuoti kelių žaidėjų kambarius jūsų vardu.',
         ],
 
         'public' => 'Skaityti viešus duomenis jūsų valioje.',

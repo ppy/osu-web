@@ -35,7 +35,7 @@
 
         @if ($teamId === null)
             <a class="navbar-mobile-item__main" href="{{ route('teams.create') }}">
-                {{ osu_trans('layout.popup_user.links.team') }}
+                {{ osu_trans('layout.popup_user.links.create_team') }}
             </a>
         @else
             <a class="navbar-mobile-item__main" href="{{ route('teams.show', ['team' => $teamId]) }}">

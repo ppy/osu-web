@@ -6,7 +6,7 @@
 return [
     'landing' => [
         'download' => 'Начать играть',
-        'online' => 'из них <strong>:players</strong> онлайн в <strong>:games</strong> матчах',
+        'online' => 'из них <strong>:players</strong> онлайн в <strong>:games</strong> комнатах мультиплеера',
         'peak' => 'Пик, :count игроков онлайн',
         'players' => 'всего <strong>:count</strong> игроков',
         'title' => 'добро пожаловать',
@@ -153,7 +153,7 @@ return [
             'store' => 'Магазин osu!store',
         ],
         'livestream' => [
-            'title' => 'Прямой эфир',
+            'title' => 'Сейчас в эфире',
         ],
         'show' => [
             'admin' => [

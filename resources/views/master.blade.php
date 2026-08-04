@@ -50,7 +50,7 @@
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>
-        <base href="{{ Request::getSchemeAndHttpHost().Request::getRequestUri() }}" />
+        <base href="{{ $GLOBALS['cfg']['app']['url'].Request::getRequestUri() }}" />
     </head>
 
     <body

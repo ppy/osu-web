@@ -83,6 +83,10 @@ class FriendsController extends Controller
             abort(422);
         }
 
+        if ($targetUser->hasBlocked($currentUser)) {
+            return error_popup(osu_trans('friends.blocked'));
+        }
+
         $relationQuery = $currentUser->relations()->where('zebra_id', $targetId);
         while (true) {
             $existingRelation = $relationQuery->first();

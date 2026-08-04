@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'listas de juego',
-            'ranked-play' => '',
+            'ranked-play' => 'partidas clasificatorias',
             'realtime' => 'multijugador',
             'show' => 'información',
         ],
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configuración',
+            'create_team' => '',
             'follows' => 'Listas de seguimiento',
             'friends' => 'Amigos',
             'legacy_score_only_toggle' => 'Modo lazer',

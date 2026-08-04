@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Žaiskite su draugais, dabartiniais ar naujais. Jus šiuo metu ne esate jokioje komandoje. Prisijunkite prie egzistuojančios komandos aplankydami jų komandos puslapį arba sukurkite savo komanda šiame puslapyje.",
+            'search_link' => '',
             'title' => 'Komanda!',
         ],
     ],

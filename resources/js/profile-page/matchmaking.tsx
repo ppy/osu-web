@@ -12,6 +12,69 @@ import { trans } from 'utils/lang';
 import { qtipPosition } from 'utils/qtip-helper';
 import { ProfilePageMatchmakingStatsJson } from './extra-page-props';
 
+const tiers = [
+  ['Bronze', [
+    ['I', 1],
+    ['II', 0.98],
+    ['III', 0.96],
+  ]],
+
+  ['Silver', [
+    ['I', 0.95],
+    ['II', 0.875],
+    ['III', 0.8],
+  ]],
+
+  ['Gold', [
+    ['I', 0.75],
+    ['II', 0.65],
+    ['III', 0.55],
+  ]],
+
+  ['Platinum', [
+    ['I', 0.5],
+    ['II', 0.4],
+    ['III', 0.3],
+  ]],
+
+  ['Rhodium', [
+    ['I', 0.2],
+    ['II', 0.15],
+    ['III', 0.1],
+  ]],
+
+  ['Radiant', [
+    ['I', 0.05],
+    ['II', 0.025],
+    ['III', 0.01],
+  ]],
+] as const;
+
+function tier(stats: ProfilePageMatchmakingStatsJson) {
+  const rank = stats.rank;
+  const percent = stats.rank_percent;
+
+  if (rank <= 100) {
+    return { colour: 'lustrous', title: 'Lustrous' };
+  }
+
+  for (let i = tiers.length - 1; i >= 0; i--) {
+    const [mainTitle, levels] = tiers[i];
+    for (let j = levels.length - 1; j >= 0; j--) {
+      const [level, minPercent] = levels[j];
+      if (percent <= minPercent) {
+        return {
+          colour: mainTitle.toLowerCase(),
+          title: `${mainTitle} ${level}`,
+        };
+      }
+    }
+  }
+
+  // this shouldn't be reachable
+  throw new Error('no matching tier');
+}
+
 function poolDisplayName(pool: MatchmakingPoolJson) {
   const variantName = rulesetVariantIdToName[pool.variant_id];
 
@@ -22,8 +85,19 @@ function poolDisplayName(pool: MatchmakingPoolJson) {
   return `${prefix}${pool.name}`;
 }
 
-function rankText(rank: null | number) {
-  return rank == null ? '-' : `#${formatNumber(rank)}`;
+function rankText(stats: null | ProfilePageMatchmakingStatsJson) {
+  return stats == null
+    ? '-'
+    : (
+      <span
+        className='u-fancy-text'
+        style={{
+          '--colour': `var(--level-tier-${tier(stats).colour})`,
+        } as React.CSSProperties}
+      >
+        #{formatNumber(stats.rank)}
+      </span>
+    );
 }
 
 function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
@@ -50,7 +124,7 @@ function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
             {poolDisplayName(stats.pool)}
           </div>
           <div className='matchmaking-popup__value'>
-            {rankText(stats.rank)}
+            {rankText(stats)}
           </div>
           <div className='matchmaking-popup__value'>
             {formatNumber(stats.first_placements)}
@@ -84,16 +158,12 @@ export default class Matchmaking extends React.Component<Props> {
     if (this.props.allStats.length === 0) {
       return null;
     }
-    let highestRank: null | number = null;
+
+    let highestRankStats: null | ProfilePageMatchmakingStatsJson = null;
     for (const stats of this.props.allStats) {
-      const rank = stats.rank;
       // only show active stats for profile page
-      if (stats.pool.active && rank != null) {
-        if (highestRank == null) {
-          highestRank = rank;
-        } else if (rank < highestRank) {
-          highestRank = rank;
-        }
+      if (stats.pool.active && (highestRankStats == null || stats.rank < highestRankStats.rank)) {
+        highestRankStats = stats;
       }
     }
 
@@ -107,8 +177,8 @@ export default class Matchmaking extends React.Component<Props> {
           {trans('users.show.matchmaking.title')}
         </div>
         <div className='daily-challenge__value-box'>
-          <div className='daily-challenge__value'>
-            {rankText(highestRank)}
+          <div className='daily-challenge__value daily-challenge__value--plain'>
+            {rankText(highestRankStats)}
           </div>
         </div>
       </div>

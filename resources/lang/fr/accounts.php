@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'recevoir des notifications lorsqu\'un nouveau problème est posté sur les beatmaps qualifiées dans les modes suivants',
         'beatmapset_disqualify' => 'recevoir des notifications lorsque des beatmaps sont disqualifiées dans les modes suivants',
         'comment_reply' => 'recevoir des notifications pour des réponses à vos commentaires',
@@ -88,8 +89,8 @@ return [
             '_' => 'types d\'alertes',
             'beatmap_owner_change' => 'guest difficulty',
             'beatmapset:modding' => 'modding de beatmap',
+            'channel_mention' => 'mentions du chat',
             'channel_message' => 'messages privés',
-            'channel_mention' => '',
             'channel_team' => 'messages d\'équipe',
             'comment_new' => 'nouveaux commentaires',
             'forum_topic_reply' => 'réponse à un sujet',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'créateur de beatmap',
             'news_post' => 'articles d\'actualité',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => 'lorsque vous êtes ajouté en tant que participant sur une difficulté de carte',
+            'beatmapset:modding' => 'lorsque des discussions sur des cartes que vous regardez reçoivent des mises à jour, ou qu\'il y a un problème ou une suggestion sur votre propre carte.',
+            'channel_mention' => 'quand vous êtes mentionné dans un canal public',
+            'channel_message' => 'quand vous recevez un nouveau message privé',
+            'channel_team' => 'quand votre tchat d\'équipe reçoit un nouveau message ',
+            'comment_new' => 'quand il y a un nouveau commentaire sur un élément que vous suivez',
+            'forum_topic_reply' => 'lorsqu’il y a de nouvelles réponses dans les sujets suivis',
+            'mapping' => 'quand un créateur de carte en sort une nouvelle',
+            'news_post' => 'quand il y a de nouvelles publications publiées',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'clavier',
         'mouse' => 'souris',
         'tablet' => 'tablette',

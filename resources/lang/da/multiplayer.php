@@ -8,7 +8,7 @@ return [
         'active' => 'Er ikke i øjeblikket en del af nogle igangværende osu!(lazer) :type_group spil!',
         'ended' => 'Ikke i nogle færdige osu!(lazer) :type_group spil endnu!',
         'playlists' => 'playlist',
-        'ranked-play' => '',
+        'ranked-play' => 'rangeret spil',
         'realtime' => 'multiplayer',
     ],
 

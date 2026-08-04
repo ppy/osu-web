@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Models\Traits\WithDbCursorHelper;
+use App\Transformers\AchievementTransformer;
 use Carbon\Carbon;
 use Sentry\State\Scope;
 
@@ -374,7 +375,7 @@ class Event extends Model
         }
 
         return [
-            'achievement' => json_item($achievement, 'Achievement'),
+            'achievement' => json_item($achievement, new AchievementTransformer()),
             'user' => $this->arrayUser($matches),
         ];
     }

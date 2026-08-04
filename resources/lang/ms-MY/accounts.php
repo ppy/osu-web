@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan masalah baharu pada peta rentak layak untuk mod berikut',
         'beatmapset_disqualify' => 'terima pemberitahuan ketika peta rentak mod berikut tersingkir',
         'comment_reply' => 'terima pemberitahuan untuk balasan pada komen',
@@ -88,8 +89,8 @@ return [
             '_' => 'hantarkan pemberitahuan melalui',
             'beatmap_owner_change' => 'kesukaran tamu',
             'beatmapset:modding' => 'penyelarasan peta rentak',
-            'channel_message' => 'pesanan bualan peribadi',
             'channel_mention' => '',
+            'channel_message' => 'pesanan bualan peribadi',
             'channel_team' => 'pesanan bualan pasukan',
             'comment_new' => 'komen baharu',
             'forum_topic_reply' => 'balasan tajuk',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'pemeta rentak',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'kekunci',
         'mouse' => 'tetikus',
         'tablet' => 'tablet',

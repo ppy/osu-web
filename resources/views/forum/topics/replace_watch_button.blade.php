@@ -14,4 +14,9 @@ window.setTimeout(function() {
 
     var $newMenu = $new.find('.js-forum-topic-watch--menu');
     $current.find('.js-forum-topic-watch--menu').html($newMenu.html());
+
+    const watchCountEl = document.querySelector('.js-forum__total-watches');
+    if (watchCountEl != null) {
+        watchCountEl.innerHTML = '{{ i18n_number_format($topic->watches()->count()) }}';
+    }
 });

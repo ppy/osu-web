@@ -53,14 +53,14 @@ return [
         'users' => [
             'modding' => '摸图',
             'playlists' => '歌单',
-            'ranked-play' => '',
+            'ranked-play' => '排位模式',
             'realtime' => '多人游戏',
             'show' => '信息',
         ],
     ],
 
     'gallery' => [
-        'close' => '关闭（ESC）',
+        'close' => '关闭 (Esc)',
         'fullscreen' => '切换全屏',
         'zoom' => '放大/缩小',
         'previous' => '前一张（左箭头）',
@@ -112,7 +112,7 @@ return [
         ],
         'legal' => [
             '_' => '法律 & 状态',
-            'copyright' => '版权（DMCA）',
+            'copyright' => '版权 (DMCA)',
             'jp_sctl' => '',
             'privacy' => '隐私政策',
             'rules' => '规定',
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '设置',
+            'create_team' => '创建战队',
             'follows' => '订阅',
             'friends' => '好友',
             'legacy_score_only_toggle' => 'Lazer 模式',

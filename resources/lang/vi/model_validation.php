@@ -29,7 +29,7 @@ return [
             'guest' => 'Cần phải đăng nhập để hype.',
             'hyped' => 'Bạn đã hype beatmap này rồi.',
             'limit_exceeded' => 'Bạn đã sử dụng hết số hype bạn có.',
-            'not_hypeable' => 'Beatmap này không thể được hype.',
+            'not_hypeable' => 'Beatmap này không thể được hype',
             'owner' => 'Không thể hype map của bạn.',
         ],
 
@@ -91,7 +91,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Không cho phép thêm lựa chọn trùng lặp.',
-            'grace_period_expired' => 'Không thể chỉnh sửa cuộc thăm dò sau :limit giờ',
+            'grace_period_expired' => 'Không thể chỉnh sửa cuộc thăm dò sau :limit giờ.',
             'hiding_results_forever' => 'Không thể ẩn kết quả của một cuộc thăm dò không bao giờ kết thúc.',
             'invalid_max_options' => 'Số lựa chọn cho một người không được vượt quá số lựa chọn sẵn có.',
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',

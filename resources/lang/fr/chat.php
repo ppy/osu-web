@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'chargement des utilisateurs...',
+    'searching_users' => '',
     'talking_in' => 'discuter dans :channel',
     'talking_with' => 'discuter avec :name',
     'title_compact' => 'tchat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Il n\'y a rien ici, vous avez peut-être quitté le canal ou alors il n\'existe pas...',
         'title' => 'canal introuvable',
+    ],
+
+    'not_joined' => [
+        'message' => 'Rejoignez le canal pour voir ses messages.',
+        'join' => 'Rejoindre canal',
     ],
 
     'input' => [

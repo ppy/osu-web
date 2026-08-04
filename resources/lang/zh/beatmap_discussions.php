@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited 条回复已隐藏。',
 
     'authorizations' => [
         'update' => [
@@ -72,7 +72,7 @@ return [
         'checking' => '正在检查更新......',
         'has_updates' => '讨论有更新，点击刷新。',
         'no_updates' => '没有更新。',
-        'updating' => '更新中......',
+        'updating' => '更新中...',
     ],
 
     'reply' => [
@@ -106,12 +106,13 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '常规',
+        'general' => '常规（当前难度）',
         'general_all' => '常规（所有难度）',
     ],
 
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '按用户筛选',
+        'multiple' => ':count_delimited 名玩家已选择',
     ],
 ];

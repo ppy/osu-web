@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'playlist',
-            'ranked-play' => '',
+            'ranked-play' => 'ranked play',
             'realtime' => 'multigiocatore',
             'show' => 'dettagli',
         ],
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Impostazioni',
+            'create_team' => '',
             'follows' => 'Iscrizioni',
             'friends' => 'Amici',
             'legacy_score_only_toggle' => 'Modalità lazer',
@@ -203,7 +204,7 @@ return [
             'logout' => 'Esci',
             'profile' => 'Profilo',
             'scoring_mode_toggle' => 'Punteggio classico',
-            'scoring_mode_toggle_tooltip' => 'Regola i valori del punteggio per farli sembrare come il punteggio classico illimitato',
+            'scoring_mode_toggle_tooltip' => 'Adatta i valori dei punti facendoli assomigliare al punteggio illimitato classico',
             'team' => 'Squadra',
         ],
     ],

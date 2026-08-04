@@ -463,7 +463,7 @@ class Channel extends Model
         ]);
 
         $message->sender()->associate($sender)->channel()->associate($this)
-            ->uuid = $uuid; // relay any message uuid back.
+            ->uuid = presence($uuid); // relay any message uuid back.
 
         $message->getConnection()->transaction(function () use ($message, $sender) {
             $message->save();

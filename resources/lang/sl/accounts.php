@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'prejmi obvestila o novih težavah na kvalificiranih beatmapah pri naslednjih modifikatorjih',
         'beatmapset_disqualify' => 'prejmi obvestila ko so beatmape pri naslednjih modifikatorjih diskvalificirane',
         'comment_reply' => 'prejmi obvestila, ko nekdo odgovori na tvoj komentar',
@@ -88,8 +89,8 @@ return [
             '_' => 'možnosti pošiljanja',
             'beatmap_owner_change' => 'težavnost za goste',
             'beatmapset:modding' => 'modificiranje beatmape',
-            'channel_message' => 'zasebna sporočila',
             'channel_mention' => '',
+            'channel_message' => 'zasebna sporočila',
             'channel_team' => '',
             'comment_new' => 'novi komentarji',
             'forum_topic_reply' => 'odgovor na temo',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'ustvarjalec beatmap',
             'news_post' => '',
             'push' => 'potisno',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'tipkovnica',
         'mouse' => 'miška',
         'tablet' => 'tablica',

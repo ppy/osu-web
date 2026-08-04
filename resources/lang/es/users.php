@@ -403,7 +403,7 @@ return [
                 'show_more' => 'ver más publicaciones',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Partidas clasificatorias',
             ],
             'recent_activity' => [
                 'title' => 'Reciente',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Partidas rápidas',
+            'title' => 'Partidas clasificatorias',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => 'Clasificación global para :mode',
             'global_simple' => 'Clasificación global',
             'highest' => 'Clasificación más alta: :rank el :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',

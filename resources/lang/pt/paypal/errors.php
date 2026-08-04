@@ -5,9 +5,9 @@
 
 return [
     'instrument_declined' => 'O método de pagamento selecionado foi rejeitado pelo PayPal.',
-    'invalid_resource_id' => 'Não foi encontrada nenhuma informação de pagamento.',
-    'invalid_token' => 'Houve um erro ao completar o teu pagamento.',
-    'old_format' => 'O link de pagamento expirou. Tenta novamente.',
-    'resource_not_found' => 'Não foi encontrada nenhuma informação de pagamento.',
-    'unknown' => "O pagamento foi rejeitado, mas não sabemos bem porquê.",
+    'invalid_resource_id' => 'Nenhuma informação de pagamento foi encontrada.',
+    'invalid_token' => 'Ocorreu um erro ao concluir o seu pagamento.',
+    'old_format' => 'A ligação de pagamento expirou, por favor, tente novamente.',
+    'resource_not_found' => 'Nenhuma informação de pagamento foi encontrada.',
+    'unknown' => "O pagamento foi recusado, mas não conseguimos determinar o motivo.",
 ];

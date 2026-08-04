@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'učitavanje korisnika...',
+    'searching_users' => '',
     'talking_in' => 'razgovaranje u :channel',
     'talking_with' => 'razgovaranje sa :name',
     'title_compact' => 'razgovor',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Ovdje nema ničega, možda si napustio kanal ili ne postoji...',
         'title' => 'kanal nije pronađen',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

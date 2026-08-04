@@ -15,7 +15,7 @@ return [
             'ok' => 'Pedido de adesão rejeitado.',
         ],
         'store' => [
-            'ok' => 'Solicitado para se juntar à equipe.',
+            'ok' => 'Solicitação enviada.',
         ],
     ],
 
@@ -24,7 +24,7 @@ return [
     ],
 
     'create' => [
-        'submit' => 'Criar Equipe',
+        'submit' => 'Criar equipe',
 
         'form' => [
             'name_help' => 'O nome da sua equipe. O nome é permanente no momento.',
@@ -33,18 +33,19 @@ return [
         ],
 
         'intro' => [
-            'description' => "Jogue com seus amigos; atuais ou novos. Você não está em uma equipe no momento. Junte-se a uma equipe existente ao visitar a sua página ou crie sua própria equipe a partir dessa página.",
+            'description' => "Jogue com seus amigos, antigos ou novos. Você não está em uma equipe no momento. Junte-se a uma equipe existente ao visitar a sua página ou crie sua própria equipe a partir dessa página.",
+            'search_link' => '',
             'title' => 'Equipe!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Time removido',
+        'ok' => 'Equipe removida.',
     ],
 
     'edit' => [
         'ok' => 'Configurações salvas com sucesso.',
-        'title' => 'Configurações da Equipe',
+        'title' => 'Configurações da equipe',
 
         'description' => [
             'label' => 'Descrição',
@@ -52,8 +53,8 @@ return [
         ],
 
         'flag' => [
-            'label' => 'Tag da Equipe',
-            'title' => 'Definir Bandeira da Equipe',
+            'label' => 'Bandeira da equipe',
+            'title' => 'Definir bandeira da equipe',
         ],
 
         'header' => [
@@ -86,7 +87,7 @@ return [
     ],
 
     'leaderboard' => [
-        'global_rank' => 'Classificação Global',
+        'global_rank' => 'Classificação global',
     ],
 
     'members' => [

@@ -75,7 +75,7 @@ return [
         'warning' => "如果您确实存在违规行为，请注意通常存在一个月的封禁冷静期，在此期间我们将不接受任何的解除封禁申请。在此之后您可自行判断是否需要联系我们。请注意：在已有账户被封停后创建新账户<strong>将导致封禁冷静期延长一个月</strong>，且<strong>每创建一个新账户均属额外违规行为</strong>。我们强烈建议不要误入歧途！",
 
         'if_mistake' => [
-            '_' => '若您认为此处理存在误判，欢迎通过向 :email 发送电子邮件或点击本页面右下角的问号来联系我们。同时，我们的处理方式基于了充分的数据支持且经过严格审核。如认定您的申诉存在主观恶意，我们保留不予受理的权利。',
+            '_' => '如果您认为此处理存在误判，欢迎联系我们（向 :email 发送电子邮件，或点击本页面右下角的问号）。请注意，我们在作出处理之前，通常已经收集到了充分的证据，并经过了严格的审核。并且，如果我们认定您的申诉存在主观恶意，将保留不予受理的权利。',
             'email' => '电子邮件',
         ],
 
@@ -92,7 +92,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '按游戏模式筛选成员',
+        'by_game_mode' => '成员按游戏模式筛选',
     ],
 
     'force_reactivation' => [
@@ -150,9 +150,9 @@ return [
         'login_link' => '点击登录',
         'login_text' => '登录',
         'username' => '游客',
-        'error' => '登录以继续。',
+        'error' => '登录以继续',
     ],
-    'logout_confirm' => '确定要退出登录吗？o(TヘTo)',
+    'logout_confirm' => '确定要退出吗？o(TヘTo)',
     'report' => [
         'button_text' => '举报',
         'comments' => '附加信息',
@@ -193,14 +193,14 @@ return [
     ],
     'show' => [
         'age' => ':age 岁',
-        'change_avatar' => '点击以更换头像！',
+        'change_avatar' => '点击以更换头像',
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册于 :date',
-        'lastvisit' => '最后活跃于 :date',
+        'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
-        'missingtext' => '手滑打错字了？（或者该用户已被封禁）',
+        'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
         'origin_country' => '来自 :country',
         'previous_usernames' => '曾用名',
         'plays_with' => '用 :devices 游玩',
@@ -403,7 +403,7 @@ return [
                 'show_more' => '查看更多回复',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => '排位模式游戏',
             ],
             'recent_activity' => [
                 'title' => '最近活动',
@@ -413,7 +413,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
-                'not_ranked' => '只能在上架（Ranked）谱面中获得表现分（PP）',
+                'not_ranked' => '只能在上架 (Ranked) 谱面中获得表现分 (PP)',
                 'pp_weight' => '权重：:percentage',
                 'view_details' => '查看详情',
                 'title' => '成绩',
@@ -435,8 +435,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '最近三个月的给予投票',
-                'received' => '最近三个月所得投票',
+                'given' => '投出的票（最近三个月）',
+                'received' => '收到的票（最近三个月）',
                 'title' => '投票',
                 'title_longer' => '最近投票',
                 'vote_count' => ':count_delimited 票',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '快速匹配',
+            'title' => '匹配模式',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => ':date 达成生涯最高排名 :rank',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '排名前 :value',

@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title' => 'Publicações de discussão do beatmap',
+        'title' => 'Publicações de discussão do mapa',
     ],
 
     'item' => [
         'content' => 'Conteúdo',
-        'modding_history_link' => 'Ver historial de modificações',
+        'modding_history_link' => 'Ver histórico de modificações',
     ],
 ];

@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'جار تحميل المستخدمين...',
+    'searching_users' => '',
     'talking_in' => 'يتحدث في :channel',
     'talking_with' => 'يتحدث مع :name',
     'title_compact' => 'محادثة',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'لا يوجد شيء هنا، ربما تركت القناة أو أنها غير موجودة...',
         'title' => 'القناة غير موجودة',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

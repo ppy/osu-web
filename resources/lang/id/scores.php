@@ -16,8 +16,8 @@ return [
             'by' => 'Dimainkan oleh',
             'played_on' => 'Dimainkan pada',
             'submitted_on' => 'Dicapai pada',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Ditonton',
+            'watched_count' => ':count_delimited kali|:count_delimited kali',
 
             'rank' => [
                 'country' => 'Peringkat Negara',

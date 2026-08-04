@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'ielādē lietotājus...',
+    'searching_users' => '',
     'talking_in' => 'runā :channel',
     'talking_with' => 'runā ar :name',
     'title_compact' => 'čats',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Šeit nekā nav, varbūt jūs atstājāt kanālu vai tas neeksistē...',
         'title' => 'kanāls nav atrasts',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

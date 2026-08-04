@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => 'Clica aqui para transferires o jogo e criar uma conta',
-        'label' => 'Primeiro, vamos iniciar sessão na tua conta!',
+        'download' => 'Clique aqui para transferir o jogo e criar uma conta',
+        'label' => 'Primeiro, vamos iniciar a sessão na sua conta!',
         'title' => 'Autenticação da conta',
     ],
 ];

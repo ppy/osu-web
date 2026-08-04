@@ -45,7 +45,7 @@ return [
             'head_to_head' => 'Mata-mata',
             'tag_coop' => 'Tag Co-op',
             'tag_team_versus' => 'Tag Team VS',
-            'team_versus' => 'Equipe VS Equipe',
+            'team_versus' => 'Team VS',
         ],
 
         'teams' => [

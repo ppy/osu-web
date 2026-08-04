@@ -69,15 +69,16 @@ class BeatmapDiscussion extends Model
     const VOTES_TO_SHOW = 50;
 
     // FIXME: This and other static search functions should be extracted out.
-    public static function search($rawParams = [])
+    public static function search($rawParams = [], array $extraParams = [])
     {
-        [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
+        $extraParams['current_user_id'] ??= null;
+        $extraParams['is_moderator'] ??= false;
 
-        $isModerator = $rawParams['is_moderator'] ?? false;
+        [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
         if (present($rawParams['user'] ?? null)) {
             $params['user'] = $rawParams['user'];
-            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
             $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
@@ -144,7 +145,8 @@ class BeatmapDiscussion extends Model
             $query->openIssues();
         }
 
-        $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
+        $params['with_deleted'] = $extraParams['is_moderator']
+            && (get_bool($rawParams['with_deleted'] ?? null) ?? false);
 
         if (!$params['with_deleted']) {
             $query->withoutTrashed();
@@ -195,10 +197,9 @@ class BeatmapDiscussion extends Model
         return $this->hasOne(BeatmapDiscussionPost::class)->whereNotExists(function ($query) {
             $table = (new BeatmapDiscussionPost())->getTable();
 
-            $query->selectRaw(1)
-                ->from(DB::raw("{$table} d"))
-                ->where('beatmap_discussion_id', $this->beatmap_discussion_id)
-                ->whereRaw("d.id < {$table}.id");
+            $query->from($table, 'd')
+                ->whereColumn('d.beatmap_discussion_id', "{$table}.beatmap_discussion_id")
+                ->whereColumn('d.id', '<', "{$table}.id");
         });
     }
 

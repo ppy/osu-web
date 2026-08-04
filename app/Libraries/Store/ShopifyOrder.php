@@ -30,7 +30,7 @@ class ShopifyOrder
             $scopes,
             $GLOBALS['cfg']['store']['shopify']['domain'],
             new FileSessionStorage(),
-            ApiVersion::APRIL_2023, // TODO: bump version after updating all checkouts to orders.
+            ApiVersion::JANUARY_2026,
         );
 
         return new Storefront(

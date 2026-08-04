@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'načítání uživatelů...',
+    'searching_users' => '',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',
@@ -50,11 +51,16 @@ return [
         'title' => 'kanál nenalezen',
     ],
 
+    'not_joined' => [
+        'message' => 'Připoj se ke kanálu pro zobrazení jeho zpráv.',
+        'join' => 'Připojit se ke kanálu',
+    ],
+
     'input' => [
         'create' => 'Vytvořit',
         'disabled' => 'nejsme schopni odeslat tuto zprávu...',
         'disconnected' => 'Odpojeno',
-        'placeholder' => 'napište zprávu...',
+        'placeholder' => 'napiš zprávu...',
         'send' => 'Odeslat',
     ],
 

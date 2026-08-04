@@ -9,10 +9,10 @@ return [
             'ok' => 'تم إضافة مستخدم إلى الفريق.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'تم إلغاء طلب الانضمام.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'تم رفض طلب الانضمام.',
         ],
         'store' => [
             'ok' => 'تم إرسال طلب الانضمام إلى الفريق.',
@@ -27,14 +27,15 @@ return [
         'submit' => 'إنشاء فريق',
 
         'form' => [
-            'name_help' => '',
+            'name_help' => 'الاسم الذي تختاره سيكون دائمًا في الوقت الحالي، لذا احرص على اختياره بعناية.',
             'short_name_help' => 'الحد الأقصى 4 أحرف.',
             'title' => "لنقم بإنشاء فريق جديد",
         ],
 
         'intro' => [
-            'description' => "",
-            'title' => '',
+            'description' => "العب مع أصدقائك، سواء الحاليين أو الجدد. أنت لست ضمن فريق حاليًا. انضم إلى فريق موجود بزيارة صفحته أو أنشئ فريقك الخاص من هذه الصفحة.",
+            'search_link' => '',
+            'title' => 'فريق!',
         ],
     ],
 
@@ -76,17 +77,17 @@ return [
     ],
 
     'header_links' => [
-        'edit' => '',
-        'leaderboard' => 'الترتيب',
+        'edit' => 'الإعدادات',
+        'leaderboard' => 'لوحة الصدارة',
         'show' => 'معلومات',
 
         'members' => [
-            'index' => '',
+            'index' => 'إدارة الأعضاء',
         ],
     ],
 
     'leaderboard' => [
-        'global_rank' => 'الترتيب العالمي',
+        'global_rank' => 'التصنيف العالمي',
     ],
 
     'members' => [
@@ -95,24 +96,24 @@ return [
         ],
 
         'index' => [
-            'title' => '',
+            'title' => 'إدارة الأعضاء',
 
             'applications' => [
-                'accept_confirm' => '',
+                'accept_confirm' => 'هل تريد إضافة المستخدم :user إلى الفريق؟',
                 'created_at' => '',
                 'empty' => '',
                 'empty_slots' => '',
                 'empty_slots_overflow' => '',
-                'reject_confirm' => '',
+                'reject_confirm' => 'هل تريد رفض طلب الانضمام من المستخدم :user؟',
                 'title' => '',
             ],
 
             'table' => [
                 'joined_at' => '',
                 'remove' => '',
-                'remove_confirm' => '',
+                'remove_confirm' => 'هل تريد إزالة المستخدم :user من الفريق؟',
                 'set_leader' => 'نقل قيادة الفريق',
-                'set_leader_confirm' => '',
+                'set_leader_confirm' => 'هل تريد نقل قيادة الفريق إلى المستخدم :user؟',
                 'status' => '',
                 'title' => '',
             ],
@@ -161,7 +162,7 @@ return [
             'first_places' => '',
             'leader' => 'قائد الفريق',
             'rank' => '',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'خرائط الإيقاع المصنّفة',
         ],
     ],
 

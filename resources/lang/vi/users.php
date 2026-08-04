@@ -154,7 +154,7 @@ return [
     ],
     'logout_confirm' => 'Bạn có chắc muốn đăng xuất không? :(',
     'report' => [
-        'button_text' => 'báo cáo',
+        'button_text' => 'Báo Cáo',
         'comments' => 'Bình Luận Khác',
         'placeholder' => 'Vui lòng cung cấp bất kỳ thông tin nào bạn cho rằng có thể hữu ích.',
         'reason' => 'Lý Do',
@@ -188,7 +188,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
-        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
+        'message' => 'Trong khi bị hạn chế, bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm số của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. :link',
         'message_link' => 'Kiểm tra trang này để biết thêm chi tiết.',
     ],
     'show' => [
@@ -259,7 +259,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'Muốn đặt về màu mặc định? Sẽ cần supporter tag để đổi sang màu khác.',
+                'reset_no_supporter' => 'Muốn đặt về màu mặc định? Sẽ cần thẻ supporter để đổi sang màu khác.',
                 'title' => 'Màu sắc',
 
                 'supporter' => [
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'xem bài viết khác',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Trận đấu xếp hạng',
             ],
             'recent_activity' => [
                 'title' => 'Gần Đây',
@@ -443,8 +443,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
-                'bad_standing' => "Tài khoản của <strong>:username</strong> không ở trong trạng thái tốt :(",
-                'remaining_silence' => '<strong>:username</strong> sẽ được nói trở lại vào :duration.',
+                'bad_standing' => "Tài khoản của :username không ở trong trạng thái tốt :(",
+                'remaining_silence' => ':username sẽ được nói trở lại vào :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Vi Phạm Gần Đây',
@@ -486,7 +486,7 @@ return [
             'title' => 'Không tìm thấy người dùng! ;_;',
         ],
         'page' => [
-            'button' => 'Chỉnh sửa trang cá nhân',
+            'button' => 'chỉnh sửa trang cá nhân',
             'description' => '<strong>tôi!</strong> là một khu vực cá nhân có thể tùy chỉnh trong trang cá nhân của bạn.',
             'edit_big' => 'Chỉnh sửa tôi!',
             'placeholder' => 'Nhập nội dung trang vào đây',
@@ -498,7 +498,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Đã đóng góp :link',
-            'count' => ':count bài đăng forum',
+            'count' => ':count_delimited bài đăng forum|:count_delimited bài đăng forum',
         ],
         'rank' => [
             'country' => 'Hạng quốc gia cho :mode',
@@ -506,6 +506,11 @@ return [
             'global' => 'Hạng quốc tế cho :mode',
             'global_simple' => 'Hạng Toàn Cầu',
             'highest' => 'Hạng cao nhất: :rank vào :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
@@ -515,7 +520,7 @@ return [
             'hit_accuracy' => 'Độ bấm chính xác',
             'hits_per_play' => 'Số lần bấm mỗi khi chơi',
             'level' => 'Level :level',
-            'level_progress' => 'Tiến độ qua level tiếp theo',
+            'level_progress' => 'tiến trình lên cấp tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',
             'medals' => 'Huy Chương',
             'play_count' => 'Số lần chơi',
@@ -540,12 +545,12 @@ return [
 
     'status' => [
         'all' => 'Tất cả',
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => 'Trực Tuyến',
+        'offline' => 'Ngoại Tuyến',
     ],
     'store' => [
         'from_client' => 'vui lòng đăng kí thông qua game!',
-        'from_web' => 'vui lòng hoàn thành đăng kí thông qua trang web osu!',
+        'from_web' => 'vui lòng hoàn tất đăng kí thông qua trang web osu!',
         'saved' => 'Đã tạo người dùng',
     ],
     'verify' => [

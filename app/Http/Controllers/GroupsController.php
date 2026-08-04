@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transformers\GroupTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class GroupsController extends Controller
@@ -21,7 +22,7 @@ class GroupsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $groupJson = json_item($group, 'Group', ['description']);
+        $groupJson = json_item($group, new GroupTransformer(), ['description']);
         $usersJson = json_collection(
             $users,
             (new UserCompactTransformer())->setMode($currentMode),

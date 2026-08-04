@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ayarlar',
+            'create_team' => '',
             'follows' => 'İzleme listeleri',
             'friends' => 'Arkadaşlar',
             'legacy_score_only_toggle' => 'Lazer modu',

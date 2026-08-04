@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных карт наступных рэжымаў',
         'beatmapset_disqualify' => 'атрымліваць апавяшчэння, калі карты для наступных рэжымаў будуць діскваліфікаваны',
         'comment_reply' => 'атрымліваць апавяшчэнні аб адказах на каментарыі',
@@ -88,8 +89,8 @@ return [
             '_' => 'спосабы дастаўкі',
             'beatmap_owner_change' => 'гасцявая складанасць',
             'beatmapset:modding' => 'модынг карт',
-            'channel_message' => 'асабістыя паведамленні',
             'channel_mention' => '',
+            'channel_message' => 'асабістыя паведамленні',
             'channel_team' => 'паведамленні каманднага чата',
             'comment_new' => 'новыя каментарыі',
             'forum_topic_reply' => 'адказы да тэмы',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'стваральнік карты',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'клавіятура',
         'mouse' => 'мыш',
         'tablet' => 'планшэт',

@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'المنشورات المحذوفة',
             'total_posts' => 'عدد المنشورات الكلي',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'الأفضلية الحالية: +:count',

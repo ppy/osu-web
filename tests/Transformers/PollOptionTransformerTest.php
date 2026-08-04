@@ -9,6 +9,7 @@ namespace Tests\Transformers;
 
 use App\Models\Forum\Topic;
 use App\Models\User;
+use App\Transformers\Forum\PollOptionTransformer;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -47,7 +48,7 @@ class PollOptionTransformerTest extends TestCase
             $this->actAsUser($actor);
         }
 
-        $pollOptionJson = json_item($topic->pollOptions()->first(), 'Forum\PollOption');
+        $pollOptionJson = json_item($topic->pollOptions()->first(), new PollOptionTransformer());
 
         if ($voteCountVisible) {
             $this->assertArrayHasKey('vote_count', $pollOptionJson);

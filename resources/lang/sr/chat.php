@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'учитавање корисника...',
+    'searching_users' => '',
     'talking_in' => 'разговарање у :channel',
     'talking_with' => 'разговарање са :name',
     'title_compact' => 'ћаскање',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Овде не постоји ништа, можда сте изашли из канала или канал не постоји...',
         'title' => 'канал није пронађен',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

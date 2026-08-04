@@ -4,8 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'blocked' => '',
     'title_compact' => 'الأصدِقاء',
-    'too_many' => 'اقصى حد من الأصدِقاء',
+    'too_many' => 'تم الوصول إلى الحد الأقصى للأصدقاء',
 
     'buttons' => [
         'add' => 'أضف كصديق',

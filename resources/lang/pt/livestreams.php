@@ -5,14 +5,14 @@
 
 return [
     'promote' => [
-        'pin' => 'Tens a certeza que queres promover esta livestream?',
-        'unpin' => "Tens a certeza que queres remover a promoção desta livestream?",
+        'pin' => 'Tem a certeza de que pretende promover esta transmissão em direto na página inicial?',
+        'unpin' => "Tem a certeza de que pretende remover a promoção desta transmissão em direto da página inicial?",
     ],
 
     'top-headers' => [
         'headline' => 'Transmissões em direto',
-        'description' => 'A informação é obtida através da twitch.tv a cada cinco minutos baseada na listagem de diretórios. Podes começar a transmitir e tornar-te listado! Para mais informações em como configurar, consulta :link.',
+        'description' => 'Os dados são obtidos da twitch.tv a cada cinco minutos com base na lista do diretório. Pode começar a transmitir quando quiser para aparecer na lista! Para mais informações sobre como configurar tudo, consulte :link.',
 
-        'link' => 'a página wiki dedicada às transmissões em direto',
+        'link' => 'a página da wiki sobre transmissões em direto',
     ],
 ];

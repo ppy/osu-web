@@ -33,11 +33,17 @@ class UserOpengraph implements OpengraphInterface
 
     private function moddingDescription(): string
     {
-        static $statuses = ['ranked', 'loved', 'pending', 'graveyard'];
+        // sorted by display order
+        static $statuses = [
+            'ranked' => 'rankedBeatmapsets',
+            'loved' => 'lovedBeatmapsets',
+            'pending' => 'pendingBeatmapsets',
+            'graveyard' => 'graveyardBeatmapsets',
+        ];
 
         $countsText = [];
-        foreach ($statuses as $status) {
-            $count = $this->user->profileBeatmapsetCountByGroupedStatus($status);
+        foreach ($statuses as $status => $section) {
+            $count = $this->user->profileCount()->get($section);
             if ($count > 0) {
                 $countsText[] = osu_trans("beatmapsets.show.status.{$status}").' '.number_format($count);
             }

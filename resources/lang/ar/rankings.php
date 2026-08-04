@@ -68,7 +68,7 @@ return [
         'daily_challenge' => 'التحدّي اليومي',
         'global' => 'عالمي',
         'kudosu' => 'كودوسو',
-        'matchmaking' => 'اللعب السريع',
+        'matchmaking' => 'اللعب المصنّف',
         'playlists' => 'قوائم التشغيل',
         'team' => 'الفريق',
         'top_plays' => 'أفضل الأداءات',

@@ -403,7 +403,7 @@ return [
                 'show_more' => 'veure més publicacions',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Partides classificatòries',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -506,6 +506,11 @@ return [
             'global' => 'Classifació global per :mode',
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => ':value millors',

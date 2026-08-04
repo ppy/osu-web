@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Odstránené Príspevky',
             'total_posts' => 'Celkovo Príspevkov',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'Aktuálna priorita: +:count',

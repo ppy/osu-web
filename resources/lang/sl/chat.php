@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'nalaganje igralcev...',
+    'searching_users' => '',
     'talking_in' => 'tipkaš v :channel',
     'talking_with' => 'pogovor z :name',
     'title_compact' => 'klepet',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Tukaj ni nič, mogoče si zapustil kanal ali ta kanal ne obstaja...',
         'title' => 'kanal ni najden',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

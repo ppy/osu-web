@@ -6,6 +6,7 @@
 namespace Tests\Transformers;
 
 use App\Models\User;
+use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Tests\TestCase;
 
@@ -20,7 +21,7 @@ class UserCompactTransformerTest extends TestCase
 
         $this->actAsScopedUser($viewer, [$scopes]);
 
-        $json = json_item($viewer, 'UserCompact', ['friends']);
+        $json = json_item($viewer, new UserCompactTransformer(), ['friends']);
         $this->assertArrayNotHasKey('friends', $json);
     }
 
@@ -36,7 +37,7 @@ class UserCompactTransformerTest extends TestCase
 
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($user, 'UserCompact', ['account_history.actor', 'account_history.supporting_url']);
+        $json = json_item($user, new UserCompactTransformer(), ['account_history.actor', 'account_history.supporting_url']);
 
         $accountHistories = array_get($json, 'account_history');
         $publicInfringements = array_filter($accountHistories, function ($item) {
@@ -55,7 +56,7 @@ class UserCompactTransformerTest extends TestCase
         $user = User::factory()->silenced()->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($user, 'UserCompact', ['account_history.actor', 'account_history.supporting_url']);
+        $json = json_item($user, new UserCompactTransformer(), ['account_history.actor', 'account_history.supporting_url']);
 
         $accountHistory = array_get($json, 'account_history.0');
         $this->assertArrayNotHasKey('actor', $accountHistory);
@@ -71,7 +72,7 @@ class UserCompactTransformerTest extends TestCase
         $user = User::factory()->silenced()->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($user, 'UserCompact', ['account_history.actor', 'account_history.supporting_url']);
+        $json = json_item($user, new UserCompactTransformer(), ['account_history.actor', 'account_history.supporting_url']);
 
         $accountHistory = array_get($json, 'account_history.0');
         if ($visible) {
@@ -92,7 +93,7 @@ class UserCompactTransformerTest extends TestCase
 
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($viewer, 'User', [$property]);
+        $json = json_item($viewer, new UserTransformer(), [$property]);
         $this->assertArrayNotHasKey($property, $json);
     }
 
@@ -105,7 +106,7 @@ class UserCompactTransformerTest extends TestCase
 
         $this->actAsUser($viewer);
 
-        $json = json_item($viewer, 'User', [$property]);
+        $json = json_item($viewer, new UserTransformer(), [$property]);
         $this->assertArrayHasKey($property, $json);
     }
 

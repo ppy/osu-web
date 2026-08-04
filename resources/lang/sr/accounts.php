@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'примајте обавештења за нове проблеме на квалификованим мапама следећих модова',
         'beatmapset_disqualify' => 'примајте обавештења када мапе од следећих модова су дисквалификоване',
         'comment_reply' => 'примајте обавештења за одговоре на ваше коментаре',
@@ -88,8 +89,8 @@ return [
             '_' => 'метода слања',
             'beatmap_owner_change' => 'гостојућа тежина',
             'beatmapset:modding' => 'модовање мапа',
-            'channel_message' => 'приватне чет поруке',
             'channel_mention' => '',
+            'channel_message' => 'приватне чет поруке',
             'channel_team' => '',
             'comment_new' => 'нови коментари',
             'forum_topic_reply' => 'одговор на тему',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'креатор мапе',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'тастатура',
         'mouse' => 'миш',
         'tablet' => 'таблет',

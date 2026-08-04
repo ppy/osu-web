@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'indlæser brugere...',
+    'searching_users' => '',
     'talking_in' => 'taler i :channel',
     'talking_with' => 'taler med:name',
     'title_compact' => 'chat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Der er intet her, måske du forlod kanalen, eller det eksisterer ikke...',
         'title' => 'kanal ikke fundet',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

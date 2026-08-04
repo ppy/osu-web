@@ -49,8 +49,8 @@ return [
 
     'placeholder' => [
         'edit' => 'Upravte komentář zde',
-        'new' => 'Sem napište nový komentář',
-        'reply' => 'Sem napište svoji odpověď',
+        'new' => 'Sem napiš nový komentář',
+        'reply' => 'Sem napiš svou odpověď',
     ],
 
     'show' => [

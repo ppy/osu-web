@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '',
+    'searching_users' => '',
     'talking_in' => '',
     'talking_with' => '',
     'title_compact' => '',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => '',
         'title' => '',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

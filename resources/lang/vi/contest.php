@@ -19,6 +19,7 @@ return [
         'nav_title' => 'đánh giá',
         'no_current_vote' => 'bạn vẫn chưa bầu chọn.',
         'update' => 'cập nhật',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'chưa có điểm',
             'contest_vote_judged' => 'không thể bầu chọn trong các cuộc thi được đánh giá',
@@ -84,8 +85,8 @@ return [
 
     'vote' => [
         'list' => 'phiếu',
-        'count' => ':count phiếu',
-        'points' => ':count điểm',
+        'count' => ':count_delimited phiếu|:count_delimited phiếu',
+        'points' => ':count_delimited điểm|:count_delimited điểm',
         'points_float' => ':points điểm',
     ],
 

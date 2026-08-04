@@ -22,6 +22,9 @@
       "user_warnings": {
         "type": "short"
       },
+      "groups": {
+        "type": "integer"
+      },
       "username": {
         "type": "text",
         "fields": {

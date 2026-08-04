@@ -403,7 +403,7 @@ return [
                 'show_more' => 'показать больше постов',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Матчи рейтинговой игры',
             ],
             'recent_activity' => [
                 'title' => 'Последняя активность',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Быстрая игра',
+            'title' => 'Рейтинговая игра',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => 'Мировой рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
             'highest' => 'Наивысший: :rank от :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',

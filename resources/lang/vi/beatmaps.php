@@ -26,6 +26,7 @@ return [
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'guest' => 'Chế độ khách bởi :user',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Độ khó này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng thảo luận của beatmap này đã bị vô hiệu hóa.',
         'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
@@ -37,8 +38,9 @@ return [
         'resolved' => 'Đã giải quyết',
         'restore' => 'khôi phục',
         'show_deleted' => 'Hiển thị bình luận đã xóa',
+        'show_other_replies' => '',
         'title' => 'Góc Thảo Luận',
-        'unresolved_count' => ':count_delimited vấn đề chưa được giải quyết',
+        'unresolved_count' => ':count_delimited vấn đề chưa được giải quyết|:count_delimited vấn đề chưa được giải quyết',
 
         'collapse' => [
             'all-collapse' => 'Thu gọn tất cả',
@@ -64,7 +66,7 @@ return [
 
         'message_hint' => [
             'in_general' => 'Bài đăng này sẽ vào phần thảo luận chung của beatmap, dùng mốc thởi gian để bắt đầu bài đăng (ví dụ 00:12:345) để mod beatmap này.',
-            'in_timeline' => 'Để mod nhiều mốc thời gian , hãy đăng nhiều lần (một bài đăng trên một mốc thời gian).',
+            'in_timeline' => 'Để mod nhiều mốc thời gian, hãy đăng nhiều lần (một bài đăng trên một mốc thời gian).',
         ],
 
         'message_placeholder' => [
@@ -126,7 +128,7 @@ return [
                 'unsaved' => 'Huỷ lưu',
                 'timestamp' => [
                     'all-diff' => 'Các bài đăng trên "Mọi độ khó" không thể gắn mốc thời gian.',
-                    'diff' => 'Nếu điều :type này bắt đầu với một dấu thời gian, nó sẽ được hiển thị trong Dòng thời gian.',
+                    'diff' => 'Nếu bài viết này bắt đầu với một dấu thời gian, nó sẽ được hiển thị trong Dòng thời gian.',
                 ],
             ],
             'insert-block' => [
@@ -138,7 +140,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title được map bởi :mapper',
+            'title' => ':title được tạo bởi :mapper',
         ],
 
         'sort' => [
@@ -210,7 +212,7 @@ return [
         'love_confirm' => 'Yêu thích beatmap này?',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
-        'nominated_by' => 'Được :users đề cử',
+        'nominated_by' => 'được :users đề cử',
         'not_enough_hype' => "Không đủ hype.",
         'remove_from_loved' => 'Gỡ khỏi Được Yêu mến',
         'remove_from_loved_prompt' => 'Lý do gỡ khỏi Được Yêu thích:',
@@ -246,11 +248,11 @@ return [
             'login_required' => 'Đăng nhập để tìm kiếm.',
             'options' => 'Tùy Chọn Tìm Kiếm Khác',
             'rank_filter_note' => 'Số lượng top rank và kết quả hiển thị trên trang này dựa trên các điểm số “chuẩn hoá” cao nhất của bạn (còn gọi là “lazer”) trên beatmap.',
-            'supporter_filter' => 'Lọc theo :filters cần một supporter tag đang hoạt động',
+            'supporter_filter' => 'Lọc theo :filters cần một thẻ supporter đang hoạt động',
             'not-found' => 'không có kết quả',
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
-                'extra' => 'thêm',
+                'extra' => 'Thêm',
                 'general' => 'Chung',
                 'genre' => 'Thể Loại',
                 'language' => 'Ngôn Ngữ',
@@ -274,11 +276,11 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Lọc theo :filters cần một :link đang hoạt động',
-                'link_text' => 'osu!supporter tag',
+                'link_text' => 'thẻ osu!supporter',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'duyệt các thẻ của người dùng',
+                'prompt' => 'gõ để tìm kiếm',
             ],
         ],
     ],

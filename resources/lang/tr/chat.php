@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'kullanıcılar yükleniyor...',
+    'searching_users' => '',
     'talking_in' => ':channel kanalında konuşuyorsunuz',
     'talking_with' => ':name ile konuşuyorsunuz',
     'title_compact' => 'sohbet',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Burada bir şey yok, belki de kanaldan çıkmışsındır ya da öyle bir kanal yoktur...',
         'title' => 'kanal bulunamadı',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => 'Kanala Katıl',
     ],
 
     'input' => [

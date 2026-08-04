@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'laster inn brukere...',
+    'searching_users' => '',
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',
     'title_compact' => 'chat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Ingenting her, kanskje fordi du forlot kanalen, eller at den ikke finnes...',
         'title' => 'fant ikke kanalen',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

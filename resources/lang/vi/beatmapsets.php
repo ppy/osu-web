@@ -79,12 +79,12 @@ return [
 
         'details' => [
             'by_artist' => 'bởi :artist',
-            'favourite' => 'Yêu thích beatmapset này',
-            'favourite_login' => 'Đăng nhập để yêu thích beatmap này',
-            'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
+            'favourite' => 'yêu thích beatmapset này',
+            'favourite_login' => 'đăng nhập để yêu thích beatmap này',
+            'logged-out' => 'bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'mapped_by' => 'được tạo bởi :mapper',
             'mapped_by_guest' => 'độ khó khách bởi :mapper',
-            'unfavourite' => 'Bỏ yêu thích beatmapset này',
+            'unfavourite' => 'bỏ yêu thích beatmapset này',
             'updated_timeago' => 'cập nhật lần cuối vào :timeago',
 
             'download' => [
@@ -141,19 +141,29 @@ return [
             'description' => 'Mô Tả',
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
-            'mapper_tags' => 'Thẻ người tạo bản đồ',
+            'mapper_tags' => 'Thẻ do người tạo thêm',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
             'nominators' => 'Người đề cử',
             'nsfw' => 'Nội dung không lành mạnh',
-            'offset' => 'Offset online',
+            'offset' => 'Offset trực tuyến',
             'pack_tags' => 'Gói beatmap',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'storyboard' => 'Beatmap này chứa storyboard',
             'success-rate' => 'Tỉ Lệ Thành Công',
             'success_rate_plays' => ':passes lần vượt qua trên :count_delimited lượt chơi|:passes lần vượt qua trên :count_delimited lượt chơi',
-            'user_tags' => 'Thẻ người dùng',
+            'user_tags' => 'Thẻ do người dùng thêm',
             'video' => 'Beatmap này chứa video',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
@@ -221,7 +231,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Số nốt tròn',
             'count_sliders' => 'Số nốt trượt',
-            'offset' => 'Offset online: :offset',
+            'offset' => 'Offset trực tuyến: :offset',
             'user-rating' => 'Đánh Giá',
             'rating-spread' => 'Phân Loại Đánh Giá',
             'nominations' => 'Đề cử',

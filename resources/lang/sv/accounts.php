@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'ta emot aviseringar om nya problem på kvalificerade beatmaps i följande spellägen',
         'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
         'comment_reply' => 'ta emot aviseringar för svar på dina kommentarer',
@@ -88,8 +89,8 @@ return [
             '_' => 'leveransalternativ',
             'beatmap_owner_change' => 'gästsvårighetsgrad',
             'beatmapset:modding' => 'beatmapmodding',
-            'channel_message' => 'privata chattmeddelanden',
             'channel_mention' => '',
+            'channel_message' => 'privata chattmeddelanden',
             'channel_team' => 'lagchattsmeddelanden',
             'comment_new' => 'nya kommentarer',
             'forum_topic_reply' => 'ämnessvar',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'beatmap-ägare',
             'news_post' => 'nya inlägg',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'tangentbord',
         'mouse' => 'mus',
         'tablet' => 'ritplatta',

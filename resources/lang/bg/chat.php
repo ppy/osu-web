@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'зареждане на потребители...',
+    'searching_users' => '',
     'talking_in' => 'разговаряте в :channel',
     'talking_with' => 'разговаряте с :name',
     'title_compact' => 'чат',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Тук няма нищо, може би сте напуснали канал или вече не съществува...',
         'title' => 'каналът не е намерен',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

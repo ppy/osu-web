@@ -19,10 +19,15 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserAchievement;
+use App\Transformers\BeatmapPlaycountTransformer;
+use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\EventTransformer;
+use App\Transformers\KudosuHistoryTransformer;
 use App\Transformers\ScoreReplayStatsTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
@@ -34,7 +39,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 use romanzipp\Turnstile\Validator as TurnstileValidator;
 use Sentry\State\Scope;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @group Users
@@ -43,6 +47,8 @@ class UsersController extends Controller
 {
     // more limited list of UserProfileCustomization::SECTIONS for now.
     const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
+
+    const MAX_RESULTS = 100;
 
     const PER_PAGE = [
         'scoreReplayStats' => 5,
@@ -64,8 +70,6 @@ class UsersController extends Controller
         'recentActivity' => 5,
         'recentlyReceivedKudosu' => 5,
     ];
-
-    protected $maxResults = 100;
 
     private ?string $mode = null;
     private ?int $offset = null;
@@ -108,14 +112,6 @@ class UsersController extends Controller
         parent::__construct();
     }
 
-    private static function storeClientDisabledError()
-    {
-        return response([
-            'error' => osu_trans('users.store.from_web'),
-            'url' => route('users.create'),
-        ], 403);
-    }
-
     public function create()
     {
         if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['web']) {
@@ -151,32 +147,25 @@ class UsersController extends Controller
 
     public function extraPages($_id, $page)
     {
-        // TODO: counts basically duplicated from UserCompactTransformer
         switch ($page) {
             case 'beatmaps':
                 return [
-                    'favourite' => $this->getExtraSection('favouriteBeatmapsets', $this->user->profileBeatmapsetsFavourite()->count()),
-                    'graveyard' => $this->getExtraSection('graveyardBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('graveyard')),
-                    'guest' => $this->getExtraSection('guestBeatmapsets', $this->user->profileBeatmapsetsGuest()->count()),
-                    'loved' => $this->getExtraSection('lovedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('loved')),
-                    'nominated' => $this->getExtraSection('nominatedBeatmapsets', $this->user->profileBeatmapsetsNominated()->count()),
-                    'ranked' => $this->getExtraSection('rankedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('ranked')),
-                    'pending' => $this->getExtraSection('pendingBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('pending')),
+                    'favourite' => $this->getExtraSection('favouriteBeatmapsets'),
+                    'graveyard' => $this->getExtraSection('graveyardBeatmapsets'),
+                    'guest' => $this->getExtraSection('guestBeatmapsets'),
+                    'loved' => $this->getExtraSection('lovedBeatmapsets'),
+                    'nominated' => $this->getExtraSection('nominatedBeatmapsets'),
+                    'ranked' => $this->getExtraSection('rankedBeatmapsets'),
+                    'pending' => $this->getExtraSection('pendingBeatmapsets'),
                 ];
 
             case 'historical':
                 return [
-                    'beatmap_playcounts' => $this->getExtraSection('beatmapPlaycounts', $this->user->beatmapPlaycounts()->count()),
+                    'beatmap_playcounts' => $this->getExtraSection('beatmapPlaycounts'),
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
-                    'recent' => $this->getExtraSection(
-                        'scoresRecent',
-                        $this->user->soloScores()->recent($this->mode, false)->count(),
-                    ),
+                    'recent' => $this->getExtraSection('scoresRecent'),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
-                    'score_replay_stats' => $this->getExtraSection(
-                        'scoreReplayStats',
-                        min($this->maxResults, $this->user->scoreReplayStats()->whereHas('score.beatmap.beatmapset')->count()),
-                    ),
+                    'score_replay_stats' => $this->getExtraSection('scoreReplayStats'),
                 ];
 
             case 'kudosu':
@@ -187,18 +176,9 @@ class UsersController extends Controller
 
             case 'top_ranks':
                 return [
-                    'best' => $this->getExtraSection(
-                        'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode))
-                    ),
-                    'firsts' => $this->getExtraSection(
-                        'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))->count()
-                    ),
-                    'pinned' => $this->getExtraSection(
-                        'scoresPinned',
-                        $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count()
-                    ),
+                    'best' => $this->getExtraSection('scoresBest'),
+                    'firsts' => $this->getExtraSection('scoresFirsts'),
+                    'pinned' => $this->getExtraSection('scoresPinned'),
                 ];
 
             default:
@@ -209,7 +189,10 @@ class UsersController extends Controller
     public function store()
     {
         if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['client']) {
-            return static::storeClientDisabledError();
+            return response([
+                'error' => osu_trans('users.store.from_web'),
+                'url' => route('users.create'),
+            ], 403);
         }
 
         $request = \Request::instance();
@@ -218,13 +201,7 @@ class UsersController extends Controller
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        try {
-            $clientTokenData = ClientCheck::parseToken($request);
-        } catch (HttpException $e) {
-            return static::storeClientDisabledError();
-        }
-
-        return $this->storeUser($request->all(), $clientTokenData);
+        return $this->storeUser($request->all(), ClientCheck::parseToken($request));
     }
 
     public function storeWeb()
@@ -404,7 +381,7 @@ class UsersController extends Controller
         }
 
         return [
-            'users' => json_collection($users ?? [], 'UserCompact', $includes),
+            'users' => json_collection($users ?? [], new UserCompactTransformer(), $includes),
         ];
     }
 
@@ -594,8 +571,10 @@ class UsersController extends Controller
             $user,
             (new UserTransformer())->setMode($currentMode),
             [
+                'score_processing_notice_url',
                 'session_verification_method',
                 'session_verified',
+                'user_preferences',
                 ...$this->showUserIncludes(),
                 ...array_map(
                     fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
@@ -687,7 +666,7 @@ class UsersController extends Controller
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'scores_notice' => $GLOBALS['cfg']['osu']['user']['profile_scores_notice'],
+                'score_processing_notice_url' => $GLOBALS['cfg']['osu']['score']['processing_notice_url'],
                 'user' => $userArray,
                 'user_cover_presets' => $userCoverPresets ?? [],
             ];
@@ -708,11 +687,7 @@ class UsersController extends Controller
 
         abort_unless($achievement->client_side, 422, 'achievement cannot be unlocked');
 
-        try {
-            ClientCheck::parseToken($request);
-        } catch (HttpException $e) {
-            abort(403);
-        }
+        ClientCheck::parseToken($request);
 
         $unlocked = UserAchievement::unlock($user, $achievement);
         abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
@@ -757,11 +732,11 @@ class UsersController extends Controller
 
         $this->offset = max(0, get_int(Request::input('offset')) ?? 0);
 
-        if ($this->offset >= $this->maxResults) {
+        if ($this->offset >= static::MAX_RESULTS) {
             $this->perPage = 0;
         } else {
             $perPage = $this->sanitizedLimitParam();
-            $this->perPage = min($perPage, $this->maxResults - $this->offset);
+            $this->perPage = min($perPage, static::MAX_RESULTS - $this->offset);
         }
     }
 
@@ -776,52 +751,52 @@ class UsersController extends Controller
         switch ($page) {
             // BeatmapPlaycount
             case 'beatmapPlaycounts':
-                $transformer = 'BeatmapPlaycount';
+                $transformer = new BeatmapPlaycountTransformer();
                 $query = $this->user->beatmapPlaycounts()
                     ->with('beatmap', 'beatmap.beatmapset')
-                    ->whereHas('beatmap.beatmapset')
+                    ->whereHas('beatmap')
                     ->orderBy('playcount', 'desc')
                     ->orderBy('beatmap_id', 'desc'); // for consistent sorting
                 break;
 
             // Beatmapset
             case 'favouriteBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsFavourite();
                 break;
             case 'graveyardBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsGraveyard()
                     ->orderBy('last_update', 'desc');
                 break;
             case 'guestBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsGuest()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'lovedBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsLoved()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'nominatedBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsNominated()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'rankedBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsRanked()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'pendingBeatmapsets':
-                $transformer = 'Beatmapset';
+                $transformer = new BeatmapsetTransformer();
                 $includes = ['beatmaps'];
                 $query = $this->user->profileBeatmapsetsPending()
                     ->orderBy('last_update', 'desc');
@@ -829,13 +804,13 @@ class UsersController extends Controller
 
             // Event
             case 'recentActivity':
-                $transformer = 'Event';
+                $transformer = new EventTransformer();
                 $query = $this->user->events()->recent(ScoreSearchParams::showLegacyForUser(\Auth::user()));
                 break;
 
             // KudosuHistory
             case 'recentlyReceivedKudosu':
-                $transformer = 'KudosuHistory';
+                $transformer = new KudosuHistoryTransformer();
                 $query = $this->user->receivedKudosu()
                     ->with('post', 'post.topic', 'giver')
                     ->with(['kudosuable' => function (MorphTo $morphTo) {
@@ -848,7 +823,7 @@ class UsersController extends Controller
                 $transformer = new ScoreReplayStatsTransformer();
                 $includes = ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES;
                 $query = $this->user->scoreReplayStats()
-                    ->whereHas('score.beatmap.beatmapset')
+                    ->whereHas('score.beatmap')
                     ->orderByDesc('watch_count')
                     ->with(ScoreReplayStatsTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 break;
@@ -863,6 +838,7 @@ class UsersController extends Controller
                     $offset,
                     ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD
                 );
+                Score::preloadDifficultyRatings($collection, $this->mode);
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
@@ -871,13 +847,11 @@ class UsersController extends Controller
                 $query = $this
                     ->user
                     ->scoresFirst($this->mode, ScoreSearchParams::showLegacyForUser(\Auth::user()))
-                    ->with(array_map(
-                        fn ($include) => "score.{$include}",
-                        ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD,
-                    ))
+                    ->default()
+                    ->with(prefix_strings('score.', ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->orderByDesc('score_id');
                 $userRelationColumn = 'user';
-                $collectionFn = fn ($scoreFirst) => $scoreFirst->map->score;
+                $collectionFn = fn ($scoreFirst) => Score::preloadDifficultyRatings($scoreFirst->map->score, $this->mode);
                 break;
             case 'scoresPinned':
                 $transformer = new ScoreTransformer();
@@ -888,7 +862,7 @@ class UsersController extends Controller
                     ->withVisibleScore()
                     ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->reorderBy('display_order', 'asc');
-                $collectionFn = fn ($pins) => $pins->map->score;
+                $collectionFn = fn ($pins) => Score::preloadDifficultyRatings($pins->map->score, $this->mode);
                 $userRelationColumn = 'user';
                 break;
             case 'scoresRecent':
@@ -899,6 +873,7 @@ class UsersController extends Controller
                     ->reorderBy('ended_at', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
+                $collectionFn = fn ($scores) => Score::preloadDifficultyRatings($scores, $this->mode);
                 break;
         }
 
@@ -919,7 +894,7 @@ class UsersController extends Controller
         return json_collection($collection, $transformer, $includes ?? []);
     }
 
-    private function getExtraSection(string $section, ?int $count = null)
+    private function getExtraSection(string $section)
     {
         // TODO: replace with cursor.
         $items = $this->getExtra($section, [], static::PER_PAGE[$section] + 1);
@@ -935,6 +910,7 @@ class UsersController extends Controller
             ],
         ];
 
+        $count = $this->user->profileCount()->get($section, $this->mode);
         if ($count !== null) {
             $response['count'] = $count;
         }
@@ -970,6 +946,7 @@ class UsersController extends Controller
             ...UserTransformer::PROFILE_HEADER_INCLUDES,
             'account_history',
             'current_season_stats',
+            'current_user_attributes',
             'daily_challenge_user_stats',
             'matchmaking_stats.pool',
             'page',

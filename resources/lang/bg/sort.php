@@ -38,6 +38,7 @@ return [
     ],
 
     'teams' => [
+        'created' => '',
         'relevance' => 'Уместност',
         'name' => 'Име',
         'short-name' => 'Кратко име',

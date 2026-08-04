@@ -33,6 +33,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
             'beatmapset_id' => $beatmap->beatmapset_id,
             'difficulty_rating' => $beatmap->difficultyrating,
             'id' => $beatmap->beatmap_id,
+            'lazer_only' => $beatmap->lazer_only,
             'mode' => $beatmap->mode,
             'status' => $beatmap->status(),
             'total_length' => $beatmap->total_length,

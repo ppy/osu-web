@@ -13,11 +13,8 @@
   --selector-overflow-y: auto;
 
   &--beatmap-discussions-user-filter {
-    --selector-max-height: auto;
-
-    @media @desktop {
-      width: 200px;
-    }
+    flex: 1;
+    min-width: 0;
   }
 
   &--download {
@@ -40,6 +37,11 @@
     --selector-display: block;
   }
 
+  &__checkmark {
+    color: var(--decoration-colour);
+    width: 1em;
+  }
+
   &__decoration {
     align-self: center;
     margin-left: 10px;
@@ -52,13 +54,17 @@
 
     --colour: hsl(var(--hsl-c1));
     display: flex;
-    justify-content: space-between;
+    gap: 5px;
     padding: var(--option-padding);
     white-space: nowrap;
     color: var(--colour);
 
     &--selected {
       background-color: @osu-colour-b3;
+    }
+
+    &--selector {
+      justify-content: space-between;
     }
 
     .link-hover({

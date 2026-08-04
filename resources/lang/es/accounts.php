@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
         'comment_reply' => 'recibir notificaciones de respuestas a tus comentarios',
@@ -88,8 +89,8 @@ return [
             '_' => 'opciones de entrega',
             'beatmap_owner_change' => 'dificultades de invitados',
             'beatmapset:modding' => 'modding de mapas',
+            'channel_mention' => 'menciones en el chat',
             'channel_message' => 'mensajes de chat privados',
-            'channel_mention' => '',
             'channel_team' => 'mensajes del chat del equipo',
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'creadores de mapas',
             'news_post' => 'noticias',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => 'cuando te añadan como mapper invitado en una dificultad de un mapa',
+            'beatmapset:modding' => 'cuando las discusiones relacionadas con los mapas que estás siguiendo se actualicen, o si hay algún problema o sugerencia en tu propio mapa.',
+            'channel_mention' => 'cuando seas mencionado en un canal público',
+            'channel_message' => 'cuando recibas un nuevo mensaje privado',
+            'channel_team' => 'cuando haya un mensaje nuevo en el chat de tu equipo',
+            'comment_new' => 'cuando haya un nuevo comentario en una publicación que estés siguiendo',
+            'forum_topic_reply' => 'cuando los temas del foro que estás siguiendo reciban nuevas respuestas',
+            'mapping' => 'cuando un mapper al que sigues suba un mapa',
+            'news_post' => 'cuando se publiquen nuevas noticias',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'teclado',
         'mouse' => 'ratón',
         'tablet' => 'tableta',

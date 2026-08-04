@@ -146,7 +146,7 @@ return [
             'nominators' => 'Nominatori',
             'nsfw' => 'Contenuto esplicito',
             'offset' => 'Offset online',
-            'pack_tags' => 'Pacchetti Beatmap',
+            'pack_tags' => 'Pacchetti beatmap',
             'points-of-failure' => 'Punti di fallimento',
             'source' => 'Origine',
             'storyboard' => 'Questa beatmap contiene storyboard',
@@ -154,6 +154,16 @@ return [
             'success_rate_plays' => ':passes su :count_delimited partita|:passes su :count_delimited partite',
             'user_tags' => 'Etichette degli utenti',
             'video' => 'Questa beatmap contiene video',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => 'A cause di meccaniche specifiche, questa beatmap può essere giocata solo su osu!lazer.',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
@@ -217,7 +227,7 @@ return [
             'accuracy' => 'Precisione (OD)',
             'ar' => 'Velocità (AR)',
             'stars' => 'Difficoltà',
-            'total_length' => 'Durata (Tempo di drenaggio: :hit_length)',
+            'total_length' => 'Durata (Tempo di gioco: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Numero di Cerchi',
             'count_sliders' => 'Numero di Slider',

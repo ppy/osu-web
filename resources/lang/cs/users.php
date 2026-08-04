@@ -181,7 +181,7 @@ return [
             'insults' => 'Uráží mě / ostatní',
             'multiple_accounts' => 'Používání více účtů',
             'nonsense' => 'Nesmysl',
-            'other' => 'Jiný (napište níže)',
+            'other' => 'Jiný (napiš níže)',
             'spam' => 'Spamování',
             'unwanted_content' => 'Nevhodný obsah',
         ],
@@ -199,7 +199,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Členem od :date',
         'lastvisit' => 'Naposledy spatřen :date',
-        'lastvisit_online' => 'Momentálně aktivní',
+        'lastvisit_online' => 'Momentálně online',
         'missingtext' => 'Možná jste se přepsal! (nebo byl uživatel zabanován)',
         'origin_country' => 'Z :country',
         'previous_usernames' => 'dříve znám jako',
@@ -395,7 +395,7 @@ return [
                 'title' => 'Medaile',
             ],
             'playlists' => [
-                'title' => 'Hry playlistu',
+                'title' => 'Hry playlistů',
             ],
             'posts' => [
                 'title' => 'Příspěvky',
@@ -403,7 +403,7 @@ return [
                 'show_more' => 'zobrazit více příspěvků',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Zápasy hodnocené hry',
             ],
             'recent_activity' => [
                 'title' => 'Nedávné',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Rychlá hra',
+            'title' => 'Hodnocená hra',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
             'highest' => 'Nejvyšší rank :rank v :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',

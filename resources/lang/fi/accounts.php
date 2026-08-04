@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen kelpuutetuissa rytmikartoissa',
         'beatmapset_disqualify' => 'vastaanota ilmoituksia, kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
@@ -88,8 +89,8 @@ return [
             '_' => 'toimitusvaihtoehdot',
             'beatmap_owner_change' => 'vieraileva vaikeustaso',
             'beatmapset:modding' => 'beatmapin modaus',
-            'channel_message' => 'yksityisviestit',
             'channel_mention' => '',
+            'channel_message' => 'yksityisviestit',
             'channel_team' => 'tiimin yksityisviestit',
             'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'mappaaja',
             'news_post' => 'uutisetilmoitukset',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'näppäimistö',
         'mouse' => 'hiiri',
         'tablet' => 'piirtopöytä',

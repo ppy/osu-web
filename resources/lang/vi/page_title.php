@@ -53,7 +53,7 @@ return [
             'discussion' => 'góc thảo luận beatmap ',
             'index' => 'danh sách beatmap',
             'show' => 'thông tin beatmap',
-            'versions' => 'Lịch sử phiên bản beatmap',
+            'versions' => 'lịch sử phiên bản beatmap',
         ],
         'changelog_controller' => [
             '_' => 'nhật ký thay đổi',
@@ -82,7 +82,7 @@ return [
             'index' => 'tổng quan',
             'search' => 'tìm kiếm',
             'support_the_game' => 'ủng hộ osu',
-            'testflight' => 'thử nghệm bay',
+            'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
             '_' => 'trận đấu',

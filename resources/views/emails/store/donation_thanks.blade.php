@@ -5,16 +5,23 @@
 
 Hi {{ $donor->username }},
 
-Thanks a lot for your {{ $continued ? 'continued ': '' }}support towards osu!.
-It is thanks to people like you that osu! is able to keep the game and community running smoothly without any advertisements or forced payments.
-{{ $isGift ? 'Your giftee(s)' : 'You' }} will now have access to osu!direct and many other supporter benefits{{ !$isGift ? ' for '.\App\Models\SupporterTag::getDurationText($duration, 'en') : '' }}.
-More new supporter benefits will appear over time, as well!
+Thanks a lot for choosing to {{ $continued ? 'continue to ': '' }}support osu!.
 
-Your support keeps osu! running for around {{ $minutes }} minutes! It may not seem like much, but it all adds up :).
+{{ $isGift ? 'Your giftee(s)' : 'You' }} will now have access to osu!direct and many other supporter benefits{{ !$isGift ? ' for '.\App\Models\SupporterTag::getDurationText($duration, 'en') : '' }}. Your support keeps osu! running for around {{ $minutes }} minutes! It may not seem like much, but every minute adds up!
 
-If you have any questions or feedback, don't hesitate to reply to this mail; I'll get back to you as soon as possible!
+It's 2026 and the world is a weird place, changing faster than anyone can keep up with. Along the way everything feels less personal than ever.
 
-Regards,
+After all these years, the reason I continue to pour my life into this project is the constant positive feedback I receive from players. I've seen osu! create real human connections, save people from dark times, or just exist as *that game* you can always come back to and be rest-assured there's a good few minutes or hours of gameplay away from the stress of the real world.
+
+I strive to continue running osu! true to my own values. No ads; no jumping on any hype train; no outsourcing our development to AI. Just continuing to do what we do – at our own speed – to best serve the community.
+
+We can only do this with your support.
+
+On behalf of our small team, I'm incredibly grateful to have you on board as a member of the small group that keeps this game powered on.
+
+This email itself is automatically sent, but if you have any questions or feedback, don't hesitate to send a reply. I read and (within limits) reply to anything you have to share.
+
+Thanks ❤️
 Dean Herbert (peppy)
 @if (app()->getLocale() !== 'en'
     && trans_exists('mail.donation_thanks.keep_free', app()->getLocale())

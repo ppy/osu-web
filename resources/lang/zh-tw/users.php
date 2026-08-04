@@ -403,7 +403,7 @@ return [
                 'show_more' => '顯示更多貼文',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => '排位模式場次',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '快速遊玩',
+            'title' => '排位模式',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => '最高排名:rank於:date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => '前 :value',

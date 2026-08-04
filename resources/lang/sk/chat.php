@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '',
+    'searching_users' => '',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => '',
         'title' => '',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

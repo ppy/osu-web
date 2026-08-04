@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => '摸圖',
             'playlists' => '歌單',
-            'ranked-play' => '',
+            'ranked-play' => '排位模式',
             'realtime' => '多人遊戲',
             'show' => '資訊',
         ],
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'create_team' => '',
             'follows' => '追蹤清單',
             'friends' => '好友',
             'legacy_score_only_toggle' => 'Lazer 模式',

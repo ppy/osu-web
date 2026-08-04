@@ -35,14 +35,14 @@ return [
 
     'matchmaking' => [
         'plays' => '',
-        'points' => '',
+        'points' => 'Балы',
         'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'rating' => 'Рэйтынг',
+        'wins' => 'Перамогі',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Назва пакоя',
     ],
 
     'performance' => [
@@ -50,15 +50,15 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Усё яшчэ ідзе падлік даных...',
+        'last_updated' => 'Апошняе абнаўленне',
     ],
 
     'playlists' => [
         'charts' => '',
         'featured' => '',
         'season_room' => '',
-        'seasons' => '',
+        'seasons' => 'сезоны',
     ],
 
     'type' => [
@@ -66,8 +66,8 @@ return [
         'daily_challenge' => 'па картах дня',
         'global' => 'глабальны',
         'kudosu' => 'кудосу',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'ранкавана гульня',
+        'playlists' => 'плэйлісты',
         'team' => 'па камандах',
         'top_plays' => '',
     ],

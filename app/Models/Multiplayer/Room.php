@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property User $host
  * @property int $id
  * @property int|null $max_attempts
+ * @property int|null $max_participants
  * @property string $name
  * @property int $participant_count
  * @property bool $pinned
@@ -642,6 +643,7 @@ class Room extends Model
             'duration:int',
             'ends_at:time',
             'max_attempts:int',
+            'max_participants:int',
             'name',
             'password',
             'playlist:array',
@@ -683,6 +685,7 @@ class Room extends Model
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
+            $this->max_participants = $params['max_participants'];
         } else {
             $this->type = static::PLAYLIST_TYPE;
             $this->queue_mode = static::PLAYLIST_QUEUE_MODE;
@@ -859,6 +862,13 @@ class Room extends Model
             $maxAttemptsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_attempts_limit'];
             if ($this->max_attempts < 1 || $this->max_attempts > $maxAttemptsLimit) {
                 throw new InvariantException("field 'max_attempts' must be between 1 and {$maxAttemptsLimit}");
+            }
+        }
+
+        if ($this->max_participants !== null) {
+            $maxParticipantsLimit = $GLOBALS['cfg']['osu']['multiplayer']['max_participants_limit'];
+            if ($this->max_participants < 2 || $this->max_participants > $maxParticipantsLimit) {
+                throw new InvariantException("field 'max_participants' must be between 2 and {$maxParticipantsLimit}");
             }
         }
     }

@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'primește notificări pentru probleme noi pe hărți calificate pentru modurile următoare',
         'beatmapset_disqualify' => 'primește notificări când beatmap-urile din modurile următoare sunt descalificate',
         'comment_reply' => 'primește notificări pentru răspunsurile la comentariile tale',
@@ -88,8 +89,8 @@ return [
             '_' => 'opțiuni de livrare',
             'beatmap_owner_change' => 'dificultate cu participare ca oaspete',
             'beatmapset:modding' => 'modding beatmap-uri',
-            'channel_message' => 'mesaje chat private',
             'channel_mention' => '',
+            'channel_message' => 'mesaje chat private',
             'channel_team' => 'mesaje chat echipă',
             'comment_new' => 'comentarii noi',
             'forum_topic_reply' => 'răspuns subiect',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'creator beatmap',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'tastatură',
         'mouse' => 'mouse',
         'tablet' => 'tabletă',

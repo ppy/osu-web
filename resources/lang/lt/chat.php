@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'įkeliami vartotojai...',
+    'searching_users' => '',
     'talking_in' => 'pokalbis :channel',
     'talking_with' => 'pokalbis su :name',
     'title_compact' => 'pokalbiai',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Čia nieko nėra. Galbūt jūs palikote šį kanalą arba jis nebeegzistuoja...',
         'title' => 'kanalas nerastas',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

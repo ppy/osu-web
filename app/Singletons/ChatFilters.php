@@ -60,8 +60,12 @@ class ChatFilters
      * @throws ContentModerationException If the text matches one of the filters which indicate that the input
      * should be discarded entirely.
      */
-    public function filter(string $text): string
+    public function filter(?string $text): ?string
     {
+        if ($text === null) {
+            return null;
+        }
+
         $filters = $this->filterRegexps();
 
         if (isset($filters['block_regex']) && preg_match($filters['block_regex'], $text)) {

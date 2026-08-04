@@ -77,6 +77,11 @@ class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         $this->attributes['default_ruleset_id'] = Beatmap::MODES[Beatmap::modeStr($value) ?? 'osu'];
     }
 
+    public function setDescriptionAttribute(?string $value): void
+    {
+        $this->attributes['description'] = app('chat-filters')->filter($value);
+    }
+
     public function setFlagAttribute(?string $value): void
     {
         if ($value !== null) {

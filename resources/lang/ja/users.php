@@ -406,7 +406,7 @@ CAPTCHA認証を成功させてから再試行してください。
                 'show_more' => '他の投稿を見る',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'ランクマッチ',
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
@@ -478,7 +478,7 @@ CAPTCHA認証を成功させてから再試行してください。
         ],
 
         'matchmaking' => [
-            'title' => 'クイックプレイ',
+            'title' => 'ランクマッチ',
         ],
 
         'not_found' => [
@@ -509,6 +509,11 @@ CAPTCHA認証を成功させてから再試行してください。
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
             'highest' => '最高ランク: :rank (:dateに取得)',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'トップ :value',

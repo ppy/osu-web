@@ -305,6 +305,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('clients/{client}/reset-secret', 'ClientsController@resetSecret')->name('clients.reset-secret');
     });
 
+    if ($GLOBALS['cfg']['osu']['one_time_key']) {
+        Route::get('one-time-key', 'OneTimeKeyController@create')->name('one-time-key');
+        Route::post('one-time-key', 'OneTimeKeyController@store');
+        Route::post('one-time-key/check', 'OneTimeKeyController@check');
+    }
+
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
     Route::get('rankings/ranked-play/{mode?}/{pool?}', 'Ranking\MatchmakingController@show')->name('rankings.matchmaking');
@@ -318,6 +324,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('session', 'SessionsController@store')->name('login');
     Route::delete('session', 'SessionsController@destroy')->name('logout');
+
+    Route::get('suggestions/user', 'SuggestionsController@user')->name('suggestions.user');
+    Route::get('suggestions/wiki', 'SuggestionsController@wiki')->name('suggestions.wiki');
 
     Route::post('user-cover-presets/batch-activate', 'UserCoverPresetsController@batchActivate')->name('user-cover-presets.batch-activate');
     Route::resource('user-cover-presets', 'UserCoverPresetsController', ['only' => ['index', 'store', 'update']]);
@@ -368,7 +377,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/{locale?}/{path?}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
     Route::put('wiki/{locale}/{path}', 'WikiController@update')->where('path', '.+');
-    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
 
     // FIXME: someone split this crap up into proper controllers
     Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
@@ -399,13 +407,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'paypal.', 'prefix' => 'paypal'], function () {
             Route::get('approved', 'PaypalController@approved')->name('approved');
             Route::get('declined', 'PaypalController@declined')->name('declined');
-            Route::post('create', 'PaypalController@create')->name('create');
             Route::post('ipn', 'PaypalController@ipn')->name('ipn');
         });
 
         Route::group(['as' => 'xsolla.', 'prefix' => 'xsolla'], function () {
             Route::get('completed', 'XsollaController@completed')->name('completed');
-            Route::post('token', 'XsollaController@token')->name('token');
             Route::post('callback', 'XsollaController@callback')->name('callback');
         });
 
@@ -484,6 +490,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+                Route::apiResource('{beatmapset}/ratings', 'BeatmapsetRatingsController', ['only' => ['index', 'store']]);
             });
         });
 
@@ -601,6 +608,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
+        //  PUT /api/v2/me/options
+        Route::put('me/options', 'AccountController@updateOptions')->name('me.options');
         //  PUT /api/v2/me/achievements/:achievementId
         Route::put('me/achievements/{achievementId}', 'UsersController@unlockClientSideAchievement')->name('unlock-client-side-achievement');
 

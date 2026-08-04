@@ -4,6 +4,7 @@
 import ValueDisplay from 'components/value-display';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -15,7 +16,7 @@ export default function MedalsCount({ userAchievements }: Props) {
     <ValueDisplay
       label={trans('users.show.stats.medals')}
       modifiers='plain'
-      value={userAchievements.length}
+      value={formatNumber(userAchievements.length)}
     />
   );
 }

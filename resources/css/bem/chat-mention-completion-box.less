@@ -1,0 +1,25 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.chat-mention-completion-box {
+  .default-border-radius();
+  .default-box-shadow();
+
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: 0;
+
+  padding: 10px;
+  display: grid;
+
+  background-color: hsl(var(--hsl-b6));
+  font-size: @font-size--title-small;
+
+  &__searching {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 5px;
+  }
+}

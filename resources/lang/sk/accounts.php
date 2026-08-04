@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'dostávať notifikácie pre nové problémy na kvalifikovaných beatmapách pre následujúce módy',
         'beatmapset_disqualify' => 'prijímať upozornenia, keď sú beatmapy diskvalifikované z týchto módov',
         'comment_reply' => 'prijímať upozornenia pre odpovede na vaše komentáre',
@@ -88,8 +89,8 @@ return [
             '_' => 'možnosti doručenia',
             'beatmap_owner_change' => 'obtiažnosť hosťa',
             'beatmapset:modding' => 'módovanie beatmáp',
-            'channel_message' => 'správy súkromného chatu',
             'channel_mention' => '',
+            'channel_message' => 'správy súkromného chatu',
             'channel_team' => '',
             'comment_new' => 'nové komentáre
 ',
@@ -98,6 +99,18 @@ return [
             'mapping' => 'tvorca beatmapy',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -122,6 +135,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'klávesnica',
         'mouse' => 'myš',
         'tablet' => 'tablet',

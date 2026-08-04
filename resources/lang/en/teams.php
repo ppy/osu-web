@@ -33,7 +33,8 @@ return [
         ],
 
         'intro' => [
-            'description' => "Play together with friends; existing or new. You're not currently in a team. Join an existing team by visiting their team page or create your own team from this page.",
+            'description' => "Play together with friends; existing or new. You're not currently in a team. Join an :search_link by visiting their team page or create your own team from this page.",
+            'search_link' => 'existing team',
             'title' => 'Team!',
         ],
     ],

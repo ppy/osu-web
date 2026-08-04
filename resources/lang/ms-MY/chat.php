@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'memuatkan pengguna...',
+    'searching_users' => '',
     'talking_in' => 'berbual dalam :channel',
     'talking_with' => 'berbual dengan :name',
     'title_compact' => 'bualan',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Tiada apa-apa di sini. Saluran mungkin ditinggalkan atau tidak ada...',
         'title' => 'saluran tidak ditemui',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

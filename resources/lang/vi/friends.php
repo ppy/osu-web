@@ -4,8 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'blocked' => '',
     'title_compact' => 'bạn bè',
-    'too_many' => 'Đã đạt đến giới hạn bạn bè.',
+    'too_many' => 'Đã đạt đến giới hạn bạn bè',
 
     'buttons' => [
         'add' => 'thêm bạn',

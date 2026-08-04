@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class MatchmakingUserStats extends Model
 {
-    const MIN_PLAYS_NON_PROVISIONAL = 5;
+    const MIN_SIG_PROVISIONAL = 100;
 
     public $incrementing = false;
 
@@ -47,18 +47,22 @@ class MatchmakingUserStats extends Model
     {
         return $query
             ->whereHas('user', fn (Builder $q): Builder => $q->default())
-            ->where('plays', '>', 0);
+            ->hasPlayed();
+    }
+
+    public function scopeHasPlayed(Builder $query): void
+    {
+        $query->where('plays', '>', 0);
     }
 
     public function scopeWithRank(Builder $query): void
     {
+        // this won't be accurate when there are restricted users
         $rankQuery = new static()
-            // mainly so whereHas in default() uses the correct table alias
-            ->setTable('mus')
             ->newQuery()
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
-            ->default()
+            ->hasPlayed()
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
@@ -72,6 +76,31 @@ class MatchmakingUserStats extends Model
 
     public function isRatingProvisional(): bool
     {
-        return $this->plays < static::MIN_PLAYS_NON_PROVISIONAL;
+        return $this->elo_data['approximate_posterior']['sig'] >= static::MIN_SIG_PROVISIONAL;
+    }
+
+    public function getRank(): int
+    {
+        return $this->attributes['rank'] ?? 1 + static::default()
+            ->where('rating', '>', $this->rating)
+            ->where('pool_id', $this->pool_id)
+            ->count();
+    }
+
+    public function getRankPercent(?int $rank = null): float
+    {
+        $rank ??= $this->getRank();
+
+        $count = cache_remember_mutexed(
+            "matchmaking_user_count:{$this->pool_id}",
+            600,
+            1,
+            fn () => static
+                ::where('pool_id', $this->pool_id)
+                ->hasPlayed()
+                ->count(),
+        );
+
+        return min(1, $rank / max(1, $count ?? 1));
     }
 }

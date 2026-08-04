@@ -5,10 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'لست حاليًا في أي ألعاب :type_group جارية في osu!(lazer)!',
+        'ended' => 'لست في أي ألعاب :type_group مكتملة في osu!(lazer) بعد!',
         'playlists' => 'قائمة التشغيل',
-        'ranked-play' => '',
+        'ranked-play' => 'اللعب المصنّف',
         'realtime' => 'لعب جماعي',
     ],
 
@@ -18,19 +18,19 @@ return [
         'map_count' => ':count_delimited الخريطة|:count_delimited خرائط',
         'player_count' => ':count_delimited لاعب|:count_delimited لاعبين',
         'time_left' => 'تبقى:time',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'عرض السِّجلّ',
+        'view_summary' => 'عرض الملخص',
 
         'errors' => [
             'duration_too_long' => 'المدة طويلة جداً.',
-            'name_too_long' => '',
-            'too_many_playlist_items' => '',
+            'name_too_long' => 'اسم الغرفة طويل جدًا.',
+            'too_many_playlist_items' => 'عدد عناصر قائمة التشغيل كبير جدًا.',
         ],
 
         'status' => [
             'active' => 'نشط',
             'ended' => 'انتهت',
-            'soon' => 'ستنتهي قريباً ',
+            'soon' => 'ستنتهي قريباً',
         ],
     ],
 ];

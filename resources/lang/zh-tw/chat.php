@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => '正在載入使用者... ',
+    'searching_users' => '',
     'talking_in' => '在 :channel 聊天',
     'talking_with' => '與 :name 聊天',
     'title_compact' => '聊天',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => '沒有東西耶。大概是你離開頻道，或者是這個頻道消失了⋯⋯',
         'title' => '找不到頻道',
+    ],
+
+    'not_joined' => [
+        'message' => '請加入頻道來閱讀訊息。',
+        'join' => '加入頻道',
     ],
 
     'input' => [

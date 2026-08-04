@@ -125,13 +125,15 @@ export default class DailyChallenge extends React.Component<Props> {
       return null;
     }
 
-    const playedToday = this.props.stats.last_update !== null && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
-    const userIsOnOwnProfile = this.props.stats.user_id === core.currentUser?.id;
+    // only shown on own profile page
+    const playedToday = this.props.stats.user_id === core.currentUser?.id
+      && this.props.stats.last_update !== null
+      && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
 
     return (
       <div
         ref={this.valueRef}
-        className={classWithModifiers('daily-challenge', { 'played-today': playedToday && userIsOnOwnProfile })}
+        className={classWithModifiers('daily-challenge', { 'played-today': playedToday })}
         onMouseOver={this.onMouseOver}
       >
         <div className='daily-challenge__name'>

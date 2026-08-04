@@ -25,8 +25,6 @@ import Chart from './chart';
 import DiscussionsState from './discussions-state';
 import { Nominations } from './nominations';
 import { Subscribe } from './subscribe';
-import TypeFilters from './type-filters';
-import { UserFilter } from './user-filter';
 import UserLinkList from './user-link-list';
 
 interface Props {
@@ -171,15 +169,6 @@ export class Header extends React.Component<Props> {
                 discussionsState={this.discussionsState}
                 users={this.users}
               />
-            </div>
-            <div className={`${bn}__filter-group ${bn}__filter-group--stats`}>
-              <UserFilter
-                discussionsState={this.discussionsState}
-                store={this.props.store}
-              />
-              <div className={`${bn}__stats`}>
-                <TypeFilters discussionsState={this.discussionsState} />
-              </div>
             </div>
           </div>
           <div className={`${bn}__beatmap-stats`}>

@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $filename
  * @property int $hit_length
  * @property \Carbon\Carbon $last_update
+ * @property bool $lazer_only
  * @property int $max_combo
  * @property mixed $mode
  * @property int $osu_file_version
@@ -61,6 +62,7 @@ class Beatmap extends Model implements AfterCommit
     protected $primaryKey = 'beatmap_id';
 
     protected $casts = [
+        'lazer_only' => 'boolean',
         'last_update' => 'datetime',
     ];
 
@@ -278,6 +280,8 @@ class Beatmap extends Model implements AfterCommit
             'total_length',
             'user_id',
             'youtube_preview' => $this->getRawAttribute($key),
+
+            'lazer_only' => (bool) $this->getRawAttribute($key),
 
             'deleted_at',
             'last_update' => $this->getTimeFast($key),

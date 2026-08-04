@@ -33,8 +33,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Conecte-se para comentar',
-        'reply' => 'Conecte-se para responder',
+        'new' => 'Entre para comentar',
+        'reply' => 'Entre para responder',
     ],
 
     'index' => [

@@ -26,6 +26,7 @@ return [
         'edited' => '最後由 :editor 在 :update_time 編輯。',
         'guest' => '由 :user 製作的客串難度',
         'kudosu_denied' => 'kudosu 被收回',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_placeholder_locked' => '此圖譜的討論已被停用。',
         'message_placeholder_silenced' => "禁言時無法發表討論。",
@@ -37,6 +38,7 @@ return [
         'resolved' => '已解決',
         'restore' => '已還原',
         'show_deleted' => '顯示已刪除的訊息',
+        'show_other_replies' => '',
         'title' => '討論區',
         'unresolved_count' => ':count_delimited 個未解決問題',
 

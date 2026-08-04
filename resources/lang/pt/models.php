@@ -7,7 +7,7 @@ return [
     'not_found' => "O :model especificado não foi encontrado.",
 
     'name' => [
-        'App\Models\Beatmap' => 'dificuldade do beatmap',
-        'App\Models\Beatmapset' => 'beatmap',
+        'App\Models\Beatmap' => 'dificuldade do mapa',
+        'App\Models\Beatmapset' => 'mapa',
     ],
 ];

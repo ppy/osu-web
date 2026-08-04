@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Spela tillsammans med vänner, befintliga eller nya. Du är inte med i ett lag för närvarande. Gå med i ett befintligt lag genom att besöka deras lagsida eller skapa ditt eget lag från den här sidan.",
+            'search_link' => '',
             'title' => 'Lag!',
         ],
     ],

@@ -62,7 +62,7 @@ export default class Table extends React.Component<Props> {
                   .map((stat) => (
                     <th
                       key={stat.label.short}
-                      className={classWithModifiers(`${bn}__header`, ['hitstat'])}
+                      className={classWithModifiers(`${bn}__header`, ['hitstat', `hit-${stat.attributes[0]}`])}
                     >
                       {stat.label.short}
                     </th>

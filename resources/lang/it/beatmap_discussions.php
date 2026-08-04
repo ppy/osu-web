@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited risposta è nascosta.|:count_delimited risposte sono nascoste.',
 
     'authorizations' => [
         'update' => [
@@ -69,7 +69,7 @@ return [
     ],
 
     'refresh' => [
-        'checking' => 'Ricerca aggiornamenti...',
+        'checking' => 'Ricerca aggiornamenti in corso...',
         'has_updates' => 'Questa discussione ha degli aggiornamenti, clicca per aggiornare.',
         'no_updates' => 'Nessun aggiornamento.',
         'updating' => 'Aggiornamento...',
@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Tutti',
         'label' => 'Filtra per utente',
+        'multiple' => '',
     ],
 ];

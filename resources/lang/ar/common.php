@@ -19,8 +19,8 @@ return [
     ],
 
     'buttons' => [
-        'authorise' => 'استأِذان',
-        'authorising' => 'استأِذان...',
+        'authorise' => 'سماح',
+        'authorising' => 'جارٍ التحقق...',
         'back' => 'رجوع',
         'back_to_previous' => 'العودة إلى الحالة السابقة',
         'back_to_top' => 'العودة إلى الأعلى',
@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited دقيقة|:count_delimited دقائق',
         'months' => ':count_delimited شهر|:count_delimited أشهر',
         'notifications' => ':count_delimited أِشعار|:count_delimited أِشعارات',
-        'player' => '',
+        'player' => ':count_delimited لاعب|:count_delimited لاعبين',
         'plus_others' => '+ :count_delimited اخر!|+ :count_delimited اخرون!',
         'post' => ':count_delimited منشور|:count_delimited منشورات',
         'second_short_unit' => 'ثانية|ثواني',

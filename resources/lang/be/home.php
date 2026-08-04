@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Увайдзіце, каб шукаць каманд',
             'more_simple' => 'Паглядзець усе вынікі пошуку сярод каманд',
         ],
 
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'артыкул з падрабязнай інфармацыяй',
-        'download' => '',
+        'download' => 'Спампаваць',
         'for_os' => 'для :os',
         'macos-fallback' => 'для macOS',
         'mirror' => 'люстэрка',
@@ -141,7 +141,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Бітмапа Штодзённага Выпрабавання',
             'new' => 'Новыя ранкаваныя бітмапы',
             'popular' => 'Папулярныя бітмапы',
             'by_user' => 'ад :user',

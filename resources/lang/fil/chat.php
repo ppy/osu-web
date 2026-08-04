@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'naglo-load ng mga user...',
+    'searching_users' => '',
     'talking_in' => 'nakikipag-usap sa :channel',
     'talking_with' => 'kausap si :name',
     'title_compact' => 'chat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Walang laman dito, maaaring umalis ka sa channel o wala ito...',
         'title' => 'ang channel ay hindi nahanap',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

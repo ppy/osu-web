@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'cargando usuarios...',
+    'searching_users' => '',
     'talking_in' => 'hablando en :channel',
     'talking_with' => 'hablando con :name',
     'title_compact' => 'chat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'No hay nada aquí, tal vez abandonaste el canal o no existe...',
         'title' => 'canal no encontrado',
+    ],
+
+    'not_joined' => [
+        'message' => 'Únete al canal para ver sus mensajes.',
+        'join' => 'Unirse al canal',
     ],
 
     'input' => [

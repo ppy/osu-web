@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'értesítések kérése kvalifikált beatmapok problémáival kapcsolatban a következő módokból',
         'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
         'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
@@ -88,8 +89,8 @@ return [
             '_' => 'szállítási lehetőségek',
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
-            'channel_message' => 'Privát üzenetek',
             'channel_mention' => '',
+            'channel_message' => 'Privát üzenetek',
             'channel_team' => '',
             'comment_new' => 'Új megjegyzések',
             'forum_topic_reply' => 'Válaszolj erre a témára',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'beatmap készítő',
             'news_post' => '',
             'push' => 'Elöjövő',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'billentyűzet',
         'mouse' => 'egér',
         'tablet' => 'tablet',

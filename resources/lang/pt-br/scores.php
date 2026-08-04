@@ -16,11 +16,11 @@ return [
             'by' => 'Jogado por',
             'played_on' => 'Jogado no',
             'submitted_on' => 'Enviado em',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Assistido',
+            'watched_count' => ':count_delimited vez|:count_delimited vezes',
 
             'rank' => [
-                'country' => 'Ranking Nacional',
+                'country' => 'Classificação nacional',
                 'global' => 'Ranking Global',
             ],
         ],

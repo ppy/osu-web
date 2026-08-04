@@ -32,6 +32,9 @@ interface UserJsonAvailableIncludes {
   country: CountryJson | null;
   cover: UserCoverJson;
   current_season_stats: SeasonStatsJson | null;
+  current_user_attributes: {
+    has_blocked: boolean;
+  } | null;
   daily_challenge_user_stats: DailyChallengeUserStatsJson;
   favourite_beatmapset_count: number;
   follow_user_mapping: number[];

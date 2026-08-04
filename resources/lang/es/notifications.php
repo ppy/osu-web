@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Mención en el chat',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username te ha mencionado en :name «::title»',
+                    'channel_mention_compact' => ':username «::title»',
+                    'channel_mention_group' => 'mencionado en :name',
                 ],
             ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => 'Has recibido un nuevo mensaje de :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username te ha mencionado en :name «::title»',
             ],
 
             'channel_team' => [

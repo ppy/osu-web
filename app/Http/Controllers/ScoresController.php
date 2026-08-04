@@ -99,7 +99,7 @@ class ScoresController extends Controller
                 }
 
                 ScoreReplayStats
-                    ::createOrFirst(['score_id' => $score->getKey()], ['user_id' => $score->user_id])
+                    ::firstOrCreate(['score_id' => $score->getKey()], ['user_id' => $score->user_id])
                     ->incrementInstance('watch_count');
             }
         }
@@ -212,7 +212,7 @@ class ScoresController extends Controller
         if (\Auth::user()?->isAdmin() !== true) {
             $scoreQuery->visibleUsers();
         }
-        $score = $scoreQuery->whereHas('beatmap.beatmapset')->firstOrFail();
+        $score = $scoreQuery->whereHas('beatmap')->firstOrFail();
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";

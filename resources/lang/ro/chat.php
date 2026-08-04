@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'se incarcă utilizatorii...',
+    'searching_users' => '',
     'talking_in' => 'vorbești în :channel',
     'talking_with' => 'vorbești cu :name',
     'title_compact' => 'chat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Nu este nimic aici. Poate ai părăsit canalul sau nu există...',
         'title' => 'canalul nu a fost găsit',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

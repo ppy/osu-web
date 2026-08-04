@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Gioca insieme ad amici; presenti o nuovi. Al momento non sei in una squadra. Unisciti a squadre esistenti visitando la loro pagina oppure crea la tua squadra attraverso questa pagina.",
+            'search_link' => '',
             'title' => 'Squadra!',
         ],
     ],
@@ -48,7 +49,7 @@ return [
 
         'description' => [
             'label' => 'Descrizione',
-            'title' => 'Descrizione Squadra',
+            'title' => 'Descrizione della squadra',
         ],
 
         'flag' => [
@@ -66,7 +67,7 @@ return [
             'default_ruleset_help' => 'La modalità di gioco impostata come predefinita quando si visita la pagina della squadra',
             'flag_help' => 'Dimensione massima di :width×:height',
             'header_help' => 'Dimensione massima di :width×:height',
-            'title' => 'Impostazioni Squadra',
+            'title' => 'Impostazioni della squadra',
 
             'application_state' => [
                 'state_0' => 'Chiuse',

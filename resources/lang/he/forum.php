@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'פוסטים שנמחקו',
             'total_posts' => 'סך כל הפוסטים',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'העדיפות הנוכחית: +:count',

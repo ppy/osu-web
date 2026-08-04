@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'felhasználók betöltése...',
+    'searching_users' => '',
     'talking_in' => 'beszélgetés :channel csatornában',
     'talking_with' => 'beszélgetés :name felhasználóval',
     'title_compact' => 'csevegés',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Itt nincs semmi, lehet, hogy elhagytad a csatornát, vagy nem létezik...',
         'title' => 'csatorna nem található',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

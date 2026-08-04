@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited minutė|:count_delimited minučių',
         'months' => ':count_delimited mėnesis|:count_delimited mėnesių',
         'notifications' => ':count_delimited pranešimas|:count_delimited pranešimų',
-        'player' => '',
+        'player' => ':count_delimited žaidėjas|:count_delimited žaidėjai',
         'plus_others' => '+ :count_delimited kitas!|:count_delimited kiti!',
         'post' => ':count_delimited įrašas|:count_delimited įrašų',
         'second_short_unit' => 'skunde|sekundes',

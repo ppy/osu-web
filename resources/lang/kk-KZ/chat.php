@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'қолданушыларды жүктеу...',
+    'searching_users' => '',
     'talking_in' => ':channel-де сөйлесуде',
     'talking_with' => ':name-мен сөйлесу',
     'title_compact' => 'чат',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Бұл жерде тыныш, сіз арнадан шығып кетуіңіз не арна мүлдем болмауы мүмкін...',
         'title' => 'арна табылмады',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

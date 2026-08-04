@@ -26,6 +26,7 @@ return [
         'edited' => 'Última edició per :editor :update_time.',
         'guest' => 'Dificultat de convidat per :user',
         'kudosu_denied' => 'Negar l\'obtenció de kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Aquesta dificultat ha estat eliminada, per tant ja no es pot discutir.',
         'message_placeholder_locked' => 'La discussió per a aquest mapa s\'ha desactivat.',
         'message_placeholder_silenced' => "No podeu publicar una discussió mentre estigui silenciat.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Resolt',
         'restore' => 'restaurar',
         'show_deleted' => 'Mostra els eliminats',
+        'show_other_replies' => '',
         'title' => 'Discussions',
         'unresolved_count' => ':count_delimited problema sense resoldre|:count_delimited problemes sense resoldre',
 

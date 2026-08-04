@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'моддинг',
             'playlists' => 'плейлисти',
-            'ranked-play' => '',
+            'ranked-play' => 'рейтингова гра',
             'realtime' => 'мультиплеєр',
             'show' => 'інформація',
         ],
@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налаштування',
+            'create_team' => '',
             'follows' => 'Перелік підписок',
             'friends' => 'Друзі',
             'legacy_score_only_toggle' => 'Режим Lazer',

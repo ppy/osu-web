@@ -207,7 +207,7 @@ class UserProfileCustomization extends Model
 
     public function setCommentsSortAttribute($value)
     {
-        if ($value !== null && !array_key_exists($value, Comment::SORTS)) {
+        if (!is_string($value) || !array_key_exists($value, Comment::SORTS)) {
             $value = null;
         }
 
@@ -329,7 +329,7 @@ class UserProfileCustomization extends Model
         $this->attributes['extras_order'] = null;
         $this->setOption(
             'extras_order',
-            $value === null ? null : static::repairExtrasOrder($value),
+            is_array($value) ? static::repairExtrasOrder(get_arr($value, get_string(...))) : null,
         );
     }
 

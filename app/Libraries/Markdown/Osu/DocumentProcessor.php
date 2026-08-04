@@ -148,10 +148,25 @@ class DocumentProcessor
         }
 
         $title = presence($this->getText($this->node));
+
+        // The characters not escaped by encodeURIComponent won't match
+        // when percent encoded in the id attribute and accessed unescaped.
+        // Doing it the other way works:
+        // - `#!` url with `%21` id doesn't work
+        // - `#%21` url with `!` id works
+        // - `#%21` url with `%21` id works but at least discord normalises
+        //   the url to `#!` so it stops working when linked there
+        // Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+        static $percentDecoded = null;
+        if ($percentDecoded === null) {
+            $percentDecoded = [];
+            foreach (['!', '~', "'", '(', ')'] as $char) {
+                $percentDecoded[urlencode($char)] = $char;
+            }
+        }
         $slug = $this->node->data['attributes']['id']
-            // turbo can't handle non-percent encoded id
-            ?? presence(urlencode(mb_strtolower(strtr($title ?? '', ' ', '-'))))
-            ?? 'page';
+            // Turbo can't handle non-percent encoded id.
+            ?? presence(strtr(urlencode(mb_strtolower(strtr($title ?? '', ' ', '-'))), $percentDecoded)) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;

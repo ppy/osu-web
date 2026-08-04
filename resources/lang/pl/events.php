@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => ':user zdobywa medal ":achievement"!',
+    'achievement' => ':user zdobywa medal „:achievement”!',
     'beatmap_playcount' => 'Beatmapa :beatmap została zagrana :count razy!',
-    'beatmapset_approve' => 'Beatmapa :beatmapset użytkownika <strong>:user</strong> :approval!',
+    'beatmapset_approve' => 'Beatmapa :beatmapset użytkownika :user :approval!',
     'beatmapset_delete' => 'Beatmapa :beatmapset została usunięta.',
     'beatmapset_revive' => 'Beatmapa :beatmapset została ożywiona z wiecznego snu przez użytkownika :user.',
-    'beatmapset_update' => ':user zaktualizował beatmapę ":beatmapset"',
-    'beatmapset_upload' => ':user przesyła nową beatmapę: :beatmapset',
+    'beatmapset_update' => ':user aktualizuje beatmapę „:beatmapset”',
+    'beatmapset_upload' => ':user przesyła nową beatmapę „:beatmapset”',
     'empty' => "Ten użytkownik nie zrobił w ostatnim czasie nic godnego uwagi!",
     'rank' => ':user zdobywa :rank na beatmapie :beatmap (:mode)',
     'rank_lost' => ':user traci pierwsze miejsce na beatmapie :beatmap (:mode)',
     'user_support_again' => ':user decyduje się ponownie wspomóc osu! - dziękujemy za szczodrość!',
-    'user_support_first' => '<strong>:user</strong> zdecydował(a) się wspomóc osu! - dziękujemy za szczodrość!',
+    'user_support_first' => ':user decyduje się wspomóc osu! - dziękujemy za szczodrość!',
     'user_support_gift' => ':user otrzymuje prezent w postaci statusu donatora!',
-    'username_change' => '<strong>:previousUsername</strong> zmienia swoją nazwę użytkownika na <strong><em>:user</em></strong>!',
+    'username_change' => ':previousUsername zmienia swoją nazwę użytkownika na :user!',
 
     'beatmapset_status' => [
         'approved' => 'została zatwierdzona',

@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'carregant usuaris...',
+    'searching_users' => '',
     'talking_in' => 'parlant en :channel',
     'talking_with' => 'parlant amb :name',
     'title_compact' => 'xat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'No hi ha res per veure, potser has abandonat el canal o bé no existeix...',
         'title' => 'canal no trobat',
+    ],
+
+    'not_joined' => [
+        'message' => 'Uniu-vos al canal per a veure els seus missatges.',
+        'join' => 'Uneix-me al canal',
     ],
 
     'input' => [

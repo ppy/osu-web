@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'laddar användare...',
+    'searching_users' => '',
     'talking_in' => 'pratar i :channel',
     'talking_with' => 'pratar med :name',
     'title_compact' => 'chatt',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Det finns inget här, du kanske lämnade kanalen eller så finns den inte...',
         'title' => 'kanalen hittades ej',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

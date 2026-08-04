@@ -15,9 +15,18 @@
     color: #fff;
   });
 
+  &.js-is-active,
   &--active {
     font-weight: bold;
     color: #fff;
+  }
+
+  &--button {
+    .reset-input();
+  }
+
+  &--inherit-size {
+    font-size: inherit;
   }
 
   &--disabled {

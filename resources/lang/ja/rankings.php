@@ -66,7 +66,7 @@ return [
         'daily_challenge' => 'デイリーチャレンジ',
         'global' => 'グローバル',
         'kudosu' => 'kudosu',
-        'matchmaking' => 'クイックプレイ',
+        'matchmaking' => 'ランクマッチ',
         'playlists' => 'プレイリスト',
         'team' => 'チーム',
         'top_plays' => 'トッププレイ',

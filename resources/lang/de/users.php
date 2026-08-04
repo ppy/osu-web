@@ -403,7 +403,7 @@ return [
                 'show_more' => 'weitere Beiträge anschauen',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Ranked-Play-Spiele',
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
@@ -475,7 +475,7 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => 'Quick Play',
+            'title' => 'Ranked Play',
         ],
 
         'not_found' => [
@@ -506,6 +506,11 @@ return [
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globaler Rang',
             'highest' => 'Höchster Rang: :rank am :date',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',

@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'לקבל הודעת בעת תקלה במפה מאומתת במודים הנלווים',
         'beatmapset_disqualify' => 'קבלת התראות עבור כאשר מפות השייכות למצבי המשחק הבאים נפסלות',
         'comment_reply' => 'קבל התראות עבור מענות לתגובות שלכם',
@@ -88,8 +89,8 @@ return [
             '_' => 'אפשרויות משלוח',
             'beatmap_owner_change' => '',
             'beatmapset:modding' => 'תומך יותר המפה',
-            'channel_message' => 'הודעות פרטיות',
             'channel_mention' => '',
+            'channel_message' => 'הודעות פרטיות',
             'channel_team' => '',
             'comment_new' => 'תגובות חדשות',
             'forum_topic_reply' => 'תגובה על הנושא',
@@ -97,6 +98,18 @@ return [
             'mapping' => '',
             'news_post' => '',
             'push' => 'דחיפה',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'מקלדת',
         'mouse' => 'עכבר',
         'tablet' => 'לוח גרפי',

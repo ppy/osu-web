@@ -19,6 +19,7 @@ return [
         'nav_title' => 'avaluar',
         'no_current_vote' => 'encara no has votat.',
         'update' => 'actualitzar',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'puntuació faltant',
             'contest_vote_judged' => 'no pots votar en concursos avaluats',

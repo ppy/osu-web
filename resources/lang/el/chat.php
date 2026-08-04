@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'φόρτωση χρηστών...',
+    'searching_users' => '',
     'talking_in' => 'μιλάτε στο: :channel',
     'talking_with' => 'μιλάτε με: :name',
     'title_compact' => 'συνομιλία',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Δεν υπάρχει τίποτα εδώ, ίσως φύγετε από το κανάλι ή δεν υπάρχει...',
         'title' => 'το κανάλι δεν βρέθηκε',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

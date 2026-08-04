@@ -70,7 +70,7 @@ const ColumnLength = ({ history }: ColumnProps) => {
   return <>{moment.duration(history.length, 'seconds').humanize()}</>;
 };
 
-const content: Record<Column, (props: ColumnProps) => JSX.Element | null> = {
+const content: Record<Column, React.FunctionComponent<ColumnProps>> = {
   action: ColumnAction,
   date: ColumnDate,
   description: ColumnDescription,

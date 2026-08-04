@@ -6,7 +6,7 @@
 return [
     'landing' => [
         'download' => 'Stáhnout nyní',
-        'online' => '<strong>:players</strong> právě v <strong>:games</strong> hrách',
+        'online' => '<strong>:players</strong> momentálně online v <strong>:games</strong> hrách',
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',

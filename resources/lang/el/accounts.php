@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'λαμβάνετε ειδοποιήσεις για νέα προβλήματα σε πιστοποιημένους beatmaps των παρακάτω λειτουργιών',
         'beatmapset_disqualify' => 'λαμβάνετε ειδοποιήσεις για το πότε τα beatmaps των παρακάτω λειτουργιών αποκλείονται',
         'comment_reply' => 'λαμβάνετε ειδοποιήσεις για απαντήσεις στα σχόλιά σας',
@@ -88,8 +89,8 @@ return [
             '_' => 'επιλογές παράδοσης',
             'beatmap_owner_change' => 'δυσκολία επισκέπτη',
             'beatmapset:modding' => 'beatmap modding',
-            'channel_message' => 'ιδιωτικά μηνύματα',
             'channel_mention' => '',
+            'channel_message' => 'ιδιωτικά μηνύματα',
             'channel_team' => 'μηνύματα συνομιλίας ομάδας',
             'comment_new' => 'νέα σχόλια',
             'forum_topic_reply' => 'απάντηση θέματος',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'beatmap mapper',
             'news_post' => '',
             'push' => 'push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'πληκτρολόγιο',
         'mouse' => 'ποντίκι',
         'tablet' => 'γραφίδα',

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited respuesta oculta.|:count_delimited respuestas ocultas.',
 
     'authorizations' => [
         'update' => [
@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Todos',
         'label' => 'Filtrar por usuario',
+        'multiple' => '',
     ],
 ];

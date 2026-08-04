@@ -67,7 +67,7 @@ export default function Stats(props: Props) {
           {basicStats
             .map((attr) => (
               <div key={attr.label.long} className='score-stats__stat'>
-                <div className='score-stats__stat-row score-stats__stat-row--label'>
+                <div className={classWithModifiers('score-stats__stat-row', 'label', `hit-${attr.attribute}`)}>
                   {attr.label.long}
                 </div>
                 <div className='score-stats__stat-row'>
@@ -81,7 +81,7 @@ export default function Stats(props: Props) {
             {extraStats
               .map((attr) => (
                 <div key={attr.label.long} className='score-stats__stat'>
-                  <div className='score-stats__stat-row score-stats__stat-row--label'>
+                  <div className={classWithModifiers('score-stats__stat-row', 'label', `hit-${attr.attribute}`)}>
                     {attr.label.long}
                   </div>
                   <div className='score-stats__stat-row'>

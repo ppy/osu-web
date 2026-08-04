@@ -75,14 +75,14 @@ return [
         'minute_short_unit' => 'min',
         'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
         'months' => ':count_delimited měsíc|:count_delimited měsíce|:count_delimited měsíců',
-        'notifications' => ':count_delimited oznámení',
+        'notifications' => ':count_delimited oznámení|:count_delimited oznámení|:count_delimited oznámení',
         'player' => ':count_delimited hráč|:count_delimited hráči|:count_delimited hráčů',
         'plus_others' => '+ :count_delimited další!|+ :count_delimited další!|+ :count_delimited dalších!',
         'post' => ':count_delimited příspěvek|:count_delimited příspěvky|:count_delimited příspěvků',
         'second_short_unit' => 'sek',
         'star_priority' => ':count_delimited prioritní hvězdička|:count_delimited prioritní hvězdičky|:count_delimited prioritních hvězdiček',
-        'update' => ':count_delimited aktualizace|:count_delimited aktualizací',
-        'view' => ':count_delimited zhlédnutí',
+        'update' => ':count_delimited aktualizace|:count_delimited aktualizace|:count_delimited aktualizací',
+        'view' => ':count_delimited zhlédnutí|:count_delimited zhlédnutí|:count_delimited zhlédnutí',
         'years' => ':count_delimited rok|:count_delimited roky|:count_delimited let',
     ],
 
@@ -154,8 +154,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => 'před :count_delimited dnem|před :count_delimited dny',
-        'hours_ago' => 'před :count_delimited hodinou|před :count_delimited hodinami',
+        'days_ago' => 'před :count_delimited dnem|před :count_delimited dny|před :count_delimited dny',
+        'hours_ago' => 'před :count_delimited hodinou|před :count_delimited hodinami|před :count_delimited hodinami',
         'now' => 'nyní',
         'remaining' => 'Zbývající čas',
     ],

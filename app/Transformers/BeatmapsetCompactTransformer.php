@@ -209,10 +209,10 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             $resetEvent = $beatmapset->resetEvent();
 
             if ($resetEvent !== null && $resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
-                $result['nomination_reset'] = json_item($resetEvent, 'BeatmapsetEvent');
+                $result['nomination_reset'] = json_item($resetEvent, new BeatmapsetEventTransformer());
             }
             if ($disqualificationEvent !== null) {
-                $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
+                $result['disqualification'] = json_item($disqualificationEvent, new BeatmapsetEventTransformer());
             }
             if ($currentUser !== null) {
                 $result['nominated'] = $beatmapset->beatmapsetNominations()->current()->where('user_id', $currentUser->getKey())->exists();
@@ -313,7 +313,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $json = [];
 
         foreach ($tagIdSet as $tagId) {
-            $tag = $cachedTags->get($tagId);
+            $tag = $cachedTags->getJson($tagId);
             if ($tag !== null) {
                 $json[] = $tag;
             }

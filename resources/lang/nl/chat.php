@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'gebruikers laden...',
+    'searching_users' => '',
     'talking_in' => 'je praat in :channel',
     'talking_with' => 'je praat met :name',
     'title_compact' => 'chat',
@@ -48,6 +49,11 @@ return [
     'not_found' => [
         'message' => 'Er is hier niks, misschien heb je het kanaal verlaten of het bestaat niet...',
         'title' => 'kanaal niet gevonden',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
     ],
 
     'input' => [

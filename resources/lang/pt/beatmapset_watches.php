@@ -5,16 +5,16 @@
 
 return [
     'index' => [
-        'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou atualizações.',
-        'title_compact' => 'lista de observação de modificações',
+        'description' => 'Estas são as discussões de mapas que está a seguir. Será notificado quando houver novas publicações ou atualizações.',
+        'title_compact' => 'lista de observação de mapas seguidos',
 
         'counts' => [
-            'total' => 'Beatmaps vistos',
-            'unread' => 'Beatmaps com nova atividade',
+            'total' => 'Mapas vistos',
+            'unread' => 'Mapas com nova atividade',
         ],
 
         'table' => [
-            'empty' => 'Sem discussões de beatmap a serem vistas.',
+            'empty' => 'Sem discussões de mapas a serem vistas.',
             'last_update' => 'Última atualização',
             'open_issues' => 'Problemas em aberto',
             'state' => 'Estado',

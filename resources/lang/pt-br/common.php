@@ -166,6 +166,6 @@ return [
 
     'wrong_user' => [
         '_' => 'Você está conectado como :user. :logout_link.',
-        'logout_link' => 'Clique aqui para iniciar sessão com um usuário diferente',
+        'logout_link' => 'Clique aqui para entrar como outro usuário',
     ],
 ];

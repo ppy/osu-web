@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของบีทแมพที่ผ่านการรับรองกับโหมดต่อไปนี้',
         'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
         'comment_reply' => 'รับการแจ้งเตือนสำหรับการตอบกลับความคิดเห็นของคุณ',
@@ -88,8 +89,8 @@ return [
             '_' => 'วิธีการรับการแจ้งเตือน',
             'beatmap_owner_change' => 'ระดับความยากของผู้มีส่วนร่วม',
             'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
-            'channel_message' => 'ข้อความส่วนตัว',
             'channel_mention' => '',
+            'channel_message' => 'ข้อความส่วนตัว',
             'channel_team' => 'ข้อความกลุ่ม',
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'ผู้ทำบีทแมพ',
             'news_post' => 'โพสต์ข่าว',
             'push' => 'ส่งการแจ้งเตือน',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'คีย์บอร์ด',
         'mouse' => 'เมาส์',
         'tablet' => 'แท็บเล็ต',

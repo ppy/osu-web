@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
         'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
@@ -88,8 +89,8 @@ return [
             '_' => 'bildirim seçenekleri',
             'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
+            'channel_mention' => 'sohbet etiketlenmesi',
             'channel_message' => 'özel sohbet mesajları',
-            'channel_mention' => '',
             'channel_team' => 'takım sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
@@ -97,6 +98,18 @@ return [
             'mapping' => 'beatmap mapper',
             'news_post' => 'haber paylaşımları',
             'push' => 'anlık',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -121,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'klavye',
         'mouse' => 'fare',
         'tablet' => 'tablet',

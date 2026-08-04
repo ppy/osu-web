@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Spiele zusammen mit Freunden, egal ob bereits erfahrene Spieler oder Anfänger. Du bist aktuell in keinem Team. Tritt einem existierenden Team bei, indem du die Teamseite besuchst oder hier dein eigenes Team erstellst.",
+            'search_link' => '',
             'title' => 'Team!',
         ],
     ],

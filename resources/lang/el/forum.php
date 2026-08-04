@@ -287,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Διαγραμμένες Δημοσιεύσεις',
             'total_posts' => 'Σύνολο Δημοσιεύσεων',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => 'Τρέχουσα Προτεραιότητα +:count',

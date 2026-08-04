@@ -7,6 +7,7 @@ namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Transformers\BeatmapsetTransformer;
 use Tests\TestCase;
 
 class BeatmapsetTransformerTest extends TestCase
@@ -20,7 +21,7 @@ class BeatmapsetTransformerTest extends TestCase
         $beatmapset = Beatmapset::factory()->deleted()->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($beatmapset, 'Beatmapset');
+        $json = json_item($beatmapset, new BeatmapsetTransformer());
 
         $this->assertEmpty($json);
     }
@@ -34,7 +35,7 @@ class BeatmapsetTransformerTest extends TestCase
         $beatmapset = Beatmapset::factory()->deleted()->create();
         $this->actAsUser($viewer);
 
-        $json = json_item($beatmapset, 'Beatmapset');
+        $json = json_item($beatmapset, new BeatmapsetTransformer());
 
         if ($visible) {
             $this->assertNotEmpty($json);

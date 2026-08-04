@@ -24,7 +24,7 @@ class ScreenshotsController extends Controller
             ],
         ]);
 
-        datadog_increment('osu.screenshots');
+        \Datadog::increment('osu.screenshots');
 
         $screenshot = Screenshot::create(['user_id' => \Auth::user()->getKey()]);
         $screenshot->store($validated['screenshot']);

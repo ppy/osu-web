@@ -403,7 +403,7 @@ return [
                 'show_more' => 'бачити більше постiв',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Матчі рейтингової гри',
             ],
             'recent_activity' => [
                 'title' => 'Недавня активність',
@@ -506,6 +506,11 @@ return [
             'global' => 'Глобальний рейтинг для :mode',
             'global_simple' => 'Рейтинг в світі',
             'highest' => 'Найвищий ранг :rank було досягнуто :date ',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',

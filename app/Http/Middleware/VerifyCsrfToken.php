@@ -16,6 +16,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         'home/changelog/github',
         'oauth/authorize',
+        'one-time-key/check',
         'payments/paypal/ipn',
         'payments/shopify/callback',
         'payments/xsolla/callback',
