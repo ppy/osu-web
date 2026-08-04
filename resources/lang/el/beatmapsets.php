@@ -156,6 +156,16 @@ return [
             'video' => 'Αυτό το beatmap περιέχει βίντεο',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Αυτό το beatmap περιέχει ρητό, προσβλητικό, ή ενοχλητικό περιεχόμενο. Θα θέλεις να το δεις ούτως ή άλλως?',
             'title' => 'Ακατάλληλο περιεχόμενο',

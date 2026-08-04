@@ -93,6 +93,7 @@ class UserCompactTransformer extends TransformerAbstract
         'rank_highest',
         'ranked_beatmapset_count',
         'replays_watched_counts',
+        'score_processing_notice_url',
         'scores_best_count',
         'scores_first_count',
         'scores_pinned_count',
@@ -379,6 +380,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         $allStats = $user
             ->matchmakingStats()
+            ->hasPlayed()
             ->whereHas('pool', fn ($q) => $q->where([
                 'ruleset_id' => Beatmap::MODES[$this->mode],
                 'type' => 'ranked_play',
@@ -458,6 +460,11 @@ class UserCompactTransformer extends TransformerAbstract
             $user->replaysWatchedCounts,
             new UserReplaysWatchedCountTransformer()
         );
+    }
+
+    public function includeScoreProcessingNoticeUrl()
+    {
+        return $this->primitive($GLOBALS['cfg']['osu']['score']['processing_notice_url']);
     }
 
     public function includeScoresBestCount(User $user)

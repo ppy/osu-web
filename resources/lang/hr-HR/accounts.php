@@ -77,6 +77,7 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'primaj obavijesti o novim problemima na kvalificiranim beatmapovima sljedećih modova',
         'beatmapset_disqualify' => 'primaj obavijesti kad beatmap-ovi sljedećih modova budu diskvalificirani',
         'comment_reply' => 'primaj obavijesti za odgovore na tvoje komentare',
@@ -133,6 +134,7 @@ return [
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'tipkovnica',
         'mouse' => 'miš',
         'tablet' => 'tablet',

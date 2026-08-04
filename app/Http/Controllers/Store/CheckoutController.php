@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Store;
 
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\PaymentCompleted;
+use App\Libraries\Payments\PaypalCreatePayment;
+use App\Libraries\Payments\XsollaCreateToken;
 use App\Models\Store\Order;
 use App\Traits\CheckoutErrorSettable;
 use Auth;
@@ -51,22 +53,23 @@ class CheckoutController extends Controller
     {
         $params = get_params(request()->all(), null, [
             'hide_from_activity:bool',
-            'orderId:int',
+            'order_id:int',
             'provider',
-            'shopifyCheckoutId',
+            'shopify_checkout_id',
         ], ['null_missing' => true]);
 
-        $order = $this->orderForCheckout($params['orderId']);
+        $order = $this->orderForCheckout($params['order_id']);
 
         if ($order === null || $order->isEmpty()) {
             return ujs_redirect(route('store.cart.show'));
         }
 
-        if ($params['hide_from_activity'] !== null) {
-            $order->setGiftsHidden($params['hide_from_activity']);
+        $hideFromActivity = $params['hide_from_activity'];
+        if ($hideFromActivity) {
+            $order->setGiftsHidden($hideFromActivity);
         }
 
-        $checkout = new OrderCheckout($order, $params['provider'], $params['shopifyCheckoutId']);
+        $checkout = new OrderCheckout($order, $params['provider'], $params['shopify_checkout_id']);
 
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
@@ -81,9 +84,20 @@ class CheckoutController extends Controller
 
         if ((float) $order->getTotal() === 0.0) {
             return $this->freeCheckout($checkout);
+        } else if ($params['provider'] === Order::PROVIDER_PAYPAL) {
+            return [
+                'paypal_approve_url' => new PaypalCreatePayment($order)->run(),
+                'provider' => Order::PROVIDER_PAYPAL,
+            ];
+        } else if ($params['provider'] === Order::PROVIDER_XSOLLA) {
+            return [
+                ...new XsollaCreateToken($order, \Auth::user())->run(),
+                'order_number' => $order->getOrderNumber(),
+                'provider' => Order::PROVIDER_XSOLLA,
+            ];
         }
 
-        return 'ok';
+        return response()->noContent();
     }
 
     private function freeCheckout($checkout)

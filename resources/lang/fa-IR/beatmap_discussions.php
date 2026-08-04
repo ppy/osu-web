@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'همه',
         'label' => 'فیلتر بر اساس کاربر',
+        'multiple' => '',
     ],
 ];

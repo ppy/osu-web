@@ -26,6 +26,7 @@ return [
         'edited' => 'Ultima dată editat de :editor :update_time.',
         'guest' => 'Dificultate cu participare ca oaspete de :user',
         'kudosu_denied' => 'A fost refuzat din a obține kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Această dificultate a fost ștearsă, astfel nu mai este posibil să fie discutată.',
         'message_placeholder_locked' => 'Discuția pentru acest beatmap a fost dezactivată.',
         'message_placeholder_silenced' => "Nu poți posta atunci când ești mut.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Rezolvat',
         'restore' => 'restabilește',
         'show_deleted' => 'Afișează șterse',
+        'show_other_replies' => '',
         'title' => 'Discuții',
         'unresolved_count' => 'o problemă nerezolvată|:count_delimited probleme nerezolvate|:count_delimited de probleme nerezolvate',
 

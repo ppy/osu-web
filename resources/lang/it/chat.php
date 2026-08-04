@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'caricamento utenti...',
+    'searching_users' => '',
     'talking_in' => 'parlando in :channel',
     'talking_with' => 'parlando con :name',
     'title_compact' => 'chat',
@@ -51,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Unisciti al canale per vedere i suoi messaggi.',
+        'join' => 'Unisciti al canale',
     ],
 
     'input' => [

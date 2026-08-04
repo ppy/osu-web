@@ -26,6 +26,7 @@ return [
         'edited' => 'Ultima modifica di :editor :update_time',
         'guest' => 'Difficoltà ospite di :user',
         'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Questa difficoltà è stata eliminata, quindi non può più essere discussa.',
         'message_placeholder_locked' => 'La discussione per questa beatmap è stata disabilitata.',
         'message_placeholder_silenced' => "Non puoi postare una discussione mentre sei silenziato.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Risolto',
         'restore' => 'ripristina',
         'show_deleted' => 'Mostra eliminati',
+        'show_other_replies' => '',
         'title' => 'Discussioni',
         'unresolved_count' => ':count_delimited problema irrisolto|:count_delimited problemi irrisolti',
 

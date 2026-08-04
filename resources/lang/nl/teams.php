@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Speel samen met je vrienden; bekend of nieuw. Je bent nog niet lid van een team. Word lid van een bestaand team door hun pagina te bezoeken, of maak hier je eigen team.",
+            'search_link' => '',
             'title' => 'Team!',
         ],
     ],

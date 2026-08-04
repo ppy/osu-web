@@ -27,7 +27,7 @@ return [
         'title' => 'Procurar',
 
         'artist_track' => [
-            'more_simple' => 'Ver mais resultados da pesquisa de faixas de artistas em destaque',
+            'more_simple' => 'Ver mais resultados da pesquisa de músicas dos artistas em destaque',
         ],
         'beatmapset' => [
             'login_required' => 'Inicie a sessão para procurar por mapas',
@@ -54,7 +54,7 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'artist_track' => 'faixa do artista em destaque',
+            'artist_track' => 'música do artista em destaque',
             'beatmapset' => 'mapa',
             'forum_post' => 'fórum',
             'team' => 'equipa',

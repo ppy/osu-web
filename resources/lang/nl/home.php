@@ -27,7 +27,7 @@ return [
         'title' => 'Zoek',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Bekijk meer zoekresultaten voor nummers van featured artists',
         ],
         'beatmapset' => [
             'login_required' => 'Log in om beatmaps te zoeken',
@@ -54,17 +54,17 @@ return [
 
         'mode' => [
             'all' => 'alle',
-            'artist_track' => '',
+            'artist_track' => 'featured artist nummer',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'team' => '',
+            'team' => 'team',
             'user' => 'speler',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'login_required' => '',
-            'more_simple' => '',
+            'login_required' => 'Log in om teams te zoeken',
+            'more_simple' => 'Bekijk meer team zoekresultaten',
         ],
 
         'user' => [
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'bekijk deze pagina voor meer informatie',
-        'download' => '',
+        'download' => 'Download',
         'for_os' => 'voor :os',
         'macos-fallback' => 'macOS gebruikers',
         'mirror' => 'mirror',
@@ -92,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version of nieuwer',
         'other_os' => 'andere platformen',
         'quick_start_guide' => 'snelstartgids',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'als je op zoek bent naar de oudere',
+        'tagline_1' => 'laten we',
+        'tagline_2' => 'beginnen!',
         'video-guide' => 'videogids',
 
         'help' => [
@@ -141,11 +141,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Dagelijkse Beatmap Uitdaging',
             'new' => 'Nieuwe Ranked Beatmaps',
             'popular' => 'Populaire Beatmaps',
             'by_user' => 'door :user',
-            'resets' => '',
+            'resets' => 'reset :ends',
         ],
         'buttons' => [
             'download' => 'Download osu!',
@@ -153,11 +153,11 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Aanbevolen Livestream',
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Admin console openen',
             ],
         ],
     ],

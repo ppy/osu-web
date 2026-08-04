@@ -19,6 +19,7 @@ return [
         'nav_title' => 'bedøm',
         'no_current_vote' => 'du har ikke stemt endnu.',
         'update' => 'opdatér',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'mangler score',
             'contest_vote_judged' => 'kan ikke stemme i bedømte konkurrencer',

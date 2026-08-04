@@ -10,12 +10,12 @@ return [
     ],
 
     'daily_challenge' => [
-        'beatmap' => '',
-        'top_10p' => '',
-        'top_50p' => '',
+        'beatmap' => 'Moeilijkheid',
+        'top_10p' => 'Top 10% Score',
+        'top_50p' => 'Top 50% Score',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Nog geen dagelijkse uitdaging op de aangegeven datum!',
+            'past' => 'Geen dagelijkse uitdaging op de opgegeven datum!',
         ],
     ],
 
@@ -34,52 +34,53 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Plays',
+        'points' => 'Punten',
+        'provisional' => 'Niet genoeg gespeelde matches om de rating nauwkeurig te bepalen',
+        'rating' => 'Rating',
+        'wins' => 'Winsten',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Kamer Naam',
     ],
 
     'performance' => [
-        'insufficient_history' => '',
+        'insufficient_history' => 'Deze gebruiker heeft minder dan 30 dagen van recente rang geschiedenis.',
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'De gegevens worden berekend...',
+        'last_updated' => 'Laatst bijgewerkt',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlights (oud)
+',
+        'featured' => 'uitgelicht',
+        'season_room' => 'seizoen kamer',
+        'seasons' => 'seizoenen',
     ],
 
     'type' => [
         'country' => 'landelijk',
-        'daily_challenge' => '',
-        'global' => '',
+        'daily_challenge' => 'dagelijkse uitdaging',
+        'global' => 'globaal',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
-        'team' => '',
-        'top_plays' => '',
+        'matchmaking' => 'gerangschikte modus',
+        'playlists' => 'afspeellijsten',
+        'team' => 'team',
+        'top_plays' => 'top gespeeld',
     ],
 
     'seasons' => [
         'empty' => 'Er zijn nog geen ruimtes in dit seizoen.',
         'ongoing' => 'Dit seizoen is nog steeds gaande (er zullen meer afspeellijsten toegevoegd worden).',
         'room_count' => 'Aantal afspeellijsten',
-        'summary' => '',
+        'summary' => 'Bekijk Seizoen Samenvatting',
         'url' => 'Geef meer informatie weer over dat seizoen.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'er zijn niet genoeg score factoren voor een juiste berekening',
         ],
     ],
 
@@ -94,8 +95,8 @@ return [
         'accuracy' => 'Nauwkeurigheid',
         'active_users' => 'Actieve gebruikers',
         'country' => 'Land',
-        'division' => '',
-        'members' => '',
+        'division' => 'Divisie',
+        'members' => 'Leden',
         'play_count' => 'Aantal keer gespeeld',
         'performance' => 'Prestatie',
         'total_score' => 'Totale Score',

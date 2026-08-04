@@ -116,5 +116,6 @@ return [
     'user_filter' => [
         'everyone' => 'Visi',
         'label' => 'Filtruoti pagal vartotoją',
+        'multiple' => '',
     ],
 ];

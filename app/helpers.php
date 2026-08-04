@@ -877,7 +877,7 @@ function from_app_url(?HttpRequest $request = null)
     // https://osu.web.domain.com.
     // This assumes app.url doesn't contain trailing slash.
     return $headers->get('origin') === $appUrl
-        || str_starts_with($headers->get('referer'), "{$appUrl}/");
+        || str_starts_with($headers->get('referer', ''), "{$appUrl}/");
 }
 
 function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
@@ -1449,7 +1449,7 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function json_collection($model, TransformerAbstract $transformer, array|string|null $includes = null)
+function json_collection($model, TransformerAbstract|callable $transformer, array|string|null $includes = null)
 {
     $manager = new League\Fractal\Manager(new App\Libraries\Transformers\ScopeFactory());
     if ($includes !== null) {
@@ -1463,7 +1463,7 @@ function json_collection($model, TransformerAbstract $transformer, array|string|
     return $manager->createData($collection)->toArray();
 }
 
-function json_item($model, TransformerAbstract $transformer, array|string|null $includes = null)
+function json_item($model, TransformerAbstract|callable $transformer, array|string|null $includes = null)
 {
     return json_collection([$model], $transformer, $includes)[0] ?? null;
 }

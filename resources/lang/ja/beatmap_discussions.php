@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited件の返信が非表示です。|:count_delimited件の返信が非表示です。',
 
     'authorizations' => [
         'update' => [
@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => '全てのユーザー',
         'label' => 'ユーザーで絞り込む',
+        'multiple' => '',
     ],
 ];

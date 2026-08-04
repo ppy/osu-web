@@ -156,6 +156,16 @@ return [
             'video' => 'Este mapa contiene video',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Quieres verlo de todos modos?',
             'title' => 'Contenido explícito',

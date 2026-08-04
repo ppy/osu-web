@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Lahat',
         'label' => 'I-filter sa user',
+        'multiple' => '',
     ],
 ];

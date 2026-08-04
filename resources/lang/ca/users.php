@@ -507,6 +507,11 @@ return [
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',
         ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
         'season_stats' => [
             'division_top_percentage' => ':value millors',
             'total_score' => 'Puntuació total',

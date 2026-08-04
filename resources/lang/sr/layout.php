@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Подешавања',
+            'create_team' => '',
             'follows' => 'Листа за гледање',
             'friends' => 'Пријатељи',
             'legacy_score_only_toggle' => 'Lazer мод',

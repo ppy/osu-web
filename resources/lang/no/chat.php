@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'laster inn brukere...',
+    'searching_users' => '',
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',
     'title_compact' => 'chat',

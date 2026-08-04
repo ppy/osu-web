@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'การตั้งค่า',
+            'create_team' => '',
             'follows' => 'รายการการเฝ้าดู',
             'friends' => 'เพื่อน',
             'legacy_score_only_toggle' => 'โหมด Lazer',

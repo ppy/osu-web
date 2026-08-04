@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Usunięte posty',
             'total_posts' => 'Wszystkie posty',
-            'total_watches' => '',
+            'total_watches' => 'Subskrybujący',
 
             'feature_vote' => [
                 'current' => 'Priorytet: +:count',

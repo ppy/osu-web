@@ -196,6 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
+            'create_team' => '',
             'follows' => '追蹤清單',
             'friends' => '好友',
             'legacy_score_only_toggle' => 'Lazer 模式',

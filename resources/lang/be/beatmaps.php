@@ -26,6 +26,7 @@ return [
         'edited' => 'Апошняе рэдагаванне :editor а :update_time.',
         'guest' => 'Cкладанасць госця :user',
         'kudosu_denied' => 'Адмоўлена ў атрыманні кудосу.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Гэтая цяжкасць была выдалена і абмяркоўваць у ёй больш нельга.',
         'message_placeholder_locked' => 'Абмеркаванні для гэтай карты былі адключаныя.',
         'message_placeholder_silenced' => "Нельга размясціць дыскусію ў адключаным рэжыме.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Вырашана',
         'restore' => 'аднавіць',
         'show_deleted' => 'Паказ выдаленыя',
+        'show_other_replies' => '',
         'title' => 'Абмеркаванні',
         'unresolved_count' => ':count_delimited невырашаная праблема|:count_delimited невырашаных праблем',
 

@@ -47,7 +47,12 @@ class MatchmakingUserStats extends Model
     {
         return $query
             ->whereHas('user', fn (Builder $q): Builder => $q->default())
-            ->where('plays', '>', 0);
+            ->hasPlayed();
+    }
+
+    public function scopeHasPlayed(Builder $query): void
+    {
+        $query->where('plays', '>', 0);
     }
 
     public function scopeWithRank(Builder $query): void
@@ -57,7 +62,7 @@ class MatchmakingUserStats extends Model
             ->newQuery()
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
-            ->where('plays', '>', 0)
+            ->hasPlayed()
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
@@ -92,7 +97,7 @@ class MatchmakingUserStats extends Model
             1,
             fn () => static
                 ::where('pool_id', $this->pool_id)
-                ->where('plays', '>', 0)
+                ->hasPlayed()
                 ->count(),
         );
 

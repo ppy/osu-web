@@ -112,11 +112,11 @@ return [
             '_' => 'ranglijsten',
         ],
         'teams_controller' => [
-            '_' => '',
-            'create' => '',
-            'edit' => '',
-            'leaderboard' => '',
-            'show' => '',
+            '_' => 'teams',
+            'create' => 'team aanmaken',
+            'edit' => 'team instellingen',
+            'leaderboard' => 'team leaderboard',
+            'show' => 'team info',
         ],
         'tournaments_controller' => [
             '_' => 'toernooien',

@@ -139,7 +139,7 @@ return [
         'attributes' => [
             'default_ruleset_id' => '',
             'is_open' => '',
-            'name' => '',
+            'name' => 'Ime',
             'short_name' => '',
             'url' => '',
         ],

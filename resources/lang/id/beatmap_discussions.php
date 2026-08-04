@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Semua',
         'label' => 'Saring berdasarkan pengguna',
+        'multiple' => '',
     ],
 ];

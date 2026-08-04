@@ -70,7 +70,7 @@ export function validPage(page: unknown) {
 interface InitialData {
   achievements: AchievementJson[];
   current_mode: Ruleset;
-  scores_notice: string | null;
+  score_processing_notice_url: string | null;
   user: ProfilePageUserJson;
   user_cover_presets: UserCoverPresetJson[];
 }
@@ -100,7 +100,7 @@ export default class Controller {
   @observable displayCoverUrl: string | null;
   readonly hasSavedState: boolean;
   @observable isUpdatingCover = false;
-  readonly scoresNotice: string | null;
+  readonly scoreProcessingNoticeUrl: string | null;
   @observable selectedHue: number | null;
   @observable readonly state: State;
   readonly userCoverPresets;
@@ -157,7 +157,7 @@ export default class Controller {
       this.achievements.set(achievement.id, achievement);
     }
     this.currentMode = initialData.current_mode;
-    this.scoresNotice = initialData.scores_notice;
+    this.scoreProcessingNoticeUrl = initialData.score_processing_notice_url;
     this.displayCoverUrl = this.state.user.cover.url;
     this.selectedHue = this.state.user.profile_hue;
     this.userCoverPresets = initialData.user_cover_presets;

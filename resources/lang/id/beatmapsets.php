@@ -156,6 +156,16 @@ return [
             'video' => 'Beatmap ini menyertakan video',
         ],
 
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
+        ],
+
         'nsfw_warning' => [
             'details' => 'Beatmap ini mengandung konten yang bersifat eksplisit, menyinggung, atau meresahkan. Apakah kamu tetap ingin menampilkan beatmap ini?',
             'title' => 'Konten Eksplisit',

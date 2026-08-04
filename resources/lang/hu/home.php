@@ -5,7 +5,7 @@
 
 return [
     'landing' => [
-        'download' => 'Letöltés',
+        'download' => 'Letöltés most',
         'online' => 'Jelenleg <strong>:players</strong> játszik <strong>:games</strong> játékban',
         'peak' => 'Csúcsfokon, :count játékos volt elérhető',
         'players' => '<strong>:count</strong> regisztrált játékos',
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'lásd ezt az oldalt több információért',
-        'download' => '',
+        'download' => 'Letöltés',
         'for_os' => ':os operációs rendszerhez',
         'macos-fallback' => 'macOS használók',
         'mirror' => 'tükör',
@@ -157,7 +157,7 @@ return [
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Admin konzol megnyitása',
             ],
         ],
     ],

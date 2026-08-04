@@ -113,5 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Vsi',
         'label' => 'Filtriraj po uporabnikih',
+        'multiple' => '',
     ],
 ];

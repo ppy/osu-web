@@ -26,6 +26,7 @@ return [
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
         'guest' => 'Tingkat kesulitan tamu oleh :user',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini sudah dihapus, sehingga tidak lagi bisa didiskusikan.',
         'message_placeholder_locked' => 'Diskusi untuk beatmap ini sudah dinonaktifkan.',
         'message_placeholder_silenced' => "Kamu tidak bisa mengirim topik diskusi ketika akunmu sedang di-silence.",
@@ -37,6 +38,7 @@ return [
         'resolved' => 'Terjawab',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang dihapus',
+        'show_other_replies' => '',
         'title' => 'Diskusi',
         'unresolved_count' => ':count_delimited masalah yang belum terjawab|:count_delimited masalah yang belum terjawab',
 

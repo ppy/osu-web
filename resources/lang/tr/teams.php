@@ -34,6 +34,7 @@ return [
 
         'intro' => [
             'description' => "Mevcut ya da yeni arkadaşlarınla birlikte oyna. Şu anda bir takımda değilsiniz. Takım sayfalarını ziyaret ederek mevcut bir takıma katılın veya bu sayfadan kendi takımınızı oluşturun.",
+            'search_link' => '',
             'title' => 'Takım!',
         ],
     ],

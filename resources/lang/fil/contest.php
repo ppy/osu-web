@@ -19,6 +19,7 @@ return [
         'nav_title' => 'maghusga',
         'no_current_vote' => 'hindi ka pa nakaboto.',
         'update' => 'i-update',
+        'unsaved_changes' => '',
         'validation' => [
             'missing_score' => 'nawawalang iskor',
             'contest_vote_judged' => 'hindi maaaring bumoto sa hinuhusgahang mga paligsahan',

@@ -11,7 +11,7 @@ return [
     'beatmapset_revive' => ':beatmapset تم احياؤها من سبات ابدي بواسطة <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> قام بتحديث الخريطة "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> قام بتقديم خريطة جديدة ":beatmapset"',
-    'empty' => "لم يقم هذا المستخدم بأي شيء يُذكر مؤخرًا!",
+    'empty' => "هذا المستخدم لم يقم بعمل اي نشاطات ملحوظة منذ فترة!",
     'rank' => '<strong><em>:user</em></strong> حصل على المرتبة #:rank على <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> خسر المرتبة الاولى على <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> اختار مجدداََ ان يدعم osu! - شكرا لكرمك!',
