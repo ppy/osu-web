@@ -7,6 +7,7 @@ namespace Tests\Libraries\Score;
 
 use App\Enums\Ruleset;
 use App\Models\Solo\Score;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ScoringModeTest extends TestCase
@@ -33,9 +34,7 @@ class ScoringModeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider classicScoreConversionDataProvider
-     */
+    #[DataProvider('classicScoreConversionDataProvider')]
     public function testConvertToClassic(int $standardisedScore, int $classicScore, string $maxHitResult): void
     {
         // Hardcoded by the referenced test

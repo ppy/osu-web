@@ -11,13 +11,12 @@ use App\Models\Comment;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
-    /**
-     * @dataProvider commentReplyOptionDataProvider
-     */
+    #[DataProvider('commentReplyOptionDataProvider')]
     public function testCommentReplyNotification($option, $shouldBeSent)
     {
         $user = User::factory()->create();
@@ -69,9 +68,7 @@ class CommentTest extends TestCase
         $this->assertArrayHasKey('parent_id', $comment->validationErrors()->all());
     }
 
-    /**
-     * @dataProvider dataProviderForSetCommentableInvalid
-     */
+    #[DataProvider('dataProviderForSetCommentableInvalid')]
     public function testSetCommentableInvalid($type, $id)
     {
         $comment = new Comment(['commentable_type' => $type, 'commentable_id' => $id]);

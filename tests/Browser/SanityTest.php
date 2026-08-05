@@ -60,6 +60,7 @@ use App\Models\UserStatistics;
 use Exception;
 use Illuminate\Routing\Route as LaravelRoute;
 use Laravel\Dusk\Browser;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\DuskTestCase;
 
 class SanityTest extends DuskTestCase
@@ -381,9 +382,7 @@ class SanityTest extends DuskTestCase
         return $data;
     }
 
-    /**
-     * @dataProvider routesDataProvider
-     */
+    #[DataProvider('routesDataProvider')]
     public function testPageLoadCheck($type, $uri)
     {
         $route = app()->routes->get('GET')[$uri];
