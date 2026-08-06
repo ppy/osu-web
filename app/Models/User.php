@@ -428,7 +428,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public static function cleanUsername($username)
     {
-        return strtolower($username);
+        return strtolower($username ?? '');
     }
 
     public static function findAndRenameUserForInactive($username): ?self
@@ -768,7 +768,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserTwitterAttribute($value)
     {
-        $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
+        $this->attributes['user_twitter'] = trim(ltrim($value ?? '', '@'));
     }
 
     public function setUserDiscordAttribute($value)
@@ -778,8 +778,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserColourAttribute($value)
     {
-        // also functions for casting null to string
-        $this->attributes['user_colour'] = ltrim($value, '#');
+        $this->attributes['user_colour'] = ltrim($value ?? '', '#');
     }
 
     public function getAttribute($key)
