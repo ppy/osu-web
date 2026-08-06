@@ -117,7 +117,7 @@ class ScoreSearch extends RecordSearch
                     ->filter(['term' => [$scoreField => $beforeTotalScore]]));
             }
 
-            $query->must($scoreQuery);
+            $query->filter($scoreQuery);
         }
 
         return $query;
@@ -193,7 +193,7 @@ class ScoreSearch extends RecordSearch
         }
 
         if (isset($shouldSubQueries)) {
-            $query->must($shouldSubQueries);
+            $query->filter($shouldSubQueries);
         }
     }
 }
