@@ -25,13 +25,12 @@ use App\Models\UserGroup;
 use App\Models\UserRelation;
 use App\Models\UserReplaysWatchedCount;
 use Carbon\Carbon;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ModelCompositePrimaryKeysTest extends TestCase
 {
-    /**
-     * @dataProvider dataProviderBase
-     */
+    #[DataProvider('dataProviderBase')]
     public function testDelete(string $class, array $baseParams, array $item2Params, array $check)
     {
         [$item1, $item2] = $this->createModels($class, $baseParams, $item2Params, $check);
@@ -42,9 +41,7 @@ class ModelCompositePrimaryKeysTest extends TestCase
         $this->assertNotNull($item2->fresh());
     }
 
-    /**
-     * @dataProvider dataProviderBase
-     */
+    #[DataProvider('dataProviderBase')]
     public function testFresh(string $class, array $baseParams, array $item2Params, array $check)
     {
         [$item1, $item2] = $this->createModels($class, $baseParams, $item2Params, $check);
@@ -58,9 +55,7 @@ class ModelCompositePrimaryKeysTest extends TestCase
         $this->assertSame($cast($check[2]), $cast($item2->fresh()->$key));
     }
 
-    /**
-     * @dataProvider dataProviderBase
-     */
+    #[DataProvider('dataProviderBase')]
     public function testUpdate(string $class, array $baseParams, array $item2Params, array $check)
     {
         [$item1, $item2] = $this->createModels($class, $baseParams, $item2Params, $check);

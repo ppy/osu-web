@@ -12,13 +12,12 @@ use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
 use Exception;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class RoomTest extends TestCase
 {
-    /**
-     * @dataProvider startGameDurationDataProvider
-     */
+    #[DataProvider('startGameDurationDataProvider')]
     public function testStartGameDuration(int $duration, bool $isSupporter, bool $expectException)
     {
         $beatmap = Beatmap::factory()->create();
@@ -338,9 +337,7 @@ class RoomTest extends TestCase
         $this->assertSame('good word', $room->name);
     }
 
-    /**
-     * @dataProvider difficultyRangeDataProvider
-     */
+    #[DataProvider('difficultyRangeDataProvider')]
     public function testRoomDifficultyRange(bool $preloadPlaylist, bool $preloadBeatmaps, bool $allItemsExpired, float $minDifficulty, float $maxDifficulty)
     {
         $room = Room::factory()->create();

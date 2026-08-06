@@ -9,6 +9,7 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Transformers\BeatmapsetEventTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetEventTransformerTest extends TestCase
@@ -16,9 +17,7 @@ class BeatmapsetEventTransformerTest extends TestCase
     /** @var Beatmapset */
     protected $beatmapset;
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testWithOAuth(?string $groupIdentifier, string $eventType, bool $visibleWithOAuth)
     {
         $event = $this->beatmapset->events()->create([
@@ -37,9 +36,7 @@ class BeatmapsetEventTransformerTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testWithoutOAuth(?string $groupIdentifier, string $eventType, bool $visibleWithOAuth, bool $visibleWithoutOAuth)
     {
         $event = $this->beatmapset->events()->create([
