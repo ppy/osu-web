@@ -12,23 +12,30 @@ use App\Models\User;
 
 class CreatorFilterTest extends TestCase
 {
+    protected array $defaultExpectedSort = ['_score', 'id'];
+
     public static function dataProvider(): array
     {
         return [
-            'include lookup user' => [['q' => 'creator=mapper'], [0, 1]],
+            'include keyword' => [['q' => 'mapper'], []], // doesn't match guest mapper because keyword doesn't do the name lookup
+            'exclude keyword' => [['q' => '-mapper'], [4, 3, 2, 1, 0]],
+
+            'include lookup user' => [['q' => 'creator=mapper'], [1, 0]],
             'include non-lookup user' => [['q' => 'creator=someone'], [0, 3]],
+            'exclude lookup user' => [['q' => '-creator=mapper'], [4, 3, 2], ['approved_date', 'id']],
+            'exclude non-lookup user' => [['q' => '-creator=someone'], [4, 2, 1], ['approved_date', 'id']],
         ];
     }
 
     public static function setUpBeforeClass(): void
     {
         static::withDbAccess(function () {
-            $factory = Beatmapset::factory()->withBeatmaps()->ranked();
+            $factory = Beatmapset::factory()->fixedStrings()->withBeatmaps(beatmapState: ['version' => 'test'])->ranked();
             $mapper1 = User::factory()->create(['username' => 'mapper']);
             $mapper2 = User::factory()->create(['username' => 'another_mapper']);
 
             static::$beatmapsets = [
-                $factory->withBeatmaps(guestMapper: $mapper1)->create(['creator' => 'someone']),
+                $factory->withBeatmaps(guestMapper: $mapper1, beatmapState: ['version' => 'test2'])->create(['creator' => 'someone']),
                 $factory->create(['user_id' => $mapper1]),
                 $factory->create(['user_id' => $mapper2]),
                 $factory->create(['creator' => 'someone_else']),
