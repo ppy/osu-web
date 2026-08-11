@@ -19,14 +19,4 @@ trait CreatesApplication
 
         return $app;
     }
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        return static::createApp();
-    }
 }
