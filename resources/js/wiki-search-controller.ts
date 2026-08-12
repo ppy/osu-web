@@ -18,7 +18,7 @@ export class WikiSearchController {
   @observable suggestions: SuggestionJson[] = [];
 
   private readonly debouncedFetchSuggestions = debounce(() => this.fetchSuggestions(), 200);
-  @observable private locale: string | undefined;
+  @observable private locale: string;
   @observable private query = '';
   private xhr?: JQueryXHR;
 
@@ -34,8 +34,9 @@ export class WikiSearchController {
     return this.selectedItem == null ? this.query : this.selectedItem.title;
   }
 
-  constructor() {
+  constructor(locale: string) {
     makeObservable(this);
+    this.locale = locale;
   }
 
   @action
@@ -84,7 +85,7 @@ export class WikiSearchController {
   }
 
   @action
-  updateQuery(query: string, locale?: string) {
+  updateQuery(query: string, locale: string) {
     const newQuery = query.trim();
     const previousQuery = this.query.trim();
 

@@ -15,7 +15,7 @@ interface Props {
 
 @observer
 export class WikiSearch extends React.Component<Props> {
-  private readonly controller = new WikiSearchController();
+  private readonly controller = new WikiSearchController(this.props.locale);
   private readonly ref = React.createRef<HTMLDivElement>();
   private readonly selectedRef = React.createRef<HTMLAnchorElement>();
 
