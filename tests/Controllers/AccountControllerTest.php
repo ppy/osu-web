@@ -16,6 +16,8 @@ use App\Models\WeakPassword;
 use Database\Factories\UserFactory;
 use Hash;
 use Mail;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
@@ -67,11 +69,10 @@ class AccountControllerTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForUpdateCountry
-     * @group RequiresScoreIndexer
-     *
      * More complete tests are done through CountryChange and CountryChangeTarget.
      */
+    #[DataProvider('dataProviderForUpdateCountry')]
+    #[Group('RequiresScoreIndexer')]
     public function testUpdateCountry(?string $historyCountry, ?string $targetCountry, bool $success): void
     {
         $user = $this->user();

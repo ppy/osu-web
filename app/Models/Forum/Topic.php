@@ -283,8 +283,7 @@ class Topic extends Model implements AfterCommit
 
     public function setTopicFirstPosterColourAttribute($value)
     {
-        // also functions for casting null to string
-        $this->attributes['topic_first_poster_colour'] = ltrim($value, '#');
+        $this->attributes['topic_first_poster_colour'] = ltrim($value ?? '', '#');
     }
 
     public function getTopicLastPosterColourAttribute($value)
@@ -296,8 +295,7 @@ class Topic extends Model implements AfterCommit
 
     public function setTopicLastPosterColourAttribute($value)
     {
-        // also functions for casting null to string
-        $this->attributes['topic_last_poster_colour'] = ltrim($value, '#');
+        $this->attributes['topic_last_poster_colour'] = ltrim($value ?? '', '#');
     }
 
     public function setTopicTitleAttribute($value)

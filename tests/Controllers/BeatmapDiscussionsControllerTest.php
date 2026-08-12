@@ -12,6 +12,7 @@ use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\User;
 use Faker;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapDiscussionsControllerTest extends TestCase
@@ -25,9 +26,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         self::$faker = Faker\Factory::create();
     }
 
-    /**
-     * @dataProvider putVoteDataProvider
-     */
+    #[DataProvider('putVoteDataProvider')]
     public function testPutVote(string $beatmapState, int $status, int $change)
     {
         $this->discussion->beatmapset->update(['approved' => Beatmapset::STATES[$beatmapState]]);
@@ -44,9 +43,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore + $change, $this->currentScore());
     }
 
-    /**
-     * @dataProvider putVoteAgainDataProvider
-     */
+    #[DataProvider('putVoteAgainDataProvider')]
     public function testPutVoteAgain(string $score, int $change)
     {
         $user = User::factory()->create();
@@ -80,9 +77,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore, $this->currentScore());
     }
 
-    /**
-     * @dataProvider putVoteChangeToDownDataProvider
-     */
+    #[DataProvider('putVoteChangeToDownDataProvider')]
     public function testPutVoteChangeToDown(?string $group, int $status, int $scoreChange)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -103,9 +98,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore + $scoreChange, $this->currentScore());
     }
 
-    /**
-     * @dataProvider putVoteDownDataProvider
-     */
+    #[DataProvider('putVoteDownDataProvider')]
     public function testPutVoteDown(?string $group, int $status, int $voteChange, int $scoreChange)
     {
         $user = User::factory()->withGroup($group)->create();

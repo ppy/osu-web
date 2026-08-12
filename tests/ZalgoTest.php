@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Finder\Finder;
 
 class ZalgoTest extends TestCase
@@ -29,9 +30,7 @@ class ZalgoTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProviderForCombination
-     */
+    #[DataProvider('dataProviderForCombination')]
     public function testCombination(string $text)
     {
         $this->assertSame(unzalgo($text), $text);
@@ -51,9 +50,8 @@ class ZalgoTest extends TestCase
 
     /**
      * This does not seem like the best idea.
-     *
-     * @dataProvider dataProviderForUnzalgo
      */
+    #[DataProvider('dataProviderForUnzalgo')]
     public function testUnzalgo(string $expected, int $level)
     {
         $text = 't́̌͌̌͘e̎̀́͐̅s̐̑̈͋͡ť̎̅̌̅i͛̋̋͋̽ñ̈́̌̽̿g̈́̆͋͡͞';

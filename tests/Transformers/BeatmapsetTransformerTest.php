@@ -8,13 +8,12 @@ namespace Tests\Transformers;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Transformers\BeatmapsetTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetTransformerTest extends TestCase
 {
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testDeletedBeatmapsetGroupPermissionsWithOAuth(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -26,9 +25,7 @@ class BeatmapsetTransformerTest extends TestCase
         $this->assertEmpty($json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testDeletedBeatmapsetGroupPermissionsWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();

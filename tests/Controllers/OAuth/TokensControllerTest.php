@@ -13,6 +13,7 @@ use App\Models\User;
 use Database\Factories\OAuth\ClientFactory;
 use Database\Factories\OAuth\RefreshTokenFactory;
 use Database\Factories\UserFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class TokensControllerTest extends TestCase
@@ -81,9 +82,7 @@ class TokensControllerTest extends TestCase
         \Mail::assertQueued(UserVerificationMail::class);
     }
 
-    /**
-     * @dataProvider dataProviderForTestIssueTokenWithRefreshTokenInheritsVerified
-     */
+    #[DataProvider('dataProviderForTestIssueTokenWithRefreshTokenInheritsVerified')]
     public function testIssueTokenWithRefreshTokenInheritsVerified(bool $verified): void
     {
         \Mail::fake();
