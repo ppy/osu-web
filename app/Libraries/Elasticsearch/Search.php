@@ -33,7 +33,6 @@ abstract class Search extends HasSearch implements Queryable
 
     protected $aggregations;
     protected $index;
-    protected $queryString;
 
     private $count;
     private $error;
@@ -234,6 +233,10 @@ abstract class Search extends HasSearch implements Queryable
 
         if (isset($this->aggregations)) {
             $body['aggs'] = $this->aggregations;
+        }
+
+        if (isset($this->collapse)) {
+            $body['collapse'] = $this->collapse;
         }
 
         $body['query'] = QueryHelper::clauseToArray($this->query ?? $this->getQuery());
