@@ -20,6 +20,8 @@ abstract class Search extends HasSearch implements Queryable
     /** @var string */
     public $connectionName = 'default';
 
+    public ?array $collapse = null;
+
     /**
      * A tag to use when logging timing of fetches.
      * FIXME: context-based tagging would be nicer.

@@ -12,6 +12,32 @@ use Tests\TestCase;
 
 class SuggestionsControllerTest extends TestCase
 {
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+
+        $docs = [
+            ['locale' => 'en', 'path' => 'aaabbb', 'title' => 'aaabbb'],
+            ['locale' => 'en', 'path' => 'aaaccc', 'title' => 'aaaccc'],
+            ['locale' => 'id', 'path' => 'aaaccc', 'title' => 'aaaccc'],
+        ];
+
+        foreach ($docs as $doc) {
+            $page = new Page($doc['path'], $doc['locale']);
+            $page->setSource($doc);
+            $page->esIndexDocument();
+        }
+
+        new WikiSuggestions(new WikiSuggestionsParams())->refresh();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        parent::tearDownAfterClass();
+
+        new WikiSuggestions(new WikiSuggestionsParams())->deleteAll();
+    }
+
     public function testSuggestionWikiWithoutLocale()
     {
         $this
@@ -23,6 +49,12 @@ class SuggestionsControllerTest extends TestCase
                     'locale' => 'en',
                     'path' => 'aaabbb',
                     'title' => 'aaabbb',
+                ],
+                [
+                    'highlight' => '<em>aaa</em>ccc',
+                    'locale' => 'en',
+                    'path' => 'aaaccc',
+                    'title' => 'aaaccc',
                 ],
             ]);
     }
@@ -46,35 +78,5 @@ class SuggestionsControllerTest extends TestCase
                     'title' => 'aaabbb',
                 ],
             ]);
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $page1 = new Page('aaabbb', 'en');
-        $page1->setSource([
-            'locale' => 'en',
-            'path' => 'aaabbb',
-            'title' => 'aaabbb',
-        ]);
-        $page1->esIndexDocument();
-
-        $page2 = new Page('aaaccc', 'id');
-        $page2->setSource([
-            'locale' => 'id',
-            'path' => 'aaaccc',
-            'title' => 'aaaccc',
-        ]);
-        $page2->esIndexDocument();
-
-        (new WikiSuggestions(new WikiSuggestionsParams()))->refresh();
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        (new WikiSuggestions(new WikiSuggestionsParams()))->deleteAll();
     }
 }
