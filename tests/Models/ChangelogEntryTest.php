@@ -7,13 +7,12 @@ namespace Tests\Models;
 
 use App\Models\Changelog;
 use App\Models\ChangelogEntry;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ChangelogEntryTest extends TestCase
 {
-    /**
-     * @dataProvider dataForGetDisplayMessage
-     */
+    #[DataProvider('dataForGetDisplayMessage')]
     public function testGetDisplayMessage($message, $html)
     {
         $this->assertSame($html, ChangelogEntry::getDisplayMessage($message));

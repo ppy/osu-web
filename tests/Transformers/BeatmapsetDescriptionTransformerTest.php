@@ -8,6 +8,7 @@ namespace Tests\Transformers;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Transformers\BeatmapsetDescriptionTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetDescriptionTransformerTest extends TestCase
@@ -15,9 +16,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
     protected Beatmapset $beatmapset;
     protected User $mapper;
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithOAuth(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -28,9 +27,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
         $this->assertArrayNotHasKey('bbcode', $json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();

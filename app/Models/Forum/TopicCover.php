@@ -105,7 +105,7 @@ class TopicCover extends Model
     public function defaultFileUrl()
     {
         try {
-            return $this->topic->forum->cover->defaultTopicCover->url();
+            return $this->topic->forum->cover?->defaultTopicCover->url();
         } catch (\Throwable) {
             // do nothing
         }

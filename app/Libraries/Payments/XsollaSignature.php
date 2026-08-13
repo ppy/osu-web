@@ -36,7 +36,7 @@ class XsollaSignature implements PaymentSignature
 
     private function receivedSignature()
     {
-        preg_match('~^Signature (?<signature>[0-9a-f]{40})$~', $this->request->header('Authorization'), $matches);
+        preg_match('~^Signature (?<signature>[0-9a-f]{40})$~', $this->request->header('Authorization') ?? '', $matches);
 
         return $matches['signature'] ?? null;
     }

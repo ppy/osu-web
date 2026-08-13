@@ -8,6 +8,7 @@ namespace Tests\Controllers;
 use App\Models\Achievement;
 use App\Models\Country;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UsersControllerTest extends TestCase
@@ -173,9 +174,7 @@ class UsersControllerTest extends TestCase
         ])->assertRedirect(route('home'));
     }
 
-    /**
-     * @dataProvider dataProviderForStoreWebInvalidParams
-     */
+    #[DataProvider('dataProviderForStoreWebInvalidParams')]
     public function testStoreWebInvalidParams($username, $email, $emailConfirmation, $password, $passwordConfirmation): void
     {
         config_set('osu.user.registration_mode.web', true);

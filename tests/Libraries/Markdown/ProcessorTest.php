@@ -6,13 +6,12 @@
 namespace Tests\Libraries\Markdown;
 
 use App\Libraries\Markdown\OsuMarkdown;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ProcessorTest extends TestCase
 {
-    /**
-     * @dataProvider htmlExamples
-     */
+    #[DataProvider('htmlExamples')]
     public function testHtml($name, $path)
     {
         [$osuMarkdown, $expectedOutput] = $this->loadOutputTest($name, $path, 'html');
@@ -23,9 +22,7 @@ class ProcessorTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider indexableExamples
-     */
+    #[DataProvider('indexableExamples')]
     public function testIndexable($name, $path)
     {
         [$osuMarkdown, $expectedOutput] = $this->loadOutputTest($name, $path, 'txt');

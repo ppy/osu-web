@@ -10,6 +10,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Transformers\BeatmapDiscussionPostTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapDiscussionPostTransformerTest extends TestCase
@@ -20,9 +21,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     /** @var BeatmapDiscussionPost */
     protected $deletedPost;
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithOAuth(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -32,9 +31,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
         $this->assertEmpty($json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
