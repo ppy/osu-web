@@ -360,8 +360,10 @@ class SanityTest extends DuskTestCase
             '_lio',
             'api/',
             'clockwork',
+            'news/{tumblrId}',
             'oauth/',
             'payments/',
+            '{catchall}',
         ];
         static $types = ['user', 'guest'];
 

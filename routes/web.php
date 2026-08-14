@@ -697,5 +697,5 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     });
 });
 
-Route::get('opensearch.xml', 'HomeController@opensearch');
+Route::get('opensearch.xml', 'HomeController@opensearch')->name('opensearch');
 Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();
