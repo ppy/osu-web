@@ -12,6 +12,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Testing\Fluent\AssertableJson;
+use PHPUnit\Framework\Attributes\Depends;
 use Tests\TestCase;
 
 class ScreenshotsControllerTest extends TestCase
@@ -57,9 +58,7 @@ class ScreenshotsControllerTest extends TestCase
         $this->assertEqualsUpToOneSecond(Carbon::now(), $screenshot->fresh()->last_access);
     }
 
-    /**
-     * @depends testShow
-     */
+    #[Depends('testShow')]
     public function testShowInvalidHash()
     {
         $oldDate = Carbon::now()->subDays(7);
