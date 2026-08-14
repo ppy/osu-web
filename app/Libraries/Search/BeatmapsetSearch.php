@@ -29,10 +29,7 @@ class BeatmapsetSearch extends RecordSearch
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         static $partialMatchFields = [
             'artist',

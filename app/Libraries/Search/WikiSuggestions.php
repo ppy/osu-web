@@ -33,10 +33,7 @@ class WikiSuggestions extends Search
         return $this->response();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         $langQuery = (new BoolQuery())
             ->shouldMatch(1)

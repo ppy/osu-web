@@ -31,10 +31,7 @@ class UserSearch extends RecordSearch
         return $this->response()->records()->with(UserCompactTransformer::CARD_INCLUDES_PRELOAD)->get();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         static $lowercaseStick = [
             'analyzer' => 'username_lower',
