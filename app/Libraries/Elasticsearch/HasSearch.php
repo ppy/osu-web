@@ -7,39 +7,30 @@ namespace App\Libraries\Elasticsearch;
 
 abstract class HasSearch
 {
-    protected $highlight;
-    protected $params;
-    protected $query;
-    protected $source;
-    protected $type;
+    protected ?Highlight $highlight = null;
+    protected SearchParams $params;
+    protected array|Queryable $query;
+    protected array|false|null $source = null;
+    protected ?string $type = null;
 
     public function __construct(SearchParams $params)
     {
         $this->params = $params;
     }
 
-    /**
-     * @return $this
-     */
-    public function from(int $from)
+    public function from(int $from): static
     {
         $this->params->from = $from;
 
         return $this;
     }
 
-    /**
-     * @return SearchParams
-     */
-    public function getParams()
+    public function getParams(): SearchParams
     {
         return $this->params;
     }
 
-    /**
-     * @return $this
-     */
-    public function size(int $size)
+    public function size(int $size): static
     {
         $this->params->size($size);
 
@@ -48,10 +39,8 @@ abstract class HasSearch
 
     /**
      * @param Highlight $highlight the fields and settings for highlighting. Set to null to remove.
-     *
-     * @return $this
      */
-    public function highlight(?Highlight $highlight)
+    public function highlight(?Highlight $highlight): static
     {
         $this->highlight = $highlight;
 
@@ -61,22 +50,15 @@ abstract class HasSearch
     /**
      * The query for the search.
      * array is supported for compatiblity and more complicated/unimplemented stuff.
-     *
-     * @param array|Queryable
-     *
-     * @return $this
      */
-    public function query($query)
+    public function query(array|Queryable $query): static
     {
         $this->query = $query;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function source($fields)
+    public function source(array|false|null $fields): static
     {
         $this->source = $fields;
 
@@ -85,10 +67,8 @@ abstract class HasSearch
 
     /**
      * @param Sort[]|Sort $sort
-     *
-     * @return $this
      */
-    public function sort(array|Sort $sort)
+    public function sort(array|Sort $sort): static
     {
         if (is_array($sort)) {
             foreach ($sort as $s) {
@@ -101,10 +81,7 @@ abstract class HasSearch
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function type(?string $type)
+    public function type(?string $type): static
     {
         $this->type = $type;
 
@@ -127,7 +104,7 @@ abstract class HasSearch
         return 10000;
     }
 
-    private function addSort(Sort $sort)
+    private function addSort(Sort $sort): void
     {
         if (!$sort->isBlank()) {
             $this->params->sorts[] = $sort;
