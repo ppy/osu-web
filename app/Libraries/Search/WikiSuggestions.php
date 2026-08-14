@@ -19,6 +19,7 @@ class WikiSuggestions extends Search
             $params
         );
 
+        $this->collapse = ['field' => 'path.keyword'];
         $this->source(['locale', 'title', 'path']);
         $this->highlight(
             (new Highlight())
