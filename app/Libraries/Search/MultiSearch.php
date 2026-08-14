@@ -41,11 +41,10 @@ class MultiSearch
         ],
     ];
 
-    private $options;
-    private $query;
-    private $searches;
+    private ?string $query;
+    private array $searches;
 
-    public function __construct(private array $request, array $options = [])
+    public function __construct(private array $request, private array $options = [])
     {
         if (isset($this->request['mode'])) {
             $this->request['mode'] = presence(get_string($this->request['mode']));
