@@ -16,9 +16,15 @@ class TopPlays
 
     private readonly string $key;
 
-    public function __construct(private readonly int $rulesetId)
+    public function __construct(private readonly int $rulesetId, private readonly ?string $countryCode = null)
     {
-        $this->key = static::KEY.':'.$this->rulesetId;
+        $key = static::KEY.':'.$this->rulesetId;
+
+        if ($this->countryCode !== null) {
+            $key = $key.':'.$this->countryCode;
+        }
+
+        $this->key = $key;
     }
 
     public function updateCache(): void
@@ -28,6 +34,8 @@ class TopPlays
             'limit' => 3000,
             'ruleset_id' => $this->rulesetId,
             'sort' => 'pp_desc',
+            'country_code' => $this->countryCode,
+            'type' => $this->countryCode === null ? 'global' : 'country',
         ]));
         $search->connectionName = 'scores_slow';
         $search->searchTimeout = "{$GLOBALS['cfg']['elasticsearch']['connections']['scores_slow']['connectionParams']['client']['timeout']}s";
