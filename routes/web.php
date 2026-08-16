@@ -632,6 +632,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
 
+        Route::get('suggestions/wiki', 'SuggestionsController@wiki')->name('suggestions.wiki');
+
         // Tags
         Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
 
