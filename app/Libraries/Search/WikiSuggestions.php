@@ -33,6 +33,11 @@ class WikiSuggestions extends Search
         return $this->response();
     }
 
+    public function setHighlightTags(array $preTags, array $postTags)
+    {
+        $this->highlight->tags($preTags, $postTags);
+    }
+
     /**
      * {@inheritdoc}
      */
