@@ -8,13 +8,12 @@ namespace Tests\Transformers;
 use App\Models\User;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UserCompactTransformerTest extends TestCase
 {
-    /**
-     * @dataProvider regularOAuthScopesDataProvider
-     */
+    #[DataProvider('regularOAuthScopesDataProvider')]
     public function testFriendsIsNotVisibleWithOAuth($scopes)
     {
         $viewer = User::factory()->create();
@@ -25,9 +24,7 @@ class UserCompactTransformerTest extends TestCase
         $this->assertArrayNotHasKey('friends', $json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testGroupPermissionsUserSilenceShowExtendedInfo(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -47,9 +44,7 @@ class UserCompactTransformerTest extends TestCase
         $this->assertSame($accountHistories, $publicInfringements);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testGroupPermissionsWithOAuth(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -63,9 +58,7 @@ class UserCompactTransformerTest extends TestCase
         $this->assertArrayNotHasKey('supporting_url', $accountHistory);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testGroupPermissionsWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -84,9 +77,7 @@ class UserCompactTransformerTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider propertyPermissionsDataProvider
-     */
+    #[DataProvider('propertyPermissionsDataProvider')]
     public function testPropertyIsNotVisibleWithOAuth(string $property)
     {
         $viewer = User::factory()->create();
@@ -97,9 +88,7 @@ class UserCompactTransformerTest extends TestCase
         $this->assertArrayNotHasKey($property, $json);
     }
 
-    /**
-     * @dataProvider propertyPermissionsDataProvider
-     */
+    #[DataProvider('propertyPermissionsDataProvider')]
     public function testPropertyIsVisibleWithoutOAuth(string $property)
     {
         $viewer = User::factory()->create();

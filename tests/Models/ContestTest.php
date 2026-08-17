@@ -21,6 +21,7 @@ use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
 use Carbon\Carbon;
 use Closure;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ContestTest extends TestCase
@@ -101,9 +102,7 @@ class ContestTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
-     */
+    #[DataProvider('dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets')]
     public function testAssertVoteRequirementPlaylistBeatmapsets(
         bool $loggedIn,
         bool $played,
@@ -188,9 +187,7 @@ class ContestTest extends TestCase
         $this->assertTrue(true, 'no exception');
     }
 
-    /**
-     * @dataProvider dataProviderForTestCalculateScoresStd
-     */
+    #[DataProvider('dataProviderForTestCalculateScoresStd')]
     public function testCalculateScoresStd(Closure $scoreFn, array $entriesStdDev, array $votesStdDev): void
     {
         $contest = Contest::factory()
@@ -226,9 +223,7 @@ class ContestTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProviderForTestShowEntryUser
-     */
+    #[DataProvider('dataProviderForTestShowEntryUser')]
     public function testShowEntryUser(bool $showVotes, ?bool $showEntryUserOption, bool $result): void
     {
         $extraOptions = $showEntryUserOption === null
@@ -241,9 +236,7 @@ class ContestTest extends TestCase
         $this->assertSame($result, $contest->showEntryUser());
     }
 
-    /**
-     * @dataProvider dataProviderForTestShowJudges
-     */
+    #[DataProvider('dataProviderForTestShowJudges')]
     public function testShowJudges(?bool $showJudgesOption, bool $result): void
     {
         $extraOptions = $showJudgesOption === null
@@ -255,9 +248,7 @@ class ContestTest extends TestCase
         $this->assertSame($result, $contest->show_judges);
     }
 
-    /**
-     * @dataProvider dataProviderForTestAllowedExtensions
-     */
+    #[DataProvider('dataProviderForTestAllowedExtensions')]
     public function testAllowedExtensions(string $type, ?array $allowedExtensions, array $expectedResult): void
     {
         $extraOptions = $allowedExtensions === null
@@ -270,9 +261,7 @@ class ContestTest extends TestCase
         $this->assertSame($expectedResult, $contest->getAllowedExtensions());
     }
 
-    /**
-     * @dataProvider dataProviderForTestMaxFilesize
-     */
+    #[DataProvider('dataProviderForTestMaxFilesize')]
     public function testMaxFilesize(string $type, ?int $maxFilesize, int $expectedResult): void
     {
         $extraOptions = $maxFilesize === null

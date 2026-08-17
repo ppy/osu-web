@@ -19,7 +19,8 @@ class WikiSuggestions extends Search
             $params
         );
 
-        $this->source(['title', 'path']);
+        $this->collapse = ['field' => 'path.keyword'];
+        $this->source(['locale', 'title', 'path']);
         $this->highlight(
             (new Highlight())
                 ->field('title.autocomplete')
@@ -43,7 +44,7 @@ class WikiSuggestions extends Search
                 'boost' => 1000,
                 'filter' => [
                     'match' => [
-                        'locale' => app()->getLocale(),
+                        'locale' => $this->params->locale ?? app()->getLocale(),
                     ],
                 ],
             ]])

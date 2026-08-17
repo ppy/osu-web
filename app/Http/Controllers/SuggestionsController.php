@@ -11,6 +11,7 @@ use App\Libraries\Search\UserSearch;
 use App\Libraries\Search\UserSearchParams;
 use App\Libraries\Search\WikiSuggestions;
 use App\Libraries\Search\WikiSuggestionsRequestParams;
+use App\Transformers\WikiSuggestionsHitTransformer;
 
 class SuggestionsController extends Controller
 {
@@ -40,17 +41,7 @@ class SuggestionsController extends Controller
 
     public function wiki()
     {
-        $search = new WikiSuggestions(new WikiSuggestionsRequestParams(request()->all()));
-
-        $response = [];
-        foreach ($search->response() as $hit) {
-            $response[] = [
-                'highlight' => $hit->highlights('title.autocomplete')[0],
-                'path' => $hit->source('path'),
-                'title' => $hit->source('title'),
-            ];
-        }
-
-        return $response;
+        $search = new WikiSuggestions(new WikiSuggestionsRequestParams(\Request::all()));
+        return json_collection([...$search->response()], new WikiSuggestionsHitTransformer());
     }
 }

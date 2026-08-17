@@ -9,13 +9,12 @@ use App\Exceptions\InsufficientStockException;
 use App\Exceptions\InvariantException;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class OrderItemTest extends TestCase
 {
-    /**
-     * @dataProvider deleteDataProvider
-     */
+    #[DataProvider('deleteDataProvider')]
     public function testDelete(string $status, ?string $expectedException)
     {
         [, $orderItem] = $this->createProductAndOrderItem(5, false);
