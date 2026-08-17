@@ -5,10 +5,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\OAuth\AccessTokenRepository;
 use App\Libraries\SessionVerification;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
-use Laravel\Passport\ClientRepository;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -18,12 +18,10 @@ class AuthApi
 {
     const REQUEST_OAUTH_TOKEN_KEY = 'oauth_token';
 
-    protected $clients;
     protected $server;
 
-    public function __construct(ResourceServer $server, ClientRepository $clients)
+    public function __construct(ResourceServer $server)
     {
-        $this->clients = $clients;
         $this->server = $server;
     }
 
@@ -68,19 +66,13 @@ class AuthApi
     {
         $psrClientId = $psr->getAttribute('oauth_client_id');
         $psrUserId = get_int($psr->getAttribute('oauth_user_id'));
-        $psrTokenId = $psr->getAttribute('oauth_access_token_id');
 
-        $client = $this->clients->findActive($psrClientId);
-        if ($client === null) {
-            throw new AuthenticationException('invalid client');
-        }
-
-        $token = $client->tokens()->validAt(now())->find($psrTokenId);
-        if ($token === null) {
+        // stashed by AccessTokenRepository::isAccessTokenRevoked during ResourceServer validation
+        $token = AccessTokenRepository::loadedToken();
+        if ($token === null || (string) $token->client_id !== (string) $psrClientId) {
             throw new AuthenticationException('invalid token');
         }
 
-        $token->setRelation('client', $client);
         $token->validate();
 
         // increment hit count for about every 10 hits
