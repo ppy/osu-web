@@ -4,7 +4,7 @@
 import UserGroupJson from 'interfaces/user-group-json';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { ContainerContext, KeyContext } from 'stateful-activation-context';
+import { ActiveKeyState, ContainerContext, KeyContext } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { classWithModifiers, groupColour, Modifiers } from 'utils/css';
 import { qtipPosition } from 'utils/qtip-helper';
@@ -15,27 +15,53 @@ interface Props {
   modifiers?: Modifiers;
 }
 
-export default function UserGroupBadgesCombined({ groups, modifiers }: Props) {
-  const container = React.useContext(ContainerContext);
-  const key = React.useContext(KeyContext);
-  const tooltipContext = React.useContext(TooltipContext);
-  const valueRef = React.useRef<HTMLDivElement>(null);
-  const tooltipHideEventRef = React.useRef<unknown>(null);
+interface InnerProps extends Props {
+  activationKey: React.Key | null;
+  container: ActiveKeyState;
+}
 
-  const parentQtip = () => {
-    const el = tooltipContext?.closest('.qtip');
+class UserGroupBadgesCombinedInner extends React.PureComponent<InnerProps> {
+  static readonly contextType = TooltipContext;
+  declare context: React.ContextType<typeof TooltipContext>;
+
+  private tooltipHideEvent: unknown;
+  private readonly valueRef = React.createRef<HTMLDivElement>();
+
+  private get $tooltipElement() {
+    const el = this.context?.closest('.qtip');
+
     return el == null ? null : $(el);
-  };
+  }
 
-  React.useEffect(() => () => {
-    container.setValue(null);
-    parentQtip()?.qtip('option', 'hide.event', tooltipHideEventRef.current);
-    if (valueRef.current != null) {
-      $(valueRef.current).qtip('destroy', true);
+  componentWillUnmount() {
+    this.props.container.setValue(null);
+    this.$tooltipElement?.qtip('option', 'hide.event', this.tooltipHideEvent);
+    if (this.valueRef.current != null) {
+      $(this.valueRef.current).qtip('destroy', true);
     }
-  }, [container, tooltipContext]);
+  }
 
-  const onMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
+  render() {
+    return (
+      <div
+        ref={this.valueRef}
+        className={classWithModifiers('user-group-badge', 'combined', this.props.modifiers)}
+        onMouseOver={this.onMouseOver}
+      >
+        {this.props.groups.map((group) => (
+          <span
+            key={group.identifier}
+            className={classWithModifiers('user-group-badge__colour', {
+              probationary: group.is_probationary,
+            })}
+            style={groupColour(group)}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  private readonly onMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
     const el = event.currentTarget;
     if (el._tooltip != null) return;
     el._tooltip = '1';
@@ -44,25 +70,15 @@ export default function UserGroupBadgesCombined({ groups, modifiers }: Props) {
       content: {
         text: renderToStaticMarkup(
           <div className='user-group-badge__popup'>
-            {groups.map((group) => (
-              <UserGroupBadge key={group.identifier} group={group} modifiers={modifiers} />
+            {this.props.groups.map((group) => (
+              <UserGroupBadge key={group.identifier} group={group} modifiers={this.props.modifiers} />
             ))}
           </div>,
         ),
       },
       events: {
-        hide() {
-          parentQtip()?.qtip('option', 'hide.event', tooltipHideEventRef.current);
-          container.setValue(null);
-        },
-        show() {
-          container.setValue(key);
-          const $parent = parentQtip();
-          if ($parent != null) {
-            tooltipHideEventRef.current = $parent.qtip('option', 'hide.event');
-            $parent.qtip('option', 'hide.event', false);
-          }
-        },
+        hide: this.onTooltipHide,
+        show: this.onTooltipShow,
       },
       hide: {
         delay: 200,
@@ -86,21 +102,33 @@ export default function UserGroupBadgesCombined({ groups, modifiers }: Props) {
     }, event);
   };
 
+  private readonly onTooltipHide = () => {
+    this.$tooltipElement?.qtip('option', 'hide.event', this.tooltipHideEvent);
+    this.props.container.setValue(null);
+  };
+
+  // Otherwise the parent user-card tooltip closes.
+  private readonly onTooltipShow = () => {
+    this.props.container.setValue(this.props.activationKey);
+
+    const $tooltipElement = this.$tooltipElement;
+    if ($tooltipElement != null) {
+      this.tooltipHideEvent = $tooltipElement.qtip('option', 'hide.event');
+      $tooltipElement.qtip('option', 'hide.event', false);
+    }
+  };
+}
+
+/**
+ * Reads ContainerContext and KeyContext so a parent user-card tooltip stays open.
+ * Is a functional component to be able to use useContext.
+ */
+export default function UserGroupBadgesCombined(props: Props) {
   return (
-    <div
-      ref={valueRef}
-      className={classWithModifiers('user-group-badge', 'combined', modifiers)}
-      onMouseOver={onMouseOver}
-    >
-      {groups.map((group) => (
-        <span
-          key={group.identifier}
-          className={classWithModifiers('user-group-badge__colour', {
-            probationary: group.is_probationary,
-          })}
-          style={groupColour(group)}
-        />
-      ))}
-    </div>
+    <UserGroupBadgesCombinedInner
+      {...props}
+      activationKey={React.useContext(KeyContext)}
+      container={React.useContext(ContainerContext)}
+    />
   );
 }
