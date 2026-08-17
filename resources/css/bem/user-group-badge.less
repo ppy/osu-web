@@ -52,6 +52,36 @@
     background-color: @osu-colour-b6;
   }
 
+  &--combined {
+    gap: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+
+    &::before {
+      content: none;
+    }
+  }
+
+  &__colour {
+    .circle(7px);
+    flex: none;
+    background-color: var(--group-colour, @osu-colour-c1);
+
+    &--probationary {
+      opacity: 0.6;
+    }
+  }
+
+  &__popup {
+    .default-box-shadow();
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    background: hsl(var(--hsl-b5));
+    padding: 10px;
+    border-radius: @border-radius-large;
+  }
+
   &__modes {
     color: white;
     padding-left: 5px;
