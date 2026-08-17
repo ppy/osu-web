@@ -15,6 +15,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
+use App\Models\Comment;
 use App\Models\Forum;
 use App\Models\Team;
 use App\Models\Traits\ReportableInterface;
@@ -159,7 +160,7 @@ class UserReportTest extends TestCase
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
 
-        if ($class === Message::class) {
+        if ($reportable instanceof Message || $reportable instanceof Comment) {
             $this->expectCountChange(fn () => UserReport::count(), 1);
         } else {
             $this->expectException(ValidationException::class);
