@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Casts\TimestampOrZero;
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
@@ -258,6 +259,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_lastpost_time' => 'datetime',
         'user_lastvisit' => 'datetime',
         'user_notify' => 'boolean',
+        'user_passchg' => TimestampOrZero::class,
         'user_regdate' => 'datetime',
         'user_timezone' => 'float',
     ];
@@ -826,7 +828,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_notify_pm',
             'user_notify_type',
             'user_options',
-            'user_passchg',
             'user_password',
             'user_perm_from',
             'user_permissions',
@@ -862,6 +863,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_lastmark',
             'user_lastpost_time',
             'user_lastvisit',
+            'user_passchg',
             'user_regdate' => Carbon::createFromTimestamp($this->getRawAttribute($key)),
 
             // datetime
@@ -2299,6 +2301,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             if ($this->validationErrors()->isEmpty()) {
                 $this->user_password = Hash::make($this->password);
+                $this->user_passchg = Carbon::now();
             }
         }
 
