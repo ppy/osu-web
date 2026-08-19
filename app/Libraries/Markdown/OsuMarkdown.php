@@ -91,7 +91,8 @@ class OsuMarkdown
                 'html_input' => 'allow',
             ],
             'osu_extension' => [
-                'attributes_allowed' => ['flag', 'id', 'user'],
+                'attributes_allowed' => ['id'],
+                'custom_container_attributes_allowed' => ['flag', 'user'],
                 'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
@@ -128,7 +129,8 @@ class OsuMarkdown
         ],
         'wiki' => [
             'osu_extension' => [
-                'attributes_allowed' => ['flag', 'id', 'user'],
+                'attributes_allowed' => ['id'],
+                'custom_container_attributes_allowed' => ['flag', 'user'],
                 'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
