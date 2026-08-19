@@ -12,8 +12,10 @@ namespace App\Libraries\Elasticsearch;
 class Highlight implements Queryable
 {
     protected $fields = [];
-    protected $numberOfFragments = 5;
     protected $fragmentSize = 100;
+    protected $numberOfFragments = 5;
+    protected ?array $postTags = null;
+    protected ?array $preTags = null;
 
     /**
      * @return $this
@@ -55,15 +57,33 @@ class Highlight implements Queryable
     }
 
     /**
+     * Sets the highlight pre-tags and post-tags.
+     *
+     * @return $this
+     */
+    public function tags(array $preTags, array $postTags)
+    {
+        $this->preTags = $preTags;
+        $this->postTags = $postTags;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function toArray(): array
     {
-        return [
+        $highlight = [
             'encoder' => 'html',
             'fragment_size' => $this->fragmentSize,
             'fields' => $this->fields,
             'number_of_fragments' => $this->numberOfFragments,
         ];
+
+        if ($this->preTags !== null && $this->postTags !== null) {
+            $highlight['pre_tags'] = $this->preTags;
+            $highlight['post_tags'] = $this->postTags;
+        }
+
+        return $highlight;
     }
 }

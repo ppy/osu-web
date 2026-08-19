@@ -1744,6 +1744,19 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/suggestions/wiki",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\SuggestionsController@wiki",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/tags",
         "methods": [
             "GET",

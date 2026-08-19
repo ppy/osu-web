@@ -42,6 +42,11 @@ class SuggestionsController extends Controller
     public function wiki()
     {
         $search = new WikiSuggestions(new WikiSuggestionsRequestParams(\Request::all()));
+
+        if (is_api_request()) {
+            $search->setHighlightTags(['*'], ['*']);
+        }
+
         return json_collection([...$search->response()], new WikiSuggestionsHitTransformer());
     }
 }
