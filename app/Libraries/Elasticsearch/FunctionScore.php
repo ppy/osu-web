@@ -7,35 +7,27 @@ namespace App\Libraries\Elasticsearch;
 
 class FunctionScore implements Queryable
 {
-    private $boostMode = 'multiply';
-    private $functions = [];
-    private $query;
+    private string $boostMode = 'multiply';
+    private array $functions = [];
 
-    /**
-     * @param array|Queryable $query
-     */
-    public function __construct($query)
+    public function __construct(private Queryable $query)
     {
-        $this->query = $query;
     }
 
-    public function applyFunction(array $function): self
+    public function applyFunction(array $function): static
     {
         $this->functions[] = $function;
 
         return $this;
     }
 
-    public function boostMode(string $boostMode): self
+    public function boostMode(string $boostMode): static
     {
         $this->boostMode = $boostMode;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toArray(): array
     {
         return [

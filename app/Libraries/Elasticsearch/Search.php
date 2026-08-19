@@ -13,14 +13,11 @@ use Elasticsearch\Common\Exceptions\Curl\OperationTimeoutException;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Elasticsearch\Common\Exceptions\RuntimeException;
 
-abstract class Search extends HasSearch implements Queryable
+abstract class Search implements Queryable
 {
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
-    /** @var string */
-    public $connectionName = 'default';
-
-    public ?array $collapse = null;
+    public string $connectionName = 'default';
 
     /**
      * A tag to use when logging timing of fetches.
@@ -31,18 +28,19 @@ abstract class Search extends HasSearch implements Queryable
     // with unit suffix
     public string $searchTimeout;
 
-    protected $aggregations;
-    protected $index;
+    protected ?array $aggregations;
+    protected ?Highlight $highlight;
+    protected array|Queryable $query;
+    protected array|false|null|string $source;
+    protected ?string $type;
 
-    private $count;
-    private $error;
-    private $response;
+    private array $collapse;
+    private int $count;
+    private ?\Throwable $error = null;
+    private ?SearchResponse $response;
 
-    public function __construct(string $index, SearchParams $params)
+    public function __construct(protected string $index, protected SearchParams $params)
     {
-        parent::__construct($params);
-
-        $this->index = $index;
         $this->searchTimeout = $GLOBALS['cfg']['osu']['elasticsearch']['search_timeout'];
     }
 
@@ -56,14 +54,17 @@ abstract class Search extends HasSearch implements Queryable
     // for paginator
     abstract public function data();
 
-    /**
-     * @return array|Queryable
-     */
-    abstract public function getQuery();
+    abstract public function getQuery(): array|Queryable;
 
     public function client(): Client
     {
         return Es::getClient($this->connectionName);
+    }
+
+    public function collapse(string $field): static
+    {
+        $this->collapse = ['field' => $field];
+        return $this;
     }
 
     /**
@@ -110,23 +111,40 @@ abstract class Search extends HasSearch implements Queryable
         ]);
     }
 
-    public function fail($error = null)
+    public function fail(?\Throwable $error = null): void
     {
         $this->error = $error; // for the message.
         $this->response = SearchResponse::failed($error);
     }
 
-    public function getError()
+    public function from(int $from): static
+    {
+        $this->params->from = $from;
+        return $this;
+    }
+
+    public function getParams(): SearchParams
+    {
+        return $this->params;
+    }
+
+    public function size(int $size): static
+    {
+        $this->params->size($size);
+        return $this;
+    }
+
+    public function getError(): ?\Throwable
     {
         return $this->error;
     }
 
-    public function getPaginator(array $options = [])
+    public function getPaginator(array $options = []): SearchPaginator
     {
         // this does mean it's possible to do something stupid
         // like having $this->params->from start from the middle of a page,
         // but you've got other problems if the paginator is used like that.
-        $page = floor($this->params->from / $this->params->size) + 1;
+        $page = (int) floor($this->params->from / $this->params->size) + 1;
 
         return new SearchPaginator(
             $this,
@@ -155,17 +173,34 @@ abstract class Search extends HasSearch implements Queryable
         return null;
     }
 
+    /**
+     * @param Highlight $highlight the fields and settings for highlighting. Set to null to remove.
+     */
+    public function highlight(?Highlight $highlight): static
+    {
+        $this->highlight = $highlight;
+        return $this;
+    }
+
     public function isLoginRequired(): bool
     {
         return $this->params->isLoginRequired();
     }
 
     /**
-     * Returns if the total number of results found is greater than the allowed limit.
-     *
-     * @return bool
+     * The query for the search.
+     * array is supported for compatiblity and more complicated/unimplemented stuff.
      */
-    public function overLimit()
+    public function query(array|Queryable $query): static
+    {
+        $this->query = $query;
+        return $this;
+    }
+
+    /**
+     * Returns if the total number of results found is greater than the allowed limit.
+     */
+    public function overLimit(): bool
     {
         return $this->response()->total() > $this->maxResults();
     }
@@ -187,21 +222,40 @@ abstract class Search extends HasSearch implements Queryable
         return $this->response;
     }
 
-    /**
-     * @return $this
-     */
-    public function searchAfter(?array $searchAfter)
+
+    public function searchAfter(?array $searchAfter): static
     {
         // FIXME: The values should be sanitised. The count and type must match sort options.
         $this->params->searchAfter = $searchAfter;
         $this->response = null;
-
         return $this;
     }
 
-    public function setAggregations(array $aggregations)
+    public function setAggregations(array $aggregations): void
     {
         $this->aggregations = $aggregations;
+    }
+
+    public function source(array|false|null|string $fields): static
+    {
+        $this->source = $fields;
+        return $this;
+    }
+
+    /**
+     * @param Sort[]|Sort $sort
+     */
+    public function sort(array|Sort $sort): static
+    {
+        if (is_array($sort)) {
+            foreach ($sort as $s) {
+                $this->addSort($s);
+            }
+        } else {
+            $this->addSort($sort);
+        }
+
+        return $this;
     }
 
     /**
@@ -252,15 +306,42 @@ abstract class Search extends HasSearch implements Queryable
 
     /**
      * Returns the user-visible total which can be less than the total number of matching documents.
-     *
-     * @return int
      */
-    public function total()
+    public function total(): int
     {
         return min($this->response()->total(), $this->maxResults());
     }
 
-    private function fetch()
+    public function type(?string $type): static
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     *  Gets the actual size to use in queries.
+     *
+     * @return int actual size to use.
+     */
+    protected function getQuerySize(): int
+    {
+        return min($this->maxResults() - $this->params->from, $this->params->size);
+    }
+
+    protected function maxResults(): int
+    {
+        // the default is the maximum number of total results allowed when not using the scroll API.
+        return 10000;
+    }
+
+    private function addSort(Sort $sort): void
+    {
+        if (!$sort->isBlank()) {
+            $this->params->sorts[] = $sort;
+        }
+    }
+
+    private function fetch(): SearchResponse
     {
         if ($this->params->shouldReturnEmptyResponse() || $this->isSearchWindowExceeded()) {
             return SearchResponse::empty();
@@ -276,7 +357,7 @@ abstract class Search extends HasSearch implements Queryable
         return $this->error === null ? $result : SearchResponse::failed($this->error);
     }
 
-    private function getDatadogTags()
+    private function getDatadogTags(): array
     {
         return [
             'type' => $this->loggingTag ?? get_class_basename(get_called_class()),
@@ -284,7 +365,7 @@ abstract class Search extends HasSearch implements Queryable
         ];
     }
 
-    private function handleError(ElasticsearchException $e, string $operation)
+    private function handleError(ElasticsearchException $e, string $operation): ElasticsearchException
     {
         if ($e instanceof RuntimeException && $e->getMessage() === 'Failed to JSON encode: Inf and NaN cannot be JSON encoded') {
             $e = new InvariantException('Invalid search parameter.');
@@ -308,31 +389,17 @@ abstract class Search extends HasSearch implements Queryable
         return $e;
     }
 
-    private function isSearchWindowExceeded()
+    private function isSearchWindowExceeded(): bool
     {
         return $this->getQuerySize() < 0;
-    }
-
-    private function toCountRequestParams(): array
-    {
-        $params = $this->toArray();
-        // some arguments need to be stripped from the body as they're not supported by count.
-        foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
-            unset($params['body'][$key]);
-        }
-
-        return $params;
     }
 
     /**
      * Wrapper function to run a query with timing and error reporting.
      *
-     * @param string $operation
-     * @param callable $callable
-     *
-     * @return mixed Returns whatever $callable returns, void with $this->error set on error.
+     * @return mixed Returns whatever $callable returns, null with $this->error set on error.
      */
-    private function runQuery(string $operation, callable $callable)
+    private function runQuery(string $operation, callable $callable): mixed
     {
         $this->error = null;
 
@@ -344,6 +411,18 @@ abstract class Search extends HasSearch implements Queryable
             );
         } catch (ElasticsearchException $e) {
             $this->error = $this->handleError($e, $operation);
+            return null;
         }
+    }
+
+    private function toCountRequestParams(): array
+    {
+        $params = $this->toArray();
+        // some arguments need to be stripped from the body as they're not supported by count.
+        foreach (['from', 'highlight', 'search_after', 'size', 'sort', 'timeout', '_source'] as $key) {
+            unset($params['body'][$key]);
+        }
+
+        return $params;
     }
 }

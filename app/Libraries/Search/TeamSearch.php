@@ -23,7 +23,7 @@ class TeamSearch extends RecordSearch
         );
     }
 
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         $query = new BoolQuery();
 

@@ -19,13 +19,12 @@ class WikiSuggestions extends Search
             $params
         );
 
-        $this->collapse = ['field' => 'path.keyword'];
-        $this->source(['locale', 'title', 'path']);
-        $this->highlight(
-            (new Highlight())
+        $this
+            ->collapse('path.keyword')
+            ->source(['locale', 'title', 'path'])
+            ->highlight(new Highlight()
                 ->field('title.autocomplete')
-                ->numberOfFragments(0)
-        );
+                ->numberOfFragments(0));
     }
 
     public function data()
@@ -33,10 +32,7 @@ class WikiSuggestions extends Search
         return $this->response();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         $langQuery = (new BoolQuery())
             ->shouldMatch(1)

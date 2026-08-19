@@ -2020,7 +2020,7 @@ function section_to_hue_map($section): int
     return $colourToHue[$sectionMapping[$section] ?? 'pink'];
 }
 
-function search_error_message(?Exception $e): ?string
+function search_error_message(?\Throwable $e): ?string
 {
     if ($e === null) {
         return null;

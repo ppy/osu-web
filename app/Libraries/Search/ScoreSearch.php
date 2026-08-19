@@ -14,10 +14,6 @@ use LaravelRedis;
 
 class ScoreSearch extends RecordSearch
 {
-    public $connectionName = 'solo_scores';
-
-    protected $source = false;
-
     public function __construct(?ScoreSearchParams $params = null)
     {
         parent::__construct(
@@ -25,6 +21,9 @@ class ScoreSearch extends RecordSearch
             $params ?? new ScoreSearchParams(),
             Score::class
         );
+
+        $this->connectionName = 'solo_scores';
+        $this->source = false;
     }
 
     public static function getActiveSchemas(): array
