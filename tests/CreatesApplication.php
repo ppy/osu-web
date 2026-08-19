@@ -6,6 +6,7 @@
 namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Bootstrap\HandleExceptions;
 
 trait CreatesApplication
 {
@@ -13,17 +14,9 @@ trait CreatesApplication
     {
         $app = require __DIR__.'/../bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
+        // Reference?: https://github.com/laravel/framework/issues/49502
+        HandleExceptions::flushHandlersState();
 
         return $app;
-    }
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        return static::createApp();
     }
 }

@@ -28,5 +28,4 @@ namespace App\Models\Score;
  */
 class Mania extends Model
 {
-    protected $table = 'osu_scores_mania';
 }

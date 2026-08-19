@@ -12,6 +12,7 @@ use App\Models\BeatmapTag;
 use App\Models\Solo\Score;
 use App\Models\Tag;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapTagsControllerTest extends TestCase
@@ -37,9 +38,7 @@ class BeatmapTagsControllerTest extends TestCase
             ->assertSuccessful();
     }
 
-     /**
-      * @dataProvider dataProviderForUpdate
-      */
+    #[DataProvider('dataProviderForUpdate')]
     public function testUpdate(int $beatmapRulesetId, ?int $tagRulesetId, bool $successful): void
     {
         $tag = Tag::factory()->state(['ruleset_id' => $tagRulesetId])->create();

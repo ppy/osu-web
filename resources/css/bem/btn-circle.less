@@ -4,11 +4,17 @@
 .btn-circle {
   @top: btn-circle;
   --transition: all 120ms ease-in-out;
-  --bg: @osu-colour-l4;
-  --bg-hover: @osu-colour-l3;
+  --bg: hsl(var(--hsl-l4));
+  --bg-hover: hsl(var(--hsl-l3));
   --bg-disabled: #333;
-  --colour: @osu-colour-c1;
-  --colour-hover: @osu-colour-c1;
+  --colour: hsl(var(--hsl-c1));
+  --colour-hover: hsl(var(--hsl-c1));
+
+  --activated-bg: hsl(var(--hsl-h2));
+  --activated-bg-hover: hsl(var(--hsl-l3));
+  --activated-colour: hsl(var(--hsl-b5));
+  --activated-colour-hover: hsl(var(--hsl-b5));
+
   .reset-input();
   .circle(@btn-circle-diameter);
   .default-box-shadow();
@@ -30,30 +36,25 @@
   });
 
   &--bbcode {
+    --bg: transparent;
+    --bg-hover: hsl(var(--hsl-l3));
+
     .default-text-shadow();
     font-size: 13px;
     box-shadow: none;
-    background-color: transparent;
-
-    &:focus,
-    &:hover,
-    &:active {
-      background-color: @osu-colour-l3;
-    }
   }
 
   &--blank {
-    background-color: transparent;
+    --bg: transparent;
+    --bg-hover: transparent;
+
     box-shadow: none;
     opacity: 0.7;
     cursor: default;
 
-    &:focus,
-    &:hover,
-    &:active {
+    .link-hover({
       box-shadow: none;
-      background-color: transparent;
-    }
+    });
   }
 
   &--follow {
@@ -112,11 +113,9 @@
     margin: 2.5px;
     font-size: 14px;
 
-    &:focus,
-    &:hover,
-    &:active {
+    .link-hover({
       .default-box-shadow();
-    }
+    });
   }
 
   &--topic-nav {
@@ -129,48 +128,28 @@
 
   &--activated,
   &.js-activated {
-    background-color: @osu-colour-h2;
-    color: @osu-colour-b5;
+    background-color: var(--activated-bg);
+    color: var(--activated-colour);
 
-    &:focus,
-    &:hover,
-    &:active {
-      background-color: @osu-colour-l3;
-      color: @osu-colour-b5;
-    }
+    .link-hover({
+      background-color: var(--activated-bg-hover);
+      color: var(--activated-colour-hover);
+    });
   }
 
   // colour variations
   &--purple {
-    background-color: @purple-dark;
-
-    .link-hover({
-      background-color: @purple;
-    });
-
-    &.@{top}--activated {
-      background-color: @purple-light;
-
-      .link-hover({
-        background-color: @purple-lighter;
-      });
-    }
+    --activated-bg: @purple-light;
+    --activated-bg-hover: @purple-lighter;
+    --bg: @purple-dark;
+    --bg-hover: @purple;
   }
 
   &--yellow {
-    background-color: @yellow-dark;
-
-    .link-hover({
-      background-color: @yellow;
-    });
-
-    &.@{top}--activated {
-      background-color: @yellow-light;
-
-      .link-hover({
-        background-color: @yellow-lighter;
-      });
-    }
+    --bg: @yellow-dark;
+    --bg-hover: @yellow;
+    --activated-bg: @yellow-light;
+    --activated-bg-hover: @yellow-lighter;
   }
 
   // overrides everything else

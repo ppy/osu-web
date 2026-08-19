@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Casts\TimestampOrZero;
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
@@ -258,6 +259,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_lastpost_time' => 'datetime',
         'user_lastvisit' => 'datetime',
         'user_notify' => 'boolean',
+        'user_passchg' => TimestampOrZero::class,
         'user_regdate' => 'datetime',
         'user_timezone' => 'float',
     ];
@@ -428,7 +430,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public static function cleanUsername($username)
     {
-        return strtolower($username);
+        return strtolower($username ?? '');
     }
 
     public static function findAndRenameUserForInactive($username): ?self
@@ -768,7 +770,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserTwitterAttribute($value)
     {
-        $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
+        $this->attributes['user_twitter'] = trim(ltrim($value ?? '', '@'));
     }
 
     public function setUserDiscordAttribute($value)
@@ -778,8 +780,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserColourAttribute($value)
     {
-        // also functions for casting null to string
-        $this->attributes['user_colour'] = ltrim($value, '#');
+        $this->attributes['user_colour'] = ltrim($value ?? '', '#');
     }
 
     public function getAttribute($key)
@@ -827,7 +828,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_notify_pm',
             'user_notify_type',
             'user_options',
-            'user_passchg',
             'user_password',
             'user_perm_from',
             'user_permissions',
@@ -863,6 +863,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_lastmark',
             'user_lastpost_time',
             'user_lastvisit',
+            'user_passchg',
             'user_regdate' => Carbon::createFromTimestamp($this->getRawAttribute($key)),
 
             // datetime
@@ -2237,7 +2238,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function profileBeatmapsetsNominated()
     {
-        return Beatmapset::withStates(['approved', 'ranked'])
+        return Beatmapset::withStates(['approved', 'ranked', 'qualified'])
             ->whereHas('beatmapsetNominations', fn ($q) => $q->current()->where('user_id', $this->getKey()))
             ->with('beatmaps');
     }
@@ -2300,6 +2301,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             if ($this->validationErrors()->isEmpty()) {
                 $this->user_password = Hash::make($this->password);
+                $this->user_passchg = Carbon::now();
             }
         }
 

@@ -80,7 +80,6 @@ class BeatmapsController extends Controller
         $scoreTransformer = new ScoreTransformer($legacyFormat);
 
         $results = [
-            'score_count' => UserRank::getCount($esFetch->baseParams),
             'scores' => json_collection(
                 $scores,
                 $scoreTransformer,
@@ -88,13 +87,22 @@ class BeatmapsController extends Controller
             ),
         ];
 
+        $isApi = is_api_request();
+
+        if ($isApi) {
+            $results['score_count'] = UserRank::getCount($esFetch->baseParams);
+        }
+
         if (isset($userScore)) {
             $results['user_score'] = [
                 'position' => $esFetch->rank($userScore),
                 'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
             ];
-            // TODO: remove this old camelCased json field
-            $results['userScore'] = $results['user_score'];
+
+            if ($isApi) {
+                // TODO: remove this old camelCased json field
+                $results['userScore'] = $results['user_score'];
+            }
         }
 
         return $results;

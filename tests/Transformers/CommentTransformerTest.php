@@ -8,13 +8,12 @@ namespace Tests\Transformers;
 use App\Models\Comment;
 use App\Models\User;
 use App\Transformers\CommentTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CommentTransformerTest extends TestCase
 {
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithOAuth(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -27,9 +26,7 @@ class CommentTransformerTest extends TestCase
         $this->assertArrayNotHasKey('message_html', $json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();

@@ -16,6 +16,9 @@ use Tests\TestCase;
 
 class UsernameChangeFulfillmentTest extends TestCase
 {
+    private Order $order;
+    private User $user;
+
     public function testRun()
     {
         $oldUsername = $this->user->username;

@@ -380,6 +380,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         $allStats = $user
             ->matchmakingStats()
+            ->hasPlayed()
             ->whereHas('pool', fn ($q) => $q->where([
                 'ruleset_id' => Beatmap::MODES[$this->mode],
                 'type' => 'ranked_play',

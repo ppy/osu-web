@@ -28,5 +28,4 @@ namespace App\Models\Score;
  */
 class Taiko extends Model
 {
-    protected $table = 'osu_scores_taiko';
 }
