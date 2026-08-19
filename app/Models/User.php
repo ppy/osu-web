@@ -864,7 +864,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_lastpost_time',
             'user_lastvisit',
             'user_passchg',
-            'user_regdate' => Carbon::createFromTimestamp($this->getRawAttribute($key)),
+            'user_regdate' => TimestampOrZero::castValue($this->getRawAttribute($key)),
 
             // datetime
             'osu_subscriptionexpiry' => $this->getTimeFast($key),
