@@ -45,6 +45,7 @@ class DailyChallengeCreateNext extends Command
             $room = (new Room())->startGame(
                 User::findOrFail($hostId),
                 [
+                    'description' => $nextQueueItem->description,
                     'ends_at' => today()->addDay(),
                     'name' => "Daily Challenge: {$startTime->toFormattedDateString()}",
                     'type' => 'playlists',

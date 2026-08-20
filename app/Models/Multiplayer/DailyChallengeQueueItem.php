@@ -11,6 +11,7 @@ use App\Models\Model;
 /**
  * @property json|null $allowed_mods
  * @property int $beatmap_id
+ * @property string|null $description
  * @property int|null $multiplayer_room_id
  * @property int|null $order
  * @property json|null $required_mods

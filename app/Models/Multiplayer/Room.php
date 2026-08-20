@@ -640,6 +640,7 @@ class Room extends Model
 
         $params = get_params($rawParams, null, [
             'category',
+            'description',
             'duration:int',
             'ends_at:time',
             'max_attempts:int',
@@ -658,6 +659,7 @@ class Room extends Model
         }
 
         $this->fill([
+            'description' => $params['description'],
             'max_attempts' => $params['max_attempts'],
             'name' => app('chat-filters')->filter($params['name']),
             'starts_at' => now(),
