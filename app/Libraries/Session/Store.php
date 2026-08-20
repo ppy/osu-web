@@ -143,7 +143,7 @@ class Store extends BaseStore implements SessionVerificationInterface
         // returns sessions sorted from most to least recently active
         return Arr::sortDesc(
             $sessionMeta,
-            fn ($value) => $value['last_visit'],
+            fn ($value) => is_int($value['last_visit']) ? $value['last_visit'] : $value['last_visit']->getTimestamp(),
         );
     }
 
