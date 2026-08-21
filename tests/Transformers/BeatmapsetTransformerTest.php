@@ -14,7 +14,7 @@ use Tests\TestCase;
 class BeatmapsetTransformerTest extends TestCase
 {
     #[DataProvider('groupsDataProvider')]
-    public function testDeletedBeatmapsetGroupPermissionsWithOAuth(?string $groupIdentifier)
+    public function testDeletedBeatmapsetGroupPermissionsWithOAuth(?string $groupIdentifier, bool $_visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $beatmapset = Beatmapset::factory()->deleted()->create();
@@ -43,6 +43,7 @@ class BeatmapsetTransformerTest extends TestCase
 
     public static function groupsDataProvider()
     {
+        // The second argument is only for testDeletedBeatmapsetGroupPermissionsWithoutOAuth
         return [
             ['admin', true],
             ['bng', true],
