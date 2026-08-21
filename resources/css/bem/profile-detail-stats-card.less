@@ -1,0 +1,204 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.profile-detail-stats-card {
+  --bg-hsl: var(--hsl-b3);
+  --bg: hsl(var(--bg-hsl));
+  --border-radius: @border-radius-large;
+  --border-gradient-start-colour: rgba(255, 255, 255, 0.4);
+  --border-gradient-end-colour: rgba(255, 255, 255, 0);
+  --border-width: 1px;
+  --padding: 10px;
+  border-radius: var(--border-radius);
+  background: var(--bg);
+  display: grid;
+  position: relative;
+  grid-template-rows: auto auto 1fr;
+
+  &--extra {
+    background: transparent;
+    gap: 5px;
+    align-content: start;
+    grid-template-rows: initial;
+  }
+
+  &__bottom {
+    display: grid;
+    padding: var(--padding) 0;
+    position: relative;
+    min-height: 80px;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+      rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
+
+  &__chart {
+    position: absolute;
+    display: grid;
+    inset: 0 15px 0 0;
+  }
+
+  &__decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    // left line
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      left: 0;
+      top: var(--border-radius);
+      height: calc(100% - var(--border-radius) * 2);
+      width: var(--border-width);
+      background: linear-gradient(
+        to bottom,
+        var(--border-gradient-start-colour),
+        var(--border-gradient-end-colour)
+      );
+    }
+
+    // top line
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      top: 0;
+      left: var(--border-radius);
+      width: calc(100% - var(--border-radius) * 2);
+      height: var(--border-width);
+      background: linear-gradient(
+        to right,
+        var(--border-gradient-start-colour),
+        var(--border-gradient-end-colour)
+      );
+    }
+  }
+
+  // fake the corner using circles instead of border so it vaguely matches the adjacent lines
+  &__decor-corner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--border-radius);
+    height: $width;
+    overflow: hidden;
+
+    // inner circle
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: var(--border-width);
+      left: $top;
+      width: calc((var(--border-radius) - var(--border-width)) * 2);
+      height: $width;
+      border-radius: 100%;
+      background: var(--bg);
+    }
+
+    // outer circle
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(var(--border-radius) * 2);
+      height: $width;
+      border-radius: 100%;
+      background: var(--border-gradient-start-colour);
+    }
+  }
+
+  &__empty-chart {
+    .center-content();
+    font-size: @font-size--normal;
+  }
+
+  &__middle {
+    --bg-1-hsl: 0, 0%, 0%;
+    --bg-1-a: 0.2;
+    --bg-2-hsl: var(--bg-hsl);
+    background:
+      linear-gradient(hsl(var(--bg-1-hsl), var(--bg-1-a))), hsl(var(--bg-2-hsl));
+    padding: var(--padding);
+    height: 60px;
+    display: grid;
+  }
+
+  &__matchmaking-tier-badge {
+    position: absolute;
+    top: var(--padding);
+    right: $top;
+  }
+
+  &__top {
+    padding: var(--padding);
+    gap: 10px;
+    display: grid;
+    align-items: center;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 0.1)
+    );
+  }
+
+  &__title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5px;
+    font-size: @font-size--title-small-3;
+    font-weight: bold;
+    align-items: center;
+  }
+
+  &__title-icon {
+    font-size: 24px; // icon size
+    display: contents;
+  }
+
+  &__values {
+    display: grid;
+    gap: 5px;
+
+    &--matchmaking-matches {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    &--matchmaking-rating {
+      position: relative;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &--row {
+      display: flex;
+    }
+  }
+
+  &__variant {
+    --hover-colour: hsl(var(--hsl-l1));
+
+    .reset-input();
+    color: hsl(var(--hsl-l2));
+    font-weight: normal;
+
+    .link-hover({
+      color: var(--hover-colour);
+    });
+
+    &--active {
+      color: hsl(var(--hsl-c1));
+      --hover-colour: $color;
+    }
+  }
+
+  &__variants {
+    margin-left: 10px;
+    display: inline-flex;
+    gap: 5px;
+  }
+}

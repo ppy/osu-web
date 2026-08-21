@@ -12,6 +12,18 @@ import { trans } from 'utils/lang';
 import { qtipPosition } from 'utils/qtip-helper';
 import { ProfilePageMatchmakingStatsJson } from './extra-page-props';
 
+export function getHighestRankStats(allStats: ProfilePageMatchmakingStatsJson[]) {
+  let highestRankStats: null | ProfilePageMatchmakingStatsJson = null;
+  for (const stats of allStats) {
+    // only show active stats for profile page
+    if (stats.pool.active && (highestRankStats == null || stats.rank < highestRankStats.rank)) {
+      highestRankStats = stats;
+    }
+  }
+
+  return highestRankStats;
+}
+
 const tiers = [
   ['Bronze', [
     ['I', 1],
@@ -50,11 +62,11 @@ const tiers = [
   ]],
 ] as const;
 
-function tier(stats: ProfilePageMatchmakingStatsJson) {
+export function tier(stats: ProfilePageMatchmakingStatsJson) {
   const rank = stats.rank;
   const percent = stats.rank_percent;
 
-  if (rank <= 100) {
+  if (rank > 0 && rank <= 100) {
     return { colour: 'lustrous', title: 'Lustrous' };
   }
 
@@ -159,13 +171,7 @@ export default class Matchmaking extends React.Component<Props> {
       return null;
     }
 
-    let highestRankStats: null | ProfilePageMatchmakingStatsJson = null;
-    for (const stats of this.props.allStats) {
-      // only show active stats for profile page
-      if (stats.pool.active && (highestRankStats == null || stats.rank < highestRankStats.rank)) {
-        highestRankStats = stats;
-      }
-    }
+    const highestRankStats = getHighestRankStats(this.props.allStats);
 
     return (
       <div

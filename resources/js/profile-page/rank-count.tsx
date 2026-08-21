@@ -3,16 +3,17 @@
 
 import UserStatisticsJson, { grades } from 'interfaces/user-statistics-json';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 
 interface Props {
+  modifiers?: Modifiers;
   stats: UserStatisticsJson;
 }
 
-export default function RankCount({ stats }: Props) {
+export default function RankCount({ modifiers, stats }: Props) {
   return (
-    <div className='profile-rank-count'>
+    <div className={classWithModifiers('profile-rank-count', modifiers)}>
       {grades.map((grade) => (
         <div key={grade} className='profile-rank-count__item'>
           <div className='profile-rank-count__rank'>
