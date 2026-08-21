@@ -79,7 +79,7 @@ class LoginAttempt extends Model
         return $record->failed_attempts > $GLOBALS['cfg']['osu']['user']['max_login_attempts'];
     }
 
-    public static function logAttempt($ip, $user, $type, $password = null)
+    public static function logAttempt($ip, $user, $type, $password = null, bool $allowDuplicates = false)
     {
         $state = $type;
 
@@ -89,7 +89,7 @@ class LoginAttempt extends Model
 
         $record = static::findOrDefault($ip);
 
-        if ($record->containsUser($user, $state)) {
+        if ($record->containsUser($user, $state) && !$allowDuplicates) {
             return;
         }
 
