@@ -12,6 +12,7 @@ use App\Models\Traits\FasterAttributes;
 use App\Models\Traits\IncrementInstance;
 use App\Models\User;
 use Ds\Set;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
@@ -34,6 +35,35 @@ class Token extends PassportToken implements SessionVerificationInterface
     ];
 
     private ?Set $scopeSet;
+
+    public static function findActiveOrFail(?string $id): static
+    {
+        if ($id === null) {
+            throw new AuthenticationException('invalid, expired, or missing auth header');
+        }
+
+        $token = static::find($id);
+
+        if ($token === null) {
+            throw new AuthenticationException('invalid token (not found)');
+        }
+        if ($token->revoked) {
+            throw new AuthenticationException('invalid token (revoked)');
+        }
+        if ($token->expires_at->isPast()) {
+            throw new AuthenticationException('invalid token (expired)');
+        }
+        if ($token->client->revoked) {
+            throw new AuthenticationException('invalid token (revoked client)');
+        }
+        if (!$token->isClientCredentials() && $token->user === null) {
+            throw new AuthenticationException('invalid token (missing user)');
+        }
+
+        $token->validate();
+
+        return $token;
+    }
 
     public static function findForVerification(string $id): ?static
     {

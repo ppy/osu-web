@@ -10,16 +10,28 @@ namespace App\Libraries\OAuth;
 use App\Models\OAuth\Token;
 use Defuse\Crypto\Crypto;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken;
 
 class EncodeToken
 {
+    private const ALGORITHM = 'RS256';
+
+    public static function decodeAccessToken(string $bearerToken): ?string
+    {
+        try {
+            $decoded = JWT::decode($bearerToken, static::publicKey());
+        } catch (\Throwable $e) {
+            return null;
+        }
+
+        // basic expiration check
+        return time() < $decoded->exp ? $decoded->jti : null;
+    }
+
     public static function encodeAccessToken(Token $token): string
     {
-        $privateKey = $GLOBALS['cfg']['passport']['private_key']
-            ?? file_get_contents(Passport::keyPath('oauth-private.key'));
-
         return JWT::encode([
             'aud' => $token->client_id,
             'exp' => $token->expires_at->timestamp,
@@ -28,7 +40,7 @@ class EncodeToken
             'nbf' => $token->created_at->timestamp, // valid after
             'sub' => $token->user_id,
             'scopes' => $token->scopes,
-        ], $privateKey, 'RS256');
+        ], static::privateKey(), static::ALGORITHM);
     }
 
     public static function encodeRefreshToken(RefreshToken $refreshToken, Token $accessToken): string
@@ -41,5 +53,27 @@ class EncodeToken
             'user_id' => $accessToken->user_id,
             'expire_time' => $refreshToken->expires_at->timestamp,
         ]), \Crypt::getKey());
+    }
+
+    private static function privateKey(): string
+    {
+        return $GLOBALS['cfg']['passport']['private_key']
+            ??= file_get_contents(Passport::keyPath('oauth-private.key'));
+    }
+
+    private static function publicKey(): Key
+    {
+        if (!isset($GLOBALS['cfg']['passport']['public_key_jwt'])) {
+            if (!present($GLOBALS['cfg']['passport']['public_key'])) {
+                $GLOBALS['cfg']['passport']['public_key'] = file_get_contents(Passport::keyPath('oauth-public.key'));
+            }
+
+            $GLOBALS['cfg']['passport']['public_key_jwt'] = new Key(
+                $GLOBALS['cfg']['passport']['public_key'],
+                static::ALGORITHM,
+            );
+        }
+
+        return $GLOBALS['cfg']['passport']['public_key_jwt'];
     }
 }
