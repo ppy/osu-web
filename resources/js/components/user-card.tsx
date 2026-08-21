@@ -55,6 +55,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     country_code: '',
     cover: { custom_url: null, id: null, url: null },
     default_group: '',
+    has_alpha: false,
     id: 0,
     is_active: false,
     is_bot: false,
@@ -160,7 +161,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         </div>
         {this.isUserLoaded && hasAvatar && (
           <img
-            className={classWithModifiers('user-card__avatar', modifiers)}
+            className={classWithModifiers('user-card__avatar', modifiers, { 'no-border': this.user.has_alpha })}
             onError={this.onAvatarLoad} // remove spinner if error
             onLoad={this.onAvatarLoad}
             src={this.user.avatar_url}

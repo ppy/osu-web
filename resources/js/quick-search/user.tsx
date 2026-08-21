@@ -5,11 +5,12 @@ import FlagCountry from 'components/flag-country';
 import FlagTeam from 'components/flag-team';
 import FriendButton from 'components/friend-button';
 import SupporterIcon from 'components/supporter-icon';
+import UserAvatar from 'components/user-avatar';
 import UserGroupBadges from 'components/user-group-badges';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 export default function User({ modifiers, user }: { modifiers?: Modifiers; user: UserJson }) {
   const url = route('users.show', { user: user.id });
@@ -19,7 +20,7 @@ export default function User({ modifiers, user }: { modifiers?: Modifiers; user:
       <a className='user-search-card__background-container' href={url} />
       <div className='user-search-card__container'>
         <a className='user-search-card__avatar-container' href={url}>
-          <div className='avatar avatar--full' style={{ backgroundImage: urlPresence(user.avatar_url) }} />
+          <UserAvatar modifiers='full' user={user} />
         </a>
 
         <div className='user-search-card__details'>

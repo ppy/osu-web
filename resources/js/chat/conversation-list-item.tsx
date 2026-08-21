@@ -45,6 +45,8 @@ export default class ConversationListItem extends React.Component<Props> {
 
   render(): React.ReactNode {
     const baseClassName = 'chat-conversation-list-item';
+    const pmTarget = this.props.channel.pmTarget;
+    const pmTargetUser = pmTarget != null ? core.dataStore.userStore.get(pmTarget) : undefined;
 
     return (
       <div ref={this.ref} className={classWithModifiers(baseClassName, { selected: this.selected })}>
@@ -60,7 +62,13 @@ export default class ConversationListItem extends React.Component<Props> {
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <div className={`${baseClassName}__avatar`}>
-            <UserAvatar modifiers='full-circle' user={{ avatar_url: this.props.channel.icon }} />
+            <UserAvatar
+              modifiers='full-circle'
+              user={{
+                avatar_url: this.props.channel.icon,
+                has_alpha: pmTargetUser?.hasAlpha,
+              }}
+            />
           </div>
           <div className={`${baseClassName}__name u-ellipsis-overflow`}>{this.props.channel.name}</div>
           <div className={`${baseClassName}__chevron`}>

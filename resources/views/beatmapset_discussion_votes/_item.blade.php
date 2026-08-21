@@ -6,7 +6,7 @@
     <div class="beatmapset-activities__vote-user-panel">
         <a href="{{route('users.modding.index', $vote->user->user_id)}}">
             <div class="beatmap-discussion-post__avatar">
-                <div class="avatar avatar--full-rounded" style="background-image: url('{{$vote->user->user_avatar}}');"></div>
+                <div class="{{ class_with_modifiers('avatar', 'full-rounded', ['no-border' => $vote->user->has_alpha]) }}" style="background-image: url('{{$vote->user->user_avatar}}');"></div>
             </div>
         </a>
         <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($vote->user) !!}</span>
