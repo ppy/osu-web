@@ -365,7 +365,7 @@ abstract class Search implements Queryable
         ];
     }
 
-    private function handleError(ElasticsearchException $e, string $operation): ElasticsearchException
+    private function handleError(ElasticsearchException $e): \Throwable
     {
         if ($e instanceof RuntimeException && $e->getMessage() === 'Failed to JSON encode: Inf and NaN cannot be JSON encoded') {
             $e = new InvariantException('Invalid search parameter.');
@@ -410,7 +410,7 @@ abstract class Search implements Queryable
                 $this->getDatadogTags()
             );
         } catch (ElasticsearchException $e) {
-            $this->error = $this->handleError($e, $operation);
+            $this->error = $this->handleError($e);
             return null;
         }
     }
