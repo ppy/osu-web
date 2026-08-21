@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'ogp' => [
+        'favourites' => ':count_delimited favourite|:count_delimited favourites',
+        'playcount' => ':count_delimited play|:count_delimited plays',
+    ],
+
     'panel' => [
         'empty' => 'no beatmaps',
 
