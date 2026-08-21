@@ -84,6 +84,7 @@ export class SearchFilter extends React.Component<Props> {
     const cssClasses = classWithModifiers('beatmapsets-search-filter__item', {
       active: this.isSelected(option.id),
       'featured-artists': option.id === 'featured_artists',
+      'osu-originals': option.id === 'osu_originals',
     });
 
     let text = option.name;

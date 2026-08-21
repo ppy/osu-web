@@ -172,6 +172,10 @@ export default class Header extends React.Component<Props> {
               beatmapset={this.controller.beatmapset}
               type='featured_artist'
             />
+            <BeatmapsetBadge
+              beatmapset={this.controller.beatmapset}
+              type='exclusive'
+            />
           </span>
 
           <BeatmapsetMapping beatmapset={this.controller.beatmapset} />
