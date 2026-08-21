@@ -8,7 +8,7 @@ namespace Tests\Controllers\Passport;
 use App\Http\Controllers\Passport\AuthorizationController;
 use App\Models\OAuth\Client;
 use Illuminate\Contracts\Auth\StatefulGuard;
-use Laravel\Passport\Contracts\AuthorizationViewResponse;
+use Laravel\Passport\ClientRepository;
 use League\OAuth2\Server\AuthorizationServer;
 use Mockery;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -70,7 +70,7 @@ class AuthorizationControllerTest extends TestCase
         $this->controller = new AuthorizationController(
             Mockery::mock(AuthorizationServer::class),
             Mockery::mock(StatefulGuard::class),
-            Mockery::mock(AuthorizationViewResponse::class),
+            Mockery::mock(ClientRepository::class),
         );
     }
 

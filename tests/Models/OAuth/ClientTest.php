@@ -260,7 +260,7 @@ class ClientTest extends TestCase
         $countBefore = Client::count();
 
         $this->artisan('passport:client', ['--password' => true])
-            ->expectsQuestion('What should we name the password grant client?', 'potato')
+            ->expectsQuestion('What should we name the client?', 'potato')
             ->expectsQuestion('Which user provider should this client use to retrieve users?', 'user');
 
         $this->assertSame($countBefore + 1, Client::count(), 'client was not created.');
