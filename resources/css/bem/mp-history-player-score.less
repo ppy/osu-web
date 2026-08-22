@@ -60,8 +60,8 @@
   &__main {
     padding: 10px 20px;
     display: grid;
-    // for mods and rank element (in mobile), using order and grid-column combination
-    grid-template-columns: 1fr auto;
+    // for mods, rank and menu element (in mobile), using order and grid-column combination
+    grid-template-columns: 1fr auto auto;
     gap: 5px;
     grid-column: 2 / -1;
 
@@ -99,6 +99,18 @@
     &--rank {
       order: 1;
       grid-column: 2 / 3;
+      @media @desktop {
+        order: 0;
+        grid-column: initial;
+      }
+    }
+
+    &--menu {
+      position: relative;
+      width: 16px;
+      height: 100%;
+      order: 1;
+      grid-column: 3 / 4;
       @media @desktop {
         padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
         order: 0;
