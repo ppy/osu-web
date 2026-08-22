@@ -366,3 +366,4 @@ php artisan scribe:generate
 ```
 
 Documentation will be generated in the `docs` folder in both html and markdown formats.
+# bounty-fix-ref: https://github.com/ppy/osu-web/issues/10313
