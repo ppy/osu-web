@@ -1839,6 +1839,38 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->rank?->url;
     }
 
+    public function forumTitle(): string
+    {
+        if ($this->user_posts < 5) {
+            return 'Rhythm Rookie';
+        }
+        if ($this->user_posts < 15) {
+            return 'Tempo Trainee';
+        }
+        if ($this->user_posts < 30) {
+            return 'Whistle Blower';
+        }
+        if ($this->user_posts < 50) {
+            return 'Cymbal Sounder';
+        }
+        if ($this->user_posts < 80) {
+            return 'Beat Clicker';
+        }
+        if ($this->user_posts < 120) {
+            return 'Slider Savant';
+        }
+        if ($this->user_posts < 180) {
+            return 'Spinner Sage';
+        }
+        if ($this->user_posts < 260) {
+            return 'Star Shooter';
+        }
+        if ($this->user_posts < 500) {
+            return 'Combo Commander';
+        }
+        return 'Rhythm Incarnate';
+    }
+
     public function hasProfile()
     {
         return $this->getKey() !== null

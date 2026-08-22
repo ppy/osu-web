@@ -41,6 +41,10 @@
                     {{ $user->title() }}
                 </div>
             @endif
+        @else
+            <div class="forum-post-info__row forum-post-info__row--title">
+                {{ $user->forumTitle() }}
+            </div>
         @endif
     @else
         <span class="forum-post-info__row forum-post-info__row--username">

@@ -91,6 +91,22 @@ class UserTest extends TestCase
         ];
     }
 
+    public static function dataProviderForumTitles(): array
+    {
+        return [
+            [3, 'Rhythm Rookie'],
+            [7, 'Tempo Trainee'],
+            [25, 'Whistle Blower'],
+            [40, 'Cymbal Sounder'],
+            [60, 'Beat Clicker'],
+            [110, 'Slider Savant'],
+            [150, 'Spinner Sage'],
+            [200, 'Star Shooter'],
+            [400, 'Combo Commander'],
+            [1000, 'Rhythm Incarnate'],
+        ];
+    }
+
     #[DataProvider('dataProviderForAttributeTwitter')]
     public function testAttributeTwitter($setValue, $getValue)
     {
@@ -259,5 +275,14 @@ class UserTest extends TestCase
         if (!$valid) {
             $this->assertArrayHasKey('user_discord', $user->validationErrors()->all());
         }
+    }
+
+    #[DataProvider('dataProviderForumTitles')]
+    public function testForumTitle(int $postCount, string $forumTitle)
+    {
+        $user = User::factory()->make();
+        $user->user_posts = $postCount;
+
+        $this->assertSame($forumTitle, $user->forumTitle());
     }
 }
