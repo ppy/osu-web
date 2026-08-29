@@ -18,11 +18,11 @@ import { Sort } from './sort';
 import { ViewMode, viewModes } from './user-card';
 import { UserCards } from './user-cards';
 
-export type Filter = 'all' | 'online' | 'offline';
+export type Filter = 'all' | 'mutual' |'online' |'offline';
 type PlayModeFilter = 'all' | Ruleset;
 export type SortMode = 'last_visit' | 'rank' | 'username';
 
-const filters: Filter[] = ['all', 'online', 'offline'];
+const filters: Filter[] = ['all', 'mutual', 'online', 'offline'];
 const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
@@ -299,6 +299,8 @@ export class UserList extends React.PureComponent<Props> {
         return users.filter((user) => user.is_online);
       case 'offline':
         return users.filter((user) => !user.is_online);
+      case 'mutual':
+        return users.filter((user) => core.currentUserModel.friends.get(user.id)?.mutual);
       default:
         return users;
     }
