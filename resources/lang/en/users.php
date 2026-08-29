@@ -565,6 +565,7 @@ return [
 
     'status' => [
         'all' => 'All',
+        'mutual' => 'Mutual',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
