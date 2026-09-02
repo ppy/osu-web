@@ -9,7 +9,8 @@ import { Client } from 'models/oauth/client';
 export class OwnClient extends Client {
   @observable isResetting = false;
   @observable isUpdating = false;
-  secret: string;
+  secret: null | string;
+  secretHint: string;
 
   @observable private redirectOrig: string;
 
@@ -23,6 +24,7 @@ export class OwnClient extends Client {
 
     this.redirectOrig = client.redirect;
     this.secret = client.secret;
+    this.secretHint = client.secret_hint;
 
     makeObservable(this);
   }
@@ -72,6 +74,7 @@ export class OwnClient extends Client {
     this.user = json.user;
     this.redirectOrig = json.redirect;
     this.secret = json.secret;
+    this.secretHint = json.secret_hint;
   }
 
   @action

@@ -29,7 +29,11 @@ class ClientsController extends Controller
 
     public function index()
     {
-        return json_collection(\Auth::user()->clients()->where('revoked', false)->get(), new ClientTransformer(), ['redirect', 'secret']);
+        return json_collection(
+            \Auth::user()->clients()->where('revoked', false)->get(),
+            new ClientTransformer(),
+            ['redirect', 'secret', 'secret_hint'],
+        );
     }
 
     public function resetSecret($clientId)
@@ -40,7 +44,7 @@ class ClientsController extends Controller
             return error_popup(osu_trans('oauth.client.reset_failed'));
         }
 
-        return json_item($client, new ClientTransformer(), ['redirect', 'secret']);
+        return json_item($client, new ClientTransformer(), ['redirect', 'secret', 'secret_hint']);
     }
 
     public function store()
@@ -67,7 +71,7 @@ class ClientsController extends Controller
             ], 422);
         }
 
-        return json_item($client, new ClientTransformer(), ['redirect', 'secret']);
+        return json_item($client, new ClientTransformer(), ['redirect', 'secret', 'secret_hint']);
     }
 
     public function update($clientId)
@@ -83,6 +87,6 @@ class ClientsController extends Controller
             ], 422);
         }
 
-        return json_item($client, new ClientTransformer(), ['redirect', 'secret']);
+        return json_item($client, new ClientTransformer(), ['redirect', 'secret', 'secret_hint']);
     }
 }

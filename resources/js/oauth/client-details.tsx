@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ClickToCopy from 'components/click-to-copy';
 import { Spinner } from 'components/spinner';
 import TextareaAutosize from 'components/textarea-autosize';
 import { FormErrors } from 'form-errors';
@@ -47,18 +48,20 @@ export class ClientDetails extends React.Component<Props> {
           <div>
             {
               this.isSecretVisible
-                ? this.props.client.secret
-                : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+                ? <ClickToCopy showIcon value={this.props.client.secret ?? ''} />
+                : `*****${this.props.client.secretHint}`
             }
           </div>
           <div className='oauth-client-details__buttons'>
-            <button
-              className='btn-osu-big'
-              onClick={this.handleToggleSecret}
-              type='button'
-            >
-              {trans(`oauth.client.secret_visible.${this.isSecretVisible}`)}
-            </button>
+            {this.props.client.secret != null &&
+              <button
+                className='btn-osu-big'
+                onClick={this.handleToggleSecret}
+                type='button'
+              >
+                {trans(`oauth.client.secret_visible.${this.isSecretVisible}`)}
+              </button>
+            }
             <button
               className='btn-osu-big btn-osu-big--danger'
               disabled={this.props.client.isResetting || this.props.client.revoked}
@@ -68,6 +71,7 @@ export class ClientDetails extends React.Component<Props> {
               {this.props.client.isResetting ? <Spinner /> : trans('oauth.client.reset')}
             </button>
           </div>
+          {this.renderSecretVisibilityInfo()}
         </div>
 
         <label className='oauth-client-details__group'>
@@ -162,4 +166,14 @@ export class ClientDetails extends React.Component<Props> {
       this.errors.clear();
     }).catch(this.errors.handleResponse);
   };
+
+  private renderSecretVisibilityInfo() {
+    let message = trans('oauth.own_clients.secret.visible_once');
+    message += ' ';
+    message += this.props.client.secret == null
+      ? trans('oauth.own_clients.secret.generate_new')
+      : trans('oauth.own_clients.secret.copy');
+
+    return <p>{message}</p>;
+  }
 }
