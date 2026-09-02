@@ -66,7 +66,7 @@ class TokensControllerTest extends TestCase
         $tokenJson = $this->json('POST', route('oauth.passport.token'), [
             'grant_type' => 'password',
             'client_id' => $client->getKey(),
-            'client_secret' => $client->secret,
+            'client_secret' => $client->plainSecret,
             'scope' => '*',
             'username' => $user->username,
             'password' => UserFactory::DEFAULT_PASSWORD,
@@ -103,7 +103,7 @@ class TokensControllerTest extends TestCase
         $tokenJson = $this->json('POST', route('oauth.passport.token'), [
             'grant_type' => 'refresh_token',
             'client_id' => $client->getKey(),
-            'client_secret' => $client->secret,
+            'client_secret' => $client->plainSecret,
             'refresh_token' => $refreshTokenString,
             'scope' => implode(' ', $accessToken->scopes),
         ])->assertSuccessful()
