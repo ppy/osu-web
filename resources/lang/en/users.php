@@ -560,9 +560,13 @@ return [
 
     'status' => [
         'all' => 'All',
-        'mutual' => 'Mutual',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'all' => 'All',
+        'mutual' => 'Mutual',
+        'non_mutual' => 'Non-mutual',
     ],
     'store' => [
         'from_client' => 'please register via the game client instead!',
