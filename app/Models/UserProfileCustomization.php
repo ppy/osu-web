@@ -33,7 +33,8 @@ class UserProfileCustomization extends Model
         'legacy_score_only' => false,
         'profile_cover_expanded' => true,
         'scoring_mode' => self::SCORING_MODES[0],
-        'user_list_filter' => self::USER_LIST['filters']['default'],
+        'user_list_filter' => self::USER_LIST['filters']['status']['default'],
+        'user_list_relationship_filter' => self::USER_LIST['filters']['relationship']['default'],
         'user_list_sort' => self::USER_LIST['sorts']['default'],
         'user_list_view' => self::USER_LIST['views']['default'],
     ];
@@ -58,7 +59,10 @@ class UserProfileCustomization extends Model
     public const array SCORING_MODES = ['standardised', 'classic'];
 
     const USER_LIST = [
-        'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
+        'filters' => [
+            'status' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
+            'relationship' => ['all' => ['all', 'mutual', 'non_mutual'], 'default' => 'all'],
+        ],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
     ];
@@ -267,6 +271,20 @@ class UserProfileCustomization extends Model
         $this->setOption('scoring_mode', $value);
     }
 
+    public function getUserListRelationshipFilterAttribute()
+    {
+        return $this->options['user_list_relationship_filter'] ?? static::DEFAULTS['user_list_relationship_filter'];
+    }
+
+    public function setUserListRelationshipFilterAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['filters']['relationship']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_relationship_filter', $value);
+    }
+
     public function getUserListFilterAttribute()
     {
         return $this->options['user_list_filter'] ?? static::DEFAULTS['user_list_filter'];
@@ -274,7 +292,7 @@ class UserProfileCustomization extends Model
 
     public function setUserListFilterAttribute($value)
     {
-        if ($value !== null && !in_array($value, static::USER_LIST['filters']['all'], true)) {
+        if ($value !== null && !in_array($value, static::USER_LIST['filters']['status']['all'], true)) {
             $value = null;
         }
 
