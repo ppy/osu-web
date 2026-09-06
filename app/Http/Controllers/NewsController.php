@@ -133,7 +133,7 @@ class NewsController extends Controller
      *
      * ### Response Format
      *
-     * Returns a [NewsPost](#newspost) with `content` and `navigation` included.
+     * Returns a [NewsPost](#newspost) with `content`, `content_markdown`, and `navigation` included.
      *
      * @urlParam news string required News post slug or ID. Example: 2021-04-27-results-a-labour-of-love
      * @queryParam key string Unset to query by slug, or `id` to query by ID. No-example
@@ -147,6 +147,7 @@ class NewsController extends Controller
      *   "slug": "2021-04-27-results-a-labour-of-love",
      *   "title": "Results - A Labour of Love",
      *   "content": "<div class='osu-md osu-md--news'>...</div>",
+     *   "content_markdown": "...",
      *   "navigation": {
      *     "newer": {
      *       "id": 944,
@@ -189,7 +190,7 @@ class NewsController extends Controller
             abort(404);
         }
 
-        $postJson = json_item($post, new NewsPostTransformer(), ['content', 'navigation']);
+        $postJson = json_item($post, new NewsPostTransformer(), ['content', 'content_markdown', 'navigation']);
 
         if (is_json_request()) {
             return $postJson;

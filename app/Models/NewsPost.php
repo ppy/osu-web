@@ -34,7 +34,7 @@ class NewsPost extends Model implements CommentableInterface, Wiki\WikiObject
 
     // in minutes
     const CACHE_DURATION = 86400;
-    const VERSION = 3;
+    const VERSION = 4;
     // should be higher than landing limit
     const DASHBOARD_LIMIT = 8;
     // also for number of large posts in user dashboard
@@ -306,6 +306,11 @@ class NewsPost extends Model implements CommentableInterface, Wiki\WikiObject
         ];
     }
 
+    public function markdown(): string
+    {
+        return $this->page['markdown'];
+    }
+
     public function newer()
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -362,11 +367,14 @@ class NewsPost extends Model implements CommentableInterface, Wiki\WikiObject
 
         $rawPage = $file->content();
 
-        $this->page = (new OsuMarkdown(
+        $page = (new OsuMarkdown(
             'news',
             osuExtensionConfig: ['relative_url_root' => route('news.show', $this->slug)]
         ))->load($rawPage)->toArray();
 
+        $page['markdown'] = $rawPage;
+
+        $this->page = $page;
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();
         $this->tumblr_id = $this->pageTumblrId();
