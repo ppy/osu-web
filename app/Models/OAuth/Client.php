@@ -9,13 +9,18 @@ use App\Exceptions\InvariantException;
 use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
+use Database\Factories\OAuth\ClientFactory;
 use DB;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\RefreshToken;
 
 /**
  * @property Carbon|null $created_at
+ * @property string[] $grant_types
  * @property int $id
  * @property string $name
  * @property bool $password_client
@@ -60,10 +65,9 @@ class Client extends PassportClient
         return $clients;
     }
 
-    public static function newFactory()
+    public static function newFactory(): Factory
     {
-        // force default factory class name instead of passport
-        return null;
+        return ClientFactory::new();
     }
 
     public function refreshTokens()
@@ -167,7 +171,7 @@ class Client extends PassportClient
         return $query->where('personal_access_client', false)->where('password_client', false);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -175,6 +179,31 @@ class Client extends PassportClient
     public function validationErrorsTranslationPrefix(): string
     {
         return 'oauth.client';
+    }
+
+    #[\Override]
+    protected function grantTypes(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): array => array_keys(array_filter([
+                'authorization_code' => !$this->firstParty(),
+                'client_credentials' => $this->confidential(),
+                'password' => $this->password_client,
+                'refresh_token' => true,
+            ])),
+        );
+    }
+
+    #[\Override]
+    protected function secret(): Attribute
+    {
+        return Attribute::make(
+            set: function (?string $value): ?string {
+                $this->plainSecret = $value;
+
+                return $value;
+            },
+        );
     }
 
     private function revokeTokens($timestamp)

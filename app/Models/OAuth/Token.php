@@ -13,10 +13,13 @@ use App\Models\Traits\IncrementInstance;
 use App\Models\User;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Passport\Contracts\ScopeAuthorizable;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
-class Token extends PassportToken implements SessionVerificationInterface
+class Token extends PassportToken implements ScopeAuthorizable, SessionVerificationInterface
 {
     // PassportToken doesn't have factory
     use HasFactory, FasterAttributes, IncrementInstance;
@@ -40,17 +43,18 @@ class Token extends PassportToken implements SessionVerificationInterface
         return static::find($id);
     }
 
-    public function refreshToken()
+    public function refreshToken(): HasOne
     {
         return $this->hasOne(RefreshToken::class, 'access_token_id');
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function can($scope)
+    #[\Override]
+    public function can(string $scope): bool
     {
         static $excludeSet = new Set(static::SCOPES_EXCLUDE_FROM_ALL);
 
@@ -154,7 +158,7 @@ class Token extends PassportToken implements SessionVerificationInterface
         return $result;
     }
 
-    public function revoke()
+    public function revoke(): bool
     {
         $saved = parent::revoke();
 
