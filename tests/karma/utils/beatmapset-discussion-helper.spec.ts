@@ -7,7 +7,14 @@ import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
-import { discussionMode, isUserFullNominator, maxLengthTimeline, nearbyDiscussions, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import {
+  discussionMode,
+  isUserFullNominator,
+  maxLengthTimeline,
+  nearbyDiscussions,
+  timestampRegex,
+  validMessageLength,
+} from 'utils/beatmapset-discussion-helper';
 import testCurrentUserJson from '../test-current-user-json';
 
 interface TestCase<T> {
@@ -180,6 +187,29 @@ describe('utils/beatmapset-discussion-helper', () => {
           const result = nearbyDiscussions(test.discussions, 1);
           expect(result.length).toBe(test.expectEmpty ? 0 : 1);
         });
+      });
+    });
+  });
+
+  describe('.timestampRegex', () => {
+    const cases = [
+      { expected: [], message: '12:34.56' },
+      { expected: [], message: '12.34.567' },
+      { expected: ['12:34.567'], message: '12:34.5678' },
+      { expected: ['12:34.567'], message: '12:34.567' },
+      { expected: ['12:34:567'], message: '12:34:567' },
+      { expected: ['12:34.567'], message: '12:34.567aa' }, // TODO: BeatmapDiscussionPost::parseTimestamp should be updated to match this.
+      { expected: ['12:34.567'], message: '12:34.567猫' },
+      { expected: ['12:34.567', '00:00.001 (2|3,4)'], message: '12:34.567aa, 00:00.001 (2|3,4) texttext' },
+      { expected: ['12:34.567 (1,2,3|4)', '01:00.000', '12:34.567'], message: 'something 12:34.567 (1,2,3|4)text, 01:00.000, 12:34.567' },
+      { expected: ['01:00.000', '12:34.567'], message: '01:00.000. abc 12:34.567' },
+      { expected: ['12:34.567'], message: 'abc01:00.000. abc 12:34.567' },
+    ];
+
+    cases.forEach((test) => {
+      it(test.message, () => {
+        const matches = test.message.match(new RegExp(timestampRegex, 'g')) ?? [];
+        expect(matches).toEqual(test.expected);
       });
     });
   });

@@ -74,8 +74,7 @@ const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
 
 const defaultBeatmapId = '-';
 
-export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)\b/;
-export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
+export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/;
 export const maxLengthTimeline = 750;
 export const maxMessagePreviewLength = 100;
 

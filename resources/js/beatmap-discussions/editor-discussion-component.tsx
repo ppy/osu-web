@@ -319,7 +319,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
             >
               <EditorBeatmapSelector beatmaps={this.props.discussionsState.sortedBeatmaps} disabled={disabled} element={this.props.element} />
-              <EditorIssueTypeSelector beatmaps={this.props.discussionsState.sortedBeatmaps} disabled={disabled} element={this.props.element} />
+              <EditorIssueTypeSelector disabled={disabled} discussionsState={this.props.discussionsState} element={this.props.element} store={this.props.store} />
               <div
                 className={`${bn}__timestamp`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
