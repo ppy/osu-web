@@ -60,7 +60,7 @@ use Request;
  * @property-read Collection<static> $blocks
  * @property-read Collection<Changelog> $changelogs
  * @property-read Collection<Chat\Channel> $channels
- * @property-read Collection<UserClient> $clients
+ * @property-read Collection<Client> $clients
  * @property-read Collection<Comment> $comments
  * @property-read Country|null $country
  * @property string|null $country_acronym
@@ -76,10 +76,10 @@ use Request;
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
+ * @property-read Collection<UserClient> $legacyGameClients
  * @property bool $lock_email_changes
  * @property-read Collection<UserMonthlyPlaycount> $monthlyPlaycounts
  * @property-read Collection<UserNotificationOption> $notificationOptions
- * @property-read Collection<Client> $oauthClients
  * @property-read Collection<Store\Order> $orders
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
@@ -921,10 +921,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'friends',
             'githubUser',
             'givenKudosu',
+            'legacyGameClients',
             'legacyIrcKey',
             'monthlyPlaycounts',
             'notificationOptions',
-            'oauthClients',
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
@@ -1208,6 +1208,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasOne(GithubUser::class);
     }
 
+    public function legacyGameClients(): HasMany
+    {
+        return $this->hasMany(UserClient::class);
+    }
+
     public function legacyIrcKey(): HasOne
     {
         return $this->hasOne(LegacyIrcKey::class);
@@ -1271,11 +1276,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function beatmaps()
     {
         return $this->hasMany(Beatmap::class);
-    }
-
-    public function clients()
-    {
-        return $this->hasMany(UserClient::class);
     }
 
     public function dailyChallengeUserStats(): HasOne
@@ -1670,11 +1670,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function changelogs()
     {
         return $this->hasMany(Changelog::class);
-    }
-
-    public function oauthClients()
-    {
-        return $this->hasMany(Client::class);
     }
 
     public function setPlaymodeAttribute($value)
