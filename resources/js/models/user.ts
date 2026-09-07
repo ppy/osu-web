@@ -19,6 +19,7 @@ export default class User {
   @observable countryCode = 'XX';
   @observable defaultGroup = '';
   @observable groups?: UserGroupJson[];
+  @observable hasAlpha = false;
   @observable id: number;
   @observable isActive = false;
   @observable isBot = false;
@@ -50,6 +51,7 @@ export default class User {
       country_code: this.countryCode,
       default_group: this.defaultGroup,
       groups: this.groups,
+      has_alpha: this.hasAlpha,
       id: this.id,
       is_active: this.isActive,
       is_bot: this.isBot,
@@ -68,6 +70,7 @@ export default class User {
     this.avatarUrl = json.avatar_url;
     this.countryCode = json.country_code;
     this.defaultGroup = json.default_group ?? '';
+    this.hasAlpha = json.has_alpha ?? false;
     this.isActive = json.is_active;
     this.isBot = json.is_bot;
     this.isOnline = json.is_online;

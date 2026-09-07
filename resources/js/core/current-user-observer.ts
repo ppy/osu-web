@@ -14,15 +14,21 @@ export default class CurrentUserObserver {
     return this.core.currentUser?.cover.url;
   }
 
+  private get hasAlpha() {
+    return this.core.currentUser?.has_alpha;
+  }
+
   constructor(private readonly core: OsuCore) {
     // one time setup to monitor user url variables. No disposer because nothing destroys this object.
     $(() => {
       reaction(() => this.avatarUrl, this.setAvatar);
       reaction(() => this.coverUrl, this.setCover);
+      reaction(() => this.hasAlpha, this.setHasAlpha);
 
       runInAction(() => {
         this.setAvatar(this.avatarUrl);
         this.setCover(this.coverUrl);
+        this.setHasAlpha(this.hasAlpha);
       });
     });
   }
@@ -39,5 +45,9 @@ export default class CurrentUserObserver {
       '--current-user-cover',
       urlPresence(url) ?? '',
     );
+  }
+
+  private setHasAlpha(this: void, value: boolean | undefined) {
+    document.documentElement.classList.toggle('u-has-alpha', value === true);
   }
 }

@@ -84,6 +84,7 @@ interface UserJsonDefaultAttributes {
   avatar_url: string;
   country_code: string; // TODO: country object?
   default_group: string | null;
+  has_alpha: boolean;
   id: number;
   is_active: boolean;
   is_bot: boolean;

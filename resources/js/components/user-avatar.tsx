@@ -7,6 +7,7 @@ import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 interface UserForAvatarJson {
   // TODO: make non-optional; existing coffeescript passes {} for guest user.
   avatar_url?: string | null;
+  has_alpha?: boolean;
 }
 
 interface Props {
@@ -17,7 +18,7 @@ interface Props {
 export default function UserAvatar(props: Props) {
   return (
     <span
-      className={classWithModifiers('avatar', 'guest', props.modifiers)}
+      className={classWithModifiers('avatar', { guest: true, 'no-border': props.user?.has_alpha }, props.modifiers)}
       style={{ backgroundImage: urlPresence(props.user?.avatar_url) }}
     />
   );

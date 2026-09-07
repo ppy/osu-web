@@ -203,10 +203,12 @@ export default class ConversationView extends React.Component<Props> {
 
     const renderInput = channel.canMessage || channel.type !== 'ANNOUNCE';
     const className = classWithModifiers('chat-conversation', channel.type, { 'no-input': !renderInput });
+    const pmTargetUser = channel.pmTarget != null ? core.dataStore.userStore.get(channel.pmTarget) : undefined;
     const pmTargetJson = channel.pmTarget == null
       ? null
       : {
         avatar_url: channel.icon,
+        has_alpha: pmTargetUser?.hasAlpha,
         id: channel.pmTarget,
         username: channel.name,
       };
