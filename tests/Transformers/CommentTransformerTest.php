@@ -14,7 +14,7 @@ use Tests\TestCase;
 class CommentTransformerTest extends TestCase
 {
     #[DataProvider('groupsDataProvider')]
-    public function testWithOAuth(?string $groupIdentifier)
+    public function testWithOAuth(?string $groupIdentifier, bool $_visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $comment = Comment::factory()->deleted()->create();
@@ -46,6 +46,7 @@ class CommentTransformerTest extends TestCase
 
     public static function groupsDataProvider()
     {
+        // The second argument is only for testWithoutOAuth
         return [
             ['admin', true],
             ['bng', false],
