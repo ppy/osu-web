@@ -14,6 +14,29 @@ use App\Transformers\NewsPostTransformer;
  */
 class NewsController extends Controller
 {
+    private static function newsPostContentIncludes(?array $formats): array
+    {
+        static $validFormats = [
+            'html' => 'content',
+            'markdown' => 'content_markdown',
+        ];
+
+        if (is_api_request()) {
+            $ret = [];
+            foreach ($formats ?? [] as $format) {
+                if (array_key_exists($format, $validFormats)) {
+                    $ret[$format] ??= $validFormats[$format];
+                }
+            }
+
+            return count($ret) === 0
+                ? [$validFormats['html'], $validFormats['markdown']]
+                : array_values($ret);
+        } else {
+            return [$validFormats['html']];
+        }
+    }
+
     /**
      * Get News Listing
      *
@@ -136,6 +159,7 @@ class NewsController extends Controller
      * Returns a [NewsPost](#newspost) with `content`, `content_markdown`, and `navigation` included.
      *
      * @urlParam news string required News post slug or ID. Example: 2021-04-27-results-a-labour-of-love
+     * @queryParam content_formats[] string `html`, `markdown`. Default to both.
      * @queryParam key string Unset to query by slug, or `id` to query by ID. No-example
      * @response {
      *   "id": 943,
@@ -190,7 +214,10 @@ class NewsController extends Controller
             abort(404);
         }
 
-        $postJson = json_item($post, new NewsPostTransformer(), ['content', 'content_markdown', 'navigation']);
+        $postJson = json_item($post, new NewsPostTransformer(), [
+            ...static::newsPostContentIncludes(get_arr(request('content_formats'))),
+            'navigation',
+        ]);
 
         if (is_json_request()) {
             return $postJson;
