@@ -6,7 +6,6 @@
 namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Bootstrap\HandleExceptions;
 
 trait CreatesApplication
 {
@@ -14,8 +13,9 @@ trait CreatesApplication
     {
         $app = require __DIR__.'/../bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
-        // Reference?: https://github.com/laravel/framework/issues/49502
-        HandleExceptions::flushHandlersState();
+        // Reference?: https://github.com/laravel/framework/issues/49502#issuecomment-2222592953
+        restore_exception_handler();
+        restore_error_handler();
 
         return $app;
     }
