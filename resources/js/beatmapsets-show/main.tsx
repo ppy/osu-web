@@ -212,6 +212,7 @@ export default class Main extends React.Component<Props> {
   private renderPageHeader() {
     return (
       <HeaderV4
+        backgroundImage={this.controller.beatmapset.covers.slimcover}
         links={headerLinks('show', this.controller.beatmapset)}
         linksAppend={this.headerLinksAppend}
         theme='beatmapset'
