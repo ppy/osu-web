@@ -184,6 +184,12 @@ class Token extends PassportToken implements ScopeAuthorizable, SessionVerificat
         $this->attributes['scopes'] = $this->castAttributeAsJson('scopes', $value);
     }
 
+    public function setUserIdAttribute(mixed $value): void
+    {
+        // passed as string by passport
+        $this->attributes['user_id'] = get_int($value);
+    }
+
     public function setVerificationMethod(string $method): void
     {
         $this->verification_method = $method;
