@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Người dùng',
-                    'cover_presets' => 'Thiết lập sẵn hồ sơ nền',
+                    'cover_presets' => 'Mẫu ảnh bìa trang cá nhân',
                 ],
             ],
         ],

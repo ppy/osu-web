@@ -126,8 +126,8 @@ return [
 
     'multiplayer' => [
         'index' => [
-            'active' => '',
-            'ended' => '',
+            'active' => 'Aktív',
+            'ended' => 'Befejezve',
         ],
     ],
 
@@ -168,16 +168,16 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'A szerzői jogok megsértését kérjük, a :policy szerint DMCA-bejelentés útján jelezzék a :mail címre.',
+                'policy' => 'az osu! szerzői jogi irányelvei',
             ],
-            'message_2' => '',
+            'message_2' => 'Ez azokra az esetekre vonatkozik, amikor hangfelvételeket, vizuális tartalmakat vagy beatmap-szintű tartalmakat megfelelő engedély nélkül használnak fel.',
         ],
 
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
-            'copyright_infringement' => '',
-            'inappropriate_chat' => '',
+            'copyright_infringement' => 'Szerzői jogok megsértése',
+            'inappropriate_chat' => 'Nem megfelelő viselkedés a csevegés során',
             'insults' => 'Engem / másokat sérteget',
             'multiple_accounts' => 'Több fiók használata',
             'nonsense' => 'Nonszensz',
@@ -229,6 +229,10 @@ return [
                 'day' => ':valued',
                 'week' => ':valuew',
             ],
+        ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
         ],
         'edit' => [
             'cover' => [
@@ -334,7 +338,7 @@ return [
                     'count_label' => 'Megnézett Visszajátszások',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'A Legnézettebb Visszajátszások',
                 ],
             ],
             'kudosu' => [
@@ -403,7 +407,7 @@ return [
                 'show_more' => 'láss további bejegyzéseket',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Ranked Match-ek',
             ],
             'recent_activity' => [
                 'title' => 'Legutóbbi',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
+            'title' => 'Ranked',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,17 +519,21 @@ return [
             'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Az új csillagbesorolási / PP-algoritmus a következő: :link .',
+            'title_link' => 'bevezetés alatt áll',
+            'message' => 'Előfordulhat, hogy a legutóbbi pontszámok nem jelennek meg azonnal a felhasználói profilokban.',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Legmagasabb :value',
+            'label' => '',
+            'total_score' => 'Összpontszám',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Látogatások lejátszásonként',
             'level' => 'Szint: :level',
             'level_progress' => 'Haladás a következő szintre',
             'maximum_combo' => 'Legmagasabb Kombó',

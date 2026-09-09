@@ -61,9 +61,11 @@ return [
         'approve' => 'Schválení',
         'beatmap_owner_change' => 'Změna majitele obtížnosti',
         'discussion_delete' => 'Odstranění diskuze',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Odstranění odpovědí diskuze',
         'discussion_post_restore' => 'Obnovení odpovědí diskuze',
         'discussion_restore' => 'Obnovení diskuze',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikace',
         'genre_edit' => 'Úprava žánru',
         'issue_reopen' => 'Znovuotevření diskuze',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikace',
         'rank' => 'Hodnocení',
         'remove_from_loved' => 'Odebrání z oblíbených komunitou',
+        'tags_edit' => '',
     ],
 ];

@@ -26,7 +26,7 @@ return [
 
     'forums' => [
         'forums' => 'Diễn đàn',
-        'latest_post' => 'Bài viết mới nhất',
+        'latest_post' => 'Bài đăng mới nhất',
 
         'index' => [
             'title' => 'Diễn đàn Index',
@@ -44,17 +44,17 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Bạn muốn xóa bài viết?',
-        'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
+        'confirm_destroy' => 'Bạn muốn xóa bài đăng?',
+        'confirm_restore' => 'Bạn muốn khôi phục bài đăng?',
         'edited' => 'Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.|Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.',
         'posted_at' => 'đã đăng vào :when',
         'posted_by_in' => 'được :username đăng lên :forum',
 
         'actions' => [
-            'destroy' => 'Xóa bài viết',
-            'edit' => 'Chỉnh sửa bài viết',
+            'destroy' => 'Xóa bài đăng',
+            'edit' => 'Chỉnh sửa bài đăng',
             'report' => 'Báo cáo bài đăng',
-            'restore' => 'Phục hồi bài viết',
+            'restore' => 'Khôi phục bài đăng',
         ],
 
         'create' => [
@@ -65,22 +65,22 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited bài đăng|:count_delimited bài đăng',
-            'topic_starter' => 'Chủ thớt',
+            'topic_starter' => 'Người tạo Chủ đề',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Đi đến bài viết',
-        'post_number_input' => 'nhập số bài viết',
-        'total_posts' => ':posts_count tổng bài viết',
+        'go_to_post' => 'Đi đến bài đăng',
+        'post_number_input' => 'nhập số bài đăng',
+        'total_posts' => ':posts_count bài đăng tổng cộng',
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Bạn có muốn xóa bài viết này?',
-        'confirm_restore' => 'Bạn có muốn phục hồi bài viết này?',
+        'confirm_destroy' => 'Bạn có muốn xóa bài đăng này?',
+        'confirm_restore' => 'Bạn có muốn khôi phục chủ đề này?',
         'deleted' => 'chủ đề đã xóa',
-        'go_to_latest' => 'xem bài viết gần đây nhất',
-        'go_to_unread' => 'xem bài viết chưa đọc đầu tiên',
+        'go_to_latest' => 'xem bài đăng gần đây nhất',
+        'go_to_unread' => 'xem bài đăng chưa đọc đầu tiên',
         'has_replied' => 'Bạn đã trả lời topic này',
         'in_forum' => 'trong :forum',
         'latest_post' => ':when bởi :user',
@@ -94,8 +94,8 @@ return [
         'started_by_verbose' => 'bắt đầu bởi :user',
 
         'actions' => [
-            'destroy' => 'Xóa bài viết',
-            'restore' => 'Phục hồi bài viết',
+            'destroy' => 'Xóa bài đăng',
+            'restore' => 'Khôi phục chủ đề',
         ],
 
         'create' => [
@@ -116,15 +116,15 @@ return [
             ],
 
             'placeholder' => [
-                'body' => 'Nhập nội dung bài viết vào đây',
+                'body' => 'Nhập nội dung bài đăng vào đây',
                 'title' => 'Click vào đây để nhập tiêu đề',
             ],
         ],
 
         'jump' => [
             'enter' => 'click để nhập số thứ tự cụ thể',
-            'first' => 'bài đăng đầu tiên',
-            'last' => 'bài đăng cuối cùng',
+            'first' => 'đi đến bài đăng đầu tiên',
+            'last' => 'đi đến bài đăng cuối cùng',
             'next' => 'bỏ qua 10 bài đăng',
             'previous' => 'trở lại 10 bài đăng',
         ],
@@ -161,13 +161,13 @@ return [
                 'fork' => 'Chủ đề đã được sao chép',
                 'issue_tag' => 'Thẻ được phát hành',
                 'lock' => 'Chủ đề bị khóa',
-                'merge' => 'Các bài viết đã được gộp vào chủ đề này',
+                'merge' => 'Các bài đăng đã được gộp vào chủ đề này',
                 'move' => 'Di chuyển chủ đề',
                 'pin' => 'Chủ đề được ghim',
-                'post_edited' => 'Bài  viết  đã  được  chỉnh sửa',
-                'restore_post' => 'Khôi phục bài viết',
-                'restore_topic' => 'Khôi phục chủ đề',
-                'split_destination' => 'Các bài viết tách rời đã được di chuyển ',
+                'post_edited' => 'Bài đăng đã được chỉnh sửa',
+                'restore_post' => 'Bài đăng đã được khôi phục',
+                'restore_topic' => 'Chủ đề đã được khôi phục',
+                'split_destination' => 'Các bài đăng tách rời đã được di chuyển',
                 'split_source' => 'Tách bài đăng',
                 'topic_type' => 'Đặt loại chủ đề',
                 'topic_type_changed' => 'Đổi loại chủ đề',
@@ -213,7 +213,7 @@ return [
         'actions' => [
             'login_reply' => 'Đăng nhập để Trả lời',
             'reply' => 'Trả lời',
-            'reply_with_quote' => 'Trích dẫn bài viết để trả lời',
+            'reply_with_quote' => 'Trích dẫn bài đăng để trả lời',
             'search' => 'Tìm kiếm',
         ],
 
@@ -238,8 +238,8 @@ return [
                 'options' => 'Các lựa chọn',
                 'options_info' => 'Đặt mỗi lựa chọn trên một dòng. Bạn có thể nhập tối đa 10 lựa chọn.',
                 'title' => 'Câu hỏi',
-                'vote_change' => 'Cho phép bỏ phiếu lại.',
-                'vote_change_info' => 'Nếu được cho phép, người dùng có thể đổi phiếu của họ.',
+                'vote_change' => 'Cho phép bình chọn lại.',
+                'vote_change_info' => 'Nếu được cho phép, người dùng có thể đổi lượt bình chọn của họ.',
             ],
         ],
 
@@ -281,7 +281,7 @@ return [
 
         'moderate_toggle_deleted' => [
             'show' => 'Hiển thị các bài đăng bị xóa',
-            'hide' => 'Ẩn các bài viết bị xóa',
+            'hide' => 'Ẩn các bài đăng bị xóa',
         ],
 
         'show' => [
@@ -294,7 +294,7 @@ return [
                 'do' => 'Thúc đẩy yêu cầu này',
 
                 'info' => [
-                    '_' => 'Đây là một :feature_request. Yêu cầu tính năng có thể được bỏ phiếu bởi :supporters.',
+                    '_' => 'Đây là một :feature_request. Các yêu cầu tính năng có thể được bình chọn bởi :supporters.',
                     'feature_request' => 'yêu cầu tính năng',
                     'supporters' => 'người hỗ trợ',
                 ],
@@ -302,20 +302,20 @@ return [
                 'user' => [
                     'count' => '{0} không có bình chọn|{1} :count_delimited phiếu|[2,*] :count_delimited phiếu',
                     'current' => 'Bạn còn :votes.',
-                    'not_enough' => "Bạn không còn lượt bình chọn nào hết",
+                    'not_enough' => "Bạn không còn lượt bình chọn nào",
                 ],
             ],
 
             'poll' => [
                 'edit' => 'Chỉnh sửa cuộc thăm dò ý kiến',
                 'edit_warning' => 'Chỉnh sửa cuộc thăm dò sẽ xóa bỏ các kết quả hiện tại!',
-                'vote' => 'Bỏ phiếu',
+                'vote' => 'Bình chọn',
 
                 'button' => [
                     'change_vote' => 'Thay đổi bình chọn',
                     'edit' => 'Sửa cuộc thăm dò',
                     'view_results' => 'Bỏ qua đến phần kết quả',
-                    'vote' => 'Bỏ phiếu',
+                    'vote' => 'Bình chọn',
                 ],
 
                 'detail' => [

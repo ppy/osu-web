@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Bu kullanıcı tarafından engellendin.',
     'title_compact' => 'arkadaşlar',
     'too_many' => 'Arkadaş sınırına ulaşıldı',
 

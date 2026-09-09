@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => '正在載入使用者... ',
-    'searching_users' => '',
+    'searching_users' => '搜尋用戶……',
     'talking_in' => '在 :channel 聊天',
     'talking_with' => '與 :name 聊天',
     'title_compact' => '聊天',

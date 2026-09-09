@@ -20,7 +20,7 @@ return [
     ],
 
     'index' => [
-        'title_compact' => 'observações',
+        'title_compact' => 'listas de observação',
     ],
 
     'mapping' => [

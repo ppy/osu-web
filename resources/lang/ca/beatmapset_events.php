@@ -61,9 +61,11 @@ return [
         'approve' => 'Aprovació',
         'beatmap_owner_change' => 'Canvi de propietari de la dificultat',
         'discussion_delete' => 'Eliminació de la discussió',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Eliminació de resposta a discussió',
         'discussion_post_restore' => 'Restauració de resposta a discussió',
         'discussion_restore' => 'Restauració de discussió',
+        'discussion_unlock' => '',
         'disqualify' => 'Desqualificació',
         'genre_edit' => 'Edició de gènere',
         'issue_reopen' => 'Reobertura de discussió',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Qualificació',
         'rank' => 'Classificació',
         'remove_from_loved' => 'Remoció d\'Estimats',
+        'tags_edit' => '',
     ],
 ];

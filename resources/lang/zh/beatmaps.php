@@ -31,7 +31,7 @@ return [
         'message_placeholder_locked' => '该谱面下的讨论已关闭。',
         'message_placeholder_silenced' => "禁言时无法发布讨论。",
         'message_type_select' => '选择回复类型',
-        'reply_notice' => '按下回车以提交',
+        'reply_notice' => '按下回车以提交。',
         'reply_resolve_notice' => '按 Enter 键回复。按 Ctrl+Enter 回复并标记为已解决。',
         'reply_placeholder' => '在此处输入您的回复',
         'require-login' => '登录以继续',
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => '插入段落',
                 'praise' => '插入赞',
                 'problem' => '插入问题',

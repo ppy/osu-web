@@ -26,7 +26,7 @@ return [
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'guest' => 'Gościnny poziom trudności autorstwa :user',
         'kudosu_denied' => 'Odmówiono przyznania kudosu.',
-        'include_replies' => '',
+        'include_replies' => 'Uwzględnij odpowiedzi',
         'message_placeholder_deleted_beatmap' => 'Nie możesz zamieszczać dyskusji dla usuniętego poziomu trudności.',
         'message_placeholder_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone.',
         'message_placeholder_silenced' => "Nie możesz zamieszczać dyskusji po tym, jak twoje konto zostało uciszone.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Rozwiązane',
         'restore' => 'przywróć',
         'show_deleted' => 'Pokaż usunięte',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Pokaż inne odpowiedzi',
         'title' => 'Dyskusje',
         'unresolved_count' => ':count_delimited nierozwiązany problem|:count_delimited nierozwiązane problemy|:count_delimited nierozwiązanych problemów',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'wstaw akapit',
                 'praise' => 'wstaw pochwałę',
                 'problem' => 'wstaw problem',

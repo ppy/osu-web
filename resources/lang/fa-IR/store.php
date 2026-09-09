@@ -113,6 +113,7 @@ return [
         'shopify_expired' => '',
         'subtotal' => '',
         'total' => '',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => '',

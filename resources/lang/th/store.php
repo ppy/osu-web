@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'ลิงค์ชำระเงินสำหรับคำสั่งซื้อนี้หมดอายุแล้ว',
         'subtotal' => 'ยอดรวม',
         'total' => 'ทั้งหมด',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'คำสั่ง #',

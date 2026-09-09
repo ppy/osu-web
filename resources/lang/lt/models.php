@@ -9,5 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'beatmap\'o sunkumas',
         'App\Models\Beatmapset' => 'beatmap\'as',
+        'App\Models\Solo\Score' => '',
     ],
 ];

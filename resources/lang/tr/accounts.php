@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'katılımcısı olduğun beatmap tartışmasında yeni bir yanıt olduğunda bildirimler al',
         'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
         'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
@@ -101,15 +101,15 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'bir beatmap zorluğunda konuk mapper olarak eklendiğinde',
+            'beatmapset:modding' => 'izlediğin beatmap tartışmaları güncellemeler aldığında veya sahip olduğun bir beatmapte bir problem veya öneri olduğunda.',
+            'channel_mention' => 'açık bir kanalda bahsedildiğinde',
+            'channel_message' => 'yeni özel mesaj aldığında',
+            'channel_team' => 'takım sohbeti kanalında yeni mesaj olduğunda',
+            'comment_new' => 'takip ettiğin bir öğede yeni bir yorum olduğunda',
+            'forum_topic_reply' => 'izlediğin forum konularında yeni yanıtlar olduğunda',
+            'mapping' => 'takip ettiğin mapper bir beatmap yüklediğinde',
+            'news_post' => 'yeni haber gönderileri olduğunda',
         ],
     ],
 
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'varsayılan oyun modu',
         'keyboard' => 'klavye',
         'mouse' => 'fare',
         'tablet' => 'tablet',

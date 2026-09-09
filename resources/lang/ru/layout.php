@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Настройки',
-            'create_team' => '',
+            'create_team' => 'Создать команду',
             'follows' => 'Подписки',
             'friends' => 'Друзья',
             'legacy_score_only_toggle' => 'Lazer-рекорды',

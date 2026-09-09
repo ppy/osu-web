@@ -64,6 +64,10 @@ return [
         'label' => 'Tidak senonoh',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Perbincangan',
 
@@ -146,7 +150,7 @@ return [
             'nominators' => 'Pencalon',
             'nsfw' => 'Kandungan tidak senonoh',
             'offset' => 'Imbangan dalam talian',
-            'pack_tags' => '',
+            'pack_tags' => 'Pek-pek Peta Rentak',
             'points-of-failure' => 'Titik Kegagalan',
             'source' => 'Sumber',
             'storyboard' => 'Papan rentak ini mengandungi papan cerita',
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Lazer Sahaja',
+            'description' => 'Disebabkan oleh mekanik tertentu, peta rentak ini hanya boleh dimainkan di osu!lazer.',
 
             'scoreboard_switch_mode' => [
                 '_' => '',
-                'enable_link' => '',
+                'enable_link' => 'Membolehkan mod lazer',
             ],
         ],
 
@@ -236,8 +240,8 @@ return [
             'rating-spread' => 'Sebaran Nilai',
             'nominations' => 'Pencalonan',
             'playcount' => 'Jumlah Mainan',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Kegemaran',
+            'no_favourites' => 'Belum ada kegemaran',
         ],
 
         'status' => [

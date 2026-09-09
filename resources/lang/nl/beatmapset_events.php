@@ -61,9 +61,11 @@ return [
         'approve' => 'Goedkeuring',
         'beatmap_owner_change' => 'Moeilijkheidsgraad eigenaar veranderen',
         'discussion_delete' => 'Discussie verwijdering',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Discussie antwoord verwijdering',
         'discussion_post_restore' => 'Discussie antwoord herstelling',
         'discussion_restore' => 'Discussie herstelling',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskwalificatie',
         'genre_edit' => 'Genre bewerken',
         'issue_reopen' => 'Discussie heropening',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kwalificatie',
         'rank' => 'Postitionering',
         'remove_from_loved' => 'Loved verwijdering',
+        'tags_edit' => '',
     ],
 ];

@@ -64,6 +64,10 @@ return [
         'label' => 'Άσεμνο περιεχόμενο',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Συζήτηση',
 

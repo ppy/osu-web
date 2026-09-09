@@ -231,6 +231,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '프로필 표지 변경',
@@ -476,7 +480,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => '빠른 대전',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -509,13 +520,17 @@ return [
             'highest' => '최고 순위: :rank, :date에 달성',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => '새로운 별점 / PP 알고리즘이 :link입니다.',
+            'title_link' => '배포 중',
+            'message' => '최근 점수는 유저 프로필에 즉시 반영되지 않을 수 있습니다.',
         ],
         'season_stats' => [
             'division_top_percentage' => '상위 :value',
+            'label' => '',
             'total_score' => '총 점수',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',

@@ -64,6 +64,10 @@ return [
         'label' => '18+',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Абмеркаванне',
 

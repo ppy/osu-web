@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Bạn không thể thay đổi metadata của map đã được nominated. Liên hệ với một BN hoặc NAT nếu bạn thấy metadata bị sai.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [
@@ -88,7 +93,7 @@ return [
 
     'contest' => [
         'judging_not_active' => 'Phần đánh giá cho cuộc thi này không hoạt động.',
-        'voting_over' => 'Bạn không thể đổi phiếu bầu sau khi giai đoạn bầu chọn của cuộc thi này kết thúc.',
+        'voting_over' => 'Bạn không thể đổi bình chọn sau khi giai đoạn bình chọn của cuộc thi này kết thúc.',
 
         'entry' => [
             'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
@@ -98,21 +103,21 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Bạn không có quyền chỉnh sửa forum này.',
+            'no_permission' => 'Không có quyền quản trị diễn đàn này.',
         ],
 
         'post' => [
             'delete' => [
                 'only_last_post' => 'Chỉ có thể xóa bài đăng cuối cùng.',
                 'locked' => 'Không thể xóa bài đăng của một chủ đề bị khóa.',
-                'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
+                'no_forum_access' => 'Cần có quyền truy cập vào diễn đàn được yêu cầu.',
                 'not_owner' => 'Chỉ người đăng mới có thể xóa bài đăng.',
             ],
 
             'edit' => [
                 'deleted' => 'Không thể chỉnh sửa bài đăng đã bị xóa.',
                 'locked' => 'Bài đăng đã bị khóa chỉnh sửa.',
-                'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
+                'no_forum_access' => 'Cần có quyền truy cập vào diễn đàn được yêu cầu.',
                 'no_permission' => 'Không có quyền chỉnh sửa.',
                 'not_owner' => 'Chỉ có người đăng mới có thể chỉnh sửa bài đăng.',
                 'topic_locked' => 'Không thể chỉnh sửa bài đăng của một chủ đề bị khóa.',
@@ -128,7 +133,7 @@ return [
             'reply' => [
                 'double_post' => 'Vui lòng chỉnh sửa bài đăng cuối cùng của bạn thay vì đăng thêm lần nữa.',
                 'locked' => 'Không thể trả lời một thớt bị khóa.',
-                'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
+                'no_forum_access' => 'Cần có quyền truy cập vào diễn đàn được yêu cầu.',
                 'no_permission' => 'Không có quyền trả lời.',
 
                 'user' => [
@@ -139,16 +144,16 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
-                'no_permission' => 'Không có quyền tạo topic mới.',
-                'forum_closed' => 'Forum này đã bị đóng và không thể đăng thêm bài.',
+                'no_forum_access' => 'Cần có quyền truy cập vào diễn đàn được yêu cầu.',
+                'no_permission' => 'Không có quyền tạo chủ đề mới.',
+                'forum_closed' => 'Diễn đàn này đã bị đóng và không thể đăng bài.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
-                'over' => 'Đã kết thúc bỏ phiếu và không thể bình chọn nữa.',
-                'play_more' => 'Bạn cần chơi nhiều hơn trước khi bỏ phiếu trên diễn đàn.',
-                'voted' => 'Không cho phép đổi phiếu bầu.',
+                'no_forum_access' => 'Cần có quyền truy cập vào diễn đàn được yêu cầu.',
+                'over' => 'Đã kết thúc cuộc bình chọn và không thể bình chọn nữa.',
+                'play_more' => 'Bạn cần chơi nhiều hơn trước khi bình chọn trên diễn đàn.',
+                'voted' => 'Không được phép đổi bình chọn.',
 
                 'user' => [
                     'require_login' => 'Vui lòng đăng nhập để bình chọn.',
@@ -158,7 +163,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Yêu cầu quyền truy cập vào forum mong muốn.',
+                'no_forum_access' => 'Cần có quyền truy cập vào diễn đàn được yêu cầu.',
             ],
         ],
 
@@ -173,7 +178,7 @@ return [
         ],
 
         'view' => [
-            'admin_only' => 'Chỉ có admin mới có thể xem diễn đàn này.',
+            'admin_only' => 'Chỉ có quản trị viên mới có thể xem diễn đàn này.',
         ],
     ],
 

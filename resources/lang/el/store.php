@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Ο σύνδεσμος παραγγελίας για αυτήν την παραγγελία έχει λήξει.',
         'subtotal' => 'Υποσύνολο',
         'total' => 'Σύνολο',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Παραγγελία #',

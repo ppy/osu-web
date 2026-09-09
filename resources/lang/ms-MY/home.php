@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Daftar masuk untuk mencari pasukan',
             'more_simple' => 'Lihat hasil carian pasukan lain',
         ],
 
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'semak halaman ini untuk maklumat lanjut',
-        'download' => '',
+        'download' => 'Muat turun',
         'for_os' => 'untuk :os',
         'macos-fallback' => 'pengguna macOS',
         'mirror' => 'cermin',

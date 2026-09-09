@@ -230,6 +230,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人檔案封面',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => '排位模式',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => '最高排名:rank於:date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => '新的難度星級與 PP 演算法： :link。',
+            'title_link' => '正在實裝',
+            'message' => '較新的分數可能不會馬上影響使用者帳戶。',
         ],
         'season_stats' => [
             'division_top_percentage' => '前 :value',
+            'label' => '',
             'total_score' => '總分',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',

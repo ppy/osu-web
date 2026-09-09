@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Beatmapové filtry',
-                'description' => 'Filtrujte vyhledávání beatmap podle hraných a nehraných map, nebo podle obdržené známky.',
+                'description' => 'Filtruj vyhledávání beatmap podle odehraných a neodehraných map, nebo podle obdržené známky.',
             ],
 
             'yellow_fellow' => [

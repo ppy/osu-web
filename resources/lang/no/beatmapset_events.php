@@ -61,9 +61,11 @@ return [
         'approve' => 'Godkjenning',
         'beatmap_owner_change' => 'Endring av vanskelighetsgradens eier',
         'discussion_delete' => 'Diskusjon sletting',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Diskusjonsvar sletting',
         'discussion_post_restore' => 'Diskusjonsvar gjenopprettelse',
         'discussion_restore' => 'Gjenopprett diskusjon',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikasjon',
         'genre_edit' => 'Sjanger redigering',
         'issue_reopen' => 'Gjenåpne diskusjon',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikasjon',
         'rank' => 'Rangering',
         'remove_from_loved' => 'Fjerning av Loved',
+        'tags_edit' => '',
     ],
 ];

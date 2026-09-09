@@ -11,7 +11,7 @@ return [
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本。',
         'needs_cleanup_or_rewrite' => '此页面不符合 osu! wiki 标准，需进行清理或重新编写。如果你能协助完善，欢迎对本文内容进行修缮！',
-        'search' => '在 wiki 中搜索 :link 。',
+        'search' => '在现存页面中搜索 :link 。',
         'stub' => '这篇文章不完整，需要他人来补充。',
         'toc' => '目录',
 

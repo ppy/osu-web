@@ -42,7 +42,7 @@ return [
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Nama Bilik',
     ],
 
     'performance' => [
@@ -50,15 +50,15 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Data ini sedang dikira...',
+        'last_updated' => 'Terakhir dikemas kini',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'lampu sorot (lama)',
+        'featured' => 'dipaparkan',
+        'season_room' => 'bilik musim',
+        'seasons' => 'musim-musim',
     ],
 
     'type' => [
@@ -66,17 +66,17 @@ return [
         'daily_challenge' => 'cabaran harian',
         'global' => 'sejagat',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'permainan berperingkat',
+        'playlists' => 'senarai main',
         'team' => 'pasukan',
-        'top_plays' => '',
+        'top_plays' => 'permainan terbaik',
     ],
 
     'seasons' => [
         'empty' => 'Musim ini belum memiliki bilik.',
         'ongoing' => 'Musim ini masih berlangsung (lebih banyak senarai main akan ditambah).',
         'room_count' => 'Jumlah senarai main',
-        'summary' => '',
+        'summary' => 'Lihat Ringkasan Musim',
         'url' => 'Paparkan lebih banyak maklumat tentang musim tersebut.',
         'validation' => [
             'not_enough_factors' => 'faktor permarkahan tidak cukup untuk pengiraan sah',

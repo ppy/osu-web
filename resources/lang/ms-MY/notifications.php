@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Disebut di sembang',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username menyebutkan anda di :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'disebutkan di :name',
                 ],
             ],
 
@@ -171,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Berita (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -230,7 +230,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Berita',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
@@ -270,7 +270,7 @@ return [
                 'channel_message' => 'Anda telah menerima pesanan baharu dari :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username menyebutkan anda di :name ":title"',
             ],
 
             'channel_team' => [

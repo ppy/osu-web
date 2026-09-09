@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'von :author',
         'download' => 'Herunterladen',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'geschafft',
             'not_cleared' => 'nicht geschafft',

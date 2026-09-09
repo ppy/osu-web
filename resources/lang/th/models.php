@@ -9,5 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'ความยากของบีทแมพ',
         'App\Models\Beatmapset' => 'บีทแมพ',
+        'App\Models\Solo\Score' => '',
     ],
 ];

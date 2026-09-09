@@ -12,7 +12,7 @@ return [
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Cập nhật phiếu thất bại',
+            'error' => 'Cập nhật bình chọn thất bại',
         ],
     ],
 
@@ -26,10 +26,10 @@ return [
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'guest' => 'Chế độ khách bởi :user',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
-        'include_replies' => '',
+        'include_replies' => 'Bao gồm cả phản hồi',
         'message_placeholder_deleted_beatmap' => 'Độ khó này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng thảo luận của beatmap này đã bị vô hiệu hóa.',
-        'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
+        'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị câm lặng.",
         'message_type_select' => 'Chọn Kiểu Bình Luận',
         'reply_notice' => 'Nhấn enter để trả lời.',
         'reply_resolve_notice' => 'Ấn Enter để phản hồi. Ấn Ctrl+Enter để phản hồi và giải quyết.',
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Đã giải quyết',
         'restore' => 'khôi phục',
         'show_deleted' => 'Hiển thị bình luận đã xóa',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Hiển thị phản hồi của người khác',
         'title' => 'Góc Thảo Luận',
         'unresolved_count' => ':count_delimited vấn đề chưa được giải quyết|:count_delimited vấn đề chưa được giải quyết',
 
@@ -73,11 +73,11 @@ return [
             'general' => 'Nhập vào đây để đăng vào Chung (:version)',
             'generalAll' => 'Nhập vào đây để đăng vào Chung (Tất cả độ khó)',
             'review' => 'Gõ ở đây để đăng một bài đánh giá',
-            'timeline' => 'Nhập vào đây để đăng vào dòng thời gian (:version)',
+            'timeline' => 'Nhập vào đây để đăng vào Dòng thời gian (:version)',
         ],
 
         'message_type' => [
-            'disqualify' => 'Hủy tư cách',
+            'disqualify' => 'Hủy trạng thái đủ điều kiện',
             'hype' => 'Hype!',
             'mapper_note' => 'Ghi Chú',
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
@@ -89,7 +89,7 @@ return [
         ],
 
         'message_type_title' => [
-            'disqualify' => 'Hủy xét duyệt tư cách',
+            'disqualify' => 'Hủy trạng thái đủ điều kiện',
             'hype' => 'Đăng Hype!',
             'mapper_note' => 'Đăng Ghi Chú',
             'nomination_reset' => 'Loại bỏ tất cả đề cử',
@@ -128,10 +128,11 @@ return [
                 'unsaved' => 'Huỷ lưu',
                 'timestamp' => [
                     'all-diff' => 'Các bài đăng trên "Mọi độ khó" không thể gắn mốc thời gian.',
-                    'diff' => 'Nếu bài viết này bắt đầu với một dấu thời gian, nó sẽ được hiển thị trong Dòng thời gian.',
+                    'diff' => 'Nếu bài đăng này bắt đầu với một dấu thời gian, nó sẽ được hiển thị trong Dòng thời gian.',
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'chèn đoạn văn',
                 'praise' => 'chèn lời ca ngợi',
                 'problem' => 'chèn vấn đề',
@@ -162,7 +163,7 @@ return [
         'status-messages' => [
             'approved' => 'Beatmap này đã được chấp nhận (approved) vào :date!',
             'graveyard' => "Beatmap này chưa được cập nhật từ :date và có thể đã bị đắp mộ...",
-            'loved' => 'Beatmap này đã được love vào :date!',
+            'loved' => 'Beatmap này đã được loved vào :date!',
             'ranked' => 'Beatmap này đã được xếp hạng (ranked) vào :date!',
             'wip' => 'Ghi chú: Beatmap này được đánh dấu là đang thực hiện bởi mapper.',
         ],
@@ -202,28 +203,28 @@ return [
         'delete' => 'Xóa',
         'delete_own_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay lại trang cá nhân của bạn.',
         'delete_other_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay trở lại trang cá nhân của người dùng.',
-        'disqualification_prompt' => 'Lý do để disqualify?',
-        'disqualified_at' => 'Disqualified :time_ago (:reason).',
+        'disqualification_prompt' => 'Lý do hủy trạng thái đủ điều kiện?',
+        'disqualified_at' => 'Bị loại khỏi hàng chờ xếp hạng :time_ago (:reason).',
         'disqualified_no_reason' => 'không đưa ra lí do',
-        'disqualify' => 'Disqualify',
+        'disqualify' => 'Hủy trạng thái đủ điều kiện',
         'incorrect_state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
         'love' => 'Yêu thích',
-        'love_choose' => 'Lựa chọn chế độ yêu thích',
+        'love_choose' => 'Chọn độ khó để đề cử loved',
         'love_confirm' => 'Yêu thích beatmap này?',
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'được :users đề cử',
         'not_enough_hype' => "Không đủ hype.",
-        'remove_from_loved' => 'Gỡ khỏi Được Yêu mến',
-        'remove_from_loved_prompt' => 'Lý do gỡ khỏi Được Yêu thích:',
+        'remove_from_loved' => 'Gỡ khỏi Loved',
+        'remove_from_loved_prompt' => 'Lý do gỡ khỏi Loved:',
         'required_text' => 'Trạng thái đề cử: :current/:required',
         'reset_message_deleted' => 'đã xóa',
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
 
         'rank_estimate' => [
-            '_' => 'Map này ước tính sẽ được Xếp Hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
-            'unresolved_problems' => 'Map này bị chặn không cho phép ra khỏi phần Đủ tư cách cho đến khi :problems được giải quyết.',
+            '_' => 'Map này ước tính sẽ được xếp hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
+            'unresolved_problems' => 'Map này không thể cho ra khỏi mục Đủ điều kiện cho đến khi :problems được giải quyết.',
             'problems' => 'những vấn đề này',
             'on' => 'vào ngày :date',
             'queue' => 'hàng chờ xếp hạng',
@@ -232,11 +233,11 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Quá trình đề cử (nomination) thiết lập lại vào :time_ago bởi :user với vấn đề mới :discussion (:message).',
-            'disqualify' => 'Disqualified :time_ago bởi :user với vấn đề mới :discussion (:message).',
+            'disqualify' => 'Bị hủy trạng thái đủ điều kiện :time_ago bởi :user với vấn đề mới :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Bạn chắc không? Việc này sẽ loại bỏ beatmap khỏi qualify và thiết lập lại quá trình đề cử.',
+            'disqualify' => 'Bạn chắc không? Việc này sẽ loại bỏ beatmap khỏi mục đủ điều kiện và thiết lập lại quá trình đề cử.',
             'nomination_reset' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại quá trình đề cử (nomination).',
             'problem_warning' => 'Bạn có chắc là muốn báo cáo vấn đề về beatmap này không? Việc này sẽ gửi cánh báo đến những người đề cử beatmap.',
         ],
@@ -305,12 +306,12 @@ return [
         'approved' => 'Được Chấp Nhận',
         'favourites' => 'Yêu thích',
         'graveyard' => 'Đắp mộ',
-        'leaderboard' => 'Có danh sách xếp hạng',
-        'loved' => 'Được yêu mến',
+        'leaderboard' => 'Có bảng xếp hạng',
+        'loved' => 'Loved',
         'mine' => 'Map của tôi',
         'pending' => 'Đang chờ',
         'wip' => 'Chưa xong',
-        'qualified' => 'Đủ tư cách',
+        'qualified' => 'Đủ điều kiện',
         'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [

@@ -61,9 +61,11 @@ return [
         'approve' => 'Apstiprinājums',
         'beatmap_owner_change' => 'Grūtības īpašnieka maiņa',
         'discussion_delete' => 'Diskusijas dzēšana',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Diskusijas atbildes dzēšana',
         'discussion_post_restore' => 'Diskusijas atbildes atjaunošana',
         'discussion_restore' => 'Diskusijas atjaunošana',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikācija',
         'genre_edit' => 'Žanra rediģēšana',
         'issue_reopen' => 'Diskusijas atkārtota atvēršana',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikācija',
         'rank' => 'Ierindojums',
         'remove_from_loved' => 'Loved noņemšana',
+        'tags_edit' => '',
     ],
 ];

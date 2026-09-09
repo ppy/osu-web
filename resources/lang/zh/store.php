@@ -113,6 +113,7 @@ return [
         'shopify_expired' => '此订单的结算链接已失效。',
         'subtotal' => '小计',
         'total' => '总计',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => '订单 #',
@@ -200,7 +201,7 @@ return [
         'current' => '您现在的玩家名是 ":username"。',
 
         'require_login' => [
-            '_' => '需要 :link 才能改变玩家名！',
+            '_' => '需要 :link 才能更改用户名！',
             'link_text' => '登录',
         ],
     ],

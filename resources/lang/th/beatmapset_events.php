@@ -61,9 +61,11 @@ return [
         'approve' => 'การอนุมัติ',
         'beatmap_owner_change' => 'เปลี่ยนเจ้าของระดับความยาก',
         'discussion_delete' => 'การลบบทสนทนา',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'การลบการตอบกลับในบทสนทนา',
         'discussion_post_restore' => 'การกู้คืนการตอบกลับในบทสนทนา',
         'discussion_restore' => 'การกู้คืนบทสนทนา',
+        'discussion_unlock' => '',
         'disqualify' => 'การตัดสิทธิ์',
         'genre_edit' => 'แก้ไขหมวด',
         'issue_reopen' => 'กำลังเปิดใช้งานการสนทนาอีกครั้ง',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
         'remove_from_loved' => 'นำออกจากเลิฟด์',
+        'tags_edit' => '',
     ],
 ];

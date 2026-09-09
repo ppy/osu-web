@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => '全てのユーザー',
         'label' => 'ユーザーで絞り込む',
-        'multiple' => '',
+        'multiple' => ':count_delimited人のユーザーを選択中|:count_delimited人のユーザーを選択中',
     ],
 ];
