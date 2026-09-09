@@ -220,11 +220,12 @@ class ScoresController extends Controller
 
         $scoreJson = json_item($score, new ScoreTransformer(), array_merge([
             'beatmap.max_combo',
-            'beatmap.user',
             'beatmap.owners',
+            'beatmap.user',
             'beatmapset',
             'rank_global',
             'replay_views',
+            'room_summary',
         ], $userIncludes));
 
         if (is_json_request()) {

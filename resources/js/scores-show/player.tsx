@@ -3,12 +3,26 @@
 
 import Mod from 'components/mod';
 import ScoreValue from 'components/score-value';
-import { ScoreJsonForShow } from 'interfaces/score-json';
+import { RoomSummary, ScoreJsonForShow } from 'interfaces/score-json';
+import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { trans, transChoice } from 'utils/lang';
 import { displayMods } from 'utils/score-helper';
+
+function createRoomLink(summary: RoomSummary) {
+  const url = summary.is_realtime
+    ? `${route('multiplayer.rooms.events', { room: summary.room_id })}#playlist-${summary.playlist_item_id}`
+    : route('multiplayer.rooms.show', { room: summary.room_id });
+
+  return (
+    <>
+      {' '}
+      (<a href={url}>{summary.room_name}</a>)
+    </>
+  );
+}
 
 interface Props {
   score: ScoreJsonForShow;
@@ -68,6 +82,7 @@ export default function Player(props: Props) {
         </span>
         <strong>
           {props.score.legacy_score_id == null ? 'Lazer' : 'Stable'}
+          {props.score.room_summary != null && createRoomLink(props.score.room_summary)}
         </strong>
       </div>
 
