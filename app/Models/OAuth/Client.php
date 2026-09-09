@@ -185,7 +185,7 @@ class Client extends PassportClient
     protected function grantTypes(): Attribute
     {
         return Attribute::make(
-            get: fn (): array => array_keys(array_filter([
+            get: fn (?string $value): array => isset($value) ? $this->fromJson($value) : array_keys(array_filter([
                 'authorization_code' => !$this->firstParty(),
                 'client_credentials' => $this->confidential(),
                 'password' => $this->password_client,
