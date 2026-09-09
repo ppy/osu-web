@@ -9,6 +9,7 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Transformers\BeatmapsetEventTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetEventTransformerTest extends TestCase
@@ -16,10 +17,8 @@ class BeatmapsetEventTransformerTest extends TestCase
     /** @var Beatmapset */
     protected $beatmapset;
 
-    /**
-     * @dataProvider dataProvider
-     */
-    public function testWithOAuth(?string $groupIdentifier, string $eventType, bool $visibleWithOAuth)
+    #[DataProvider('dataProvider')]
+    public function testWithOAuth(?string $groupIdentifier, string $eventType, bool $visibleWithOAuth, bool $_visibleWithoutOAuth)
     {
         $event = $this->beatmapset->events()->create([
             'type' => $eventType,
@@ -37,10 +36,8 @@ class BeatmapsetEventTransformerTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
-    public function testWithoutOAuth(?string $groupIdentifier, string $eventType, bool $visibleWithOAuth, bool $visibleWithoutOAuth)
+    #[DataProvider('dataProvider')]
+    public function testWithoutOAuth(?string $groupIdentifier, string $eventType, bool $_visibleWithOAuth, bool $visibleWithoutOAuth)
     {
         $event = $this->beatmapset->events()->create([
             'type' => $eventType,
@@ -61,6 +58,7 @@ class BeatmapsetEventTransformerTest extends TestCase
     public static function dataProvider()
     {
         // one event type of each priviledge type.
+        // The third argument is for testWithOAuth and the fourth one is for testWithoutOAuth
         return [
             ['admin', BeatmapsetEvent::NOMINATE, true, true], // public
             ['admin', BeatmapsetEvent::KUDOSU_ALLOW, false, true], // kudosuModeration

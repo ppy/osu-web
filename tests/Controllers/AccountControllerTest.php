@@ -16,6 +16,8 @@ use App\Models\WeakPassword;
 use Database\Factories\UserFactory;
 use Hash;
 use Mail;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
@@ -67,11 +69,10 @@ class AccountControllerTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForUpdateCountry
-     * @group RequiresScoreIndexer
-     *
      * More complete tests are done through CountryChange and CountryChangeTarget.
      */
+    #[DataProvider('dataProviderForUpdateCountry')]
+    #[Group('RequiresScoreIndexer')]
     public function testUpdateCountry(?string $historyCountry, ?string $targetCountry, bool $success): void
     {
         $user = $this->user();
@@ -144,6 +145,46 @@ class AccountControllerTest extends TestCase
             ])
             ->assertStatus(422);
     }
+
+    public function testOptionsViaApi()
+    {
+        $user = User::factory()->create();
+
+        $this->actAsScopedUser($user)
+            ->putJson(route('api.me.options'), [
+                'user_profile_customization' => [
+                    'beatmapset_show_anime_cover' => false,
+                ],
+            ])
+            ->assertSuccessful()
+            ->assertJson(['user_preferences' => [
+                'beatmapset_show_anime_cover' => false,
+            ]]);
+    }
+
+    public function testOptionsViaApiFailsWhenIncorrectScopes()
+    {
+        $user = User::factory()->create();
+
+        $this->actAsScopedUser($user, ['public', 'identify'])
+            ->putJson(route('api.me.options'), [
+            'user_profile_customization' => [
+                'beatmapset_show_anime_cover' => false,
+            ],
+        ])
+            ->assertStatus(403);
+    }
+
+    public function testOptionsViaApiFailsWhenUnauthorised()
+    {
+        $this->putJson(route('api.me.options'), [
+            'user_profile_customization' => [
+                'beatmapset_show_anime_cover' => false,
+            ],
+        ])
+            ->assertStatus(401);
+    }
+
 
     public function testUpdatePassword()
     {

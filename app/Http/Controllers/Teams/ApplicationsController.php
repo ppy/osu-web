@@ -67,7 +67,7 @@ class ApplicationsController extends Controller
         priv_check('TeamApplicationStore', $team)->ensureCan();
 
         $user = \Auth::user();
-        $application = $team->applications()->createOrFirst(['user_id' => $user->getKey()]);
+        $application = $team->applications()->firstOrCreate(['user_id' => $user->getKey()]);
         (new TeamApplicationStore($application, $user))->dispatch();
         \Session::flash('popup', osu_trans('teams.applications.store.ok'));
 

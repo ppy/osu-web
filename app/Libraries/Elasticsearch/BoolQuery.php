@@ -79,18 +79,26 @@ class BoolQuery implements Queryable
     public function toArray(): array
     {
         $bool = [
-            'bool' => [
-                'should' => $this->shoulds,
-                'must' => $this->musts,
-                'must_not' => $this->mustNots,
-                'filter' => $this->filters,
-            ],
+            'should' => $this->shoulds,
+            'must' => $this->musts,
+            'must_not' => $this->mustNots,
+            'filter' => $this->filters,
         ];
 
-        if ($this->minimum !== null) {
-            $bool['bool']['minimum_should_match'] = $this->minimum;
+        foreach ($bool as $key => $value) {
+            if (empty($value)) {
+                unset($bool[$key]);
+            }
         }
 
-        return $bool;
+        if (empty($bool)) {
+            $bool['should'] = [];
+        }
+
+        if ($this->minimum !== null) {
+            $bool['minimum_should_match'] = $this->minimum;
+        }
+
+        return compact('bool');
     }
 }

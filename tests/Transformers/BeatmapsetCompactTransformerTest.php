@@ -8,6 +8,7 @@ namespace Tests\Transformers;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Transformers\BeatmapsetCompactTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetCompactTransformerTest extends TestCase
@@ -15,9 +16,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     protected $beatmapset;
     protected $viewer;
 
-    /**
-     * @dataProvider regularOAuthScopesDataProvider
-     */
+    #[DataProvider('regularOAuthScopesDataProvider')]
     public function testHasFavouritedWithOAuthNormalScopes($scope)
     {
         $this->actAsScopedUser($this->viewer, [$scope]);
@@ -42,9 +41,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
         $this->assertArrayHasKey('has_favourited', $json);
     }
 
-    /**
-     * @dataProvider propertyPermissionsDataProvider
-     */
+    #[DataProvider('propertyPermissionsDataProvider')]
     public function testPropertyIsNotVisibleWithOAuth(string $property)
     {
         $this->actAsScopedUser($this->viewer);
@@ -53,9 +50,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
         $this->assertArrayNotHasKey($property, $json);
     }
 
-    /**
-     * @dataProvider propertyPermissionsDataProvider
-     */
+    #[DataProvider('propertyPermissionsDataProvider')]
     public function testPropertyIsVisibleWithoutOAuth(string $property)
     {
         $this->actAsUser($this->viewer);

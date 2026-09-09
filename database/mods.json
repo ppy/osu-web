@@ -2812,6 +2812,7 @@
         "Type": "DifficultyReduction",
         "Settings": [],
         "IncompatibleMods": [
+          "IN",
           "HO"
         ],
         "RequiresConfiguration": false,
@@ -3202,6 +3203,7 @@
         "Type": "Conversion",
         "Settings": [],
         "IncompatibleMods": [
+          "NR",
           "HO"
         ],
         "RequiresConfiguration": false,

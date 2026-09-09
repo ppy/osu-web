@@ -19,6 +19,7 @@ use App\Models\DeletedUser;
 use App\Models\User;
 use Arr;
 use Bus;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ChangeBeatmapOwnersTest extends TestCase
@@ -76,9 +77,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         Bus::assertDispatched(BeatmapOwnerChange::class);
     }
 
-    /**
-     * @dataProvider dataProviderForInvalidUser
-     */
+    #[DataProvider('dataProviderForInvalidUser')]
     public function testInvalidUser(string $group): void
     {
         $moderator = User::factory()->withGroup('nat')->create();
@@ -103,9 +102,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         Bus::assertNotDispatched(BeatmapOwnerChange::class);
     }
 
-    /**
-     * @dataProvider dataProviderForUpdateOwner
-     */
+    #[DataProvider('dataProviderForUpdateOwner')]
     public function testUpdateOwner(array $states, bool $success): void
     {
         $factory = User::factory();
@@ -204,9 +201,7 @@ class ChangeBeatmapOwnersTest extends TestCase
         Bus::assertNotDispatched(BeatmapOwnerChange::class);
     }
 
-    /**
-     * @dataProvider dataProviderForUpdateOwnerLoved
-     */
+    #[DataProvider('dataProviderForUpdateOwnerLoved')]
     public function testUpdateOwnerLoved(int $approved, bool $ok): void
     {
         $moderator = User::factory()->withGroup('loved')->create();

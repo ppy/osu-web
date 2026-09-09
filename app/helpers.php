@@ -518,7 +518,7 @@ function storage_disk(string $type): Illuminate\Contracts\Filesystem\Filesystem
 
 function trim_unicode(?string $value)
 {
-    return preg_replace('/(^\s+|\s+$)/u', '', $value);
+    return preg_replace('/(^\s+|\s+$)/u', '', $value ?? '');
 }
 
 function truncate(string $text, $limit = 100, $ellipsis = '...')
@@ -877,7 +877,7 @@ function from_app_url(?HttpRequest $request = null)
     // https://osu.web.domain.com.
     // This assumes app.url doesn't contain trailing slash.
     return $headers->get('origin') === $appUrl
-        || str_starts_with($headers->get('referer'), "{$appUrl}/");
+        || str_starts_with($headers->get('referer', ''), "{$appUrl}/");
 }
 
 function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
@@ -1984,7 +1984,12 @@ function check_url(string $url): bool
 
 function mini_asset(string $url): string
 {
-    return str_replace($GLOBALS['cfg']['filesystems']['disks']['s3']['base_url'], $GLOBALS['cfg']['filesystems']['disks']['s3']['mini_url'], $url);
+    $baseUrl = $GLOBALS['cfg']['filesystems']['disks']['s3']['base_url'];
+    $miniUrl = $GLOBALS['cfg']['filesystems']['disks']['s3']['mini_url'];
+
+    return isset($baseUrl, $miniUrl)
+        ? preg_replace('#^'.preg_quote($baseUrl, '#').'#', $miniUrl, $url)
+        : $url;
 }
 
 function section_to_hue_map($section): int
@@ -2015,7 +2020,7 @@ function section_to_hue_map($section): int
     return $colourToHue[$sectionMapping[$section] ?? 'pink'];
 }
 
-function search_error_message(?Exception $e): ?string
+function search_error_message(?\Throwable $e): ?string
 {
     if ($e === null) {
         return null;

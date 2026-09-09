@@ -10,13 +10,12 @@ namespace Tests\Models;
 use App\Models\Artist;
 use App\Models\Country;
 use Exception;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ModelTest extends TestCase
 {
-    /**
-     * @dataProvider dataProviderForDecrementInstance
-     */
+    #[DataProvider('dataProviderForDecrementInstance')]
     public function testDecrementInstance(callable $countryFn, bool $isChanged): void
     {
         $country = $countryFn();
@@ -31,9 +30,7 @@ class ModelTest extends TestCase
         $anotherCountry->refresh();
     }
 
-    /**
-     * @dataProvider dataProviderForDecrementInstance
-     */
+    #[DataProvider('dataProviderForDecrementInstance')]
     public function testDecrementInstanceSpecifyCount(callable $countryFn, bool $isChanged): void
     {
         $country = $countryFn();
@@ -95,9 +92,7 @@ class ModelTest extends TestCase
         Artist::select()->getWithHasMore();
     }
 
-    /**
-     * @dataProvider dataProviderForDecrementInstance
-     */
+    #[DataProvider('dataProviderForDecrementInstance')]
     public function testIncrementInstance(callable $countryFn, bool $isChanged): void
     {
         $country = $countryFn();
@@ -112,9 +107,7 @@ class ModelTest extends TestCase
         $anotherCountry->refresh();
     }
 
-    /**
-     * @dataProvider dataProviderForDecrementInstance
-     */
+    #[DataProvider('dataProviderForDecrementInstance')]
     public function testIncrementInstanceSpecifyCount(callable $countryFn, bool $isChanged): void
     {
         $country = $countryFn();

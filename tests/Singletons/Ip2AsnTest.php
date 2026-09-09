@@ -6,13 +6,12 @@
 namespace Tests\Singletons;
 
 use App\Singletons\Ip2Asn;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class Ip2AsnTest extends TestCase
 {
-    /**
-     * @dataProvider dataProviderForLookup
-     */
+    #[DataProvider('dataProviderForLookup')]
     public function testLookup(string $ip, string $asn)
     {
         $this->assertSame((new Ip2Asn())->lookup($ip), $asn);

@@ -34,9 +34,9 @@ type ProfilePageIncludes =
   | 'statistics'
   | 'user_achievements';
 
-export type ProfilePageMatchmakingStatsJson = MatchmakingUserStatsJson & Required<Pick<MatchmakingUserStatsJson, 'pool'>>;
+export type ProfilePageMatchmakingStatsJson = MatchmakingUserStatsJson & Required<Pick<MatchmakingUserStatsJson, 'pool' | 'recent_history'>>;
 
-export type ProfilePageUserJson = UserExtendedJson & Required<Pick<UserExtendedJson, ProfilePageIncludes>> & {
+export type ProfilePageUserJson = Omit<UserExtendedJson, 'matchmaking_stats'> & Required<Pick<UserExtendedJson, ProfilePageIncludes>> & {
   matchmaking_stats: ProfilePageMatchmakingStatsJson[];
 };
 

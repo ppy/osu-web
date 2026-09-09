@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmap-discussion-editor-insertion-menu {
-  @_top: beatmap-discussion-editor-insertion-menu;
+  --beatmap-discussion-editor-insertion-menu-buttons-opacity: 0;
+  --beatmap-discussion-editor-insertion-menu-max-width: 100px;
+
   display: none;
   z-index: @z-index--beatmap-discussion-editor-insertion-menu;
   position: fixed;
@@ -12,7 +14,7 @@
 
   &::before {
     content: "";
-    background: @osu-colour-b3;
+    background: hsl(var(--hsl-b3));
     position: absolute;
     top: 9px;
     height: 3px;
@@ -23,16 +25,17 @@
 
   &__body {
     align-items: center;
-    background: @osu-colour-b6;
+    background: hsl(var(--hsl-b6));
     border-radius: 20px;
     display: flex;
     font-size: 12px;
     justify-content: center;
     text-align: center;
-    width: 100px;
+    min-width: 100px;
+    max-width: var(--beatmap-discussion-editor-insertion-menu-max-width);
     height: 20px;
-    color: @osu-colour-f1;
-    will-change: width, height;
+    color: hsl(var(--hsl-f1));
+    will-change: width, height, max-width;
     transition: ease-in-out 100ms;
     pointer-events: auto;
     position: relative;
@@ -41,42 +44,42 @@
     .default-box-shadow();
 
     &:hover {
-      width: 150px;
       height: 30px;
       margin-top: -5px;
+      --beatmap-discussion-editor-insertion-menu-buttons-opacity: 1;
+      --beatmap-discussion-editor-insertion-menu-max-width: 180px; // transition needs a fixed value.
     }
 
     @media @mobile {
-      width: 150px;
       height: 30px;
       margin-top: -5px;
+      --beatmap-discussion-editor-insertion-menu-buttons-opacity: 1;
+      --beatmap-discussion-editor-insertion-menu-max-width: 180px;
     }
   }
 
   &__buttons {
-    position: absolute;
-    background: @osu-colour-b6;
+    position: relative;
+    background: hsl(var(--hsl-b6));
     white-space: nowrap;
-    opacity: 0;
+    opacity: var(--beatmap-discussion-editor-insertion-menu-buttons-opacity);
     transition: opacity ease-in-out 100ms;
-
-    .@{_top}__body:hover & {
-      opacity: 1;
-    }
-
-    @media @mobile {
-      opacity: 1;
-    }
+    padding: 0 15px;
   }
 
   &__menu-button {
     .reset-input();
-    padding: 5px 10px;
-    color: @osu-colour-f1;
+    width: 30px;
+    height: 30px;
+    color: hsl(var(--hsl-f1));
     filter: grayscale(1);
 
     &:hover {
       filter: none;
+    }
+
+    &--mapper_note:hover {
+      color: @beatmap-discussion--color-mapper-note;
     }
 
     &--paragraph:hover {
@@ -94,5 +97,10 @@
     &--suggestion:hover {
       color: @beatmap-discussion--color-suggestion;
     }
+  }
+
+  &__plus {
+    position: absolute;
+    width: 100%;
   }
 }

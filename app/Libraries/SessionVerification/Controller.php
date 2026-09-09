@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace App\Libraries\SessionVerification;
 
 use App\Exceptions\UserVerificationException;
-use App\Models\LoginAttempt;
+use App\Models\User;
 
 class Controller
 {
@@ -97,6 +97,7 @@ class Controller
         }
 
         $key = strtr(get_string(\Request::input('verification_key')) ?? '', [' ' => '']);
+        $ip = \Request::getClientIp();
 
         try {
             if ($state->getMethod() === 'totp') {
@@ -117,11 +118,7 @@ class Controller
             }
         } catch (UserVerificationException $e) {
             $reason = $e->reasonKey();
-            Helper::logAttempt('input', 'fail', $reason);
-
-            if ($reason === 'incorrect_key') {
-                LoginAttempt::logAttempt(\Request::getClientIp(), $state->user, 'verify-mismatch', $key);
-            }
+            Helper::logAttempt($ip, $state->user, 'input', 'fail', $reason, $key);
 
             if ($e->shouldReissueMail()) {
                 $state->issueMail(false);
@@ -130,7 +127,7 @@ class Controller
             throw $e;
         }
 
-        Helper::logAttempt('input', 'success');
+        Helper::logAttempt($ip, $state->user, 'input', 'success');
         $state->markVerified($mailState ?? null);
 
         return response()->noContent();
@@ -138,10 +135,12 @@ class Controller
 
     public static function verifyLink()
     {
-        $mailState = MailState::fromVerifyLink(get_string(\Request::input('key')) ?? '');
+        $key = get_string(\Request::input('key')) ?? '';
+        $mailState = MailState::fromVerifyLink($key);
+        $ip = \Request::getClientIp();
 
         if ($mailState === null) {
-            Helper::logAttempt('link', 'fail', 'incorrect_key');
+            Helper::logAttempt($ip, null, 'link', 'fail', 'incorrect_key', $key);
 
             return ext_view('accounts.verification_invalid', null, null, 404);
         }
@@ -149,7 +148,7 @@ class Controller
         $session = $mailState->findSession();
         // Otherwise pretend everything is okay if session is missing
         if ($session !== null) {
-            Helper::logAttempt('link', 'success');
+            Helper::logAttempt($ip, User::find($session->userId()), 'link', 'success');
             Helper::markVerified($session, $mailState);
         }
 

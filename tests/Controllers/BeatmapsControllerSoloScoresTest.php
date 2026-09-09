@@ -12,7 +12,6 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Genre;
-use App\Models\Group;
 use App\Models\Language;
 use App\Models\OAuth;
 use App\Models\Solo\Score as SoloScore;
@@ -20,8 +19,11 @@ use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
 use App\Models\UserRelation;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
+#[Group('RequiresScoreIndexer')]
 class BeatmapsControllerSoloScoresTest extends TestCase
 {
     protected $connectionsToTransact = [];
@@ -199,10 +201,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         });
     }
 
-    /**
-     * @dataProvider dataProviderForTestQuery
-     * @group RequiresScoreIndexer
-     */
+    #[DataProvider('dataProviderForTestQuery')]
     public function testQuery(array $scoreKeys, array $params, string $route)
     {
         $resp = $this->actingAs(static::$user)
@@ -216,9 +215,6 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         }
     }
 
-    /**
-     * @group RequiresScoreIndexer
-     */
     public function testUserScore()
     {
         $url = route('api.beatmaps.user.score', [
@@ -233,9 +229,6 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             ->assertJsonPath('score.id', static::$scores['legacy:userMods']->legacy_score_id);
     }
 
-    /**
-     * @group RequiresScoreIndexer
-     */
     public function testUserScoreInvalidRulesetName()
     {
         $url = route('api.beatmaps.user.score', [
@@ -251,9 +244,6 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             ->assertStatus(422);
     }
 
-    /**
-     * @group RequiresScoreIndexer
-     */
     public function testUserScoreAll()
     {
         $url = route('api.beatmaps.user.scores', [

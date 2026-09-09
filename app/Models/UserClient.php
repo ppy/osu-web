@@ -63,9 +63,9 @@ class UserClient extends Model
         }
     }
 
-    public static function splitHash($hash)
+    public static function splitHash(?string $hash)
     {
-        $hashes = explode(':', $hash);
+        $hashes = explode(':', $hash ?? '');
 
         if (count($hashes) < 5) {
             throw new InvariantException('invalid client hash format');

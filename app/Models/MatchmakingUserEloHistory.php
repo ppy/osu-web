@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -28,6 +29,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class MatchmakingUserEloHistory extends Model
 {
     protected $table = 'matchmaking_user_elo_history';
+
+    public static function daily(int $poolId, int $userId, int $days): Collection
+    {
+        $ids = static
+            ::where(['pool_id' => $poolId, 'user_id' => $userId])
+            ->groupBy('create_date')
+            ->selectRaw('MAX(id) last_id, DATE(created_at) create_date')
+            ->orderByDesc('create_date')
+            ->limit($days)
+            ->get()
+            ->pluck('last_id');
+
+        return static::whereIn('id', $ids)->orderByDesc('id')->get();
+    }
 
     public function opponent(): BelongsTo
     {

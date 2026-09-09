@@ -49,7 +49,7 @@ class BeatmapsetDiscussionPostsBundle extends BeatmapsetDiscussionsBundleBase
     private function getPosts()
     {
         return $this->memoize(__FUNCTION__, function () {
-            ['query' => $query, 'params' => $params] = BeatmapDiscussionPost::search($this->params);
+            ['query' => $query, 'params' => $params] = BeatmapDiscussionPost::search($this->params, $this->extraParams);
 
             $posts = $query->with(['user.userGroups', 'beatmapDiscussion.beatmapset'])->limit($params['limit'] + 1)->get();
 

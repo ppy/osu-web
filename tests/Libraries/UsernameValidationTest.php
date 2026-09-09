@@ -13,6 +13,7 @@ use App\Models\Beatmapset;
 use App\Models\RankHighest;
 use App\Models\User;
 use Carbon\Carbon;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UsernameValidationTest extends TestCase
@@ -55,9 +56,7 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateAvailability('Old username')->isEmpty());
     }
 
-    /**
-     * @dataProvider usernameValidationDataProvider
-     */
+    #[DataProvider('usernameValidationDataProvider')]
     public function testValidateUsername(string $username, bool $expectValid): void
     {
         $this->assertSame(
@@ -66,9 +65,7 @@ class UsernameValidationTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider usersOfUsernameLookupDataProvider
-     */
+    #[DataProvider('usersOfUsernameLookupDataProvider')]
     public function testValidateUsersOfUsername(
         bool $throughUsernameHistory,
         bool $underscoresReplaced,
@@ -137,9 +134,7 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
     }
 
-    /**
-     * @dataProvider usernameAvailabilityWithBeatmapStateDataProvider
-     */
+    #[DataProvider('usernameAvailabilityWithBeatmapStateDataProvider')]
     public function testValidateUsersOfUsernameHasBeatmapsets(string $state, bool $expectValid): void
     {
         $user = User
@@ -153,9 +148,7 @@ class UsernameValidationTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider usernameAvailabilityWithBeatmapStateDataProvider
-     */
+    #[DataProvider('usernameAvailabilityWithBeatmapStateDataProvider')]
     public function testValidateUsersOfUsernameHasGuestBeatmaps(string $state, bool $expectValid): void
     {
         $user = User::factory()->create();

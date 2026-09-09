@@ -28,7 +28,13 @@
                                 </span>
                             </div>
                             <div class="user-session-list-session__details">
-                                <span class="user-session-list-session__last-active">{{osu_trans('accounts.security.last_active')}} {!! timeago($session['last_visit']) !!}</span>
+                                @php
+                                    $lastVisit = $session['last_visit'];
+                                    if (is_int($lastVisit)) {
+                                        $lastVisit = DateTime::createFromTimestamp($lastVisit);
+                                    }
+                                @endphp
+                                <span class="user-session-list-session__last-active">{{osu_trans('accounts.security.last_active')}} {!! timeago($lastVisit) !!}</span>
                                 <span class="user-session-list-session__ip" title="{{$session['ip']}}">
                                     <span class="user-session-list-session__icon">
                                         @include('objects._flag_country', [

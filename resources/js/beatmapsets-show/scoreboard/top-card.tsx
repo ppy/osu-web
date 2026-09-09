@@ -48,7 +48,7 @@ export default class TopCard extends React.PureComponent<Props> {
           <div className='beatmap-score-top__wrapping-container beatmap-score-top__wrapping-container--left'>
             <div className='beatmap-score-top__position'>
               <div className='beatmap-score-top__position-number'>
-                {this.props.position != null ? `#${this.props.position}` : '-'}
+                {this.props.position != null ? `#${formatNumber(this.props.position)}` : '-'}
               </div>
               <div className={classWithModifiers('score-rank', 'tiny', rank(this.props.score))} />
             </div>

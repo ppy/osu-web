@@ -12,6 +12,7 @@ use App\Models\OAuth\Token;
 use App\Models\User;
 use Closure;
 use LaravelRedis;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Route;
 use Tests\TestCase;
 
@@ -21,9 +22,7 @@ class ThrottleRequestsTest extends TestCase
 
     protected Token $token;
 
-    /**
-     * @dataProvider throttleDataProvider
-     */
+    #[DataProvider('throttleDataProvider')]
     public function testThrottle(array $middlewares, int $remaining, ?Closure $action = null)
     {
         $action ??= (fn () => []);

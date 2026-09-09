@@ -28,6 +28,7 @@ abstract class Model extends BaseModel
         'replay' => 'bool', // for best model
     ];
     protected $primaryKey = 'score_id';
+    protected $table = 'nonexistent';
 
     public static function getClass(string $ruleset): string
     {

@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Transformers\BeatmapTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapTransformerTest extends TestCase
@@ -16,10 +17,8 @@ class BeatmapTransformerTest extends TestCase
     /** @var Beatmap */
     protected $deletedBeatmap;
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
-    public function testWithOAuth(?string $groupIdentifier)
+    #[DataProvider('groupsDataProvider')]
+    public function testWithOAuth(?string $groupIdentifier, bool $_visibleWithoutOAuth)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
@@ -29,9 +28,7 @@ class BeatmapTransformerTest extends TestCase
         $this->assertEmpty($json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -48,6 +45,7 @@ class BeatmapTransformerTest extends TestCase
 
     public static function groupsDataProvider()
     {
+        // The second argument is only for testWithoutOAuth
         return [
             ['admin', true],
             ['bng', true],

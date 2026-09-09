@@ -292,6 +292,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
     Route::put('legal/{locale}/{path}', 'LegalController@update');
 
+    Route::get('matchmaking-pools/{pool}/user-chart/{user}', 'MatchmakingPoolsController@userChart')->name('matchmaking-pools.user-chart');
+
     Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
         Route::get('rooms/{room}/events', 'RoomsController@events')->name('rooms.events');
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
@@ -304,6 +306,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);
         Route::post('clients/{client}/reset-secret', 'ClientsController@resetSecret')->name('clients.reset-secret');
     });
+
+    if ($GLOBALS['cfg']['osu']['one_time_key']) {
+        Route::get('one-time-key', 'OneTimeKeyController@create')->name('one-time-key');
+        Route::post('one-time-key', 'OneTimeKeyController@store');
+        Route::post('one-time-key/check', 'OneTimeKeyController@check');
+    }
 
     Route::get('rankings/kudosu', 'RankingController@kudosu')->name('rankings.kudosu');
     Route::resource('rankings/daily-challenge', 'Ranking\DailyChallengeController', ['only' => ['index', 'show']]);
@@ -401,13 +409,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'paypal.', 'prefix' => 'paypal'], function () {
             Route::get('approved', 'PaypalController@approved')->name('approved');
             Route::get('declined', 'PaypalController@declined')->name('declined');
-            Route::post('create', 'PaypalController@create')->name('create');
             Route::post('ipn', 'PaypalController@ipn')->name('ipn');
         });
 
         Route::group(['as' => 'xsolla.', 'prefix' => 'xsolla'], function () {
             Route::get('completed', 'XsollaController@completed')->name('completed');
-            Route::post('token', 'XsollaController@token')->name('token');
             Route::post('callback', 'XsollaController@callback')->name('callback');
         });
 
@@ -486,6 +492,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+                Route::apiResource('{beatmapset}/ratings', 'BeatmapsetRatingsController', ['only' => ['index', 'store']]);
             });
         });
 
@@ -603,6 +610,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
+        //  PUT /api/v2/me/options
+        Route::put('me/options', 'AccountController@updateOptions')->name('me.options');
         //  PUT /api/v2/me/achievements/:achievementId
         Route::put('me/achievements/{achievementId}', 'UsersController@unlockClientSideAchievement')->name('unlock-client-side-achievement');
 
@@ -624,6 +633,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::get('search', 'HomeController@search');
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
+
+        Route::get('suggestions/wiki', 'SuggestionsController@wiki')->name('suggestions.wiki');
 
         // Tags
         Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
@@ -690,5 +701,5 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     });
 });
 
-Route::get('opensearch.xml', 'HomeController@opensearch');
+Route::get('opensearch.xml', 'HomeController@opensearch')->name('opensearch');
 Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

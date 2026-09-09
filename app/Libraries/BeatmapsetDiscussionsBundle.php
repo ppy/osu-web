@@ -72,7 +72,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
     private function getDiscussions()
     {
         return $this->memoize(__FUNCTION__, function () {
-            ['query' => $query, 'params' => $this->searchParams] = BeatmapDiscussion::search($this->params);
+            ['query' => $query, 'params' => $this->searchParams] = BeatmapDiscussion::search($this->params, $this->extraParams);
 
             $discussions = $query->with(static::DISCUSSION_WITHS)->limit($this->searchParams['limit'] + 1)->get();
 

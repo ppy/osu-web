@@ -9,7 +9,6 @@ namespace App\Libraries\SessionVerification;
 
 use App\Interfaces\SessionVerificationInterface;
 use App\Mail\UserVerification as UserVerificationMail;
-use App\Models\LoginAttempt;
 use App\Models\User;
 
 class State
@@ -30,7 +29,7 @@ class State
         $currentMethod = $this->session->getVerificationMethod();
 
         if ($currentMethod === null) {
-            LoginAttempt::logAttempt(\Request::getClientIp(), $this->user, 'verify');
+            Helper::logAttempt(\Request::getClientIp(), $this->user, 'input', 'new');
 
             // force mail to prevent client without totp support from showing wrong message
             $currentMethod = (is_api_request() && api_version() < 20250913) || $this->user->userTotpKey === null
@@ -47,7 +46,7 @@ class State
     {
         if ($initial) {
             if (MailState::fromSession($this->session) === null) {
-                Helper::logAttempt('input', 'new');
+                Helper::logAttempt(\Request::getClientIp(), $this->user, 'link', 'new');
             } else {
                 return;
             }

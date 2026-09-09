@@ -7,6 +7,7 @@ namespace Tests;
 
 use App\Libraries\HasDynamicTable;
 use App\Models\Model;
+use App\Models\Score\Model as LegacyScoreModel;
 use File;
 use ReflectionClass;
 use Symfony\Component\Finder\SplFileInfo;
@@ -36,6 +37,7 @@ class TableTest extends TestCase
         if (
             $reflectionClass->isAbstract() ||
             !$reflectionClass->isSubclassOf(Model::class) ||
+            $reflectionClass->isSubclassOf(LegacyScoreModel::class) ||
             $reflectionClass->implementsInterface(HasDynamicTable::class)
         ) {
             return;

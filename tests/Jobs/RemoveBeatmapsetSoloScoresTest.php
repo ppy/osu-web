@@ -14,17 +14,15 @@ use App\Models\BeatmapLeader;
 use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Genre;
-use App\Models\Group;
 use App\Models\Language;
 use App\Models\Solo\Score;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
-/**
- * @group RequiresScoreIndexer
- */
+#[Group('RequiresScoreIndexer')]
 class RemoveBeatmapsetSoloScoresTest extends TestCase
 {
     protected $connectionsToTransact = [];

@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'The checkout link for this order has expired.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
+        'unavailable' => 'No additional information available for this order.',
 
         'details' => [
             'order_number' => 'Order #',

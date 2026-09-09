@@ -163,7 +163,7 @@
 
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
+      "@@context": "https://schema.org",
       "@type": "VideoGame",
       "name": "osu!",
       "url": "https://osu.ppy.sh/",

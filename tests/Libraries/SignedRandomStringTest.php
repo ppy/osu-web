@@ -9,6 +9,7 @@ namespace Tests\Libraries;
 
 use App\Libraries\Base64Url;
 use App\Libraries\SignedRandomString;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class SignedRandomStringTest extends TestCase
@@ -18,9 +19,7 @@ class SignedRandomStringTest extends TestCase
         $this->assertTrue(SignedRandomString::isValid(SignedRandomString::create(40)));
     }
 
-    /**
-     * @dataProvider dataProviderForTestIsValidInvalid
-     */
+    #[DataProvider('dataProviderForTestIsValidInvalid')]
     public function testIsValidInvalid(string $value): void
     {
         $this->assertFalse(SignedRandomString::isValid($value));

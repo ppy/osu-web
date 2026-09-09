@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Search;
 
+use App\Libraries\Elasticsearch\Queryable;
 use App\Libraries\Elasticsearch\Search;
 
 class BasicSearch extends Search
@@ -25,7 +26,7 @@ class BasicSearch extends Search
         return $this->response();
     }
 
-    public function getQuery()
+    public function getQuery(): array|Queryable
     {
         return $this->query;
     }

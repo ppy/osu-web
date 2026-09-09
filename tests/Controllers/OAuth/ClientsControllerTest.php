@@ -7,6 +7,7 @@ namespace Tests\Controllers\OAuth;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ClientsControllerTest extends TestCase
@@ -77,11 +78,7 @@ class ClientsControllerTest extends TestCase
         $this->assertSame($count + 1, Client::count());
     }
 
-    /**
-     * @dataProvider emptyStringsTestDataProvider
-     *
-     * @return void
-     */
+    #[DataProvider('emptyStringsTestDataProvider')]
     public function testCannotCreateClientWithEmptyStrings($name, $redirect)
     {
         $data = [

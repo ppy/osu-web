@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
 use Illuminate\Testing\Fluent\AssertableJson;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ChatControllerTest extends TestCase
@@ -29,9 +30,7 @@ class ChatControllerTest extends TestCase
 
     //region POST /chat/new - Create New PM
 
-    /**
-     * @dataProvider createPmWithAuthorizedGrantDataProvider
-     */
+    #[DataProvider('createPmWithAuthorizedGrantDataProvider')]
     public function testCreatePmWithAuthorizedGrant($scopes, $expectedStatus)
     {
         $this->actAsScopedUser($this->user, $scopes);
@@ -45,9 +44,7 @@ class ChatControllerTest extends TestCase
         )->assertStatus($expectedStatus);
     }
 
-    /**
-     * @dataProvider createPmWithClientCredentialsDataProvider
-     */
+    #[DataProvider('createPmWithClientCredentialsDataProvider')]
     public function testCreatePmWithClientCredentials($scopes, $expectedStatus)
     {
         $client = Client::factory()->create(['user_id' => $this->user]);
@@ -62,9 +59,7 @@ class ChatControllerTest extends TestCase
         )->assertStatus($expectedStatus);
     }
 
-    /**
-     * @dataProvider createPmWithClientCredentialsBotGroupDataProvider
-     */
+    #[DataProvider('createPmWithClientCredentialsBotGroupDataProvider')]
     public function testCreatePmWithClientCredentialsBotGroup($scopes, $expectedStatus)
     {
         $client = Client::factory()->create(['user_id' => $this->user]);

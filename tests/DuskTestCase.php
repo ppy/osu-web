@@ -12,6 +12,7 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Support\Collection;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\TestCase as BaseTestCase;
+use PHPUnit\Framework\Attributes\BeforeClass;
 
 abstract class DuskTestCase extends BaseTestCase
 {
@@ -19,10 +20,8 @@ abstract class DuskTestCase extends BaseTestCase
 
     /**
      * Prepare for Dusk test execution.
-     *
-     * @beforeClass
-     * @return void
      */
+    #[BeforeClass]
     public static function prepare()
     {
         $chromeDriver = presence(env('DUSK_WEBDRIVER_BIN'));
@@ -38,8 +37,6 @@ abstract class DuskTestCase extends BaseTestCase
     /**
      * Resets passed browser session.
      * Currently only clears existing cookies.
-     *
-     * @return void
      */
     protected static function resetSession(Browser $browser): void
     {
@@ -64,8 +61,6 @@ abstract class DuskTestCase extends BaseTestCase
 
     /**
      * Create the RemoteWebDriver instance.
-     *
-     * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
     protected function driver(): RemoteWebDriver
     {

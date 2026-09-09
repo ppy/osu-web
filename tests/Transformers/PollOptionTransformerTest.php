@@ -11,13 +11,12 @@ use App\Models\Forum\Topic;
 use App\Models\User;
 use App\Transformers\Forum\PollOptionTransformer;
 use Carbon\Carbon;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class PollOptionTransformerTest extends TestCase
 {
-    /**
-     * @dataProvider voteCountPermissionsDataProvider
-     */
+    #[DataProvider('voteCountPermissionsDataProvider')]
     public function testVoteCountPermissions(
         bool $isOAuth,
         bool $pollEnded,

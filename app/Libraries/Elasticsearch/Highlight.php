@@ -12,8 +12,9 @@ namespace App\Libraries\Elasticsearch;
 class Highlight implements Queryable
 {
     protected $fields = [];
-    protected $numberOfFragments = 5;
     protected $fragmentSize = 100;
+    protected $markdownTags = false;
+    protected $numberOfFragments = 5;
 
     /**
      * @return $this
@@ -55,15 +56,35 @@ class Highlight implements Queryable
     }
 
     /**
+     * Sets the highlight tags to use markdown (asterisk) tags.
+     *
+     * @return $this
+     */
+    public function markdownTags()
+    {
+        $this->markdownTags = true;
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function toArray(): array
     {
-        return [
+        $highlight = [
             'encoder' => 'html',
             'fragment_size' => $this->fragmentSize,
             'fields' => $this->fields,
             'number_of_fragments' => $this->numberOfFragments,
         ];
+
+        if ($this->markdownTags) {
+            $highlight['encoder'] = 'default';
+            $highlight['pre_tags'] = ['*'];
+            $highlight['post_tags'] = ['*'];
+        }
+
+        return $highlight;
     }
 }

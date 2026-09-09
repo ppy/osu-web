@@ -11,6 +11,7 @@ use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CommentsControllerTest extends TestCase
@@ -20,9 +21,7 @@ class CommentsControllerTest extends TestCase
     private $beatmapset;
     private $params;
 
-    /**
-     * @dataProvider pinPermissionsDataProvider
-     */
+    #[DataProvider('pinPermissionsDataProvider')]
     public function testPin(?string $groupIdentifier, bool $onBeatmapset, bool $asBeatmapsetOwner, bool $asCommentOwner, bool $withPinned, bool $expectAllowed): void
     {
         $user = User::factory()->withGroup($groupIdentifier)->create();
@@ -266,9 +265,7 @@ class CommentsControllerTest extends TestCase
             ->assertSuccessful();
     }
 
-    /**
-     * @dataProvider apiRequiresAuthenticationDataProvider
-     */
+    #[DataProvider('apiRequiresAuthenticationDataProvider')]
     public function testApiRequiresAuthentication($method, $routeName)
     {
         $this

@@ -26,6 +26,7 @@ class MessagesControllerTest extends TestCase
     private User $silencedUser;
     private Channel $tourneyChannel;
     private User $user;
+    private UserChannel $userChannel;
 
     public static function setUpBeforeClass(): void
     {

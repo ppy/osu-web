@@ -4,9 +4,10 @@
 export const discussionTypes = ['hype', 'mapper_note', 'praise', 'problem', 'review', 'suggestion'] as const;
 export type DiscussionType = (typeof discussionTypes)[number];
 
-export const discussionTypeIcons: Record<DiscussionType | 'resolved', string> = {
+export const discussionTypeIcons: Record<DiscussionType | 'paragraph' |'resolved', string> = {
   hype: 'fas fa-bullhorn',
   mapper_note: 'far fa-sticky-note',
+  paragraph: 'fas fa-indent',
   praise: 'fas fa-heart',
   problem: 'fas fa-exclamation-circle',
   resolved: 'far fa-check-circle',

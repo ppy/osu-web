@@ -9,6 +9,7 @@ namespace Tests\Controllers;
 
 use App\Models\ApiKey;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class LegacyApiKeyControllerTest extends TestCase
@@ -63,9 +64,7 @@ class LegacyApiKeyControllerTest extends TestCase
             ]);
     }
 
-    /**
-     * @dataProvider dataProviderForStoreWithInvalidParams
-     */
+    #[DataProvider('dataProviderForStoreWithInvalidParams')]
     public function testStoreWithInvalidParams($params): void
     {
         $user = User::factory()->create();

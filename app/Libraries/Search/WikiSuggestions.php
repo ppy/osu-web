@@ -19,12 +19,12 @@ class WikiSuggestions extends Search
             $params
         );
 
-        $this->source(['title', 'path']);
-        $this->highlight(
-            (new Highlight())
+        $this
+            ->collapse('path.keyword')
+            ->source(['locale', 'title', 'path'])
+            ->highlight(new Highlight()
                 ->field('title.autocomplete')
-                ->numberOfFragments(0)
-        );
+                ->numberOfFragments(0));
     }
 
     public function data()
@@ -32,10 +32,12 @@ class WikiSuggestions extends Search
         return $this->response();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function useMarkdownHighlightTags()
+    {
+        $this->highlight->markdownTags();
+    }
+
+    public function getQuery(): BoolQuery
     {
         $langQuery = (new BoolQuery())
             ->shouldMatch(1)
@@ -43,7 +45,7 @@ class WikiSuggestions extends Search
                 'boost' => 1000,
                 'filter' => [
                     'match' => [
-                        'locale' => app()->getLocale(),
+                        'locale' => $this->params->locale ?? app()->getLocale(),
                     ],
                 ],
             ]])

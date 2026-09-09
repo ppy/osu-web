@@ -99,7 +99,7 @@ class ScoresController extends Controller
                 }
 
                 ScoreReplayStats
-                    ::createOrFirst(['score_id' => $score->getKey()], ['user_id' => $score->user_id])
+                    ::firstOrCreate(['score_id' => $score->getKey()], ['user_id' => $score->user_id])
                     ->incrementInstance('watch_count');
             }
         }

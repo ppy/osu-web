@@ -6,11 +6,19 @@ import {
   BeatmapDiscussionReview,
   DocumentIssueEmbed,
 } from 'interfaces/beatmap-discussion-review';
+import BeatmapJson from 'interfaces/beatmap-json';
 import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
 import { parseTimestamp } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
+import DiscussionPage from './discussion-page';
 
 export const blockCount = (input: SlateElement[]) => input.length;
+
+export function discussionPageForNode(node: EmbedElement, beatmap?: BeatmapJson | null): DiscussionPage {
+  return beatmap == null
+    ? 'generalAll'
+    : node.timestamp != null ? 'timeline' : 'general';
+}
 
 export const slateDocumentIsEmpty = (doc: SlateElement[]) => doc.length === 0 || (
   doc.length === 1 &&

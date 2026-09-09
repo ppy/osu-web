@@ -13,10 +13,8 @@ class LoginTest extends DuskTestCase
 {
     /**
      * Test sign in.
-     *
-     * @return void
      */
-    public function testLogin()
+    public function testLogin(): void
     {
         $user = User::factory()->create();
 

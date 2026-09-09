@@ -18,7 +18,6 @@ import { assign, padStart, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
-import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { isOwner } from './beatmap-helper';
 import { getInt } from './math';
 
@@ -75,9 +74,7 @@ const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
 
 const defaultBeatmapId = '-';
 
-const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
 export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/;
-export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
 export const maxLengthTimeline = 750;
 export const maxMessagePreviewLength = 100;
 
@@ -162,17 +159,6 @@ export function isUserFullNominator(user?: UserJson | null, gameMode?: Ruleset) 
       return (group.identifier === 'bng' || group.identifier === 'nat');
     }
   });
-}
-
-export function linkTimestamp(text: string, classNames: string[] = []) {
-  return text.replace(
-    linkTimestampRegex,
-    (_match, _timestamp, m: string, s: string, ms: string, range?: string) => {
-      const timestamp = `${m}:${s}:${ms}${range ?? ''}`;
-
-      return linkHtml(openBeatmapEditor(timestamp), timestamp, { classNames });
-    },
-  );
 }
 
 export function makeUrl(options: MakeUrlOptions) {

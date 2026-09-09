@@ -146,9 +146,7 @@ class ChannelsControllerTest extends TestCase
 
     //endregion
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testChannelJoin($type, $success)
     {
         $channel = Channel::factory()->type($type)->create();
@@ -336,9 +334,7 @@ class ChannelsControllerTest extends TestCase
     //endregion
 
     //region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testChannelLeave($type, $success)
     {
         $channel = Channel::factory()->type($type)->create();
@@ -369,9 +365,7 @@ class ChannelsControllerTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testChannelLeaveWhenNotJoined($type, $success)
     {
         $channel = Channel::factory()->type($type)->create();

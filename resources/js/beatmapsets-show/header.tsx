@@ -6,6 +6,7 @@ import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
+import DifficultyBadge from 'components/difficulty-badge';
 import StringWithComponent from 'components/string-with-component';
 import { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
@@ -16,7 +17,7 @@ import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { downloadLimited, getArtist, getTitle, makeSearchQueryOption, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber, formatStarRating } from 'utils/html';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
 import BeatmapPicker from './beatmap-picker';
@@ -283,6 +284,8 @@ export default class Header extends React.Component<Props> {
 
     return (
       <span className='beatmapset-header__diff-name'>
+        <DifficultyBadge modifiers='beatmapset' rating={beatmap.difficulty_rating} />
+        {' '}
         {beatmap.version}
 
         {hasGuestOwners(beatmap, this.controller.beatmapset) && (
@@ -293,14 +296,6 @@ export default class Header extends React.Component<Props> {
               }}
               pattern={trans('beatmapsets.show.details.mapped_by')}
             />
-          </span>
-        )}
-
-        {this.controller.hoveredBeatmap != null && (
-          <span className='beatmapset-header__diff-extra beatmapset-header__diff-extra--star-difficulty'>
-            {trans('beatmapsets.show.stats.stars')}
-            {' '}
-            {formatStarRating(beatmap.difficulty_rating)}
           </span>
         )}
       </span>

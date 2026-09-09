@@ -1,0 +1,39 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.matchmaking-result-icon {
+  border-radius: 10000px;
+  display: flex;
+  width: 24px;
+  height: 16px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  font-size: @font-size--small;
+  font-weight: 900;
+  background-image: linear-gradient(
+    to bottom,
+    hsl(var(--hue), var(--c-saturation-1), var(--c-lightness-1)),
+    hsl(var(--hue), var(--c-saturation-3), var(--c-lightness-3))
+  );
+  color: hsl(var(--hue), var(--c-saturation-4), var(--c-lightness-4));
+
+  &::before {
+    content: var(--label);
+  }
+
+  &--result-draw {
+    --hue: var(--colour-orange-hue);
+    --label: "D";
+  }
+
+  &--result-loss {
+    --hue: var(--colour-red-hue);
+    --label: "L";
+  }
+
+  &--result-win {
+    --hue: var(--colour-green-hue);
+    --label: "W";
+  }
+}

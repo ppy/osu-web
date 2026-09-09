@@ -19,6 +19,7 @@ use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
 use Mail;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
@@ -75,9 +76,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertSame(1, $donor->support_length);
     }
 
-    /**
-     * @dataProvider boolDataProvider
-     */
+    #[DataProvider('boolDataProvider')]
     public function testMailDonateSupporterTagToOthers(bool $hidden)
     {
         Mail::fake();
@@ -120,9 +119,7 @@ class SupporterTagFulfillmentTest extends TestCase
         Mail::assertQueued(DonationThanks::class, 1);
     }
 
-    /**
-     * @dataProvider boolDataProvider
-     */
+    #[DataProvider('boolDataProvider')]
     public function testMailDonateSupporterTagToSelf(bool $hidden)
     {
         Mail::fake();

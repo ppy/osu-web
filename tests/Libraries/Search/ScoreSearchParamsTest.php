@@ -8,6 +8,7 @@ namespace Tests\Libraries\Search;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Solo\Score;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ScoreSearchParamsTest extends TestCase
@@ -45,9 +46,7 @@ class ScoreSearchParamsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider showLegacyForUserAndGuestDataProvider
-     */
+    #[DataProvider('showLegacyForUserAndGuestDataProvider')]
     public function testShowLegacyForGuest(?bool $legacyOnly, ?bool $isApiRequest, ?bool $expected)
     {
         $this->assertSame(
@@ -56,9 +55,7 @@ class ScoreSearchParamsTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider showLegacyForUserAndGuestDataProvider
-     */
+    #[DataProvider('showLegacyForUserAndGuestDataProvider')]
     public function testShowLegacyForUser(?bool $legacyOnly, ?bool $isApiRequest, ?bool $expected)
     {
         $user = User::factory()->create();
@@ -69,9 +66,7 @@ class ScoreSearchParamsTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider showLegacyForUserFromScoreDataProvider
-     */
+    #[DataProvider('showLegacyForUserFromScoreDataProvider')]
     public function testShowLegacyForUserFromScore(?bool $legacyScore, ?bool $expected)
     {
         $factory = User::factory();
@@ -95,9 +90,7 @@ class ScoreSearchParamsTest extends TestCase
         $this->assertSame($legacyScore, $user->fresh()->userProfileCustomization->options['legacy_score_only'] ?? null);
     }
 
-    /**
-     * @dataProvider showLegacyForUserSettingDataProvider
-     */
+    #[DataProvider('showLegacyForUserSettingDataProvider')]
     public function testShowLegacyForUserSetting(?bool $setting, ?bool $expected)
     {
         $user = User::factory()->create();

@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class PlaylistItemTest extends TestCase
@@ -24,9 +25,7 @@ class PlaylistItemTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider rulesetsProvider
-     */
+    #[DataProvider('rulesetsProvider')]
     public function testOsuBeatmapPlayableInAnyRuleset(int $rulesetId)
     {
         $beatmap = Beatmap::factory()->create([
