@@ -58,6 +58,7 @@ class TokensControllerTest extends TestCase
 
         $user = User::factory()->create();
         $client = (new ClientFactory())->create([
+            'grant_types' => ['password'],
             'password_client' => true,
         ]);
 
