@@ -43,29 +43,26 @@ class ScoresController extends Controller
         abort(404, osu_trans('errors.scores.invalid_id'));
     }
 
-    public function download($rulesetOrSoloId, $id = null)
+    public function download($rulesetOrId, $legacyId = null)
     {
         $currentUser = \Auth::user();
         if (!is_api_request() && $currentUser === null) {
             throw new AuthenticationException('User is not logged in.');
         }
 
-        $shouldRedirect = !is_api_request() && !from_app_url();
-        if ($id === null) {
-            if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show', ['score' => $rulesetOrSoloId]));
-            }
-            $score = Score::where('has_replay', true)->findOrFail($rulesetOrSoloId);
+        if ($legacyId === null) {
+            $score = Score::where('has_replay', true)->findOrFail(static::parseIdOrFail($rulesetOrId));
         } else {
-            if ($shouldRedirect) {
-                return ujs_redirect(route('scores.show', ['ruleset' => $rulesetOrSoloId, 'score' => $id]));
-            }
             // don't limit downloading replays of restricted users for review purpose
             $score = Score::where([
                 'has_replay' => true,
-                'legacy_score_id' => $id,
-                'ruleset_id' => Beatmap::MODES[$rulesetOrSoloId] ?? abort(404, 'unknown ruleset name'),
+                'legacy_score_id' => static::parseIdOrFail($legacyId),
+                'ruleset_id' => Beatmap::MODES[$rulesetOrId] ?? abort(404, 'unknown ruleset name'),
             ])->firstOrFail();
+        }
+
+        if (!is_api_request() && !from_app_url()) {
+            return ujs_redirect(route('scores.show', ['score' => $score->getKey()]));
         }
 
         $file = $score->replayFile()?->get();
