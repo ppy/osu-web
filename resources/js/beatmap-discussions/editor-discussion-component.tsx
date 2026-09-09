@@ -3,7 +3,7 @@
 
 import { EmbedElement } from 'editor';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
+import { HasDiscussionsEditable } from 'interfaces/has-discussions';
 import { Observer, observer } from 'mobx-react';
 import * as React from 'react';
 import { Transforms } from 'slate';
@@ -14,7 +14,6 @@ import { classWithModifiers } from 'utils/css';
 import { trans, transArray } from 'utils/lang';
 import { qtipPosition } from 'utils/qtip-helper';
 import { linkHtml } from 'utils/url';
-import DiscussionsState from './discussions-state';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
@@ -31,12 +30,10 @@ interface Cache {
   };
 }
 
-interface Props extends RenderElementProps {
-  discussionsState: DiscussionsState;
+interface Props extends RenderElementProps, HasDiscussionsEditable {
   editMode?: boolean;
   element: EmbedElement;
   readOnly?: boolean;
-  store: BeatmapsetDiscussionsStore;
 }
 
 @observer
@@ -322,7 +319,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
             >
               <EditorBeatmapSelector beatmaps={this.props.discussionsState.sortedBeatmaps} disabled={disabled} element={this.props.element} />
-              <EditorIssueTypeSelector beatmaps={this.props.discussionsState.sortedBeatmaps} disabled={disabled} element={this.props.element} />
+              <EditorIssueTypeSelector disabled={disabled} discussionsState={this.props.discussionsState} element={this.props.element} store={this.props.store} />
               <div
                 className={`${bn}__timestamp`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense

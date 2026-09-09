@@ -292,6 +292,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
     Route::put('legal/{locale}/{path}', 'LegalController@update');
 
+    Route::get('matchmaking-pools/{pool}/user-chart/{user}', 'MatchmakingPoolsController@userChart')->name('matchmaking-pools.user-chart');
+
     Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
         Route::get('rooms/{room}/events', 'RoomsController@events')->name('rooms.events');
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);

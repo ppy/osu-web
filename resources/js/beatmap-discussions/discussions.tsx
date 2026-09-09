@@ -3,25 +3,20 @@
 
 import IconExpand from 'components/icon-expand';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
+import { HasDiscussionsEditable } from 'interfaces/has-discussions';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { Discussion } from './discussion';
-import DiscussionsState from './discussions-state';
 import Sort, { sortPresets } from './sort';
 
 const bn = 'beatmap-discussions';
 
-interface Props {
-  discussionsState: DiscussionsState;
-  store: BeatmapsetDiscussionsStore;
-}
 
 @observer
-export class Discussions extends React.Component<Props> {
+export class Discussions extends React.Component<HasDiscussionsEditable> {
   private get discussionsState() {
     return this.props.discussionsState;
   }
@@ -58,7 +53,7 @@ export class Discussions extends React.Component<Props> {
     });
   }
 
-  constructor(props: Props) {
+  constructor(props: HasDiscussionsEditable) {
     super(props);
     makeObservable(this);
   }

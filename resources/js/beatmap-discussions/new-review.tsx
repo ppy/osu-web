@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
+import { HasDiscussionsEditable } from 'interfaces/has-discussions';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -9,15 +9,12 @@ import * as React from 'react';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import DiscussionsState from './discussions-state';
 import Editor from './editor';
 
-interface Props {
-  discussionsState: DiscussionsState;
+interface Props extends HasDiscussionsEditable {
   innerRef: React.RefObject<HTMLDivElement>;
   onFocus?: () => void;
   stickTo?: React.RefObject<HTMLDivElement>;
-  store: BeatmapsetDiscussionsStore;
 }
 
 @observer

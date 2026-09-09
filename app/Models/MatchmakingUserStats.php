@@ -74,6 +74,14 @@ class MatchmakingUserStats extends Model
         return $query->whereHas('pool', fn ($q) => $q->where('ruleset_id', $rulesetId));
     }
 
+    public function history(): Builder
+    {
+        return MatchmakingUserEloHistory::where([
+            'pool_id' => $this->pool_id,
+            'user_id' => $this->user_id,
+        ]);
+    }
+
     public function isRatingProvisional(): bool
     {
         return $this->elo_data['approximate_posterior']['sig'] >= static::MIN_SIG_PROVISIONAL;

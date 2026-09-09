@@ -5,8 +5,12 @@
   @_top: beatmap-score-top;
 
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+
+  @media @desktop {
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
 
   &__achieved {
     margin-bottom: 2px; // more balanced margin
@@ -29,7 +33,8 @@
   }
 
   &__position {
-    text-align: right;
+    display: grid;
+    justify-items: end;
     font-size: 18px;
     font-weight: 700;
     line-height: 1;
@@ -48,6 +53,7 @@
     width: 100%;
     padding: 10px;
     display: flex;
+    flex-direction: column;
 
     background-color: hsl(var(--hsl-b3));
     .default-border-radius();
@@ -56,8 +62,10 @@
     align-items: center;
     justify-content: space-between;
 
-    @media @mobile {
-      flex-direction: column;
+    @media @desktop {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
     }
   }
 
@@ -166,6 +174,12 @@
 
     &--left {
       flex-shrink: 0;
+
+      @media @desktop {
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-column: 1 / 4;
+      }
     }
 
     &--right {

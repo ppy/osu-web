@@ -67,7 +67,6 @@ class AuthApi
     private function validTokenFromRequest($psr)
     {
         $psrClientId = $psr->getAttribute('oauth_client_id');
-        $psrUserId = get_int($psr->getAttribute('oauth_user_id'));
         $psrTokenId = $psr->getAttribute('oauth_access_token_id');
 
         $client = $this->clients->findActive($psrClientId);
@@ -90,14 +89,8 @@ class AuthApi
 
         $user = $token->getResourceOwner();
 
-        if ($token->isClientCredentials()) {
-            if ($psrUserId !== null) {
-                throw new AuthenticationException();
-            }
-        } else {
-            if ($user === null || $user->getKey() !== $psrUserId) {
-                throw new AuthenticationException();
-            }
+        if (!$token->isClientCredentials() && $user === null) {
+            throw new AuthenticationException();
         }
 
         if ($user !== null) {

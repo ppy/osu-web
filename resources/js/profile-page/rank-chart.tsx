@@ -25,7 +25,7 @@ const options = makeOptionsNumber({
   marginLeft: 0,
   marginRight: 0,
   marginTop: 15,
-  modifiers: 'profile-page',
+  modifiers: 'profile-page profile-page-card',
   scaleX: scaleLinear(),
   scaleY: scaleLog(),
 });

@@ -37,13 +37,13 @@ export default class StickyFooter {
     const footer = this.permanentFixedFooter[0];
     if (!(footer instanceof HTMLElement)) return;
 
-    const bottom = window.innerHeight - footer.offsetHeight;
+    const bottom = Math.round(window.innerHeight - footer.offsetHeight);
 
     for (const marker of this.stickMarker) {
       if (marker instanceof HTMLElement) {
         if (marker.dataset.stickyFooterDisabled === '1') continue;
 
-        if (marker.getBoundingClientRect().top >= bottom) {
+        if (Math.round(marker.getBoundingClientRect().top) >= bottom) {
           $.publish('stickyFooter', marker.dataset.stickyFooterTarget);
           return;
         }

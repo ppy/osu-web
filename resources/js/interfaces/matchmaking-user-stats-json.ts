@@ -2,9 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import MatchmakingPoolJson from './matchmaking-pool-json';
+import MatchmakingUserEloHistoryJson from './matchmaking-user-elo-history-json';
 
 interface MatchmakingUserStatsJsonAvailableIncludes {
   pool: MatchmakingPoolJson;
+  recent_history: MatchmakingUserEloHistoryJson[] | null;
 }
 
 interface MatchmakingUserStatsJsonDefaultAttributes {
