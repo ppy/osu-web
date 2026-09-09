@@ -7,11 +7,17 @@
 
   --padding-h: 20px;
   --padding-left-desktop: var(--padding-h);
+  --score-link-bg: transparent;
   --shapes-display: none;
   --shapes-size: 0;
   background-color: @osu-colour-b2;
   display: grid;
   grid-template-columns: var(--shapes-size) 1fr;
+  position: relative;
+
+  &:hover {
+    --score-link-bg: hsl(var(--hsl-b1));
+  }
 
   &--team {
     --padding-left-desktop: 0;
@@ -64,6 +70,8 @@
     grid-template-columns: 1fr auto;
     gap: 5px;
     grid-column: 2 / -1;
+    position: relative;
+    pointer-events: none;
 
     @media @desktop {
       padding-left: var(--padding-left-desktop);
@@ -168,6 +176,13 @@
     --mod-height: @mod-height-normal;
     display: flex;
     height: var(--mod-height);
+  }
+
+  &__score-link {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: var(--score-link-bg);
   }
 
   &__stat {
