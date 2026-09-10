@@ -19,6 +19,7 @@ use App\Libraries\Uploader;
 use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\Cover;
 use App\Libraries\User\DatadogLoginAttempt;
+use App\Libraries\User\PasswordHelper;
 use App\Libraries\User\ProfileCount;
 use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
@@ -30,7 +31,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
@@ -2011,11 +2011,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query->whereNot('group_id', app('groups')->byIdentifier('no_profile')->getKey());
     }
 
-    public function checkPassword($password)
-    {
-        return Hash::check($password, $this->getAuthPassword());
-    }
-
     public function validatePasswordConfirmation()
     {
         $this->validatePasswordConfirmation = true;
@@ -2081,7 +2076,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             if ($isLoginBlocked) {
                 $authError = 'user_login_blocked';
             } else {
-                if (!$user->checkPassword($password)) {
+                if (!PasswordHelper::check($user, $password)) {
                     $authError = 'invalid_password';
                 }
             }
@@ -2269,7 +2264,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if ($this->validateCurrentPassword) {
-            if (!$this->checkPassword($this->currentPassword)) {
+            if (!PasswordHelper::check($this, $this->currentPassword)) {
                 $this->validationErrors()->add('current_password', '.wrong_current_password');
             }
         }
@@ -2296,7 +2291,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
 
             if ($this->validationErrors()->isEmpty()) {
-                $this->user_password = Hash::make($this->password);
+                $this->user_password = PasswordHelper::make($this->password);
                 $this->user_passchg = Carbon::now();
             }
         }
