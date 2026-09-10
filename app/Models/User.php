@@ -19,6 +19,7 @@ use App\Libraries\Uploader;
 use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\Cover;
 use App\Libraries\User\DatadogLoginAttempt;
+use App\Libraries\User\PasswordHelper;
 use App\Libraries\User\ProfileCount;
 use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
@@ -30,7 +31,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
@@ -60,7 +60,7 @@ use Request;
  * @property-read Collection<static> $blocks
  * @property-read Collection<Changelog> $changelogs
  * @property-read Collection<Chat\Channel> $channels
- * @property-read Collection<UserClient> $clients
+ * @property-read Collection<Client> $clients
  * @property-read Collection<Comment> $comments
  * @property-read Country|null $country
  * @property string|null $country_acronym
@@ -76,10 +76,10 @@ use Request;
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
+ * @property-read Collection<UserClient> $legacyGameClients
  * @property bool $lock_email_changes
  * @property-read Collection<UserMonthlyPlaycount> $monthlyPlaycounts
  * @property-read Collection<UserNotificationOption> $notificationOptions
- * @property-read Collection<Client> $oauthClients
  * @property-read Collection<Store\Order> $orders
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
@@ -921,10 +921,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'friends',
             'githubUser',
             'givenKudosu',
+            'legacyGameClients',
             'legacyIrcKey',
             'monthlyPlaycounts',
             'notificationOptions',
-            'oauthClients',
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
@@ -1208,6 +1208,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasOne(GithubUser::class);
     }
 
+    public function legacyGameClients(): HasMany
+    {
+        return $this->hasMany(UserClient::class);
+    }
+
     public function legacyIrcKey(): HasOne
     {
         return $this->hasOne(LegacyIrcKey::class);
@@ -1271,11 +1276,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function beatmaps()
     {
         return $this->hasMany(Beatmap::class);
-    }
-
-    public function clients()
-    {
-        return $this->hasMany(UserClient::class);
     }
 
     public function dailyChallengeUserStats(): HasOne
@@ -1672,11 +1672,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(Changelog::class);
     }
 
-    public function oauthClients()
-    {
-        return $this->hasMany(Client::class);
-    }
-
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
@@ -2016,11 +2011,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query->whereNot('group_id', app('groups')->byIdentifier('no_profile')->getKey());
     }
 
-    public function checkPassword($password)
-    {
-        return Hash::check($password, $this->getAuthPassword());
-    }
-
     public function validatePasswordConfirmation()
     {
         $this->validatePasswordConfirmation = true;
@@ -2086,7 +2076,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             if ($isLoginBlocked) {
                 $authError = 'user_login_blocked';
             } else {
-                if (!$user->checkPassword($password)) {
+                if (!PasswordHelper::check($user, $password)) {
                     $authError = 'invalid_password';
                 }
             }
@@ -2274,7 +2264,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if ($this->validateCurrentPassword) {
-            if (!$this->checkPassword($this->currentPassword)) {
+            if (!PasswordHelper::check($this, $this->currentPassword)) {
                 $this->validationErrors()->add('current_password', '.wrong_current_password');
             }
         }
@@ -2301,7 +2291,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
 
             if ($this->validationErrors()->isEmpty()) {
-                $this->user_password = Hash::make($this->password);
+                $this->user_password = PasswordHelper::make($this->password);
                 $this->user_passchg = Carbon::now();
             }
         }

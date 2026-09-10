@@ -26,7 +26,7 @@ return [
         'edited' => 'Suntingan terkini oleh :editor :update_time.',
         'guest' => 'Kesukaran tamu oleh :user',
         'kudosu_denied' => 'Pemerolehan kudosu ditolak.',
-        'include_replies' => '',
+        'include_replies' => 'Sertakan balasan lain',
         'message_placeholder_deleted_beatmap' => 'Kesukaran ini tidak boleh dibincangkan lagi kerana telah dipadam.',
         'message_placeholder_locked' => 'Perbincangan untuk peta rentak ini telah dilumpuhkan.',
         'message_placeholder_silenced' => "Perbincangan tidak boleh dihantar ketika didiamkan.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Selesai',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tunjuk padaman',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Tunjuk balasan lain',
         'title' => 'Perbincangan',
         'unresolved_count' => ':count_delimited isu tidak selesai',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'selipkan perenggan',
                 'praise' => 'selipkan pujian',
                 'problem' => 'selipkan masalah',
@@ -276,11 +277,11 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Tapisan menggunakan :filters memerlukan :link yang giat',
-                'link_text' => 'tag osu!supporter',
+                'link_text' => 'osu!supporter tag',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'layari tag-tag pengguna',
+                'prompt' => 'taip untuk mencari',
             ],
         ],
     ],

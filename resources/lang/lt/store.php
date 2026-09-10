@@ -6,7 +6,7 @@
 return [
     'cart' => [
         'checkout' => 'Apmokėti',
-        'empty_cart' => '',
+        'empty_cart' => 'Pašalinti visas prekes iš krepšelio',
         'info' => ':count_delimited pirkinis krepšelyje ($:subtotal)|:count_delimited pirkiniai krepšelyje ($:subtotal)',
         'more_goodies' => 'Noriu išsirinkti daugiau prekių prieš apmokant',
         'shipping_fees' => 'pristatymo mokesčiai',
@@ -71,9 +71,9 @@ return [
                 ],
             ],
             'delivered' => [
-                'title' => '',
+                'title' => 'Jūsų užsakymas pristatytas! Tikimės, kad jis jums patinka!',
                 'line_1' => [
-                    '_' => '',
+                    '_' => 'Jei kyla problemų dėl pirkimo, susisiekite su :link.',
                     'link_text' => '',
                 ],
             ],
@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Ši apmokėjimo nuoroda nebegalioja.',
         'subtotal' => 'Tarpinė suma',
         'total' => 'Iš viso',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Užsakymas #',

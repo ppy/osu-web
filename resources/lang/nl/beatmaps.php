@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'paragraaf invoegen',
                 'praise' => 'praise toevoegen',
                 'problem' => 'probleem toevoegen',

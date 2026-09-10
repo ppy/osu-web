@@ -6,7 +6,7 @@
 return [
     'play_more' => 'Que tal jogar um pouco de osu! em vez disso?',
     'require_login' => 'Por favor, inicie a sessão para continuar.',
-    'require_verification' => 'Por favor, verifique para prosseguir.',
+    'require_verification' => 'Verifique para continuar.',
     'restricted' => "Não é possível fazer isso enquanto restrito.",
     'silenced' => "Não é possível fazer isso enquanto silenciado.",
     'unauthorized' => 'Acesso negado.',
@@ -57,6 +57,11 @@ return [
 
         'metadata' => [
             'nominated' => 'Você não pode alterar os metadados de um mapa nomeado. Entre em contato com um membro do BN ou NAT se você acha que ele está definido incorretamente.',
+        ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
         ],
     ],
 
@@ -120,7 +125,7 @@ return [
 
             'store' => [
                 'play_more' => 'Por favor tente jogar o jogo antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
-                'too_many_help_posts' => "Você precisa jogar mais antes que você possa criar postagens adicionais. Se você ainda estiver tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Você precisa jogar mais antes que possa criar publicações adicionais. Se você ainda estiver tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -207,7 +212,7 @@ return [
             'not_member' => 'Não é um membro da equipe.',
         ],
         'store' => [
-            'require_supporter_tag' => 'É necessário uma etiqueta osu!supporter para criar uma equipe.',
+            'require_supporter_tag' => 'É necessário uma possuir tag de osu!supporter para criar uma equipe.',
         ],
     ],
 
@@ -216,7 +221,7 @@ return [
             'edit' => [
                 'locked' => 'A página do usuário está trancada.',
                 'not_owner' => 'Só é possível editar sua própria página de usuário.',
-                'require_supporter_tag' => 'É necessário possuir uma etiqueta osu!supporter.',
+                'require_supporter_tag' => 'É necessário possuir uma tag de osu!supporter.',
             ],
         ],
         'update_email' => [

@@ -64,6 +64,10 @@ return [
         'label' => 'Eksplisit',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskusi',
 
@@ -89,7 +93,7 @@ return [
 
             'download' => [
                 '_' => 'Unduh',
-                'direct' => '',
+                'direct' => 'osu!direct',
                 'no-video' => 'tanpa Video',
                 'video' => 'dengan Video',
             ],
@@ -127,11 +131,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Apabila kamu menemukan suatu masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
+                '_' => 'Apabila kamu menemukan masalah dengan beatmap ini, mohon diskualifikasi beatmap ini melalui :link.',
             ],
 
             'report' => [
-                '_' => 'Apabila kamu menemukan masalah pada beatmap ini, silakan laporkan melalui :link untuk memberitahukan tim kami.',
+                '_' => 'Apabila kamu menemukan masalah dengan beatmap ini, mohon laporkan melalui :link untuk memberitahukan tim kami.',
                 'button' => 'Laporkan Masalah',
                 'link' => 'tautan ini',
             ],
@@ -157,17 +161,17 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Khusus Lazer',
+            'description' => 'Karena mekanisme permainan tertentu, beatmap ini hanya bisa dimainkan di osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link untuk melihat skor-skor yang diraih pada beatmap ini.',
+                'enable_link' => 'Aktifkan mode lazer',
             ],
         ],
 
         'nsfw_warning' => [
-            'details' => 'Beatmap ini mengandung konten yang bersifat eksplisit, menyinggung, atau meresahkan. Apakah kamu tetap ingin menampilkan beatmap ini?',
+            'details' => 'Beatmap ini mengandung konten yang eksplisit, menyinggung, atau meresahkan. Apakah kamu tetap ingin menampilkan beatmap ini?',
             'title' => 'Konten Eksplisit',
 
             'buttons' => [
@@ -195,7 +199,7 @@ return [
                 'mods' => 'Mod',
                 'pin' => 'Sematkan',
                 'player' => 'Pemain',
-                'pp' => '',
+                'pp' => 'pp',
                 'rank' => 'Peringkat',
                 'score' => 'Skor',
                 'score_total' => 'Jumlah Skor',
@@ -205,7 +209,7 @@ return [
             'no_scores' => [
                 'country' => 'Belum ada seorang pun dari negaramu yang memiliki skor di map ini!',
                 'friend' => 'Belum ada seorang pun dari daftar temanmu yang memiliki skor di map ini!',
-                'global' => 'Belum ada skor yang tercatat. Mungkin kamu tertarik untuk mencetak skormu sendiri?',
+                'global' => 'Belum ada skor yang tercatat. Mungkin kamu tertarik untuk mencatatkan skor kamu sendiri?',
                 'loading' => 'Memuat skor...',
                 'team' => 'Belum ada seorang pun dari tim kamu yang memiliki skor di map ini!',
                 'unranked' => 'Beatmap ini tidak berstatus Ranked.',

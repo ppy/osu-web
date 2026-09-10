@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => '<strong><em>:user</em></strong> atnaujino beatmap\'ą "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> pateikė naują beatmap\'ą ":beatmapset"',
     'empty' => "Pastaruoju metu vartotojas nenuveikė nieko svarbaus!",
-    'rank' => '<strong><em>:user</em></strong> pasiekė #:rank vietą ant <em>:beatmap</em> (:mode)',
+    'rank' => ':user pasiekė :rank vietą ant :beatmap (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> prarado pirmą vietą ant <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> vėl nusprendė būti osu!rėmėjas - dėkojame už jūsų dosnumą!',
     'user_support_first' => '<strong>:user</strong> tapo osu!rėmėjas - dėkojame už jūsų dosnumą!',

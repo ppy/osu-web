@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'dostávat oznámení na odpovědi k diskuzím beatmap, kterých se účastníš',
         'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map následujících módů',
         'beatmapset_disqualify' => 'dostávat oznámení, když beatmapy následujících módů jsou diskvalifikované',
         'comment_reply' => 'dostávat oznámení na odpovědi k tvým komentářům',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'výchozí herní mód',
         'keyboard' => 'klávesnice',
         'mouse' => 'myš',
         'tablet' => 'tablet',

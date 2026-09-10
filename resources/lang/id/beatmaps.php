@@ -26,7 +26,7 @@ return [
         'edited' => 'Terakhir disunting oleh :editor :update_time.',
         'guest' => 'Tingkat kesulitan tamu oleh :user',
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
-        'include_replies' => '',
+        'include_replies' => 'Sertakan balasan',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini sudah dihapus, sehingga tidak lagi bisa didiskusikan.',
         'message_placeholder_locked' => 'Diskusi untuk beatmap ini sudah dinonaktifkan.',
         'message_placeholder_silenced' => "Kamu tidak bisa mengirim topik diskusi ketika akunmu sedang di-silence.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Terjawab',
         'restore' => 'pulihkan',
         'show_deleted' => 'Tampilkan yang dihapus',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Tampilkan balasan lainnya',
         'title' => 'Diskusi',
         'unresolved_count' => ':count_delimited masalah yang belum terjawab|:count_delimited masalah yang belum terjawab',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'sisipkan paragraf baru',
                 'praise' => 'sisipkan pujian',
                 'problem' => 'sisipkan masalah',
@@ -201,7 +202,7 @@ return [
         'cannot_nominate' => 'Kamu tidak bisa memberikan nominasi untuk mode permainan ini.',
         'delete' => 'Hapus',
         'delete_own_confirm' => 'Apakah kamu yakin? Beatmap ini akan dihapus dan kamu akan dialihkan kembali ke halaman profilmu.',
-        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap ini akan dihapus dan kamu akan dialihkan kembali ke halaman profil pengguna yang bersangkutan.',
+        'delete_other_confirm' => 'Apakah kamu yakin? Beatmap ini akan dihapus dan kamu akan dialihkan kembali ke profil pengguna ini.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
         'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
@@ -223,7 +224,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Beatmap ini diperkirakan akan di-rank :date apabila tidak terdapat masalah yang ditemukan. Beatmap ini berada dalam urutan ke-:position dalam :queue saat ini.',
-            'unresolved_problems' => 'Beatmap ini sedang diblokir untuk dapat melewati kategori Qualified hingga :problems terselesaikan.',
+            'unresolved_problems' => 'Beatmap ini sedang diblokir untuk bisa keluar dari kategori Qualified hingga :problems terselesaikan.',
             'problems' => 'masalah ini',
             'on' => 'pada tanggal :date',
             'queue' => 'antrean ranking',
@@ -232,11 +233,11 @@ return [
 
         'reset_at' => [
             'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
-            'disqualify' => 'Didiskualifikasi :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
+            'disqualify' => 'Didiskualifikasi :time_ago oleh :user dengan masalah baru :discussion (:message).',
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Apakah kamu yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
+            'disqualify' => 'Apakah kamu yakin? Tindakan ini akan melepas beatmap ini dari Qualified dan mengulang proses nominasi dari awal.',
             'nomination_reset' => 'Apakah kamu yakin? Memposting masalah baru akan mengulang proses nominasi.',
             'problem_warning' => 'Apakah kamu yakin untuk melaporkan masalah pada beatmap ini? Tindakan ini akan memberitahukan anggota Beatmap Nominator.',
         ],
@@ -305,7 +306,7 @@ return [
         'approved' => 'Approved',
         'favourites' => 'Favorit',
         'graveyard' => 'Graveyard',
-        'leaderboard' => 'Memiliki Leaderboard',
+        'leaderboard' => 'Berpapan Peringkat',
         'loved' => 'Loved',
         'mine' => 'Beatmap Saya',
         'pending' => 'Pending',

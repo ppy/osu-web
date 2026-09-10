@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'L\'enllaç de pagament per aquesta comanda ha expirat.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Comanda núm. 4',

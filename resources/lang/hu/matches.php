@@ -7,7 +7,7 @@ return [
     'match' => [
         'beatmap-deleted' => 'törölt beatmap',
         'failed' => 'ELBUKOTT',
-        'header' => 'Többjátékos meccsek',
+        'header' => 'Többjátékos Meccsek',
         'in-progress' => '(a meccs folyamatban)',
         'in_progress_spinner_label' => 'a meccs folyamatban',
         'loading-events' => 'Események betöltése...',
@@ -15,22 +15,22 @@ return [
         'winner_by' => ':winner :difference által',
 
         'events' => [
-            'game_aborted' => '',
-            'game_aborted_no_user' => '',
-            'game_completed' => '',
-            'game_completed_no_user' => '',
-            'host_changed' => '',
-            'host_changed_no_user' => '',
-            'player_joined' => '',
-            'player_joined_no_user' => '',
-            'player_kicked' => '',
-            'player_kicked_no_user' => '',
-            'player_left' => '',
-            'player_left_no_user' => '',
-            'room_created' => '',
-            'room_created_no_user' => '',
-            'room_disbanded' => '',
-            'room_disbanded_no_user' => '',
+            'game_aborted' => 'a játék meg lett szakítva',
+            'game_aborted_no_user' => 'a játék meg lett szakítva',
+            'game_completed' => 'a játék véget ért',
+            'game_completed_no_user' => 'a játék véget ért',
+            'host_changed' => ':user lett a házigazda',
+            'host_changed_no_user' => 'a host változott',
+            'player_joined' => ':user csatlakozott a mérkőzéshez',
+            'player_joined_no_user' => 'egy játékos csatlakozott a mérkőzéshez',
+            'player_kicked' => ':user ki lett rúgva a mérkőzésből',
+            'player_kicked_no_user' => 'egy játékos ki lett rúgva a mérkőzésből',
+            'player_left' => ':user elhagyta a mérkőzést',
+            'player_left_no_user' => 'egy játékos elhagyta a mérkőzést',
+            'room_created' => ':user létrehozta a mérkőzést',
+            'room_created_no_user' => 'a mérkőzés létrejött',
+            'room_disbanded' => 'a mérkőzés felbomlott',
+            'room_disbanded_no_user' => 'a mérkőzés felbomlott',
         ],
 
         'score' => [
@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '',
-            'tag_coop' => '',
-            'tag_team_versus' => '',
-            'team_versus' => '',
+            'head_to_head' => 'Head-to-head',
+            'tag_coop' => 'Tag Co-op',
+            'tag_team_versus' => 'Tag Csapat VS',
+            'team_versus' => 'Csapat VS',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '',
+        'freestyle' => 'Freestyle',
 
         'scoring-type' => [
             'score' => 'Legmagasabb Pontszám',

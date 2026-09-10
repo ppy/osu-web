@@ -64,6 +64,10 @@ return [
         'label' => 'Explizit',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskussion',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Nur Lazer',
+            'description' => 'Aufgrund von bestimmten Spielmechaniken kann diese Beatmap nur mit osu!lazer gespielt werden.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link, um Scores von dieser Beatmap anzusehen.',
+                'enable_link' => 'Aktiviere den Lazer-Modus',
             ],
         ],
 

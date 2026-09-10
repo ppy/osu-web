@@ -64,6 +64,10 @@ return [
         'label' => 'Explícito',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Discusión',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Solo Lazer',
+            'description' => 'Debido a ciertas mecánicas específicas, este mapa solo se puede jugar en osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link para ver las puntuaciones establecidas en este mapa.',
+                'enable_link' => 'Activa el modo lazer',
             ],
         ],
 

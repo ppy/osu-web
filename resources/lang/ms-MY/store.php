@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Pautan semak keluar pesanan ini telah luput.',
         'subtotal' => 'Jumlah kecil',
         'total' => 'Jumlah',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Pesanan #',

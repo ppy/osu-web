@@ -9,5 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'тежина мапе',
         'App\Models\Beatmapset' => 'мапа',
+        'App\Models\Solo\Score' => '',
     ],
 ];

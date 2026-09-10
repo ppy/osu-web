@@ -64,6 +64,10 @@ return [
         'label' => 'Explicitní',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskuze',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Pouze Lazer',
+            'description' => 'Kvůli specifickým mechanikám lze tuto beatmapu hrát pouze na osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link pro zobrazení skóre zahraných na této beatmapě.',
+                'enable_link' => 'Povol lazer režim',
             ],
         ],
 
@@ -212,7 +216,7 @@ return [
             ],
             'score' => [
                 'first' => 'V čele',
-                'own' => 'Vaše nejlepší',
+                'own' => 'Tvoje nejlepší',
             ],
             'supporter_link' => [
                 '_' => 'Klikni :here pro zobrazení všech výhod, které dostaneš!',

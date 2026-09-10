@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Utsjekkingslenken for denne bestillingen er utløpt.',
         'subtotal' => 'Delsum',
         'total' => 'Sum',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Ordre #',

@@ -230,6 +230,10 @@ return [
                 'week' => ':valuewk',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -414,15 +418,15 @@ return [
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
                 'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
-                'pp_weight' => 'valutata :percentage',
+                'pp_weight' => 'valutata al :percentage',
                 'view_details' => 'Visualizza dettagli',
-                'title' => 'Classifiche',
+                'title' => 'Punteggi',
 
                 'best' => [
                     'title' => 'Migliore Performance',
                 ],
                 'first' => [
-                    'title' => 'Primi Posti',
+                    'title' => 'Punteggi in Prima Posizione',
                 ],
                 'pin' => [
                     'to_0' => 'Rimuovi',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Ranked Play',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Posizione più alta: :rank il :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'È :link un nuovo algoritmo di Valutazione in Stelle / PP.',
+            'title_link' => 'in arrivo',
+            'message' => 'I punteggi recenti potrebbero non riflettersi subito sui profili utente.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => '',
             'total_score' => 'Punteggio totale',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',

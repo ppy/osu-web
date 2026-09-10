@@ -64,6 +64,10 @@ return [
         'label' => 'Nepiemērota satura',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskusija',
 

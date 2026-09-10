@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'no :author',
         'download' => 'Lejupielādēt',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'nokārtots',
             'not_cleared' => 'nav nokārtots',

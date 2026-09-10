@@ -61,9 +61,11 @@ return [
         'approve' => '承認',
         'beatmap_owner_change' => '難易度の所有者変更',
         'discussion_delete' => 'ディスカッションの削除',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'ディスカッションの返信を削除',
         'discussion_post_restore' => 'ディスカッションの返信を復元',
         'discussion_restore' => 'ディスカッションの復元',
+        'discussion_unlock' => '',
         'disqualify' => 'Disqualification',
         'genre_edit' => 'ジャンルの編集',
         'issue_reopen' => 'ディスカッションを再開する',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Qualification',
         'rank' => 'ランキング',
         'remove_from_loved' => 'Lovedから削除',
+        'tags_edit' => '',
     ],
 ];

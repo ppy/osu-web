@@ -25,7 +25,7 @@ class UserCompactTransformerTest extends TestCase
     }
 
     #[DataProvider('groupsDataProvider')]
-    public function testGroupPermissionsUserSilenceShowExtendedInfo(?string $groupIdentifier)
+    public function testGroupPermissionsUserSilenceShowExtendedInfo(?string $groupIdentifier, bool $_visibleWithoutOAuth)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $user = User::factory()->restricted()->silenced()->tournamentBanned()->withNote()->create();
@@ -45,7 +45,7 @@ class UserCompactTransformerTest extends TestCase
     }
 
     #[DataProvider('groupsDataProvider')]
-    public function testGroupPermissionsWithOAuth(?string $groupIdentifier)
+    public function testGroupPermissionsWithOAuth(?string $groupIdentifier, bool $_visibleWithoutOAuth)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $user = User::factory()->silenced()->create();
@@ -101,6 +101,7 @@ class UserCompactTransformerTest extends TestCase
 
     public static function groupsDataProvider()
     {
+        // The second argument is only for testGroupPermissionsWithoutOAuth
         return [
             ['admin', true],
             ['bng', false],

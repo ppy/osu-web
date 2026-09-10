@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Tests\Controllers;
 
 use App\Http\Middleware\ThrottleRequests;
+use App\Libraries\User\PasswordHelper;
 use App\Libraries\User\PasswordResetData;
 use App\Mail\PasswordReset;
 use App\Models\User;
@@ -143,7 +144,7 @@ class PasswordResetControllerTest extends TestCase
             'username' => $user->username,
         ])->assertRedirect(route('home'));
 
-        $this->assertTrue($user->fresh()->checkPassword($newPassword));
+        $this->assertTrue(PasswordHelper::check($user->fresh(), $newPassword));
     }
 
     public function testUpdateChangedEmailExternally()
@@ -167,7 +168,7 @@ class PasswordResetControllerTest extends TestCase
         ])->assertRedirect($this->path())
         ->assertSessionHas('popup', osu_trans('password_reset.error.expired'));
 
-        $this->assertTrue($user->fresh()->checkPassword($password));
+        $this->assertTrue(PasswordHelper::check($user->fresh(), $password));
     }
 
     public function testUpdateChangedPasswordExternally()
@@ -194,7 +195,7 @@ class PasswordResetControllerTest extends TestCase
         ])->assertRedirect()
         ->assertSessionHas('popup', osu_trans('password_reset.error.invalid'));
 
-        $this->assertTrue($user->fresh()->checkPassword($newPassword));
+        $this->assertTrue(PasswordHelper::check($user->fresh(), $newPassword));
     }
 
     public function testUpdateFromInactive(): void
@@ -216,7 +217,7 @@ class PasswordResetControllerTest extends TestCase
         ])->assertRedirect(route('home'));
 
         $user = $user->fresh();
-        $this->assertTrue($user->checkPassword($newPassword));
+        $this->assertTrue(PasswordHelper::check($user, $newPassword));
         $this->assertTrue($user->user_lastvisit->greaterThan($changeTime));
     }
 
@@ -238,7 +239,7 @@ class PasswordResetControllerTest extends TestCase
         ])->assertRedirect($this->path())
         ->assertSessionHas('popup', osu_trans('password_reset.error.invalid'));
 
-        $this->assertFalse($user->fresh()->checkPassword($newPassword));
+        $this->assertFalse(PasswordHelper::check($user->fresh(), $newPassword));
     }
 
     public function testUpdateInvalidConfirmation()
@@ -258,7 +259,7 @@ class PasswordResetControllerTest extends TestCase
             'username' => $user->username,
         ])->assertStatus(422);
 
-        $this->assertFalse($user->fresh()->checkPassword($newPassword));
+        $this->assertFalse(PasswordHelper::check($user->fresh(), $newPassword));
     }
 
     public function testUpdateInvalidKey()
@@ -278,7 +279,7 @@ class PasswordResetControllerTest extends TestCase
             'username' => $user->username,
         ])->assertStatus(422);
 
-        $this->assertFalse($user->fresh()->checkPassword($newPassword));
+        $this->assertFalse(PasswordHelper::check($user->fresh(), $newPassword));
     }
 
     protected function setUp(): void

@@ -14,9 +14,9 @@ return [
 
         'player' => [
             'by' => 'Dimain oleh',
-            'played_on' => '',
+            'played_on' => 'Dimainkan di',
             'submitted_on' => 'Diserahkan pada',
-            'watched' => '',
+            'watched' => 'Ditonton',
             'watched_count' => '',
 
             'rank' => [

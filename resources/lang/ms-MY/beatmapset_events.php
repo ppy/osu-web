@@ -61,9 +61,11 @@ return [
         'approve' => 'Kelulusan',
         'beatmap_owner_change' => 'Perubahan pemilik kesukaran',
         'discussion_delete' => 'Pemadaman perbincangan',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Pemadaman balasan perbincangan',
         'discussion_post_restore' => 'Pemulihan balasan perbincangan',
         'discussion_restore' => 'Pemulihan perbincangan',
+        'discussion_unlock' => '',
         'disqualify' => 'Penyingkiran',
         'genre_edit' => 'Sunting genre',
         'issue_reopen' => 'Pembukaan semula perbincangan',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kelayakan',
         'rank' => 'Pangkat',
         'remove_from_loved' => 'Pemadaman Kegemaran',
+        'tags_edit' => '',
     ],
 ];

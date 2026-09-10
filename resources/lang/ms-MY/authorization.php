@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Anda tidak boleh mengubah metadata peta yang dicalonkan. Hubungi ahli pencalon or NAT sekiranya anda berasa bahawa tetapan peta ini tidak betul.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

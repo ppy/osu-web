@@ -91,7 +91,7 @@ class Client extends PassportClient
 
         if (!$this->exists && $this->user !== null) {
             $max = $GLOBALS['cfg']['osu']['oauth']['max_user_clients'];
-            if ($this->user->oauthClients()->thirdParty()->where('revoked', false)->count() >= $max) {
+            if ($this->user->clients()->thirdParty()->where('revoked', false)->count() >= $max) {
                 $this->validationErrors()->add('user.oauthClients.count', '.too_many');
             }
         }

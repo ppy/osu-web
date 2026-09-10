@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited yanıt gizli.|:count_delimited yanıt gizli.',
 
     'authorizations' => [
         'update' => [
@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Herkes',
         'label' => 'Kullanıcıya göre filtrele',
-        'multiple' => '',
+        'multiple' => ':count_delimited kullanıcı seçildi|:count_delimited kullanıcı seçildi',
     ],
 ];

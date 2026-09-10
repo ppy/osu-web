@@ -230,6 +230,10 @@ return [
                 'week' => ':value 周',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料封面',
@@ -254,8 +258,8 @@ return [
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => '默认游戏模式',
-                'set' => '设置 :mode 为个人资料的默认游戏模式',
+                'is_default_tooltip' => '首选游戏模式',
+                'set' => '将 :mode 设为个人资料的首选游戏模式',
             ],
 
             'hue' => [
@@ -327,7 +331,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
-                    'title' => '最近24小时游玩',
+                    'title' => '最近游玩（24小时）',
                 ],
                 'replays_watched_counts' => [
                     'title' => '回放被观看记录',
@@ -444,7 +448,7 @@ return [
             'account_standing' => [
                 'title' => '账号状态',
                 'bad_standing' => ":username 的账号存在违规行为 :(",
-                'remaining_silence' => ':username 的禁言将在 :duration 后解除',
+                'remaining_silence' => ':username 的禁言将在 :duration 后解除。',
 
                 'recent_infringements' => [
                     'title' => '近期违规行为记录',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '匹配模式',
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
+            'title' => '排位模式',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => ':date 达成生涯最高排名 :rank',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => '新的难度星级 / PP 算法 :link 。',
+            'title_link' => '正在部署',
+            'message' => '近期上传的成绩可能无法立即反映在你的个人资料上。',
         ],
         'season_stats' => [
             'division_top_percentage' => '排名前 :value',
+            'label' => '',
             'total_score' => '总分',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',

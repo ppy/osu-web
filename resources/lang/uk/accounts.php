@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'отримувати повідомлення про відповіді в обговореннях мап, в яких я беру участь',
         'beatmapset_discussion_qualified_problem' => 'отримувати сповіщення про нові проблеми у кваліфікованих мапах для перелічених режимів',
         'beatmapset_disqualify' => 'отримувати сповіщення якщо мапи перелічених режимів будуть дискваліфіковані',
         'comment_reply' => 'отримувати сповіщення про відповіді на ваші коментарі',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'основний режим гри',
         'keyboard' => 'клавіатура',
         'mouse' => 'мишка',
         'tablet' => 'графічний планшет',

@@ -9,5 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'kesukaran peta rentak',
         'App\Models\Beatmapset' => 'peta rentak',
+        'App\Models\Solo\Score' => '',
     ],
 ];

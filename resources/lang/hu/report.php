@@ -25,7 +25,7 @@ return [
     ],
 
     'message' => [
-        'button' => 'Üzenet jelentése',
+        'button' => 'Üzenet Jelentése',
         'title' => 'Jelented :username üzenetét?',
     ],
 
@@ -35,12 +35,12 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Csapat Jelentése',
+        'title' => 'Jelented :username Csapatát?',
     ],
 
     'user' => [
         'button' => 'Jelentés',
-        'title' => ':username jelentése?',
+        'title' => ':username Jelentése?',
     ],
 ];

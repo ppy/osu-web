@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'információ',
             'discussions' => 'beszélgetés',
-            'versions' => '',
+            'versions' => 'verzió előzmény',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modolás',
             'playlists' => 'játéklisták',
-            'ranked-play' => '',
+            'ranked-play' => 'ranked',
             'realtime' => 'többjátékos',
             'show' => 'információ',
         ],
@@ -115,7 +115,7 @@ return [
             'copyright' => 'Szerzői jog (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Adatvédelem',
-            'rules' => '',
+            'rules' => 'Szabályok',
             'server_status' => 'Szerver Állapot',
             'source_code' => 'Forráskód',
             'terms' => 'Felhasználási Feltételek',
@@ -148,7 +148,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => 'Ráta korlát túllépve',
+            'error' => 'Kéréskorlát túllépve',
             'description' => '',
         ],
         '500' => [
@@ -188,7 +188,7 @@ return [
 
         'register' => [
             'download' => 'Letöltés',
-            'info' => 'Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?',
+            'info' => 'Töltsd le az osu!-t, hogy csinálj egy fiókot!',
             'title' => "Nincs még fiókod?",
         ],
     ],
@@ -196,11 +196,11 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Beállítások',
-            'create_team' => '',
+            'create_team' => 'Csapat Létrehozása',
             'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
             'legacy_score_only_toggle' => 'Lazer mód',
-            'legacy_score_only_toggle_tooltip' => 'A Lazer mód a Lazer által beállított pontszámokat mutatja egy új pontozási algoritmussal',
+            'legacy_score_only_toggle_tooltip' => 'A Lazer mód a Lazer kliensen elért eredményeket mutatja, egy új pontozási algoritmussal',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',
             'scoring_mode_toggle' => 'Klasszikus pontozás',
@@ -210,7 +210,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Keresendő szöveg!',
-        'retry' => 'A keresés eredménytelen. Kattintson az ismételt próbálkozáshoz.',
+        'initial' => 'Írj a kereséshez!',
+        'retry' => 'A keresés eredménytelen. Kattints az újrapróbáláshoz.',
     ],
 ];

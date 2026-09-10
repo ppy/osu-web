@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => '',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

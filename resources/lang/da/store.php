@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Checkout linket for denne ordre er udløbet.',
         'subtotal' => 'Samlet',
         'total' => 'I alt',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Ordrenummer',

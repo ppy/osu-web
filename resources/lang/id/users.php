@@ -230,6 +230,10 @@ return [
                 'week' => ':valuemg',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ubah Sampul Profil',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Permainan Kilat',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Peringkat tertinggi: :rank pada :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Algoritma Star Rating / PP yang baru saat ini sedang :link.',
+            'title_link' => 'diluncurkan',
+            'message' => 'Skor-skor yang baru diraih mungkin tidak akan langsung muncul pada profil pengguna.',
         ],
         'season_stats' => [
             'division_top_percentage' => ':value teratas',
+            'label' => '',
             'total_score' => 'Jumlah skor',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',

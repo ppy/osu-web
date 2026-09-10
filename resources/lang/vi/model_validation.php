@@ -63,8 +63,8 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Chỉ có thể bầu chọn một feature request.',
-            'not_enough_feature_votes' => 'Không đủ phiếu bầu.',
+            'not_feature_topic' => 'Chỉ có thể bình chọn một yêu cầu tính năng.',
+            'not_enough_feature_votes' => 'Không đủ lượt bình chọn.',
         ],
 
         'poll_vote' => [
@@ -75,11 +75,11 @@ return [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
             'first_post_no_delete' => 'Không thể xóa bài đăng mở đầu',
-            'missing_topic' => 'Bài viết thiếu chủ đề',
+            'missing_topic' => 'Bài đăng thiếu chủ đề',
             'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
 
             'attributes' => [
-                'post_text' => 'Thân bài viết',
+                'post_text' => 'Thân bài đăng',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
 
         'topic_vote' => [
             'required' => 'Chọn một lựa chọn khi đang bỏ phiếu.',
-            'too_many' => 'Vượt quá mức cho phép chọn các lựa chọn.',
+            'too_many' => 'Vượt quá mức số lựa chọn cho phép.',
         ],
     ],
 

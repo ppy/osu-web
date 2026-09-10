@@ -137,7 +137,7 @@ return [
         'word_not_allowed' => '不允许使用 :attribute 。',
 
         'attributes' => [
-            'default_ruleset_id' => '默认游戏模式',
+            'default_ruleset_id' => '首选游戏模式',
             'is_open' => '战队申请',
             'name' => '名称',
             'short_name' => '简称',

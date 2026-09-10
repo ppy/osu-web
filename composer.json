@@ -15,7 +15,7 @@
     "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": "^7.17.x-dev",
-    "ezyang/htmlpurifier": "*",
+    "ezyang/htmlpurifier": "^4.19.0",
     "firebase/php-jwt": "^7.1.0",
     "graham-campbell/github": "^13.1.1",
     "guzzlehttp/guzzle": "*",
@@ -51,8 +51,8 @@
     "laravel/dusk": "^8.6.0",
     "mockery/mockery": "*",
     "nunomaduro/collision": "^8.9.5",
-    "phpunit/phpunit": "^11.5.15",
-    "scriptfusion/pip": "^3.5",
+    "phpunit/phpunit": "^12.5.33",
+    "scriptfusion/pip": "^3.6.0",
     "slevomat/coding-standard": "^8.15",
     "squizlabs/php_codesniffer": "^3.10"
   },
@@ -85,7 +85,7 @@
     "sort-packages": true,
     "optimize-autoloader": true,
     "platform": {
-      "php": "8.4.0"
+      "php": "8.5.0"
     },
     "allow-plugins": {
       "composer/package-versions-deprecated": true,

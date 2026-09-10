@@ -41,21 +41,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => 'A próbaidős nominálók nem nominálhatnak több ruleszetet.',
-        'full_nomination_required' => 'Teljes nominálónak kell lennie a ruleszet végső nominálásának végrehajtásához.',
+        'bng_limited_too_many_rulesets' => 'A próbaidős nominálók nem nominálhatnak több játékmódban.',
+        'full_nomination_required' => 'Teljes nominálónak kell lennie a játékmód végső nominálásának végrehajtásához.',
         'hybrid_requires_modes' => 'Egy hibrid beatmap szettet legalább egy játékmódra nominálni kell.',
         'incorrect_mode' => 'Nincs jogosultságod :mode módban nominálni',
         'invalid_limited_nomination' => 'Ez a beatmap érvénytelen nominálásokkal rendelkezik, és ebben az állapotban nem kvalifikálható.',
-        'invalid_ruleset' => 'Ez a nomináció érvénytelen ruleszeteket tartalmaz.',
+        'invalid_ruleset' => 'Ez a nomináció érvénytelen játékmódokat tartalmaz.',
         'too_many' => 'A nominálási követelmények már teljesültek.',
-        'too_many_non_main_ruleset' => 'Nomináció kötelezettség a nem fő ruleszetre már teljesítve van.',
+        'too_many_non_main_ruleset' => 'Nomináció kötelezettség a nem fő játékmódra már teljesítve van.',
 
         'dialog' => [
             'confirmation' => 'Biztosan nominálni szeretnéd ezt a Beatmap-et?',
             'different_nominator_warning' => 'A beatmap kvalifikálása különbözű nominálókkal a kvalifikálási várólístai helyének visszaállításával jár.',
             'header' => 'Beatmap Nominálása',
             'hybrid_warning' => 'megjegyzés: csak egyszer nominálhatsz, ezért kérlek győződj meg róla, hogy minden játékmódra nominálsz, amire szeretnél',
-            'current_main_ruleset' => 'A fő ruleszet jelenleg: :ruleset',
+            'current_main_ruleset' => 'A fő játékmód jelenleg: :ruleset',
             'which_modes' => 'Mely módokra nominálsz?',
         ],
     ],
@@ -64,12 +64,16 @@ return [
         'label' => 'Felnőtt',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Beszélgetés',
 
         'admin' => [
             'full_size_cover' => 'Teljes borítókép megtekintése',
-            'page' => '',
+            'page' => 'Admin oldal megtekintése',
         ],
 
         'deleted_banner' => [
@@ -81,7 +85,7 @@ return [
             'by_artist' => ':artist',
             'favourite' => 'A beatmap kedvencek közé tétele',
             'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
-            'logged-out' => 'Beatmapek letöltéshez be kell jelentkezned!',
+            'logged-out' => 'beatmapek letöltéséhez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
             'mapped_by_guest' => 'vendég nehézséget készítette: :mapper',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
@@ -114,7 +118,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hype-old a beatmapet ha élvezted rajta a játékot, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
+            'action' => 'Hype-old a beatmapet ha tetszett, hogy segíthesd a <strong>Rangsorolt</strong> állapot felé jutásban.',
 
             'current' => [
                 '_' => 'Ez a map jelenleg :status.',
@@ -127,11 +131,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Ha találsz javaslatokat, problémákat a térképpel kapcsolatban, kérlek diszkvalifikáld ezen a linken keresztül: :link',
+                '_' => 'Ha találsz javaslatokat, problémákat a beatmappel kapcsolatban, kérlek diszkvalifikáld :link.',
             ],
 
             'report' => [
-                '_' => 'Ha találsz javaslatokat, problémákat a térképpel kapcsolatban, kérlek jelentsd az alábbi linken keresztül: :link',
+                '_' => 'Ha találsz javaslatokat, problémákat a beatmappel kapcsolatban, kérlek jelentsd :link.',
                 'button' => 'Probléma jelentése',
                 'link' => 'itt',
             ],
@@ -141,28 +145,28 @@ return [
             'description' => 'Leírás',
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Mapper Címkék',
             'no_scores' => 'Az adatok még számítás alatt...',
             'nominators' => 'Nominálók',
             'nsfw' => 'Felnőtt tartalom',
             'offset' => 'Online eltolás',
-            'pack_tags' => '',
-            'points-of-failure' => 'Kibukási Időpontok',
+            'pack_tags' => 'Beatmap Csomagok',
+            'points-of-failure' => 'Elbukási Időpontok',
             'source' => 'Forrás',
             'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
             'success-rate' => 'Teljesítési arány',
-            'success_rate_plays' => '',
-            'user_tags' => '',
+            'success_rate_plays' => ':passes / :count_delimited játszás|:passes / :count_delimited játszások',
+            'user_tags' => 'Felhasználói Címkék',
             'video' => 'Ez a beatmap videót tartalmaz',
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Lazer Csak',
+            'description' => 'Bizonyos mechanikai sajátosságok miatt ez a beatmap kizárólag az osu!lazer módban játszható.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link az ezen a beatmap-en elért eredmények megtekintéséhez.',
+                'enable_link' => 'Engedélyezd a Lazer módot',
             ],
         ],
 
@@ -183,9 +187,9 @@ return [
             'error' => 'Ranglista betöltése sikertelen',
             'friend' => 'Baráti Ranglista',
             'global' => 'Globális Ranglista',
-            'supporter-link' => 'Kattints <a href=":link">ide</a>, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
+            'supporter-link' => 'Kattints <a href=":link">ide</a>, hogy megtekintsd a sok menő funkciót, amit kaphatsz!',
             'supporter-only' => 'Támogató kell legyél, hogy elérd a baráti és az országos ranglistát!',
-            'team' => '',
+            'team' => 'Csapat Rangsorolás',
             'title' => 'Eredménylista',
 
             'headers' => [
@@ -207,7 +211,7 @@ return [
                 'friend' => 'Senki sem ért még el eredményt a barátaid közül ezen a map-en!',
                 'global' => 'Egyetlen eredmény sincs. Esetleg megpróbálhatnál szerezni párat?',
                 'loading' => 'Eredmények betöltése...',
-                'team' => '',
+                'team' => 'A csapatodból még senki sem ért el pontszámot ezen a pályán!',
                 'unranked' => 'Rangsorolatlan beatmap.',
             ],
             'score' => [
@@ -215,7 +219,7 @@ return [
                 'own' => 'A legjobbad',
             ],
             'supporter_link' => [
-                '_' => 'Kattints :here, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
+                '_' => 'Kattints :here, hogy megtekintsd a sok menő funkciót, amit kaphatsz!',
                 'here' => 'ide',
             ],
         ],
@@ -231,13 +235,13 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Körök Száma',
             'count_sliders' => 'Sliderek Száma',
-            'offset' => 'Online eltolás :offset',
+            'offset' => 'Online eltolás: :offset',
             'user-rating' => 'Felhasználói Értékelés',
             'rating-spread' => 'Értékelési Szórás',
             'nominations' => 'Nominálások',
             'playcount' => 'Játékszám',
-            'favourites' => '',
-            'no_favourites' => '',
+            'favourites' => 'Kedvencek',
+            'no_favourites' => 'Nincsenek kedvencek még',
         ],
 
         'status' => [

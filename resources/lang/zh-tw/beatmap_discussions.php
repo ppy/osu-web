@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '依使用者篩選',
-        'multiple' => '',
+        'multiple' => '已選擇 :count_delimited 位使用者|已選擇 :count_delimited 位使用者',
     ],
 ];
