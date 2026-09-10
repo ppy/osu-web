@@ -61,9 +61,11 @@ return [
         'approve' => 'Onay',
         'beatmap_owner_change' => 'Zorluk sahibi değiştirme',
         'discussion_delete' => 'Tartışma silindi',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Tartışma yanıtı silme',
         'discussion_post_restore' => 'Tartışma yanıtı geri getirme',
         'discussion_restore' => 'Tartışma geri getirme',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskalifiye',
         'genre_edit' => 'Tür düzeni',
         'issue_reopen' => 'Tekrar açılan tartışmalar',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Adaylık',
         'rank' => 'Sıralama',
         'remove_from_loved' => 'Sevilenlerden çıkarma',
+        'tags_edit' => '',
     ],
 ];

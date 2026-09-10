@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Šis vartotojas jus užblokavo.',
     'title_compact' => 'draugai',
     'too_many' => 'Pasiektas draugų limitas',
 

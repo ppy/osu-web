@@ -46,7 +46,7 @@ return [
             '_' => 'جستجوی قطعه ها',
 
             'exclusive_only' => [
-                'all' => '',
+                'all' => 'همه',
                 'exclusive_only' => 'osu! اورجینال',
             ],
 
@@ -57,7 +57,7 @@ return [
                 'bpm_gte' => 'کمترین ضرب در دقیقه',
                 'bpm_lte' => 'بیشترین ضرب در دقیقه',
                 'empty' => 'هیچ قطعه ای مطابق جستجوی شما پیدا نشد.',
-                'exclusive_only' => '',
+                'exclusive_only' => 'نوع',
                 'genre' => 'ژانر',
                 'genre_all' => 'همه',
                 'length_gte' => 'کمترین طول',

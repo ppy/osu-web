@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Sila masukkan kod daripada aplikasi pengesah anda.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Anda juga boleh :link.',
+                'link' => 'daftar keluar',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Jika anda tidak dapat akses aplikasi anda, :link.',
+                'link' => 'anda boleh mengesahkan menggunakan e-mel sebagai gantinya',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Kod pengesahan salah.',
         'retries_exceeded' => 'Kod pengesahan tidak betul. Cubaan lagi melebihi had, e-mel pengesahan baharu dihantar.',
         'reissued' => 'Kod pengesahan diterbitkan semula, e-mel pengesahan baharu dihantar.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'Kod pengesahan telah digunakan. Sila tunggu dan menggunakan kod baharu.',
+        'totp_gone' => 'Token pengesahan telah dialih keluar, sedang bertukar kepada pengesahan e-mel. E-mel pengesahan telah dihantar.',
         'unknown' => 'Masalah tidak diketahui berlaku, e-mel pengesahan baharu dihantar.',
     ],
 ];

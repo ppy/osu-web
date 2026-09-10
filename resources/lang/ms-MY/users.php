@@ -230,6 +230,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ubah Kulit Profil',
@@ -334,7 +338,7 @@ return [
                     'count_label' => 'Tontonan Ulangan',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Ulangan Paling Banyak Ditonton',
                 ],
             ],
             'kudosu' => [
@@ -403,7 +407,7 @@ return [
                 'show_more' => 'lihat hantaran lain',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Perlawanan Main Peringkat',
             ],
             'recent_activity' => [
                 'title' => 'Terkini',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'title' => '',
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
+            'title' => 'Main Peringkat',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Pangkat tertinggi: :rank pada :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Algoritma Penarafan Bintang / PP baharu :link.',
+            'title_link' => 'sedang dikerahkan',
+            'message' => 'Skor terkini mungkin tidak serta-merta tercermin dalam profil pengguna.',
         ],
         'season_stats' => [
             'division_top_percentage' => ':value tertinggi',
+            'label' => '',
             'total_score' => 'Jumlah markah',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Ketepatan Pukulan',

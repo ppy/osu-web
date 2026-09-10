@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavení',
-            'create_team' => '',
+            'create_team' => 'Vytvořit tým',
             'follows' => 'Sledované položky',
             'friends' => 'Přátelé',
             'legacy_score_only_toggle' => 'Lazer režim',

@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => '모두',
         'label' => '사용자순 필터링',
-        'multiple' => '',
+        'multiple' => ':count_delimited개의 유저 선택 됨|:count_delimited개의 유저 선택 됨',
     ],
 ];

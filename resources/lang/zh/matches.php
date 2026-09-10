@@ -42,10 +42,10 @@ return [
         ],
 
         'team_types' => [
-            'head_to_head' => '个人对战',
+            'head_to_head' => '个人赛',
             'tag_coop' => '接力',
             'tag_team_versus' => '组队接力',
-            'team_versus' => '组队',
+            'team_versus' => '组队赛',
         ],
 
         'teams' => [
@@ -54,7 +54,7 @@ return [
         ],
     ],
     'game' => [
-        'freestyle' => '自由发挥',
+        'freestyle' => '自由模式',
 
         'scoring-type' => [
             'score' => '最高分',

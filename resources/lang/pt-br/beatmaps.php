@@ -26,7 +26,7 @@ return [
         'edited' => 'Última vez editado por :editor :update_time.',
         'guest' => 'Dificuldade de convidado feita por :user',
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
-        'include_replies' => '',
+        'include_replies' => 'Incluir respostas',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desabilitada.',
         'message_placeholder_silenced' => "Não é possível postar na discussão enquanto silenciado.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Resolvido',
         'restore' => 'restaurar',
         'show_deleted' => 'Mostrar excluídos',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Mostrar outras respostas',
         'title' => 'Discussões',
         'unresolved_count' => ':count_delimited problemas não resolvidos',
 
@@ -127,11 +127,12 @@ return [
                 'unlink' => 'Desvincular',
                 'unsaved' => 'Não salvo',
                 'timestamp' => [
-                    'all-diff' => 'As postagens em "Todas as dificuldades" não podem ser temporizadas.',
+                    'all-diff' => 'As publicações em "Todas as dificuldades" não podem ser temporizadas.',
                     'diff' => 'Se este :type começa com marcação de tempo, será mostrado na Linha do Tempo.',
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'inserir parágrafo',
                 'praise' => 'inserir elogio',
                 'problem' => 'inserir problema',
@@ -248,7 +249,7 @@ return [
             'login_required' => 'Entre para pesquisar.',
             'options' => 'Mais opções de busca',
             'rank_filter_note' => 'A classificação do perfil e os resultados exibidos nesta página são baseados nas suas notas mais altas "padronizadas" (também conhecido como "lazer") em beatmaps.',
-            'supporter_filter' => 'Filtrar por :filters requer uma osu!supporter tag ativa',
+            'supporter_filter' => 'Filtrar por :filters requer uma tag de osu!supporter ativa',
             'not-found' => 'nenhum resultado',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
@@ -276,7 +277,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrar por :filters requer uma :link',
-                'link_text' => 'osu!supporter tag',
+                'link_text' => 'tag de osu!supporter',
             ],
             'tag_picker' => [
                 'tooltip' => 'procurar por tags de usuário',
@@ -305,7 +306,7 @@ return [
         'approved' => 'Aprovado',
         'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'leaderboard' => 'Possuem Classificações',
+        'leaderboard' => 'Tem placar',
         'loved' => 'Loved',
         'mine' => 'Meus Maps',
         'pending' => 'Pendentes & Em Progresso',

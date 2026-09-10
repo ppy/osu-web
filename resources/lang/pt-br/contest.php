@@ -19,7 +19,7 @@ return [
         'nav_title' => 'juiz',
         'no_current_vote' => 'você ainda não votou.',
         'update' => 'atualizar',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'alterações não salvas',
         'validation' => [
             'missing_score' => 'pontuação faltando',
             'contest_vote_judged' => 'não é possível votar em concursos já julgados',
@@ -59,7 +59,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'É necessário reproduzir todos os beatmaps nas playlists especificadas antes de votar',
+                'incomplete_play' => 'Jogue todos os beatmaps nas playlists especificadas antes de votar',
             ],
         ],
     ],

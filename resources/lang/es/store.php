@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'El enlace de pago de esta orden ha expirado.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Pedido n.º',

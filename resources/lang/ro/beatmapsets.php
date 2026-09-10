@@ -64,6 +64,10 @@ return [
         'label' => 'Obscen',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Discuție',
 

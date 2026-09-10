@@ -36,7 +36,7 @@ return [
     'matchmaking' => [
         'plays' => 'Partite',
         'points' => 'Punti',
-        'provisional' => 'Non ci sono partite sufficienti per una valutazione precisa',
+        'provisional' => 'Valutazione provvisoria a causa di un numero insufficiente di partite recenti',
         'rating' => 'Valutazione',
         'wins' => 'Vittorie',
     ],

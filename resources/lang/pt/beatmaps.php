@@ -26,7 +26,7 @@ return [
         'edited' => 'Editado pela última vez por :editor :update_time.',
         'guest' => 'Dificuldade de convidado feita por :user',
         'kudosu_denied' => 'A obtenção de kudosu foi‑lhe recusada.',
-        'include_replies' => '',
+        'include_replies' => 'Incluir respostas',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi eliminada, pelo que já não pode ser discutida.',
         'message_placeholder_locked' => 'A discussão para este mapa foi desativada.',
         'message_placeholder_silenced' => "Não pode publicar discussões enquanto estiver silenciado.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Resolvida',
         'restore' => 'restaurar',
         'show_deleted' => 'Exibir discussões eliminadas',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Mostrar outras respostas',
         'title' => 'Discussões',
         'unresolved_count' => ':count_delimited problema por resolver|:count_delimited problemas por resolver',
 
@@ -133,6 +133,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'inserir parágrafo',
                 'praise' => 'inserir elogio',
                 'problem' => 'inserir problema',

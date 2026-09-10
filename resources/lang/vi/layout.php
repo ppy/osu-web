@@ -61,7 +61,7 @@ return [
 
     'gallery' => [
         'close' => 'Đóng (Esc)',
-        'fullscreen' => 'Bật/tắt toàn màn hình',
+        'fullscreen' => 'Bật / tắt toàn màn hình',
         'zoom' => 'Thu phóng',
         'previous' => 'Trước (mũi tên trái)',
         'next' => 'Tiếp theo (mũi tên phải)',
@@ -96,11 +96,11 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => 'Tổng quát',
+            '_' => 'Chung',
             'home' => 'Trang Chủ',
             'changelog-index' => 'Changelog',
             'beatmaps' => 'Danh Sách Beatmap',
-            'download' => 'Tải Xuống osu!',
+            'download' => 'Tải xuống osu!',
         ],
         'help' => [
             '_' => 'Giúp Đỡ & Cộng Đồng',
@@ -196,11 +196,11 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Cài Đặt',
-            'create_team' => '',
+            'create_team' => 'Tạo Đội',
             'follows' => 'Danh sách theo dõi',
             'friends' => 'Bạn bè',
             'legacy_score_only_toggle' => 'Chế độ lazer',
-            'legacy_score_only_toggle_tooltip' => 'Chế độ lazer hiển thị các điểm cá nhân từ lazer cùng thuật toán tính điểm mới',
+            'legacy_score_only_toggle_tooltip' => 'Chế độ Lazer hiển thị các điểm số được lập từ lazer với thuật toán tính điểm mới',
             'logout' => 'Đăng Xuất',
             'profile' => 'Trang Cá Nhân',
             'scoring_mode_toggle' => 'Hệ thống điểm cổ điển',

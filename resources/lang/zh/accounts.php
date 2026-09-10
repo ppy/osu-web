@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '默认游戏模式',
+        'default_ruleset' => '首选游戏模式',
         'keyboard' => '键盘',
         'mouse' => '鼠标',
         'tablet' => '数位板',

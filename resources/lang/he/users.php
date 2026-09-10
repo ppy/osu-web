@@ -231,6 +231,10 @@ return [
                 'week' => '',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'החלף תמונת פרופיל',
@@ -477,7 +481,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => '',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -516,7 +527,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => '',
+            'label' => '',
             'total_score' => '',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'דיוק פגיעה',

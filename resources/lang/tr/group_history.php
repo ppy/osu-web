@@ -16,24 +16,24 @@ return [
             'group_rename' => ':previous_group, :group olarak yeniden adlandırıldı.',
             'user_add' => ':user, :group grubuna eklendi.',
             'user_add_with_playmodes' => ':user, :rulesets için :group grubuna eklendi',
-            'user_add_playmodes' => '',
+            'user_add_playmodes' => ':user kullanıcısının :group üyeliğine :rulesets eklendi.',
             'user_remove' => ':user, :group grubundan kaldırıldı.',
-            'user_remove_playmodes' => '',
-            'user_set_default' => '',
+            'user_remove_playmodes' => ':user kullanıcısının :group üyeliğine :rulesets kaldırıldı.',
+            'user_set_default' => ':user kullanıcısının varsayılan grubu :group olarak ayarlandı',
         ],
     ],
 
     'form' => [
         'group' => 'Grup',
         'group_all' => 'Tüm gruplar',
-        'max_date' => '',
-        'min_date' => '',
+        'max_date' => 'ya kadar',
+        'min_date' => 'dan',
         'user' => 'Kullanıcı',
         'user_prompt' => 'Kullanıcı adı veya ID',
     ],
 
     'staff_log' => [
-        '_' => '',
-        'wiki_articles' => '',
+        '_' => 'Daha eski grup geçmişi :wiki_articlesnde bulunabilir.',
+        'wiki_articles' => 'destek kayıt wiki makaleleri',
     ],
 ];

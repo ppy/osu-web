@@ -65,6 +65,10 @@ return [
         'label' => 'Експлицитно',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Дискусија',
 

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited atsakymas yra paslėptas.|:count_delimited atsakymai yra paslėpti.',
 
     'authorizations' => [
         'update' => [
@@ -116,6 +116,6 @@ return [
     'user_filter' => [
         'everyone' => 'Visi',
         'label' => 'Filtruoti pagal vartotoją',
-        'multiple' => '',
+        'multiple' => ':count_delimited vartotojas pažymėtas.|:count_delimited vartotojai pažymėti',
     ],
 ];

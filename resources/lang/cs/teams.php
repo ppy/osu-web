@@ -33,8 +33,8 @@ return [
         ],
 
         'intro' => [
-            'description' => "Hraj společně s přáteli; existujícími nebo novými. V současné době nejsi v týmu. Připoj se k existujícímu týmu navštívením jejich týmové stránky nebo vytvoř svůj vlastní tým na této stránce.",
-            'search_link' => '',
+            'description' => "Hraj společně s přáteli; existujícími nebo novými. V současné době nejsi v týmu. Připoj se k :search_link navštívením jejich týmové stránky nebo vytvoř svůj vlastní tým na této stránce.",
+            'search_link' => 'existujícímu týmu',
             'title' => 'Tým!',
         ],
     ],

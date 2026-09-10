@@ -19,22 +19,22 @@ return [
     ],
 
     'series' => [
-        'beatmap_spotlights' => '',
-        'community_contests' => '',
-        'community_tournaments' => '',
-        'fanart_contests' => '',
-        'featured_artists' => '',
-        'game_updates' => '',
-        'mappers_guild' => '',
-        'monthly_beatmapping_contest' => '',
-        'merch_runs' => '',
-        'miscellaneous' => '',
-        'official_contests' => '',
-        'offline_events' => '',
-        'online_events' => '',
-        'project_loved' => '',
-        'ranking_system_updates' => '',
-        'world_cups' => '',
+        'beatmap_spotlights' => 'Beatmap Spotlightok',
+        'community_contests' => 'közösségi versenyek',
+        'community_tournaments' => 'közösségi bajnokságok',
+        'fanart_contests' => 'rajz versenyek',
+        'featured_artists' => 'Kiemelt Művész bejelentések',
+        'game_updates' => 'kliens és weboldal frissítések',
+        'mappers_guild' => 'Mappers\' Guild',
+        'monthly_beatmapping_contest' => 'Havi Beatmappelési Verseny',
+        'merch_runs' => 'osu! árucikkek',
+        'miscellaneous' => 'egyéb bejelentések',
+        'official_contests' => 'hivatalos versenyek',
+        'offline_events' => 'offline események',
+        'online_events' => 'online események',
+        'project_loved' => 'Loved Projekt',
+        'ranking_system_updates' => 'rangsorolt rendsuer frissítések',
+        'world_cups' => 'osu! World Cups',
     ],
 
     'show' => [
@@ -52,7 +52,7 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => 'Hír archív',
+        'archive' => 'Hír Archívum',
     ],
 
     'store' => [

@@ -9,5 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'ritma-mapes grūtība',
         'App\Models\Beatmapset' => 'ritma-mape',
+        'App\Models\Solo\Score' => '',
     ],
 ];

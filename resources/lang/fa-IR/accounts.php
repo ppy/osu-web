@@ -171,13 +171,13 @@ return [
         'usage_note' => '',
 
         'button' => [
-            'remove' => '',
+            'remove' => 'پاک کردن',
             'setup' => '',
         ],
         'status' => [
-            'label' => '',
+            'label' => 'وضعیت',
             'not_set' => '',
-            'set' => '',
+            'set' => 'پیکربندی شده',
         ],
     ],
 

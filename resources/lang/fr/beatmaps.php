@@ -26,7 +26,7 @@ return [
         'edited' => 'Dernière modification par :editor :update_time',
         'guest' => 'Guest difficulty par :user',
         'kudosu_denied' => 'Le kudosu a été refusé pour ce post.',
-        'include_replies' => '',
+        'include_replies' => 'Inclure les réponses',
         'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, il n\'est plus possible d\'en discuter.',
         'message_placeholder_locked' => 'La discussion pour cette beatmap a été désactivée.',
         'message_placeholder_silenced' => "Impossible de publier en étant réduit au silence.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
         'show_deleted' => 'Afficher le contenu supprimé',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Afficher les autres réponses',
         'title' => 'Discussions',
         'unresolved_count' => ':count_delimited problème non résolu|:count_delimited problèmes non résolus',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'insérer un paragraphe',
                 'praise' => 'insérer un compliment',
                 'problem' => 'insérer un problème',

@@ -32,7 +32,7 @@ return [
         'official_contests' => 'cuộc thi chính thức',
         'offline_events' => 'sự kiện trực tiếp',
         'online_events' => 'sự kiện trực tuyến',
-        'project_loved' => 'Dự án yêu thích',
+        'project_loved' => 'Dự án Loved',
         'ranking_system_updates' => 'cập nhập hệ thống phân hạng',
         'world_cups' => 'osu! World Cups',
     ],

@@ -21,7 +21,7 @@ class ClientsController extends Controller
 
     public function destroy($clientId)
     {
-        $client = auth()->user()->oauthClients()->findOrFail($clientId);
+        $client = \Auth::user()->clients()->findOrFail($clientId);
         $client->revoke();
 
         return response()->noContent();
@@ -29,12 +29,12 @@ class ClientsController extends Controller
 
     public function index()
     {
-        return json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), new ClientTransformer(), ['redirect', 'secret']);
+        return json_collection(\Auth::user()->clients()->where('revoked', false)->get(), new ClientTransformer(), ['redirect', 'secret']);
     }
 
     public function resetSecret($clientId)
     {
-        $client = auth()->user()->oauthClients()->findOrFail($clientId);
+        $client = \Auth::user()->clients()->findOrFail($clientId);
 
         if (!$client->resetSecret()) {
             return error_popup(osu_trans('oauth.client.reset_failed'));
@@ -72,7 +72,7 @@ class ClientsController extends Controller
 
     public function update($clientId)
     {
-        $client = auth()->user()->oauthClients()->findOrFail($clientId);
+        $client = \Auth::user()->clients()->findOrFail($clientId);
 
         $params = request(['redirect']);
 

@@ -19,15 +19,15 @@ return [
         'title' => ':mode Paieškos Rezultatai',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Nerasta tarp :mode',
 
             'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'beatmapset' => 'Beatmaps',
+            'forum_post' => 'Forumai',
+            'other' => 'Kiti',
+            'team' => 'Komandos',
+            'user' => 'Žaidėjai',
+            'wiki_page' => 'Viki',
         ],
     ],
 ];

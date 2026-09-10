@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Nominētas mapes metadatus mainīt nevar. Sazinies ar BN vai NAT locekli, ja uzskati, ka tā ir iestatīta nepareizi.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

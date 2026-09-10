@@ -230,6 +230,10 @@ return [
                 'week' => ':valueнед',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Сменить обложку профиля',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Рейтинговая игра',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Наивысший: :rank от :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Сейчас ко всем рекордам применяется :link подсчёта сложности / PP.',
+            'title_link' => 'новый алгоритм',
+            'message' => 'Недавно поставленные рекорды могут не сразу отобразиться в профиле.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',
+            'label' => '',
             'total_score' => 'Всего очков',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',

@@ -230,6 +230,10 @@ return [
                 'week' => ':value tyg.',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmień tło profilu',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Gra rankingowa',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => ':link nowego algorytmu przeliczania trudności beatmap oraz PP.',
+            'title_link' => 'Trwa wdrażanie',
+            'message' => 'Najnowsze wyniki mogą pojawiać się na profilach z opóźnieniem.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Wśród :value najlepszych',
+            'label' => '',
             'total_score' => 'Łączny wynik',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',

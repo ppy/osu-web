@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Aquest usuari us ha blocat.',
     'title_compact' => 'amics',
     'too_many' => 'S\'ha arribat al límit d\'amics',
 

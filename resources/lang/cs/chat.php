@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'načítání uživatelů...',
-    'searching_users' => '',
+    'searching_users' => 'hledání uživatelů...',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',

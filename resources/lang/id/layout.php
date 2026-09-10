@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Pengaturan',
-            'create_team' => '',
+            'create_team' => 'Buat Tim',
             'follows' => 'Daftar Pengamatan',
             'friends' => 'Teman',
             'legacy_score_only_toggle' => 'Mode lazer',
