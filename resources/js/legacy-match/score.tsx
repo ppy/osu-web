@@ -19,6 +19,7 @@ import { Data } from './content';
 interface Props {
   data: Data;
   playlistItem: PlaylistItemJsonForMultiplayerEvent;
+  requiredMods: Set<string>;
   score: ScoreJson;
   showTeam: boolean;
 }
@@ -47,6 +48,8 @@ export default observer(function Score(props: Props) {
 
   const team = props.playlistItem.details.teams?.[props.score.user_id] ?? 'blue';
 
+  const extraMods = props.score.mods.filter((mod) => !props.requiredMods.has(mod.acronym));
+
   return (
     <div className={classWithModifiers('mp-history-player-score', { team: props.showTeam })}>
       <div className={classWithModifiers('mp-history-player-score__shapes', team)} />
@@ -74,7 +77,7 @@ export default observer(function Score(props: Props) {
           )}
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'mods')}>
-          <Mods mods={props.score.mods} />
+          <Mods mods={extraMods} />
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'stats')}>
           <div className={classWithModifiers('mp-history-player-score__stat-row', 'first')}>
