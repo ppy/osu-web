@@ -5,7 +5,6 @@
 
 namespace App\Providers;
 
-use App\Hashing\OsuBcryptHasher;
 use App\Libraries\MorphMap;
 use App\Libraries\OAuth\BridgeClientRepository;
 use App\Libraries\OAuth\BridgeScopeRepository;
@@ -84,8 +83,6 @@ class AppServiceProvider extends ServiceProvider
         // newest scribe tries to rename {modelName} parameters to {id}
         // but it kind of doesn't work with our route handlers.
         Scribe::normalizeEndpointUrlUsing(fn ($url) => $url);
-
-        \Hash::extend('osubcrypt', fn () => new OsuBcryptHasher());
     }
 
     /**
