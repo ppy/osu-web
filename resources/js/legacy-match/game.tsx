@@ -33,6 +33,7 @@ export default observer(function Game(props: Props) {
       return second.total_score - first.total_score;
     }
   });
+  const requiredMods = new Set(props.playlistItem.required_mods.map((mod) => mod.acronym));
 
   return (
     <div className='mp-history-game'>
@@ -43,6 +44,7 @@ export default observer(function Game(props: Props) {
             key={score.match?.slot ?? score.id}
             data={props.data}
             playlistItem={props.playlistItem}
+            requiredMods={requiredMods}
             score={score}
             showTeam={showTeams}
           />
