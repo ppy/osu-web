@@ -64,6 +64,10 @@ return [
         'label' => 'Eksplicitno',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Razprava',
 

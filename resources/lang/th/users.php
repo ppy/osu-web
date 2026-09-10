@@ -231,6 +231,10 @@ return [
                 'week' => ':value สัปดาห์',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'เปลี่ยนรูปภาพปก',
@@ -476,7 +480,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'ควิกเพลย์',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -515,7 +526,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => '',
             'total_score' => 'คะแนนรวมทั้งหมด',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',

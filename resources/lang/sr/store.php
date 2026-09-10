@@ -114,6 +114,7 @@ return [
         'shopify_expired' => 'Линк за ову наруџбину је истекао.',
         'subtotal' => 'Међузбир',
         'total' => 'Укупно',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Поруџбина #',

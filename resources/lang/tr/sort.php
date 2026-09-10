@@ -38,7 +38,7 @@ return [
     ],
 
     'teams' => [
-        'created' => '',
+        'created' => 'Yaratılışa Göre',
         'relevance' => 'Alaka düzeyi',
         'name' => 'İsim',
         'short-name' => 'Kısa İsim',

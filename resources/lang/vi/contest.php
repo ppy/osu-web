@@ -19,7 +19,7 @@ return [
         'nav_title' => 'đánh giá',
         'no_current_vote' => 'bạn vẫn chưa bầu chọn.',
         'update' => 'cập nhật',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'những thay đổi chưa được lưu',
         'validation' => [
             'missing_score' => 'chưa có điểm',
             'contest_vote_judged' => 'không thể bầu chọn trong các cuộc thi được đánh giá',
@@ -48,9 +48,9 @@ return [
         ],
 
         'button' => [
-            'add' => 'Bỏ phiếu',
-            'remove' => 'Hủy phiếu',
-            'used_up' => 'Bạn đã dùng tất cả phiếu bầu',
+            'add' => 'Bình chọn',
+            'remove' => 'Hủy bình chọn',
+            'used_up' => 'Bạn đã dùng tất cả lượt bình chọn',
         ],
 
         'progress' => [
@@ -84,7 +84,7 @@ return [
     ],
 
     'vote' => [
-        'list' => 'phiếu',
+        'list' => 'bình chọn',
         'count' => ':count_delimited phiếu|:count_delimited phiếu',
         'points' => ':count_delimited điểm|:count_delimited điểm',
         'points_float' => ':points điểm',

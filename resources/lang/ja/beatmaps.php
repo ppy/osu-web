@@ -26,7 +26,7 @@ return [
         'edited' => ':editorが:update_timeに編集',
         'guest' => 'ゲスト難易度 by :user',
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
-        'include_replies' => '',
+        'include_replies' => '返信を含める',
         'message_placeholder_deleted_beatmap' => 'この難易度は削除された為これ以上ディスカッションに投稿できません。',
         'message_placeholder_locked' => 'このビートマップに関するディスカッションは無効になっています。',
         'message_placeholder_silenced' => "サイレンス中はディスカッションへ投稿できません。",
@@ -38,7 +38,7 @@ return [
         'resolved' => '解決済み',
         'restore' => '復元',
         'show_deleted' => '削除済みを表示',
-        'show_other_replies' => '',
+        'show_other_replies' => '他の返信を表示',
         'title' => 'ディスカッション',
         'unresolved_count' => ':count_delimited 個の未解決問題|:count_delimited 個の未解決問題',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => '段落の挿入',
                 'praise' => '称賛を挿入',
                 'problem' => '問題の挿入',

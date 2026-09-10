@@ -26,7 +26,7 @@ return [
         'edited' => 'Paskutinį kartą redagavo :editor :update_time.',
         'guest' => 'Svečio sunkumas iš :user',
         'kudosu_denied' => 'Uždrausta gauti kudosu.',
-        'include_replies' => '',
+        'include_replies' => 'Įtraukti atsakymus',
         'message_placeholder_deleted_beatmap' => 'Šis sudėtingumas buvo ištrintas, todėl jo diskusijos nebegalimos.',
         'message_placeholder_locked' => 'Šio beatmap\'o diskusijos buvo išjungtos.',
         'message_placeholder_silenced' => "Negali rašyti diskusijose, kol esi užtildytas.",
@@ -91,7 +91,7 @@ return [
         'message_type_title' => [
             'disqualify' => '',
             'hype' => '',
-            'mapper_note' => '',
+            'mapper_note' => 'Įkėlimo pastaba',
             'nomination_reset' => '',
             'praise' => '',
             'problem' => '',
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'įterpti pastraipą',
                 'praise' => 'įterpti pagyrimą',
                 'problem' => 'įterpti problemą',
@@ -298,7 +299,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
-        'undefined' => '',
+        'undefined' => 'nenustatyta',
     ],
     'status' => [
         'any' => 'Bet kokie',

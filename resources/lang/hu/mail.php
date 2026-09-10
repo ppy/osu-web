@@ -82,7 +82,7 @@ return [
         'main' => 'A fiókodon felmerültek gyanús események, ami a gyenge jelszó miatt lehet. Azt javasoljuk adj meg egy új jelszót. Figyelj arra, hogy biztonságos jelszót válasz.',
         'perform_reset' => 'Az alaphelyzetbe állítást elvégezheted innen: :url',
         'reason' => 'Ok:',
-        'subject' => 'Az osu! fiók újraaktiválása szükséges',
+        'subject' => 'Az osu! Fiók Újraaktiválása Szükséges',
     ],
 
     'user_notification_digest' => [

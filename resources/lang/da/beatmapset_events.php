@@ -61,9 +61,11 @@ return [
         'approve' => 'Godkendelse',
         'beatmap_owner_change' => 'Sværhedsgrad ejer ændring',
         'discussion_delete' => 'Diskussions-sletning',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Diskussions-svar sletning',
         'discussion_post_restore' => 'Diskussions-svar genoprettelse',
         'discussion_restore' => 'Diskussions-genoprettelse',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikation',
         'genre_edit' => 'Genre redigering',
         'issue_reopen' => 'Diskussions-genåbning',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikation',
         'rank' => 'Rangering',
         'remove_from_loved' => 'Elsket fjernelse',
+        'tags_edit' => '',
     ],
 ];

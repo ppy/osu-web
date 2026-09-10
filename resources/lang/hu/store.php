@@ -55,7 +55,7 @@ return [
         'contact' => 'Kapcsolat:',
         'date' => 'Dátum:',
         'echeck_delay' => 'Mivel a fizetésed egy eCheck volt, engedj meg neki legalább 10 napot a PayPal-es feldolgozásra!',
-        'echeck_denied' => '',
+        'echeck_denied' => 'A PayPal elutasította az eCheck-fizetést.',
         'hide_from_activity' => 'ebben a vásárlásban szereplő osu!supporter címkék nem jelennek meg a legutóbbi aktivitásaid között.',
         'sent_via' => 'Általa küldve:',
         'shipping_to' => 'Szállítás ide:',
@@ -102,29 +102,30 @@ return [
     ],
 
     'order' => [
-        'cancel' => 'Megrendelés törlése',
+        'cancel' => 'Megrendelés Törlése',
         'cancel_confirm' => 'Ez a megrendelés törlésre kerül, és fizetést nem fogadunk el érte. Előfordulhat, hogy a pénzforgalmi szolgáltató nem enged fel azonnal tartalékot. Biztos vagy ebben?',
         'cancel_not_allowed' => 'Ez a megrendelés jelenleg nem törölhető.',
-        'invoice' => 'Számla megtekintése',
+        'invoice' => 'Számla Megtekintése',
         'no_orders' => 'Nincs megtekinthető megrendelés.',
         'paid_on' => 'Megrendelés feladva :date',
         'resume' => 'Fizetés Folytatása',
-        'shipping_and_handling' => 'Szállítás és kezelés',
+        'shipping_and_handling' => 'Szállítás és Kezelés',
         'shopify_expired' => 'A rendelés fizetési linkje lejárt.',
         'subtotal' => 'Részösszeg',
         'total' => 'Összesen',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Rendelési szám',
-            'payment_terms' => 'Fizetési feltételek',
+            'payment_terms' => 'Fizetési Feltételek',
             'salesperson' => 'Értékesítő',
-            'shipping_method' => 'Szállítási mód',
-            'shipping_terms' => 'Szállítási feltételek',
-            'title' => 'Rendelés részletei',
+            'shipping_method' => 'Szállítási Mód',
+            'shipping_terms' => 'Szállítási Feltételek',
+            'title' => 'Rendelés Részletei',
         ],
 
         'item' => [
-            'quantity' => 'Mennyiség',
+            'quantity' => 'mennyiség',
 
             'display_name' => [
                 'supporter_tag' => ':name :username-nek (:duration)',
@@ -152,7 +153,7 @@ return [
             'paid' => 'Fizetett',
             'processing' => 'Megerősítés függőben',
             'shipped' => 'Szállítás alatt',
-            'title' => 'Rendelés állapota',
+            'title' => 'Rendelés Állapota',
         ],
 
         'thanks' => [
@@ -172,9 +173,9 @@ return [
             'out_with_alternative' => 'Sajnos ez az elem nincs raktáron. A legördülő lista segítségével válassz egy másik fajtát, vagy nézz vissza később!',
         ],
 
-        'add_to_cart' => 'Hozzáadás a kosárhoz',
+        'add_to_cart' => 'Hozzáadás a Kosárhoz',
         'notify' => 'Értesíts amikor elérhető!',
-        'out_of_stock' => '',
+        'out_of_stock' => 'Elfogyott',
 
         'notification_success' => 'új készlet esetén értesítve leszel. kattints :link a lemondáshoz',
         'notification_remove_text' => 'itt',

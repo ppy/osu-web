@@ -5,12 +5,12 @@
 
 return [
     'all_read' => 'Összes értesítés elolvasva!',
-    'delete' => ':type tisztítása',
+    'delete' => ':type Törlése',
     'loading' => 'Olvasatlan értesítések betöltése...',
-    'mark_read' => ':type törlése',
+    'mark_read' => ':type Tisztítása',
     'none' => 'Nincsenek értesítések',
     'see_all' => 'összes értesítés megtekintése',
-    'see_channel' => 'menjen a csevegéshez',
+    'see_channel' => 'chathez ugrás',
     'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
 
     'action_type' => [
@@ -126,22 +126,22 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Chat említés',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username megemlített téged itt: :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'megemlítve itt: :name',
                 ],
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Új csapat üzenet',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username üzeni ":title"',
+                    'channel_team_compact' => ':username üzeni ":title"',
+                    'channel_team_group' => ':username üzeni ":title"',
                 ],
             ],
         ],
@@ -172,10 +172,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Hírek (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -191,17 +191,17 @@ return [
 
         'team' => [
             'team_application' => [
-                '_' => '',
+                '_' => 'Csapat csatlakozási kérelem',
 
                 'team_application_accept' => "Mostantól a :title csapat tagja vagy",
                 'team_application_accept_compact' => "Mostantól a :title csapat tagja vagy",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Csapat csatlakozási kérelem frissítések',
 
                 'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
                 'team_application_reject_compact' => 'A :title csapatba való jelentkezésedet elutasították',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title kérelmezte hogy csatlakozhatson a csapatodhoz',
+                'team_application_store_compact' => ':title kérelmezte hogy csatlakozhatson a csapatodhoz',
             ],
         ],
 
@@ -231,7 +231,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Hírek',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
@@ -265,17 +265,17 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Új hirdetmény van ":name" ',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Új üzenetet kaptál tőle: :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username megemlített téged itt: :name ":title"',
             ],
 
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Van egy új üzenet a csapatban ":name"',
             ],
         ],
 
@@ -301,7 +301,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Mostantól a :title csapat tagja vagy",
                 'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
-                'team_application_store' => '',
+                'team_application_store' => ':title kérelmezte hogy csatlakozhatson a csapatodhoz',
             ],
         ],
 

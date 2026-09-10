@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Hantaran Padaman',
             'total_posts' => 'Jumlah Hantaran',
-            'total_watches' => '',
+            'total_watches' => 'Jumlah Pelanggan',
 
             'feature_vote' => [
                 'current' => 'Keutamaan Semasa: +:count',

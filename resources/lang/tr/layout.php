@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modlama',
             'playlists' => 'oynatma listeleri',
-            'ranked-play' => '',
+            'ranked-play' => 'ranked play',
             'realtime' => 'çok oyunculu',
             'show' => 'bilgi',
         ],
@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ayarlar',
-            'create_team' => '',
+            'create_team' => 'Takım Oluştur',
             'follows' => 'İzleme listeleri',
             'friends' => 'Arkadaşlar',
             'legacy_score_only_toggle' => 'Lazer modu',

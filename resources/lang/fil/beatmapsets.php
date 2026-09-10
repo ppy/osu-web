@@ -64,6 +64,10 @@ return [
         'label' => 'Maselan',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskusyon',
 

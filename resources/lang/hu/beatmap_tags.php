@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => '',
+        'invalid_ruleset' => 'Ez a címke nem érvényes ehhez a beatmaphez.',
     ],
 ];

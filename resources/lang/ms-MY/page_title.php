@@ -53,7 +53,7 @@ return [
             'discussion' => 'perbincangan peta rentak',
             'index' => 'senarai peta rentak',
             'show' => 'maklumat peta rentak',
-            'versions' => '',
+            'versions' => 'sejarah versi peta rentak',
         ],
         'changelog_controller' => [
             '_' => 'log perubahan',
@@ -72,7 +72,7 @@ return [
             'judge' => 'penilaian peraduan',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'sejarah pasukan',
         ],
         'groups_controller' => [
             'show' => 'kumpulan',

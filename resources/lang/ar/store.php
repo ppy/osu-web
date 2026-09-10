@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'انتهت صلاحية رابط الدفع لهذه الطلبية.',
         'subtotal' => 'حاصل الجمع',
         'total' => 'المجموع',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'طلب الشراء #',

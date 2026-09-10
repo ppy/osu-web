@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Du kan inte ändra metadata för en nominerad beatmap. Kontakta en BN eller NAT-medlem om du tror att det är felaktigt inställt.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

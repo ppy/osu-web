@@ -12,7 +12,7 @@ return [
     'beatmapset_update' => ':user đã cập nhật beatmap ":beatmapset"',
     'beatmapset_upload' => ':user đã đăng lên một beatmap mới ":beatmapset"',
     'empty' => "Người dùng này chưa làm gì nổi bật gần đây!",
-    'rank' => ':user đạt được thứ hạng #:rank trên :beatmap (:mode)',
+    'rank' => ':user đã đạt :rank trên :beatmap (:mode)',
     'rank_lost' => ':user đã không còn dẫn đầu ở :beatmap (:mode)',
     'user_support_again' => ':user đã chọn một lần nữa hỗ trợ osu! - cảm ơn vì sự rộng lượng của bạn!',
     'user_support_first' => ':user đã trở thành osu!supporter - cảm ơn vì sự rộng lượng của bạn!',
@@ -21,9 +21,9 @@ return [
 
     'beatmapset_status' => [
         'approved' => 'được duyệt',
-        'loved' => 'được yêu mến',
+        'loved' => 'loved',
         'qualified' => 'đủ điều kiện',
-        'ranked' => 'được xếp hạng',
+        'ranked' => 'đã được xếp hạng',
     ],
 
     'value' => [

@@ -61,9 +61,11 @@ return [
         'approve' => 'Квалификация в Одобренные',
         'beatmap_owner_change' => 'Смена владельца сложности',
         'discussion_delete' => 'Удаление отзыва',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Удаление ответов к отзыву',
         'discussion_post_restore' => 'Восстановление ответов в обсуждении',
         'discussion_restore' => 'Восстановление отзыва',
+        'discussion_unlock' => '',
         'disqualify' => 'Дисквалификация',
         'genre_edit' => 'Изменение жанра',
         'issue_reopen' => 'Возобновление обсуждения проблемы',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Квалификация',
         'rank' => 'Квалификация в Рейтинговые',
         'remove_from_loved' => 'Дисквалификация из Любимых',
+        'tags_edit' => '',
     ],
 ];

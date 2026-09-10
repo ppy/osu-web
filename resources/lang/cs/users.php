@@ -230,6 +230,10 @@ return [
                 'week' => ':valuet',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Změnit záhlaví profilu',
@@ -416,13 +420,13 @@ return [
                 'not_ranked' => 'Pouze hodnocené mapy udělují pp',
                 'pp_weight' => 'váženo na :percentage',
                 'view_details' => 'Zobrazit detaily',
-                'title' => 'Umístění',
+                'title' => 'Skóre',
 
                 'best' => [
                     'title' => 'Nejlepší výkon',
                 ],
                 'first' => [
-                    'title' => 'Umístění na prvním místě',
+                    'title' => 'Skóre na prvním místě',
                 ],
                 'pin' => [
                     'to_0' => 'Odepnout',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Hodnocená hra',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,20 +519,24 @@ return [
             'highest' => 'Nejvyšší rank :rank v :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => ':link nového algoritmu pro počet hvězd / PP.',
+            'title_link' => 'Dochází k nasazování',
+            'message' => 'Nedávná skóre nemusí být okamžitě zohledněna na uživatelských profilech.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => '',
             'total_score' => 'Celkové skóre',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
             'hits_per_play' => 'Zásahů za hru',
             'level' => 'Úroveň :level',
             'level_progress' => 'postup do dalšího levelu',
-            'maximum_combo' => 'Maximální Combo',
+            'maximum_combo' => 'Maximální Kombo',
             'medals' => 'Medaile',
             'play_count' => 'Počet zahrání',
             'play_time' => 'Celkový čas hraní',

@@ -19,15 +19,15 @@ return [
         'title' => 'Hasil Carian :mode',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Tiada keputusan bagi :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Lagu Artis Pilihan',
+            'beatmapset' => 'Peta-peta rentak',
+            'forum_post' => 'Forum',
+            'other' => 'Lain-lain',
+            'team' => 'Pasukan',
+            'user' => 'Pemain',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

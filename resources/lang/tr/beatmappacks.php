@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => ':author tarafından',
         'download' => 'İndir',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'geçildi',
             'not_cleared' => 'geçilmedi',

@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'уметни пасус',
                 'praise' => 'уметни похвалу',
                 'problem' => 'уметни проблем',

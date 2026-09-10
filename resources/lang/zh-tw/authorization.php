@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => '你不能修改已提名的圖譜資訊。如果你認為有誤，請聯絡 BN 或 NAT 成員。',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [
@@ -186,9 +191,9 @@ return [
     'score' => [
         'pin' => [
             'disabled_type' => "無法置頂這類分數。",
-            'failed' => "無法置頂未過關的成績。",
+            'failed' => "無法置頂未過關的分數。",
             'not_owner' => '只有擁有者才可置頂成績。',
-            'too_many' => '置頂過多成績。',
+            'too_many' => '置頂太多分數。',
         ],
     ],
 

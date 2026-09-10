@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Anda telah dihalang oleh pengguna ini.',
     'title_compact' => 'kawan',
     'too_many' => 'Had kawan dicapai',
 

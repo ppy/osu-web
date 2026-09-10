@@ -93,8 +93,8 @@ return [
         'other_os' => 'outras plataformas',
         'quick_start_guide' => 'guia de início rápido',
         'stable_text' => 'caso você esteja procurando pelo mais antigo',
-        'tagline_1' => 'vamos lá',
-        'tagline_2' => 'começou!',
+        'tagline_1' => 'vamos',
+        'tagline_2' => 'começar!',
         'video-guide' => 'guia em vídeo',
 
         'help' => [
@@ -141,7 +141,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => 'Beatmap de Desafios Diário',
+            'daily_challenge' => 'Beatmap de desafio diário',
             'new' => 'Novos beatmaps ranqueados',
             'popular' => 'Beatmaps Populares',
             'by_user' => 'por :user',

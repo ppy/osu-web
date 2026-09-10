@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Срок действия ссылки на чек вашего заказа кончился.',
         'subtotal' => 'Итого',
         'total' => 'Итого',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Заказ #',

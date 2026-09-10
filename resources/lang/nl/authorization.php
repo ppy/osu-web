@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'U kunt metagegevens van een nominale kaart niet wijzigen. Neem contact op met een BN of NAT lid als u denkt dat deze onjuist is ingesteld.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

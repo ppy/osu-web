@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'receber notificações de respostas para discussões de beatmaps em que você está participando',
         'beatmapset_discussion_qualified_problem' => 'receber notificações sobre novos problemas em mapas qualificados dos seguintes modos',
         'beatmapset_disqualify' => 'receber notificações sempre que mapas dos seguintes modos sejam desqualificados',
         'comment_reply' => 'receber notificações quando houver respostas aos seus comentários',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'modo de jogo padrão',
         'keyboard' => 'teclado',
         'mouse' => 'rato',
         'tablet' => 'tablet',

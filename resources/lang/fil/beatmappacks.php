@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => '',
         'download' => 'Idownload',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'natapos',
             'not_cleared' => 'hindi pa natatapos',

@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'загрузка пользователей...',
-    'searching_users' => '',
+    'searching_users' => 'поиск пользователей...',
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат с :name',
     'title_compact' => 'чат',

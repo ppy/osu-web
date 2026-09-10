@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => '自分が参加しているビートマップのディスカッションに返信があった際、通知を受け取る',
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
         'beatmapset_disqualify' => '次のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
         'comment_reply' => 'コメントへの返信の通知を受け取る',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'メインのゲームモード',
         'keyboard' => 'キーボード',
         'mouse' => 'マウス',
         'tablet' => 'ペンタブ',
