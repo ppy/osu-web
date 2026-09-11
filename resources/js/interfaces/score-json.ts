@@ -44,6 +44,13 @@ interface PpWeight {
   pp: number;
 }
 
+export interface RoomSummary {
+  is_realtime: boolean;
+  playlist_item_id: number;
+  room_id: number;
+  room_name: string;
+}
+
 interface ScoreJsonAttributesLegacyMatch {
   type: 'legacy_match_score';
 }
@@ -101,6 +108,7 @@ export interface ScoreJsonAvailableIncludes {
   rank_country: number;
   rank_global: number;
   replay_views: number;
+  room_summary: null | RoomSummary;
   user: UserJson;
   weight: PpWeight;
 }
