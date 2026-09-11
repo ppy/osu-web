@@ -93,6 +93,10 @@ class LocaleMeta
             'flag' => 'LT',
             'name' => 'lietuvių kalba',
         ],
+        'lv' => [
+            'flag' => 'LV',
+            'name' => 'latviešu valoda',
+        ],
         'ms' => [
             'flag' => 'MY',
             'name' => 'bahasa Melayu',

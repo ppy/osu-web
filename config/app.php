@@ -118,6 +118,7 @@ return [
         'ja',
         'ko',
         'lt',
+        'lv',
         'ms',
         'nl',
         'no',
