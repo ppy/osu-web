@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Ten użytkownik cię zablokował.',
     'title_compact' => 'znajomi',
     'too_many' => 'Osiągnięto limit znajomych',
 

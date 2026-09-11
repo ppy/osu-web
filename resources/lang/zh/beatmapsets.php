@@ -64,6 +64,10 @@ return [
         'label' => '不良内容',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => '讨论',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '仅 Lazer',
-            'description' => '由于特殊机制，此谱面仅可在 osu!lazer 上游玩。',
+            'title' => '仅限 Lazer',
+            'description' => '该谱面包含 osu!lazer 相关的特殊机制，请使用对应的客户端游玩。',
 
             'scoreboard_switch_mode' => [
-                '_' => ':enable_link 以查看此谱面的成绩。',
-                'enable_link' => '启用 Lazer 模式',
+                '_' => '启用 :enable_link 以查看该谱面的排行榜。',
+                'enable_link' => 'Lazer 模式',
             ],
         ],
 
@@ -208,7 +212,7 @@ return [
                 'global' => '还没有玩家上传过成绩，来玩一把？',
                 'loading' => '加载成绩中...',
                 'team' => '您所在的战队中还没有玩家上传过成绩！',
-                'unranked' => '未上架 (Unranked) 谱面',
+                'unranked' => '未上架 (Unranked) 谱面。',
             ],
             'score' => [
                 'first' => '领先',

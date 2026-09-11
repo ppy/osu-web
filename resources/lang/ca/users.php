@@ -230,6 +230,10 @@ return [
                 'week' => ':value s',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Canvia la portada del perfil',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Partides ràpides',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Classificació més alta: :rank el :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Una puntuació / algoritme PP que està :link.',
+            'title_link' => 'en fase d\'implementació',
+            'message' => 'Les puntuacions recents potser no es mostren immediatament als perfils dels usuaris.',
         ],
         'season_stats' => [
             'division_top_percentage' => ':value millors',
+            'label' => '',
             'total_score' => 'Puntuació total',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisió',

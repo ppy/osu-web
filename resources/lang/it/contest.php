@@ -19,7 +19,7 @@ return [
         'nav_title' => 'giudice',
         'no_current_vote' => 'non hai ancora votato.',
         'update' => 'aggiorna',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'modifiche non salvate',
         'validation' => [
             'missing_score' => 'punteggio mancante',
             'contest_vote_judged' => 'non puoi votare nei concorsi con valutazione',

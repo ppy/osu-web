@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'door :author',
         'download' => 'Download',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'uitgespeeld',
             'not_cleared' => 'nog niet uitgespeeld',

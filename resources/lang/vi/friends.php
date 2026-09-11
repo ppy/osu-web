@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Bạn đã bị chặn bởi người dùng này.',
     'title_compact' => 'bạn bè',
     'too_many' => 'Đã đạt đến giới hạn bạn bè',
 

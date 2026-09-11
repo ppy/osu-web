@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'від :author',
         'download' => 'Завантажити',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'завершено',
             'not_cleared' => 'не завершено',

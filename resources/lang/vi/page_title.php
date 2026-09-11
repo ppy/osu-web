@@ -5,7 +5,7 @@
 
 return [
     'admin' => [
-        '_' => 'admin',
+        '_' => 'quản trị viên',
     ],
     'error' => [
         'error' => [

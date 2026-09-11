@@ -26,7 +26,7 @@ return [
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'guest' => 'Guest-Difficulty von :user',
         'kudosu_denied' => 'Kudosu-Vergabe abgelehnt.',
-        'include_replies' => '',
+        'include_replies' => 'Antworten anzeigen',
         'message_placeholder_deleted_beatmap' => 'Diese Difficulty wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
         'message_placeholder_silenced' => "Posten in der Diskussion nicht möglich, während du stummgeschaltet bist.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Erledigt',
         'restore' => 'wiederherstellen',
         'show_deleted' => 'Gelöschte anzeigen',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Andere Antworten anzeigen',
         'title' => 'Diskussionen',
         'unresolved_count' => ':count_delimited ungelöstes Problem|:count_delimited ungelöste Probleme',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'Absatz einfügen',
                 'praise' => 'Lob einfügen',
                 'problem' => 'Problem einfügen',

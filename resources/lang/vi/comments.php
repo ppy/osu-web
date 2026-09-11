@@ -50,7 +50,7 @@ return [
     'placeholder' => [
         'edit' => 'Chỉnh sửa bình luận tại đây',
         'new' => 'Nhập bình luận mới tại đây',
-        'reply' => 'Nhập câu trả lời của bạn tại đây',
+        'reply' => 'Nhập phản hồi của bạn tại đây',
     ],
 
     'show' => [

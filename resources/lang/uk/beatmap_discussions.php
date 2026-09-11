@@ -114,6 +114,6 @@ return [
     'user_filter' => [
         'everyone' => 'Всі',
         'label' => 'Фільтрувати по користувачах',
-        'multiple' => '',
+        'multiple' => 'Вибрано :count_delimited користувача|Вибрано :count_delimited користувача|Вибрано :count_delimited користувачів',
     ],
 ];

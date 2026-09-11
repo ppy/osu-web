@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Kustomisasi Profil',
-                'description' => "Buat halaman profilmu lebih menonjol dengan tambahan gambar latar atau kolom \"saya!\" yang bisa kamu sesuaikan sesuka hati.",
+                'description' => "Buat dirimu lebih menonjol dengan mengunggah gambar sampul khusus, membuat rubrik \"saya!\" yang bisa disesuaikan sesuka hati, atau bahkan mengubah warna kolom mana pun yang kamu mau pada profil penggunamu.",
             ],
 
             'beatmap_filters' => [
@@ -144,7 +144,7 @@ return [
             'was_valid_until' => 'Tag supporter kamu berlaku hingga tanggal :date.',
 
             'gifted' => [
-                '_' => 'Dari jumlah ini, kamu sudah menghadiahkan tag senilai :dollars kepada :users yang mencakup :duration. Sungguh dermawan!',
+                '_' => 'Dari jumlah ini, kamu sudah menghadiahkan tag senilai :dollars kepada :users yang lamanya mencakup :duration. Sungguh dermawan!',
                 'users' => ':count_delimited pengguna lainnya|:count_delimited[ pengguna lainnya',
             ],
         ],

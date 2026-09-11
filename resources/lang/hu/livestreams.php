@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => 'Biztosan támogatni akarod ezt az élő közvetítést?',
-        'unpin' => "Biztosan törölni akarod a támogatását ennek az élő közvetítésnek?",
+        'pin' => 'Biztosan hirdetni akarod ezt az élő közvetítést a főoldalon?',
+        'unpin' => "Biztosan törölni akarod az élő közvetítés hirdetését?",
     ],
 
     'top-headers' => [

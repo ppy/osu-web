@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'felhasználók betöltése...',
-    'searching_users' => '',
+    'searching_users' => 'felhasználók keresése...',
     'talking_in' => 'beszélgetés :channel csatornában',
     'talking_with' => 'beszélgetés :name felhasználóval',
     'title_compact' => 'csevegés',
@@ -52,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Csatlakozz a csatornához, hogy megtekintsd az üzeneteit.',
+        'join' => 'Csatlakozz a Csatornához',
     ],
 
     'input' => [

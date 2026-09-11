@@ -64,6 +64,10 @@ return [
         'label' => '過激表現を含む',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'ディスカッション',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Lazerのみ',
+            'description' => '特殊な仕様が含まれているため、このビートマップはosu!lazerでのみプレイ可能です。',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link をクリックして、この譜面で記録されたスコアを表示します。',
+                'enable_link' => 'Lazer モードの有効化',
             ],
         ],
 

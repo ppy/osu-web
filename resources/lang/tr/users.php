@@ -230,6 +230,10 @@ return [
                 'week' => ':value',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Quick Play',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => ':date tarihinde en yüksek rank: :rank',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Yeni Yıldız Sıralaması / PP algoritması :link.',
+            'title_link' => 'sunucuya aktarılıyor',
+            'message' => 'Yeni skorlar kullanıcı profilinde hemen görünmeyebilir.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'İlk :value',
+            'label' => '',
             'total_score' => 'Toplam skor',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

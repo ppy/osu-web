@@ -33,8 +33,8 @@ return [
         ],
 
         'intro' => [
-            'description' => "Graj wspólnie ze swoimi przyjaciółmi. Nie jesteś aktualnie w żadnym zespole. Możesz dołączyć do istniejącego zespołu poprzez odwiedzenie jego strony lub utworzyć swój własny z wykorzystaniem poniższego kreatora.",
-            'search_link' => '',
+            'description' => "Graj wspólnie ze swoimi przyjaciółmi. Nie jesteś aktualnie w żadnym zespole. Możesz dołączyć do :search_link poprzez odwiedzenie jego strony lub utworzyć swój własny z wykorzystaniem poniższego kreatora.",
+            'search_link' => 'istniejącego zespołu',
             'title' => 'Graj w zespole!',
         ],
     ],

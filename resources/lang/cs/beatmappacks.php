@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'od :author',
         'download' => 'Stáhnout',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'splněno',
             'not_cleared' => 'nesplněno',

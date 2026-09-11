@@ -9,13 +9,13 @@ return [
     ],
     'error' => [
         'error' => [
-            '400' => 'Érvénytelen lekérés',
-            '404' => 'Hiányzó',
-            '403' => 'Tiltott',
-            '401' => 'Jogtalan',
-            '401-verification' => 'Fiók hitelesítése',
+            '400' => 'érvénytelen lekérés',
+            '404' => 'hiányzó',
+            '403' => 'tiltott',
+            '401' => 'jogosulatlan',
+            '401-verification' => 'fiók hitelesítése',
             '405' => 'hiányzó',
-            '422' => 'Érvénytelen lekérés',
+            '422' => 'érvénytelen lekérés',
             '429' => 'túl sok kérés',
             '500' => 'Valami nincs rendben',
             '503' => 'karbantartás',
@@ -53,7 +53,7 @@ return [
             'discussion' => 'beatmap beszélgetések',
             'index' => 'beatmap lista',
             'show' => 'beatmap információk',
-            'versions' => '',
+            'versions' => 'beatmap verzió előzmény',
         ],
         'changelog_controller' => [
             '_' => 'változási napló',
@@ -72,7 +72,7 @@ return [
             'judge' => 'verseny zsűrizése',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'csoport előmények',
         ],
         'groups_controller' => [
             'show' => 'csoportok',
@@ -85,7 +85,7 @@ return [
             'testflight' => 'teszt',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'találatok',
         ],
         'legal_controller' => [
             '_' => 'információ',
@@ -125,7 +125,7 @@ return [
             '_' => 'felhasználó borító minták',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'hitelesítő alkalmazás',
         ],
         'users_controller' => [
             '_' => 'játékos információi',
@@ -138,7 +138,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'szoba előzmény',
         ],
     ],
     'passport' => [
