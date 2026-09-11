@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\Handler as ExceptionsHandler;
 use App\Jobs\BeatmapsetDelete;
+use App\Libraries\Beatmapset\PreloadBeatmapTopTagIds;
 use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
@@ -426,6 +427,7 @@ class BeatmapsetsController extends Controller
             'language',
             'user',
         ]);
+        PreloadBeatmapTopTagIds::handle($beatmapset);
 
         $transformer = new BeatmapsetTransformer();
         $transformer->relatedUsersType = 'show';
