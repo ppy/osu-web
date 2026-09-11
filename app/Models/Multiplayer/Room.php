@@ -19,6 +19,7 @@ use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\Multiplayer\RoomTransformer;
+use App\Transformers\UserCompactTransformer;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Ds\Set;
@@ -115,7 +116,7 @@ class Room extends Model
     public static function preloadRecentParticipants(Collection $rooms)
     {
         $allUserIds = $rooms->map->recent_participant_ids->flatten();
-        $allUsersByKey = User::whereKey($allUserIds)->get()->keyBy('user_id');
+        $allUsersByKey = User::select(UserCompactTransformer::DEFAULT_SELECT_FIELDS)->whereKey($allUserIds)->get()->keyBy('user_id');
 
         foreach ($rooms as $room) {
             $users = [];
