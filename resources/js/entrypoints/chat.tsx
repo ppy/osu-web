@@ -46,7 +46,7 @@ function getInitialChannel(sendTo?: SendToJson) {
     const target = dataStore.userStore.update(sendTo.target); // pre-populate userStore with target
     let channel = dataStore.channelStore.findPM(target.id);
 
-    if (channel == null && !target.is(core.currentUser)) {
+    if (channel == null) {
       channel = Channel.newPM(target, sendTo.channel_id);
       channel.canMessageError = sendTo.can_message_error; // TODO: move can_message to a user prop?
       dataStore.channelStore.channels.set(channel.channelId, channel);
