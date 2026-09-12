@@ -89,7 +89,9 @@ class BeatmapsController extends Controller
 
         $isApi = is_api_request();
 
-        if ($isApi) {
+        $totalsEnabled = $GLOBALS['cfg']['osu']['scores']['leaderboard_totals_enabled'];
+
+        if ($isApi && $totalsEnabled) {
             $results['score_count'] = UserRank::getCount($esFetch->baseParams);
         }
 
