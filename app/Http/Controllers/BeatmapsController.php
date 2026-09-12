@@ -92,7 +92,6 @@ class BeatmapsController extends Controller
         $totalsEnabled = $GLOBALS['cfg']['osu']['scores']['leaderboard_totals_enabled'];
 
         if ($isApi && $totalsEnabled) {
-            $countParams = clone $esFetch->baseParams;
             $cacheKey = null;
 
             $sortedMods = implode(',', array_sort($mods));
@@ -111,15 +110,15 @@ class BeatmapsController extends Controller
                 $count = \Cache::get($cacheKey);
 
                 if ($count === null) {
-                    $count = UserRank::getCount($countParams);
+                    $count = UserRank::getCount($esFetch->baseParams);
 
                     // use count as TTL, matches `global-rank-lookup-cache`
-                    \Cache::put($cacheKey, $count, $count);
+                    \Cache::put($cacheKey, $count, max(600, $count));
                 }
 
                 $results['score_count'] = $count;
             } else {
-                $results['score_count'] = UserRank::getCount($countParams);
+                $results['score_count'] = UserRank::getCount($esFetch->baseParams);
             }
         }
 
