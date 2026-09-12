@@ -14,7 +14,7 @@ class ManiaKeysFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [['q' => 'keys=7'], [1, 3]],
+            [['q' => 'keys=7'], [3, 1]],
         ];
     }
 
