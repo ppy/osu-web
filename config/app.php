@@ -108,6 +108,7 @@ return [
         'de',
         'el',
         'es',
+        'es-419',
         'fi',
         'fil',
         'fr',

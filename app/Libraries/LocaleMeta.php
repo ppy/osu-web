@@ -53,6 +53,12 @@ class LocaleMeta
             'flag' => 'ES',
             'name' => 'español',
         ],
+        'es-419' => [
+            'flag' => 'MX',
+            'laravelPlural' => 'es_MX',
+            'moment' => 'es-mx',
+            'name' => 'español (Latinoamérica)',
+        ],
         'fi' => [
             'flag' => 'FI',
             'name' => 'suomi',
