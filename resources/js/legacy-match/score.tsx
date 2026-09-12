@@ -31,7 +31,7 @@ function renderVersion(props: Props) {
   const version = beatmap?.version ?? trans('matches.match.beatmap-deleted');
 
   return (
-    <a href={route('beatmaps.show', { beatmap: props.score.beatmap_id })}>
+    <a className='u-hover' href={route('beatmaps.show', { beatmap: props.score.beatmap_id })}>
       <span
         className={`fal fa-extra-mode-${rulesetNames[props.score.ruleset_id]}`}
       /> {version}
@@ -52,12 +52,18 @@ export default observer(function Score(props: Props) {
 
   return (
     <div className={classWithModifiers('mp-history-player-score', { team: props.showTeam })}>
+      {props.score.type === 'solo_score' &&
+        <a
+          className='mp-history-player-score__score-link'
+          href={route('scores.show', { score: props.score.id })}
+        />
+      }
       <div className={classWithModifiers('mp-history-player-score__shapes', team)} />
       <div className='mp-history-player-score__main'>
         <div className={classWithModifiers('mp-history-player-score__info-box', ['user'])}>
           <div className='mp-history-player-score__username-box'>
             <a
-              className='mp-history-player-score__country-flag'
+              className='mp-history-player-score__country-flag u-hover'
               href={route('rankings', {
                 country: user.country?.code,
                 mode: rulesetNames[props.score.ruleset_id],
@@ -67,7 +73,7 @@ export default observer(function Score(props: Props) {
               <FlagCountry country={user.country} modifiers={'medium'} />
             </a>
 
-            <UserLink className='mp-history-player-score__username' user={user} />
+            <UserLink className='mp-history-player-score__username u-hover' user={user} />
           </div>
 
           {props.playlistItem.freestyle && (
@@ -76,7 +82,7 @@ export default observer(function Score(props: Props) {
             </span>
           )}
         </div>
-        <div className={classWithModifiers('mp-history-player-score__info-box', 'mods')}>
+        <div className={`${classWithModifiers('mp-history-player-score__info-box', 'mods')} u-hover`}>
           <Mods mods={extraMods} />
         </div>
         <div className={classWithModifiers('mp-history-player-score__info-box', 'stats')}>
