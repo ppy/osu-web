@@ -66,10 +66,6 @@ class Chat
     // Do the restricted user lookup before calling this.
     public static function sendPrivateMessage(User $sender, User $target, ?string $message, ?bool $isAction, ?string $uuid = null, bool $privCheck = true)
     {
-        if ($target->is($sender)) {
-            abort(422, "can't send message to same user");
-        }
-
         if ($privCheck) {
             priv_check_user($sender, 'ChatPmStart', $target)->ensureCan();
         }

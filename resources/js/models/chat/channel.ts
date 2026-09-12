@@ -126,7 +126,15 @@ export default class Channel {
       return;
     }
 
-    return this.userIds.find((userId: number) => userId !== core.currentUserOrFail.id);
+    const currentUserId = core.currentUserOrFail.id;
+
+    // self-PMs have the current user as both participants, so there is no
+    // "other" user to find; the conversation targets the current user themselves
+    if (this.userIds.length > 0 && this.userIds.every((userId: number) => userId === currentUserId)) {
+      return currentUserId;
+    }
+
+    return this.userIds.find((userId: number) => userId !== currentUserId);
   }
 
   @computed
