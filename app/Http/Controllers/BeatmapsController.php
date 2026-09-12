@@ -107,7 +107,7 @@ class BeatmapsController extends Controller
             }
 
             if ($cacheKey !== null) {
-                $count = \Cache::get($cacheKey);
+                $count = get_int(\Cache::get($cacheKey));
 
                 if ($count === null) {
                     $count = UserRank::getCount($esFetch->baseParams);
