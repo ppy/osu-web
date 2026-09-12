@@ -17,13 +17,39 @@ class BeatmapsetOpengraph implements OpengraphInterface
 
     public function get(): array
     {
-        $section = osu_trans('layout.menu.beatmaps._');
         $title = "{$this->beatmapset->artist} - {$this->beatmapset->title}"; // opengraph header always intended for guest.
 
         return [
-            'description' => "osu! » {$section} » {$title}",
+            'description' => $this->description(),
             'image' => $this->beatmapset->coverURL('list'),
             'title' => $title,
         ];
+    }
+
+    private function description(): string
+    {
+        return implode(' | ', [
+            osu_trans('beatmapsets.show.details.mapped_by', [
+                'mapper' => $this->beatmapset->creator,
+            ]),
+            $this->statusText(),
+            osu_trans_choice('beatmapsets.ogp.playcount', $this->beatmapset->play_count),
+            osu_trans_choice('beatmapsets.ogp.favourites', $this->beatmapset->favourite_count),
+        ]);
+    }
+
+    private function statusText(): string
+    {
+        if ($this->beatmapset->approved > 0) {
+            $key = $this->beatmapset->status();
+            $date = $this->beatmapset->approved_date;
+        } else {
+            $key = 'updated';
+            $date = $this->beatmapset->last_update;
+        }
+
+        return osu_trans("beatmapsets.show.details_date.{$key}", [
+            'timeago' => $date?->diffForHumans() ?? '',
+        ]);
     }
 }

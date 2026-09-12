@@ -18,6 +18,7 @@ class NewsPostOpengraph implements OpengraphInterface
     public function get(): array
     {
         return [
+            'card' => 'summary_large_image',
             'description' => $this->post->previewText(),
             'image' => $this->post->firstImage(true),
             'title' => $this->post->title(),
