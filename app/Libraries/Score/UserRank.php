@@ -20,6 +20,7 @@ class UserRank
         static $aggName = 'by_user';
         $search->setAggregations([$aggName => ['cardinality' => [
             'field' => 'user_id',
+            'precision_threshold' => 1000,
         ]]]);
         $response = $search->response();
         $search->assertNoError();
