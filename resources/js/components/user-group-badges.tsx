@@ -5,6 +5,7 @@ import UserGroupJson from 'interfaces/user-group-json';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
 import UserGroupBadge from './user-group-badge';
+import UserGroupBadgesCombined from './user-group-badges-combined';
 
 interface Props {
   groups?: UserGroupJson[];
@@ -20,6 +21,21 @@ export default function UserGroupBadges(props: Props) {
     short = false,
     wrapper,
   } = props;
+
+  if (short && groups.length >= 3) {
+    const [mainGroup, ...otherGroups] = groups;
+
+    return (
+      <>
+        <span className={wrapper}>
+          <UserGroupBadge group={mainGroup} modifiers={modifiers} />
+        </span>
+        <span className={wrapper}>
+          <UserGroupBadgesCombined groups={otherGroups} modifiers={modifiers} />
+        </span>
+      </>
+    );
+  }
 
   let mainGroupWasSet = false;
 

@@ -120,7 +120,10 @@ export class UserCard extends React.PureComponent<Props, State> {
       this.props.modifiers,
       this.props.mode,
       // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
-      this.popupMenuState.active || this.props.activated ? 'active' : 'highlightable',
+      {
+        active: this.popupMenuState.active,
+        highlightable: !this.popupMenuState.active && !this.props.activated,
+      },
     );
 
     this.url = this.isUserVisible ? route('users.show', { user: this.user.id }) : undefined;
