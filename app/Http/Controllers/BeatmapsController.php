@@ -92,7 +92,34 @@ class BeatmapsController extends Controller
         $totalsEnabled = $GLOBALS['cfg']['osu']['scores']['leaderboard_totals_enabled'];
 
         if ($isApi && $totalsEnabled) {
-            $results['score_count'] = UserRank::getCount($esFetch->baseParams);
+            $cacheKey = null;
+
+            $sortedMods = implode(',', array_sort($mods));
+            $legacyMode = $isLegacy ? '1' : '0';
+
+            switch ($type) {
+                case 'global':
+                    $cacheKey = 'lb_count_global:'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$legacyMode.'-'.$rulesetId.'-'.$sortedMods;
+                    break;
+                case 'country':
+                    $cacheKey = 'lb_count_country:'.$currentUser->country_acronym.'-'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$legacyMode.'-'.$rulesetId.'-'.$sortedMods;
+                    break;
+            }
+
+            if ($cacheKey !== null) {
+                $count = get_int(\Cache::get($cacheKey));
+
+                if ($count === null) {
+                    $count = UserRank::getCount($esFetch->baseParams);
+
+                    // use count as TTL, matches `global-rank-lookup-cache`
+                    \Cache::put($cacheKey, $count, max(600, $count));
+                }
+
+                $results['score_count'] = $count;
+            } else {
+                $results['score_count'] = UserRank::getCount($esFetch->baseParams);
+            }
         }
 
         if (isset($userScore)) {
