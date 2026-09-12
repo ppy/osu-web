@@ -93,12 +93,15 @@ class BeatmapsController extends Controller
             $countParams = clone $esFetch->baseParams;
             $cacheKey = null;
 
+            $sortedMods = implode(',', array_sort($mods));
+            $legacyMode = $isLegacy ? '1' : '0';
+
             switch ($type) {
                 case 'global':
-                    $cacheKey = 'lb_count_global:'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$isLegacy.'-'.$rulesetId.'-'.implode(',', $mods);
+                    $cacheKey = 'lb_count_global:'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$legacyMode.'-'.$rulesetId.'-'.$sortedMods;
                     break;
                 case 'country':
-                    $cacheKey = 'lb_count_country:'.$currentUser->country_acronym.'-'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$isLegacy.'-'.$rulesetId.'-'.implode(',', $mods);
+                    $cacheKey = 'lb_count_country:'.$currentUser->country_acronym.'-'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$legacyMode.'-'.$rulesetId.'-'.$sortedMods;
                     break;
             }
 
