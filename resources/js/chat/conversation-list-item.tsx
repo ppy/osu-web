@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserAvatar from 'components/user-avatar';
+import UserAvatarImg from 'components/user-avatar-img';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
@@ -60,7 +60,7 @@ export default class ConversationListItem extends React.Component<Props> {
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <div className={`${baseClassName}__avatar`}>
-            <UserAvatar modifiers='full-circle' user={{ avatar_url: this.props.channel.icon }} />
+            <UserAvatarImg modifiers='full-circle' user={{ avatar_url: this.props.channel.icon }} />
           </div>
           <div className={`${baseClassName}__name u-ellipsis-overflow`}>{this.props.channel.name}</div>
           <div className={`${baseClassName}__chevron`}>
