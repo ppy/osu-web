@@ -90,7 +90,32 @@ class BeatmapsController extends Controller
         $isApi = is_api_request();
 
         if ($isApi) {
-            $results['score_count'] = UserRank::getCount($esFetch->baseParams);
+            $countParams = clone $esFetch->baseParams;
+            $cacheKey = null;
+
+            switch ($type) {
+                case 'global':
+                    $cacheKey = 'lb_count_global:'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$isLegacy.'-'.$rulesetId.'-'.implode(',', $mods);
+                    break;
+                case 'country':
+                    $cacheKey = 'lb_count_country:'.$currentUser->country_acronym.'-'.$beatmap->getKey().'-'.$beatmap->approved.'-'.$isLegacy.'-'.$rulesetId.'-'.implode(',', $mods);
+                    break;
+            }
+
+            if ($cacheKey !== null) {
+                $count = \Cache::get($cacheKey);
+
+                if ($count === null) {
+                    $count = UserRank::getCount($countParams);
+
+                    // use count as TTL, matches `global-rank-lookup-cache`
+                    \Cache::put($cacheKey, $count, $count);
+                }
+
+                $results['score_count'] = $count;
+            } else {
+                $results['score_count'] = UserRank::getCount($countParams);
+            }
         }
 
         if (isset($userScore)) {
