@@ -37,6 +37,7 @@ interface UserExtendedAdditionalAttributes {
   join_date: string;
   kudosu: {
     available: number;
+    rank?: number | null;
     total: number;
   };
   location: string | null;
