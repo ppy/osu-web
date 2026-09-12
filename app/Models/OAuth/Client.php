@@ -163,6 +163,10 @@ class Client extends PassportClient
             return false;
         }
 
+        if (isset($this->plainSecret)) {
+            $this->secret_hint = substr($this->plainSecret, -4);
+        }
+
         return parent::save($options);
     }
 
@@ -191,18 +195,6 @@ class Client extends PassportClient
                 'password' => $this->password_client,
                 'refresh_token' => true,
             ])),
-        );
-    }
-
-    #[\Override]
-    protected function secret(): Attribute
-    {
-        return Attribute::make(
-            set: function (?string $value): ?string {
-                $this->plainSecret = $value;
-
-                return $value;
-            },
         );
     }
 
