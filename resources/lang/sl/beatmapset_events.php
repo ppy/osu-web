@@ -61,9 +61,11 @@ return [
         'approve' => 'Dovoljenje',
         'beatmap_owner_change' => 'Sprememba lastnikove težavnosti',
         'discussion_delete' => 'Odstranitev razprave',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Ostranitev odgovora na razpravo',
         'discussion_post_restore' => 'Povrnitev odgovora na razpravo',
         'discussion_restore' => 'Povrnitev razprave',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikacija',
         'genre_edit' => 'Urejanje žanra',
         'issue_reopen' => 'Ponovno odprtje razprave',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikacija',
         'rank' => 'Rankiranje',
         'remove_from_loved' => 'Odstranitev loved beatmap',
+        'tags_edit' => '',
     ],
 ];

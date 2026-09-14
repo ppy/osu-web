@@ -11,7 +11,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'reset' => 'redefinir',
-            'rules' => 'Por favor, tenha certeza que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez e sem conteúdo ofensivo ou sugestivo.',
+            'rules' => 'Certifique-se de que seu avatar respeite :link.<br/>Isso significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, conteúdo ofensivo ou sugestivo.',
             'rules_link' => 'as Considerações de conteúdo visual',
         ],
 
@@ -20,7 +20,7 @@ return [
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
             'locked' => [
-                '_' => 'Entre em contato com :accounts caso precise atualizar o seu email.',
+                '_' => 'Entre em contato com a :accounts caso precise atualizar o seu email.',
                 'accounts' => 'equipe de suporte de contas',
             ],
         ],
@@ -43,7 +43,7 @@ return [
             'title' => 'Perfil',
 
             'country_change' => [
-                '_' => "Parece que o país da sua conta não corresponde ao país em que você reside atualmente. :update_link.",
+                '_' => "Parece que o país da sua conta não corresponde ao seu país de residência. :update_link.",
                 'update_link' => 'Atualizar para :country',
             ],
 
@@ -77,13 +77,13 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'receber notificações das respostas em discussões de beatmap que você está participando',
         'beatmapset_discussion_qualified_problem' => 'receber notificações para novos problemas em beatmaps qualificados dos seguintes modos',
         'beatmapset_disqualify' => 'receber notificações quando os beatmaps dos seguintes modos forem desqualificados',
         'comment_reply' => 'receber notificações de respostas aos seus comentários',
-        'news_post' => 'receber notificações para novos posts',
+        'news_post' => 'receber notificações de notícias',
         'title' => 'Notificações',
-        'topic_auto_subscribe' => 'automaticamente ativar as notificações em tópicos que você criar ou responder no fórum',
+        'topic_auto_subscribe' => 'ativar automaticamente notificações em tópicos que você criar ou responder no fórum',
 
         'options' => [
             '_' => 'opções de entrega',
@@ -94,22 +94,22 @@ return [
             'channel_team' => 'mensagens do bate-papo da equipe',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
-            'mail' => 'correio',
+            'mail' => 'email',
             'mapping' => 'criador do beatmap',
-            'news_post' => 'novos posts',
+            'news_post' => 'notícias',
             'push' => 'push',
         ],
 
         'tooltips' => [
             'beatmap_owner_change' => 'quando você é adicionado como mapper convidado em uma dificuldade de um beatmap',
-            'beatmapset:modding' => 'quando as discussões de beatmap que você está assistindo recebem atualizações, ou houver um problema ou sugestão no seu próprio beatmap',
+            'beatmapset:modding' => 'quando as discussões de beatmap que você está assistindo recebem atualizações, ou houver um problema ou sugestão em seu beatmap',
             'channel_mention' => 'quando você for mencionado em um canal público',
             'channel_message' => 'quando você receber uma nova mensagem privada',
             'channel_team' => 'quando o canal de bate-papo da sua equipe tiver uma nova mensagem',
             'comment_new' => 'quando houver um novo comentário sobre um item que você está seguindo',
             'forum_topic_reply' => 'quando tópicos do fórum que você está assistindo receberem novas respostas',
             'mapping' => 'quando um mapper que você segue enviar um beatmap',
-            'news_post' => 'quando houver novas postagens de notícias',
+            'news_post' => 'quando houver novas publicações de notícias',
         ],
     ],
 
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'modo de jogo padrão',
         'keyboard' => 'teclado',
         'mouse' => 'mouse',
         'tablet' => 'mesa digitalizadora',
@@ -151,7 +151,7 @@ return [
 
     'security' => [
         'current_session' => 'atual',
-        'end_session' => 'Finalizar sessão',
+        'end_session' => 'Encerrar sessão',
         'end_session_confirmation' => 'Isso vai encerrar imediatamente sua sessão neste dispositivo. Você tem certeza?',
         'last_active' => 'Última atividade:',
         'title' => 'Segurança',
@@ -183,7 +183,7 @@ return [
 
     'verification_completed' => [
         'text' => 'Você já pode fechar esta aba/janela',
-        'title' => 'A verificação foi concluída',
+        'title' => 'Verificação concluída',
     ],
 
     'verification_invalid' => [

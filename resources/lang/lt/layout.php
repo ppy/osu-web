@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'info',
             'discussions' => 'diskusija',
-            'versions' => '',
+            'versions' => 'versijų istorija',
         ],
 
         'changelog' => [
@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nustatymai',
-            'create_team' => '',
+            'create_team' => 'Sukurti Komanda',
             'follows' => 'Stebėjimo sąrašai',
             'friends' => 'Draugai',
             'legacy_score_only_toggle' => 'Lazer rėžimas',

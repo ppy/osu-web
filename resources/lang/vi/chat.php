@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'đang chờ người dùng...',
-    'searching_users' => '',
+    'searching_users' => 'đang tìm kiếm người dùng...',
     'talking_in' => 'đang trò chuyện ở :channel',
     'talking_with' => 'đang trò chuyện với :name',
     'title_compact' => 'tin nhắn',

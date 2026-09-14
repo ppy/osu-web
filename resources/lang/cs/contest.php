@@ -19,7 +19,7 @@ return [
         'nav_title' => 'soudce',
         'no_current_vote' => 'ještě jsi nehlasoval.',
         'update' => 'aktualizovat',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'neuložené změny',
         'validation' => [
             'missing_score' => 'chybějící skóre',
             'contest_vote_judged' => 'nelze volit v souzených soutěžích',

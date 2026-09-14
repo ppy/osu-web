@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'per :author',
         'download' => 'Descarregar',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'completat',
             'not_cleared' => 'no completat',

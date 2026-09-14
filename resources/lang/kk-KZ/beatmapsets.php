@@ -64,6 +64,10 @@ return [
         'label' => 'Былапыт',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Пікірталас',
 

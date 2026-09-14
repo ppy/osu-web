@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Връзката за тази поръчката изтече.',
         'subtotal' => 'Междинна сума',
         'total' => 'Общо',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Поръчка #',

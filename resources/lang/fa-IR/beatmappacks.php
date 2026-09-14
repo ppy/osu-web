@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => '',
         'download' => 'دانلود',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'پاک شده',
             'not_cleared' => 'پاک نشده',

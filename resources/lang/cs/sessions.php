@@ -6,7 +6,7 @@
 return [
     'create' => [
         'download' => 'Klikni zde pro stažení hry a vytvoření účtu',
-        'label' => 'Nejprve se přihlašme k vašemu účtu!',
+        'label' => 'Pojďme se nejprve přihlásit k tvému účtu!',
         'title' => 'Přihlášení k účtu',
     ],
 ];

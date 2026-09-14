@@ -69,7 +69,7 @@ return [
     ],
 
     'refresh' => [
-        'checking' => 'Verificando se há atualizações...',
+        'checking' => 'Buscando atualizações...',
         'has_updates' => 'A discussão tem uma atualização, clique para atualizar.',
         'no_updates' => 'Sem atualizações.',
         'updating' => 'Atualizando...',
@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Todos',
         'label' => 'Filtrar por usuário',
-        'multiple' => '',
+        'multiple' => ':count_delimited usuário selecionado|:count_delimited usuários selecionados',
     ],
 ];

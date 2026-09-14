@@ -33,8 +33,8 @@ return [
         ],
 
         'intro' => [
-            'description' => "Gioca insieme ad amici; presenti o nuovi. Al momento non sei in una squadra. Unisciti a squadre esistenti visitando la loro pagina oppure crea la tua squadra attraverso questa pagina.",
-            'search_link' => '',
+            'description' => "Gioca insieme ad amici; nuovi o che già conosci. Al momento non sei in una squadra. Unisciti a una :search_link visitando la loro pagina oppure crea la tua squadra attraverso questa pagina.",
+            'search_link' => 'squadra esistente',
             'title' => 'Squadra!',
         ],
     ],

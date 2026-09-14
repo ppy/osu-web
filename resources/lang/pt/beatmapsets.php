@@ -64,6 +64,10 @@ return [
         'label' => 'Explícito',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Discussão',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Apenas lazer',
+            'description' => 'Devido a mecânicas específicas, este beatmap só pode ser jogado no osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link para ver as pontuações definidas neste beatmap.',
+                'enable_link' => 'Ativar modo lazer',
             ],
         ],
 

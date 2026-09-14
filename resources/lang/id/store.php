@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Tautan checkout untuk pesanan ini sudah kedaluwarsa.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Pesanan #',
@@ -187,7 +188,7 @@ return [
         'gift_message' => 'tambahkan pesan untuk melengkapi hadiahmu! (maksimal :length karakter)',
 
         'require_login' => [
-            '_' => 'Kamu harus :link untuk memperoleh tag osu!supporter!',
+            '_' => 'Kamu harus :link untuk mendapatkan tag osu!supporter!',
             'link_text' => 'masuk',
         ],
     ],

@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Presentear supporter tag',
+        'gift_supporter' => 'Presentear tag de osu!supporter',
         'loading' => 'Carregando...',
         'send_message' => 'enviar mensagem',
     ],
@@ -219,8 +219,8 @@ return [
             'daily_streak_current' => 'Sequência diária atual',
             'playcount' => 'Participação total',
             'title' => 'Desafio\ndiário',
-            'top_10p_placements' => 'Melhores 10% nos colocados',
-            'top_50p_placements' => 'Melhores 50% nos colocados',
+            'top_10p_placements' => 'Colocações nos melhores 10%',
+            'top_50p_placements' => 'Colocações nos melhores 50%',
             'weekly' => 'Sequência semanal',
             'weekly_streak_best' => 'Melhor sequência semanal',
             'weekly_streak_current' => 'Sequência semanal atual',
@@ -229,6 +229,10 @@ return [
                 'day' => ':valued',
                 'week' => ':valuew',
             ],
+        ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
         ],
         'edit' => [
             'cover' => [
@@ -259,7 +263,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'Redefinir cor para padrão? A etiqueta de apoiador será necessário para alterar a cor.',
+                'reset_no_supporter' => 'Redefinir a cor para o padrão? Uma tag de osu!supporter será necessária para alterá-la para uma cor diferente.',
                 'title' => 'Cor',
 
                 'supporter' => [
@@ -382,7 +386,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Baseado no quanto o usuário contribuiu à moderação do beatmap. Veja :link para mais informações.',
+                    '_' => 'Baseado no quanto o usuário contribuiu à moderação de beatmaps. Veja :link para mais informações.',
                     'link' => 'esta página',
                 ],
             ],
@@ -395,7 +399,7 @@ return [
                 'title' => 'Medalhas',
             ],
             'playlists' => [
-                'title' => 'Jogos da Seleção de Música',
+                'title' => 'Partidas da playlist',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Competitivo',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Maior classificação: :rank em :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Um novo algoritmo de dificuldade / PP está :link.',
+            'title_link' => 'sendo lançado',
+            'message' => 'Pontuações recentes podem não ser refletidas imediatamente nos perfis de usuário.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => '',
             'total_score' => 'Pontuação total',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',

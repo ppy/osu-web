@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Libraries\User\PasswordHelper;
 use App\Models\UserTotpKey;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -74,7 +75,7 @@ class UserTotpController extends Controller
         $currentUser = \Auth::user();
         $password = get_string(request('password')) ?? '';
 
-        if (!$currentUser->checkPassword($password)) {
+        if (!PasswordHelper::check($currentUser, $password)) {
             return response(['form_error' => [
                 'password' => [osu_trans('layout.popup_login.login.error.password')],
             ]], 422);

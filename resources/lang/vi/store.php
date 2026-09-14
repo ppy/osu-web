@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Link thanh toán cho đơn hàng này đã hết hạn.',
         'subtotal' => 'Tổng phụ',
         'total' => 'Tổng cộng',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Đơn hàng #',
@@ -141,7 +142,7 @@ return [
             'default' => 'Đơn hàng không thể sửa đổi',
             'delivered' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được giao.',
             'paid' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được thanh toán.',
-            'processing' => 'Bạn không thể chỉnh sửa đơn hàng trong khi nó đang được xử lý.',
+            'processing' => 'Bạn không thể chỉnh sửa đơn hàng của bạn trong khi nó đang được xử lý.',
             'shipped' => 'Bạn không thể chỉnh sửa đơn hàng vì nó đã được vận chuyển.',
         ],
 

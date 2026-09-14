@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Semua',
         'label' => 'Saring berdasarkan pengguna',
-        'multiple' => '',
+        'multiple' => ':count_delimited pengguna dipilih|:count_delimited pengguna dipilih',
     ],
 ];

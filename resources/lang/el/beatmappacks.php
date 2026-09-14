@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'από :author',
         'download' => 'Λήψη',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'ολοκληρώθηκε',
             'not_cleared' => 'δεν ολοκληρώθηκε',

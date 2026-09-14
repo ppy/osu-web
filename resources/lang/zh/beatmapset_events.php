@@ -62,9 +62,11 @@ return [
         'approve' => '达标 (Approved)',
         'beatmap_owner_change' => '更改难度作者',
         'discussion_delete' => '删除讨论',
+        'discussion_lock' => '',
         'discussion_post_delete' => '删除讨论下的回复',
         'discussion_post_restore' => '恢复讨论下已删除的回复',
         'discussion_restore' => '恢复已删除的讨论',
+        'discussion_unlock' => '',
         'disqualify' => '下架 (DQ)',
         'genre_edit' => '更改流派',
         'issue_reopen' => '重审问题',
@@ -84,5 +86,6 @@ return [
         'qualify' => '过审 (Qualification)',
         'rank' => '上架 (Ranking)',
         'remove_from_loved' => '移出社区喜爱 (Loved)',
+        'tags_edit' => '',
     ],
 ];

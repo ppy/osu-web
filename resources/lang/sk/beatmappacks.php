@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => '',
         'download' => 'Stiahnúť',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'splnené',
             'not_cleared' => 'nesplnené',

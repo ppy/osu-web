@@ -64,6 +64,10 @@ return [
         'label' => 'Dla pełnoletnich',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Dyskusja',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Tylko na osu!lazer',
+            'description' => 'Ta beatmapa wykorzystuje niekompatybilne mechaniki i może zostać zagrana wyłącznie na osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link, aby wyświetlić wyniki ustanowione na tej beatmapie.',
+                'enable_link' => 'Włącz tryb „lazer”',
             ],
         ],
 

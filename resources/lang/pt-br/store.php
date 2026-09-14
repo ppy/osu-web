@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'O link de verificação deste pedido expirou.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Pedido #',
@@ -187,7 +188,7 @@ return [
         'gift_message' => 'adicione uma mensagem opcional ao seu presente! (até :length caracteres)',
 
         'require_login' => [
-            '_' => 'Você precisa estar :link para conseguir uma osu!supporter tag!',
+            '_' => 'Você precisa estar :link para conseguir uma tag de osu!supporter!',
             'link_text' => 'conectado',
         ],
     ],

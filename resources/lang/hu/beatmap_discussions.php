@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited válasz elrejtve.|:count_delimited válaszok elrejtve.',
 
     'authorizations' => [
         'update' => [
@@ -26,7 +26,7 @@ return [
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
-            'mode' => 'Beatmap  mód',
+            'mode' => 'Beatmap mód',
             'only_unresolved' => 'Csak a megoldatlan beszélgetéseket mutasd',
             'show_review_embeds' => 'Értékelő posztok mutatása',
             'types' => 'Üzenettípusok',
@@ -70,7 +70,7 @@ return [
 
     'refresh' => [
         'checking' => 'Frissítések keresése...',
-        'has_updates' => '',
+        'has_updates' => 'A beszélgetésben vannak változások, kattints a frissítéshez.',
         'no_updates' => 'Nincsenek frissítések.',
         'updating' => 'Frissítés...',
     ],
@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Mindenki',
         'label' => 'Szűrés felhasználó szerint',
-        'multiple' => '',
+        'multiple' => ':count_delimited felhasználó kiválasztva|:count_delimited felhasználók kiválasztva',
     ],
 ];

@@ -7,7 +7,7 @@ return [
     'pinned_topics' => 'Kitűzött Témák',
     'slogan' => "egyedül játszani veszélyes.",
     'subforums' => 'Mellékfórumok',
-    'title' => 'osu! fórumok',
+    'title' => 'Fórumok',
 
     'covers' => [
         'edit' => 'Borító szerkesztése',
@@ -26,7 +26,7 @@ return [
 
     'forums' => [
         'forums' => 'Fórumok',
-        'latest_post' => 'Legújabb hozzászólás',
+        'latest_post' => 'Legújabb Hozzászólás',
 
         'index' => [
             'title' => 'Fórum Index',
@@ -65,14 +65,14 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited hozzászólás|:count_delimited hozzászólás',
-            'topic_starter' => 'Beszélgetés indítok',
+            'topic_starter' => 'Beszélgetésindító',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Ugrás a hozzászóláshoz',
+        'go_to_post' => 'Ugrás a poszthoz',
         'post_number_input' => 'írd be a hozzászólás számát',
-        'total_posts' => ':posts_count posztok száma',
+        'total_posts' => 'Posztok száma: :posts_count',
     ],
 
     'topic' => [
@@ -80,9 +80,9 @@ return [
         'confirm_restore' => 'Biztosan visszaállítod a témát?',
         'deleted' => 'törölt téma',
         'go_to_latest' => 'utolsó hozzászólás megtekintése',
-        'go_to_unread' => '',
+        'go_to_unread' => 'az első olvasatlan poszt megtekintése',
         'has_replied' => 'Feliratkoztál erre a témára',
-        'in_forum' => 'ide :forum',
+        'in_forum' => 'ebben: :forum',
         'latest_post' => ':when :user által',
         'latest_reply_by' => 'legutóbbi hozzászólás: :user',
         'new_topic' => 'Új téma',
@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Törölt posztok',
             'total_posts' => 'Összes poszt',
-            'total_watches' => '',
+            'total_watches' => 'Összes Feliratkozó',
 
             'feature_vote' => [
                 'current' => 'Jelenlegi prioritás: +:count',

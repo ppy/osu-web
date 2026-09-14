@@ -62,9 +62,11 @@ return [
         'approve' => 'Одобрење',
         'beatmap_owner_change' => 'Промена власника тежине',
         'discussion_delete' => 'Брисање дискусије',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Брисање одговора на дискусију ',
         'discussion_post_restore' => 'Повраћај одговора на дискусију',
         'discussion_restore' => 'Повраћај дискусије',
+        'discussion_unlock' => '',
         'disqualify' => 'Дисквалификуј',
         'genre_edit' => 'Мењање жанра',
         'issue_reopen' => 'Поновно отварање дискусије',
@@ -84,5 +86,6 @@ return [
         'qualify' => 'Квалификација',
         'rank' => 'Рангирање',
         'remove_from_loved' => 'Уклањање из Loved',
+        'tags_edit' => '',
     ],
 ];

@@ -56,7 +56,7 @@ return [
 
                 'users' => [
                     'header' => 'Felhasználó',
-                    'cover_presets' => '',
+                    'cover_presets' => 'Profilborító Beállítások',
                 ],
             ],
         ],

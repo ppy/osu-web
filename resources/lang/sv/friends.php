@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Du har blockerats av denna användaren.',
     'title_compact' => 'vänner',
     'too_many' => 'Maximalt antal vänner nått',
 

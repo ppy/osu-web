@@ -11,11 +11,11 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Nehézség',
-        'top_10p' => '',
-        'top_50p' => '',
+        'top_10p' => 'Top 10% Pontszám',
+        'top_50p' => 'Top 50% Pontszám',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'A megadott dátumra még nincs napi kihívás!',
+            'past' => 'A megadott napon nincs napi kihívás!',
         ],
     ],
 
@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Játszások',
+        'points' => 'Pontok',
+        'provisional' => 'Ideiglenes besorolás a közelmúltbeli mérkőzések elégtelen száma miatt',
+        'rating' => 'Értékelés',
+        'wins' => 'Győzelmek',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Szoba Neve',
     ],
 
     'performance' => [
@@ -50,51 +50,51 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Az adatok feldolgozása folyamatban van...',
+        'last_updated' => 'Utóljára frissítve',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'reflektorfények (régi)',
+        'featured' => 'kiemelt',
+        'season_room' => 'szezon szoba',
+        'seasons' => 'szezonok',
     ],
 
     'type' => [
         'country' => 'Ország',
         'daily_challenge' => 'napi kihívás',
-        'global' => '',
+        'global' => 'globális',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'ranked',
+        'playlists' => 'játéklisták',
         'team' => 'csapat',
-        'top_plays' => '',
+        'top_plays' => 'top játszások',
     ],
 
     'seasons' => [
         'empty' => 'Ebben a szezonban még nincsenek szobák.',
         'ongoing' => 'Ez a szezon még folyamatban van (lesznek még játéklisták).',
         'room_count' => 'Játéklista száma',
-        'summary' => '',
+        'summary' => 'Szezon Összegzés Megtekintése',
         'url' => 'További információk megjelenítése az adott szezonról.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'nincs elegendő pontszámtényező a pontos számításhoz',
         ],
     ],
 
     'spotlight' => [
-        'end_date' => 'Befejezés ideje',
-        'map_count' => 'Mapok száma',
+        'end_date' => 'Befejezés Ideje',
+        'map_count' => 'Mapok Száma',
         'participants' => 'Résztvevők',
-        'start_date' => 'Kezdés ideje',
+        'start_date' => 'Kezdés Ideje',
     ],
 
     'stat' => [
         'accuracy' => 'Pontosság',
         'active_users' => 'Aktív Felhasználók',
         'country' => 'Ország',
-        'division' => '',
+        'division' => 'Osztály',
         'members' => 'Tagok',
         'play_count' => 'Játékszám',
         'performance' => 'Teljesítmény',

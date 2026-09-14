@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Lịch Sử Modding Của :user",
-        'title_compact' => 'Sửa đổi',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Cuộc thảo luận gần đây',
@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'người dùng đã bị chặn (:count)',
         'hide_profile' => 'Ẩn trang cá nhân',
         'hide_comment' => 'ẩn',
-        'forum_post_text' => 'Bài viết này được ẩn.',
+        'forum_post_text' => 'Bài đăng này được ẩn.',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
         'show_profile' => 'Hiển thị trang cá nhân',
         'show_comment' => 'hiện',
@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Tặng osu!supporter',
+        'gift_supporter' => 'Tặng thẻ osu!supporter',
         'loading' => 'Đang tải...',
         'send_message' => 'Gửi tin nhắn',
     ],
@@ -59,12 +59,12 @@ return [
             'password' => 'mật khẩu',
             'password_confirmation' => 'xác nhận mật khẩu',
             'submit' => 'tạo tài khoản',
-            'user_email' => 'thư điện tử',
-            'user_email_confirmation' => 'xác nhận thư điện tử',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'xác nhận email',
             'username' => 'tên người dùng',
 
             'tos_notice' => [
-                '_' => 'khi tạo tài khoản bạn đồng ý với :link',
+                '_' => 'bằng việc tài khoản, bạn đồng ý với :link',
                 'link' => 'điều khoản dịch vụ',
             ],
         ],
@@ -72,16 +72,17 @@ return [
 
     'disabled' => [
         'title' => 'Ôi không! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
-        'warning' => "Trong trường hợp bạn đã vi phạm luật, lưu ý sẽ có một khoảng thời gian trung bình một tháng chúng tôi sẽ không tiếp nhận mọi nhu cầu hối lỗi. Sau khoảng thời gian này, bạn hoàn toàn có thể thoải mái liên lạc chúng tôi nếu cần thiết. Lưu ý: tạo thêm tài khoản mới sau khi bạn đã bị ban sẽ <strong>gia tăng khoảng thời gian nói trên</strong>. Đồng thời hãy lưu ý rằng <strong>mỗi tài khoản tạo thêm là một lần bạn tiếp tục vi phạm luật</strong>. Chúng tôi khuyên bạn không nên theo con đường này!",
+        'warning' => "Trong trường hợp bạn vi phạm một quy tắc, xin lưu ý rằng thường sẽ có thời gian chờ là một tháng, trong đó chúng tôi sẽ không xem xét bất kỳ yêu cầu ân xá nào. Sau khoảng thời gian này, bạn có thể liên hệ với chúng tôi nếu thấy cần thiết. Xin lưu ý rằng việc tạo tài khoản mới sau khi một tài khoản đã bị vô hiệu hóa sẽ dẫn đến <strong>việc gia hạn thêm thời gian chờ một tháng</strong>. Xin cũng lưu ý rằng với <strong>mỗi tài khoản bạn tạo, bạn lại tiếp tục vi phạm quy tắc</strong>. Chúng tôi thực sự khuyên bạn không nên đi theo hướng này!",
 
         'if_mistake' => [
-            '_' => 'Nếu bạn cảm thấy nó không đúng, bạn được chào đón để liên hệ với chúng tôi (thông qua :email hoặc nhấn vào dấu "?" ở góc dưới bên phải của trang này). Làm ơn nhớ rằng chúng tôi luôn hoàn toàn chắc chắn với hành động của mình, vì chúng dựa trên dữ liệu rất chắc chắn. Chúng tôi có quyền bỏ qua yêu cầu của bạn nếu chúng tôi cảm thấy bạn đang cố tình không trung thực.',
+            '_' => 'Nếu bạn cảm thấy đây là một sai sót, bạn có thể liên hệ với chúng tôi (qua :email hoặc bằng cách nhấp vào dấu "?" ở góc dưới bên phải của trang này). Xin lưu ý rằng chúng tôi luôn hoàn toàn tự tin với các hành động của mình, vì chúng dựa trên dữ liệu rất chắc chắn. Chúng tôi có quyền từ chối yêu cầu của bạn nếu nhận thấy bạn đang cố tình không trung thực.',
             'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => 'Tài khoản của bạn bị xâm phạm. Tài khoản của bạn có thể bị vô hiệu hóa tạm thời trong khi danh tính của chủ nhân tài khoản được xác nhận.',
-            'opening' => 'Đây là một số lí do mà có thể dẫn đến tài khoản của bạn bị vô hiệu hoá:',
+            'compromised' => 'Tài khoản của bạn được xác định là đã bị xâm nhập. Nó có thể bị vô hiệu hóa tạm thời trong khi danh tính đang được xác minh.
+',
+            'opening' => 'Có một số lý do có thể dẫn đến việc tài khoản của bạn bị vô hiệu hóa:',
 
             'tos' => [
                 '_' => 'Bạn đã vi phạm một hoặc nhiều :community_rules hoặc :tos của chúng tôi.',
@@ -97,8 +98,8 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
-            'inactive_different_country' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
+            'inactive' => "Tài khoản của bạn đã không được sử dụng trong một thời gian dài.",
+            'inactive_different_country' => "Tài khoản của bạn đã không được sử dụng trong một thời gian dài.",
         ],
     ],
 
@@ -108,9 +109,9 @@ return [
         'button_posting' => 'Đang đăng nhập...',
         'email_login_disabled' => 'Đăng nhập bằng email hiện đã bị vô hiệu. Vui lòng sử dụng tên người dùng để đăng nhập.',
         'failed' => 'Đăng nhập không chính xác',
-        'forgot' => 'Quên mật khẩu?',
+        'forgot' => 'Bạn quên mật khẩu?',
         'info' => 'Vui lòng đăng nhập để tiếp tục',
-        'invalid_captcha' => 'Quá nhiều lần thử đăng nhập thất bại, vui lòng hoàn tất captcha và thử lại. (Làm mới trang nếu không thấy captcha)',
+        'invalid_captcha' => 'Quá nhiều lần đăng nhập thất bại, vui lòng hoàn tất captcha và thử lại. (Làm mới trang nếu captcha không hiển thị)',
         'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
         'password' => 'Mật khẩu',
         'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
@@ -147,17 +148,17 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'nhấp để đăng nhập',
+        'login_link' => 'nhấn để đăng nhập',
         'login_text' => 'đăng nhập',
         'username' => 'Khách',
         'error' => 'Bạn cần phải đăng nhập để làm việc này.',
     ],
     'logout_confirm' => 'Bạn có chắc muốn đăng xuất không? :(',
     'report' => [
-        'button_text' => 'Báo Cáo',
-        'comments' => 'Bình Luận Khác',
+        'button_text' => 'Báo cáo',
+        'comments' => 'Các bình luận',
         'placeholder' => 'Vui lòng cung cấp bất kỳ thông tin nào bạn cho rằng có thể hữu ích.',
-        'reason' => 'Lý Do',
+        'reason' => 'Lý do',
         'thanks' => 'Cảm ơn bạn đã báo cáo!',
         'title' => 'Báo cáo :username?',
 
@@ -168,14 +169,14 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => 'Vui lòng gửi mọi khiếu nại về vi phạm bản quyền bằng cách gửi yêu cầu DMCA đến :mail theo :policy.',
+                '_' => 'Vui lòng gửi báo cáo hành vi vi phạm bản quyền thông qua yêu cầu DMCA tới :mail theo :policy.',
                 'policy' => 'chính sách bản quyền của osu!',
             ],
             'message_2' => 'Đây áp dụng cho các trường hợp bài hát, hình ảnh hoặc beatmap bị sử dụng mà không có quyền cho phép.',
         ],
 
         'options' => [
-            'cheating' => 'Chơi xấu / Gian lận',
+            'cheating' => 'Gian lận',
             'copyright_infringement' => 'Vi phạm bản quyền',
             'inappropriate_chat' => 'Hành vi trò chuyện không phù hợp',
             'insults' => 'Xúc phạm tôi / những người khác',
@@ -183,7 +184,7 @@ return [
             'nonsense' => 'Phi lý',
             'other' => 'Khác (nhập dưới đây)',
             'spam' => 'Spamming',
-            'unwanted_content' => 'Có những nội dung không phù hợp',
+            'unwanted_content' => 'Nội dung không phù hợp',
         ],
     ],
     'restricted_banner' => [
@@ -193,14 +194,14 @@ return [
     ],
     'show' => [
         'age' => ':age tuổi',
-        'change_avatar' => 'đổi ảnh đại diện!',
-        'first_members' => 'Ở đây kể từ khi bắt đầu',
+        'change_avatar' => 'đổi ảnh đại diện của bạn!',
+        'first_members' => 'Tại đây từ thuở xa xưa',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Đã tham gia vào :date',
+        'joined_at' => 'Đã tham gia :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'lastvisit_online' => 'Hiện đang trực tuyến',
-        'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
+        'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng có thể đã bị cấm)',
         'origin_country' => 'Từ :country',
         'previous_usernames' => 'được biết đến trước đây với',
         'plays_with' => 'Chơi bằng :devices',
@@ -214,21 +215,25 @@ return [
             'to_1' => 'Hiện ảnh bìa',
         ],
         'daily_challenge' => [
-            'daily' => 'Chuỗi chơi hằng ngày',
-            'daily_streak_best' => 'Chuỗi chơi hằng ngày tốt nhất',
-            'daily_streak_current' => 'Chuỗi chơi hằng ngày hiện tại',
+            'daily' => 'Chuỗi Hằng Ngày',
+            'daily_streak_best' => 'Chuỗi Hằng Ngày Cao Nhất',
+            'daily_streak_current' => 'Chuỗi Hằng Ngày Hiện Tại',
             'playcount' => 'Tổng Số Lần Tham Gia',
-            'title' => 'Thử thách\nhằng ngày',
+            'title' => 'Thử thách\nHằng ngày',
             'top_10p_placements' => '10% vị trí hàng đầu',
             'top_50p_placements' => '50% vị trí hàng đầu',
-            'weekly' => 'Chuỗi chơi hàng tuần',
-            'weekly_streak_best' => 'Chuỗi chơi hàng tuần tốt nhất',
-            'weekly_streak_current' => 'Chuỗi chơi hàng tuần hiện tại',
+            'weekly' => 'Chuỗi Hằng Tuần',
+            'weekly_streak_best' => 'Chuỗi Hằng Tuần Cao Nhất',
+            'weekly_streak_current' => 'Chuỗi Hằng Tuần Hiện Tại',
 
             'unit' => [
                 'day' => ':valued',
                 'week' => ':valuew',
             ],
+        ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
         ],
         'edit' => [
             'cover' => [
@@ -238,12 +243,12 @@ return [
                 'title' => 'Ảnh bìa',
 
                 'upload' => [
-                    'broken_file' => 'Không xử lý được hình ảnh. Kiểm tra hình ảnh đã tải lên và thử lại sau.',
+                    'broken_file' => 'Xử lý hình ảnh thất bại. Kiểm tra hình ảnh đã tải lên và thử lại.',
                     'button' => 'Tải ảnh lên',
                     'dropzone' => 'Thả vào đây để tải lên',
                     'dropzone_info' => 'Bạn cũng có thể thả hình ảnh vào đây để tải lên',
-                    'size_info' => 'Kích cỡ ảnh bìa nên là 2400x620',
-                    'too_large' => 'Tệp đã tải lên quá lơn.',
+                    'size_info' => 'Kích cỡ ảnh bìa nên là 2000x500',
+                    'too_large' => 'Tệp đã tải lên quá lớn.',
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
 
                     'restriction_info' => [
@@ -289,19 +294,19 @@ return [
                     'title' => 'Graveyarded Beatmaps',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap khách mời',
+                    'title' => 'Beatmap Khách Mời',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps',
+                    'title' => 'Beatmap Loved',
                 ],
                 'nominated' => [
-                    'title' => 'Beatmap Xếp hạng được đề cử',
+                    'title' => 'Beatmap Được Xếp Hạng Đã Đề Cử',
                 ],
                 'pending' => [
                     'title' => 'Beatmap Đang Chờ',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
+                    'title' => 'Beatmap Được Xếp Hạng',
                 ],
             ],
             'discussions' => [
@@ -398,9 +403,9 @@ return [
                 'title' => 'Danh sách phát trò chơi',
             ],
             'posts' => [
-                'title' => 'Bài viết',
-                'title_longer' => 'Bài viết gần đây',
-                'show_more' => 'xem bài viết khác',
+                'title' => 'Bài đăng',
+                'title_longer' => 'Bài đăng gần đây',
+                'show_more' => 'xem bài đăng khác',
             ],
             'ranked-play' => [
                 'title' => 'Trận đấu xếp hạng',
@@ -475,7 +480,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Chơi nhanh',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,33 +520,37 @@ return [
             'highest' => 'Hạng cao nhất: :rank vào :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Thuật toán tính Độ Khó / PP :link.',
+            'title_link' => 'đang được triển khai',
+            'message' => 'Điểm số gần đây có thể chưa được cập nhật ngay lập tức trên trang cá nhân của người dùng.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => '',
             'total_score' => 'Tổng điểm',
         ],
+        'solo' => [
+            'title' => '',
+        ],
         'stats' => [
-            'hit_accuracy' => 'Độ bấm chính xác',
+            'hit_accuracy' => 'Độ chính xác',
             'hits_per_play' => 'Số lần bấm mỗi khi chơi',
             'level' => 'Level :level',
             'level_progress' => 'tiến trình lên cấp tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',
             'medals' => 'Huy Chương',
             'play_count' => 'Số lần chơi',
-            'play_time' => 'Tổng thời gian chơi',
+            'play_time' => 'Tổng Thời Gian Chơi',
             'ranked_score' => 'Điểm Được Xếp Hạng',
             'replays_watched_by_others' => 'Replay Được Xem',
             'score_ranks' => 'Thứ hạng điểm',
-            'total_hits' => 'Tổng lần bấm',
-            'total_score' => 'Tổng điểm',
+            'total_hits' => 'Tổng Lần Bấm',
+            'total_score' => 'Tổng Điểm',
             // modding stats
             'graveyard_beatmapset_count' => 'Các beatmap bị đắp mộ',
-            'loved_beatmapset_count' => 'Các beatmap được yêu thích',
+            'loved_beatmapset_count' => 'Số beatmap Loved',
             'pending_beatmapset_count' => 'Beatmap Đang Chờ',
-            'ranked_beatmapset_count' => 'Các beatmap được xếp hạng',
+            'ranked_beatmapset_count' => 'Số beatmap đã được xếp hạng',
         ],
     ],
 

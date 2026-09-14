@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'block private messages from people not on your friends list',
+        'friends_only_info' => 'this block also applies to osu!lazer multiplayer invites and ranked play duel requests',
         'hide_online' => 'hide your online presence',
         'hide_online_info' => 'this maps to the "appear offline" mode in osu!lazer',
         'title' => 'Privacy',

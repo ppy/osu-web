@@ -61,9 +61,11 @@ return [
         'approve' => 'Zatwierdzenie',
         'beatmap_owner_change' => 'Zmiana twórcy poziomu trudności',
         'discussion_delete' => 'Usunięcie dyskusji',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Usunięcie odpowiedzi w dyskusji',
         'discussion_post_restore' => 'Przywrócenie odpowiedzi w dyskusji',
         'discussion_restore' => 'Przywrócenie dyskusji',
+        'discussion_unlock' => '',
         'disqualify' => 'Dyskwalifikacja',
         'genre_edit' => 'Zmiana gatunku',
         'issue_reopen' => 'Ponowne otworzenie dyskusji',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kwalifikacja',
         'rank' => 'Nadanie statusu rankingowego',
         'remove_from_loved' => 'Usunięcie z ulubionych beatmap społeczności',
+        'tags_edit' => '',
     ],
 ];

@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'De checkout link voor deze bestelling is verlopen.',
         'subtotal' => 'Subtotaal',
         'total' => 'Totaal',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Bestelling #',

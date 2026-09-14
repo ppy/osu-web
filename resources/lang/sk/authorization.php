@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Nemôžete zmeniť metadáta nominovanej mapy. Kontaktujte člena BN alebo NAT, ak si myslíte, že to je nastavené nesprávne.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

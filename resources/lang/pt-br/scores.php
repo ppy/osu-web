@@ -30,6 +30,6 @@ return [
         'non_best' => 'Apenas as melhores pontuações pessoais dão pp',
         'no_pp' => 'pp não é concedido para esta pontuação',
         'processing' => 'Esta pontuação ainda está sendo calculada e será exibida em breve',
-        'no_rank' => 'Esta pontuação não tem nenhum ranque, pois não é ranqueada ou é marcada para exclusão',
+        'no_rank' => 'Esta pontuação não tem classificação por não ser ranqueada ou ter sido marcada para exclusão',
     ],
 ];

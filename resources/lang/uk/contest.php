@@ -19,7 +19,7 @@ return [
         'nav_title' => 'суддя',
         'no_current_vote' => 'ви ще не голосували.',
         'update' => 'оновити',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'незбережені зміни',
         'validation' => [
             'missing_score' => 'результат відсутній',
             'contest_vote_judged' => 'не можна голосувати в конкурсі який ви судили',

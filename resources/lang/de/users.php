@@ -230,6 +230,10 @@ return [
                 'week' => ':value W',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Ranked Play',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Höchster Rang: :rank am :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Eine neue Sternbewertung / PP-Algorithmus :link.',
+            'title_link' => 'wird bereitgestellt',
+            'message' => 'Aktuelle Ergebnisse werden möglicherweise nicht sofort in den Benutzerprofilen angezeigt.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => '',
             'total_score' => 'Gesamtpunktzahl',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',

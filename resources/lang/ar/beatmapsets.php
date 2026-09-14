@@ -64,6 +64,10 @@ return [
         'label' => 'حَساس',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'مناقشة',
 

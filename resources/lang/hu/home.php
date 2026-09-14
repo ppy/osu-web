@@ -22,12 +22,12 @@ return [
         'advanced_link' => 'Részletes keresés',
         'button' => 'Keresés',
         'empty_result' => 'Nincs találat!',
-        'keyword_required' => 'Adj meg egy kulcsszót is',
+        'keyword_required' => 'Adj meg egy kulcsszót',
         'placeholder' => 'keresendő szöveg',
         'title' => 'Keresés',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'További kiemelt előadók dalainak keresési eredményei',
         ],
         'beatmapset' => [
             'login_required' => 'Beatmapek kereséséhez jelentkezz be',
@@ -37,34 +37,34 @@ return [
         ],
 
         'forum_post' => [
-            'all' => 'Összes forum',
+            'all' => 'Összes Fórum',
             'link' => 'Forum keresése',
             'login_required' => 'Jelentkezz be, hogy keresni tudj a fórumon',
-            'more_simple' => 'Több forum keresése',
-            'title' => 'Forum',
+            'more_simple' => 'Több fórum keresése',
+            'title' => 'Fórum',
 
             'label' => [
-                'forum' => 'forumokban keresés',
-                'forum_children' => 'alforumok tartalmazása',
+                'forum' => 'fórumokban keresés',
+                'forum_children' => 'alfórumok tartalmazása',
                 'include_deleted' => 'törölt hozzászólásokat tartalmaz',
-                'topic_id' => 'témák #',
+                'topic_id' => 'téma #',
                 'username' => 'szerző',
             ],
         ],
 
         'mode' => [
             'all' => 'mind',
-            'artist_track' => '',
+            'artist_track' => 'kiemelt előadó zenéje',
             'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
-            'team' => '',
+            'team' => 'csapat',
             'user' => 'játékos',
             'wiki_page' => 'wiki',
         ],
 
         'team' => [
-            'login_required' => '',
-            'more_simple' => '',
+            'login_required' => 'Jelentkezz be csapatok kereséséhez',
+            'more_simple' => 'További csapatkeresési eredmények megtekintése',
         ],
 
         'user' => [
@@ -92,14 +92,14 @@ return [
         'os_version_or_later' => ':os_version vagy újabb',
         'other_os' => 'egyéb platoformok',
         'quick_start_guide' => 'gyors útmutató',
-        'stable_text' => '',
-        'tagline_1' => '',
-        'tagline_2' => '',
+        'stable_text' => 'ha a régebbit keresed',
+        'tagline_1' => 'hát akkor,',
+        'tagline_2' => 'kezdjük!',
         'video-guide' => 'videó útmutató',
 
         'help' => [
             '_' => 'ha meccs indításakor vagy fiók létrehozásánál problémába ütközöl, :help_forum_link vagy :support_button.',
-            'help_forum_link' => 'segítő fórum megtekintése',
+            'help_forum_link' => 'súgófórum megtekintése',
             'support_button' => 'kapcsolatfelvétel',
         ],
 
@@ -128,7 +128,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'áttekintő',
+        'title' => 'áttekintés',
         'news' => [
             'title' => 'Hírek',
             'error' => 'Hiba a hírek betöltése közben, talán próbáld meg újratölteni az oldalt?...',
@@ -141,11 +141,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Napi Kihívás Beatmap',
             'new' => 'Új rangsorolt beatmapek',
             'popular' => 'Népszerű beatmapek',
             'by_user' => ':user által',
-            'resets' => '',
+            'resets' => 'visszaáll :ends',
         ],
         'buttons' => [
             'download' => 'osu! letöltése',
@@ -153,7 +153,7 @@ return [
             'store' => 'osu!bolt',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Kiemelt Élő Adás',
         ],
         'show' => [
             'admin' => [

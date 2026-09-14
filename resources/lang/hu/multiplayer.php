@@ -5,10 +5,10 @@
 
 return [
     'empty' => [
-        'active' => '',
-        'ended' => '',
+        'active' => 'Jelenleg nincs folyamatban lévő osu!(lazer) :type_group játékod!',
+        'ended' => 'Még nincs befejezett osu!(lazer) :type_group játék!',
         'playlists' => 'játéklista',
-        'ranked-play' => '',
+        'ranked-play' => 'ranked',
         'realtime' => 'többjátékos',
     ],
 
@@ -18,13 +18,13 @@ return [
         'map_count' => ':count_delimited map|:count_delimited mapok',
         'player_count' => ':count_delimited játékos|:count_delimited játékosok',
         'time_left' => ':time van hátra',
-        'view_history' => '',
-        'view_summary' => '',
+        'view_history' => 'Előzmény Megtekintése',
+        'view_summary' => 'Összefoglaló Megtekintése',
 
         'errors' => [
             'duration_too_long' => 'Az időtartam túl hosszú.',
-            'name_too_long' => '',
-            'too_many_playlist_items' => '',
+            'name_too_long' => 'A szoba neve túl hosszú.',
+            'too_many_playlist_items' => 'Túl sok játéklista elem van.',
         ],
 
         'status' => [

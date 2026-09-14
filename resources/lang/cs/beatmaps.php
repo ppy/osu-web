@@ -26,7 +26,7 @@ return [
         'edited' => 'Naposledy upravil :editor v :update_time.',
         'guest' => 'Obtížnost hosta od :user',
         'kudosu_denied' => 'Odepřen od získávání kudosu.',
-        'include_replies' => '',
+        'include_replies' => 'Zahrnout odpovědi',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
         'message_placeholder_locked' => 'Diskuze o této mapě byly vypnuty.',
         'message_placeholder_silenced' => "Nelze odeslat diskuzi když jste ztišeni.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
         'show_deleted' => 'Zobrazit smazané',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Zobrazit ostatní odpovědi',
         'title' => 'Diskuze',
         'unresolved_count' => ':count_delimited nevyřešený problém|:count_delimited nevyřešené problémy|:count_delimited nevyřešených problémů',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'vložit odstavec',
                 'praise' => 'vložit pochvalu',
                 'problem' => 'vložit problém',

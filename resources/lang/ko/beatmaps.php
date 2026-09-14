@@ -26,7 +26,7 @@ return [
         'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
         'guest' => ':user의 게스트 난이도',
         'kudosu_denied' => 'kudosu 획득이 불가능합니다.',
-        'include_replies' => '',
+        'include_replies' => '답글 포함',
         'message_placeholder_deleted_beatmap' => '제거된 난이도이므로 더 이상의 토론이 불가능합니다.',
         'message_placeholder_locked' => '이 비트맵에 대한 토론이 비활성화되었습니다.',
         'message_placeholder_silenced' => "침묵 상태에서는 토론 게시글을 게시할 수 없습니다.",
@@ -38,7 +38,7 @@ return [
         'resolved' => '해결됨',
         'restore' => '복구',
         'show_deleted' => '삭제된 내용 표시',
-        'show_other_replies' => '',
+        'show_other_replies' => '다른 답글 보기',
         'title' => '토론',
         'unresolved_count' => ':count_delimited개의 미해결 이슈',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => '단락 삽입',
                 'praise' => '칭찬 삽입',
                 'problem' => '문제 삽입',

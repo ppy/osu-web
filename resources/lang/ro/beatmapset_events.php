@@ -61,9 +61,11 @@ return [
         'approve' => 'Aprobare',
         'beatmap_owner_change' => 'Schimbare a proprietarului dificultății',
         'discussion_delete' => 'Ștergerea discuției',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Ștergerea răspunsului',
         'discussion_post_restore' => 'Restaurarea răspunsului',
         'discussion_restore' => 'Restaurarea discuției',
+        'discussion_unlock' => '',
         'disqualify' => 'Descalificare',
         'genre_edit' => 'Editare gen',
         'issue_reopen' => 'Redeschiderea discuției',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Calificare',
         'rank' => 'Clasament',
         'remove_from_loved' => 'Scoaterea din Iubit',
+        'tags_edit' => '',
     ],
 ];

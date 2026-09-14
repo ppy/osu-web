@@ -38,7 +38,7 @@ return [
     ],
 
     'teams' => [
-        'created' => '',
+        'created' => 'Tanggal Didirikan',
         'relevance' => 'Relevansi',
         'name' => 'Nama',
         'short-name' => 'Nama Pendek',

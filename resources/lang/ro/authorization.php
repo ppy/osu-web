@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Nu poți schimba datele melodiei a unui beatmap nominalizat. Contactează un membru BN sau NAT dacă crezi că e setat greșit.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

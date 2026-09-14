@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Du kan ikke ændre metadata for et nomineret map. Kontakt et BAT- eller NAT-medlem, hvis du mener, at det er angivet forkert.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

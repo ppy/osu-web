@@ -14,10 +14,10 @@ return [
 
         'player' => [
             'by' => 'Játékos',
-            'played_on' => '',
+            'played_on' => 'Játszva ekkor',
             'submitted_on' => 'Beküldve',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Megnézve',
+            'watched_count' => ':count_delimited idő|:count_delimited alkalommal',
 
             'rank' => [
                 'country' => 'Országos rangsor',

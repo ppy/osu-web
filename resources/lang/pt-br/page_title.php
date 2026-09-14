@@ -35,13 +35,13 @@ return [
             '_' => 'artistas em destaque',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'posts de discussão sobre o beatmap',
+            '_' => 'publicações de discussão do beatmap',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'discussões de beatmaps',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'pacotes de beatmaps',
+            '_' => 'pacotes de beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'votos de discussão do beatmap',
@@ -115,7 +115,7 @@ return [
             '_' => 'equipes',
             'create' => 'criar equipe',
             'edit' => 'configurações de equipe',
-            'leaderboard' => 'classificação da equipe',
+            'leaderboard' => 'placar da equipe',
             'show' => 'informações da equipe',
         ],
         'tournaments_controller' => [

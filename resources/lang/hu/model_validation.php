@@ -132,13 +132,13 @@ return [
     ],
 
     'team' => [
-        'invalid_characters' => '',
-        'used' => '',
-        'word_not_allowed' => '',
+        'invalid_characters' => 'Ez a(z) :attribute érvénytelen karaktereket tartalmaz.',
+        'used' => 'Ez a(z) :attribute választás már használva volt.',
+        'word_not_allowed' => 'Ez a(z) :attribute választás nem engedélyezett.',
 
         'attributes' => [
-            'default_ruleset_id' => '',
-            'is_open' => '',
+            'default_ruleset_id' => 'Alapértmezett ruleset',
+            'is_open' => 'Csapat jelentkezés',
             'name' => 'Név',
             'short_name' => 'Rövid név',
             'url' => 'Webcím',
@@ -190,7 +190,7 @@ return [
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangsorolt beatmapokat nem lehet jelenteni',
         'not_in_channel' => 'Nem vagy ebben a csatornában.',
-        'in_team' => '',
+        'in_team' => 'A csapat tagja vagy.',
         'reason_not_valid' => 'ez a jelentés nem megfelelő, ehhez a jelentés fajtához.:reason.',
         'self' => "Nem jelentheted magadat!",
     ],

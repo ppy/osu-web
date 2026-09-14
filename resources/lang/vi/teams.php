@@ -24,7 +24,7 @@ return [
     ],
 
     'create' => [
-        'submit' => 'Tạo đội',
+        'submit' => 'Tạo Đội',
 
         'form' => [
             'name_help' => 'Tên đội của bạn. Tên đội sẽ trở nên vĩnh viễn ở thời điểm hiện tại.',
@@ -33,28 +33,28 @@ return [
         ],
 
         'intro' => [
-            'description' => "Chơi cùng với bạn; bạn cũ hay mới. Bạn đang không có đội. Truy cập vào trang của một nhóm bất kỳ để tham gia nhóm ấy hoặc tự tạo nhóm của mình từ trang này.",
-            'search_link' => '',
+            'description' => "Chơi cùng với bạn; đã có hoặc tạo mới. Bạn hiện không trong đội nào. Tham gia một :search_link bằng cách truy cập trang của đội đó hoặc tạo đội của riêng mình ở đây.",
+            'search_link' => 'đội hiện có',
             'title' => 'Đội!',
         ],
     ],
 
     'destroy' => [
-        'ok' => 'Nhóm đã bị xóa.',
+        'ok' => 'Đội đã bị xóa.',
     ],
 
     'edit' => [
         'ok' => 'Lưu cài đặt thành công.',
-        'title' => 'Cài đặt đội',
+        'title' => 'Cài đặt Đội',
 
         'description' => [
             'label' => 'Mô tả',
-            'title' => 'Mô tả đội',
+            'title' => 'Mô tả Đội',
         ],
 
         'flag' => [
-            'label' => 'Cờ đội',
-            'title' => 'Đặt cờ đội',
+            'label' => 'Cờ Đội',
+            'title' => 'Đặt cờ Đội',
         ],
 
         'header' => [
@@ -67,7 +67,7 @@ return [
             'default_ruleset_help' => 'Quy tắc sẽ được chọn làm mặc định khi xem trang của đội',
             'flag_help' => 'Kích cỡ tối đa là :width×:height',
             'header_help' => 'Kích cỡ tối đa là :width×:height',
-            'title' => 'Cài đặt đội',
+            'title' => 'Cài đặt Đội',
 
             'application_state' => [
                 'state_0' => 'Đã đóng',
@@ -112,8 +112,8 @@ return [
                 'joined_at' => 'Ngày tham gia',
                 'remove' => 'Loại',
                 'remove_confirm' => 'Loại bỏ :user khỏi đội không?',
-                'set_leader' => 'Bàn giao quyền lãnh đạo đội',
-                'set_leader_confirm' => 'Chuyển trưởng đội sang :user?',
+                'set_leader' => 'Chuyển quyền trưởng đội',
+                'set_leader_confirm' => 'Chuyển quyền trưởng đội sang :user?',
                 'status' => 'Trạng thái',
                 'title' => 'Thành viên hiện tại',
             ],

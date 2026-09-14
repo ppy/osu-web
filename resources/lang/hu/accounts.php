@@ -20,8 +20,8 @@ return [
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',
             'locked' => [
-                '_' => 'Kérlek lépj kapcsolatba velük, ha az emailedet akarod frissíteni: :accounts .',
-                'accounts' => 'fiók ügyfélszolgáltatás',
+                '_' => 'Kérlek lépj kapcsolatba velük, ha az e-mail címed akarod frissíteni: :accounts .',
+                'accounts' => 'fiók ügyfélszolgálat',
             ],
         ],
 
@@ -64,69 +64,69 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Ha közreműködsz osu! nyílt forráskódjához, itt összekapcsolhatod a GitHub fiókodat. Ez a változtatási naplóban az osu! profilodhoz linkeli a közreműködéseidet. Olyan fiókok amiknek még nincs közreműködési történelmük osu!-val nem csatlakoztathatók.",
+        'info' => "Ha közreműködsz osu! nyílt forráskódjához, itt összekapcsolhatod a GitHub fiókodat. Ez a változtatási naplóban az osu! profilodhoz linkeli a közreműködéseidet. Olyan fiókok amelyeknek még nincs közreműködési történelmük osu!-val nem csatlakoztathatók.",
         'link' => 'GitHub fiók csatlakoztatása',
         'title' => 'GitHub',
         'unlink' => 'GitHub fiók csatlakoztatásának megszüntetése',
 
         'error' => [
-            'already_linked' => 'Ez a Gitahub fiók már csatlakozatva van egy másik felhasználóhoz.',
-            'no_contribution' => 'Nem lehet GitHub fiókot csatlakoztatni, ami még nem tett közreműködést osu! kódtárban.',
+            'already_linked' => 'Ez a GitHub fiók már csatlakoztatva van egy másik felhasználóhoz.',
+            'no_contribution' => 'Nem lehet GitHub fiókot csatlakoztatni, ami még nem tett közreműködést az osu! kódtárban.',
             'unverified_email' => 'Kérlek igazold elsődleges GitHub email címedet és próbáld újra.',
         ],
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
-        'beatmapset_discussion_qualified_problem' => 'értesítések kérése kvalifikált beatmapok problémáival kapcsolatban a következő módokból',
-        'beatmapset_disqualify' => 'értesíts, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
+        'beatmapset_discussion_reply' => 'értesítések küldése azokról a beatmap-vitákról, amelyekben részt veszel',
+        'beatmapset_discussion_qualified_problem' => 'értesítések küldése kvalifikált beatmapok problémáival kapcsolatban a következő módokból',
+        'beatmapset_disqualify' => 'értesítések küldése, ha a következő játékmódok egy beatmapje diszkvalifikálva lett',
         'comment_reply' => 'értesítések küldése a kommentjeidre érkezett válaszokról',
-        'news_post' => '',
+        'news_post' => 'értesítések küldése hírekről',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
 
         'options' => [
-            '_' => 'szállítási lehetőségek',
+            '_' => 'küldési lehetőségek',
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
-            'channel_mention' => '',
+            'channel_mention' => 'chat említés',
             'channel_message' => 'Privát üzenetek',
-            'channel_team' => '',
+            'channel_team' => 'csapat chat üzenetek',
             'comment_new' => 'Új megjegyzések',
-            'forum_topic_reply' => 'Válaszolj erre a témára',
+            'forum_topic_reply' => 'fórumbeli válaszok',
             'mail' => 'e-mail',
             'mapping' => 'beatmap készítő',
-            'news_post' => '',
-            'push' => 'Elöjövő',
+            'news_post' => 'hír posztok',
+            'push' => 'értesítés',
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'amikor vendég-mapperként felvesznek egy beatmap nehézségi szintjére',
+            'beatmapset:modding' => 'amikor a követett beatmap-viták frissülnek, vagy ha a saját beatmapoddal kapcsolatban probléma merül fel, illetve javaslatot kapsz.',
+            'channel_mention' => 'amikor megemlítik a nevedet egy nyilvános csatornán',
+            'channel_message' => 'amikor új privát üzenetet kapsz',
+            'channel_team' => 'amikor a csapatod csevegőcsatornáján új üzenet érkezik',
+            'comment_new' => 'amikor új hozzászólás érkezik egy általad követett bejegyzéshez',
+            'forum_topic_reply' => 'amikor a követett fórumtémákhoz új hozzászólások érkeznek',
+            'mapping' => 'amikor egy általad követett mapper feltölt egy beatmapet',
+            'news_post' => 'amikor új hírek jelennek meg',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'felhatalmazott kliensek',
+        'authorized_clients' => 'engedélyezett kliensek',
         'own_clients' => 'külső alkalmazások',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'anime-stílusú beatmap-borítók megjelenítése',
         'beatmapset_show_nsfw' => 'beatmapekben lévő felnőtt tartalmakra vonatkozó figyelmeztetések elrejtése',
         'beatmapset_title_show_original' => 'a beatmap metaadatai megjelenítése eredeti nyelven',
         'title' => 'Beállítások',
 
         'beatmapset_download' => [
-            '_' => 'alapértelmezett beatmap letöltés típusa',
+            '_' => 'alapértelmezett beatmap letöltési típus',
             'all' => 'videóval, ha elérhető',
             'direct' => 'megnyitás osu!direct-ben',
             'no_video' => 'videó nélkül',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'alapértelmezett játékmód',
         'keyboard' => 'billentyűzet',
         'mouse' => 'egér',
         'tablet' => 'tablet',
@@ -145,7 +145,7 @@ return [
     'privacy' => [
         'friends_only' => 'privát üzenetek tiltása olyan személyektől, akik nincsenek a baráti listádon',
         'hide_online' => 'online állapot elrejtése',
-        'hide_online_info' => '',
+        'hide_online_info' => 'ez az osu!lazer „offline megjelenés” módjának felel meg',
         'title' => 'Adatvédelem',
     ],
 
@@ -167,17 +167,17 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Hitelesítő Alkalmazás',
+        'usage_note' => 'Azonosító alkalmazás használata e-mail helyett. Az e-mailes hitelesítés továbbra is elérhető lesz tartalék megoldásként.',
 
         'button' => [
-            'remove' => '',
-            'setup' => '',
+            'remove' => 'Eltávolítás',
+            'setup' => 'Hitelesítő alkalmazás hozzáadása',
         ],
         'status' => [
-            'label' => '',
-            'not_set' => '',
-            'set' => '',
+            'label' => 'állapot',
+            'not_set' => 'Nincs beállítva',
+            'set' => 'Beállítva',
         ],
     ],
 

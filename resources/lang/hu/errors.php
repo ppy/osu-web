@@ -6,8 +6,8 @@
 return [
     'load_failed' => 'Nem sikerült betölteni az adatokat.',
     'missing_route' => 'Helytelen url vagy lekérési mód.',
-    'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
-    'param_too_large' => '',
+    'no_restricted_access' => 'Felfüggesztett állapotban nem vagy alkalmas erre.',
+    'param_too_large' => ':name paraméter legfeljebb :count_delimited elemet tartalmazhat|:name paraméter legfeljebb :count_delimited elemet tartalmazhat',
     'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
     'unknown' => 'Ismeretlen hiba történt.',
 
@@ -34,6 +34,6 @@ return [
         'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
     ],
     'user_report' => [
-        'recently_reported' => "Már bejelentetted nem rég.",
+        'recently_reported' => "Már bejelentetted nemrég.",
     ],
 ];
