@@ -181,7 +181,6 @@ use Request;
  * @property int $user_passchg
  * @property string $user_password
  * @property int|null $user_perm_from
- * @property string $user_permissions
  * @property int $user_post_show_days
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
@@ -831,7 +830,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_options',
             'user_password',
             'user_perm_from',
-            'user_permissions',
             'user_post_show_days',
             'user_post_sortby_dir',
             'user_post_sortby_type',
