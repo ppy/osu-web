@@ -1940,6 +1940,7 @@ function suffixed_number_format(float|int $number, ?string $locale = null): stri
     if (!isset($formatters[$locale])) {
         $formatters[$locale] = new NumberFormatter($locale, NumberFormatter::PADDING_POSITION);
         $formatters[$locale]->setAttribute(NumberFormatter::FRACTION_DIGITS, 2);
+        $formatters[$locale]->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 0);
     }
 
     return $formatters[$locale]->format($number);
