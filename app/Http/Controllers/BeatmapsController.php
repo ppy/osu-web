@@ -258,7 +258,7 @@ class BeatmapsController extends Controller
                 ->whereHas('beatmapset')
                 ->withUserPlaycount(\Auth::id())
                 ->with([
-                    'beatmapOwners.user',
+                    'beatmapOwners.user' => fn ($q) => $q->select(['user_id', 'username']),
                     'beatmapset',
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
