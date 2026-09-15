@@ -37,7 +37,9 @@
 
 @foreach ($opengraph as $key => $value)
     @if (present($value))
-        @if ($key === 'title')
+        @if ($key === 'card')
+            <meta name="twitter:card" content="{{ $value }}">
+        @elseif ($key === 'title')
             <meta property="og:{{ $key }}" content="{{ $value }} · {{ page_title() }}">
         @else
             <meta property="og:{{ $key }}" content="{{ $value }}">
