@@ -43,21 +43,18 @@ class MatchmakingUserStats extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeDefault(Builder $query): Builder
+    public function scopeDefault(Builder $query): void
     {
-        return $query
-            ->whereHas('user', fn (Builder $q): Builder => $q->default())
-            ->where('plays', '>', 0);
+        $query->where('plays', '>', 0);
     }
 
     public function scopeWithRank(Builder $query): void
     {
-        // this won't be accurate when there are restricted users
         $rankQuery = new static()
             ->newQuery()
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
-            ->where('plays', '>', 0)
+            ->default()
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
@@ -67,6 +64,14 @@ class MatchmakingUserStats extends Model
     public function scopeWhereRulesetId(Builder $query, int $rulesetId): Builder
     {
         return $query->whereHas('pool', fn ($q) => $q->where('ruleset_id', $rulesetId));
+    }
+
+    public function history(): Builder
+    {
+        return MatchmakingUserEloHistory::where([
+            'pool_id' => $this->pool_id,
+            'user_id' => $this->user_id,
+        ]);
     }
 
     public function isRatingProvisional(): bool
@@ -92,7 +97,7 @@ class MatchmakingUserStats extends Model
             1,
             fn () => static
                 ::where('pool_id', $this->pool_id)
-                ->where('plays', '>', 0)
+                ->default()
                 ->count(),
         );
 

@@ -20,7 +20,7 @@ return [
             'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
             'locked' => [
-                '_' => '若您需要更新電子郵件地址，請聯絡:accounts。',
+                '_' => '如果您需要更新您的電子郵件地址，請聯絡:accounts。',
                 'accounts' => '帳號支援團隊',
             ],
         ],
@@ -64,7 +64,7 @@ return [
     ],
 
     'github_user' => [
-        'info' => "如果您是 osu! 開源專案儲存庫的貢獻者，在此連結您的 GitHub 帳號，即可將您的更新日誌項目與您的 osu! 個人檔案相關聯。若 GitHub 帳號沒有 osu! 的貢獻紀錄，則無法進行連結。",
+        'info' => "如果你是 osu! 開源專案的貢獻者，在這裡連結你的 GitHub 帳號即可將你的更新日誌紀錄關聯至你的 osu! 個人檔案。無 osu! 貢獻紀錄的 GitHub 帳號將無法連結。",
         'link' => '連結 GitHub 帳號',
         'title' => 'GitHub',
         'unlink' => '取消連結 GitHub 帳號',
@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => '接收您參與的圖譜討論區被回覆的通知',
         'beatmapset_discussion_qualified_problem' => '接收以下模式的合格圖譜新問題通知',
         'beatmapset_disqualify' => '在以下模式的圖譜被標記為取消資格時收到通知',
         'comment_reply' => '接收您留言被回覆的通知',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => '預設遊戲模式',
         'keyboard' => '鍵盤',
         'mouse' => '滑鼠',
         'tablet' => '繪圖板',

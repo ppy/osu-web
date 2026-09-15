@@ -93,7 +93,9 @@ export default function ScoreReplayStatsEntry(props: Props) {
 
         <div className='play-detail__mods-pp'>
           <div className='play-detail__mods'>
-            {displayMods(score, false).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            <div className='u-contents u-hover'>
+              {displayMods(score, false).map((mod) => <Mod key={mod.acronym} mod={mod} />)}
+            </div>
           </div>
 
           <div className='play-detail__pp play-detail__pp--watch-count'>

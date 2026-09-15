@@ -38,7 +38,7 @@ return [
     ],
 
     'teams' => [
-        'created' => '',
+        'created' => 'Ngày tạo',
         'relevance' => 'Liên quan',
         'name' => 'Tên',
         'short-name' => 'Tên ngắn',

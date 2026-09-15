@@ -19,7 +19,7 @@ return [
         'nav_title' => '評分',
         'no_current_vote' => '您尚未投票',
         'update' => '更新',
-        'unsaved_changes' => '',
+        'unsaved_changes' => '未儲存的變更',
         'validation' => [
             'missing_score' => '缺少成績',
             'contest_vote_judged' => '無法在已評分的競賽中投票',

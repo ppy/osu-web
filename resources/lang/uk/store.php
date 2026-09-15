@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Термін дії посилання для оформлення замовлення закінчився.',
         'subtotal' => 'Проміжна сума',
         'total' => 'Всього',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Замовлення #',

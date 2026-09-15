@@ -18,6 +18,7 @@ class RequireScopes
         'api/v2/comments/',
         'api/v2/news/',
         'api/v2/seasonal-backgrounds/',
+        'api/v2/suggestions/wiki/',
         'api/v2/wiki/',
     ];
 

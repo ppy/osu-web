@@ -121,15 +121,15 @@ export const scoreStatisticsMapping: Record<Ruleset, ScoreStatisticMapping[]> = 
     { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
     { attributes: ['large_tick_hit'], basic: false, label: { long: 'slider tick', short: 'tick' }, relevantTypes: ['single'] },
     { attributes: ['small_tick_hit', 'slider_tail_hit'], basic: false, label: { long: 'slider end', short: 'end' }, relevantTypes: ['single'] },
-    { attributes: ['small_bonus'], basic: false, label: { long: 'spinner spin', short: 'spin' }, relevantTypes: ['single'] },
     { attributes: ['large_bonus'], basic: false, label: { long: 'spinner bonus', short: 'bonus' }, relevantTypes: ['single'] },
+    { attributes: ['small_bonus'], basic: false, label: { long: 'spinner spin', short: 'spin' }, relevantTypes: ['single'] },
   ],
   taiko: [
     { attributes: ['great'], basic: true, label: { long: 'great', short: 'great' }, relevantTypes: ['leaderboard', 'single'] },
     { attributes: ['ok'], basic: true, label: { long: 'ok', short: 'ok' }, relevantTypes: ['leaderboard', 'single'] },
     { attributes: ['miss'], basic: true, label: { long: labelMiss, short: labelMiss }, relevantTypes: ['leaderboard', 'single'] },
-    { attributes: ['small_bonus'], basic: false, label: { long: 'drum tick', short: 'tick' }, relevantTypes: ['single'] },
     { attributes: ['large_bonus'], basic: false, label: { long: 'bonus', short: 'bonus' }, relevantTypes: ['single'] },
+    { attributes: ['small_bonus'], basic: false, label: { long: 'drum tick', short: 'tick' }, relevantTypes: ['single'] },
   ],
 };
 

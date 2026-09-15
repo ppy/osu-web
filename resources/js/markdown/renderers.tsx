@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { uriTransformer } from 'react-markdown';
-import { propsFromHref, timestampRegexGlobal } from 'utils/beatmapset-discussion-helper';
+import { propsFromHref, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { openBeatmapEditor, safeReactMarkdownUrl } from 'utils/url';
 
 export const LinkContext = React.createContext({ inLink: false });
@@ -40,7 +40,7 @@ export function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
 
 export function timestampDecorator(reactNode: React.ReactNode): React.ReactNode {
   if (typeof reactNode === 'string') {
-    const matches = [...reactNode.matchAll(timestampRegexGlobal)];
+    const matches = [...reactNode.matchAll(new RegExp(timestampRegex, 'g'))];
 
     if (matches.length > 0) {
       let cursor = 0;

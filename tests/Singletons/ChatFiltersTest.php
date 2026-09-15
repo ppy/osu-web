@@ -7,6 +7,7 @@ namespace Tests\Singletons;
 
 use App\Exceptions\ContentModerationException;
 use App\Models\ChatFilter;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ChatFiltersTest extends TestCase
@@ -45,9 +46,7 @@ class ChatFiltersTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider plainFilterTests
-     */
+    #[DataProvider('plainFilterTests')]
     public function testPlainFilterReplacement($input, $expectedOutput)
     {
         ChatFilter::factory()->createMany([
@@ -60,9 +59,7 @@ class ChatFiltersTest extends TestCase
         $this->assertSame($expectedOutput, $result);
     }
 
-    /**
-     * @dataProvider fullWordFilterTests
-     */
+    #[DataProvider('fullWordFilterTests')]
     public function testWhitespaceDelimitedFilterReplacement($input, $expectedOutput)
     {
         ChatFilter::factory()->createMany([
@@ -78,9 +75,7 @@ class ChatFiltersTest extends TestCase
         $this->assertSame($expectedOutput, $result);
     }
 
-    /**
-     * @dataProvider blockingFilterTests
-     */
+    #[DataProvider('blockingFilterTests')]
     public function testBlockingFilter($input)
     {
         ChatFilter::factory()->createMany([

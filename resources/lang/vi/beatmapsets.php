@@ -45,14 +45,14 @@ return [
         'full_nomination_required' => 'Bạn phải là người đề cử chính để thực hiện đề cử cuối cùng của một ruleset.',
         'hybrid_requires_modes' => 'Bạn cần chọn ít nhất một chế độ chơi trong beatmap có nhiều chế độ để đề cử.',
         'incorrect_mode' => 'Bạn không có sự cho phép để đề cử cho chế độ: :mode',
-        'invalid_limited_nomination' => 'Beatmap này có những đề cử không hợp lệ và không thể đủ tư cách trong trạng thái này.',
+        'invalid_limited_nomination' => 'Beatmap này có những đề cử không hợp lệ và không thể đủ điều kiện trong trạng thái này.',
         'invalid_ruleset' => 'Đề cử này có các ruleset không hợp lệ.',
         'too_many' => 'Yêu cầu đề cử đã được đáp ứng.',
         'too_many_non_main_ruleset' => 'Yêu cầu đề cử cho ruleset không chính đã được đáp ứng.',
 
         'dialog' => [
             'confirmation' => 'Bạn có chắc chắn muốn đề cử beatmap này không?',
-            'different_nominator_warning' => 'Việc đủ điều kiện cho beatmap này với các người đề cử khác sẽ làm reset vị trí trong hàng đợi đủ điều kiện của nó.',
+            'different_nominator_warning' => 'Việc xét đủ điều kiện cho beatmap này với những người đề cử khác sẽ đặt lại vị trí của nó trong hàng chờ xếp hạng.',
             'header' => 'Đề cử Beatmap',
             'hybrid_warning' => 'lưu ý: bạn chỉ có thể đề cử một lần, vì vậy hãy đảm bảo rằng bạn đang đề cử cho tất cả các chế độ chơi mà bạn dự định',
             'current_main_ruleset' => 'Ruleset chính hiện tại là: :ruleset',
@@ -61,7 +61,11 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '18+',
+        'label' => 'Không lành mạnh',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [
@@ -74,7 +78,7 @@ return [
 
         'deleted_banner' => [
             'title' => 'Beatmap này đã bị xoá.',
-            'message' => '(chỉ điều phối viên mới có thể thấy cái này)',
+            'message' => '(chỉ điều phối viên mới có thể thấy điều này)',
         ],
 
         'details' => [
@@ -102,8 +106,8 @@ return [
 
         'details_date' => [
             'approved' => 'được chấp nhận :timeago',
-            'loved' => 'được yêu mến :timeago',
-            'qualified' => 'đủ tư cách :timeago',
+            'loved' => 'được loved vào :timeago',
+            'qualified' => 'đủ điều kiện :timeago',
             'ranked' => 'được xếp hạng :timeago',
             'submitted' => 'được đăng :timeago',
             'updated' => 'cập nhật lần cuối :timeago',
@@ -121,13 +125,13 @@ return [
 
                 'status' => [
                     'pending' => 'đang chờ',
-                    'qualified' => 'đủ tư cách',
+                    'qualified' => 'đủ điều kiện',
                     'wip' => 'đang thực hiện',
                 ],
             ],
 
             'disqualify' => [
-                '_' => 'Nếu bạn thấy có vấn đề với bản beatmap này, vui lòng loại bỏ nó :link.',
+                '_' => 'Nếu bạn thấy có vấn đề với beatmap này, vui lòng hủy trạng thái đủ điều kiện của nó :link.',
             ],
 
             'report' => [
@@ -157,17 +161,17 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Chỉ Lazer',
+            'description' => 'Do cơ chế đặc thù, beatmap này chỉ có thể chơi được trên osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link để xem các điểm số được lập tại beatmap này.',
+                'enable_link' => 'Bật chế độ lazer',
             ],
         ],
 
         'nsfw_warning' => [
-            'details' => 'Beatmap này chứa nội dung không lành mạn, phản cảm, hoặc đáng lo ngại. Bạn có muốn xem nó không?',
+            'details' => 'Beatmap này chứa nội dung không lành mạnh, phản cảm hoặc gây khó chịu. Bạn có muốn xem nó không?',
             'title' => 'Nội dung không lành mạnh',
 
             'buttons' => [
@@ -243,8 +247,8 @@ return [
         'status' => [
             'ranked' => 'Đã được xếp hạng',
             'approved' => 'Được Chấp Nhận',
-            'loved' => 'Được yêu mến',
-            'qualified' => 'Đủ tư cách',
+            'loved' => 'Loved',
+            'qualified' => 'Đủ điều kiện',
             'wip' => 'WIP',
             'pending' => 'Đang Chờ',
             'graveyard' => 'Đắp mộ',

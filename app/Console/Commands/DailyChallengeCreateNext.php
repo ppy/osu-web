@@ -56,6 +56,7 @@ class DailyChallengeCreateNext extends Command
                     ]],
                 ],
                 [
+                    'description' => $nextQueueItem->description,
                     'starts_at' => $startTime,
                 ],
             );

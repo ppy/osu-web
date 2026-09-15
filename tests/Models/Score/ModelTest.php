@@ -8,6 +8,7 @@ namespace Tests\Models\Score;
 use App\Exceptions\ClassNotFoundException;
 use App\Models\Beatmap;
 use App\Models\Score\Model;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ModelTest extends TestCase
@@ -20,9 +21,7 @@ class ModelTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProviderForTestGetClassInvalidRuleset
-     */
+    #[DataProvider('dataProviderForTestGetClassInvalidRuleset')]
     public function testGetClassInvalidRuleset(string $ruleset)
     {
         $this->expectException(ClassNotFoundException::class);

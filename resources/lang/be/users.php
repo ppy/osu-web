@@ -230,6 +230,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змяніць фон профілю',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Ранкавана гульня',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -514,7 +525,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',
+            'label' => '',
             'total_score' => 'Усяго ачкоў',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Дакладнасць трапленняў',

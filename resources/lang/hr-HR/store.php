@@ -115,6 +115,7 @@ return [
         'shopify_expired' => 'Poveznica za naplatu za ovu narudžbu je istekla.',
         'subtotal' => '',
         'total' => '',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => '',

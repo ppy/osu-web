@@ -7,12 +7,11 @@ namespace Tests;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class OAuthClientCredentialsRequestTest extends TestCase
 {
-    /**
-     * @dataProvider botRequestingScopeDataProvider
-     */
+    #[DataProvider('botRequestingScopeDataProvider')]
     public function testBotRequestingScope($scope, $status)
     {
         $client = Client::factory()->create([
@@ -30,9 +29,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
             ->assertStatus($status);
     }
 
-    /**
-     * @dataProvider nonBotRequestingScopeDataProvider
-     */
+    #[DataProvider('nonBotRequestingScopeDataProvider')]
     public function testNonBotRequestingScope($scope, $status)
     {
         $client = Client::factory()->create();

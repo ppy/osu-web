@@ -19,7 +19,7 @@ return [
         'nav_title' => 'ocena prac',
         'no_current_vote' => 'brak głosów',
         'update' => 'zaktualizuj',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'niezapisane zmiany',
         'validation' => [
             'missing_score' => 'brak wyniku',
             'contest_vote_judged' => 'nie możesz głosować w konkursach ocenianych przez jury',

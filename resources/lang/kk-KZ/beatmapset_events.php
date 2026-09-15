@@ -61,9 +61,11 @@ return [
         'approve' => 'Қабылдауы',
         'beatmap_owner_change' => 'Нәтиже иесінің өзгертуі',
         'discussion_delete' => 'Пікірталастың жоюы',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Пікірталас жауаптың жоюы',
         'discussion_post_restore' => 'Пікірталас жауаптың қалпына келтіруі',
         'discussion_restore' => 'Пікірталас қалпына келтіруі',
+        'discussion_unlock' => '',
         'disqualify' => 'Дисквалификация',
         'genre_edit' => 'Жанр өзгертуі',
         'issue_reopen' => 'Пікірталас қайтадан ашылуы',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Квалификация',
         'rank' => 'Рейтинг беру',
         'remove_from_loved' => 'Ұнамды статусын жоюы',
+        'tags_edit' => '',
     ],
 ];

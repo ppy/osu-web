@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Markdown\Attributes;
 
+use App\Libraries\Markdown\CustomContainerInline\Element as CustomContainerInline;
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\Attributes\Node\Attributes;
 use League\CommonMark\Extension\Attributes\Node\AttributesInline;
@@ -23,15 +24,26 @@ class AttributesAllowedListener implements ConfigurationAwareInterface
     public function __invoke(DocumentParsedEvent $documentEvent): void
     {
         $attributesAllowed = $this->config->get('osu_extension/attributes_allowed');
-
+        $containerAttributesAllowed = $this->config->get('osu_extension/custom_container_attributes_allowed');
         $walker = $documentEvent->getDocument()->walker();
         while ($event = $walker->next()) {
             $node = $event->getNode();
 
             if ($node instanceof AttributesInline || (!$event->isEntering() && ($node instanceof Attributes))) {
+                // previous not null: ::foo::{ key=value }
+                // previous is null, parent is container: ::{ key=value }foo::
+                $attachedNode = $node->previous() ?? $node->parent();
                 $attributes = $node->getAttributes();
-
                 $newAttributes = [];
+
+                if ($attachedNode !== null && $attachedNode instanceof CustomContainerInline) {
+                    foreach ($containerAttributesAllowed as $key) {
+                        if (isset($attributes[$key])) {
+                            $newAttributes[$key] = $attributes[$key];
+                        }
+                    }
+                }
+
                 foreach ($attributesAllowed as $key) {
                     if (isset($attributes[$key])) {
                         $newAttributes[$key] = $attributes[$key];

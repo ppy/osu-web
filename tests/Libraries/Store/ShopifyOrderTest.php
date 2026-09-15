@@ -9,6 +9,7 @@ namespace Tests\Libraries\Store;
 
 use App\Libraries\Store\ShopifyOrder;
 use App\Models\Store\Order;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ShopifyOrderTest extends TestCase
@@ -59,14 +60,8 @@ class ShopifyOrderTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProviderForUpdateOrderStatus
-     *
-     * @param array $node
-     * @param string $expectedStatus
-     * @return void
-     */
-    public function testUpdateOrderStatus(array $node, string $expectedStatus)
+    #[DataProvider('dataProviderForUpdateOrderStatus')]
+    public function testUpdateOrderStatus(array $node, string $expectedStatus): void
     {
         $order = Order::factory()->shopify()->paymentApproved()->state(['reference' => 'gid://shopify/Cart/1'])->create();
         $shopifyOrder = new ShopifyOrder($order);

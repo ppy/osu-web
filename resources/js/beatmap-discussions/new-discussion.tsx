@@ -16,7 +16,6 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { isOwner } from 'utils/beatmap-helper';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
@@ -59,6 +58,10 @@ export class NewDiscussion extends React.Component<Props> {
 
   private get beatmapset() {
     return this.props.discussionsState.beatmapset;
+  }
+
+  private get canPostNote() {
+    return this.props.discussionsState.canPostNote(this.currentBeatmap, this.currentMode);
   }
 
   private get currentBeatmap() {
@@ -285,12 +288,6 @@ export class NewDiscussion extends React.Component<Props> {
       && this.beatmapset.can_be_hyped
       && this.currentMode === 'generalAll';
 
-    const canPostNote = core.currentUser != null
-        && (core.currentUser.id === this.beatmapset.user_id
-          || (isOwner(core.currentUser.id, this.currentBeatmap) && ['general', 'timeline'].includes(this.currentMode))
-          || core.currentUser.is_bng
-          || canModeratePosts());
-
     const buttonCssClasses = classWithModifiers('btn-circle', { activated: this.pinned });
 
     return (
@@ -324,7 +321,7 @@ export class NewDiscussion extends React.Component<Props> {
           {this.renderHype()}
           <div className={`${bn}__footer-content ${bn}__footer-content--right`}>
             {canHype && this.submitButton('hype')}
-            {canPostNote && this.submitButton('mapper_note')}
+            {this.canPostNote && this.submitButton('mapper_note')}
             {this.submitButton('praise')}
             {this.submitButton('suggestion')}
             {this.submitButton('problem')}

@@ -64,6 +64,10 @@ return [
         'label' => 'Sopimaton',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Keskustelu',
 

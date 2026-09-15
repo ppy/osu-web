@@ -181,7 +181,7 @@ return [
             'restricted' => 'Não é possível alterar seu nome de usuário enquanto estiver em modo restrito.',
             'supporter_required' => [
                 '_' => 'Você precisa ser um :link para mudar seu nome de usuário!',
-                'link_text' => 'osu!supporter',
+                'link_text' => 'ajudou o osu!',
             ],
             'username_is_same' => 'Este já é seu nome de usuário, bobinho!',
         ],

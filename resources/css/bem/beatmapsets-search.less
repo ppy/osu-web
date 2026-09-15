@@ -89,17 +89,18 @@
       width: @_icon-width--sticky + 20px;
     }
 
-    &--tags {
+    &--active {
+      color: hsl(var(--hsl-c1));
+    }
+
+    &--button {
       .reset-input();
+      .link-plain();
       cursor: pointer;
 
       &:hover {
         color: hsl(var(--hsl-c1));
       }
-    }
-
-    &--active {
-      color: hsl(var(--hsl-c1));
     }
   }
 
@@ -134,14 +135,15 @@
       border-color: hsl(var(--hsl-c1));
     }
 
-    @media @desktop {
-      margin-left: -10px;
-      margin-right: $margin-left;
-    }
-
     .@{_top}--sticky & {
       font-size: @font-size--normal-2;
       margin: 5px 0;
     }
+  }
+
+  &__input-container-label {
+    display: contents;
+    font-size: inherit;
+    font-weight: inherit;
   }
 }

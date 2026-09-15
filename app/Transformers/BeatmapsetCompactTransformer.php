@@ -313,7 +313,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $json = [];
 
         foreach ($tagIdSet as $tagId) {
-            $tag = $cachedTags->get($tagId);
+            $tag = $cachedTags->getJson($tagId);
             if ($tag !== null) {
                 $json[] = $tag;
             }

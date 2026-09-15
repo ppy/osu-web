@@ -251,11 +251,11 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)。',
+                'beatmapset_disqualify' => '谱面 ":title" 已下架 (DQ)',
                 'beatmapset_love' => '谱面 ":title" 已推荐进入社区喜爱 (Loved)',
-                'beatmapset_nominate' => '谱面 ":title" 已提名。',
+                'beatmapset_nominate' => '谱面 ":title" 已提名',
                 'beatmapset_qualify' => '谱面 ":title" 已经得到足够数量的提名，并进入上架队列',
-                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)。',
+                'beatmapset_rank' => '谱面 ":title" 已上架 (Ranked)',
                 'beatmapset_remove_from_loved' => '谱面 ":title" 已移出社区喜爱 (Loved)',
                 'beatmapset_reset_nominations' => '谱面 ":title" 的提名已重置',
             ],

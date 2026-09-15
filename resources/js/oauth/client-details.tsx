@@ -19,15 +19,8 @@ interface Props {
   client: Client;
 }
 
-interface State {
-  [key: string]: unknown;
-
-  isSecretVisible: boolean;
-  redirect: string;
-}
-
 @observer
-export class ClientDetails extends React.Component<Props, State> {
+export class ClientDetails extends React.Component<Props> {
   private readonly errors = new FormErrors();
   @observable private isSecretVisible = false;
   @observable private redirect = this.props.client.redirect.replace(/,/g, '\r\n');

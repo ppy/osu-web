@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Silinmiş mesajlar',
             'total_posts' => 'Toplam Mesaj',
-            'total_watches' => '',
+            'total_watches' => 'Toplam Aboneler',
 
             'feature_vote' => [
                 'current' => 'Mevcut Öncelik: +:count',

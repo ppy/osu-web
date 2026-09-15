@@ -5,8 +5,9 @@
 
 namespace App\Providers;
 
-use App\Hashing\OsuBcryptHasher;
 use App\Libraries\MorphMap;
+use App\Libraries\OAuth\BridgeClientRepository;
+use App\Libraries\OAuth\BridgeScopeRepository;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
 use App\Libraries\RateLimiter;
@@ -19,6 +20,8 @@ use Knuckles\Scribe\Scribe;
 use Laravel\Octane\Contracts\DispatchesTasks;
 use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
+use Laravel\Passport\Bridge\ClientRepository as PassportBridgeClientRepository;
+use Laravel\Passport\Bridge\ScopeRepository as PassportBridgeScopeRepository;
 use Queue;
 use Swoole\Http\Server;
 
@@ -80,8 +83,6 @@ class AppServiceProvider extends ServiceProvider
         // newest scribe tries to rename {modelName} parameters to {id}
         // but it kind of doesn't work with our route handlers.
         Scribe::normalizeEndpointUrlUsing(fn ($url) => $url);
-
-        \Hash::extend('osubcrypt', fn () => new OsuBcryptHasher());
     }
 
     /**
@@ -124,6 +125,9 @@ class AppServiceProvider extends ServiceProvider
             DispatchesTasks::class,
             fn ($app) => $app->bound(Server::class) ? new SwooleTaskDispatcher() : new SequentialTaskDispatcher()
         );
+
+        $this->app->bind(PassportBridgeClientRepository::class, BridgeClientRepository::class);
+        $this->app->bind(PassportBridgeScopeRepository::class, BridgeScopeRepository::class);
 
         $env = $this->app->environment();
         if ($env === 'testing' || $env === 'dusk.local') {

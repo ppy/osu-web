@@ -13,6 +13,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 use Event;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 
 class BeatmapsetDisqualifyNotificationsTest extends TestCase
@@ -65,9 +66,7 @@ class BeatmapsetDisqualifyNotificationsTest extends TestCase
             $event->notification->name === Notification::BEATMAPSET_DISQUALIFY && $this->assertReceivers($event, $this->user));
     }
 
-    /**
-     * @dataProvider booleanDataProvider
-     */
+    #[DataProvider('booleanDataProvider')]
     public function testNotificationSentWithPushNotificationDeliveryOption($pushEnabled)
     {
         $this->beatmapset->watches()->create(['user_id' => $this->user->getKey()]);

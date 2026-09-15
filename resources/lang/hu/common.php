@@ -76,7 +76,7 @@ return [
         'minutes' => ':count_delimited perc |:count_delimited percek',
         'months' => ':count_delimited hónap|:count_delimited hónap',
         'notifications' => ':count_delimited értesítés|:count_delimited értesítések',
-        'player' => '',
+        'player' => ':count_delimited játékos|:count_delimited játékosok',
         'plus_others' => '+ :count_delimited más!|+ :count_delimited mások!',
         'post' => ':count_delimited hozzászólás|:count_delimited hozzászólás',
         'second_short_unit' => 'mp|mp',
@@ -95,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'hó',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'é',
         ],
         'year_month' => [
             'moment' => 'YYYY MMMM',

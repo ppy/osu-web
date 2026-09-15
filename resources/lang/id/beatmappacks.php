@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'oleh :author',
         'download' => 'Unduh',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'sudah dituntaskan',
             'not_cleared' => 'belum dituntaskan',

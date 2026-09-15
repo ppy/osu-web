@@ -52,7 +52,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => 'seleções de música',
+            'playlists' => 'playlists',
             'ranked-play' => 'competitivo',
             'realtime' => 'multiplayer',
             'show' => 'info',
@@ -196,15 +196,15 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configurações',
-            'create_team' => '',
-            'follows' => 'Observações',
+            'create_team' => 'Criar equipe',
+            'follows' => 'Listas de observação',
             'friends' => 'Amigos',
             'legacy_score_only_toggle' => 'Modo Lazer',
-            'legacy_score_only_toggle_tooltip' => 'Modo Lazer mostra as pontuações definidas pelo lazer com um novo algoritmo de pontuação',
+            'legacy_score_only_toggle_tooltip' => 'O Modo Lazer mostra as pontuações definidas no lazer com um novo algoritmo de pontuação',
             'logout' => 'Desconectar',
             'profile' => 'Meu Perfil',
             'scoring_mode_toggle' => 'Pontuação clássica',
-            'scoring_mode_toggle_tooltip' => 'Ajuste o valor das pontuações para parecerem  uma pontuação ilimitada clássica',
+            'scoring_mode_toggle_tooltip' => 'Ajusta o valor das pontuações para se aproximar da pontuação ilimitada clássica',
             'team' => 'Minha equipe',
         ],
     ],

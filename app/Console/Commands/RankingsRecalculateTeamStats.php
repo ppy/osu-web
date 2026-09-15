@@ -27,7 +27,7 @@ class RankingsRecalculateTeamStats extends Command
         $teams = Team::chunkById(100, function ($teamChunk) {
             foreach ($teamChunk as $team) {
                 foreach (Beatmap::MODES as $rulesetId) {
-                    TeamStatistics::createOrFirst([
+                    TeamStatistics::firstOrCreate([
                         'team_id' => $team->getKey(),
                         'ruleset_id' => $rulesetId,
                     ])->recalculate();

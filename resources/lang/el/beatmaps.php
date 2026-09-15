@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'εισαγωγή παραγράφου',
                 'praise' => 'insert praise',
                 'problem' => 'πρόβλημα εισαγωγής',

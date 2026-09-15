@@ -24,10 +24,7 @@ class ArtistTrackSearch extends RecordSearch
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         $query = new BoolQuery();
 

@@ -7,6 +7,7 @@ namespace Tests;
 
 use App;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class LocaleTest extends TestCase
 {
@@ -69,17 +70,13 @@ class LocaleTest extends TestCase
         $this->assertSame('', osu_trans('key_1.empty_missing'));
     }
 
-    /**
-     * @dataProvider availableLocalesProvider
-     */
+    #[DataProvider('availableLocalesProvider')]
     public function testCorrespondingLocaleFile($locale)
     {
         $this->assertNotNull(unmix("js/locales/{$locale}.js"));
     }
 
-    /**
-     * @dataProvider availableLocalesProvider
-     */
+    #[DataProvider('availableLocalesProvider')]
     public function testCorrespondingMomentLocaleFile($locale)
     {
         $this->assertNotNull(unmix('js/moment-locales/'.locale_meta($locale)->moment().'.js'));

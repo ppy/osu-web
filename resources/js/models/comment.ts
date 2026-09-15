@@ -82,7 +82,6 @@ export default class Comment {
     return !meta.locked;
   }
 
-  @computed
   get canHaveVote() {
     return !this.isDeleted;
   }
@@ -137,12 +136,10 @@ export default class Comment {
     return !this.isOwner;
   }
 
-  @computed
   get isDeleted() {
     return this.deletedAt != null;
   }
 
-  @computed
   get isEdited() {
     return this.editedAt != null;
   }

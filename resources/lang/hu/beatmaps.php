@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid_ruleset' => '',
+    'invalid_ruleset' => 'Érvénytelen mód megadva.',
 
     'change_owner' => [
-        'too_many' => '',
+        'too_many' => 'Túl sok vendég mapper.',
     ],
 
     'discussion-votes' => [
@@ -26,7 +26,7 @@ return [
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
         'guest' => 'Vendég nehézséget készítette: :user',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
-        'include_replies' => '',
+        'include_replies' => 'Tartalmazza a válaszokat',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
         'message_placeholder_silenced' => "Nem hozhatsz létre beszélgetést, amíg némítva vagy.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Megoldott',
         'restore' => 'visszaállítás',
         'show_deleted' => 'Töröltek megjelenítése',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Más válaszok mutatása',
         'title' => 'Megbeszélések',
         'unresolved_count' => ':count_delimited megoldatlan probléma|:count_delimited megoldatlan probléma',
 
@@ -90,7 +90,7 @@ return [
 
         'message_type_title' => [
             'disqualify' => 'Diszkvalifikáció posztolása',
-            'hype' => 'Hype! posztolása',
+            'hype' => 'Hype posztolása',
             'mapper_note' => 'Jegyzet posztolása',
             'nomination_reset' => 'Összes nominálás eltávolítása',
             'praise' => 'Dicséret posztolása',
@@ -128,14 +128,15 @@ return [
                 'unsaved' => 'Mentetlen',
                 'timestamp' => [
                     'all-diff' => 'A "Minden nehézség" alatti hozzászólásokat nem lehet időbélyegezni.',
-                    'diff' => 'Ha :type típussal fog kezdődni, akkor az idővonal alatt fog megjelenni.',
+                    'diff' => 'Ha a poszt időbélyeggel kezdődik, az Idővonal alatt fog megjelenni.',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => 'Bekezdés beszúrása',
-                'praise' => 'Dícséret beszúrása',
-                'problem' => 'Probléma beszúrása',
-                'suggestion' => 'Javaslat beszúrása',
+                'mapper_note' => '',
+                'paragraph' => 'bekezdés beszúrása',
+                'praise' => 'dicséret beszúrása',
+                'problem' => 'probléma beszúrása',
+                'suggestion' => 'javaslat beszúrása',
             ],
         ],
 
@@ -247,7 +248,7 @@ return [
             'prompt' => 'írj kulcsszavakat...',
             'login_required' => 'Jelentkezz be a kereséshez.',
             'options' => 'További Keresési Beállítások',
-            'rank_filter_note' => '',
+            'rank_filter_note' => 'Az ezen az oldalon megjelenő profilbeli ranglistás helyezések és eredmények a beatmapeken elért legmagasabb „standardizált” (más néven „lazer”) pontszámaidon alapulnak.',
             'supporter_filter' => ':filters általi szűrés aktív osu!supporter cím-et igényel',
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
@@ -279,8 +280,8 @@ return [
                 'link_text' => 'osu!supporter cím',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'felhasználói címkék böngészése',
+                'prompt' => 'írj a kereséshez',
             ],
         ],
     ],

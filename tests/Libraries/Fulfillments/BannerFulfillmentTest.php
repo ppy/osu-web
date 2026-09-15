@@ -20,6 +20,12 @@ use Tests\TestCase;
 
 class BannerFulfillmentTest extends TestCase
 {
+    private Country $country;
+    private Order $order;
+    private ?Product $product;
+    private Tournament $tournament;
+    private User $user;
+
     private function findOrSeed()
     {
         // TODO: factory that creates related items properly? or just use fixtures.

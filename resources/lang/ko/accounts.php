@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => '참여하고 있는 비트맵 토론에 답변이 달렸을 때 알림 받기',
         'beatmapset_discussion_qualified_problem' => 'Qualified 비트맵에 문제가 생길 경우 알림을 수신할 모드',
         'beatmapset_disqualify' => '비트맵이 Disqualified 처리됐을 때 알림을 수신할 모드',
         'comment_reply' => '댓글에 답글이 달리면 알림 받기',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => '기본 게임 모드',
         'keyboard' => '키보드',
         'mouse' => '마우스',
         'tablet' => '태블릿',

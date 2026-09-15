@@ -61,9 +61,11 @@ return [
         'approve' => '批准',
         'beatmap_owner_change' => '難度作者變更',
         'discussion_delete' => '刪除討論',
+        'discussion_lock' => '',
         'discussion_post_delete' => '刪除討論的回覆',
         'discussion_post_restore' => '討論回覆還原',
         'discussion_restore' => '還原已刪除的討論',
+        'discussion_unlock' => '',
         'disqualify' => '取消資格',
         'genre_edit' => '編輯曲風',
         'issue_reopen' => '重審問題',
@@ -83,5 +85,6 @@ return [
         'qualify' => '合格',
         'rank' => '進榜',
         'remove_from_loved' => '移除社群喜愛',
+        'tags_edit' => '',
     ],
 ];

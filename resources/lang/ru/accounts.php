@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'получать уведомления об ответах в обсуждениях карт, в которых я участвую',
         'beatmapset_discussion_qualified_problem' => 'получать уведомления о новых проблемах с квалифицированными картами у следующих режимов',
         'beatmapset_disqualify' => 'получать уведомления о дисквалификации карт у следующих режимов',
         'comment_reply' => 'получать уведомления об ответах на мои комментарии',
@@ -135,7 +135,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'основной режим игры',
         'keyboard' => 'клавиатура',
         'mouse' => 'мышь',
         'tablet' => 'графический планшет',

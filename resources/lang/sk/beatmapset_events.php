@@ -61,9 +61,11 @@ return [
         'approve' => 'Schválenie',
         'beatmap_owner_change' => 'Zmena majiteľa obtiažnosti ',
         'discussion_delete' => 'Odstránenie diskusie',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Odstránenie odpovedi diskusie',
         'discussion_post_restore' => 'Obnovenie odpovedi diskusie',
         'discussion_restore' => 'Obnovenie diskusie',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikácia',
         'genre_edit' => 'Úprava žáneru',
         'issue_reopen' => 'Znovuotvorenie diskusie',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikácia',
         'rank' => 'Hodnotenie',
         'remove_from_loved' => 'Odstránenie z Loved',
+        'tags_edit' => '',
     ],
 ];

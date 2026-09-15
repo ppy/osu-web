@@ -16,6 +16,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use Bus;
 use Database\Factories\BeatmapsetFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ModdingRankCommandTest extends TestCase
@@ -32,9 +33,7 @@ class ModdingRankCommandTest extends TestCase
         Bus::assertNotDispatched(BeatmapsetRank::class);
     }
 
-    /**
-     * @dataProvider rankDataProvider
-     */
+    #[DataProvider('rankDataProvider')]
     public function testRank(int $qualifiedDaysAgo, int $expected): void
     {
         $this->beatmapset([Ruleset::osu], $qualifiedDaysAgo)->create();
@@ -47,9 +46,7 @@ class ModdingRankCommandTest extends TestCase
         Bus::assertDispatchedTimes(BeatmapsetRank::class, $expected);
     }
 
-    /**
-     * @dataProvider rankHybridDataProvider
-     */
+    #[DataProvider('rankHybridDataProvider')]
     public function testRankHybrid(array $beatmapsetRulesets, array $expectedCounts): void
     {
         foreach ($beatmapsetRulesets as $rulesets) {

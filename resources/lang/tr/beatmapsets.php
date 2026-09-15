@@ -64,6 +64,10 @@ return [
         'label' => 'Müstehcen',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Tartışma',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Sadece Lazer İçin',
+            'description' => 'Belirli mekaniklerden dolayı bu beatmap sadece osu!lazer\'de oynanabilir.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => 'Skorları görebilmek için :enable_link',
+                'enable_link' => 'Lazer modunu etkinleştir',
             ],
         ],
 

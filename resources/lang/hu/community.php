@@ -37,7 +37,7 @@ return [
                 'link_text' => 'Bajnokságok felfedezése &raquo;',
             ],
             'bounty-program' => [
-                'title' => 'Nyílt forrású bounty program',
+                'title' => 'Nyílt forráskódú bounty program',
                 'description' => 'Támogasd a közösségi közreműködőket, akik idejükkel és erőfeszítéseikkel teszik jobbá az osu!-t.',
                 'link_text' => 'Tudj meg többet &raquo;',
             ],
@@ -139,14 +139,14 @@ Ha támogató vagy, ez megnövekszik :supporter_base plusz :supporter_bonus rang
 
         ],
         'supporter_status' => [
-            'contribution_with_duration' => '',
+            'contribution_with_duration' => 'Köszönjük a folyamatos támogatásodat! Eddig összesen :dollars összeggel járultál hozzá, amiért :duration időtartamra megkaptad a „Támogató” címkét.',
             'not_yet' => "Még nincsen támogatói címed :(",
             'valid_until' => 'A jelenlegi támogatói címed eddig érvényes: :date!',
             'was_valid_until' => 'A támogatói címed eddig volt érvényes: :date.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Az összes hozzájárulásodból :dollars értékű címkét ajándékoztál :users nak/nek, :duration időtartamra. Ez hihetetlenül nagylelkű tőled!',
+                'users' => ':count_delimited másik felhasználó|:count_delimited más felhasználók',
             ],
         ],
     ],

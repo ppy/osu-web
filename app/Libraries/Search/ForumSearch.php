@@ -42,10 +42,7 @@ class ForumSearch extends Search
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         $query = (new BoolQuery())
             ->filter(['terms' => ['forum_id' => $this->params->filteredForumIds()]]);

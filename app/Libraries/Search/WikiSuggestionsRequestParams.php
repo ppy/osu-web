@@ -5,6 +5,8 @@
 
 namespace App\Libraries\Search;
 
+use App\Libraries\LocaleMeta;
+
 class WikiSuggestionsRequestParams extends WikiSuggestionsParams
 {
     public function __construct(array $request)
@@ -12,5 +14,6 @@ class WikiSuggestionsRequestParams extends WikiSuggestionsParams
         parent::__construct();
 
         $this->queryString = trim(get_string($request['query'] ?? null) ?? '');
+        $this->locale = LocaleMeta::sanitizeCode(get_string($request['locale'] ?? null));
     }
 }

@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Все',
         'label' => 'По пользователям',
-        'multiple' => '',
+        'multiple' => 'Выбран :count_delimited пользователь|Выбрано :count_delimited пользователя|Выбрано :count_delimited пользователей',
     ],
 ];

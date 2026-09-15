@@ -8,13 +8,12 @@ namespace Tests\Libraries\Search;
 use App\Exceptions\InvariantException;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetSearchRequestParamsTest extends TestCase
 {
-    /**
-     * @dataProvider cursorsDataProvider
-     */
+    #[DataProvider('cursorsDataProvider')]
     public function testCursors(?string $sort, ?array $cursor, bool $throws, ?array $expected)
     {
         $requestParams = [];
@@ -36,9 +35,7 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
         $this->assertSame($expected, $searchAfter);
     }
 
-    /**
-     * @dataProvider cursorsGuestDataProvider
-     */
+    #[DataProvider('cursorsGuestDataProvider')]
     public function testCursorsGuest(?string $sort, ?array $cursor, bool $throws, ?array $expected)
     {
         $requestParams = [];

@@ -64,6 +64,10 @@ return [
         'label' => 'Explicitné',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Diskusia',
 

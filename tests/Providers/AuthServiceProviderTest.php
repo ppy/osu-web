@@ -13,15 +13,14 @@ use App\Http\Controllers\Passport\AuthorizationController;
 use Laravel\Passport\Http\Controllers\AccessTokenController;
 use Laravel\Passport\Http\Controllers\ApproveAuthorizationController;
 use Laravel\Passport\Http\Controllers\DenyAuthorizationController;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Request;
 use Route;
 use Tests\TestCase;
 
 class AuthServiceProviderTest extends TestCase
 {
-    /**
-     * @dataProvider oauthRoutesRegisteredDataProvider
-     */
+    #[DataProvider('oauthRoutesRegisteredDataProvider')]
     public function testOAuthRoutesRegistered($url, $method, $uses)
     {
         $route = Route::getRoutes()->match(Request::create($url, $method));

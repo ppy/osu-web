@@ -7,6 +7,7 @@ namespace Tests\Singletons;
 
 use App\Enums\Ruleset;
 use App\Exceptions\InvariantException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ModsTest extends TestCase
@@ -76,9 +77,7 @@ class ModsTest extends TestCase
         app('mods')->validateSelection(-1, []);
     }
 
-    /**
-     * @dataProvider modComboExclusives
-     */
+    #[DataProvider('modComboExclusives')]
     public function testAssertValidExclusivity(Ruleset $ruleset, $mods, $isValid)
     {
         if (!$isValid) {
@@ -90,9 +89,7 @@ class ModsTest extends TestCase
         $result = app('mods')->assertValidExclusivity($ruleset->value, $mods);
     }
 
-    /**
-     * @dataProvider multiplayerModComboExclusives
-     */
+    #[DataProvider('multiplayerModComboExclusives')]
     public function testAssertValidMultiplayerExclusivity(Ruleset $ruleset, $requiredIds, $allowedIds, $isValid)
     {
         if (!$isValid) {
@@ -104,9 +101,7 @@ class ModsTest extends TestCase
         app('mods')->assertValidMultiplayerExclusivity($ruleset->value, $requiredIds, $allowedIds);
     }
 
-    /**
-     * @dataProvider modCombos
-     */
+    #[DataProvider('modCombos')]
     public function testValidateSelection(Ruleset $ruleset, $modCombo, $isValid)
     {
         if (!$isValid) {

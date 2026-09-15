@@ -145,7 +145,7 @@ return [
 
             'gifted' => [
                 '_' => '',
-                'users' => '',
+                'users' => ':count_delimited diğer kullanıcı|:count_delimited diğer kullanıcı',
             ],
         ],
     ],

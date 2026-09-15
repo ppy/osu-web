@@ -137,7 +137,7 @@ return [
         'word_not_allowed' => ':attribute non utilizzabile.',
 
         'attributes' => [
-            'default_ruleset_id' => 'Modalità di gioco principale',
+            'default_ruleset_id' => 'Modalità principale',
             'is_open' => 'Richieste di partecipazione',
             'name' => 'Nome',
             'short_name' => 'Sigla',

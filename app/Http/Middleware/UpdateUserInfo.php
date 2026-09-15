@@ -8,7 +8,6 @@ namespace App\Http\Middleware;
 use App\Libraries\SessionVerification;
 use App\Models\Country;
 use App\Models\UserCountryHistory;
-use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
@@ -81,7 +80,7 @@ class UpdateUserInfo
                 'name' => presence($country?->name) ?? 'Unknown',
             ],
             'ip' => $request->ip(),
-            'last_visit' => Carbon::now(),
+            'last_visit' => time(),
         ]);
     }
 }

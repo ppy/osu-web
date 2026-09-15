@@ -64,6 +64,10 @@ return [
         'label' => '成人內容',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => '討論',
 
@@ -157,12 +161,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => '只限於 lazer 遊玩',
+            'description' => '由於技術關係，此圖譜只限在 osu!lazer 遊玩。',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => '若要檢視這個圖譜的成績，請:enable_link。',
+                'enable_link' => 'lazer模式',
             ],
         ],
 

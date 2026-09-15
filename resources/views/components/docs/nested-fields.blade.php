@@ -27,6 +27,7 @@
                           'fullName' => $subfield['name'],
                           'type' => $subfield['type'] ?? 'string',
                           'required' => $subfield['required'] ?? false,
+                          'deprecated' => $subfield['deprecated'],
                           'description' => $subfield['description'] ?? '',
                           // TODO: show correct example (from $subfield['example'])
                           'example' => '',
@@ -48,6 +49,7 @@
                   'fullName' => $field['name'],
                   'type' => $field['type'] ?? 'string',
                   'required' => $field['required'] ?? false,
+                  'deprecated' => $field['deprecated'],
                   'description' => $field['description'] ?? '',
                   // TODO: show correct example (from $subfield['example'])
                   'example' => '',
@@ -70,6 +72,7 @@
                           'fullName' => $subfield['name'],
                           'type' => $subfield['type'] ?? 'string',
                           'required' => $subfield['required'] ?? false,
+                          'deprecated' => $subfield['deprecated'],
                           'description' => $subfield['description'] ?? '',
                           // TODO: show correct example (from $subfield['example'])
                           'example' => '',
@@ -91,6 +94,7 @@
               'fullName' => $field['name'],
               'type' => $field['type'] ?? 'string',
               'required' => $field['required'] ?? false,
+              'deprecated' => $field['deprecated'],
               'description' => $field['description'] ?? '',
               // TODO: show correct example (from $subfield['example'])
               'example' => '',

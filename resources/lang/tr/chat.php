@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'kullanıcılar yükleniyor...',
-    'searching_users' => '',
+    'searching_users' => 'kullanıcılar aranıyor...',
     'talking_in' => ':channel kanalında konuşuyorsunuz',
     'talking_with' => ':name ile konuşuyorsunuz',
     'title_compact' => 'sohbet',
@@ -52,7 +52,7 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
+        'message' => 'Kanaldaki mesajları görebilmek için kanala katıl.',
         'join' => 'Kanala Katıl',
     ],
 

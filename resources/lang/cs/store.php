@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Odkaz na objednávku pro tuto objednávku vypršel.',
         'subtotal' => 'Mezisoučet',
         'total' => 'Celkem',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Objednávka č.',

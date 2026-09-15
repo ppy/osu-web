@@ -64,6 +64,10 @@ return [
         'label' => 'Explícito',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'Discussão',
 
@@ -146,28 +150,28 @@ return [
             'nominators' => 'Nominadores',
             'nsfw' => 'Conteúdo explícito',
             'offset' => 'Atraso de áudio online',
-            'pack_tags' => 'Pacotes de Beatmap',
+            'pack_tags' => 'Pacotes de beatmap',
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém storyboard',
             'success-rate' => 'Taxa de Sucesso',
-            'success_rate_plays' => ':passes da :count_delimited jogada├:passes das :count_delimited jogadas',
+            'success_rate_plays' => ':passes de :count_delimited jogada|:passes de :count_delimited jogadas',
             'user_tags' => 'Tags de Usuários',
             'video' => 'Esse beatmap contém vídeo',
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Apenas Lazer',
+            'description' => 'Devido a mecânicas específicas, este beatmap somente pode ser jogado no osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link para ver as pontuações deste beatmap.',
+                'enable_link' => 'Ativar Modo Lazer',
             ],
         ],
 
         'nsfw_warning' => [
-            'details' => 'Este beatmap contém conteúdo explícito, ofensivo ou perturbador. Você gostaria de visualizá-lo mesmo assim?',
+            'details' => 'Este beatmap contém conteúdo explícito, ofensivo ou perturbador. Você gostaria de vê-lo mesmo assim?',
             'title' => 'Conteúdo explícito',
 
             'buttons' => [

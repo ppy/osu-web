@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Všichni',
         'label' => 'Filtrovat dle uživatele',
-        'multiple' => '',
+        'multiple' => ':count_delimited uživatel vybrán|:count_delimited uživatelé vybráni|:count_delimited uživatelů vybráno',
     ],
 ];

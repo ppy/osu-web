@@ -231,6 +231,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغيير صورة الغلاف',
@@ -476,7 +480,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'اللعب المصنّف',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -515,7 +526,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => '',
+            'label' => '',
             'total_score' => 'إجمالي النقاط',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',

@@ -9,9 +9,13 @@ import { navigate } from 'utils/turbolinks';
 import { wikiUrl } from 'utils/url';
 import { WikiSearchController } from 'wiki-search-controller';
 
+interface Props {
+  locale: string;
+}
+
 @observer
-export class WikiSearch extends React.Component {
-  private readonly controller = new WikiSearchController();
+export class WikiSearch extends React.Component<Props> {
+  private readonly controller = new WikiSearchController(this.props.locale);
   private readonly ref = React.createRef<HTMLDivElement>();
   private readonly selectedRef = React.createRef<HTMLAnchorElement>();
 
@@ -32,7 +36,7 @@ export class WikiSearch extends React.Component {
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.controller.updateQuery(event.target.value);
+    this.controller.updateQuery(event.target.value, this.props.locale);
   };
 
   handleEsc = (e: KeyboardEvent) => {
@@ -48,7 +52,7 @@ export class WikiSearch extends React.Component {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        navigate(wikiUrl(this.controller.selectedItem.path));
+        navigate(wikiUrl(this.controller.selectedItem.path, this.controller.selectedItem.locale));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       e.preventDefault();
@@ -104,7 +108,7 @@ export class WikiSearch extends React.Component {
                 ref={active ? this.selectedRef : undefined}
                 className={classWithModifiers('wiki-search__suggestion', { active })}
                 data-index={index}
-                href={wikiUrl(item.path)}
+                href={wikiUrl(item.path, item.locale)}
               >
                 <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
               </a>

@@ -61,9 +61,11 @@ return [
         'approve' => '승인',
         'beatmap_owner_change' => '난이도 주인 변경',
         'discussion_delete' => '토론 삭제',
+        'discussion_lock' => '',
         'discussion_post_delete' => '토론 답글 삭제',
         'discussion_post_restore' => '토론 답글 복원',
         'discussion_restore' => '토론 복원',
+        'discussion_unlock' => '',
         'disqualify' => 'Disqualification',
         'genre_edit' => '장르 수정',
         'issue_reopen' => '토론 재개',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Qualification',
         'rank' => '랭크',
         'remove_from_loved' => 'Loved 상태 제거',
+        'tags_edit' => '',
     ],
 ];

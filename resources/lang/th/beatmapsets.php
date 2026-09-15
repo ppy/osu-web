@@ -64,6 +64,10 @@ return [
         'label' => 'ไม่เหมาะสม',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'การสนทนา',
 

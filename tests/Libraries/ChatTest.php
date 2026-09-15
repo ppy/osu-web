@@ -19,14 +19,13 @@ use App\Models\UserNotificationOption;
 use Event;
 use Exception;
 use Mail;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 use Tests\TestCase;
 
 class ChatTest extends TestCase
 {
-    /**
-     * @dataProvider createAnnouncementApiDataProvider
-     */
+    #[DataProvider('createAnnouncementApiDataProvider')]
     public function testCreateAnnouncementApi(?string $group, bool $isApiRequest, bool $isAllowed)
     {
         $sender = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -81,9 +80,7 @@ class ChatTest extends TestCase
         Mail::assertSent(UserNotificationDigest::class);
     }
 
-    /**
-     * @dataProvider minPlaysDataProvider
-     */
+    #[DataProvider('minPlaysDataProvider')]
     public function testMinPlaysSendMessage(?string $groupIdentifier, bool $hasMinPlays, bool $successful)
     {
         config_set('osu.user.min_plays_allow_verified_bypass', false);
@@ -106,9 +103,7 @@ class ChatTest extends TestCase
         Chat::sendMessage($sender, $channel, 'test', false);
     }
 
-    /**
-     * @dataProvider minPlaysDataProvider
-     */
+    #[DataProvider('minPlaysDataProvider')]
     public function testMinPlaysSendPM(?string $groupIdentifier, bool $hasMinPlays, bool $successful)
     {
         config_set('osu.user.min_plays_allow_verified_bypass', false);
@@ -135,9 +130,7 @@ class ChatTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider verifiedDataProvider
-     */
+    #[DataProvider('verifiedDataProvider')]
     public function testSendMessage(bool $verified, ?string $expectedException)
     {
         $sender = User::factory()->create();
@@ -234,9 +227,7 @@ class ChatTest extends TestCase
         $this->assertInstanceOf(Channel::class, Channel::findPM($sender, $target));
     }
 
-    /**
-     * @dataProvider sendPmFriendsOnlyGroupsDataProvider
-     */
+    #[DataProvider('sendPmFriendsOnlyGroupsDataProvider')]
     public function testSendPMFriendsOnly(?string $groupIdentifier, bool $successful)
     {
         $sender = User::factory()->withGroup($groupIdentifier)->create();
@@ -266,9 +257,7 @@ class ChatTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider sendPmSenderFriendsOnlyGroupsDataProvider
-     */
+    #[DataProvider('sendPmSenderFriendsOnlyGroupsDataProvider')]
     public function testSendPmSenderFriendsOnly(?string $groupIdentifier)
     {
         $sender = User::factory()->withGroup($groupIdentifier)->create(['pm_friends_only' => true]);

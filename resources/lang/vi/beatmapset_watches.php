@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Đây là những cuộc thảo luận beatmap mà bạn đang theo dõi. Bạn sẽ được thông báo khi bài viết mới được đăng hoặc những cập nhật.',
+        'description' => 'Đây là các cuộc thảo luận về beatmap mà bạn đang theo dõi. Bạn sẽ nhận được thông báo khi có bài đăng hoặc cập nhật mới.',
         'title_compact' => 'danh sách theo dõi modding',
 
         'counts' => [

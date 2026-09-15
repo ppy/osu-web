@@ -27,7 +27,7 @@ return [
         'group' => 'Grupė',
         'group_all' => 'Visos grupės',
         'max_date' => 'Į',
-        'min_date' => '',
+        'min_date' => 'Nuo',
         'user' => 'Naudotojas',
         'user_prompt' => 'Slapyvardis arba ID',
     ],

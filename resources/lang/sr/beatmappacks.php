@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => '',
         'download' => 'Скините',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'очишћено',
             'not_cleared' => 'није очишћено',

@@ -28,16 +28,16 @@ return [
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
             'mode' => 'Chế độ Beatmap',
             'only_unresolved' => 'Chỉ hiện các cuộc thảo luận chưa được giải quyết',
-            'show_review_embeds' => 'Hiển thị các bài viết đánh giá',
+            'show_review_embeds' => 'Hiển thị các bài đăng đánh giá',
             'types' => 'Kiểu tin nhắn',
             'username' => 'Tên người dùng',
 
             'beatmapset_status' => [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
-                'disqualified' => 'Không đủ tư cách',
-                'never_qualified' => 'Không bao giờ đủ tư cách',
-                'qualified' => 'Đủ tư cách',
+                'disqualified' => 'Disqualified ',
+                'never_qualified' => 'Chưa từng đủ điều kiện',
+                'qualified' => 'Đủ điều kiện',
                 'ranked' => 'Xếp Hạng',
             ],
 
@@ -85,7 +85,7 @@ return [
 
     'review' => [
         'block_count' => ':used / :max khối được sử dụng',
-        'go_to_parent' => 'Xem Bài viết Đánh giá',
+        'go_to_parent' => 'Xem Bài đăng Đánh giá',
         'go_to_child' => 'Xem cuộc thảo luận',
         'validation' => [
             'block_too_large' => 'mỗi khối chỉ có thể chứa tối đa :limit giới hạn kí tự',
@@ -114,6 +114,6 @@ return [
     'user_filter' => [
         'everyone' => 'Mọi người',
         'label' => 'Lọc theo người dùng',
-        'multiple' => '',
+        'multiple' => ':count_delimited người dùng được chọn|:count_delimited người dùng được chọn',
     ],
 ];

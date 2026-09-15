@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => ':author 님이 제작',
         'download' => '다운로드',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => '클리어한 맵',
             'not_cleared' => '클리어 기록 없음',

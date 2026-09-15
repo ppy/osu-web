@@ -38,7 +38,7 @@ return [
     ],
 
     'teams' => [
-        'created' => '',
+        'created' => '建立時間',
         'relevance' => '相關度',
         'name' => '名稱',
         'short-name' => '代號',

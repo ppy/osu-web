@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Kassalänken för denna beställning har utgått.',
         'subtotal' => 'Delsumma',
         'total' => 'Summa',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Beställning #',

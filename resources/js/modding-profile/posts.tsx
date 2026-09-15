@@ -72,10 +72,8 @@ export default class Posts extends React.Component<Props> {
           <div className='beatmap-discussion__discussion'>
             <Post
               discussion={discussion}
-              discussionsState={null}
               post={post}
               read
-              readonly
               store={this.props.store}
               type='reply'
               user={this.props.store.users.get(post.user_id) ?? deletedUserJson}

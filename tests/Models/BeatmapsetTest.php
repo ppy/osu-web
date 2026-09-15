@@ -28,6 +28,7 @@ use App\Models\User;
 use App\Models\UserNotification;
 use Bus;
 use Database\Factories\BeatmapsetFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 use Tests\TestCase;
 
@@ -245,9 +246,7 @@ class BeatmapsetTest extends TestCase
         $this->assertSame('fruits', $beatmapset->mainRuleset());
     }
 
-    /**
-     * @dataProvider mainRulesetHybridBeatmapsetSameCountDataProvider
-     */
+    #[DataProvider('mainRulesetHybridBeatmapsetSameCountDataProvider')]
     public function testMainRulesetHybridBeatmapsetSameCount(array $steps)
     {
         $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
@@ -287,9 +286,7 @@ class BeatmapsetTest extends TestCase
         $this->assertSame('fruits', $beatmapset->mainRuleset());
     }
 
-    /**
-     * @dataProvider mainRulesetHybridBeatmapsetWithGuestMappersSameCountDataProvider
-     */
+    #[DataProvider('mainRulesetHybridBeatmapsetWithGuestMappersSameCountDataProvider')]
     public function testMainRulesetHybridBeatmapsetWithGuestMappersSameCount(array $steps)
     {
         $userFactory = User::factory()->withGroup('bng', ['osu', 'taiko', 'fruits', 'mania']);
@@ -367,9 +364,7 @@ class BeatmapsetTest extends TestCase
 
     //region single-playmode beatmap sets
 
-    /**
-     * @dataProvider nominateDataProvider
-     */
+    #[DataProvider('nominateDataProvider')]
     public function testNominate(string $group, array $groupPlaymodes, string $ruleset, bool $success)
     {
         $beatmapset = $this->beatmapsetFactory()->withBeatmaps($ruleset)->create();
@@ -449,9 +444,7 @@ class BeatmapsetTest extends TestCase
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
-    /**
-     * @dataProvider qualifyingNominationsDataProvider
-     */
+    #[DataProvider('qualifyingNominationsDataProvider')]
     public function testQualifyingNominations(string $initialGroup, string $qualifyingGroup, bool $success)
     {
         $ruleset = array_rand(Beatmap::MODES);
@@ -478,9 +471,7 @@ class BeatmapsetTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProviderForTestRank
-     */
+    #[DataProvider('dataProviderForTestRank')]
     public function testRank(string $state, bool $success): void
     {
         $beatmapset = $this->beatmapsetFactory()->withBeatmaps()->$state()->create();
@@ -507,9 +498,7 @@ class BeatmapsetTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider rankWithOpenIssueDataProvider
-     */
+    #[DataProvider('rankWithOpenIssueDataProvider')]
     public function testRankWithOpenIssue(string $type): void
     {
         $beatmapset = $this->beatmapsetFactory()->withBeatmaps()
@@ -771,9 +760,7 @@ class BeatmapsetTest extends TestCase
         Bus::assertDispatched(CheckBeatmapsetCovers::class);
     }
 
-    /**
-     * @dataProvider qualifyingNominationsHybridDataProvider
-     */
+    #[DataProvider('qualifyingNominationsHybridDataProvider')]
     public function testQualifyingNominationsHybrid(string $initialGroup, string $qualifyingGroup, bool $success)
     {
         $nominator = User::factory()->withGroup($qualifyingGroup, ['osu', 'taiko'])->create();
@@ -819,9 +806,7 @@ class BeatmapsetTest extends TestCase
 
     //region disqualification
 
-    /**
-     * @dataProvider disqualifyOrResetNominationsDataProvider
-     */
+    #[DataProvider('disqualifyOrResetNominationsDataProvider')]
     public function testDisqualifyOrResetNominations(string $state, string $pushed)
     {
         $user = User::factory()->withGroup('bng')->create();

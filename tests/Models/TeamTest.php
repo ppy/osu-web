@@ -14,6 +14,7 @@ use App\Models\TeamApplication;
 use App\Models\TeamMember;
 use App\Models\TeamStatistics;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class TeamTest extends TestCase
@@ -76,9 +77,7 @@ class TeamTest extends TestCase
         $team->fresh()->delete();
     }
 
-    /**
-     * @dataProvider dataProviderForTestSaveNullDefaultRulesetIdFollowsLeader
-     */
+    #[DataProvider('dataProviderForTestSaveNullDefaultRulesetIdFollowsLeader')]
     public function testSaveNullDefaultRulesetIdFollowsLeader(int $leaderRulesetId): void
     {
         $leader = User::factory()->create(['osu_playmode' => $leaderRulesetId]);
@@ -93,9 +92,7 @@ class TeamTest extends TestCase
     }
 
 
-    /**
-     * @dataProvider dataProviderForTestUniquenessValidation
-     */
+    #[DataProvider('dataProviderForTestUniquenessValidation')]
     public function testUniquenessValidation(string $field): void
     {
         $existingTeam = Team::factory()->create();

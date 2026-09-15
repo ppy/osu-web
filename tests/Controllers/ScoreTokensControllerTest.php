@@ -11,6 +11,7 @@ use App\Models\Beatmap;
 use App\Models\Build;
 use App\Models\ScoreToken;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ScoreTokensControllerTest extends TestCase
@@ -18,9 +19,7 @@ class ScoreTokensControllerTest extends TestCase
     private Build $build;
     private User $user;
 
-    /**
-     * @dataProvider dataProviderForTestStore
-     */
+    #[DataProvider('dataProviderForTestStore')]
     public function testStore(string $beatmapState, int $status): void
     {
         $beatmap = Beatmap::factory()->$beatmapState()->create();
@@ -42,9 +41,7 @@ class ScoreTokensControllerTest extends TestCase
         )->assertStatus($status);
     }
 
-    /**
-     * @dataProvider dataProviderForTestStoreInvalidParameter
-     */
+    #[DataProvider('dataProviderForTestStoreInvalidParameter')]
     public function testStoreInvalidParameter(string $paramKey, ?string $paramValue, int $status, string $errorMessage): void
     {
         $origClientCheckVersion = $GLOBALS['cfg']['osu']['client']['check_version'];

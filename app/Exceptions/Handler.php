@@ -13,6 +13,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\View\ViewException;
+use Laravel\Passport\Exceptions\InvalidAuthTokenException;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -88,8 +89,8 @@ class Handler extends ExceptionHandler
 
     private static function isOAuthSessionException(Throwable $e): bool
     {
-        return ($e instanceof \Exception)
-            && $e->getMessage() === 'Authorization request was not present in the session.';
+        return $e instanceof InvalidAuthTokenException
+            || ($e instanceof \Exception && $e->getMessage() === 'Authorization request was not present in the session.');
     }
 
     private static function modelNotFoundMessage(ModelNotFoundException $e): string

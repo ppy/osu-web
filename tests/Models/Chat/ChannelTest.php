@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\UserRelation;
 use Event;
 use Illuminate\Filesystem\Filesystem;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 use SplFileInfo;
 use Storage;
@@ -88,9 +89,7 @@ class ChannelTest extends TestCase
         $this->assertEquals($channel2->users(), $users);
     }
 
-    /**
-     * @dataProvider channelWithBlockedUserVisibilityDataProvider
-     */
+    #[DataProvider('channelWithBlockedUserVisibilityDataProvider')]
     public function testChannelWithBlockedUserVisibility(?string $otherUserGroup, bool $expectVisible)
     {
         $user = User::factory()->create();
@@ -106,9 +105,7 @@ class ChannelTest extends TestCase
         $this->assertSame($expectVisible, $channel->isVisibleFor($user));
     }
 
-    /**
-     * @dataProvider channelCanMessageModeratedChannelDataProvider
-     */
+    #[DataProvider('channelCanMessageModeratedChannelDataProvider')]
     public function testChannelCanMessageModeratedPmChannel(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -118,9 +115,7 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
-    /**
-     * @dataProvider channelCanMessageModeratedChannelDataProvider
-     */
+    #[DataProvider('channelCanMessageModeratedChannelDataProvider')]
     public function testChannelCanMessageModeratedPublicChannel(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -129,9 +124,7 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
-    /**
-     * @dataProvider channelCanMessageWhenBlockedDataProvider
-     */
+    #[DataProvider('channelCanMessageWhenBlockedDataProvider')]
     public function testChannelCanMessagePmChannelWhenBlocked(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -154,9 +147,7 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
-    /**
-     * @dataProvider channelCanMessageWhenBlockedDataProvider
-     */
+    #[DataProvider('channelCanMessageWhenBlockedDataProvider')]
     public function testChannelCanMessagePmChannelWhenBlocking(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -179,9 +170,7 @@ class ChannelTest extends TestCase
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
 
-    /**
-     * @dataProvider channelCanMessageWhenBlockedDataProvider
-     */
+    #[DataProvider('channelCanMessageWhenBlockedDataProvider')]
     public function testChannelCanMessagePmChannelWhenFriendsOnly(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
@@ -222,9 +211,7 @@ class ChannelTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider leaveChannelDataProvider
-     */
+    #[DataProvider('leaveChannelDataProvider')]
     public function testLeaveChannel(string $type, bool $inChannel)
     {
         $users = User::factory()->count(2)->create();

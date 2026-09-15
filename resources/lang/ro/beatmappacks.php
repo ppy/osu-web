@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'creat de :author',
         'download' => 'Descarcă',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'eliminat',
             'not_cleared' => 'neeliminat',

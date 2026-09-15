@@ -158,7 +158,7 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => ':count_delimited 栏位可用',
+            'empty_slots' => '剩余 :count_delimited 个名额',
             'first_places' => '第一名',
             'leader' => '队长',
             'rank' => '排名',

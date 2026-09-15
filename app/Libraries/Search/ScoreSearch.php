@@ -14,10 +14,6 @@ use LaravelRedis;
 
 class ScoreSearch extends RecordSearch
 {
-    public $connectionName = 'solo_scores';
-
-    protected $source = false;
-
     public function __construct(?ScoreSearchParams $params = null)
     {
         parent::__construct(
@@ -25,6 +21,9 @@ class ScoreSearch extends RecordSearch
             $params ?? new ScoreSearchParams(),
             Score::class
         );
+
+        $this->connectionName = 'solo_scores';
+        $this->source = false;
     }
 
     public static function getActiveSchemas(): array
@@ -117,7 +116,7 @@ class ScoreSearch extends RecordSearch
                     ->filter(['term' => [$scoreField => $beforeTotalScore]]));
             }
 
-            $query->must($scoreQuery);
+            $query->filter($scoreQuery);
         }
 
         return $query;
@@ -143,7 +142,7 @@ class ScoreSearch extends RecordSearch
 
     private function addModsFilter(BoolQuery $query): void
     {
-        $mods = $this->params->mods;
+        $mods = array_values(array_sort($this->params->mods));
         if ($mods === null || count($mods) === 0) {
             return;
         }
@@ -177,7 +176,7 @@ class ScoreSearch extends RecordSearch
         }
 
         if (isset($modsSubQuery)) {
-            $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
+            $excludedMods = array_values(array_sort(array_diff($allMods->toArray(), $allSearchMods)));
             if (count($excludedMods) > 0) {
                 foreach ($excludedMods as $excludedMod) {
                     $modsSubQuery->mustNot(['term' => ['mods' => $excludedMod]]);
@@ -193,7 +192,7 @@ class ScoreSearch extends RecordSearch
         }
 
         if (isset($shouldSubQueries)) {
-            $query->must($shouldSubQueries);
+            $query->filter($shouldSubQueries);
         }
     }
 }

@@ -64,7 +64,7 @@ return [
     ],
 
     'github_user' => [
-        'info' => "Nếu bạn là người đóng góp cho kho lưu trữ nguồn mở của osu!, việc liên kết tài khoản GitHub của bạn tại đây sẽ liên kết các mục nhật ký thay đổi với trang cá nhân osu! của bạn. Tài khoản GitHub không có lịch sử đóng góp cho osu! không thể liên kết được.",
+        'info' => "Nếu bạn là người đóng góp cho các kho mã nguồn mở của osu!, việc liên kết tài khoản GitHub của bạn tại đây sẽ liên kết các mục nhật ký thay đổi với trang cá nhân osu! của bạn. Tài khoản GitHub không có lịch sử đóng góp cho osu! không thể liên kết được.",
         'link' => 'Liên kết tài khoản GitHub',
         'title' => 'GitHub',
         'unlink' => 'Hủy liên kết tài khoản GitHub',
@@ -77,18 +77,18 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
-        'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
-        'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
+        'beatmapset_discussion_reply' => 'nhận thông báo khi có phản hồi đến các cuộc thảo luận beatmap bạn đang theo dõi',
+        'beatmapset_discussion_qualified_problem' => 'nhận thông báo về các vấn đề mới trên các beatmap đủ điều kiện thuộc các chế độ sau',
+        'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị hủy trạng thái đủ điều kiện',
         'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
         'news_post' => 'nhận thông báo về các bài đăng tin tức',
         'title' => 'Thông báo',
-        'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề mới trên diễn đàn mà bạn tạo hoặc trả lời',
+        'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề trên diễn đàn mà bạn mới tạo hoặc trả lời',
 
         'options' => [
             '_' => 'cách nhận thông báo',
             'beatmap_owner_change' => 'độ khó khách mời',
-            'beatmapset:modding' => 'sửa đổi beatmap',
+            'beatmapset:modding' => 'nhận xét beatmap',
             'channel_mention' => 'nhắc tên trong chat',
             'channel_message' => 'tin nhắn riêng tư',
             'channel_team' => 'tin nhắn đội',
@@ -109,7 +109,7 @@ return [
             'comment_new' => 'khi có bình luận mới về một mục bạn đang theo dõi',
             'forum_topic_reply' => 'khi các chủ đề diễn đàn bạn đang theo dõi có phản hồi mới',
             'mapping' => 'khi một mapper bạn đang theo dõi tải lên một beatmap',
-            'news_post' => 'khi có bài viết tin tức mới',
+            'news_post' => 'khi có bài đăng tin tức mới',
         ],
     ],
 
@@ -134,11 +134,11 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'chế độ chơi mặc định',
         'keyboard' => 'bàn phím',
         'mouse' => 'chuột',
         'tablet' => 'bảng vẽ',
-        'title' => 'Lối Chơi',
+        'title' => 'Lối chơi',
         'touch' => 'cảm ứng',
     ],
 

@@ -3,7 +3,7 @@
 
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
+import { HasDiscussionsEditable, HasDiscussionsReadOnly } from 'interfaces/has-discussions';
 import { findLast } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -16,7 +16,6 @@ import { classWithModifiers, groupColour } from 'utils/css';
 import { trans, transChoice } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
-import DiscussionsState from './discussions-state';
 import { NewReply } from './new-reply';
 import Post from './post';
 import SystemPost from './system-post';
@@ -27,16 +26,13 @@ const bn = 'beatmap-discussion';
 interface BaseProps {
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
-  store: BeatmapsetDiscussionsStore;
 }
 
-type Props = BaseProps & ({
-  discussion: BeatmapsetDiscussionJsonForBundle;
-  discussionsState: null; // TODO: make optional?
-} | {
-  discussion: BeatmapsetDiscussionJsonForShow;
-  discussionsState: DiscussionsState;
-});
+type Props = BaseProps
+  & (
+    ({ discussion: BeatmapsetDiscussionJsonForBundle } & HasDiscussionsReadOnly)
+    | ({ discussion: BeatmapsetDiscussionJsonForShow } & HasDiscussionsEditable)
+  );
 
 function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
   const titleKey = type === 'resolved'
@@ -233,20 +229,19 @@ export class Discussion extends React.Component<Props> {
       );
     }
 
-    return (
-      <Post
-        key={post.id}
-        discussion={this.props.discussion}
-        discussionsState={this.props.discussionsState}
-        post={post}
-        read={this.isRead(post)}
-        readonly={this.readonly}
-        resolvedStateChangedPostId={this.resolvedStateChangedPostId}
-        store={this.props.store}
-        type={type}
-        user={user}
-      />
-    );
+    const sharedProps = {
+      discussion: this.props.discussion,
+      key: post.id,
+      post,
+      read: this.isRead(post),
+      resolvedStateChangedPostId: this.resolvedStateChangedPostId,
+      type,
+      user,
+    };
+
+    return this.props.discussionsState != null
+      ? <Post {...sharedProps} discussionsState={this.props.discussionsState} store={this.props.store} />
+      : <Post {...sharedProps} store={this.props.store} />;
   }
 
   private renderPostButtons() {

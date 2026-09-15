@@ -8,6 +8,7 @@ namespace Tests\Controllers\InterOp;
 use App\Models\Group;
 use App\Models\User;
 use App\Models\UserGroupEvent;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UserGroupsControllerTest extends TestCase
@@ -324,9 +325,7 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    /**
-     * @dataProvider userGroupRoutesDataProvider
-     */
+    #[DataProvider('userGroupRoutesDataProvider')]
     public function testWithActor(string $type, string $method, string $route): void
     {
         $user = User::factory()->create();
@@ -354,9 +353,7 @@ class UserGroupsControllerTest extends TestCase
             ->assertStatus(204);
     }
 
-    /**
-     * @dataProvider userGroupRoutesDataProvider
-     */
+    #[DataProvider('userGroupRoutesDataProvider')]
     public function testWithInvalidActor(string $type, string $method, string $route): void
     {
         $user = User::factory()->create();

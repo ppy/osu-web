@@ -103,11 +103,16 @@ export default class ReportForm extends React.Component<Props> {
   private timeout: number | undefined;
 
   private get canSubmit() {
-    return !this.disabled && (this.comments.length > 0 || this.props.reportableType === 'message');
+    return !this.disabled && (this.comments.length > 0 || this.isCommentOptional);
   }
 
   private get groupKey() {
     return reportableTypeToGroupKey[this.props.reportableType];
+  }
+
+  private get isCommentOptional() {
+    return this.selectedReasonKey !== 'Other'
+      && ['comment', 'message'].includes(this.props.reportableType);
   }
 
   private get isDmca() {

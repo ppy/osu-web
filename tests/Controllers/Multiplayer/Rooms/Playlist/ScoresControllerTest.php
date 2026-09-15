@@ -12,6 +12,7 @@ use App\Models\Multiplayer\ScoreLink;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\ScoreToken;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
@@ -99,9 +100,7 @@ class ScoresControllerTest extends TestCase
         $this->assertSame($json['scores_around']['lower']['scores'][0]['id'], $scoreLinks[2]->getKey());
     }
 
-    /**
-     * @dataProvider dataProviderForTestStore
-     */
+    #[DataProvider('dataProviderForTestStore')]
     public function testStore($allowRanking, $hashParam, $status)
     {
         $origClientCheckVersion = $GLOBALS['cfg']['osu']['client']['check_version'];
@@ -165,9 +164,7 @@ class ScoresControllerTest extends TestCase
         ]))->assertStatus(422);
     }
 
-    /**
-     * @dataProvider dataProviderForTestUpdate
-     */
+    #[DataProvider('dataProviderForTestUpdate')]
     public function testUpdate($bodyParams, $status)
     {
         $user = User::factory()->create();

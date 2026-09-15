@@ -9,6 +9,7 @@ use App\Libraries\Notification\BatchIdentities;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UserNotificationTest extends TestCase
@@ -144,9 +145,8 @@ class UserNotificationTest extends TestCase
 
     /**
      * Didn't accidentally break masks sanity test.
-     *
-     * @dataProvider deliveryMaskDataProvider
      */
+    #[DataProvider('deliveryMaskDataProvider')]
     public function testDeliveryMasks($mask, $type, $result)
     {
         $userNotification = new UserNotification(['delivery' => $mask]);

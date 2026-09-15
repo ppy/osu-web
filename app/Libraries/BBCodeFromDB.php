@@ -457,7 +457,7 @@ class BBCodeFromDB
 
         static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|left|list|list:o|list:u|notice|profile|quote|right|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
 
-        return preg_replace($pattern, '', $text);
+        return preg_replace($pattern, '', $text ?? '');
     }
 
     public static function removeBlockQuotes($text)

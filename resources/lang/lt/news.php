@@ -21,7 +21,7 @@ return [
     'series' => [
         'beatmap_spotlights' => '',
         'community_contests' => '',
-        'community_tournaments' => '',
+        'community_tournaments' => 'bendruomenės turnyrai',
         'fanart_contests' => '',
         'featured_artists' => '',
         'game_updates' => '',

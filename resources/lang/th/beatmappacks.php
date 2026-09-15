@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'โดย :author',
         'download' => 'ดาวน์โหลด',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'ผ่านแล้ว',
             'not_cleared' => 'ยังไม่ผ่าน',

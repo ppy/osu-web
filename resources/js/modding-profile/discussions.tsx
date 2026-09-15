@@ -51,7 +51,6 @@ export default class Discussions extends React.Component<Props> {
         </a>
         <Discussion
           discussion={discussion}
-          discussionsState={null}
           isTimelineVisible={false}
           store={this.props.store}
         />

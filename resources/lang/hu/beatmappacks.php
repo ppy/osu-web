@@ -12,13 +12,14 @@ return [
 
         'blurb' => [
             'important' => 'OLVASD EL LETÖLTÉS ELŐTT',
-            'install_instruction' => 'Telepítés: Miután letöltötte a csomagot, bontsa ki a csomag tartalmát a osu! Songs könyvtárba és osu! a többit megteszi.',
+            'install_instruction' => 'Telepítés: Miután letöltötted a csomagot, bontsd ki a csomag tartalmát a osu! Songs könyvtárba és osu! a többit megteszi.',
         ],
     ],
 
     'show' => [
         'created_by' => ':author által',
         'download' => 'Letöltés',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'lejátszott',
             'not_cleared' => 'nem játszott',
@@ -33,7 +34,7 @@ return [
         'artist' => 'Előadó/Album',
         'chart' => 'Reflektorfény',
         'featured' => 'Kiemelt Előadó',
-        'loved' => 'Loved projekt',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Téma',
         'tournament' => 'Bajnokság',

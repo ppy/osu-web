@@ -11,7 +11,7 @@ return [
 
     'top-headers' => [
         'headline' => 'Livestream',
-        'description' => 'I dati vengono reperiti da twitch.tv ogni cinque minuti. Sei libero di porter avviare una diretta e di comparire sulla lista! Per maggiori informazioni su come iniziare, controlla :link.',
+        'description' => 'I dati vengono reperiti da twitch.tv ogni cinque minuti. Sei libero di porter avviare una diretta e di comparire nella lista! Per maggiori informazioni su come iniziare, controlla :link.',
 
         'link' => 'la pagina della wiki sulle trasmissioni',
     ],

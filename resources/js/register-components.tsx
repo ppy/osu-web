@@ -156,7 +156,9 @@ core.reactTurbolinks.register('user-cards', (container) => (
   />
 ));
 
-core.reactTurbolinks.register('wiki-search', () => <WikiSearch />);
+core.reactTurbolinks.register('wiki-search', (container) => (
+  <WikiSearch locale={reqStr(container.dataset.locale)} />
+));
 
 core.reactTurbolinks.register('landing-news', () => (
   <LandingNews posts={parseJson('json-posts')} />

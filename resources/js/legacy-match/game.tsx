@@ -33,9 +33,10 @@ export default observer(function Game(props: Props) {
       return second.total_score - first.total_score;
     }
   });
+  const requiredMods = new Set(props.playlistItem.required_mods.map((mod) => mod.acronym));
 
   return (
-    <div className='mp-history-game'>
+    <div className='mp-history-game' id={`playlist-${props.playlistItem.id}`}>
       <GameHeader data={props.data} playlistItem={props.playlistItem} />
       <div className={classWithModifiers('mp-history-game__player-scores', { teams: showTeams })}>
         {sortedScores.map((score) => (
@@ -43,6 +44,7 @@ export default observer(function Game(props: Props) {
             key={score.match?.slot ?? score.id}
             data={props.data}
             playlistItem={props.playlistItem}
+            requiredMods={requiredMods}
             score={score}
             showTeam={showTeams}
           />

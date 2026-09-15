@@ -19,7 +19,7 @@ return [
         'nav_title' => '判定',
         'no_current_vote' => 'あなたはまだ投票していません。',
         'update' => '更新',
-        'unsaved_changes' => '',
+        'unsaved_changes' => '保存されていない変更',
         'validation' => [
             'missing_score' => 'スコアが欠損している',
             'contest_vote_judged' => '判定されたコンテストに投票できません',

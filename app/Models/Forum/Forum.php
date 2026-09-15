@@ -238,8 +238,7 @@ class Forum extends Model
 
     public function setForumLastPosterColourAttribute($value)
     {
-        // also functions for casting null to string
-        $this->attributes['forum_last_poster_colour'] = ltrim($value, '#');
+        $this->attributes['forum_last_poster_colour'] = ltrim($value ?? '', '#');
     }
 
     // feature forum shall have extra features like sorting and voting

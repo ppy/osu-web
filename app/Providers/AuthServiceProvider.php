@@ -39,11 +39,15 @@ class AuthServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        Passport::$clientUuids = false;
+        // technically should be checked for private key but there's no option for that
+        Passport::$validateKeyPermissions = false;
         Passport::tokensExpireIn(Carbon::now()->addDays(1));
         Passport::refreshTokensExpireIn(Carbon::now()->addMonths(3));
 
         Passport::useTokenModel(Token::class);
         Passport::useClientModel(Client::class);
+        Passport::viewPrefix('vendor.passport');
 
         if ($path = $GLOBALS['cfg']['services']['passport']['path']) {
             Passport::keyPath($path);

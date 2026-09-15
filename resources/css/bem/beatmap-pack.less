@@ -5,6 +5,8 @@
   @_top: beatmap-pack;
 
   .default-box-shadow();
+  --name-font-weight: normal;
+
   color: white;
   width: 100%;
   margin: 2px 0;
@@ -13,6 +15,16 @@
   &--expanded {
     .thicker-box-shadow();
     z-index: 1;
+    --name-font-weight: 600;
+  }
+
+  &__badge {
+    padding: 2px 10px;
+    border-radius: 10000px;
+    background-color: hsl(var(--hsl-red-3));
+    font-size: 0.75em;
+    font-weight: normal;
+    display: inline-block;
   }
 
   &__body {
@@ -49,9 +61,7 @@
   }
 
   &__name {
-    .js-accordion__item--expanded &,
-    .@{_top}--expanded & {
-      font-weight: 600;
-    }
+    margin-right: 10px;
+    font-weight: var(--name-font-weight);
   }
 }

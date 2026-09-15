@@ -25,7 +25,6 @@ class UserRegistration
         $params['group_id'] = $this->group->getKey();
 
         $this->user = new User(array_merge([
-            'user_permissions' => '',
             'user_interests' => '',
             'user_occ' => '',
             'user_sig' => '',
