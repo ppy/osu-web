@@ -122,13 +122,13 @@ export default class Channel {
 
   @computed
   get pmTarget(): number | undefined {
-    if (this.type !== 'PM' || $this->userIds.length == 0) {
+    if (this.type !== 'PM' || this.userIds.length === 0) {
       return;
     }
 
-    foreach ($this->userIds() as $targetId) {
-      if ($targetId !== core.currentUserOrfail.id) {
-        return $targetId;
+    for (const targetId of this.userIds) {
+      if (targetId !== core.currentUserOrFail.id) {
+        return targetId;
       }
     }
 
