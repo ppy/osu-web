@@ -90,16 +90,8 @@ export default class ChannelStore implements DispatchListener {
   }
 
   findPM(userId: number): Channel | null {
-    const isSelf = userId === core.currentUser?.id;
-
     for (const [, channel] of this.channels) {
-      if (channel.type !== 'PM') {
-        continue;
-      }
-
-      // self-PMs have the current user as both participants, so match on pmTarget;
-      // regular PMs match the other participant via userIds
-      if (isSelf ? channel.pmTarget === userId : channel.userIds.includes(userId)) {
+      if (channel.pmTarget === userId) {
         return channel;
       }
     }
