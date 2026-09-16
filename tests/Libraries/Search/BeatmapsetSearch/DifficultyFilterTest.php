@@ -15,7 +15,7 @@ class DifficultyFilterTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [['q' => 'difficulty=hard'], [1, 2]],
+            [['q' => 'difficulty=hard'], [2, 1]],
             [['q' => 'difficulty="very mapper"'], [2]],
             [['q' => 'difficulty="very hard"'], []],
             [['q' => 'difficulty=""very easy""'], [0]],
