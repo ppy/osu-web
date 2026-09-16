@@ -122,19 +122,18 @@ export default class Channel {
 
   @computed
   get pmTarget(): number | undefined {
-    if (this.type !== 'PM') {
+    if (this.type !== 'PM' || $this->userIds.length == 0) {
       return;
     }
 
-    const currentUserId = core.currentUserOrFail.id;
-
-    // self-PMs have the current user as both participants, so there is no
-    // "other" user to find; the conversation targets the current user themselves
-    if (this.userIds.length > 0 && this.userIds.every((userId: number) => userId === currentUserId)) {
-      return currentUserId;
+    foreach ($this->userIds() as $targetId) {
+      if ($targetId !== core.currentUserOrfail.id) {
+        return $targetId;
+      }
     }
 
-    return this.userIds.find((userId: number) => userId !== currentUserId);
+    // there is no id that is not currentUser
+    return core.currentUserOrFail.id;
   }
 
   @computed
