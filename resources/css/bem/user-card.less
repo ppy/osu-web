@@ -216,13 +216,8 @@
     }
   }
 
-  &__group-badge {
-    margin-left: 2px;
-  }
-
   &__group-badges {
-    display: flex;
-    margin-left: 3px;
+    display: contents;
     pointer-events: auto;
   }
 
@@ -368,12 +363,15 @@
     .link-white();
     .link-plain();
     pointer-events: auto;
+    margin-right: 1px;
   }
 
   &__username-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     min-width: 0;
     font-weight: 600;
+    gap: 2px;
   }
 }
