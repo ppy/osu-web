@@ -8,16 +8,16 @@
   --option-font-size: 12px;
   --option-hover-bg: hsl(var(--hsl-b4));
   --option-padding: 5px 10px;
-  --option-select-padding: 15px 10px;
   --option-selected-bg: hsl(var(--hsl-b3));
+  --options-bg: hsl(var(--hsl-b5));
+  --options-display: none;
+  --options-max-height: 400px; // arbitrary
+  --options-padding: 0;
+  --options-overflow-y: auto;
   --select-bg: hsla(var(--hsl-b6), 0.5);
   --select-font-size: 15px;
-  --selector-bg: hsl(var(--hsl-b5));
-  --selector-display: none;
-  --selector-hover-bg: hsla(var(--hsl-b6), 0.6);
-  --selector-max-height: 400px; // arbitrary
-  --selector-padding: 0;
-  --selector-overflow-y: auto;
+  --select-hover-bg: hsla(var(--hsl-b6), 0.6);
+  --select-padding: 15px 10px;
 
   &--beatmap-discussions-user-filter {
     flex: 1;
@@ -29,30 +29,30 @@
     --option-hover-bg: hsl(var(--hsl-b6));
     --option-padding: 3px 10px;
     --option-selected-bg: hsl(var(--hsl-b6));
+    --options-padding: 10px 0;
     --select-bg: hsl(var(--hsl-b5));
+    --select-hover-bg: hsl(var(--hsl-b6));
     --select-font-size: inherit;
-    --selector-hover-bg: hsl(var(--hsl-b6));
-    --selector-padding: 10px 0;
   }
 
   &--download {
     --option-padding: 10px 20px;
-    --option-select-padding: 5px 20px;
+    --select-padding: 5px 20px;
   }
 
   &--ranking {
-    --option-select-padding: 5px 10px;
+    --select-padding: 5px 10px;
   }
 
   &--report {
-    --selector-max-height: auto;
+    --options-max-height: auto;
     width: 100%;
   }
 
   &--selecting {
     z-index: @z-index--blackout-visible;
     position: relative;
-    --selector-display: block;
+    --options-display: block;
   }
 
   &__checkmark {
@@ -77,18 +77,44 @@
     white-space: nowrap;
     color: var(--colour);
 
-    &--selected {
-      background-color: var(--option-selected-bg);
+    &--select {
+      justify-content: space-between;
     }
 
-    &--selector {
-      justify-content: space-between;
+    &--selected {
+      background-color: var(--option-selected-bg);
     }
 
     .link-hover({
       background-color: var(--option-hover-bg);
       color: var(--colour);
     });
+  }
+
+  &__options {
+    .default-box-shadow();
+    .default-border-radius();
+    .fancy-scrollbar();
+
+    position: absolute;
+    width: 100%;
+    display: var(--options-display);
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    padding: var(--options-padding);
+    font-size: var(--option-font-size);
+    background-color: var(--options-bg);
+    overflow-y: var(--options-overflow-y);
+    max-height: var(--options-max-height);
+
+    // selector on download page shows 'other platforms' but full text in options
+    .@{_top}--download & {
+      left: initial;
+      right: 0;
+      width: initial;
+      border-radius: @border-radius--extra;
+    }
   }
 
   &__select {
@@ -100,39 +126,13 @@
     background-color: var(--select-bg);
     box-shadow: 0 0 0 2px fade(#000, 25%);
 
-    --option-hover-bg: var(--selector-hover-bg);
-    --option-padding: var(--option-select-padding);
+    --option-hover-bg: var(--select-hover-bg);
+    --option-padding: var(--select-padding);
 
     .@{_top}--download & {
       border-radius: @border-radius--extra;
       font-size: @font-size--normal;
       min-width: 180px;
-    }
-  }
-
-  &__selector {
-    .default-box-shadow();
-    .default-border-radius();
-    .fancy-scrollbar();
-
-    position: absolute;
-    width: 100%;
-    display: var(--selector-display);
-    top: 100%;
-    left: 0;
-    margin-top: 5px;
-    padding: var(--selector-padding);
-    font-size: var(--option-font-size);
-    background-color: var(--selector-bg);
-    overflow-y: var(--selector-overflow-y);
-    max-height: var(--selector-max-height);
-
-    // selector on download page shows 'other platforms' but full text in options
-    .@{_top}--download & {
-      left: initial;
-      right: 0;
-      width: initial;
-      border-radius: @border-radius--extra;
     }
   }
 }
