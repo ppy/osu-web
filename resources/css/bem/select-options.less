@@ -5,16 +5,34 @@
   @_top: select-options;
 
   --decoration-colour: inherit;
+  --option-font-size: 12px;
   --option-hover-bg: hsl(var(--hsl-b4));
   --option-padding: 5px 10px;
   --option-select-padding: 15px 10px;
+  --option-selected-bg: hsl(var(--hsl-b3));
+  --select-bg: hsla(var(--hsl-b6), 0.5);
+  --select-font-size: 15px;
+  --selector-bg: hsl(var(--hsl-b5));
   --selector-display: none;
+  --selector-hover-bg: hsla(var(--hsl-b6), 0.6);
   --selector-max-height: 400px; // arbitrary
+  --selector-padding: 0;
   --selector-overflow-y: auto;
 
   &--beatmap-discussions-user-filter {
     flex: 1;
     min-width: 0;
+  }
+
+  &--beatmap-list {
+    --option-font-size: @font-size--title-small;
+    --option-hover-bg: hsl(var(--hsl-b6));
+    --option-padding: 3px 10px;
+    --option-selected-bg: hsl(var(--hsl-b6));
+    --select-bg: hsl(var(--hsl-b5));
+    --select-font-size: inherit;
+    --selector-hover-bg: hsl(var(--hsl-b6));
+    --selector-padding: 10px 0;
   }
 
   &--download {
@@ -60,7 +78,7 @@
     color: var(--colour);
 
     &--selected {
-      background-color: @osu-colour-b3;
+      background-color: var(--option-selected-bg);
     }
 
     &--selector {
@@ -78,11 +96,11 @@
     .default-border-radius();
     overflow: hidden;
 
-    font-size: 15px;
-    background-color: hsla(var(--hsl-b6), 0.5);
+    font-size: var(--select-font-size);
+    background-color: var(--select-bg);
     box-shadow: 0 0 0 2px fade(#000, 25%);
 
-    --option-hover-bg: hsla(var(--hsl-b6), 0.6);
+    --option-hover-bg: var(--selector-hover-bg);
     --option-padding: var(--option-select-padding);
 
     .@{_top}--download & {
@@ -94,6 +112,8 @@
 
   &__selector {
     .default-box-shadow();
+    .default-border-radius();
+    .fancy-scrollbar();
 
     position: absolute;
     width: 100%;
@@ -101,8 +121,9 @@
     top: 100%;
     left: 0;
     margin-top: 5px;
-    font-size: 12px;
-    background-color: @osu-colour-b5;
+    padding: var(--selector-padding);
+    font-size: var(--option-font-size);
+    background-color: var(--selector-bg);
     overflow-y: var(--selector-overflow-y);
     max-height: var(--selector-max-height);
 
