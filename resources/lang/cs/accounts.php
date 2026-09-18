@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
+        'friends_only_info' => '',
         'hide_online' => 'skrýt tvůj online status',
         'hide_online_info' => 'toto je stejné, jako "neviditelný" režim v osu!lazer',
         'title' => 'Soukromí',

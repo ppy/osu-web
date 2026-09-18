@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'privát üzenetek tiltása olyan személyektől, akik nincsenek a baráti listádon',
+        'friends_only_info' => '',
         'hide_online' => 'online állapot elrejtése',
         'hide_online_info' => 'ez az osu!lazer „offline megjelenés” módjának felel meg',
         'title' => 'Adatvédelem',

@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Peta Rentak',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'tiada peta rentak',
 

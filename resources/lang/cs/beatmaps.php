@@ -132,7 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => '',
+                'mapper_note' => 'vložit poznámku',
                 'paragraph' => 'vložit odstavec',
                 'praise' => 'vložit pochvalu',
                 'problem' => 'vložit problém',

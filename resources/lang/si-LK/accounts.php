@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => '',
+        'friends_only_info' => '',
         'hide_online' => '',
         'hide_online_info' => '',
         'title' => '',

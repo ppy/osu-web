@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokker private meldinger fra personer som ikke er på vennelisten din',
+        'friends_only_info' => '',
         'hide_online' => 'skjul påloggingsstatus',
         'hide_online_info' => '',
         'title' => 'Personvern',

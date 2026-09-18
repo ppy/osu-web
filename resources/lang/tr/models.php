@@ -9,6 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'beatmap zorluğu',
         'App\Models\Beatmapset' => 'Beatmap (Harita)',
-        'App\Models\Solo\Score' => '',
+        'App\Models\Solo\Score' => 'skor',
     ],
 ];

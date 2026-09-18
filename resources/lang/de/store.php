@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'Der Zahlungslink für diese Bestellung ist abgelaufen.',
         'subtotal' => 'Zwischensumme',
         'total' => 'Summe',
-        'unavailable' => '',
+        'unavailable' => 'Für diese Bestellung sind keine weiteren Informationen verfügbar.',
 
         'details' => [
             'order_number' => 'Bestellung #',

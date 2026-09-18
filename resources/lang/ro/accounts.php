@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blochează mesajele private de la oameni care nu sunt pe lista ta de prieteni',
+        'friends_only_info' => '',
         'hide_online' => 'ascunde-ți prezența online',
         'hide_online_info' => '',
         'title' => 'Confidențialitate',

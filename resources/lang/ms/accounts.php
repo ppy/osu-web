@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'sekat pesanan peribadi daripada orang yang tiada pada senarai kawan',
+        'friends_only_info' => '',
         'hide_online' => 'sorok kehadiran dalam talian',
         'hide_online_info' => '',
         'title' => 'Kebersendirian',

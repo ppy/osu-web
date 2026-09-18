@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => '顯示較少詳細資料',
+            'to_v2' => '顯示更多詳細資料',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => '敗北次數',
+            'plays' => '總對戰數',
+            'rank' => '排名',
+            'rating' => '等級分',
+            'recent_history' => '最新對戰紀錄',
+            'tier' => '階級',
             'title' => '排位模式',
-            'wins' => '',
+            'wins' => '獲勝次數',
         ],
 
         'not_found' => [
@@ -525,11 +525,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => '前 :value',
-            'label' => '',
+            'label' => '聚光燈',
             'total_score' => '總分',
         ],
         'solo' => [
-            'title' => '',
+            'title' => '單人遊玩',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',

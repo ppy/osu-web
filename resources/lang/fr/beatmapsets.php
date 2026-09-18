@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'pas de beatmaps',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Note invalide.',
     ],
 
     'show' => [
@@ -166,7 +171,7 @@ return [
 
             'scoreboard_switch_mode' => [
                 '_' => ':enable_link pour voir les scores réalisés sur cette beatmap.',
-                'enable_link' => 'Activez le mode lazer',
+                'enable_link' => 'Activer le mode lazer',
             ],
         ],
 

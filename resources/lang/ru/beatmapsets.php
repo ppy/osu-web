@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Карты',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'нет карт',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Недопустимый рейтинг.',
     ],
 
     'show' => [

@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmap',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'tidak ada beatmap',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Nilai tidak valid.',
     ],
 
     'show' => [

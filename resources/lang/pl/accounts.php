@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokuj wiadomości prywatne od osób spoza listy znajomych',
+        'friends_only_info' => '',
         'hide_online' => 'ukryj swoją obecność online',
         'hide_online_info' => 'jednoznaczne ze statusem „Nie przeszkadzać” w osu!lazer',
         'title' => 'Prywatność',

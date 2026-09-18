@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Dokončiť',
+        'key' => 'Naskenuj QR kód v aplikácií na autentifikáciu a zadaj verifikačný kód',
+        'key_copy' => 'Alebo klikni na tento odkaz na skopírovanie kľúča pre autentifikačnú aplikáciu',
+        'key_link' => 'Použi tento odkaz ak používaš mobilný telefón',
+        'password' => 'Na nastavenie verifikácie pomocou autentifikačnej aplikácie, prosím zadaj svoje heslo',
+        'start' => 'Pokračovať',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Nemáš nastavenú autentifikačnú aplikáciu.',
+        'ok' => 'Verifikácia pomocou autentifikačnej aplikácie bola odstránená.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Prosím zadaj svoje heslo na odstránenie verifikácie pomocou autentifikačnej aplikácie.',
+        'start' => 'Odstrániť',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Už máš nastavenú autentifikačnú aplikáciu.',
+        'ok' => 'Verifikácia pomocou autentifikačnej aplikácie bola nastavená',
+        'restart' => 'Stala sa chyba. Prosím začni odznovu.',
     ],
 ];

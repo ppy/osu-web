@@ -5,31 +5,31 @@
 
 return [
     'show' => [
-        'non_preserved' => '',
-        'title' => '',
+        'non_preserved' => 'Toto skóre je označené na vymazanie a čoskoro zmizne.',
+        'title' => ':username na :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'od :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'played_on' => '',
-            'submitted_on' => '',
-            'watched' => '',
-            'watched_count' => '',
+            'by' => 'Hrané používateľom',
+            'played_on' => 'Hrané na',
+            'submitted_on' => 'Odoslané',
+            'watched' => 'Pozreté',
+            'watched_count' => ':count_delimited krát|:count_delimited krát',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Umiestnenie v Krajine',
+                'global' => 'Globálne Umiestnenie',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'no_pp' => '',
-        'processing' => '',
-        'no_rank' => '',
+        'non_best' => 'Len osobné rekordy oceňujú pp',
+        'no_pp' => 'Za toto skóre neoceňuje pp',
+        'processing' => 'Toto skóre sa stále počíta a čoskoro bude zobrazené',
+        'no_rank' => 'Toto skóre nemá žiadne umiestnenie pretože nie je hodnotené alebo je označené na vymazanie',
     ],
 ];

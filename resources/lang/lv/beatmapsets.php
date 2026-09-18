@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Ritma-mapes',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'nav ritma-mapju',
 

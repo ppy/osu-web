@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmapit',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'ei beatmappeja',
 

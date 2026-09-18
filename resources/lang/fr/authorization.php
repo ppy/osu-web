@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Vous ne pouvez pas noter une beatmap set avec laquelle vous êtes impliqué(e).',
+            'status' => 'Vous ne pouvez pas noter une beatmap set avec ce statut.',
         ],
     ],
 

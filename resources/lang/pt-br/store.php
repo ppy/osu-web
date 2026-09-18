@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'O link de verificação deste pedido expirou.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
-        'unavailable' => '',
+        'unavailable' => 'Não há informações adicionais disponíveis para este pedido.',
 
         'details' => [
             'order_number' => 'Pedido #',

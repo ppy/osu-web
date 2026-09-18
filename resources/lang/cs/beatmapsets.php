@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmapy',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'žádné beatmapy',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Neplatné hodnocení.',
     ],
 
     'show' => [
@@ -194,7 +199,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Přesnost',
-                'combo' => 'Maximální Kombo',
+                'combo' => 'Maximální kombo',
                 'miss' => 'Minuto',
                 'mods' => 'Módy',
                 'pin' => 'Připnout',
@@ -229,7 +234,7 @@ return [
             'cs-mania' => 'Počet kláves',
             'drain' => 'Vysávání životů',
             'accuracy' => 'Přesnost',
-            'ar' => 'Rychlost zjevování koleček',
+            'ar' => 'Rychlost zjevování',
             'stars' => 'Počet hvězd',
             'total_length' => 'Délka (Délka vysávání životů: :hit_length)',
             'bpm' => 'BPM',

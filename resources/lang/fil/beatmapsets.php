@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Mga Beatmap',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'walang beatmap',
 

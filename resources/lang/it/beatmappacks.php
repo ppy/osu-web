@@ -12,14 +12,14 @@ return [
 
         'blurb' => [
             'important' => 'LEGGI PRIMA DI SCARICARE',
-            'install_instruction' => 'Installazione: Una volta che un pacchetto è stato scaricato, estrai il contenuto del pacchetto nella cartella contenente i brani di osu!, lui penserà al resto.',
+            'install_instruction' => 'Installazione: Una volta che un pacchetto è stato scaricato, estrai il contenuto del pacchetto in una cartella, seleziona i file osz e poi trascinali nella finestra di osu! in esecuzione.',
         ],
     ],
 
     'show' => [
         'created_by' => 'di :author',
         'download' => 'Scarica',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Ambizioso',
         'item' => [
             'cleared' => 'completata',
             'not_cleared' => 'non completata',

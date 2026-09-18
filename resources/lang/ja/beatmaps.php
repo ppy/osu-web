@@ -132,7 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => '',
+                'mapper_note' => 'メモを挿入',
                 'paragraph' => '段落の挿入',
                 'praise' => '称賛を挿入',
                 'problem' => '問題の挿入',

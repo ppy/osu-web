@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'arkadaş listende olmayan kişilerden gelen mesajları engelle',
+        'friends_only_info' => '',
         'hide_online' => 'çevrimiçi durumunu gizle',
         'hide_online_info' => 'bu osu!lazer\'de "çevrimdışı olarak görün" modunu atayacak',
         'title' => 'Gizlilik',

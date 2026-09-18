@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => '封鎖非好友的私人訊息',
+        'friends_only_info' => '',
         'hide_online' => '隱藏線上狀態',
         'hide_online_info' => '這會使你的帳號在 osu!lazer 中處於離線狀態',
         'title' => '隱私權政策',

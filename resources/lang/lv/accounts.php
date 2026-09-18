@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloķēt privātās ziņas no cilvēkiem, kuri nav jūsu draugu sarakstā',
+        'friends_only_info' => '',
         'hide_online' => 'slēpt jūsu tiešsaistes klātbūtni',
         'hide_online_info' => 'tas atbilst “nerādīt tiešsaistē” režīmam osu!lazer',
         'title' => 'Konfidencialitāte',

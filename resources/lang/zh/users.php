@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => '收起详情',
+            'to_v2' => '展开详情',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => '失败次数',
+            'plays' => '所有比赛',
+            'rank' => '排名',
+            'rating' => '等级分',
+            'recent_history' => '最新比赛历史',
+            'tier' => '段位',
             'title' => '排位模式',
-            'wins' => '',
+            'wins' => '获胜次数',
         ],
 
         'not_found' => [
@@ -525,11 +525,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => '排名前 :value',
-            'label' => '',
+            'label' => '聚光灯',
             'total_score' => '总分',
         ],
         'solo' => [
-            'title' => '',
+            'title' => '单人游戏',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',

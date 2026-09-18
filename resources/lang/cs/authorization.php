@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Nemůžeš ohodnotit sadu beatmap, na jejíž tvorbě jsi se podílel.',
+            'status' => 'Nemůžeš ohodnotit sadu beatmap s tímto stavem.',
         ],
     ],
 
