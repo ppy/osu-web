@@ -22,7 +22,8 @@ use Illuminate\Support\Arr;
 
 class RemoveBeatmapsetSoloScores implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable;
+    use InteractsWithQueue;
+    use Queueable;
 
     public $timeout = 36000;
 

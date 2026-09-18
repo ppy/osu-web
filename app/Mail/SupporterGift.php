@@ -15,7 +15,8 @@ use Illuminate\Queue\SerializesModels;
 
 class SupporterGift extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $tries = 5;
 

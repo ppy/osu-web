@@ -21,7 +21,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
-    use Traits\Es\TeamSearch, Traits\Reportable;
+    use Traits\Es\TeamSearch;
+    use Traits\Reportable;
 
     const FLAG_MAX_DIMENSIONS = [512, 256];
 

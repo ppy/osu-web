@@ -21,7 +21,9 @@ use Illuminate\Queue\SerializesModels;
 
 abstract class BroadcastNotificationBase implements ShouldQueue
 {
-    use NotificationQueue, Queueable, SerializesModels;
+    use NotificationQueue;
+    use Queueable;
+    use SerializesModels;
 
     const CONTENT_TRUNCATE = 36;
     const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];

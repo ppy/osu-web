@@ -40,7 +40,10 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Comment extends Model implements Traits\ReportableInterface
 {
-    use Memoizes, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
+    use Memoizes;
+    use Traits\Reportable;
+    use Traits\WithDbCursorHelper;
+    use Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],

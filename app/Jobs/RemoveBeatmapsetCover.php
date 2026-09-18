@@ -13,7 +13,9 @@ use Illuminate\Queue\SerializesModels;
 
 class RemoveBeatmapsetCover implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $beatmapset;
 
