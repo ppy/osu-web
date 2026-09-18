@@ -29,6 +29,11 @@ return [
         'guest_title' => 'מפות',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'אין מפות',
 

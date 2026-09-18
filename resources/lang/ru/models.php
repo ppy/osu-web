@@ -9,6 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'сложность карты',
         'App\Models\Beatmapset' => 'карта',
-        'App\Models\Solo\Score' => '',
+        'App\Models\Solo\Score' => 'счет',
     ],
 ];

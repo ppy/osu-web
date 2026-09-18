@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquear mensagens privadas de pessoas que não estejam na sua lista de amigos',
+        'friends_only_info' => '',
         'hide_online' => 'ocultar a sua presença online',
         'hide_online_info' => 'corresponde ao modo "aparecer offline" no osu!lazer',
         'title' => 'Privacidade',

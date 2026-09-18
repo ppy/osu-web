@@ -234,8 +234,8 @@ CAPTCHA認証を成功させてから再試行してください。
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => '詳細を非表示',
+            'to_v2' => '詳細を表示',
         ],
         'edit' => [
             'cover' => [
@@ -482,14 +482,14 @@ CAPTCHA認証を成功させてから再試行してください。
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => '敗北数',
+            'plays' => '総試合数',
+            'rank' => 'ランク',
+            'rating' => 'レーティング',
+            'recent_history' => '最新の対戦履歴',
+            'tier' => 'ティア',
             'title' => 'ランクマッチ',
-            'wins' => '',
+            'wins' => '勝利数',
         ],
 
         'not_found' => [
@@ -528,11 +528,11 @@ CAPTCHA認証を成功させてから再試行してください。
         ],
         'season_stats' => [
             'division_top_percentage' => 'トップ :value',
-            'label' => '',
+            'label' => 'スポットライト',
             'total_score' => '合計スコア',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'ソロプレイ',
         ],
         'stats' => [
             'hit_accuracy' => '精度',

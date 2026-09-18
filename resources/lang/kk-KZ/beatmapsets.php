@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Карталар',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'карталар жоқ',
 

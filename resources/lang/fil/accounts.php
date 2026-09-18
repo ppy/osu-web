@@ -146,6 +146,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'i-block ang mga pribadong mensahe mula sa mga taong hindi nasa iyong listahan ng mga kaibigan',
+        'friends_only_info' => '',
         'hide_online' => 'itago ang iyong presensya online',
         'hide_online_info' => '',
         'title' => 'Privacy',

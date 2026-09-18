@@ -19,7 +19,7 @@ return [
     'show' => [
         'created_by' => '作成者: :author',
         'download' => 'ダウンロード',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'チャレンジ',
         'item' => [
             'cleared' => '削除済み',
             'not_cleared' => '未クリア',

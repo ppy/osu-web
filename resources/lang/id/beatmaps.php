@@ -132,7 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => '',
+                'mapper_note' => 'sisipkan catatan',
                 'paragraph' => 'sisipkan paragraf baru',
                 'praise' => 'sisipkan pujian',
                 'problem' => 'sisipkan masalah',
@@ -183,7 +183,7 @@ return [
     'hype' => [
         'button' => 'Berikan Hype!',
         'button_done' => 'Sudah di-Hype!',
-        'confirm' => "Apakah kamu yakin? Dengan ini, kamu akan menggunakan 1 hype dari :n hype yang kamu miliki saat ini. Tindakan ini tidak bisa diurungkan.",
+        'confirm' => "Apakah kamu yakin? Tindakan ini akan menggunakan 1 dari :n hype kamu yang tersisa dan tidak bisa diurungkan.",
         'explanation' => 'Berikan hype-mu untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini bisa segera dinominasikan dan di-rank!',
         'new_time' => "Kamu akan memperoleh lebih banyak hype :new_time.",
@@ -232,7 +232,7 @@ return [
         ],
 
         'reset_at' => [
-            'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user dengan ditemukannya masalah baru :discussion (:message).',
+            'nomination_reset' => 'Proses nominasi dianulir :time_ago oleh :user dengan masalah baru :discussion (:message).',
             'disqualify' => 'Didiskualifikasi :time_ago oleh :user dengan masalah baru :discussion (:message).',
         ],
 

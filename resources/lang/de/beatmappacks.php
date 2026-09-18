@@ -12,14 +12,14 @@ return [
 
         'blurb' => [
             'important' => 'VOR DEM HERUNTERLADEN BITTE LESEN',
-            'install_instruction' => 'Installation: Sobald ein Beatmap-Pack heruntergeladen wurde, entpacke den Inhalt des Packs in dein osu! Songs-Verzeichnis und osu! wird den Rest erledigen.',
+            'install_instruction' => 'Installation: Sobald ein Beatmap-Paket heruntergeladen wurde, entpacke den Inhalt des Pakets in einen Ordner, selektiere die osz-Dateien und ziehe sie in das osu!-Fenster.',
         ],
     ],
 
     'show' => [
         'created_by' => 'von :author',
         'download' => 'Herunterladen',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Herausforderung',
         'item' => [
             'cleared' => 'geschafft',
             'not_cleared' => 'nicht geschafft',

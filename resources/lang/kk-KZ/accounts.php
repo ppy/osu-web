@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'достардан келмеген жеке хабарламаларды бұғаттау',
+        'friends_only_info' => '',
         'hide_online' => 'желіде екеніңізді жасыру',
         'hide_online_info' => '',
         'title' => 'Құпиялық',

@@ -59,7 +59,7 @@ return [
         'scoring-type' => [
             'score' => 'Nejvyšší skóre',
             'accuracy' => 'Nejvyšší přesnost',
-            'combo' => 'Nejvyšší Kombo',
+            'combo' => 'Nejvyšší kombo',
             'scorev2' => 'Score V2',
         ],
     ],

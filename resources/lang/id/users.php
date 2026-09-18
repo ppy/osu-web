@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Lebih sedikit rincian',
+            'to_v2' => 'Lebih banyak rincian',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => 'Kalah',
+            'plays' => 'Jumlah Pertandingan',
+            'rank' => 'Peringkat',
+            'rating' => 'Rating',
+            'recent_history' => 'Riwayat Pertandingan Terkini',
+            'tier' => 'Tingkatan',
             'title' => 'Permainan Kilat',
-            'wins' => '',
+            'wins' => 'Menang',
         ],
 
         'not_found' => [
@@ -525,11 +525,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => ':value teratas',
-            'label' => '',
+            'label' => 'Spotlight',
             'total_score' => 'Jumlah skor',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Permainan Solo',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',

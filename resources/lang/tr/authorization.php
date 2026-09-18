@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Katıldığınız bir beatmap setine puan veremezsiniz.',
+            'status' => 'Bu duruma sahip bir beatmap setine puan veremezsiniz.',
         ],
     ],
 

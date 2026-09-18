@@ -34,7 +34,7 @@ return [
         'artist' => 'Interpret/Album',
         'chart' => 'Oslňujúce',
         'featured' => 'Vybraní umelci',
-        'loved' => '',
+        'loved' => 'Projekt Milované',
         'standard' => 'Obyčajné',
         'theme' => 'Témy',
         'tournament' => 'Turnaj',

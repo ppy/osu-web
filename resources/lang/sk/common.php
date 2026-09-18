@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'authorise' => 'Autorizovať',
         'authorising' => 'Autorizovanie...',
-        'back' => '',
+        'back' => 'Späť',
         'back_to_previous' => 'Návrat do predchádzajúceho stavu',
         'back_to_top' => 'Naspäť hore',
         'cancel' => 'Zrušiť',
@@ -39,7 +39,7 @@ return [
         'pin' => 'pripnúť',
         'post' => 'Príspevok',
         'read_more' => 'čítať viac',
-        'refresh' => '',
+        'refresh' => 'Obnoviť',
         'reply' => 'Odpovedať',
         'reply_reopen' => 'Odpovedať a znova otvoriť',
         'reply_resolve' => 'Odpovedať a archivovať',
@@ -76,7 +76,7 @@ return [
         'minutes' => ':count minúta|:count minúty',
         'months' => ':count mesiac|:count mesiace',
         'notifications' => ':count_delimited oznámení',
-        'player' => '',
+        'player' => ':count_delimited hráč|:count_delimited hráči',
         'plus_others' => '+ :count_delimited ďalší!|+ :count_delimited ďalší!|+ :count_delimited ďalších!',
         'post' => ':count_delimited príspevok|:count_delimited príspevky|:count_delimited príspevkov',
         'second_short_unit' => 'sek',
@@ -95,10 +95,10 @@ return [
 
     'datetime' => [
         'month' => [
-            'php' => '',
+            'php' => 'm',
         ],
         'year' => [
-            'php' => '',
+            'php' => 'r',
         ],
         'year_month' => [
             'moment' => 'MMMM YYYY',

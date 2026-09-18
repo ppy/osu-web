@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Mapes',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'sense mapes',
 

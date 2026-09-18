@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Показать меньше подробностей',
+            'to_v2' => 'Показать больше подробностей',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => 'Поражения',
+            'plays' => 'Всего матчей',
+            'rank' => 'Ранг',
+            'rating' => 'Рейтинг',
+            'recent_history' => 'История последних матчей',
+            'tier' => 'Ранг',
             'title' => 'Рейтинговая игра',
-            'wins' => '',
+            'wins' => 'Победы',
         ],
 
         'not_found' => [
@@ -525,11 +525,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',
-            'label' => '',
+            'label' => 'Чарты',
             'total_score' => 'Всего очков',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Одиночная игра',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',

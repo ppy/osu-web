@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokiranje zasebnih sporočil ljudi, ki niso na vašem seznamu prijateljev',
+        'friends_only_info' => '',
         'hide_online' => 'skrij svojo prisotnost',
         'hide_online_info' => '',
         'title' => 'Zasebnost',

@@ -29,6 +29,11 @@ return [
         'guest_title' => 'ビートマップ',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'ビートマップがありません',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => '評価が無効です。',
     ],
 
     'show' => [

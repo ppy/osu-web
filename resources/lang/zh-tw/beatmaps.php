@@ -132,7 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => '',
+                'mapper_note' => '插入備註',
                 'paragraph' => '插入段落',
                 'praise' => '插入表揚',
                 'problem' => '插入問題',

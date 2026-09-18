@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Weniger Details anzeigen',
+            'to_v2' => 'Mehr Details anzeigen',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
+            'losses' => 'Niederlagen',
+            'plays' => 'Spiele insgesamt',
+            'rank' => 'Rang',
+            'rating' => 'Wertung',
             'recent_history' => '',
-            'tier' => '',
+            'tier' => 'Stufe',
             'title' => 'Ranked Play',
-            'wins' => '',
+            'wins' => 'Siege',
         ],
 
         'not_found' => [

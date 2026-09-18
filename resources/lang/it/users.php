@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Mostra meno dettagli',
+            'to_v2' => 'Mostra più dettagli',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
+            'losses' => 'Sconfitte',
             'plays' => '',
-            'rank' => '',
-            'rating' => '',
+            'rank' => 'Posizione',
+            'rating' => 'Punteggio',
             'recent_history' => '',
-            'tier' => '',
+            'tier' => 'Grado',
             'title' => 'Ranked Play',
-            'wins' => '',
+            'wins' => 'Vittorie',
         ],
 
         'not_found' => [
@@ -525,7 +525,7 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
-            'label' => '',
+            'label' => 'Spotlight',
             'total_score' => 'Punteggio totale',
         ],
         'solo' => [

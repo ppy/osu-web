@@ -29,6 +29,11 @@ return [
         'guest_title' => '圖譜',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => '沒有圖譜',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => '無效評分。',
     ],
 
     'show' => [

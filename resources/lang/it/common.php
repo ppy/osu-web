@@ -15,7 +15,7 @@ return [
     ],
 
     'badges' => [
-        'new' => 'NUOVO',
+        'new' => 'NOVITÀ',
     ],
 
     'buttons' => [
