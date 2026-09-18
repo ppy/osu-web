@@ -90,16 +90,8 @@ export default class ChannelStore implements DispatchListener {
   }
 
   findPM(userId: number): Channel | null {
-    if (userId === core.currentUser?.id) {
-      return null;
-    }
-
     for (const [, channel] of this.channels) {
-      if (channel.type !== 'PM') {
-        continue;
-      }
-
-      if (channel.userIds.includes(userId)) {
+      if (channel.pmTarget === userId) {
         return channel;
       }
     }
