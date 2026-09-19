@@ -10,7 +10,7 @@ import Controller from 'profile-page/controller';
 import { ProfilePageMatchmakingStatsJson } from 'profile-page/extra-page-props';
 import { getHighestRankStats, tier } from 'profile-page/matchmaking';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers } from 'utils/css';
 import { fail } from 'utils/fail';
 import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -77,7 +77,8 @@ export default class Matchmaking extends React.PureComponent<Props> {
       return null;
     }
 
-    const [rankValue, tierData] = stats.rank === -1
+    const provisional = stats.is_rating_provisional;
+    const [rankValue, tierData] = provisional || stats.rank === -1
       ? ['-', null]
       : [`#${formatNumber(stats.rank)}`, tier(stats)];
     const rankValueStyle = tierData == null
@@ -89,15 +90,19 @@ export default class Matchmaking extends React.PureComponent<Props> {
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--matchmaking'>
         <div className='profile-detail-stats-card__top'>
-          {tierData != null &&
-            <div className='profile-detail-stats-card__matchmaking-tier-badge'>
-              <MatchmakingTierBadge
-                rank={stats.rank}
-                rulesetId={stats.pool.ruleset_id}
-                tier={tierData.title}
-              />
-            </div>
-          }
+          <div className='profile-detail-stats-card__matchmaking-tier-badge'>
+            {tierData == null
+              ? provisional && (
+                <div className='matchmaking-tier-badge matchmaking-tier-badge--placeholder' />
+              ) : (
+                <MatchmakingTierBadge
+                  rank={stats.rank}
+                  rulesetId={stats.pool.ruleset_id}
+                  tier={tierData.title}
+                />
+              )
+            }
+          </div>
           <div className='profile-detail-stats-card__title'>
             <div className='profile-detail-stats-card__title-icon'>
               <span className='svg-icon svg-icon--multi' />
@@ -123,8 +128,11 @@ export default class Matchmaking extends React.PureComponent<Props> {
             <div />
             <ValueDisplay
               label={trans('users.show.matchmaking.rating')}
-              modifiers='rank rank-small'
-              value={formatNumber(stats.rating)}
+              modifiers={mergeModifiers('rank rank-small', { provisional })}
+              value={provisional
+                ? <span title={trans('rankings.matchmaking.provisional')}>{formatNumber(stats.rating)}*</span>
+                : formatNumber(stats.rating)
+              }
             />
             <ValueDisplay
               label={trans('users.show.matchmaking.tier')}

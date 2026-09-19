@@ -39,6 +39,18 @@
     }
   );
 
+  &--placeholder {
+    .center-content();
+    border: 2px dashed hsl(var(--hsl-c1));
+    border-radius: 100%;
+
+    &::before {
+      content: "?";
+      font-size: 24px; // icon size (sort of)
+      font-weight: 900;
+    }
+  }
+
   // the actual text is in its own class because it changes the font-size
   &__lustrous-rank {
     font-size: 1.25em;

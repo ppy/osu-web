@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $first_placements
  * @property int $pool_id
  * @property int $rating
+ * @property float $sigma
  * @property int $total_points
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class MatchmakingUserStats extends Model
 {
-    const MIN_SIG_PROVISIONAL = 100;
+    const MIN_SIGMA_PROVISIONAL = 100;
 
     public $incrementing = false;
 
@@ -48,6 +49,11 @@ class MatchmakingUserStats extends Model
         $query->where('plays', '>', 0);
     }
 
+    public function scopeNonProvisional(Builder $query): void
+    {
+        $query->where('sigma', '<', static::MIN_SIGMA_PROVISIONAL);
+    }
+
     public function scopeWithRank(Builder $query): void
     {
         $rankQuery = new static()
@@ -55,6 +61,7 @@ class MatchmakingUserStats extends Model
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
             ->default()
+            ->nonProvisional()
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
@@ -76,7 +83,7 @@ class MatchmakingUserStats extends Model
 
     public function isRatingProvisional(): bool
     {
-        return $this->elo_data['approximate_posterior']['sig'] >= static::MIN_SIG_PROVISIONAL;
+        return $this->sigma >= static::MIN_SIGMA_PROVISIONAL;
     }
 
     public function getRank(): int
