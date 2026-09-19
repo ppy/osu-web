@@ -165,10 +165,7 @@ export class Header extends React.Component<Props> {
           </div>
           <div className={`${bn}__filters`}>
             <div className={`${bn}__filter-group`}>
-              <BeatmapList
-                discussionsState={this.discussionsState}
-                users={this.users}
-              />
+              <BeatmapList discussionsState={this.discussionsState} />
             </div>
           </div>
           <div className={`${bn}__beatmap-stats`}>
