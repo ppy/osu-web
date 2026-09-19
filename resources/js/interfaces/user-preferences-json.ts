@@ -3,7 +3,7 @@
 
 import { BeatmapsetCardSize } from 'beatmapset-panel';
 import { ViewMode } from 'components/user-card';
-import { Filter, RelationshipFilter, SortMode } from 'components/user-list';
+import { StatusFilter, RelationshipFilter, SortMode } from 'components/user-list';
 
 export function defaultUserPreferencesJson(): UserPreferencesJson {
   return {
@@ -45,7 +45,7 @@ export default interface UserPreferencesJson {
   profile_cover_expanded: boolean;
   profile_detail_v2: boolean;
   scoring_mode: 'classic' | 'standardised';
-  user_list_filter: Filter;
+  user_list_filter: StatusFilter;
   user_list_relationship_filter: RelationshipFilter;
   user_list_sort: SortMode;
   user_list_view: ViewMode;

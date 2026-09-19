@@ -6,6 +6,8 @@ import { UserList } from 'components/user-list';
 import homeLinks from 'home-links';
 import CurrentUserJson from 'interfaces/current-user-json';
 import UserJson from 'interfaces/user-json';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import UserCardTypeContext from 'user-card-type-context';
 
@@ -14,6 +16,7 @@ interface Props {
   user: CurrentUserJson;
 }
 
+@observer
 export class Main extends React.PureComponent<Props> {
   render() {
     return (
@@ -26,7 +29,7 @@ export class Main extends React.PureComponent<Props> {
 
         <div className='osu-page osu-page--generic-compact'>
           <UserCardTypeContext.Provider value={{ isFriendsPage: true }}>
-            <UserList users={this.props.friends} />
+            <UserList userRelations={core.currentUserModel.friends} users={this.props.friends} />
           </UserCardTypeContext.Provider>
         </div>
       </>
