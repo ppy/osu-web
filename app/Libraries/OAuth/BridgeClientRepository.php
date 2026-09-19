@@ -16,6 +16,14 @@ class BridgeClientRepository extends BaseClientRepository
     {
         $record = $this->clients->findActive($clientIdentifier);
 
-        return $record !== null && hash_equals($record->secret, $clientSecret ?? '');
+        if ($record === null) {
+            return false;
+        }
+
+        $secret = $record->secret;
+
+        return str_starts_with('$', $secret)
+            ? $this->hasher->check($clientSecret, $secret)
+            : hash_equals($secret, $clientSecret ?? '');
     }
 }

@@ -14,12 +14,14 @@ class ClientTransformer extends TransformerAbstract
     protected array $availableIncludes = [
         'redirect',
         'secret',
+        'secret_hint',
         'user',
     ];
 
     protected $permissions = [
         'redirect' => 'IsOwnClient',
         'secret' => 'IsOwnClient',
+        'secret_hint' => 'IsOwnClient',
     ];
 
     public function transform(Client $client)
@@ -46,6 +48,12 @@ class ClientTransformer extends TransformerAbstract
 
     public function includeSecret(Client $client)
     {
-        return $this->primitive($client->secret);
+        return $this->primitive($client->plainSecret);
+    }
+
+    public function includeSecretHint(Client $client)
+    {
+        // The fallback assumes the model hasn't been updated to have hashed secret
+        return $this->primitive($client->secret_hint ?? substr($client->secret, -4));
     }
 }
