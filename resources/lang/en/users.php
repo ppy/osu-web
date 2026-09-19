@@ -563,6 +563,12 @@ return [
         'online' => 'Online',
         'offline' => 'Offline',
     ],
+    'relationship' => [
+        'title' => 'Relationship',
+        'all' => 'All',
+        'mutual' => 'Mutual',
+        'non_mutual' => 'Non-mutual',
+    ],
     'store' => [
         'from_client' => 'please register via the game client instead!',
         'from_web' => 'please complete registration using the osu! website',
