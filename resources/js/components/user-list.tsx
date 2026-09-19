@@ -33,19 +33,16 @@ const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 interface UserFilterDefinition {
   preferenceKey: keyof UserPreferencesJson;
   queryParameter: string;
-  translationKey: string;
 }
 
-const filterDefinitions: Record<keyof UserFilters, UserFilterDefinition> = {
+const userFilterDefinitions: Record<keyof UserFilters, UserFilterDefinition> = {
   relationshipFilter: {
     preferenceKey: 'user_list_relationship_filter',
     queryParameter: 'relationship_filter',
-    translationKey: 'relationship',
   },
   statusFilter: {
     preferenceKey: 'user_list_filter',
     queryParameter: 'filter',
-    translationKey: 'status',
   },
 };
 
@@ -80,15 +77,17 @@ export class UserList extends React.PureComponent<Props> {
   };
 
   private get filterFromUrl() {
+    const statusFilterDefinition = userFilterDefinitions.statusFilter;
+    const relationshipFilterDefinition = userFilterDefinitions.relationshipFilter;
     const statusFilter = this.getAllowedQueryStringValue(
       statusFilters,
-      currentUrlParams().get('filter'),
-      core.userPreferences.get('user_list_filter'),
+      currentUrlParams().get(statusFilterDefinition.queryParameter),
+      core.userPreferences.get(statusFilterDefinition.preferenceKey),
     );
     const relationshipFilter = this.getAllowedQueryStringValue(
       relationshipFilters,
-      currentUrlParams().get('relationship_filter'),
-      core.userPreferences.get('user_list_relationship_filter'),
+      currentUrlParams().get(relationshipFilterDefinition.queryParameter),
+      core.userPreferences.get(relationshipFilterDefinition.preferenceKey),
     );
     return { relationshipFilter, statusFilter };
   }
@@ -164,12 +163,13 @@ export class UserList extends React.PureComponent<Props> {
 
   optionSelected = (filterKey: keyof UserFilters) => (event: React.SyntheticEvent) => {
     event.preventDefault();
+    const filterDefinition = userFilterDefinitions[filterKey];
     const key = (event.currentTarget as HTMLElement).dataset.key;
-    const url = updateQueryString(null, { [filterDefinitions[filterKey].queryParameter]: key }) ;
+    const url = updateQueryString(null, { [filterDefinition.queryParameter]: key }) ;
 
     updateHistory(url, 'push');
     this.setState({ filters: { ...this.state.filters, [filterKey]: key } }, () => {
-      core.userPreferences.set(filterDefinitions[filterKey].preferenceKey, this.state.filters[filterKey]);
+      core.userPreferences.set(filterDefinition.preferenceKey, this.state.filters[filterKey]);
     });
   };
 
@@ -207,6 +207,11 @@ export class UserList extends React.PureComponent<Props> {
           )}
 
           <div className='user-list__toolbar'>
+            <div className='user-list__toolbar-row'>
+              <div className='user-list__toolbar-item'>
+                {this.renderRelationshipFilter()}
+              </div>
+            </div>
             {this.props.group?.has_playmodes && (
               <div className='user-list__toolbar-row'>
                 <div className='user-list__toolbar-item'>{this.renderPlaymodeFilter()}</div>
@@ -226,7 +231,7 @@ export class UserList extends React.PureComponent<Props> {
     );
   }
 
-  renderOption(key: string, text: string | number, filterKey: keyof UserFilters, active = false) {
+  renderOption(key: string, text: string | number, active = false) {
     // FIXME: change all the names
     const modifiers = active ? ['active'] : [];
     let className = classWithModifiers('update-streams-v2__item', modifiers);
@@ -237,13 +242,38 @@ export class UserList extends React.PureComponent<Props> {
         key={key}
         className={className}
         data-key={key}
-        href={updateQueryString(null, { [filterDefinitions[filterKey].queryParameter]: key })}
-        onClick={this.optionSelected(filterKey)}
+        href={updateQueryString(null, { [userFilterDefinitions.statusFilter.queryParameter]: key })}
+        onClick={this.optionSelected('statusFilter')}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
-        <p className='update-streams-v2__row update-streams-v2__row--name'>{trans(`users.${filterDefinitions[filterKey].translationKey}.${key}`)}</p>
+        <p className='update-streams-v2__row update-streams-v2__row--name'>{trans(`users.status.${key}`)}</p>
         <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
       </a>
+    );
+  }
+
+  renderRelationshipFilter() {
+    const relationshipButtons = relationshipFilters.map((mode) => (
+      <button
+        key={mode}
+        className={classWithModifiers('user-list__relationship', this.state.filters.relationshipFilter === mode ? ['active'] : [])}
+        data-key={mode}
+        data-value={mode}
+        onClick={this.optionSelected('relationshipFilter')}
+        title={trans(`users.relationship.${mode}`)}
+      >
+        {mode === 'all' ?
+          <span>{trans('users.relationship.all')}</span>
+          :
+          <span className={`fas fa-user${mode === 'mutual' ? '-friends': ''}`} />
+        }
+      </button>
+    ));
+
+    return (
+      <div className='user-list__relationships'>
+        <span className='user-list__relationship-title'>{trans('users.relationship.title')}</span> {relationshipButtons}
+      </div>
     );
   }
 
@@ -252,12 +282,7 @@ export class UserList extends React.PureComponent<Props> {
       <div className='update-streams-v2 update-streams-v2--with-active update-streams-v2--user-list'>
         <div className='update-streams-v2__container'>
           {
-            statusFilters.map((filter) => this.renderOption(filter, this.getFilteredUsers({ ...this.state.filters, statusFilter: filter }).length, 'statusFilter', filter === this.state.filters.statusFilter))
-          }
-        </div>
-        <div className='update-streams-v2__container'>
-          {
-            relationshipFilters.map((filter) => this.renderOption(filter, this.getFilteredUsers({ ...this.state.filters, relationshipFilter: filter }).length, 'relationshipFilter', filter === this.state.filters.relationshipFilter))
+            statusFilters.map((filter) => this.renderOption(filter, this.getFilteredUsers({ ...this.state.filters, statusFilter: filter }).length, filter === this.state.filters.statusFilter))
           }
         </div>
       </div>
