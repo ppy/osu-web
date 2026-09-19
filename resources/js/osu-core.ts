@@ -3,6 +3,7 @@
 
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
+import BeatmapTagPickerController from 'components/beatmap-tag-picker-controller';
 import AccountEdit from 'core/account-edit';
 import AccountEditAvatar from 'core/account-edit-avatar';
 import AccountEditBlocklist from 'core/account-edit-blocklist';
@@ -48,7 +49,6 @@ import SocketWorker from 'socket-worker';
 import Store from 'store';
 import RootDataStore from 'stores/root-data-store';
 import { parseJsonNullable } from 'utils/json';
-import UserTagPickerController from './beatmaps/user-tag-picker-controller';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -161,7 +161,7 @@ export default class OsuCore {
     this.windowFocusObserver = new WindowFocusObserver();
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
-    this.beatmapTagPickerController = new UserTagPickerController();
+    this.beatmapTagPickerController = new BeatmapTagPickerController();
 
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
