@@ -4,7 +4,6 @@
 import GroupJson from 'interfaces/group-json';
 import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
-import UserPreferencesJson from 'interfaces/user-preferences-json';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import { usernameSortAscending } from 'models/user';
@@ -20,49 +19,27 @@ import { Sort } from './sort';
 import { ViewMode, viewModes } from './user-card';
 import { UserCards } from './user-cards';
 
-export type Filter = 'all' | 'online' |'offline';
-export type RelationshipFilter = 'all' | 'mutual' |'non_mutual';
+export type StatusFilter = typeof statusFilters[number];
+export type RelationshipFilter = typeof relationshipFilters[number];
 type PlayModeFilter = 'all' | Ruleset;
-export type SortMode = 'last_visit' | 'rank' | 'username';
+export type SortMode =  typeof sortModes[number];
 
-const statusFilters: Filter[] = ['all', 'online', 'offline'];
-const relationshipFilters: RelationshipFilter[] = ['all', 'mutual', 'non_mutual'];
+const statusFilters = ['all', 'online', 'offline'] as const;
+const relationshipFilters = ['all', 'mutual', 'non_mutual'] as const;
 const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
-const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
+const sortModes = ['last_visit', 'rank', 'username'] as const;
 
-interface UserFilterDefinition {
-  preferenceKey: keyof UserPreferencesJson;
-  queryParameter: string;
-  translationKey: string;
-}
-
-const filterDefinitions: Record<keyof UserFilters, UserFilterDefinition> = {
-  relationshipFilter: {
-    preferenceKey: 'user_list_relationship_filter',
-    queryParameter: 'relationship_filter',
-    translationKey: 'relationship',
-  },
-  statusFilter: {
-    preferenceKey: 'user_list_filter',
-    queryParameter: 'filter',
-    translationKey: 'status',
-  },
-};
 
 interface Props {
   group?: GroupJson;
   users: UserJson[];
 }
 
-interface UserFilters {
-  relationshipFilter: RelationshipFilter;
-  statusFilter: Filter;
-}
-
 interface State {
-  filters: UserFilters;
   playMode: PlayModeFilter;
+  relationshipFilter: RelationshipFilter;
   sortMode: SortMode;
+  statusFilter: StatusFilter;
   viewMode: ViewMode;
 }
 
@@ -73,24 +50,27 @@ function rankSortDescending(x: UserJson, y: UserJson) {
 @observer
 export class UserList extends React.PureComponent<Props> {
   state: Readonly<State> = {
-    filters: this.filterFromUrl,
     playMode: this.playmodeFromUrl,
+    relationshipFilter: this.relationshipFilterFromUrl,
     sortMode: this.sortFromUrl,
+    statusFilter: this.statusFilterFromUrl,
     viewMode: this.viewFromUrl,
   };
 
-  private get filterFromUrl() {
-    const statusFilter = this.getAllowedQueryStringValue(
+  private get statusFilterFromUrl() {
+    return this.getAllowedQueryStringValue(
       statusFilters,
       currentUrlParams().get('filter'),
       core.userPreferences.get('user_list_filter'),
     );
-    const relationshipFilter = this.getAllowedQueryStringValue(
+  }
+
+  private get relationshipFilterFromUrl() {
+    return this.getAllowedQueryStringValue(
       relationshipFilters,
-      currentUrlParams().get('relationship_filter'),
+      currentUrlParams().get('relationship'),
       core.userPreferences.get('user_list_relationship_filter'),
     );
-    return { relationshipFilter, statusFilter };
   }
 
   private get playmodeFromUrl() {
@@ -102,7 +82,7 @@ export class UserList extends React.PureComponent<Props> {
   }
 
   private get sortedUsers() {
-    const users = this.getFilteredUsers(this.state.filters).slice();
+    const users = this.getFilteredUsers(this.state.statusFilter, this.state.relationshipFilter).slice();
 
     switch (this.state.sortMode) {
       case 'rank':
@@ -162,14 +142,14 @@ export class UserList extends React.PureComponent<Props> {
     });
   };
 
-  optionSelected = (filterKey: keyof UserFilters) => (event: React.SyntheticEvent) => {
+  optionSelected = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const key = (event.currentTarget as HTMLElement).dataset.key;
-    const url = updateQueryString(null, { [filterDefinitions[filterKey].queryParameter]: key }) ;
+    const url = updateQueryString(null, { filter: key }) ;
 
     updateHistory(url, 'push');
-    this.setState({ filters: { ...this.state.filters, [filterKey]: key } }, () => {
-      core.userPreferences.set(filterDefinitions[filterKey].preferenceKey, this.state.filters[filterKey]);
+    this.setState({ statusFilter: key }, () => {
+      core.userPreferences.set('user_list_filter', this.state.statusFilter);
     });
   };
 
@@ -179,6 +159,17 @@ export class UserList extends React.PureComponent<Props> {
 
     updateHistory(url, 'push');
     this.setState({ playMode: value });
+  };
+
+  relationshipSelected = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    const key = (event.currentTarget as HTMLElement).dataset.key;
+    const url = updateQueryString(null, { relationship: key }) ;
+
+    updateHistory(url, 'push');
+    this.setState({ relationshipFilter: key }, () => {
+      core.userPreferences.set('user_list_relationship_filter', this.state.relationshipFilter);
+    });
   };
 
   render(): React.ReactNode {
@@ -207,6 +198,13 @@ export class UserList extends React.PureComponent<Props> {
           )}
 
           <div className='user-list__toolbar'>
+            {this.props.group == null && (
+              <div className='user-list__toolbar-row'>
+                <div className='user-list__toolbar-item'>
+                  {this.renderRelationshipFilter()}
+                </div>
+              </div>
+            )}
             {this.props.group?.has_playmodes && (
               <div className='user-list__toolbar-row'>
                 <div className='user-list__toolbar-item'>{this.renderPlaymodeFilter()}</div>
@@ -226,7 +224,7 @@ export class UserList extends React.PureComponent<Props> {
     );
   }
 
-  renderOption(key: string, text: string | number, filterKey: keyof UserFilters, active = false) {
+  renderOption(key: string, text: string | number, active = false) {
     // FIXME: change all the names
     const modifiers = active ? ['active'] : [];
     let className = classWithModifiers('update-streams-v2__item', modifiers);
@@ -237,13 +235,38 @@ export class UserList extends React.PureComponent<Props> {
         key={key}
         className={className}
         data-key={key}
-        href={updateQueryString(null, { [filterDefinitions[filterKey].queryParameter]: key })}
-        onClick={this.optionSelected(filterKey)}
+        href={updateQueryString(null, { filter: key })}
+        onClick={this.optionSelected}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
-        <p className='update-streams-v2__row update-streams-v2__row--name'>{trans(`users.${filterDefinitions[filterKey].translationKey}.${key}`)}</p>
+        <p className='update-streams-v2__row update-streams-v2__row--name'>{trans(`users.status.${key}`)}</p>
         <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
       </a>
+    );
+  }
+
+  renderRelationshipFilter() {
+    const relationshipButtons = relationshipFilters.map((mode) => (
+      <button
+        key={mode}
+        className={classWithModifiers('user-list__view-mode', this.state.relationshipFilter === mode ? ['active'] : [])}
+        data-key={mode}
+        data-value={mode}
+        onClick={this.relationshipSelected}
+        title={trans(`users.relationship.${mode}`)}
+      >
+        {mode === 'all' ?
+          <span>{trans('users.relationship.all')}</span>
+          :
+          <span className={`fas fa-user${mode === 'mutual' ? '-friends': ''}`} />
+        }
+      </button>
+    ));
+
+    return (
+      <div className='user-list__view-modes'>
+        <span className='user-list__view-mode-title'>{trans('users.relationship.title')}</span> {relationshipButtons}
+      </div>
     );
   }
 
@@ -252,12 +275,7 @@ export class UserList extends React.PureComponent<Props> {
       <div className='update-streams-v2 update-streams-v2--with-active update-streams-v2--user-list'>
         <div className='update-streams-v2__container'>
           {
-            statusFilters.map((filter) => this.renderOption(filter, this.getFilteredUsers({ ...this.state.filters, statusFilter: filter }).length, 'statusFilter', filter === this.state.filters.statusFilter))
-          }
-        </div>
-        <div className='update-streams-v2__container'>
-          {
-            relationshipFilters.map((filter) => this.renderOption(filter, this.getFilteredUsers({ ...this.state.filters, relationshipFilter: filter }).length, 'relationshipFilter', filter === this.state.filters.relationshipFilter))
+            statusFilters.map((filter) => this.renderOption(filter, this.getFilteredUsers(filter, this.state.relationshipFilter).length, filter === this.state.statusFilter))
           }
         </div>
       </div>
@@ -317,7 +335,7 @@ export class UserList extends React.PureComponent<Props> {
     }
   }
 
-  private filterUsersByStatus(users: UserJson[], filter: Filter) {
+  private filterUsersByStatus(users: UserJson[], filter: StatusFilter) {
     switch (filter) {
       case 'online':
         return users.filter((user) => user.is_online);
@@ -328,7 +346,7 @@ export class UserList extends React.PureComponent<Props> {
     }
   }
 
-  private getAllowedQueryStringValue<T>(allowed: T[], value: unknown, fallback: unknown) {
+  private getAllowedQueryStringValue<T>(allowed: readonly T[], value: unknown, fallback: unknown) {
     const casted = value as T;
     if (allowed.indexOf(casted) > -1) {
       return casted;
@@ -342,7 +360,7 @@ export class UserList extends React.PureComponent<Props> {
     return allowed[0];
   }
 
-  private getFilteredUsers(filters: UserFilters) {
+  private getFilteredUsers(statusFilter: StatusFilter, relationshipFilter: RelationshipFilter) {
     // TODO: should be cached or something
     let users = this.props.users.slice();
     const playmode = this.state.playMode;
@@ -355,8 +373,8 @@ export class UserList extends React.PureComponent<Props> {
           ?.includes(playmode)
       ));
     }
-    users = this.filterUsersByStatus(users, filters.statusFilter);
-    return this.filterUsersByRelationship(users, filters.relationshipFilter);
+    users = this.filterUsersByStatus(users, statusFilter);
+    return this.filterUsersByRelationship(users, relationshipFilter);
   }
 
   private renderPlaymodeFilter() {

@@ -569,6 +569,7 @@ return [
         'offline' => 'Offline',
     ],
     'relationship' => [
+        'title' => 'Relationship',
         'all' => 'All',
         'mutual' => 'Mutual',
         'non_mutual' => 'Non-mutual',
