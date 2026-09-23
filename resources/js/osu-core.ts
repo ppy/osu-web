@@ -3,8 +3,8 @@
 
 import BeatmapTagStore from 'beatmaps/beatmap-tag-store';
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
+import ListingTagPickerController from 'beatmaps/listing-tag-picker-controller';
 import ChatWorker from 'chat/chat-worker';
-import BeatmapTagPickerController from 'components/beatmap-tag-picker-controller';
 import AccountEdit from 'core/account-edit';
 import AccountEditAvatar from 'core/account-edit-avatar';
 import AccountEditBlocklist from 'core/account-edit-blocklist';
@@ -57,8 +57,8 @@ export default class OsuCore {
   readonly accountEditBlocklist;
   readonly animateNav;
   readonly bbcodeAutoPreview;
+  readonly beatmapListingTagPickerController;
   readonly beatmapsetSearchController;
-  readonly beatmapTagPickerController;
   readonly beatmapTagStore;
   readonly bladePopup;
   readonly browserTitleWithNotificationCount;
@@ -162,8 +162,8 @@ export default class OsuCore {
 
     this.beatmapTagStore = new BeatmapTagStore();
 
+    this.beatmapListingTagPickerController = new ListingTagPickerController();
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
-    this.beatmapTagPickerController = new BeatmapTagPickerController();
 
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);

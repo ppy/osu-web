@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ensureRulesetId, RulesetId } from 'interfaces/ruleset';
+import { RulesetId } from 'interfaces/ruleset';
 import { groupBy } from 'lodash';
 import { computed, makeObservable, observable } from 'mobx';
 import BeatmapTag from 'models/beatmap-tag';
@@ -12,17 +12,13 @@ export interface TagGroup {
   tags: BeatmapTag[];
 }
 
-export default class BeatmapTagPickerController {
+export default abstract class BeatmapTagPickerController {
+  abstract disableTag: (tag: BeatmapTag) => void;
+  abstract enableTag: (tag: BeatmapTag) => void;
+  abstract isTagEnabled: (tag: BeatmapTag) => boolean;
+  abstract rulesetId: RulesetId|undefined;
+
   @observable query: string = '';
-
-  @computed
-  private get rulesetId(): RulesetId|undefined {
-    const mode = core.beatmapsetSearchController.filters.mode;
-
-    if (mode !== null) {
-      return ensureRulesetId(mode);
-    }
-  }
 
   constructor() {
     makeObservable(this);

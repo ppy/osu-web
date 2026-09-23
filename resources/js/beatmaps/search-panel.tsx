@@ -217,12 +217,7 @@ export class SearchPanel extends React.Component<Props> {
             <i className='fas fa-tag' />
           </button>
           <PopupMenu direction='left' skipButton state={this.tagPopupMenuState}>
-            {() => (<BeatmapTagPicker
-              isTagEnabled={this.controller.filters.tagEnabled}
-              onDisabled={this.controller.filters.tagRemove}
-              onEnabled={this.controller.filters.tagAdd}
-              showAllRulesets={this.controller.filters.mode === null}
-            />)}
+            {() => (<BeatmapTagPicker controller={core.beatmapListingTagPickerController} />)}
           </PopupMenu>
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
