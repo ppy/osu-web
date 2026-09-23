@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapTagStore from 'beatmaps/beatmap-tag-store';
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatWorker from 'chat/chat-worker';
 import BeatmapTagPickerController from 'components/beatmap-tag-picker-controller';
@@ -58,6 +59,7 @@ export default class OsuCore {
   readonly bbcodeAutoPreview;
   readonly beatmapsetSearchController;
   readonly beatmapTagPickerController;
+  readonly beatmapTagStore;
   readonly bladePopup;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -157,6 +159,8 @@ export default class OsuCore {
     this.accountEditAvatar = new AccountEditAvatar(this);
     this.userLoginObserver = new UserLoginObserver();
     this.windowFocusObserver = new WindowFocusObserver();
+
+    this.beatmapTagStore = new BeatmapTagStore();
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
     this.beatmapTagPickerController = new BeatmapTagPickerController();
