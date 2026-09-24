@@ -2382,6 +2382,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_lang;
     }
 
+    public function reportableAdditionalInfo(UserReport $report): ?string
+    {
+        return match ($report->reason) {
+            'InappropriateChat' => Chat\Message::recentUserMessagesForReport($this->getKey()),
+            default => null,
+        };
+    }
+
     public function url(?string $ruleset = null)
     {
         return route('users.show', ['mode' => $ruleset, 'user' => $this->getKey()]);
