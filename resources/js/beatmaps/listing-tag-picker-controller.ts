@@ -3,11 +3,11 @@
 
 import BeatmapTagPickerController from 'components/beatmap-tag-picker-controller';
 import { ensureRulesetId, RulesetId } from 'interfaces/ruleset';
-import { computed } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import BeatmapTag from 'models/beatmap-tag';
 import core from 'osu-core-singleton';
 
-export default class ListingTagPickerController extends BeatmapTagPickerController {
+export default class ListingTagPickerController implements BeatmapTagPickerController {
   @computed
   get rulesetId(): RulesetId|undefined {
     const mode = core.beatmapsetSearchController.filters.mode;
@@ -15,6 +15,12 @@ export default class ListingTagPickerController extends BeatmapTagPickerControll
     if (mode !== null) {
       return ensureRulesetId(mode);
     }
+  }
+
+  @observable query: string = '';
+
+  constructor() {
+    makeObservable(this);
   }
 
   disableTag = (tag: BeatmapTag) => core.beatmapsetSearchController.filters.tagRemove(tag);
