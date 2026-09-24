@@ -114,7 +114,12 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, CommentableInterface, Indexable, Traits\ReportableInterface
 {
-    use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
+    use Memoizes;
+    use SoftDeletes;
+    use Traits\CommentableDefaults;
+    use Traits\Es\BeatmapsetSearch;
+    use Traits\Reportable;
+    use Validatable;
 
     const CASTS = [
         'active' => 'boolean',

@@ -29,7 +29,8 @@ use Illuminate\Notifications\RoutesNotifications;
  */
 class UserReport extends Model
 {
-    use RoutesNotifications, Validatable;
+    use RoutesNotifications;
+    use Validatable;
 
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const MAX_FIELD_LENGTHS = [

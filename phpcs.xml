@@ -147,9 +147,6 @@
     <rule ref="PSR12.Operators.OperatorSpacing.NoSpaceBefore">
         <severity>0</severity>
     </rule>
-    <rule ref="PSR12.Traits.UseDeclaration.MultipleImport">
-        <type>warning</type>
-    </rule>
     <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaFunctionCall">
         <type>warning</type>
     </rule>
