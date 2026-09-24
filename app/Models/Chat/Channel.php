@@ -411,7 +411,7 @@ class Channel extends Model
         return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
             foreach ($this->userIds() as $targetId) {
                 if ($targetId !== $userId) {
-                    return $this->users()->find($targetId);
+                    return $this->users()->firstWhere('user_id', $targetId);
                 }
             }
             
