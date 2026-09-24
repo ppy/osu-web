@@ -4,11 +4,6 @@
 import { RulesetId } from 'interfaces/ruleset';
 import BeatmapTag from 'models/beatmap-tag';
 
-export interface TagGroup {
-  name: string;
-  tags: BeatmapTag[];
-}
-
 export default interface BeatmapTagPickerController {
   disableTag: (tag: BeatmapTag) => void;
   enableTag: (tag: BeatmapTag) => void;
