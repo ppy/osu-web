@@ -52,13 +52,12 @@ class ClientsController extends Controller
 
         // from ClientRepository::create but with custom Client.
         $client = (new Client())->forceFill([
-            'user_id' => auth()->user()->getKey(),
+            'grant_types' => ['authorization_code', 'client_credentials', 'refresh_token'],
             'name' => $params['name'] ?? null,
-            'secret' => str_random(40),
             'redirect' => $params['redirect'] ?? '',
-            'personal_access_client' => false,
-            'password_client' => false,
             'revoked' => false,
+            'secret' => str_random(40),
+            'user_id' => \Auth::user()->getKey(),
         ]);
 
         if (!$client->save()) {
