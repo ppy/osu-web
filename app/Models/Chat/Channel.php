@@ -408,8 +408,15 @@ class Channel extends Model
 
         $userId = $user->getKey();
 
-        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
-            return $this->users()->firstWhere('user_id', '<>', $userId);
+        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
+            foreach ($this->userIds() as $targetId) {
+                if ($targetId !== $userId) {
+                    return $this->users()->firstWhere('user_id', $targetId);
+                }
+            }
+            
+            // all ids point to self
+            return $user;
         });
     }
 

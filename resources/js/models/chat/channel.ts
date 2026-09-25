@@ -122,11 +122,18 @@ export default class Channel {
 
   @computed
   get pmTarget(): number | undefined {
-    if (this.type !== 'PM') {
+    if (this.type !== 'PM' || this.userIds.length === 0) {
       return;
     }
 
-    return this.userIds.find((userId: number) => userId !== core.currentUserOrFail.id);
+    for (const targetId of this.userIds) {
+      if (targetId !== core.currentUserOrFail.id) {
+        return targetId;
+      }
+    }
+
+    // there is no id that is not currentUser
+    return core.currentUserOrFail.id;
   }
 
   @computed

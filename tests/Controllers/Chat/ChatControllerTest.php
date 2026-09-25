@@ -206,7 +206,7 @@ class ChatControllerTest extends TestCase
         )->assertStatus(422);
     }
 
-    public function testCreatePMWithSelf() // fail
+    public function testCreatePMWithSelf() // success
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
@@ -216,7 +216,23 @@ class ChatControllerTest extends TestCase
                 'target_id' => $this->user->user_id,
                 'message' => self::$faker->sentence(),
             ]
-        )->assertStatus(422);
+        )->assertStatus(200);
+    }
+
+    // self-messaging must succeed even when the sender restricts PMs to friends only
+    public function testCreatePMWithSelfWhenFriendsOnly() // success
+    {
+        $privateUser = User::factory()->withPlays()->create(['pm_friends_only' => true]);
+
+        $this->actAsScopedUser($privateUser, ['*']);
+        $this->json(
+            'POST',
+            route('api.chat.new'),
+            [
+                'target_id' => $privateUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        )->assertStatus(200);
     }
 
     public function testCreatePMWhenFriendsOnlyAndNotFriended() // fail
