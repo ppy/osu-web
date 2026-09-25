@@ -62,7 +62,7 @@ export default class SelectOptions<T extends string | number> extends React.Pure
     return (
       <div ref={this.ref} className={className}>
         <div className={`${bn}__select`}>
-          <a className={classWithModifiers(`${bn}__option`, 'selector')} href={this.props.href} onClick={this.toggleSelector}>
+          <a className={classWithModifiers(`${bn}__option`, 'select')} href={this.props.href} onClick={this.toggleSelector}>
             {this.renderText(this.props.children)}
             <div className={`${bn}__decoration`}>
               <span className='fas fa-chevron-down' />
@@ -70,7 +70,7 @@ export default class SelectOptions<T extends string | number> extends React.Pure
           </a>
         </div>
 
-        <div className={`${bn}__selector`}>
+        <div className={`${bn}__options`}>
           {[...this.renderOptions()]}
         </div>
       </div>
