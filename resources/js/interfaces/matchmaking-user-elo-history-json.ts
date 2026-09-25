@@ -6,4 +6,5 @@ export default interface MatchmakingUserEloHistoryJson {
   elo_after: number;
   id: number;
   result: 'draw' | 'loss' | 'win';
+  room_id: number;
 }

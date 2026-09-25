@@ -18,7 +18,9 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class UpdateWiki implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
 
     /** @var string */
     private $oldHash;

@@ -16,7 +16,9 @@ use Illuminate\Queue\SerializesModels;
 
 class RemoveBeatmapsetBestScores implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public $timeout = 36000;
     public $beatmapset;

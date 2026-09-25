@@ -82,7 +82,7 @@ export default class HeaderV4 extends React.Component<Props> {
         <div className='header-v4__container header-v4__container--main'>
           <div className='header-v4__bg-container'>
             <div
-              className={`header-v4__bg ${this.props.backgroundExtraClass}`}
+              className={`header-v4__bg ${this.props.backgroundExtraClass ?? ''}`}
               style={{ backgroundImage: urlPresence(this.props.backgroundImage) }}
             />
           </div>

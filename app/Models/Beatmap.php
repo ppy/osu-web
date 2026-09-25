@@ -54,7 +54,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Beatmap extends Model implements AfterCommit
 {
-    use Memoizes, SoftDeletes;
+    use Memoizes;
+    use SoftDeletes;
 
     public $convert = false;
 

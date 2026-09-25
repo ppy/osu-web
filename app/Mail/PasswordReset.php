@@ -12,7 +12,8 @@ use Illuminate\Queue\SerializesModels;
 
 class PasswordReset extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $user;
     public $key;

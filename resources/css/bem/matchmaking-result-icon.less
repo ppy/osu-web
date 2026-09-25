@@ -2,6 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .matchmaking-result-icon {
+  --colour: hsl(var(--hue), var(--c-saturation-4), var(--c-lightness-4));
+  .link-plain();
   border-radius: 10000px;
   display: flex;
   width: 24px;
@@ -16,11 +18,15 @@
     hsl(var(--hue), var(--c-saturation-1), var(--c-lightness-1)),
     hsl(var(--hue), var(--c-saturation-3), var(--c-lightness-3))
   );
-  color: hsl(var(--hue), var(--c-saturation-4), var(--c-lightness-4));
+  color: var(--colour);
 
   &::before {
     content: var(--label);
   }
+
+  .link-hover({
+    color: var(--colour);
+  });
 
   &--result-draw {
     --hue: var(--colour-orange-hue);

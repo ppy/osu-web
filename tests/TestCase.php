@@ -35,7 +35,8 @@ use ReflectionProperty;
 
 class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseTransactions;
+    use CreatesApplication;
+    use DatabaseTransactions;
 
     protected $connectionsToTransact = [
         'mysql',
