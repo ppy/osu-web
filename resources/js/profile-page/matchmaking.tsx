@@ -3,6 +3,7 @@
 
 import MatchmakingPoolJson from 'interfaces/matchmaking-pool-json';
 import { rulesetVariantIdToName } from 'interfaces/ruleset';
+import { clamp } from 'lodash';
 import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -25,66 +26,29 @@ export function getHighestRankStats(allStats: ProfilePageMatchmakingStatsJson[])
 }
 
 const tiers = [
-  ['Bronze', [
-    ['I', 1],
-    ['II', 0.98],
-    ['III', 0.96],
-  ]],
-
-  ['Silver', [
-    ['I', 0.95],
-    ['II', 0.875],
-    ['III', 0.8],
-  ]],
-
-  ['Gold', [
-    ['I', 0.75],
-    ['II', 0.65],
-    ['III', 0.55],
-  ]],
-
-  ['Platinum', [
-    ['I', 0.5],
-    ['II', 0.4],
-    ['III', 0.3],
-  ]],
-
-  ['Rhodium', [
-    ['I', 0.2],
-    ['II', 0.15],
-    ['III', 0.1],
-  ]],
-
-  ['Radiant', [
-    ['I', 0.05],
-    ['II', 0.025],
-    ['III', 0.01],
-  ]],
+  'Bronze',
+  'Silver',
+  'Gold',
+  'Platinum',
+  'Rhodium',
+  'Radiant',
 ] as const;
 
-export function tier(stats: ProfilePageMatchmakingStatsJson) {
-  const rank = stats.rank;
-  const percent = stats.rank_percent;
+const tierLevels = ['I', 'II', 'III'] as const;
 
-  if (rank > 0 && rank <= 100) {
+export function tier(stats: ProfilePageMatchmakingStatsJson) {
+  if (stats.rating > 2400 && stats.rank <= 100) {
     return { colour: 'lustrous', title: 'Lustrous' };
   }
 
-  for (let i = tiers.length - 1; i >= 0; i--) {
-    const [mainTitle, levels] = tiers[i];
-    for (let j = levels.length - 1; j >= 0; j--) {
-      const [level, minPercent] = levels[j];
-      if (percent <= minPercent) {
-        return {
-          colour: mainTitle.toLowerCase(),
-          title: `${mainTitle} ${level}`,
-        };
-      }
-    }
-  }
+  const statsTierBase = Math.floor(clamp(stats.rating, 600, 2399) / 100) - 6;
+  const mainTitle = tiers[Math.floor(statsTierBase / 3)];
+  const level = tierLevels[statsTierBase % 3];
 
-  // this shouldn't be reachable
-  throw new Error('no matching tier');
+  return {
+    colour: mainTitle.toLowerCase(),
+    title: `${mainTitle} ${level}`,
+  };
 }
 
 function poolDisplayName(pool: MatchmakingPoolJson) {
