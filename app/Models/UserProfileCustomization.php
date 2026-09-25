@@ -110,7 +110,7 @@ class UserProfileCustomization extends Model
             'user_id' => $this->getRawAttribute($key),
             'options' => json_decode($this->getRawAttribute($key) ?? '[]', true),
 
-            'extras_order' => $this->getExtrasOrderAttribute($this->getRawAttribute($key)),
+            'extras_order' => $this->getExtrasOrderAttribute(),
             'legacy_score_only' => $this->getLegacyScoreOnlyAttribute(),
 
             'created_at',
@@ -246,11 +246,11 @@ class UserProfileCustomization extends Model
 
     public function setExtrasOrderAttribute($value)
     {
-        $this->attributes['extras_order'] = null;
-        $this->setOption(
-            'extras_order',
-            is_array($value) ? static::repairExtrasOrder(get_arr($value, get_string(...))) : null,
-        );
+        $value = is_array($value)
+            ? static::repairExtrasOrder(get_arr($value, get_string(...)))
+            : null;
+
+        $this->setOption('extras_order', $value);
     }
 
     public function setProfileCoverExpandedAttribute($value)
@@ -271,19 +271,13 @@ class UserProfileCustomization extends Model
         parent::refresh();
     }
 
-    private function getExtrasOrderAttribute($value)
+    private function getExtrasOrderAttribute(): array
     {
-        $newValue = $this->getOption('extras_order') ?? null;
+        $value = $this->getOption('extras_order');
 
-        if ($newValue === null && $value !== null) {
-            $newValue = json_decode($value, true);
-        }
-
-        if ($newValue === null) {
-            return static::DEFAULTS['extras_order'];
-        }
-
-        return static::repairExtrasOrder($newValue);
+        return $value === null
+            ? static::DEFAULTS['extras_order']
+            : static::repairExtrasOrder($value);
     }
 
     private function getLegacyScoreOnlyAttribute(): bool
