@@ -138,6 +138,16 @@
                         {{ i18n_number_format($percentile['top_50p']) }}
                     </div>
                 </div>
+                @if (present($room->description))
+                    <div class="counter-box counter-box--ranking">
+                        <div class="counter-box__title">
+                            {{ osu_trans('rankings.daily_challenge.theme') }}
+                        </div>
+                        <div class="counter-box__count">
+                            {{ $room->description }}
+                        </div>
+                    </div>
+                @endif
             </div>
         @endif
     </div>
