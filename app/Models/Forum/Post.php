@@ -60,7 +60,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
-    use Traits\Es\ForumPostSearch, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
+    use Traits\Es\ForumPostSearch;
+    use Traits\Reportable;
+    use Traits\WithDbCursorHelper;
+    use Validatable;
     use SoftDeletes {
         restore as private origRestore;
     }

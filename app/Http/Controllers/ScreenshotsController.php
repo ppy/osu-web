@@ -14,6 +14,15 @@ use Illuminate\Validation\Rules\File;
 
 class ScreenshotsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('throttle:1,0.5', ['only' => [
+            'store',
+        ]]);
+
+        parent::__construct();
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

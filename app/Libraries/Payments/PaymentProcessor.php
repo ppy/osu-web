@@ -16,7 +16,8 @@ use Sentry\State\Scope;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
-    use Memoizes, Validatable;
+    use Memoizes;
+    use Validatable;
 
     const WARN_CANCEL_MISSING_PAYMENT = 'Cancelling order with no existing payment found.';
     const WARN_PAYMENT_ALREADY_CANCELLED = 'Payment already cancelled.';
