@@ -14,10 +14,11 @@ class MatchmakingUserEloHistoryTransformer extends TransformerAbstract
     public function transform(MatchmakingUserEloHistory $history): array
     {
         return [
+            'created_at' => json_time($history->created_at),
             'elo_after' => $history->elo_after,
             'id' => $history->getKey(),
             'result' => $history->result,
-            'created_at' => json_time($history->created_at),
+            'room_id' => $history->room_id,
         ];
     }
 }
