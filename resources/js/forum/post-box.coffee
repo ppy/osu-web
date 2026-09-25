@@ -16,16 +16,18 @@ insert = (event, tagOpen, tagClose = '') ->
   texts[0] = texts[0] + tagOpen
   texts[2] = tagClose + texts[2]
 
+  box.focus()
+  box.selectionStart = startPos
+  box.selectionEnd = endPos
+  document.execCommand('insertText', false, tagOpen + texts[1] + tagClose)
+
   if startPos == endPos
-    $box.val texts[0] + texts[2]
     box.selectionStart = texts[0].length
     box.selectionEnd = box.selectionStart
   else
-    $box.val texts[0] + texts[1] + texts[2]
     box.selectionStart = startPos
     box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
 
-  box.dispatchEvent(new InputEvent('input', bubbles: true))
   box.focus()
 
 [
