@@ -88,6 +88,12 @@ Field     | Type
 available | integer
 total     | integer
 
+### Optional attributes
+
+Field | Type     | Description
+------|----------|------------
+rank  | integer? | Global kudosu rank. `null` if the user has no kudosu or is outside the top 1,000.
+
 <div id="user-profilebanner" data-unique="user-profilebanner"></div>
 
 ### ProfileBanner

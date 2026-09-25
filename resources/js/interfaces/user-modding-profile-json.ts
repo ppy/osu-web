@@ -7,11 +7,16 @@ import { ProfileHeaderIncludes } from './user-json';
 type ModdingProfileIncludes =
   ProfileHeaderIncludes
   | 'graveyard_beatmapset_count'
+  | 'guest_beatmapset_count'
+  | 'kudosu'
   | 'loved_beatmapset_count'
+  | 'nominated_beatmapset_count'
   | 'pending_beatmapset_count'
   | 'ranked_beatmapset_count'
   | 'statistics';
 
-type UserModdingProfileJson = UserExtendedJson & Required<Pick<UserExtendedJson, ModdingProfileIncludes>>;
+type UserModdingProfileJson = UserExtendedJson & Required<Pick<UserExtendedJson, ModdingProfileIncludes>> & {
+  kudosu: UserExtendedJson['kudosu'] & { rank: number | null };
+};
 
 export default UserModdingProfileJson;
