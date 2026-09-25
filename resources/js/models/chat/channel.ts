@@ -13,6 +13,7 @@ import Message from './message';
 
 const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 
+const defaultChannelIcon = '/images/layout/chat/channel-default.png';
 export const maxMessageLength = 1024;
 
 // TODO: rename minMessageId and also check firstMessageId
@@ -28,14 +29,12 @@ function getMinMessageIdFrom(messages: Message[]) {
 }
 
 export default class Channel {
-  private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
-
   @observable canListUsers: boolean = false;
   @observable canMessageError: string | null = null;
   @observable channelId: number;
   @observable description?: string;
   @observable firstMessageId = -1;
-  @observable icon?: string;
+  @observable icon = defaultChannelIcon;
   @observable inputText = '';
   @observable lastReadId?: number;
   @observable loadingEarlierMessages = false;
@@ -286,7 +285,7 @@ export default class Channel {
     this.name = json.name;
     this.description = json.description;
     this.type = json.type;
-    this.icon = json.icon ?? Channel.defaultIcon;
+    this.icon = json.icon ?? defaultChannelIcon;
     this.messageLengthLimit = json.message_length_limit;
     this.userIds = json.users ?? this.userIds;
 
