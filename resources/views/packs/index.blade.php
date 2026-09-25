@@ -24,20 +24,7 @@
             @foreach ($packs as $pack)
                 <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-tag="{{ $pack->tag }}">
                     <a href="{{ route('packs.show', $pack) }}" class="beatmap-pack__header js-accordion__item-header">
-                        <div>
-                            <span class="beatmap-pack__name">
-                                {{ $pack->name }}
-                            </span>
-                            @if ($pack->no_diff_reduction)
-                                <span class="beatmap-pack__badge">
-                                    {{ osu_trans('beatmappacks.show.no_diff_reduction_badge') }}
-                                </span>
-                            @endif
-                        </div>
-                        <div class="beatmap-pack__details">
-                            <span class="beatmap-pack__date">{{ json_date($pack->date) }}</span>
-                            <span>{!! osu_trans('beatmappacks.show.created_by', ['author' => tag('strong', content: e($pack->author))]) !!}</span>
-                        </div>
+                        @include('packs._item_header', ['pack' => $pack])
                     </a>
                     <div class="beatmap-pack__body js-accordion__item-body"></div>
                 </div>
