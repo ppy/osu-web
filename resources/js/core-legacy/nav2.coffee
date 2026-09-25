@@ -1,7 +1,6 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { blackoutToggle } from 'utils/blackout'
 import { fadeToggle } from 'utils/fade'
 
 export default class Nav2
@@ -9,7 +8,6 @@ export default class Nav2
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
     $.subscribe 'click-menu:current', @autoCenterPopup
-    $.subscribe 'click-menu:current', @autoMobileNav
     $.subscribe 'menu:current', @showMenuBg
 
 
@@ -40,25 +38,6 @@ export default class Nav2
     $(window).on 'resize.nav2-center-popup', doCenter
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
-
-
-  autoMobileNav: (e, {previousTree, target, tree}) =>
-    if target == 'mobile-menu'
-      @clickMenu.show('mobile-nav')
-      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
-
-    @showingMobileNav = tree.indexOf('mobile-menu') != -1
-
-    if @showingMobileNav
-      document.body.classList.add('js-nav2--active')
-      blackoutToggle(this, true)
-    else if previousTree.indexOf('mobile-menu') != -1
-      blackoutToggle(this, false)
-      Timeout.set 0, =>
-        $(@clickMenu.menu('mobile-menu')).finish().slideUp 150, =>
-          # use actual state instead of always removing the class in case
-          # the menu is shown again right after it's closed
-          document.body.classList.toggle('js-nav2--active', @showingMobileNav)
 
 
   centerPopup: (popup, reference) ->
