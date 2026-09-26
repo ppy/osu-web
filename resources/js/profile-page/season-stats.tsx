@@ -18,7 +18,7 @@ function colourStyle(tier: string) {
 }
 
 interface Props {
-  stats: SeasonStatsJson;
+  stats: SeasonStatsJson | null;
   v2?: boolean;
 }
 
@@ -76,6 +76,7 @@ export default class SeasonStats extends React.Component<Props> {
 
   private readonly onMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
     if (this.disposer != null) return;
+    if (this.props.stats === null) return;
 
     $(this.valueRef.current ?? []).qtip({
       content: '[placeholder]',
@@ -103,6 +104,7 @@ export default class SeasonStats extends React.Component<Props> {
     }, event);
 
     this.disposer = autorun(() => {
+      if (this.props.stats === null) return;
       const content = renderToStaticMarkup(popup(this.props.stats));
       $(this.valueRef.current ?? []).qtip('set', { 'content.text': content });
     });
@@ -117,14 +119,17 @@ export default class SeasonStats extends React.Component<Props> {
       >
         <div
           className='season-stats__line'
-          style={colourStyle(this.props.stats.division.colour_tier)}
+          style={colourStyle(this.props.stats?.division.colour_tier ?? 'iron')}
         />
-        <Img2x
-          className='season-stats__division'
-          src={this.props.stats.division.image_url}
-        />
+        {
+          this.props.stats?.division.image_url != null &&
+            <Img2x
+              className='season-stats__division'
+              src={this.props.stats.division.image_url}
+            />
+        }
         <div className='season-stats__name'>
-          {this.props.stats.division.name}
+          {this.props.stats?.division.name}
         </div>
       </div>
     );
@@ -146,15 +151,20 @@ export default class SeasonStats extends React.Component<Props> {
           </div>
           <div
             className='profile-detail-stats-big__fancy-text'
-            style={colourStyle(this.props.stats.division.colour_tier)}
+            style={colourStyle(this.props.stats?.division.colour_tier ?? 'iron')}
           >
-            {this.props.stats.division.name}
+            {this.props.stats?.division.name ?? 'Unranked'}
           </div>
         </div>
-        <Img2x
-          className='profile-detail-stats-big__badge'
-          src={this.props.stats.division.image_url}
-        />
+        {
+          this.props.stats?.division.image_url != null ?
+            <Img2x
+              className='profile-detail-stats-big__badge'
+              src={this.props.stats.division.image_url}
+            />
+            :
+            <div className='profile-detail-stats-big__badge'>-</div>
+        }
       </div>
     );
   }
