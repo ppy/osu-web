@@ -11,6 +11,7 @@ export const profileExtraPages = [
   'me',
   'medals',
   'recent_activity',
+  'screenshots',
   'top_ranks',
   'account_standing',
 ] as const;
