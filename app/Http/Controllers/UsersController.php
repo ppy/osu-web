@@ -30,6 +30,7 @@ use App\Transformers\EventTransformer;
 use App\Transformers\KudosuHistoryTransformer;
 use App\Transformers\ScoreReplayStatsTransformer;
 use App\Transformers\ScoreTransformer;
+use App\Transformers\ScreenshotTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserMonthlyPlaycountTransformer;
 use App\Transformers\UserReplaysWatchedCountTransformer;
@@ -46,7 +47,7 @@ use Sentry\State\Scope;
 class UsersController extends Controller
 {
     // more limited list of UserProfileCustomization::SECTIONS for now.
-    const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
+    const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'screenshots', 'top_ranks', 'historical'];
 
     const MAX_RESULTS = 100;
 
@@ -69,6 +70,8 @@ class UsersController extends Controller
 
         'recentActivity' => 5,
         'recentlyReceivedKudosu' => 5,
+
+        'screenshots' => 3,
     ];
 
     private ?string $mode = null;
@@ -98,6 +101,7 @@ class UsersController extends Controller
             'recentActivity',
             'scoreReplayStats',
             'scores',
+            'screenshots',
             'show',
         ]]);
 
@@ -106,7 +110,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity', 'scoreReplayStats'],
+            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity', 'scoreReplayStats', 'screenshots'],
         ]);
 
         parent::__construct();
@@ -173,6 +177,9 @@ class UsersController extends Controller
 
             case 'recent_activity':
                 return $this->getExtraSection('recentActivity');
+
+            case 'screenshots':
+                return $this->getExtraSection('screenshots');
 
             case 'top_ranks':
                 return [
@@ -538,6 +545,11 @@ class UsersController extends Controller
         return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
 
+    public function screenshots()
+    {
+        return $this->getExtra('screenshots', [], $this->perPage, $this->offset);
+    }
+
     /**
      * Get Own Data
      *
@@ -874,6 +886,11 @@ class UsersController extends Controller
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 $collectionFn = fn ($scores) => Score::preloadDifficultyRatings($scores, $this->mode);
+                break;
+
+            case 'screenshots':
+                $transformer = new ScreenshotTransformer();
+                $query = $this->user->screenshots()->orderBy('screenshot_id', 'desc');
                 break;
         }
 
