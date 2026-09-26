@@ -130,11 +130,9 @@ export default class DailyChallenge extends React.Component<Props> {
   }
 
   render() {
-    return this.props.stats.playcount === 0
-      ? null
-      : this.props.v2
-        ? this.renderV2()
-        : this.renderV1();
+    return this.props.v2
+      ? this.renderV2()
+      : (this.props.stats.playcount === 0 ? null : this.renderV1());
   }
 
   private readonly onMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {

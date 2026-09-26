@@ -24,9 +24,7 @@ export default class DetailStatsV2 extends React.Component<Props> {
 
         <div className='profile-detail-stats-card profile-detail-stats-card--extra'>
           <DailyChallenge stats={this.props.controller.state.user.daily_challenge_user_stats} v2 />
-          {this.props.controller.state.user.current_season_stats != null &&
-            <SeasonStats stats={this.props.controller.state.user.current_season_stats} v2 />
-          }
+          <SeasonStats stats={this.props.controller.state.user.current_season_stats ?? null} v2 />
           <Stats stats={this.props.controller.state.user.statistics} v2 />
         </div>
       </div>
