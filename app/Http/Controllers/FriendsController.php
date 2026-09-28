@@ -34,16 +34,15 @@ class FriendsController extends Controller
         $currentUser = \Auth::user();
         $currentMode = default_mode();
 
-        $relationFriends = $currentUser->relationFriends->sortBy('username');
-        $relationFriends->load(array_map(
-            fn ($userPreload) => "target.{$userPreload}",
+        $friends = $currentUser->friendsWithMutual->load(prefix_strings(
+            'target.',
             UserCompactTransformer::listIncludesPreload($currentMode),
         ));
 
         $isApi = is_api_request();
 
         if ($isApi && api_version() >= 20241022) {
-            return json_collection($relationFriends, new UserRelationTransformer(), [
+            return json_collection($friends, new UserRelationTransformer(), [
                 "target:ruleset({$currentMode})",
                 ...array_map(
                     fn ($userInclude) => "target.{$userInclude}",
@@ -52,9 +51,8 @@ class FriendsController extends Controller
             ]);
         }
 
-        $friends = $relationFriends->pluck('target');
         $usersJson = json_collection(
-            $friends,
+            $friends->pluck('target'),
             (new UserCompactTransformer())->setMode($currentMode),
             UserCompactTransformer::LIST_INCLUDES
         );
@@ -134,18 +132,8 @@ class FriendsController extends Controller
 
     public function destroy($id)
     {
-        $currentUser = \Auth::user();
-
-        $currentUser
-            ->friends()
-            ->wherePivot('zebra_id', $id)
-            ->firstOrFail();
-
-        UserRelation::where([
-            'user_id' => $currentUser->getKey(),
-            'zebra_id' => $id,
-            'friend' => 1,
-        ])->delete();
+        $relation = \Auth::user()->friends()->where('zebra_id', $id)->firstOrFail();
+        $relation->delete();
 
         dispatch(new UpdateUserFollowerCountCache($id));
 
