@@ -58,5 +58,11 @@ return [
             'false' => 'Delete',
             'true' => 'Deleted',
         ],
+
+        'secret' => [
+            'copy' => 'Make sure to copy the value before navigating away.',
+            'generate_new' => 'Reset client secret to generate a new one.',
+            'visible_once' => 'Client secret is only visible after initial creation.',
+        ],
     ],
 ];
