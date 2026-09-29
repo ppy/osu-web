@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'pas de beatmaps',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Explicite',
+    ],
+
+    'rate' => [
+        'invalid' => 'Note invalide.',
     ],
 
     'show' => [
@@ -157,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Lazer Uniquement',
+            'description' => 'Dû à des mécaniques spécifiques, cette beatmap ne peut être jouée que sur osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link pour voir les scores réalisés sur cette beatmap.',
+                'enable_link' => 'Activer le mode lazer',
             ],
         ],
 

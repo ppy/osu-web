@@ -18,6 +18,7 @@ class ContestOpengraph implements OpengraphInterface
     public function get(): array
     {
         return [
+            'card' => 'summary_large_image',
             'description' => strip_tags(markdown($this->contest->currentDescription())),
             'image' => $this->contest->header_url,
             'title' => $this->contest->name,

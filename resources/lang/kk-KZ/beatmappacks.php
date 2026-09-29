@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => ':author жасаған',
         'download' => 'Жүктеп алу',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'өтілді',
             'not_cleared' => 'өтілмеді',

@@ -145,6 +145,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokovať súkromné správy od osôb mimo vášho zoznamu priateľov',
+        'friends_only_info' => '',
         'hide_online' => 'skryť online status',
         'hide_online_info' => '',
         'title' => 'Súkromie',

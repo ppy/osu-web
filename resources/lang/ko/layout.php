@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '설정',
-            'create_team' => '',
+            'create_team' => '팀 만들기',
             'follows' => '관심 목록',
             'friends' => '친구',
             'legacy_score_only_toggle' => 'Lazer 모드',

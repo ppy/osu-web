@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'inga beatmaps',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Explicit',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [
@@ -157,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Endast Lazer',
+            'description' => 'På grund av specifik mekanik kan denna beatmap endast spelas på osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link för att visa poäng satta på denna beatmap.',
+                'enable_link' => 'Aktivera lazer-läge',
             ],
         ],
 

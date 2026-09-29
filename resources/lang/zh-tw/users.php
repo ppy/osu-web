@@ -230,6 +230,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '顯示較少詳細資料',
+            'to_v2' => '顯示更多詳細資料',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '變更個人檔案封面',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '敗北次數',
+            'plays' => '總對戰數',
+            'rank' => '排名',
+            'rating' => '等級分',
+            'recent_history' => '最新對戰紀錄',
+            'tier' => '階級',
             'title' => '排位模式',
+            'wins' => '獲勝次數',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => '最高排名:rank於:date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => '新的難度星級與 PP 演算法： :link。',
+            'title_link' => '正在實裝',
+            'message' => '較新的分數可能不會馬上影響使用者帳戶。',
         ],
         'season_stats' => [
             'division_top_percentage' => '前 :value',
+            'label' => '聚光燈',
             'total_score' => '總分',
+        ],
+        'solo' => [
+            'title' => '單人遊玩',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',

@@ -36,7 +36,7 @@ return [
     'matchmaking' => [
         'plays' => 'Liczba zagrań',
         'points' => 'Punkty',
-        'provisional' => 'Zbyt mało rozegranych meczów, aby wyznaczyć dokładny ranking',
+        'provisional' => 'Zbyt mało ostatnio rozegranych meczów, aby wyznaczyć dokładny ranking',
         'rating' => 'Ranking',
         'wins' => 'Wygrane',
     ],

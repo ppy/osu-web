@@ -61,9 +61,11 @@ return [
         'approve' => 'Έγκριση',
         'beatmap_owner_change' => 'Αλλαγή ιδιοκτήτη δυσκολίας',
         'discussion_delete' => 'Διαγραφή συζήτησης',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Διαγραφή απάντησης συζήτησης',
         'discussion_post_restore' => 'Αποκατάσταση απάντησης συζήτησης',
         'discussion_restore' => 'Αποκατάσταση συζήτησης',
+        'discussion_unlock' => '',
         'disqualify' => 'Αποκλεισμός',
         'genre_edit' => 'Επεξεργασία είδους',
         'issue_reopen' => 'Επανάνοιγμα συζήτησης',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Προσόντα',
         'rank' => 'Κατάταξη',
         'remove_from_loved' => 'Αφαίρεση αγάπης',
+        'tags_edit' => '',
     ],
 ];

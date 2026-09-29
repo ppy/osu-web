@@ -239,6 +239,7 @@ export default class UserVerification {
         keyboard: false,
         show: true,
       })
+      .css('display', 'block')
       .addClass('js-user-verification--active');
   };
 

@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Povezava za plačilo tega naročila je potekla.',
         'subtotal' => '',
         'total' => '',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => '',

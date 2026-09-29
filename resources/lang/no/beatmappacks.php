@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'av :author',
         'download' => 'Last ned',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'fullført',
             'not_cleared' => 'ikke fullført',

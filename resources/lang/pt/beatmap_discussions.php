@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Todos',
         'label' => 'Filtrar por utilizador',
-        'multiple' => '',
+        'multiple' => ':count_delimited usuário selecionado|:count_delimited usuários selecionados',
     ],
 ];

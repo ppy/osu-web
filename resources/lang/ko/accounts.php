@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => '참여하고 있는 비트맵 토론에 답변이 달렸을 때 알림 받기',
         'beatmapset_discussion_qualified_problem' => 'Qualified 비트맵에 문제가 생길 경우 알림을 수신할 모드',
         'beatmapset_disqualify' => '비트맵이 Disqualified 처리됐을 때 알림을 수신할 모드',
         'comment_reply' => '댓글에 답글이 달리면 알림 받기',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => '기본 게임 모드',
         'keyboard' => '키보드',
         'mouse' => '마우스',
         'tablet' => '태블릿',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단',
+        'friends_only_info' => '',
         'hide_online' => '온라인 상태 숨기기',
         'hide_online_info' => '이는 osu!lazer의 “오프라인으로 표시” 모드와 동일합니다.',
         'title' => '개인 정보',

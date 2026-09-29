@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'بواسطة :author',
         'download' => 'تحميل',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'ممحو',
             'not_cleared' => 'غير ممحو',

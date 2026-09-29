@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmape',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'nema beatmapa',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Eksplicitno',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

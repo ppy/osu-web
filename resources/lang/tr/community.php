@@ -144,8 +144,8 @@ return [
             'was_valid_until' => 'osu!supporter etiketiniz :date tarihine kadar geçerliydi.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Toplam katkılarınızın içinden, :users :duration boyunca :dollars değerinde etiket hediye ettiniz. Bu inanılmaz derecede cömert bir davranış!',
+                'users' => ':count_delimited diğer kullanıcı|:count_delimited diğer kullanıcı',
             ],
         ],
     ],

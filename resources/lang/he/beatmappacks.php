@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'נוצר על ידי :author',
         'download' => 'הורד',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'סוים בהצלחה',
             'not_cleared' => 'לא סוים בהצלחה',

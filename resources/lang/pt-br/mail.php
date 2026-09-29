@@ -27,8 +27,8 @@ return [
         'translation' => 'Uma tradução fornecida pela comunidade para fins informativos:',
 
         'benefit' => [
-            'gift' => 'O(s) remetente(s) do presente agora tem acesso ao osu!direct e muitos outros benefícios do suporte.',
-            'self' => 'Agora você terá acesso ao osu!direct e muitos outros benefícios do suporte por :duration.',
+            'gift' => 'Quem você presenteou agora tem acesso ao osu!direct e vários outros benefícios de osu!supporter.',
+            'self' => 'Agora você terá acesso ao osu!direct e vários outros benefícios do suporte por :duration.',
         ],
 
         'support' => [
@@ -41,7 +41,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Só informando que houve uma nova resposta em ":title" desde a sua última visita.',
         'subject' => '[osu!] Nova resposta no tópico ":title"',
-        'unwatch' => 'Se você não deseja mais ser notificado sobre este tópico, você pode clicar no link "Cancelar Inscrição" encontrado na parte inferior do tópico acima, ou da página de gerenciamento de inscrições de fórum:',
+        'unwatch' => 'Se você não deseja mais ser notificado sobre este tópico, você pode clicar no link "Cancelar inscrição" encontrado na parte inferior do tópico acima, ou da página de gerenciamento de inscrições do fórum:',
         'visit' => 'Ir direto para a resposta mais recente usando o seguinte link:',
     ],
 
@@ -62,13 +62,13 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'A pessoa que o presenteou com esta tag pode optar por permanecer anônima, então ela não foi mencionada nesta notificação.',
+        'anonymous_gift' => 'A pessoa que lhe presenteou com esta tag pode optar por permanecer anônima, então ela não foi mencionada nesta notificação.',
         'anonymous_gift_maybe_not' => 'Mas você provavelmente já sabe quem é ;).',
         'duration' => 'Graças a ele(a), você tem acesso ao osu!direct e outros benefícios de osu!supporter por :duration.',
         'features' => 'Você pode saber mais detalhes sobre estes recursos aqui:',
-        'gifted' => 'Alguém acabou de te presentear uma tag do osu!supporter!',
-        'gift_message' => 'A pessoa que te presenteou essa tag deixou uma mensagem para você:',
-        'subject' => 'Você foi presenteado com uma osu!supporter tag!',
+        'gifted' => 'Alguém acabou de te presentear uma tag de osu!supporter!',
+        'gift_message' => 'A pessoa que lhe presenteou essa tag deixou uma mensagem para você:',
+        'subject' => 'Você foi presenteado com uma tag de osu!supporter!',
     ],
 
     'user_email_updated' => [

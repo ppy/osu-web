@@ -36,7 +36,7 @@ return [
     'matchmaking' => [
         'plays' => 'Spiele',
         'points' => 'Punkte',
-        'provisional' => 'Zur genauen Ermittlung einer Wertung wurden noch nicht genug Runden absolviert',
+        'provisional' => 'Vorläufige Wertung, da noch nicht genug Runden absolviert wurden',
         'rating' => 'Wertung',
         'wins' => 'Siege',
     ],

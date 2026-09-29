@@ -47,7 +47,7 @@ return [
 
             'exclusive_only' => [
                 'all' => 'Všetko',
-                'exclusive_only' => '',
+                'exclusive_only' => 'osu! originál',
             ],
 
             'form' => [

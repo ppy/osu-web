@@ -22,7 +22,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     protected $deletedPost;
 
     #[DataProvider('groupsDataProvider')]
-    public function testWithOAuth(?string $groupIdentifier)
+    public function testWithOAuth(?string $groupIdentifier, bool $_visibleWithoutOAuth)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
@@ -48,6 +48,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
 
     public static function groupsDataProvider()
     {
+        // The second argument is only for testWithoutOAuth
         return [
             ['admin', true],
             ['bng', false],

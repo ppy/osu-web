@@ -230,6 +230,10 @@ return [
                 'week' => ':valuewk',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => 'Mostra meno dettagli',
+            'to_v2' => 'Mostra più dettagli',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -414,15 +418,15 @@ return [
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
                 'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
-                'pp_weight' => 'valutata :percentage',
+                'pp_weight' => 'valutata al :percentage',
                 'view_details' => 'Visualizza dettagli',
-                'title' => 'Classifiche',
+                'title' => 'Punteggi',
 
                 'best' => [
                     'title' => 'Migliore Performance',
                 ],
                 'first' => [
-                    'title' => 'Primi Posti',
+                    'title' => 'Punteggi in Prima Posizione',
                 ],
                 'pin' => [
                     'to_0' => 'Rimuovi',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => 'Sconfitte',
+            'plays' => '',
+            'rank' => 'Posizione',
+            'rating' => 'Punteggio',
+            'recent_history' => '',
+            'tier' => 'Grado',
             'title' => 'Ranked Play',
+            'wins' => 'Vittorie',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Posizione più alta: :rank il :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'È :link un nuovo algoritmo di Valutazione in Stelle / PP.',
+            'title_link' => 'in arrivo',
+            'message' => 'I punteggi recenti potrebbero non riflettersi subito sui profili utente.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => 'Spotlight',
             'total_score' => 'Punteggio totale',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',

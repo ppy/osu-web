@@ -12,14 +12,20 @@ use App\Models\Traits\FasterAttributes;
 use App\Models\Traits\IncrementInstance;
 use App\Models\User;
 use Ds\Set;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Passport\Contracts\ScopeAuthorizable;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token as PassportToken;
 
-class Token extends PassportToken implements SessionVerificationInterface
+class Token extends PassportToken implements ScopeAuthorizable, SessionVerificationInterface
 {
     // PassportToken doesn't have factory
-    use HasFactory, FasterAttributes, IncrementInstance;
+    use HasFactory;
+    use FasterAttributes;
+    use IncrementInstance;
 
     const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.write_manage', 'group_permissions'];
     const SCOPES_EXCLUDE_FROM_ALL = ['delegate', 'group_permissions'];
@@ -35,22 +41,52 @@ class Token extends PassportToken implements SessionVerificationInterface
 
     private ?Set $scopeSet;
 
+    public static function findActiveOrFail(?string $id): static
+    {
+        if ($id === null) {
+            throw new AuthenticationException('invalid, expired, or missing auth header');
+        }
+
+        $token = static::find($id);
+
+        if ($token === null) {
+            throw new AuthenticationException('invalid token (not found)');
+        }
+        if ($token->revoked) {
+            throw new AuthenticationException('invalid token (revoked)');
+        }
+        if ($token->expires_at->isPast()) {
+            throw new AuthenticationException('invalid token (expired)');
+        }
+        if ($token->client->revoked) {
+            throw new AuthenticationException('invalid token (revoked client)');
+        }
+        if (!$token->isClientCredentials() && $token->user === null) {
+            throw new AuthenticationException('invalid token (missing user)');
+        }
+
+        $token->validate();
+
+        return $token;
+    }
+
     public static function findForVerification(string $id): ?static
     {
         return static::find($id);
     }
 
-    public function refreshToken()
+    public function refreshToken(): HasOne
     {
         return $this->hasOne(RefreshToken::class, 'access_token_id');
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function can($scope)
+    #[\Override]
+    public function can(string $scope): bool
     {
         static $excludeSet = new Set(static::SCOPES_EXCLUDE_FROM_ALL);
 
@@ -154,7 +190,7 @@ class Token extends PassportToken implements SessionVerificationInterface
         return $result;
     }
 
-    public function revoke()
+    public function revoke(): bool
     {
         $saved = parent::revoke();
 
@@ -178,6 +214,12 @@ class Token extends PassportToken implements SessionVerificationInterface
 
         $this->scopeSet = null;
         $this->attributes['scopes'] = $this->castAttributeAsJson('scopes', $value);
+    }
+
+    public function setUserIdAttribute(mixed $value): void
+    {
+        // passed as string by passport
+        $this->attributes['user_id'] = get_int($value);
     }
 
     public function setVerificationMethod(string $method): void

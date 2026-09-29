@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'לינק התשלום עבור המשלוח הזה לא בתוקף.',
         'subtotal' => '',
         'total' => '',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => '',

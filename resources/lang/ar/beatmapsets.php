@@ -29,6 +29,11 @@ return [
         'guest_title' => 'الخرائط',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'لا توجد خرائط',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'حَساس',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'chargement des utilisateurs...',
-    'searching_users' => '',
+    'searching_users' => 'recherche d\'utilisateurs en cours…',
     'talking_in' => 'discuter dans :channel',
     'talking_with' => 'discuter avec :name',
     'title_compact' => 'tchat',

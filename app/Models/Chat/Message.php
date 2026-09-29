@@ -13,6 +13,7 @@ use App\Libraries\UsernameValidation;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
+use App\Models\UserReport;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 
@@ -41,6 +42,27 @@ class Message extends Model implements ReportableInterface
     public static function filter(iterable $messages, Channel $channel, ?int $userId): iterable
     {
         return static::filterUserCommands(static::filterBacklogs($messages, $channel), $userId);
+    }
+
+    public static function recentUserMessagesForReport(int $userId, ?int $maxId = null): string
+    {
+        $query = static::query();
+
+        if ($maxId !== null) {
+            $query->where('message_id', '<=', $maxId);
+        }
+
+        return $query
+            ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
+            ->where('user_id', $userId)
+            ->where('timestamp', '>', CarbonImmutable::now()->subDays(1))
+            ->orderBy('timestamp', 'DESC')
+            ->with('channel')
+            ->limit(5)
+            ->get()
+            ->map(fn ($m) => "**<t:{$m->timestamp->timestamp}:R> {$m->channel->name}:**\n{$m->content}\n")
+            ->reverse()
+            ->join("\n");
     }
 
     private static function filterBacklogs(iterable $messages, Channel $channel): iterable
@@ -158,20 +180,9 @@ class Message extends Model implements ReportableInterface
         return null;
     }
 
-    public function reportableAdditionalInfo(): ?string
+    public function reportableAdditionalInfo(UserReport $report): ?string
     {
-        $history = static
-            ::where('message_id', '<=', $this->getKey())
-            ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
-            ->where('user_id', $this->user_id)
-            ->where('timestamp', '>', CarbonImmutable::now()->subDays(1))
-            ->orderBy('timestamp', 'DESC')
-            ->with('channel')
-            ->limit(5)
-            ->get()
-            ->map(fn ($m) => "**<t:{$m->timestamp->timestamp}:R> {$m->channel->name}:**\n{$m->content}\n")
-            ->reverse()
-            ->join("\n");
+        $history = static::recentUserMessagesForReport($this->user_id, $this->getKey());
 
         $channel = $this->channel;
         $header = 'Reported in: '.($channel->isPM() ? 'pm' : '**'.$channel->name.'** ('.strtolower($channel->type).')');

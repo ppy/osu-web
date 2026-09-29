@@ -1,0 +1,36 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.matchmaking-result {
+  display: grid;
+  gap: 5px;
+
+  &__icons {
+    display: flex;
+    gap: 5px;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      pointer-events: none;
+      inset: 0;
+      left: auto;
+      max-width: 40%;
+      width: 120px;
+      content: "";
+      background:
+        linear-gradient(
+          to right,
+          hsl(var(--bg-1-hsl), 0),
+          hsl(var(--bg-1-hsl), var(--bg-1-a))
+        ),
+        linear-gradient(to right, hsl(var(--bg-2-hsl), 0), hsl(var(--bg-2-hsl)));
+    }
+  }
+
+  &__title {
+    font-size: @font-size--normal;
+    font-weight: bold;
+  }
+}

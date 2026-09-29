@@ -14,10 +14,10 @@ return [
 
         'player' => [
             'by' => 'Žaidė',
-            'played_on' => '',
+            'played_on' => 'Žaista ant',
             'submitted_on' => 'Pateikta',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Žiūrėta',
+            'watched_count' => ':count_delimited karta|:count_delimited kartų',
 
             'rank' => [
                 'country' => 'Šalies reitingai',

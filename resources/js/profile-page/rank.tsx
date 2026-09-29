@@ -6,12 +6,14 @@ import RankHighestJson from 'interfaces/rank-highest-json';
 import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers, mergeModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
 interface Props {
   highest?: RankHighestJson | null;
+  modifiers?: Modifiers;
+  plainValue?: boolean;
   stats: UserStatisticsJson;
   type: RankType;
 }
@@ -45,7 +47,7 @@ function globalTier(stats: UserStatisticsJson) {
                 : null;
 }
 
-export default function Rank({ highest, stats, type }: Props) {
+export default function Rank({ highest, modifiers, plainValue, stats, type }: Props) {
   const key = `${type}_rank` as const;
   const rank = stats[key];
   const tooltip: string[] = [];
@@ -69,28 +71,33 @@ export default function Rank({ highest, stats, type }: Props) {
     tooltip.push(`<div>${text}</div>`);
   }
 
-  const tier = type === 'global' ? globalTier(stats) : null;
-  const tierVar = tier == null ? '' : `var(--level-tier-${tier})`;
+  let rankValue: React.ReactNode = rank == null
+    ? '-'
+    : `#${formatNumber(rank)}`;
+
+  if (!plainValue) {
+    const tier = type === 'global' ? globalTier(stats) : null;
+    const tierVar = tier == null ? '' : `var(--level-tier-${tier})`;
+    rankValue = (
+      <div
+        className={classWithModifiers('rank-value', tier ?? 'base')}
+        data-html-title={tooltip.join('')}
+        data-tooltip-position='bottom left'
+        style={{
+          '--colour': tierVar,
+        } as React.CSSProperties}
+        title=''
+      >
+        {rankValue}
+      </div>
+    );
+  }
 
   return (
     <ValueDisplay
       label={trans(`users.show.rank.${type}_simple`)}
-      modifiers='rank'
-      value={
-        <div
-          className={classWithModifiers('rank-value', tier ?? 'base')}
-          data-html-title={tooltip.join('')}
-          data-tooltip-position='bottom left'
-          style={{
-            '--colour': tierVar,
-          } as React.CSSProperties}
-          title=''
-        >
-          {rank != null ? (
-            `#${formatNumber(rank)}`
-          ) : '-'}
-        </div>
-      }
+      modifiers={mergeModifiers('rank', modifiers)}
+      value={rankValue}
     />
   );
 }

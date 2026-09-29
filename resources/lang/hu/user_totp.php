@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Befejezés',
+        'key' => 'Olvassa be a QR-kódot az azonosító alkalmazással, majd írja be az ellenőrző kódot',
+        'key_copy' => 'Vagy kattints erre a linkre, hogy másold az azonosítóalkalmazás kulcsát',
+        'key_link' => 'Ha mobiltelefont használsz, kattints erre a linkre',
+        'password' => 'Az azonosítóalkalmazáson keresztüli hitelesítés beállításához kérjük, írja be a jelenlegi jelszavát',
+        'start' => 'Folytatás',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Nincs beállítva az azonosítóalkalmazáson keresztüli hitelesítés.',
+        'ok' => 'Az Authenticator alkalmazáson keresztüli hitelesítés eltávolítva.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Kérjük, írja be a jelenlegi jelszavát az azonosítóalkalmazás általi hitelesítés kikapcsolásához.',
+        'start' => 'Eltávolítás',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Az azonosítóalkalmazáson keresztüli hitelesítést már beállította.',
+        'ok' => 'Az Authenticator alkalmazáson keresztüli hitelesítés be van állítva',
+        'restart' => 'Hiba történt. Kérjük, indítsa újra a folyamatot.',
     ],
 ];

@@ -113,7 +113,7 @@ class MessagesController extends BaseController
 
         $messages = $channel
             ->messages()
-            ->with(['channel', 'sender'])
+            ->with(['channel', 'sender' => fn ($q) => $q->select(UserCompactTransformer::DEFAULT_SELECT_FIELDS)])
             ->limit($limit);
 
         if (present($since)) {
@@ -140,7 +140,7 @@ class MessagesController extends BaseController
 
         return [
             'messages' => json_collection($messages, new MessageTransformer()),
-            // FIXME: messages with null used should be removed from db...
+            // FIXME: messages with null user should be removed from db...
             'users' => json_collection(
                 collect($messages)->pluck('sender')->filter()->uniqueStrict('user_id')->values(),
                 new UserCompactTransformer()

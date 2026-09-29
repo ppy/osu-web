@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'dostávat oznámení na odpovědi k diskuzím beatmap, kterých se účastníš',
         'beatmapset_discussion_qualified_problem' => 'dostávat oznámení na nové problémy u kvalifikovaných map následujících módů',
         'beatmapset_disqualify' => 'dostávat oznámení, když beatmapy následujících módů jsou diskvalifikované',
         'comment_reply' => 'dostávat oznámení na odpovědi k tvým komentářům',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'výchozí herní mód',
         'keyboard' => 'klávesnice',
         'mouse' => 'myš',
         'tablet' => 'tablet',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
+        'friends_only_info' => '',
         'hide_online' => 'skrýt tvůj online status',
         'hide_online_info' => 'toto je stejné, jako "neviditelný" režim v osu!lazer',
         'title' => 'Soukromí',

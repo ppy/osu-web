@@ -12,8 +12,8 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetDiscussionsStore from 'interfaces/beatmapset-discussions-store';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
+import { HasDiscussionsEditable, HasDiscussionsReadOnly } from 'interfaces/has-discussions';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { isEqual } from 'lodash';
@@ -30,22 +30,20 @@ import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
-import DiscussionsState from './discussions-state';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
 
-interface Props {
+interface BaseProps {
   discussion: BeatmapsetDiscussionJson;
-  discussionsState: DiscussionsState | null; // TODO: make optional
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
-  readonly: boolean;
   resolvedStateChangedPostId: number;
-  store: BeatmapsetDiscussionsStore;
   type: string;
   user: UserJson;
 }
+
+type Props = BaseProps & (HasDiscussionsEditable | HasDiscussionsReadOnly);
 
 @observer
 export default class Post extends React.Component<Props> {
@@ -295,7 +293,6 @@ export default class Post extends React.Component<Props> {
         {this.isReview ? (
           <Editor
             ref={this.reviewEditorRef}
-            discussion={this.props.discussion}
             discussionsState={this.props.discussionsState}
             document={document}
             editing={this.editing}
@@ -399,7 +396,7 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderMessageViewerEditingActions() {
-    if (this.props.readonly || this.props.discussionsState == null) return;
+    if (this.props.discussionsState == null) return;
 
     return (
       <>

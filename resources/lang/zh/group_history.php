@@ -34,6 +34,6 @@ return [
 
     'staff_log' => [
         '_' => '更早的用户组历史记录可以在 :wiki_articles 中找到。',
-        'wiki_articles' => '“工作人员日志”百科条目',
+        'wiki_articles' => '“工作人员日志” wiki 条目',
     ],
 ];

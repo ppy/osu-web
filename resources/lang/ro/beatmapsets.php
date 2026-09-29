@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmap-uri',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'niciun beatmap',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Obscen',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

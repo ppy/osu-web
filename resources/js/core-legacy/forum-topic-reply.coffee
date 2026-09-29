@@ -7,7 +7,6 @@ export default class ForumTopicReply
   constructor: ({ @bbcodePreview, @forum, @stickyFooter }) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
-    @block = document.getElementsByClassName('js-forum-topic-reply--block')
     @input = document.getElementsByClassName('js-forum-topic-reply--input')
     @toggleButtons = document.getElementsByClassName('js-forum-topic-reply--toggle')
     @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
@@ -31,25 +30,26 @@ export default class ForumTopicReply
   $input: -> $('.js-forum-topic-reply--input')
 
   initialize: =>
-    return unless @available()
+    @block = (window.newBody ? document.body).querySelector('.js-forum-topic-reply--block')
+
+    return unless @block?
 
     @deleteState 'sticking'
     @activate() if @getState('active') == '1'
 
 
-  available: => @block.length
-
-
   deleteState: (key) =>
-    localStorage.removeItem "forum-topic-reply--#{currentUrl().pathname}--#{key}"
+    @setState(key, '')
 
 
   getState: (key) =>
-    localStorage.getItem "forum-topic-reply--#{currentUrl().pathname}--#{key}"
+    @block?.dataset["state:#{key}"]
 
 
   setState: (key, value) =>
-    localStorage.setItem "forum-topic-reply--#{currentUrl().pathname}--#{key}", value
+    return unless @block?
+
+    @block.dataset["state:#{key}"] = value
 
 
   activate: =>

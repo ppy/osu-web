@@ -230,6 +230,10 @@ return [
                 'week' => ':value sem',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => 'Afficher moins de détails',
+            'to_v2' => 'Afficher plus de détails',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => 'Défaites',
+            'plays' => 'Matchs totaux',
+            'rank' => 'Classement',
+            'rating' => 'Classement',
+            'recent_history' => 'Historique des derniers matchs',
+            'tier' => 'Palier',
             'title' => 'Partie classée',
+            'wins' => 'Victoires',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Meilleur rang : :rank le :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Un nouvel algorithme de difficulté/PP est :link.',
+            'title_link' => 'en cours de déploiement',
+            'message' => 'Les scores récents peuvent ne pas être répercutés immédiatement sur les profils.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
+            'label' => 'Spotlights',
             'total_score' => 'Score total',
+        ],
+        'solo' => [
+            'title' => 'Jeu Solo',
         ],
         'stats' => [
             'hit_accuracy' => 'Précision',

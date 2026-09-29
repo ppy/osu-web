@@ -34,7 +34,7 @@ return [
 
         'intro' => [
             'description' => "Jogue com seus amigos, antigos ou novos. Você não está em uma equipe no momento. Junte-se a uma equipe existente ao visitar a sua página ou crie sua própria equipe a partir dessa página.",
-            'search_link' => '',
+            'search_link' => 'equipe existente',
             'title' => 'Equipe!',
         ],
     ],
@@ -162,7 +162,7 @@ return [
             'first_places' => 'Primeiros lugares',
             'leader' => 'Líder da Equipe',
             'rank' => 'Classificação',
-            'ranked_beatmapsets' => 'Beatmaps Ranqueados',
+            'ranked_beatmapsets' => 'Beatmaps ranqueados',
         ],
     ],
 

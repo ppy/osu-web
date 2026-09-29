@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmap\'ai',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'nėra beatmap\'ų',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Eksplicitinis',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [
@@ -157,8 +166,8 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Tik Lazer',
+            'description' => 'Dėl specifinės mechanikos, šį beatmap galima žaisti tik osu!lazer.',
 
             'scoreboard_switch_mode' => [
                 '_' => '',

@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Controllers;
 
+use App\Libraries\User\PasswordHelper;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\Country;
@@ -14,7 +15,6 @@ use App\Models\User;
 use App\Models\UserProfileCustomization;
 use App\Models\WeakPassword;
 use Database\Factories\UserFactory;
-use Hash;
 use Mail;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -202,7 +202,7 @@ class AccountControllerTest extends TestCase
             ])
             ->assertSuccessful();
 
-        $this->assertTrue(Hash::check($newPassword, $this->user->fresh()->user_password));
+        $this->assertTrue(PasswordHelper::check($this->user->fresh(), $newPassword));
 
         Mail::assertQueued(UserPasswordUpdated::class);
     }

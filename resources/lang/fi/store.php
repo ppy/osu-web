@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
         'subtotal' => 'Välisumma',
         'total' => 'Yhteensä',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Tilaus #',

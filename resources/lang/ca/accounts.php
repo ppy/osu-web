@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'rebre notificacions de les respostes dels fils de mapes en què es participa',
         'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en mapes qualificats dels següents modes',
         'beatmapset_disqualify' => 'rebre notificacions per quan els mapes dels següents modes siguin desqualificats',
         'comment_reply' => 'rebre notificacions de respostes als teus comentaris',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'mode de joc per defecte',
         'keyboard' => 'teclat',
         'mouse' => 'ratolí',
         'tablet' => 'tauleta',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloca els missatges privats de persones que no són a la llista d\'amics',
+        'friends_only_info' => '',
         'hide_online' => 'amaga la teva presència en línia',
         'hide_online_info' => 'va relacionat amb el mode «Mostra\'m desconnectat» a l\'osu!lazer',
         'title' => 'Privadesa',

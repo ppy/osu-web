@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
 import DailyChallengeUserStatsJson from 'interfaces/daily-challenge-user-stats-json';
 import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
@@ -51,6 +52,7 @@ function tierStyleWeekly(weeks: number) {
 
 interface Props {
   stats: DailyChallengeUserStatsJson;
+  v2?: boolean;
 }
 
 function popup(stats: DailyChallengeUserStatsJson) {
@@ -116,44 +118,23 @@ export default class DailyChallenge extends React.Component<Props> {
   private disposer?: () => void;
   private readonly valueRef = React.createRef<HTMLDivElement>();
 
+  private get playedToday() {
+    // only shown on own profile page
+    return this.props.stats.user_id === core.currentUser?.id
+      && this.props.stats.last_update !== null
+      && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
+  }
+
   componentWillUnmount() {
     this.disposer?.();
   }
 
   render() {
-    if (this.props.stats.playcount === 0) {
-      return null;
-    }
-
-    // only shown on own profile page
-    const playedToday = this.props.stats.user_id === core.currentUser?.id
-      && this.props.stats.last_update !== null
-      && moment.utc(this.props.stats.last_update).isSame(Date.now(), 'day');
-
-    return (
-      <div
-        ref={this.valueRef}
-        className={classWithModifiers('daily-challenge', { 'played-today': playedToday })}
-        onMouseOver={this.onMouseOver}
-      >
-        <div className='daily-challenge__name'>
-          {trans('users.show.daily_challenge.title').split('\\n').map((line, i) => (
-            <div key={i}>{line}</div>
-          ))}
-        </div>
-        <div className='daily-challenge__value-box'>
-          <div
-            className='daily-challenge__value'
-            style={tierStylePlaycount(this.props.stats.playcount)}
-          >
-            {trans(
-              'users.show.daily_challenge.unit.day',
-              { value: formatNumber(this.props.stats.playcount) },
-            )}
-          </div>
-        </div>
-      </div>
-    );
+    return this.props.stats.playcount === 0
+      ? null
+      : this.props.v2
+        ? this.renderV2()
+        : this.renderV1();
   }
 
   private readonly onMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -186,4 +167,62 @@ export default class DailyChallenge extends React.Component<Props> {
       $(this.valueRef.current ?? []).qtip('set', { 'content.text': content });
     });
   };
+
+  private renderV1() {
+    return (
+      <div
+        ref={this.valueRef}
+        className={classWithModifiers('daily-challenge', { 'played-today': this.playedToday })}
+        onMouseOver={this.onMouseOver}
+      >
+        <div className='daily-challenge__name'>
+          {trans('users.show.daily_challenge.title').split('\\n').map((line, i) => (
+            <div key={i}>{line}</div>
+          ))}
+        </div>
+        <div className='daily-challenge__value-box'>
+          <div
+            className='daily-challenge__value'
+            style={tierStylePlaycount(this.props.stats.playcount)}
+          >
+            {trans(
+              'users.show.daily_challenge.unit.day',
+              { value: formatNumber(this.props.stats.playcount) },
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  private renderV2() {
+    return (
+      <div
+        ref={this.valueRef}
+        className={classWithModifiers('profile-detail-stats-big', { 'daily-challenge-played': this.playedToday })}
+        onMouseOver={this.onMouseOver}
+      >
+        <div className='profile-detail-stats-big__icon'>
+          <div className='svg-icon svg-icon--check-circle' />
+        </div>
+        <div className='profile-detail-stats-big__title-container'>
+          <div className='profile-detail-stats-big__label'>
+            {trans('users.show.daily_challenge.title').replace(/\\n+/g, ' ')}
+          </div>
+          {trans('users.show.daily_challenge.playcount')}
+        </div>
+        <div className='profile-detail-stats-big__badge'>
+          <div
+            className='profile-detail-stats-big__fancy-text'
+            style={tierStylePlaycount(this.props.stats.playcount)}
+          >
+            <StringWithComponent
+              mappings={{ value: <strong>{formatNumber(this.props.stats.playcount)}</strong> }}
+              pattern={trans('users.show.daily_challenge.unit.day')}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }

@@ -384,7 +384,7 @@ class BeatmapDiscussion extends Model
         }
 
         return $this->fill([
-            'timestamp' => $this->startingPost->timestamp() ?? null,
+            'timestamp' => $this->startingPost->timestamp(),
         ])->saveOrExplode();
     }
 

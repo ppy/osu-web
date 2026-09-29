@@ -440,6 +440,9 @@ class SanityTest extends DuskTestCase
             'forum.topics.create' => [
                 'forum_id' => self::$scaffolding['forum']->getKey(),
             ],
+            'matchmaking-pools.user-chart' => [
+                'pool' => 0,
+            ],
             'users.beatmapsets' => [
                 'type' => 'favourite',
                 // 'type' => [

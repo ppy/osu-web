@@ -2,10 +2,6 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $user = auth()->user();
-@endphp
-
 @extends('master', [
     'blank' => true,
     'titlePrepend' => $client->name,
@@ -94,6 +90,10 @@
                     method="POST"
                 >
                     @csrf
+                    <input type="hidden" name="state" value="{{ $request->state }}">
+                    <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
+                    <input type="hidden" name="auth_token" value="{{ $authToken }}">
+
                     <button class="dialog-form__button">
                         {{ osu_trans('common.buttons.authorise') }}
                     </button>
@@ -106,6 +106,10 @@
                 >
                     @csrf
                     <input name="_method" value="DELETE" type="hidden" />
+                    <input type="hidden" name="state" value="{{ $request->state }}">
+                    <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
+                    <input type="hidden" name="auth_token" value="{{ $authToken }}">
+
                     <button
                         class="dialog-form__button dialog-form__button--cancel"
                     >

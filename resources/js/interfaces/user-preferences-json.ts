@@ -20,6 +20,7 @@ export function defaultUserPreferencesJson(): UserPreferencesJson {
     forum_posts_show_deleted: true,
     legacy_score_only: false,
     profile_cover_expanded: true,
+    profile_detail_v2: false,
     scoring_mode: 'standardised',
     user_list_filter: 'all',
     user_list_sort: 'last_visit',
@@ -41,6 +42,7 @@ export default interface UserPreferencesJson {
   forum_posts_show_deleted: boolean;
   legacy_score_only: boolean;
   profile_cover_expanded: boolean;
+  profile_detail_v2: boolean;
   scoring_mode: 'classic' | 'standardised';
   user_list_filter: Filter;
   user_list_sort: SortMode;

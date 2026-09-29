@@ -61,9 +61,11 @@ return [
         'approve' => 'אישור',
         'beatmap_owner_change' => '',
         'discussion_delete' => 'מחיקת דיון',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'מחיקת תגובת דיון',
         'discussion_post_restore' => 'שחזור תגובת דיון',
         'discussion_restore' => 'שחזור דיון',
+        'discussion_unlock' => '',
         'disqualify' => 'פסילה',
         'genre_edit' => 'עריכת ז\'אנר',
         'issue_reopen' => 'פתיחה מחדש של דיון',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'הסמכה',
         'rank' => 'דירוג',
         'remove_from_loved' => 'הסרת סטטוס Loved',
+        'tags_edit' => '',
     ],
 ];

@@ -18,7 +18,7 @@ class BeatmapTransformerTest extends TestCase
     protected $deletedBeatmap;
 
     #[DataProvider('groupsDataProvider')]
-    public function testWithOAuth(?string $groupIdentifier)
+    public function testWithOAuth(?string $groupIdentifier, bool $_visibleWithoutOAuth)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
@@ -45,6 +45,7 @@ class BeatmapTransformerTest extends TestCase
 
     public static function groupsDataProvider()
     {
+        // The second argument is only for testWithoutOAuth
         return [
             ['admin', true],
             ['bng', true],

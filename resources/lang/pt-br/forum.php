@@ -167,8 +167,8 @@ return [
                 'post_edited' => 'Postagem editada',
                 'restore_post' => 'Postagem restaurada',
                 'restore_topic' => 'Tópico restaurado',
-                'split_destination' => 'Postagens duplicadas movidas',
-                'split_source' => 'Dividir postagens',
+                'split_destination' => 'Publicações divididas movidas',
+                'split_source' => 'Dividir publicações',
                 'topic_type' => 'Definir tipo de tópico',
                 'topic_type_changed' => 'Tipo de tópico alterado',
                 'unlock' => 'Tópico destrancado',
@@ -202,7 +202,7 @@ return [
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Cancelar inscrição no tópico?',
-                'title' => 'Cancelar Inscrição',
+                'title' => 'Cancelar inscrição',
             ],
         ],
     ],

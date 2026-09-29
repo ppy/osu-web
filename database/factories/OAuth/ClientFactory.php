@@ -18,13 +18,15 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'grant_types' => ['authorization_code', 'client_credentials', 'refresh_token'],
             'name' => fn () => $this->faker->realText(20),
-            'secret' => str_random(40),
             'redirect' => 'https://localhost/callback',
-            'personal_access_client' => false,
-            'password_client' => false,
             'revoked' => false,
+            'secret' => str_random(40),
+            'user_id' => User::factory(),
+
+            'password_client' => false,
+            'personal_access_client' => false,
         ];
     }
 }

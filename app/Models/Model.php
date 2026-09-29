@@ -20,7 +20,10 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use HasFactory, Traits\FasterAttributes, Traits\IncrementInstance, Validatable;
+    use HasFactory;
+    use Traits\FasterAttributes;
+    use Traits\IncrementInstance;
+    use Validatable;
 
     const MAX_FIELD_LENGTHS = [];
     const int PER_PAGE = 50;

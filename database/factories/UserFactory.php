@@ -72,7 +72,6 @@ class UserFactory extends Factory
             'osu_playstyle' => [array_rand(User::PLAYSTYLES)],
             'user_website' => 'http://www.google.com/',
             'user_twitter' => 'ppy',
-            'user_permissions' => '',
             'user_interests' => fn () => mb_substr($this->faker->bs(), 0, 30),
             'user_occ' => fn () => mb_substr($this->faker->catchPhrase(), 0, 30),
             'user_sig' => fn () => $this->faker->realText(155),

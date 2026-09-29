@@ -29,6 +29,11 @@ return [
         'guest_title' => '',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => '',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => '',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

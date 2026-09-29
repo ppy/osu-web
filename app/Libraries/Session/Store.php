@@ -9,6 +9,7 @@ namespace App\Libraries\Session;
 
 use App\Events\UserSessionEvent;
 use App\Interfaces\SessionVerificationInterface;
+use Carbon\Carbon;
 use DeviceDetector\DeviceDetector;
 use Illuminate\Redis\Connections\PhpRedisConnection;
 use Illuminate\Session\Store as BaseStore;
@@ -17,6 +18,11 @@ use Illuminate\Support\Arr;
 class Store extends BaseStore implements SessionVerificationInterface
 {
     private const PREFIX = 'sessions:';
+    // Mainly to reject passport 12 related classes.
+    // Passport 13 serialises the model before storing.
+    private const UNSERIALIZE_OPTIONS = [
+        'allowed_classes' => [Carbon::class],
+    ];
 
     public static function batchDelete(?int $userId, ?array $ids = null): void
     {
@@ -99,7 +105,7 @@ class Store extends BaseStore implements SessionVerificationInterface
             $ids,
             // Sessions are stored double-serialized in redis (session serialization + cache backend serialization)
             array_map(
-                fn ($s) => $s === null ? null : unserialize(unserialize($s)),
+                fn ($s) => $s === null ? null : unserialize(unserialize($s), static::UNSERIALIZE_OPTIONS),
                 self::redis()->mget($ids),
             ),
         );
@@ -285,7 +291,7 @@ class Store extends BaseStore implements SessionVerificationInterface
     {
         // Overridden to force session ids to be regenerated when trying to load a session that doesn't exist anymore
         if ($data = $this->handler->read($this->getId())) {
-            $data = @unserialize($this->prepareForUnserialize($data));
+            $data = @unserialize($this->prepareForUnserialize($data), static::UNSERIALIZE_OPTIONS);
 
             if ($data !== false && !is_null($data) && is_array($data)) {
                 return $data;

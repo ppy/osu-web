@@ -27,7 +27,8 @@ use Ds\Set;
  */
 class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Validatable;
+    use Traits\Reportable;
+    use Validatable;
 
     const MESSAGE_LIMIT = 16_000; // column limit for 4 bytes utf8
     const MESSAGE_LIMIT_TIMELINE = 750;
@@ -122,7 +123,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
         ]);
     }
 
-    public static function parseTimestamp($message)
+    public static function parseTimestamp(string $message): ?int
     {
         preg_match('/\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/', $message, $matches);
 
@@ -133,6 +134,8 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 
             return ($m * 60 + $s) * 1000 + $ms;
         }
+
+        return null;
     }
 
     public function beatmapset()
@@ -359,7 +362,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
         return $this->deleted_at !== null;
     }
 
-    public function timestamp()
+    public function timestamp(): ?int
     {
         return static::parseTimestamp($this->message);
     }

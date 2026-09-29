@@ -308,14 +308,14 @@ bin/phpunit.sh --filter=Route --stop-on-failure
 
 ## Test groups
 
-Some tests are marked with a `@group` they require a specific service to be available.
+Some tests are marked with the `Group` attribute when they require a specific service to be available.
 These groups can be used to exclude tests:
 
-    bin/phpunit.sh --exclude=RequiresScoreIndexer,RequiresBeatmapDifficultyLookupCache
+    bin/phpunit.sh --exclude-group=RequiresScoreIndexer --exclude-group=RequiresBeatmapDifficultyLookupCache
 
 or run only those tests:
 
-    bin/phpunit.sh --group=RequiresScoreIndexer
+    bin/phpunit.sh --group=RequiresScoreIndexer --group=RequiresBeatmapDifficultyLookupCache
 
 - `RequiresBeatmapDifficultyLookupCache`: Requires `beatmap-difficulty-lookup-cache` to be running
 - `RequiresScoreIndexer`: Requires a score indexing schema to be set and `score-indexer-test` service to be running

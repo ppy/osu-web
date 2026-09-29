@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Mapas',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'sin mapas',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Explícito',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [
@@ -157,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Solo Lazer',
+            'description' => 'Debido a ciertas mecánicas específicas, este mapa solo se puede jugar en osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link para ver las puntuaciones establecidas en este mapa.',
+                'enable_link' => 'Activa el modo lazer',
             ],
         ],
 

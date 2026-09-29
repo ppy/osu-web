@@ -12,7 +12,7 @@ return [
 
         'blurb' => [
             'important' => 'READ THIS BEFORE DOWNLOADING',
-            'install_instruction' => 'Installation: Once a pack has been downloaded, extract the contents of the pack into your osu! Songs directory and osu! will do the rest.',
+            'install_instruction' => 'Installation: Once a pack has been downloaded, extract the contents of the pack into a folder, select the osz files and then drag and drop them to a running osu! instance.',
         ],
     ],
 

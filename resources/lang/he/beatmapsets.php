@@ -29,6 +29,11 @@ return [
         'guest_title' => 'מפות',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'אין מפות',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => '',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

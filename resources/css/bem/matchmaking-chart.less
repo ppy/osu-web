@@ -1,0 +1,31 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.matchmaking-chart {
+  --chart-opacity: 1;
+  --spinner-opacity: 0;
+
+  .fade-element(120ms);
+  display: grid;
+  grid-template-areas: "item";
+
+  &--loading {
+    --chart-opacity: 0;
+    --spinner-opacity: 1;
+  }
+
+  &__chart {
+    display: grid;
+    opacity: var(--chart-opacity);
+    transition: inherit;
+    grid-area: item;
+  }
+
+  &__spinner {
+    .center-content();
+    opacity: var(--spinner-opacity);
+    pointer-events: none;
+    transition: inherit;
+    grid-area: item;
+  }
+}

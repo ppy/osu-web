@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'حظر الرسائل الخاصة من الأشخاص غير المدرجين في قائمة اصدقائك',
+        'friends_only_info' => '',
         'hide_online' => 'إخفاء وجودك على الموقع',
         'hide_online_info' => 'هذا يرتبط بوضع "الظهور دون اتصال" في osu!lazer',
         'title' => 'الخصوصية',

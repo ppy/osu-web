@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Boli ste zablokovaný týmto používateľom.',
     'title_compact' => 'priatelia',
     'too_many' => 'Bol dosiahnutý limit počtu priateľov.',
 

@@ -61,9 +61,11 @@ return [
         'approve' => 'Godkännande',
         'beatmap_owner_change' => ' Byte av svårighetsgradsägare',
         'discussion_delete' => 'Borttagning av diskussion',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Borttagning av diskussionssvar',
         'discussion_post_restore' => 'Återställning av diskussionssvar',
         'discussion_restore' => 'Återställning av diskussion',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalificering',
         'genre_edit' => 'Redigera genre',
         'issue_reopen' => 'Diskussionen öppnas på nytt',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikation',
         'rank' => 'Rankning',
         'remove_from_loved' => 'Älskad borttagning',
+        'tags_edit' => '',
     ],
 ];

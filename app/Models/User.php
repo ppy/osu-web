@@ -19,6 +19,7 @@ use App\Libraries\Uploader;
 use App\Libraries\User\AvatarHelper;
 use App\Libraries\User\Cover;
 use App\Libraries\User\DatadogLoginAttempt;
+use App\Libraries\User\PasswordHelper;
 use App\Libraries\User\ProfileCount;
 use App\Libraries\User\UsernamesForDbLookup;
 use App\Libraries\UsernameValidation;
@@ -30,7 +31,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\QueryException;
+use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Request;
@@ -59,7 +60,7 @@ use Request;
  * @property-read Collection<static> $blocks
  * @property-read Collection<Changelog> $changelogs
  * @property-read Collection<Chat\Channel> $channels
- * @property-read Collection<UserClient> $clients
+ * @property-read Collection<Client> $clients
  * @property-read Collection<Comment> $comments
  * @property-read Country|null $country
  * @property string|null $country_acronym
@@ -75,10 +76,10 @@ use Request;
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
+ * @property-read Collection<UserClient> $legacyGameClients
  * @property bool $lock_email_changes
  * @property-read Collection<UserMonthlyPlaycount> $monthlyPlaycounts
  * @property-read Collection<UserNotificationOption> $notificationOptions
- * @property-read Collection<Client> $oauthClients
  * @property-read Collection<Store\Order> $orders
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
@@ -180,7 +181,6 @@ use Request;
  * @property int $user_passchg
  * @property string $user_password
  * @property int|null $user_perm_from
- * @property string $user_permissions
  * @property int $user_post_show_days
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
@@ -210,9 +210,16 @@ use Request;
  * @method static Builder eagerloadForListing()
  * @method static Builder online()
  */
-class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
+class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, OAuthenticatable, Traits\ReportableInterface
 {
-    use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserScoreable, Traits\UserStore, Validatable;
+    use Authenticatable;
+    use HasApiTokens;
+    use Memoizes;
+    use Traits\Es\UserSearch;
+    use Traits\Reportable;
+    use Traits\UserScoreable;
+    use Traits\UserStore;
+    use Validatable;
 
     const PLAYSTYLES = [
         'mouse' => 1,
@@ -830,7 +837,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_options',
             'user_password',
             'user_perm_from',
-            'user_permissions',
             'user_post_show_days',
             'user_post_sortby_dir',
             'user_post_sortby_type',
@@ -920,10 +926,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'friends',
             'githubUser',
             'givenKudosu',
+            'legacyGameClients',
             'legacyIrcKey',
             'monthlyPlaycounts',
             'notificationOptions',
-            'oauthClients',
             'orders',
             'pivot', // laravel built-in relation when using belongsToMany
             'profileBanners',
@@ -1207,6 +1213,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasOne(GithubUser::class);
     }
 
+    public function legacyGameClients(): HasMany
+    {
+        return $this->hasMany(UserClient::class);
+    }
+
     public function legacyIrcKey(): HasOne
     {
         return $this->hasOne(LegacyIrcKey::class);
@@ -1270,11 +1281,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function beatmaps()
     {
         return $this->hasMany(Beatmap::class);
-    }
-
-    public function clients()
-    {
-        return $this->hasMany(UserClient::class);
     }
 
     public function dailyChallengeUserStats(): HasOne
@@ -1671,11 +1677,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(Changelog::class);
     }
 
-    public function oauthClients()
-    {
-        return $this->hasMany(Client::class);
-    }
-
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
@@ -2015,11 +2016,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $query->whereNot('group_id', app('groups')->byIdentifier('no_profile')->getKey());
     }
 
-    public function checkPassword($password)
-    {
-        return Hash::check($password, $this->getAuthPassword());
-    }
-
     public function validatePasswordConfirmation()
     {
         $this->validatePasswordConfirmation = true;
@@ -2085,7 +2081,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             if ($isLoginBlocked) {
                 $authError = 'user_login_blocked';
             } else {
-                if (!$user->checkPassword($password)) {
+                if (!PasswordHelper::check($user, $password)) {
                     $authError = 'invalid_password';
                 }
             }
@@ -2273,7 +2269,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if ($this->validateCurrentPassword) {
-            if (!$this->checkPassword($this->currentPassword)) {
+            if (!PasswordHelper::check($this, $this->currentPassword)) {
                 $this->validationErrors()->add('current_password', '.wrong_current_password');
             }
         }
@@ -2300,7 +2296,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
 
             if ($this->validationErrors()->isEmpty()) {
-                $this->user_password = Hash::make($this->password);
+                $this->user_password = PasswordHelper::make($this->password);
                 $this->user_passchg = Carbon::now();
             }
         }
@@ -2384,6 +2380,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function preferredLocale()
     {
         return $this->user_lang;
+    }
+
+    public function reportableAdditionalInfo(UserReport $report): ?string
+    {
+        return match ($report->reason) {
+            'InappropriateChat' => Chat\Message::recentUserMessagesForReport($this->getKey()),
+            default => null,
+        };
     }
 
     public function url(?string $ruleset = null)

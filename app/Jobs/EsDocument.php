@@ -15,7 +15,9 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class EsDocument implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
 
     protected array $modelMeta;
 

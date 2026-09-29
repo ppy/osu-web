@@ -196,11 +196,11 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
-            'create_team' => '',
+            'create_team' => '建立隊伍',
             'follows' => '追蹤清單',
             'friends' => '好友',
             'legacy_score_only_toggle' => 'Lazer 模式',
-            'legacy_score_only_toggle_tooltip' => 'Lazer 模式會顯示使用新的計分演算法，在 Lazer 中取得的分數。',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 模式將使用 lazer 版本的新計分方式顯示成績',
             'logout' => '登出',
             'profile' => '我的資料',
             'scoring_mode_toggle' => 'Classic 計分',

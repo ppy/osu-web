@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmapit',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'ei beatmappeja',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Sopimaton',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

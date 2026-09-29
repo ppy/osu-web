@@ -47,7 +47,7 @@ return [
                 'forum' => 'tìm trong diễn đần',
                 'forum_children' => 'bao gồm diễn đàn con',
                 'include_deleted' => 'bao gồm các bài đăng bị xoá',
-                'topic_id' => '# chủ đề',
+                'topic_id' => 'chủ đề #',
                 'username' => 'người đăng',
             ],
         ],
@@ -148,7 +148,7 @@ return [
             'resets' => 'đặt lại sau :ends',
         ],
         'buttons' => [
-            'download' => 'Tải Xuống osu!',
+            'download' => 'Tải xuống osu!',
             'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
         ],

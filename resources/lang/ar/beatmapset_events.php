@@ -61,9 +61,11 @@ return [
         'approve' => 'موافقة',
         'beatmap_owner_change' => 'تغير مالك صعوبة',
         'discussion_delete' => 'حذف مناقشة',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'حذف رد مناقشة',
         'discussion_post_restore' => 'إعادة رد مناقشة',
         'discussion_restore' => 'إعادة مناقشة',
+        'discussion_unlock' => '',
         'disqualify' => 'فقدان أهلية',
         'genre_edit' => 'تعديل نوع',
         'issue_reopen' => 'إعادة فتح باب مناقشة',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
         'remove_from_loved' => 'اِزالة من "Loved"',
+        'tags_edit' => '',
     ],
 ];

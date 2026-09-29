@@ -1,0 +1,57 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.matchmaking-tier-badge {
+  font-size: 8px;
+  width: 10em;
+  height: 10.1875em; // 163px / 160px
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  position: relative;
+  transform: translateX(0);
+
+  each(
+    Bronze-I
+    Bronze-II
+    Bronze-III
+    Gold-I
+    Gold-II
+    Gold-III
+    Lustrous
+    Platinum-I
+    Platinum-II
+    Platinum-III
+    Radiant-I
+    Radiant-II
+    Radiant-III
+    Rhodium-I
+    Rhodium-II
+    Rhodium-III
+    Silver-I
+    Silver-II
+    Silver-III, .(@tier) {
+      each(range(0, 3), {
+        &--@{tier}-@{value} {
+          .at2x("~@image_resources/icons/matchmaking-tiers/@{tier}-@{value}.png");
+        }
+      });
+    }
+  );
+
+  // the actual text is in its own class because it changes the font-size
+  &__lustrous-rank {
+    font-size: 1.25em;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1;
+  }
+
+  &__lustrous-rank-container {
+    text-align: center;
+    position: absolute;
+    top: 8.7em;
+    left: 0;
+    right: 0;
+  }
+}

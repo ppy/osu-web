@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modding',
             'playlists' => 'spellistor',
-            'ranked-play' => '',
+            'ranked-play' => 'rankadespel',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],
@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Inställningar',
-            'create_team' => '',
+            'create_team' => 'Skapa team',
             'follows' => 'Bevakningslistor',
             'friends' => 'Vänner',
             'legacy_score_only_toggle' => 'Lazer läge',

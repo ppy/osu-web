@@ -61,9 +61,11 @@ return [
         'approve' => 'Одобрено',
         'beatmap_owner_change' => 'Змінення власника складності',
         'discussion_delete' => 'Видалення дискусії',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Видалення відповідей в дискусії',
         'discussion_post_restore' => 'Відновлення відповідей в дискусії',
         'discussion_restore' => 'Відновлення дискусії',
+        'discussion_unlock' => '',
         'disqualify' => 'Дискваліфікація',
         'genre_edit' => 'Зміна жанру',
         'issue_reopen' => 'Відновлення дискусії',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Кваліфікація',
         'rank' => 'Рейтинг',
         'remove_from_loved' => 'Вилучення з улюблених',
+        'tags_edit' => '',
     ],
 ];

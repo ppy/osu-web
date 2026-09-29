@@ -61,9 +61,11 @@ return [
         'approve' => 'Patvirtinimas',
         'beatmap_owner_change' => 'Sunkumo savininko pakeitimas',
         'discussion_delete' => 'Diskusijos ištrinimas',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Diskusijos atsakymo ištrynimas',
         'discussion_post_restore' => 'Diskusijos atsakymo atkūrimas',
         'discussion_restore' => 'Diskusijos atkūrimas',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskvalifikacija',
         'genre_edit' => 'Pakeisti žanrą',
         'issue_reopen' => 'Diskusija atidaroma',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kvalifikacija',
         'rank' => 'Reitingas',
         'remove_from_loved' => 'Pašalinimas iš mylimų',
+        'tags_edit' => '',
     ],
 ];

@@ -230,6 +230,10 @@ return [
                 'week' => ':valueтиж',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змінити обкладинку профілю',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Швидка гра',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Найвищий ранг :rank було досягнуто :date ',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Зараз для оцінювання складності / PP використовується :link.',
+            'title_link' => 'новий алгоритм',
+            'message' => 'Нещодавно поставлені рекорди можуть не одразу з\'явитися у профілі.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Топ :value',
+            'label' => '',
             'total_score' => 'Всього очок',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Точність',

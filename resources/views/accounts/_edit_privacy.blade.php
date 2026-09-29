@@ -24,6 +24,9 @@
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.privacy.friends_only') }}
+                        <span class="account-edit-entry__checkbox-label-info">
+                            {{ osu_trans('accounts.privacy.friends_only_info') }}
+                        </span>
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">

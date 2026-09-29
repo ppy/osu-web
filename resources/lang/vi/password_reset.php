@@ -11,12 +11,12 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Vui lòng liên hệ hỗ trợ để khôi phục tài khoản của bạn.',
+        'contact_support' => 'Vui lòng liên hệ hỗ trợ để khôi phục tài khoản.',
         'expired' => 'Mã xác nhận đã hết hạn.',
         'invalid' => 'Lỗi không xác định trong mã xác nhận.',
         'is_privileged' => 'Liên hệ peppy ấy lulz.',
         'missing_key' => 'Bắt buộc.',
-        'too_many_requests' => 'Bạn đã đạt giới hạn yêu cầu đặt lại mật khẩu. Vui lòng liên hệ hỗ trợ để khôi phục tài khoản.',
+        'too_many_requests' => 'Đã đạt giới hạn số lần yêu cầu đặt lại mật khẩu. Vui lòng liên hệ hỗ trợ để khôi phục tài khoản.',
         'too_many_tries' => 'Quá nhiều lần thử không thành công.',
         'user_not_found' => 'Người dùng này không tồn tại.',
         'wait_resend' => 'Vui lòng chờ một lát.',

@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Non puoi modificare i metadata di una mappa nominata. Contatta un membro di BN o NAT se pensi che siano stati impostati in modo errato.',
         ],
+
+        'rate' => [
+            'owner' => 'Non puoi valutare un set di beatmap dove sei coinvolto.',
+            'status' => 'Non puoi valutare un set di beatmap in questo stato.',
+        ],
     ],
 
     'beatmap_tag' => [

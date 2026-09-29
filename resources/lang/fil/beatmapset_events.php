@@ -61,9 +61,11 @@ return [
         'approve' => 'Approval',
         'beatmap_owner_change' => 'Pagpapalit ng may-ari ng difficulty',
         'discussion_delete' => 'Pagbura ng diskusyon',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Pagbura ng tugon sa diskusyon',
         'discussion_post_restore' => 'Pagbalik ng tugon sa diskusyon',
         'discussion_restore' => 'Pagbalik ng diskusyon',
+        'discussion_unlock' => '',
         'disqualify' => 'Diskwalipikasyon',
         'genre_edit' => 'Pag-edit ng genre',
         'issue_reopen' => 'Muling pagbubukas ng diskusyon',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kwalipikasyon',
         'rank' => 'Ranking',
         'remove_from_loved' => 'Pagtanggal sa Loved',
+        'tags_edit' => '',
     ],
 ];

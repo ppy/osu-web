@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'od :author',
         'download' => 'Preuzmi',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'očišćeno',
             'not_cleared' => 'nije očišćeno',

@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Бітмапи',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => ' бітмапи відсутні',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => '18+',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [
@@ -157,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Лише в Lazer',
+            'description' => 'Через наявність деяких нестандартних механік, в цю бітмапу можна зіграти лише в osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link для перегляду рекордів, постановлених на цій мапі.',
+                'enable_link' => 'Увімкніть рекорди Lazer',
             ],
         ],
 
