@@ -135,7 +135,7 @@ class FriendsController extends Controller
         $relation = \Auth::user()->friends()->where('zebra_id', $id)->firstOrFail();
         $relation->delete();
 
-        dispatch(new UpdateUserFollowerCountCache($id));
+        dispatch(new UpdateUserFollowerCountCache($relation->zebra_id));
 
         return response()->noContent();
     }
