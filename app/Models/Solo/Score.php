@@ -59,7 +59,9 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
+    use Traits\Reportable;
+    use Traits\WithDbCursorHelper;
+    use Traits\WithWeightedPp;
 
     const DEFAULT_SORT = 'old';
 

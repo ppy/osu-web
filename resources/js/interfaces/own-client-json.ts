@@ -5,5 +5,6 @@ import { ClientJson } from 'interfaces/client-json';
 
 export interface OwnClientJson extends ClientJson {
   redirect: string;
-  secret: string;
+  secret: null | string;
+  secret_hint: string;
 }

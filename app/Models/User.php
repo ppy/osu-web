@@ -212,7 +212,14 @@ use Request;
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, OAuthenticatable, Traits\ReportableInterface
 {
-    use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserScoreable, Traits\UserStore, Validatable;
+    use Authenticatable;
+    use HasApiTokens;
+    use Memoizes;
+    use Traits\Es\UserSearch;
+    use Traits\Reportable;
+    use Traits\UserScoreable;
+    use Traits\UserStore;
+    use Validatable;
 
     const PLAYSTYLES = [
         'mouse' => 1,
@@ -2373,6 +2380,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function preferredLocale()
     {
         return $this->user_lang;
+    }
+
+    public function reportableAdditionalInfo(UserReport $report): ?string
+    {
+        return match ($report->reason) {
+            'InappropriateChat' => Chat\Message::recentUserMessagesForReport($this->getKey()),
+            default => null,
+        };
     }
 
     public function url(?string $ruleset = null)

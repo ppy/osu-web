@@ -18,7 +18,9 @@ use Sentry\State\Scope;
 
 class RegenerateBeatmapsetCover implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $beatmapset;
     protected $sizesToRegenerate;

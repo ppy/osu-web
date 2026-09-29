@@ -18,7 +18,9 @@ use Illuminate\Queue\SerializesModels;
 
 class MarkNotificationsRead implements ShouldQueue
 {
-    use NotificationQueue, Queueable, SerializesModels;
+    use NotificationQueue;
+    use Queueable;
+    use SerializesModels;
 
     private $object;
     private $user;

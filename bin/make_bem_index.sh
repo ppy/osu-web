@@ -14,6 +14,6 @@ EOF
 
 find bem/ -name '*.less' -type f | while read line; do
     printf '@import "%s";\n' "${line%.*}"
-done | sort >> "$tmpfile"
+done | LC_ALL=C sort >> "$tmpfile"
 
 mv -f "$tmpfile" bem-index.less
