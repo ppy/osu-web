@@ -114,7 +114,11 @@ class AccountController extends Controller
         $currentSessionId = \Session::getId();
 
         $authorizedClients = json_collection(Client::forUser($user), new ClientTransformer(), 'user');
-        $ownClients = json_collection($user->clients()->where('revoked', false)->get(), new ClientTransformer(), ['redirect', 'secret']);
+        $ownClients = json_collection(
+            $user->clients()->where('revoked', false)->get(),
+            new ClientTransformer(),
+            ['redirect', 'secret', 'secret_hint'],
+        );
 
         $legacyApiKey = $user->apiKeys()->available()->first();
         $legacyApiKeyJson = $legacyApiKey === null ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());

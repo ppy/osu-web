@@ -4,6 +4,7 @@
 import MatchmakingTierBadge from 'components/matchmaking-tier-badge';
 import ValueDisplay from 'components/value-display';
 import { rulesetIds, rulesetVariantIdToName } from 'interfaces/ruleset';
+import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import Controller from 'profile-page/controller';
@@ -156,9 +157,11 @@ export default class Matchmaking extends React.PureComponent<Props> {
             <div className='matchmaking-result__title'>{trans('users.show.matchmaking.recent_history')}</div>
             <div className='matchmaking-result__icons'>
               {stats.recent_history.map((entry) => (
-                <div
+                <a
                   key={entry.id}
-                  className={classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}
+                  className={`js-tooltip-time ${classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}`}
+                  href={route('multiplayer.rooms.show', { room: entry.room_id })}
+                  title={entry.created_at}
                 />
               ))}
             </div>

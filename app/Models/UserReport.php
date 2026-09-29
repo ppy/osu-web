@@ -86,7 +86,7 @@ class UserReport extends Model
                 Chat\Message::class => 'chat',
                 Comment::class => 'comment',
                 Forum\Post::class => 'forum',
-                User::class => 'user',
+                User::class => $this->reason === 'InappropriateChat' ? 'chat' : 'user',
                 Team::class => 'team',
             };
 
