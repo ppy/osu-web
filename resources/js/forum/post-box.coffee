@@ -3,32 +3,22 @@
 
 insert = (event, tagOpen, tagClose = '') ->
   $box = $(event.target).parents('form').find('[name=body], .js-bbcode-body')
-  boxText = $box.val()
   box = $box[0]
   startPos = box.selectionStart
   endPos = box.selectionEnd
-  texts = [
-    boxText.substring(0, startPos)
-    boxText.substring(startPos, endPos)
-    boxText.substring(endPos)
-  ]
-
-  texts[0] = texts[0] + tagOpen
-  texts[2] = tagClose + texts[2]
+  selected = box.value.substring(startPos, endPos)
 
   box.focus()
   box.selectionStart = startPos
   box.selectionEnd = endPos
-  document.execCommand('insertText', false, tagOpen + texts[1] + tagClose)
+  document.execCommand('insertText', false, tagOpen + selected + tagClose)
 
   if startPos == endPos
-    box.selectionStart = texts[0].length
+    box.selectionStart = startPos + tagOpen.length
     box.selectionEnd = box.selectionStart
   else
     box.selectionStart = startPos
-    box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
-
-  box.focus()
+    box.selectionEnd = endPos + tagOpen.length + tagClose.length
 
 [
   ['bold', '[b]', '[/b]']
