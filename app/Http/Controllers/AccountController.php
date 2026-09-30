@@ -104,11 +104,9 @@ class AccountController extends Controller
 
     public function edit()
     {
-        $user = auth()->user();
+        $user = \Auth::user();
 
-        $blocks = $user->blocks()
-            ->orderBy('username')
-            ->get();
+        $blocks = $user->blocks->load('target:user_id,username')->sortBy('target.username');
 
         $sessions = SessionStore::sessions($user->getKey());
         $currentSessionId = \Session::getId();

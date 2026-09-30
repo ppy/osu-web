@@ -101,7 +101,7 @@ class ScoreSearchParams extends SearchParams
 
     public function getFriendIds(): array
     {
-        return [...$this->user->friends()->allRelatedIds(), $this->user->getKey()];
+        return [...$this->user->friends()->pluck('zebra_id'), $this->user->getKey()];
     }
 
     public function getTeamMemberIds(): array
