@@ -27,6 +27,7 @@ class TeamExtendedTransformer extends TeamTransformer
             'default_ruleset_id' => $team->default_ruleset_id,
             'description' => $team->description,
             'is_open' => $team->is_open,
+            'url' => $team->url,
         ];
     }
 }
