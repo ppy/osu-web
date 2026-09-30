@@ -6,7 +6,7 @@ x-env: &x-env
   DB_HOST: db
   ES_HOST: http://elasticsearch:9200
   ES_SOLO_SCORES_HOST: http://elasticsearch:9200
-  GITHUB_TOKEN: "${GITHUB_TOKEN}"
+  GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
   NOTIFICATION_REDIS_HOST: redis
   PASSPORT_PUBLIC_KEY: "${PASSPORT_PUBLIC_KEY:-}"
   REDIS_HOST: redis
