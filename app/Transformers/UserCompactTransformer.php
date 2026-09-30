@@ -214,10 +214,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeBlocks(User $user)
     {
-        return $this->collection(
-            $user->relations()->blocks()->get(),
-            new UserRelationTransformer()
-        );
+        return $this->collection($user->blocks, new UserRelationTransformer());
     }
 
     public function includeCommentsCount(User $user)
@@ -299,7 +296,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeFriends(User $user)
     {
         return $this->collection(
-            $user->relationFriends,
+            $user->friendsWithMutual,
             new UserRelationTransformer()
         );
     }
