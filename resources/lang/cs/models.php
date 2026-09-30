@@ -9,6 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => 'obtížnost beatmapy',
         'App\Models\Beatmapset' => 'beatmapu',
-        'App\Models\Solo\Score' => '',
+        'App\Models\Solo\Score' => 'skóre',
     ],
 ];

@@ -30,6 +30,11 @@ return [
         'guest_title' => 'Мапе',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'нема мапе',
 

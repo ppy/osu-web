@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
+        'friends_only_info' => '',
         'hide_online' => 'sembunyikan status onlinemu',
         'hide_online_info' => 'pengaturan ini akan terhubung ke mode "tampil offline" di osu!lazer',
         'title' => 'Privasi',

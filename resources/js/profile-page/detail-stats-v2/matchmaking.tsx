@@ -4,13 +4,14 @@
 import MatchmakingTierBadge from 'components/matchmaking-tier-badge';
 import ValueDisplay from 'components/value-display';
 import { rulesetIds, rulesetVariantIdToName } from 'interfaces/ruleset';
+import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import Controller from 'profile-page/controller';
 import { ProfilePageMatchmakingStatsJson } from 'profile-page/extra-page-props';
 import { getHighestRankStats, tier } from 'profile-page/matchmaking';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers } from 'utils/css';
 import { fail } from 'utils/fail';
 import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -77,7 +78,8 @@ export default class Matchmaking extends React.PureComponent<Props> {
       return null;
     }
 
-    const [rankValue, tierData] = stats.rank === -1
+    const provisional = stats.is_rating_provisional;
+    const [rankValue, tierData] = provisional || stats.rank === -1
       ? ['-', null]
       : [`#${formatNumber(stats.rank)}`, tier(stats)];
     const rankValueStyle = tierData == null
@@ -89,15 +91,19 @@ export default class Matchmaking extends React.PureComponent<Props> {
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--matchmaking'>
         <div className='profile-detail-stats-card__top'>
-          {tierData != null &&
-            <div className='profile-detail-stats-card__matchmaking-tier-badge'>
-              <MatchmakingTierBadge
-                rank={stats.rank}
-                rulesetId={stats.pool.ruleset_id}
-                tier={tierData.title}
-              />
-            </div>
-          }
+          <div className='profile-detail-stats-card__matchmaking-tier-badge'>
+            {tierData == null
+              ? provisional && (
+                <div className='matchmaking-tier-badge matchmaking-tier-badge--Placeholder' />
+              ) : (
+                <MatchmakingTierBadge
+                  rank={stats.rank}
+                  rulesetId={stats.pool.ruleset_id}
+                  tier={tierData.title}
+                />
+              )
+            }
+          </div>
           <div className='profile-detail-stats-card__title'>
             <div className='profile-detail-stats-card__title-icon'>
               <span className='svg-icon svg-icon--multi' />
@@ -123,8 +129,11 @@ export default class Matchmaking extends React.PureComponent<Props> {
             <div />
             <ValueDisplay
               label={trans('users.show.matchmaking.rating')}
-              modifiers='rank rank-small'
-              value={formatNumber(stats.rating)}
+              modifiers={mergeModifiers('rank rank-small', { provisional })}
+              value={provisional
+                ? <span title={trans('rankings.matchmaking.provisional')}>{formatNumber(stats.rating)}*</span>
+                : formatNumber(stats.rating)
+              }
             />
             <ValueDisplay
               label={trans('users.show.matchmaking.tier')}
@@ -156,9 +165,11 @@ export default class Matchmaking extends React.PureComponent<Props> {
             <div className='matchmaking-result__title'>{trans('users.show.matchmaking.recent_history')}</div>
             <div className='matchmaking-result__icons'>
               {stats.recent_history.map((entry) => (
-                <div
+                <a
                   key={entry.id}
-                  className={classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}
+                  className={`js-tooltip-time ${classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}`}
+                  href={route('multiplayer.rooms.show', { room: entry.room_id })}
+                  title={entry.created_at}
                 />
               ))}
             </div>

@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmap-uri',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'niciun beatmap',
 

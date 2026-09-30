@@ -12,14 +12,14 @@ return [
 
         'blurb' => [
             'important' => 'PŘEČTĚTE SI PŘED STAŽENÍM',
-            'install_instruction' => 'Instalace: Jakmile bude balíček stažen, rozbalte jej do složky osu! skladeb a osu! udělá zbytek.',
+            'install_instruction' => 'Instalace: Jakmile bude balíček stažen, rozbal jeho obsah do složky, vyber osz soubory a přesuň je do spuštěné osu! instance.',
         ],
     ],
 
     'show' => [
         'created_by' => 'od :author',
         'download' => 'Stáhnout',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Výzva',
         'item' => [
             'cleared' => 'splněno',
             'not_cleared' => 'nesplněno',

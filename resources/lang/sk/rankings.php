@@ -62,7 +62,7 @@ return [
     ],
 
     'type' => [
-        'country' => 'Krajina',
+        'country' => 'krajina',
         'daily_challenge' => '',
         'global' => '',
         'kudosu' => '',

@@ -12,7 +12,8 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class UpdateUserForumCache implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable;
+    use InteractsWithQueue;
+    use Queueable;
 
     protected $userId;
 

@@ -29,6 +29,11 @@ return [
         'guest_title' => '',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => '',
 

@@ -17,20 +17,20 @@ return [
         'invalid_password' => 'Nesprávne heslo',
         'map_count' => '',
         'player_count' => '',
-        'time_left' => 'Zostávajúci čas - :time',
-        'view_history' => '',
-        'view_summary' => '',
+        'time_left' => 'Zostáva :time',
+        'view_history' => 'Zobraziť históriu',
+        'view_summary' => 'Zobraziť zhrnutie',
 
         'errors' => [
             'duration_too_long' => '',
-            'name_too_long' => '',
+            'name_too_long' => 'Meno miestnosti je priveľmi dlhé.',
             'too_many_playlist_items' => '',
         ],
 
         'status' => [
             'active' => '',
             'ended' => '',
-            'soon' => '',
+            'soon' => 'čoskoro končí',
         ],
     ],
 ];

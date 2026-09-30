@@ -29,6 +29,11 @@ return [
         'guest_title' => '谱面',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => '没有谱面',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => '评分无效。',
     ],
 
     'show' => [

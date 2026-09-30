@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Klikni sem pre stiahnutie hry a vytvorenie účtu',
+        'label' => 'Poďme sa najprv prihlásiť do tvojho účtu!',
+        'title' => 'Prihlásenie do Účtu',
     ],
 ];

@@ -19,7 +19,7 @@ return [
     'show' => [
         'created_by' => '作者：:author',
         'download' => '下載',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => '挑戰',
         'item' => [
             'cleared' => '已通過',
             'not_cleared' => '未通過',

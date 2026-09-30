@@ -78,7 +78,7 @@ class UserChannelList
             ->get();
 
         // If any channel users are blocked, preload the user groups of those users for the isModerator check.
-        $blockedIds = $users->pluck('user_id')->intersect($this->user->blocks->pluck('user_id'));
+        $blockedIds = $users->pluck('user_id')->intersect($this->user->blocks->pluck('zebra_id'));
         if ($blockedIds->isNotEmpty()) {
             // Yes, the sql will look stupid.
             $users->load(['userGroups' => fn ($query) => $query->whereIn('user_id', $blockedIds)]);

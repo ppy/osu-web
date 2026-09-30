@@ -5,9 +5,9 @@
 
 return [
     'deleted' => 'vymazaný',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => '',
+    'deleted_by' => 'vymazané :timeago používateľom :user',
+    'deleted_by_system' => 'systém',
+    'deleted_count' => ':count_delimited vymazaný komentár|:count_delimited vymazané komentáre',
     'edited' => 'upravené :timeago používateľom :user',
     'pinned' => 'pripnuté',
     'empty' => 'Zatiaľ žiadne komentáre.',

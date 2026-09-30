@@ -977,6 +977,11 @@ class OsuAuthorize
             $this->ensureHasPlayed($user);
         }
 
+        // a user may always PM themselves (e.g. self-hosted request bots); skip the friend/block checks below
+        if ($user->is($target)) {
+            return 'ok';
+        }
+
         if ($user->pm_friends_only && !$user->hasFriended($target)) {
             return $prefix.'receive_friends_only';
         }

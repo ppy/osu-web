@@ -19,7 +19,7 @@ return [
     'show' => [
         'created_by' => 'par :author',
         'download' => 'Télécharger',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Défi',
         'item' => [
             'cleared' => 'terminée',
             'not_cleared' => 'non terminée',

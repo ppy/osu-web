@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'לחסום הודעות פרטיות מאנשים לא ברשימת החברים שלך',
+        'friends_only_info' => '',
         'hide_online' => 'הסתר את הנוכחות המקוונת שלך',
         'hide_online_info' => '',
         'title' => '僅用於中文',

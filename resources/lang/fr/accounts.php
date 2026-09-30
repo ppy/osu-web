@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquer les messages privés des utilisateurs qui ne sont pas dans votre liste d’amis',
+        'friends_only_info' => '',
         'hide_online' => 'masquer votre présence en ligne',
         'hide_online_info' => 'vous fera apparaître hors-ligne sur osu!lazer si activé',
         'title' => 'Confidentialité',

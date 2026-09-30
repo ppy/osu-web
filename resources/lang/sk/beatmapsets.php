@@ -29,11 +29,16 @@ return [
         'guest_title' => 'Beatmapy',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'žiadne beatmapy',
 
         'download' => [
-            'all' => 'stiahnúť',
+            'all' => 'stiahnuť',
             'video' => 'stiahnuť s videom',
             'no_video' => 'stiahnuť bez videa',
             'direct' => 'otvoriť v osu!direct',
@@ -92,7 +97,7 @@ return [
             'updated_timeago' => 'naposledy aktualizované :timeago',
 
             'download' => [
-                '_' => 'Stiahnúť',
+                '_' => 'Stiahnuť',
                 'direct' => '',
                 'no-video' => 'bez Videa',
                 'video' => 's Videom',
@@ -105,8 +110,8 @@ return [
         ],
 
         'details_date' => [
-            'approved' => 'schváleno :timeago',
-            'loved' => 'obľúbene :timeago',
+            'approved' => 'schválené :timeago',
+            'loved' => 'milované :timeago',
             'qualified' => 'kvalifikované :timeago',
             'ranked' => 'hodnotené :timeago',
             'submitted' => 'odoslané :timeago',
@@ -145,7 +150,7 @@ return [
             'description' => 'Popis',
             'genre' => 'Žáner',
             'language' => 'Jazyk',
-            'mapper_tags' => '',
+            'mapper_tags' => 'Tagy od Tvorcu',
             'no_scores' => 'Vypočítavajú sa dáta...',
             'nominators' => 'Nominátori',
             'nsfw' => 'Explicitný obsah',
@@ -156,13 +161,13 @@ return [
             'storyboard' => 'Táto beatmapa obsahuje storyboard',
             'success-rate' => 'Úspešnosť',
             'success_rate_plays' => '',
-            'user_tags' => '',
+            'user_tags' => 'Tagy od Hráčov',
             'video' => 'Táto beatmapa obsahuje video',
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Iba pre Lazer',
+            'description' => 'Kvôli špecifickým mechanikám sa táto mapa môže hrať len na osu!lazer.',
 
             'scoreboard_switch_mode' => [
                 '_' => '',
@@ -186,10 +191,10 @@ return [
             'country' => 'Rebríček Krajiny',
             'error' => 'Nepodarilo sa načisť rebríčky',
             'friend' => 'Rebríček Priateľov',
-            'global' => 'Celosvetový Rebríčok',
+            'global' => 'Celosvetový Rebríček',
             'supporter-link' => 'Kliknite <a href=":link">tu</a> pre zobrazenie všetkych výhod, ktoré dostanete!',
             'supporter-only' => 'Pre zobrazenie štátnych a rebriček priateľov potrebujete funkciu supportera!',
-            'team' => '',
+            'team' => 'Tímový Rebríček',
             'title' => 'Tabuľka výsledkov',
 
             'headers' => [
@@ -211,7 +216,7 @@ return [
                 'friend' => 'Zatiaľ nikto z tvojich priateľov nedosiahol žiadne skóre na tejto mape!',
                 'global' => 'Zatiaľ žiadne skóre. Možno by si sa o to mal pokúsiť?',
                 'loading' => 'Načítava sa skóre...',
-                'team' => '',
+                'team' => 'Nikto z tvojho tímu zatiaľ nemá skóre na tejto mape!',
                 'unranked' => 'Nehodnotená beatmapa.',
             ],
             'score' => [
@@ -227,7 +232,7 @@ return [
         'stats' => [
             'cs' => 'Veľkosť Koliečok',
             'cs-mania' => 'Počet Kláves',
-            'drain' => 'Vysávanie bodov života',
+            'drain' => 'Ubúdanie HP',
             'accuracy' => 'Presnosť',
             'ar' => 'Rýchlosť Zobrazovania Koliečok',
             'stars' => 'Počet Hviezd',
@@ -240,14 +245,14 @@ return [
             'rating-spread' => 'Graf hodnotenia',
             'nominations' => 'Nominácie',
             'playcount' => 'Počet zahraní',
-            'favourites' => '',
+            'favourites' => 'Obľúbenia',
             'no_favourites' => '',
         ],
 
         'status' => [
             'ranked' => 'Hodnotené',
             'approved' => 'Schválené',
-            'loved' => 'Obľúbené',
+            'loved' => 'Milované',
             'qualified' => 'Kvalifikované',
             'wip' => 'Nedorobené',
             'pending' => 'Nevybavené',

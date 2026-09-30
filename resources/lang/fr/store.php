@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'Le lien pour cette commande a expiré.',
         'subtotal' => 'Sous-total',
         'total' => 'Total',
-        'unavailable' => '',
+        'unavailable' => 'Aucune information supplémentaire n\'est disponible pour cette commande.',
 
         'details' => [
             'order_number' => 'Commande #',

@@ -24,7 +24,8 @@ use Exception;
 
 class Page implements WikiObject
 {
-    use Memoizes, Traits\Es\WikiPageSearch;
+    use Memoizes;
+    use Traits\Es\WikiPageSearch;
 
     const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 10;

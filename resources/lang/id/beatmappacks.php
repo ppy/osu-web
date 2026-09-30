@@ -19,7 +19,7 @@ return [
     'show' => [
         'created_by' => 'oleh :author',
         'download' => 'Unduh',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Tantangan',
         'item' => [
             'cleared' => 'sudah dituntaskan',
             'not_cleared' => 'belum dituntaskan',

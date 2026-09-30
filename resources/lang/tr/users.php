@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Daha az detay göster',
+            'to_v2' => 'Daha fazla detay göster',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => 'Yenilgiler',
+            'plays' => 'Toplam Maç',
+            'rank' => 'Rütbe',
+            'rating' => 'Derecelendirme',
+            'recent_history' => 'Son Maç Geçmişi',
+            'tier' => 'Seviye',
             'title' => 'Quick Play',
-            'wins' => '',
+            'wins' => 'Galibiyetler',
         ],
 
         'not_found' => [
@@ -525,11 +525,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'İlk :value',
-            'label' => '',
+            'label' => 'Öne Çıkanlar',
             'total_score' => 'Toplam skor',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Tek Kişilik Oyun',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

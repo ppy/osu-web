@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'この注文の決済リンクは期限切れとなりました。',
         'subtotal' => '小計',
         'total' => '合計',
-        'unavailable' => '',
+        'unavailable' => 'この注文に関する追加情報はありません。',
 
         'details' => [
             'order_number' => '注文 #',

@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Zobrazit méně podrobností',
+            'to_v2' => 'Zobrazit více podrobností',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => 'Prohry',
+            'plays' => 'Celkem zápasů',
+            'rank' => 'Umístění',
+            'rating' => 'Hodnocení',
+            'recent_history' => 'Historie posledních zápasů',
+            'tier' => 'Úroveň',
             'title' => 'Hodnocená hra',
-            'wins' => '',
+            'wins' => 'Výhry',
         ],
 
         'not_found' => [
@@ -516,7 +516,7 @@ return [
             'country_simple' => 'Místní hodnocení',
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
-            'highest' => 'Nejvyšší rank :rank v :date',
+            'highest' => 'Nejvyšší umístění :rank dne :date',
         ],
         'score_processing' => [
             'title' => ':link nového algoritmu pro počet hvězd / PP.',
@@ -525,18 +525,18 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
-            'label' => '',
+            'label' => 'Zvýrazněné',
             'total_score' => 'Celkové skóre',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Sólo hra',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
             'hits_per_play' => 'Zásahů za hru',
             'level' => 'Úroveň :level',
             'level_progress' => 'postup do dalšího levelu',
-            'maximum_combo' => 'Maximální Kombo',
+            'maximum_combo' => 'Maximální kombo',
             'medals' => 'Medaile',
             'play_count' => 'Počet zahrání',
             'play_time' => 'Celkový čas hraní',

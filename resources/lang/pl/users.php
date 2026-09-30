@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Pokaż mniej szczegółów',
+            'to_v2' => 'Pokaż więcej szczegółów',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
+            'losses' => 'Przegrane',
+            'plays' => 'Liczba wszystkich meczy',
+            'rank' => 'Ranga',
+            'rating' => 'Ranga',
+            'recent_history' => 'Najnowsza historia meczu',
             'tier' => '',
             'title' => 'Gra rankingowa',
-            'wins' => '',
+            'wins' => 'Wygrane',
         ],
 
         'not_found' => [
@@ -525,11 +525,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Wśród :value najlepszych',
-            'label' => '',
+            'label' => 'Spotlighty',
             'total_score' => 'Łączny wynik',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Zagranie solo',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',

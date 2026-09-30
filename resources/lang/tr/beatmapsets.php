@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmapler',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'beatmap yok',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Geçersiz puan.',
     ],
 
     'show' => [

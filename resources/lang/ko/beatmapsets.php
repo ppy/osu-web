@@ -29,6 +29,11 @@ return [
         'guest_title' => '비트맵',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => '비트맵 없음',
 

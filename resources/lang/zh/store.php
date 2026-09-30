@@ -113,7 +113,7 @@ return [
         'shopify_expired' => '此订单的结算链接已失效。',
         'subtotal' => '小计',
         'total' => '总计',
-        'unavailable' => '',
+        'unavailable' => '此订单没有更多信息。',
 
         'details' => [
             'order_number' => '订单 #',

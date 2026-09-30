@@ -113,7 +113,7 @@ return [
         'shopify_expired' => '此訂單的結帳網址已經過期。',
         'subtotal' => '小計',
         'total' => '總計',
-        'unavailable' => '',
+        'unavailable' => '這個訂單沒有可用的額外資訊。',
 
         'details' => [
             'order_number' => '訂單 #',

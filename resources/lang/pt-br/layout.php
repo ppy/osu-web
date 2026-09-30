@@ -61,7 +61,7 @@ return [
 
     'gallery' => [
         'close' => 'Fechar (Esc)',
-        'fullscreen' => 'Ativar/Desativar Tela cheia',
+        'fullscreen' => 'Ativar/desativar tela cheia',
         'zoom' => 'Ampliar/Reduzir',
         'previous' => 'Anterior (seta esquerda)',
         'next' => 'Seguinte (seta direita)',

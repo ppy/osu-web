@@ -30,9 +30,8 @@
 @elseif ($object instanceof App\Models\Team)
     <a
         class="ranking-page-table-main"
-        href="{{ route('teams.leaderboard', [
+        href="{{ route('teams.show', [
             'ruleset' => $params['mode'],
-            'sort' => $params['sort'],
             'team' => $object,
         ]) }}"
     >

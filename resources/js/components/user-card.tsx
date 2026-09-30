@@ -138,7 +138,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               {this.renderIcons()}
               <div className='user-card__username-row'>
                 {this.renderUsername()}
-                <div className='user-card__group-badges'><UserGroupBadges groups={this.user.groups} short wrapper='user-card__group-badge' /></div>
+                <UserGroupBadges groups={this.user.groups} wrapper='u-contents u-hover' />
               </div>
               {this.renderListModeIcons()}
             </div>

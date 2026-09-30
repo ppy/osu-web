@@ -72,10 +72,10 @@ return [
 
     'disabled' => [
         'title' => 'Ôi không! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
-        'warning' => "Trong trường hợp bạn vi phạm một quy tắc, xin lưu ý rằng thường sẽ có thời gian chờ là một tháng, trong đó chúng tôi sẽ không xem xét bất kỳ yêu cầu ân xá nào. Sau khoảng thời gian này, bạn có thể liên hệ với chúng tôi nếu thấy cần thiết. Xin lưu ý rằng việc tạo tài khoản mới sau khi một tài khoản đã bị vô hiệu hóa sẽ dẫn đến <strong>việc gia hạn thêm thời gian chờ một tháng</strong>. Xin cũng lưu ý rằng với <strong>mỗi tài khoản bạn tạo, bạn lại tiếp tục vi phạm quy tắc</strong>. Chúng tôi thực sự khuyên bạn không nên đi theo hướng này!",
+        'warning' => "Trong trường hợp bạn vi phạm một quy tắc, xin lưu ý rằng thường sẽ có thời gian chờ một tháng, trong lúc đó chúng tôi sẽ không xem xét bất kỳ yêu cầu ân xá nào. Sau khoảng thời gian này, bạn có thể liên hệ với chúng tôi nếu thấy cần thiết. Xin lưu ý rằng việc tạo tài khoản mới sau khi một tài khoản đã bị vô hiệu hóa sẽ dẫn đến việc <strong>gia hạn thêm thời gian chờ một tháng</strong>. Xin cũng lưu ý rằng với <strong>mỗi tài khoản bạn tạo, bạn đang tiếp tục vi phạm quy tắc</strong>. Chúng tôi thực sự khuyên bạn không nên đi theo hướng này!",
 
         'if_mistake' => [
-            '_' => 'Nếu bạn cảm thấy đây là một sai sót, bạn có thể liên hệ với chúng tôi (qua :email hoặc bằng cách nhấp vào dấu "?" ở góc dưới bên phải của trang này). Xin lưu ý rằng chúng tôi luôn hoàn toàn tự tin với các hành động của mình, vì chúng dựa trên dữ liệu rất chắc chắn. Chúng tôi có quyền từ chối yêu cầu của bạn nếu nhận thấy bạn đang cố tình không trung thực.',
+            '_' => 'Nếu bạn cảm thấy đây là một sai sót, bạn có thể liên hệ với chúng tôi (qua :email hoặc bằng cách nhấp vào dấu "?" ở góc dưới bên phải của trang này). Xin lưu ý rằng chúng tôi luôn tự tin với các hành động của mình, vì chúng dựa trên dữ liệu rất chắc chắn. Chúng tôi có quyền từ chối yêu cầu của bạn nếu nhận thấy bạn đang cố tình không trung thực.',
             'email' => 'email',
         ],
 
@@ -156,7 +156,7 @@ return [
     'logout_confirm' => 'Bạn có chắc muốn đăng xuất không? :(',
     'report' => [
         'button_text' => 'Báo cáo',
-        'comments' => 'Các bình luận',
+        'comments' => 'Bình luận',
         'placeholder' => 'Vui lòng cung cấp bất kỳ thông tin nào bạn cho rằng có thể hữu ích.',
         'reason' => 'Lý do',
         'thanks' => 'Cảm ơn bạn đã báo cáo!',
@@ -183,7 +183,7 @@ return [
             'multiple_accounts' => 'Sử dụng nhiều tài khoản',
             'nonsense' => 'Phi lý',
             'other' => 'Khác (nhập dưới đây)',
-            'spam' => 'Spamming',
+            'spam' => 'Spam',
             'unwanted_content' => 'Nội dung không phù hợp',
         ],
     ],
@@ -203,7 +203,7 @@ return [
         'lastvisit_online' => 'Hiện đang trực tuyến',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng có thể đã bị cấm)',
         'origin_country' => 'Từ :country',
-        'previous_usernames' => 'được biết đến trước đây với',
+        'previous_usernames' => 'từng được biết đến là',
         'plays_with' => 'Chơi bằng :devices',
 
         'comments_count' => [
@@ -232,8 +232,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Hiển thị ít chi tiết',
+            'to_v2' => 'Hiển thị thêm chi tiết',
         ],
         'edit' => [
             'cover' => [
@@ -332,7 +332,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'độ chính xác: :percentage',
-                    'title' => 'Những Lần Chơi Gần Đây (24h)',
+                    'title' => 'Lần Chơi Gần Đây (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Lịch Sử Replay Được Xem',
@@ -387,7 +387,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Dựa trên bao nhiêu đóng góp mà người dùng cho việc điều phối beatmap. Xem :link để biết thêm thông tin.',
+                    '_' => 'Dựa vào số lượng đóng góp mà người dùng này đã thực hiện để kiểm duyệt beatmap. Xem :link để biết thêm thông tin.',
                     'link' => 'trang này',
                 ],
             ],
@@ -417,8 +417,8 @@ return [
                 'title' => 'Màn chơi nhiều người chơi',
             ],
             'top_ranks' => [
-                'download_replay' => 'Tải Xuống Phần Phát Lại',
-                'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
+                'download_replay' => 'Tải Xuống Bản Phát Lại',
+                'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp',
                 'pp_weight' => 'trọng số :percentage',
                 'view_details' => 'Xem chi tiết',
                 'title' => 'Xếp Hạng',
@@ -431,7 +431,7 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Gỡ ghim',
-                    'to_0_done' => 'Điểm gỡ ghim',
+                    'to_0_done' => 'Gỡ ghim điểm',
                     'to_1' => 'Ghim',
                     'to_1_done' => 'Điểm được ghim',
                 ],
@@ -442,8 +442,8 @@ return [
             'votes' => [
                 'given' => 'Bình chọn đã cho (3 tháng qua)',
                 'received' => 'Bình chọn đã nhận (3 tháng qua)',
-                'title' => 'Phiếu',
-                'title_longer' => 'Phiếu gần đây',
+                'title' => 'Bình chọn',
+                'title_longer' => 'Bài đăng gần đây',
                 'vote_count' => ':count_delimited bình chọn|:count_delimited bình chọn',
             ],
             'account_standing' => [
@@ -480,14 +480,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
+            'losses' => 'Thua',
+            'plays' => 'Tổng số trận đấu',
+            'rank' => 'Hạng',
             'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'recent_history' => 'Lịch sử đấu mới nhất',
+            'tier' => 'Cấp',
             'title' => 'Chơi nhanh',
-            'wins' => '',
+            'wins' => 'Thắng',
         ],
 
         'not_found' => [
@@ -526,11 +526,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
-            'label' => '',
+            'label' => 'Tiêu điểm',
             'total_score' => 'Tổng điểm',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Chơi Đơn',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ chính xác',
@@ -548,9 +548,9 @@ return [
             'total_score' => 'Tổng Điểm',
             // modding stats
             'graveyard_beatmapset_count' => 'Các beatmap bị đắp mộ',
-            'loved_beatmapset_count' => 'Số beatmap Loved',
+            'loved_beatmapset_count' => 'Số beatmap Yêu thích',
             'pending_beatmapset_count' => 'Beatmap Đang Chờ',
-            'ranked_beatmapset_count' => 'Số beatmap đã được xếp hạng',
+            'ranked_beatmapset_count' => 'Số beatmap được xếp hạng',
         ],
     ],
 

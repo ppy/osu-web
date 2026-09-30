@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
+        'friends_only_info' => '',
         'hide_online' => 'piilota paikallaolotilasi',
         'hide_online_info' => 'tämä vastaa osu!lazerin ”näy offline-tilassa” -tilaa',
         'title' => 'Yksityisyys',

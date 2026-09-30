@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmap-ek',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'nincs beatmap',
 

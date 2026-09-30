@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'Bu sipariş için ödeme bağlantısının süresi doldu.',
         'subtotal' => 'Ara toplam',
         'total' => 'Toplam',
-        'unavailable' => '',
+        'unavailable' => 'Bu siparişle ilgili başka bilgi bulunmamaktadır.',
 
         'details' => [
             'order_number' => 'Sipariş No.',

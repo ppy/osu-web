@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmape',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'ni beatmap',
 

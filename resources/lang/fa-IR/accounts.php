@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'مسدود کردن پیام های خصوصی از کسانی که در لیست دوستان شما نیستند',
+        'friends_only_info' => '',
         'hide_online' => 'مخفی کردن وضعیت آنلاین شما',
         'hide_online_info' => '',
         'title' => 'حریم خصوصی',

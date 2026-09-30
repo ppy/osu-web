@@ -85,6 +85,6 @@ return [
         'qualify' => 'Qualificações',
         'rank' => 'Classificação',
         'remove_from_loved' => 'Remoção de Loved',
-        'tags_edit' => '',
+        'tags_edit' => 'Edição de tags',
     ],
 ];
