@@ -30,6 +30,7 @@ import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import { MarkdownSelectionToolbar } from './markdown-selection-toolbar';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -309,6 +310,10 @@ export default class Post extends React.Component<Props> {
               onKeyDown={this.handleTextareaKeyDown}
               style={{ minHeight: this.textareaMinHeight }}
               value={this.message}
+            />
+            <MarkdownSelectionToolbar
+              disabled={this.isPosting}
+              textareaRef={this.textareaRef}
             />
             <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
           </>
