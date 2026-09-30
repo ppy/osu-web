@@ -28,10 +28,7 @@ class BlocksController extends Controller
 
     public function index()
     {
-        return json_collection(
-            \Auth::user()->relations()->blocks()->get(),
-            new UserRelationTransformer(),
-        );
+        return json_collection(\Auth::user()->blocks, new UserRelationTransformer());
     }
 
     public function store()
@@ -91,15 +88,13 @@ class BlocksController extends Controller
     {
         $user = \Auth::user();
 
-        $block = $user->blocks()
-            ->where('zebra_id', $id)
-            ->first();
+        $block = $user->blocks()->where('zebra_id', $id)->first();
 
-        if (!$block) {
+        if ($block === null) {
             abort(404, osu_trans('users.blocks.not_blocked'));
         }
 
-        $user->blocks()->detach($block);
+        $block->delete();
 
         return response()->noContent();
     }

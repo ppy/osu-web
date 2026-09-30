@@ -24,7 +24,7 @@ class ClientTransformerTest extends TestCase
         $json = json_item($this->client, new ClientTransformer(), ['redirect', 'secret']);
 
         $this->assertSame($this->client->redirect, $json['redirect']);
-        $this->assertSame($this->client->secret, $json['secret']);
+        $this->assertTrue(\Hash::check($json['secret'], $this->client->secret));
     }
 
     public function testRedirectAndSecretNotVisibleToOtherUsers()

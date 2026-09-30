@@ -25,7 +25,7 @@ import StringWithComponent from './string-with-component';
 import SupporterIcon from './supporter-icon';
 import TimeWithTooltip from './time-with-tooltip';
 import UserCardBrick from './user-card-brick';
-import UserGroupBadge from './user-group-badge';
+import UserGroupBadges from './user-group-badges';
 
 export type ViewMode = 'brick' | 'card' | 'list';
 export const viewModes: ViewMode[] = ['card', 'list', 'brick'];
@@ -138,11 +138,7 @@ export class UserCard extends React.PureComponent<Props, State> {
               {this.renderIcons()}
               <div className='user-card__username-row'>
                 {this.renderUsername()}
-                <div className='u-contents u-hover'>
-                  {(this.user.groups ?? []).map((group) => (
-                    <UserGroupBadge key={group.identifier} group={group} />
-                  ))}
-                </div>
+                <UserGroupBadges groups={this.user.groups} wrapper='u-contents u-hover' />
               </div>
               {this.renderListModeIcons()}
             </div>

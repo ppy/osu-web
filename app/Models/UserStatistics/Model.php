@@ -221,7 +221,7 @@ abstract class Model extends BaseModel
         if ($user === null) {
             $userIds = [];
         } else {
-            $userIds = $user->friends()->allRelatedIds();
+            $userIds = $user->friends()->pluck('zebra_id');
             $userIds[] = $user->getKey();
         }
 

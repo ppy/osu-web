@@ -924,6 +924,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'follows',
             'forumPosts',
             'friends',
+            'friendsWithMutual',
             'githubUser',
             'givenKudosu',
             'legacyGameClients',
@@ -942,7 +943,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'rankHighests',
             'rankHistories',
             'receivedKudosu',
-            'relationFriends',
             'relations',
             'replaysWatchedCounts',
             'reportedIn',
@@ -1501,30 +1501,24 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->orderBy('timestamp', 'ASC');
     }
 
-    public function relationFriends(): HasMany
-    {
-        return $this->relations()->friends()->withMutual();
-    }
-
-    public function relations()
+    public function relations(): HasMany
     {
         return $this->hasMany(UserRelation::class);
     }
 
-    public function blocks()
+    public function blocks(): HasMany
     {
-        return $this
-            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
-            ->wherePivot('foe', true)
-            ->default();
+        return $this->relations()->blocks();
     }
 
-    public function friends()
+    public function friends(): HasMany
     {
-        return $this
-            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
-            ->wherePivot('friend', true)
-            ->default();
+        return $this->relations()->friends();
+    }
+
+    public function friendsWithMutual(): HasMany
+    {
+        return $this->friends()->withMutual();
     }
 
     public function channels()
@@ -1684,7 +1678,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function blockedUserIds()
     {
-        return $this->blocks->pluck('user_id');
+        return $this->blocks->pluck('zebra_id');
     }
 
     public function userGroupsForBadges()
@@ -1756,18 +1750,26 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function hasBlocked(self $user)
+    public function hasBlocked(self $target): bool
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return new Set($this->blocks->pluck('user_id'));
-        })->contains($user->getKey());
+        $targetId = $target->getKey();
+
+        return $targetId === $this->getKey()
+            ? false
+            : $this
+                ->memoize(__FUNCTION__, fn () => new Set($this->blocks->pluck('zebra_id')))
+                ->contains($targetId);
     }
 
-    public function hasFriended(self $user)
+    public function hasFriended(self $target): bool
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return new Set($this->friends->pluck('user_id'));
-        })->contains($user->getKey());
+        $targetId = $target->getKey();
+
+        return $targetId === $this->getKey()
+            ? false
+            : $this
+                ->memoize(__FUNCTION__, fn () => new Set($this->friends->pluck('zebra_id')))
+                ->contains($targetId);
     }
 
     public function hasFavourited($beatmapset)
