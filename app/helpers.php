@@ -80,6 +80,20 @@ function blade_safe($html): HtmlString
     return new HtmlString($html);
 }
 
+function cache_remember_skip_existing(bool $checkExisting, string $key, int $seconds, callable $callback): mixed
+{
+    if ($checkExisting) {
+        $value = \Cache::get($key);
+    }
+
+    if (!isset($value)) {
+        $value = $callback();
+        \Cache::put($key, $value, $seconds);
+    }
+
+    return $value;
+}
+
 /**
  * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
  */

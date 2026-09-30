@@ -383,11 +383,6 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
-    public function preloadTopTagIds(array $data): void
-    {
-        $this->memoized['topTagIds'] = $data;
-    }
-
     public function slowTopTagIds(): array
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -413,17 +408,15 @@ class Beatmap extends Model implements AfterCommit
         return array_search($this->approved, Beatmapset::STATES, true);
     }
 
-    public function topTagIds()
+    public function topTagIds(bool $checkExistingCache = true): array
     {
         // can be preloaded across single beatmapset with App\Libraries\Beatmapset\PreloadBeatmapTopTagIds
-        return $this->memoize(
-            __FUNCTION__,
-            fn () => \Cache::remember(
-                static::TOP_TAG_IDS_CACHE_PREFIX.$this->getKey(),
-                $GLOBALS['cfg']['osu']['beatmap_tags']['cache_duration'],
-                fn () => $this->beatmapTags()->topTagIds()->limit($GLOBALS['cfg']['osu']['beatmap_tags']['top_count'])->get()->toArray(),
-            ),
-        );
+        return $this->memoize(__FUNCTION__, fn () => cache_remember_skip_existing(
+            $checkExistingCache,
+            static::TOP_TAG_IDS_CACHE_PREFIX.$this->getKey(),
+            $GLOBALS['cfg']['osu']['beatmap_tags']['cache_duration'],
+            fn () => $this->beatmapTags()->topTagIds()->limit($GLOBALS['cfg']['osu']['beatmap_tags']['top_count'])->get()->toArray(),
+        ));
     }
 
     private function getDifficultyrating()
