@@ -28,5 +28,4 @@ namespace App\Models\Score;
  */
 class Osu extends Model
 {
-    protected $table = 'osu_scores';
 }

@@ -18,7 +18,8 @@ use Request;
 
 abstract class Controller extends BaseController
 {
-    use DispatchesJobs, ValidatesRequests;
+    use DispatchesJobs;
+    use ValidatesRequests;
 
     public function __construct()
     {

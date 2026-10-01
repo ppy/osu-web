@@ -451,7 +451,7 @@ class Contest extends Model
 
     public function getMaxFilesize(): int
     {
-        return self::MAX_FILESIZE[$this->type] ?? 0;
+        return $this->getExtraOptions()['max_filesize'] ?? self::MAX_FILESIZE[$this->type] ?? 0;
     }
 
     public function showEntryUser(): bool

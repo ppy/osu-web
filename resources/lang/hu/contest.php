@@ -19,26 +19,26 @@ return [
         'nav_title' => 'bíró',
         'no_current_vote' => 'még nem szavaztál.',
         'update' => 'frissités',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'nem mentett módosítások',
         'validation' => [
             'missing_score' => 'hiányzó pontszám',
             'contest_vote_judged' => 'bírált versenyeken nem szavazhat',
         ],
-        'voted' => 'Már leadott szavazatot erről a bejegyzésről.',
+        'voted' => 'Már leadtál szavazatot erre a bejegyzésre.',
     ],
 
     'judge_results' => [
         '_' => 'Eredmények elbírálása',
         'creator' => 'készítő',
         'score' => 'Pontszám',
-        'score_std' => '',
+        'score_std' => 'Szabványosított pontszám',
         'total_score' => 'összpontszám',
-        'total_score_std' => '',
+        'total_score_std' => 'teljes szabványosított pontszám',
     ],
 
     'voting' => [
-        'judge_link' => 'Ennek a versenynek a bírája vagy. Itt bírálhatod el a bejegyzéseket!',
-        'judged_notice' => 'Ez a verseny a bírálati rendszerrel zajlik, a bírálók jelenleg dolgoznak a bejegyzéseken.',
+        'judge_link' => 'Ennek a versenynek a zsűrije vagy. Itt bírálhatod el a bejegyzéseket!',
+        'judged_notice' => 'Ez a verseny a bírálati rendszerrel zajlik, a zsűrik jelenleg dolgoznak a bejegyzéseken.',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
         'over' => 'Erre a versenyre már véget ért a szavazás',
         'show_voted_only' => 'Szavazottak mutatása',
@@ -70,12 +70,12 @@ return [
         'silenced_or_restricted' => 'Felfüggesztve illetve némítva nem jelentkezhetsz versenyekre.',
         'preparation' => 'Ez a verseny előkészítés alatt áll. Kérjük várj türelmesen!',
         'drop_here' => 'Húzd a jelentkezésedet ide',
-        'allowed_extensions' => '',
-        'max_size' => '',
-        'required_dimensions' => '',
+        'allowed_extensions' => 'Elfogadott fájlkiterjesztések: :types',
+        'max_size' => 'Maximum méret: :limit',
+        'required_dimensions' => 'A méreteknek a következő formátumban kell szerepelniük: :widthx:height',
         'download' => '.osz letöltése',
-        'wrong_file_type' => '',
-        'wrong_dimensions' => 'A beküldéseknek erre a versenyre :widthx:height méretűnek kell lennie',
+        'wrong_file_type' => 'Csak :types kiterjesztésű fájlokat engedélyezettek erre a versenyre.',
+        'wrong_dimensions' => 'A jelentkezéseknek erre a versenyre :widthx:height méretűnek kellenek lennie',
         'too_big' => 'A jelentkezések száma erre a versenyre csak :limit lehet.',
     ],
 
@@ -87,7 +87,7 @@ return [
         'list' => 'szavazatok',
         'count' => ':count szavazat|:count szavazatok',
         'points' => ':count pont|:count pontok',
-        'points_float' => '',
+        'points_float' => ':points pontok',
     ],
 
     'dates' => [
@@ -108,7 +108,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => '',
+            'page' => 'Információ és bejegyzések megtekintése',
         ],
     ],
 ];

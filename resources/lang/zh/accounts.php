@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '默认游戏模式',
+        'default_ruleset' => '首选游戏模式',
         'keyboard' => '键盘',
         'mouse' => '鼠标',
         'tablet' => '数位板',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => '屏蔽来自陌生人的私信',
+        'friends_only_info' => '',
         'hide_online' => '隐藏在线状态',
         'hide_online_info' => '将同步到 osu!lazer 的隐身模式',
         'title' => '隐私',

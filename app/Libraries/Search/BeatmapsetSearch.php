@@ -7,6 +7,7 @@ namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\FunctionScore;
+use App\Libraries\Elasticsearch\Queryable;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\ArtistTrack;
@@ -29,10 +30,7 @@ class BeatmapsetSearch extends RecordSearch
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): Queryable
     {
         static $partialMatchFields = [
             'artist',
@@ -411,7 +409,8 @@ class BeatmapsetSearch extends RecordSearch
             $searchFields[] = $field;
             $searchFields[] = "{$field}.*";
 
-            $subQuery->should(['term' => ["{$field}.raw" => ['value' => $value, 'boost' => 100]]]);
+            $valueWithoutQuotes = preg_replace('/^"\s*(.*)\s*"$/', '\1', $value);
+            $subQuery->should(['term' => ["{$field}.raw" => ['value' => $valueWithoutQuotes, 'boost' => 100]]]);
         }
 
         $subQuery->should(QueryHelper::queryString($value, $searchFields, 'and'));

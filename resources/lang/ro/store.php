@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Link-ul de finalizare a comenzii a expirat.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Comanda #',

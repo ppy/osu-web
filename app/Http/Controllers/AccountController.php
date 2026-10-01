@@ -104,17 +104,19 @@ class AccountController extends Controller
 
     public function edit()
     {
-        $user = auth()->user();
+        $user = \Auth::user();
 
-        $blocks = $user->blocks()
-            ->orderBy('username')
-            ->get();
+        $blocks = $user->blocks->load('target:user_id,username')->sortBy('target.username');
 
         $sessions = SessionStore::sessions($user->getKey());
         $currentSessionId = \Session::getId();
 
         $authorizedClients = json_collection(Client::forUser($user), new ClientTransformer(), 'user');
-        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), new ClientTransformer(), ['redirect', 'secret']);
+        $ownClients = json_collection(
+            $user->clients()->where('revoked', false)->get(),
+            new ClientTransformer(),
+            ['redirect', 'secret', 'secret_hint'],
+        );
 
         $legacyApiKey = $user->apiKeys()->available()->first();
         $legacyApiKeyJson = $legacyApiKey === null ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());
@@ -263,7 +265,7 @@ class AccountController extends Controller
             array_map(fn ($key) => $key.':any', array_keys(UserProfileCustomization::DEFAULTS)),
         );
 
-        $profileCustomization = $user->userProfileCustomization()->createOrFirst();
+        $profileCustomization = $user->userProfileCustomization()->firstOrCreate();
         $user->setRelation('userProfileCustomization', $profileCustomization);
 
         try {

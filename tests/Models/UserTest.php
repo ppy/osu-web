@@ -14,6 +14,7 @@ use App\Models\UsernameChangeHistory;
 use Cache;
 use Carbon\CarbonImmutable;
 use Database\Factories\OAuth\RefreshTokenFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -91,9 +92,7 @@ class UserTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProviderForAttributeTwitter
-     */
+    #[DataProvider('dataProviderForAttributeTwitter')]
     public function testAttributeTwitter($setValue, $getValue)
     {
         $user = new User(['user_twitter' => $setValue]);
@@ -161,9 +160,7 @@ class UserTest extends TestCase
         $this->assertGreaterThanOrEqual($allowedAt, $user->getUsernameAvailableAt());
     }
 
-    /**
-     * @dataProvider dataProviderForUsernameChangeCost
-     */
+    #[DataProvider('dataProviderForUsernameChangeCost')]
     public function testUsernameChangeCost(int $changes, int $cost)
     {
         $user = User::factory()
@@ -219,9 +216,7 @@ class UserTest extends TestCase
         $this->assertSame(8, $user->usernameChangeCost());
     }
 
-    /**
-     * @dataProvider dataProviderForUsernameChangeCostType
-     */
+    #[DataProvider('dataProviderForUsernameChangeCostType')]
     public function testUsernameChangeCostType(string $type, int $cost)
     {
         $user = User::factory()
@@ -231,9 +226,7 @@ class UserTest extends TestCase
         $this->assertSame($cost, $user->usernameChangeCost());
     }
 
-    /**
-     * @dataProvider dataProviderForUsernameChangeCostWindow
-     */
+    #[DataProvider('dataProviderForUsernameChangeCostWindow')]
     public function testUsernameChangeCostWindow(int $years, int $cost)
     {
         $now = CarbonImmutable::now();
@@ -256,9 +249,7 @@ class UserTest extends TestCase
         $this->assertSame($cost, $user->usernameChangeCost());
     }
 
-    /**
-     * @dataProvider dataProviderValidDiscordUsername
-     */
+    #[DataProvider('dataProviderValidDiscordUsername')]
     public function testValidDiscordUsername(string $username, bool $valid)
     {
         $user = User::factory()->make();

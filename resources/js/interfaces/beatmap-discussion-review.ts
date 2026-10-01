@@ -22,7 +22,8 @@ export interface NewDocumentIssueEmbed extends DocumentBlock {
   type: 'embed';
 }
 
-export const beatmapReviewDiscussionTypes = ['praise', 'problem', 'suggestion'] as const;
+export const beatmapReviewDiscussionTypes = ['mapper_note', 'praise', 'problem', 'suggestion'] as const;
+export const beatmapReviewDiscussionTypesWithoutNote: readonly BeatmapReviewDiscussionType[] = ['praise', 'problem', 'suggestion'] as const;
 
 export type DocumentIssueEmbed = NewDocumentIssueEmbed | PersistedDocumentIssueEmbed;
 export type BeatmapReviewDiscussionType = (typeof beatmapReviewDiscussionTypes)[number];

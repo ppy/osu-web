@@ -15,6 +15,7 @@ use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\ScoreLink as MultiplayerScoreLink;
 use App\Models\Solo\Score as SoloScore;
 use League\Fractal\Resource\Item;
+use League\Fractal\Resource\ResourceInterface;
 
 class ScoreTransformer extends TransformerAbstract
 {
@@ -42,6 +43,7 @@ class ScoreTransformer extends TransformerAbstract
         'match',
         'rank_country',
         'rank_global',
+        'room_summary',
         'user',
         'weight',
 
@@ -245,6 +247,19 @@ class ScoreTransformer extends TransformerAbstract
     public function includeReplayViews(SoloScore $score)
     {
         return $this->primitive($score->replayStats?->watch_count ?? 0);
+    }
+
+    public function includeRoomSummary(SoloScore $score): ResourceInterface
+    {
+        $playlistItem = MultiplayerScoreLink::find($score->getKey())?->playlistItem;
+        $room = $playlistItem?->room;
+
+        return $this->primitive($room === null ? null : [
+            'playlist_item_id' => $playlistItem->getKey(),
+            'is_realtime' => $room->isRealtime(),
+            'room_id' => $room->getKey(),
+            'room_name' => $room->name,
+        ]);
     }
 
     public function includeUser(LegacyMatch\Score|MultiplayerScoreLink|SoloScore $score)

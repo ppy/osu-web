@@ -31,6 +31,6 @@ class RankedPlayDecayRatings extends Command
      */
     public function handle()
     {
-        DB::statement('UPDATE matchmaking_user_stats SET elo_data = JSON_SET(elo_data, \'$.approximate_posterior.sig\', elo_data->\'$.approximate_posterior.sig\' + 1) WHERE pool_id IN (SELECT id FROM matchmaking_pools WHERE active = 1);');
+        DB::statement('UPDATE matchmaking_user_stats SET elo_data = JSON_SET(elo_data, \'$.approximate_posterior.sig\', LEAST(150, elo_data->\'$.approximate_posterior.sig\' + 1)) WHERE pool_id IN (SELECT id FROM matchmaking_pools WHERE active = 1);');
     }
 }

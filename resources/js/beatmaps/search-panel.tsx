@@ -6,6 +6,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import PopupMenu from 'components/popup-menu';
 import PopupMenuState from 'components/popup-menu-state';
 import Portal from 'components/portal';
+import { Spinner } from 'components/spinner';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -14,9 +15,12 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
+import { wikiUrl } from 'utils/url';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
 import UserTagPicker from './user-tag-picker';
+
+const helpUrl = wikiUrl('Beatmap_search');
 
 interface Props {
   availableFilters: AvailableFilters;
@@ -147,14 +151,14 @@ export class SearchPanel extends React.Component<Props> {
           <BeatmapsetCover beatmapset={this.props.firstBeatmapset} modifiers='full' size='cover' />
         </div>
         <div className='beatmapsets-search__input-container js-user-link'>
+          <div className='beatmapsets-search__icon'>
+            <i className='fas fa-search' />
+          </div>
           <input
             className='beatmapsets-search__input'
             disabled
             placeholder={trans('beatmaps.listing.search.login_required')}
           />
-          <div className='beatmapsets-search__icon'>
-            <i className='fas fa-search' />
-          </div>
         </div>
       </div>
     );
@@ -166,19 +170,24 @@ export class SearchPanel extends React.Component<Props> {
     return (
       <div className='beatmapsets-search beatmapsets-search--sticky'>
         <div className='beatmapsets-search__input-container'>
-          <input
-            ref={this.pinnedInputRef}
-            className='beatmapsets-search__input js-beatmapsets-search-input'
-            name='search'
-            onChange={this.onChange}
-            onKeyPress={this.onKeyPress}
-            placeholder={trans('beatmaps.listing.search.prompt')}
-            type='search'
-            value={this.queryRaw}
-          />
-          <div className='beatmapsets-search__icon'>
-            <i className='fas fa-search' />
-          </div>
+          <label className='beatmapsets-search__input-container-label'>
+            <span className='beatmapsets-search__icon'>
+              {this.controller.isBusy ? <Spinner /> : <i className='fas fa-search' />}
+            </span>
+            <input
+              ref={this.pinnedInputRef}
+              className='beatmapsets-search__input js-beatmapsets-search-input'
+              name='search'
+              onChange={this.onChange}
+              onKeyPress={this.onKeyPress}
+              placeholder={trans('beatmaps.listing.search.prompt')}
+              type='search'
+              value={this.queryRaw}
+            />
+          </label>
+          <a className='beatmapsets-search__icon beatmapsets-search__icon--button' href={helpUrl}>
+            <i className='fas fa-question-circle' />
+          </a>
         </div>
         <div className='beatmapsets-search__filters'>
           <Filter name='status' options={this.props.availableFilters.statuses} />
@@ -198,19 +207,24 @@ export class SearchPanel extends React.Component<Props> {
           <BeatmapsetCover beatmapset={this.props.firstBeatmapset} modifiers='full' size='cover' />
         </div>
         <div className='beatmapsets-search__input-container'>
-          <input
-            ref={this.inputRef}
-            className='beatmapsets-search__input js-beatmapsets-search-input'
-            name='search'
-            onChange={this.onChange}
-            onKeyPress={this.onKeyPress}
-            placeholder={trans('beatmaps.listing.search.prompt')}
-            type='search'
-            value={this.queryRaw}
-          />
+          <label className='beatmapsets-search__input-container-label'>
+            <span className='beatmapsets-search__icon'>
+              {this.controller.isBusy ? <Spinner /> : <i className='fas fa-search' />}
+            </span>
+            <input
+              ref={this.inputRef}
+              className='beatmapsets-search__input js-beatmapsets-search-input'
+              name='search'
+              onChange={this.onChange}
+              onKeyPress={this.onKeyPress}
+              placeholder={trans('beatmaps.listing.search.prompt')}
+              type='search'
+              value={this.queryRaw}
+            />
+          </label>
           <button
             ref={this.tagPopupMenuState.setButtonRef}
-            className={classWithModifiers('beatmapsets-search__icon', { active: this.tagPopupMenuState.active, tags: true })}
+            className={classWithModifiers('beatmapsets-search__icon', { active: this.tagPopupMenuState.active, button: true })}
             onClick={this.tagPopupMenuState.toggle}
             title={trans('beatmaps.listing.search.tag_picker.tooltip')}
           >
@@ -219,9 +233,9 @@ export class SearchPanel extends React.Component<Props> {
           <PopupMenu direction='left' skipButton state={this.tagPopupMenuState}>
             {() => <UserTagPicker />}
           </PopupMenu>
-          <div className='beatmapsets-search__icon'>
-            <i className='fas fa-search' />
-          </div>
+          <a className='beatmapsets-search__icon beatmapsets-search__icon--button' href={helpUrl}>
+            <i className='fas fa-question-circle' />
+          </a>
         </div>
         <div className='beatmapsets-search__filter-grid'>
           <Filter grid multiselect name='general' options={filters.general} />

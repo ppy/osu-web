@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Mapas',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'sin mapas',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Explícito',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

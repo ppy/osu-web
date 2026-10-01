@@ -14,6 +14,7 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'pool',
+        'recent_history',
     ];
 
     public function transform(MatchmakingUserStats $stats): array
@@ -36,5 +37,16 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
     public function includePool(MatchmakingUserStats $stats): ResourceInterface
     {
         return $this->item($stats->pool, new MatchmakingPoolTransformer());
+    }
+
+    public function includeRecentHistory(MatchmakingUserStats $stats): ResourceInterface
+    {
+        if ($stats->pool?->active !== true) {
+            return $this->primitive(null);
+        }
+
+        $entries = $stats->history()->orderByDesc('id')->limit(10)->get();
+
+        return $this->collection($entries, new MatchmakingUserEloHistoryTransformer());
     }
 }

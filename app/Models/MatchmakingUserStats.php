@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $first_placements
  * @property int $pool_id
  * @property int $rating
+ * @property float $sigma
  * @property int $total_points
  * @property \Carbon\Carbon|null $updated_at
  * @property User $user
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class MatchmakingUserStats extends Model
 {
-    const MIN_SIG_PROVISIONAL = 100;
+    const MIN_SIGMA_PROVISIONAL = 100;
 
     public $incrementing = false;
 
@@ -43,21 +44,24 @@ class MatchmakingUserStats extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeDefault(Builder $query): Builder
+    public function scopeDefault(Builder $query): void
     {
-        return $query
-            ->whereHas('user', fn (Builder $q): Builder => $q->default())
-            ->where('plays', '>', 0);
+        $query->where('plays', '>', 0);
+    }
+
+    public function scopeNonProvisional(Builder $query): void
+    {
+        $query->where('sigma', '<', static::MIN_SIGMA_PROVISIONAL);
     }
 
     public function scopeWithRank(Builder $query): void
     {
-        // this won't be accurate when there are restricted users
         $rankQuery = new static()
             ->newQuery()
             ->from($this->tableName(true), 'mus')
             ->selectRaw('COUNT(*) + 1')
-            ->where('plays', '>', 0)
+            ->default()
+            ->nonProvisional()
             ->whereColumn('rating', '>', $query->qualifyColumn('rating'))
             ->whereColumn('pool_id', '=', $query->qualifyColumn('pool_id'));
 
@@ -69,14 +73,23 @@ class MatchmakingUserStats extends Model
         return $query->whereHas('pool', fn ($q) => $q->where('ruleset_id', $rulesetId));
     }
 
+    public function history(): Builder
+    {
+        return MatchmakingUserEloHistory::where([
+            'pool_id' => $this->pool_id,
+            'user_id' => $this->user_id,
+        ]);
+    }
+
     public function isRatingProvisional(): bool
     {
-        return $this->elo_data['approximate_posterior']['sig'] >= static::MIN_SIG_PROVISIONAL;
+        return $this->sigma >= static::MIN_SIGMA_PROVISIONAL;
     }
 
     public function getRank(): int
     {
         return $this->attributes['rank'] ?? 1 + static::default()
+            ->nonProvisional()
             ->where('rating', '>', $this->rating)
             ->where('pool_id', $this->pool_id)
             ->count();
@@ -92,7 +105,7 @@ class MatchmakingUserStats extends Model
             1,
             fn () => static
                 ::where('pool_id', $this->pool_id)
-                ->where('plays', '>', 0)
+                ->default()
                 ->count(),
         );
 

@@ -72,7 +72,7 @@ return [
             'judge' => 'konkurso teisėjavimas',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'grupės istorija',
         ],
         'groups_controller' => [
             'show' => 'grupės',
@@ -125,7 +125,7 @@ return [
             '_' => 'vartotojo viršelių ruošiniai',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'autentifikavimo programa',
         ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',

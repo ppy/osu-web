@@ -15,9 +15,14 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
  */
 class TimestampOrZero implements CastsAttributes
 {
-    public function get($model, string $key, $value, array $attributes)
+    public static function castValue($value): ?Carbon
     {
         return $value === null || $value === 0 ? null : Carbon::createFromTimestamp($value);
+    }
+
+    public function get($model, string $key, $value, array $attributes)
+    {
+        return static::castValue($value);
     }
 
     public function set($model, string $key, $value, array $attributes)

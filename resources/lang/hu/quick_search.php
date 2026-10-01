@@ -5,29 +5,29 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Kiemelt Művész Zene',
         'beatmapset' => 'Beatmap',
         'forum_post' => 'Fórum',
         'other' => 'Egyéb',
-        'team' => '',
+        'team' => 'Csapat',
         'user' => 'Játékos',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'more' => 'További keresési eredmények :mode',
-        'title' => ':mode keresési eredmények',
+        'more' => 'További Keresési Eredmények :mode',
+        'title' => ':mode Keresési Eredmények',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Nincs találat erre a modra/modokra :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Kiemelt Művész Zenék',
+            'beatmapset' => 'Beatmap-ek',
+            'forum_post' => 'Fórumok',
+            'other' => 'Egyéb',
+            'team' => 'Csapatok',
+            'user' => 'Játékosok',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

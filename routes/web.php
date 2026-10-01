@@ -292,6 +292,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
     Route::put('legal/{locale}/{path}', 'LegalController@update');
 
+    Route::get('matchmaking-pools/{pool}/user-chart/{user}', 'MatchmakingPoolsController@userChart')->name('matchmaking-pools.user-chart');
+
     Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
         Route::get('rooms/{room}/events', 'RoomsController@events')->name('rooms.events');
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
@@ -632,6 +634,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
 
+        Route::get('suggestions/wiki', 'SuggestionsController@wiki')->name('suggestions.wiki');
+
         // Tags
         Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
 
@@ -697,5 +701,5 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     });
 });
 
-Route::get('opensearch.xml', 'HomeController@opensearch');
+Route::get('opensearch.xml', 'HomeController@opensearch')->name('opensearch');
 Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

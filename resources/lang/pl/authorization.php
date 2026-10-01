@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Nie możesz zmienić metadanych nominowanej beatmapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',
         ],
+
+        'rate' => [
+            'owner' => 'Nie możesz ocenić zbioru beatmap, w której uczestniczysz.',
+            'status' => 'Nie możesz ocenić zbioru beatmap w tym statusem.',
+        ],
     ],
 
     'beatmap_tag' => [

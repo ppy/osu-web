@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Jūs negalite pakeisti nominuoto beatmap\'o metaduomenų. Susisiekite su BN arba NAT nariu jeigu jūs manote, kad jie buvo nustatyti neteisingai.',
         ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
     ],
 
     'beatmap_tag' => [

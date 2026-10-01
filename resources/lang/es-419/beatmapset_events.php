@@ -61,9 +61,11 @@ return [
         'approve' => 'Aprobación',
         'beatmap_owner_change' => 'Cambio de dueño de una dificultad',
         'discussion_delete' => 'Eliminación de una discusión',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Eliminación de una respuesta en una discusión',
         'discussion_post_restore' => 'Restauración de una respuesta en una discusión',
         'discussion_restore' => 'Restauración de una discusión',
+        'discussion_unlock' => '',
         'disqualify' => 'Descalificación de un mapa',
         'genre_edit' => 'Edición de género en un mapa',
         'issue_reopen' => 'Reapertura de una discusión',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Calificación de un mapa',
         'rank' => 'Clasificación de un mapa',
         'remove_from_loved' => 'Retiro de un mapa de la categoría amado',
+        'tags_edit' => '',
     ],
 ];

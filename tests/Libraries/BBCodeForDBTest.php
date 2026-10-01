@@ -7,13 +7,12 @@ namespace Tests\Libraries;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BBCodeForDBTest extends TestCase
 {
-    /**
-     * @dataProvider examples
-     */
+    #[DataProvider('examples')]
     public function testGenerate($name, $path)
     {
         $baseFilePath = "{$path}/{$name}.base.txt";

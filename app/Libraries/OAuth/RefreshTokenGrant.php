@@ -16,11 +16,12 @@ class RefreshTokenGrant extends BaseRefreshTokenGrant
 {
     private ?array $oldRefreshToken = null;
 
+    #[\Override]
     public function respondToAccessTokenRequest(
         ServerRequestInterface $request,
         ResponseTypeInterface $responseType,
         \DateInterval $accessTokenTTL
-    ) {
+    ): ResponseTypeInterface {
         $refreshTokenData = parent::respondToAccessTokenRequest($request, $responseType, $accessTokenTTL);
 
         // Copy previous verification state
@@ -33,7 +34,8 @@ class RefreshTokenGrant extends BaseRefreshTokenGrant
         return $refreshTokenData;
     }
 
-    protected function validateOldRefreshToken(ServerRequestInterface $request, $clientId)
+    #[\Override]
+    protected function validateOldRefreshToken(ServerRequestInterface $request, string $clientId): array
     {
         return $this->oldRefreshToken = parent::validateOldRefreshToken($request, $clientId);
     }

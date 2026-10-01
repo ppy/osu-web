@@ -63,7 +63,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Prisijunkite, kad galėtumėte ieškoti komandas',
             'more_simple' => ' Žiūrėti daugiau komandų paieškos rezultatų',
         ],
 
@@ -84,7 +84,7 @@ return [
 
     'download' => [
         'action_lazer_info' => 'peržiūrėk šį puslapį dėl papildomos informacijos',
-        'download' => '',
+        'download' => 'Atsisiųsti',
         'for_os' => 'skirtas :os',
         'macos-fallback' => 'macOS vartotojams',
         'mirror' => 'dubliavimas',
@@ -92,9 +92,9 @@ return [
         'os_version_or_later' => ':os_version arba vėlesnė',
         'other_os' => 'kitos platformos',
         'quick_start_guide' => 'pagalba pradedančiam',
-        'stable_text' => '',
+        'stable_text' => 'jei ieškote senesnio',
         'tagline_1' => '',
-        'tagline_2' => '',
+        'tagline_2' => 'Pradėkime!',
         'video-guide' => 'vaizdo gidas',
 
         'help' => [

@@ -15,6 +15,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
+use App\Models\Comment;
 use App\Models\Forum;
 use App\Models\Team;
 use App\Models\Traits\ReportableInterface;
@@ -22,6 +23,7 @@ use App\Models\User;
 use App\Models\UserReport;
 use Carbon\Carbon;
 use Exception;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UserReportTest extends TestCase
@@ -101,9 +103,7 @@ class UserReportTest extends TestCase
 
     private User $reporter;
 
-    /**
-     * @dataProvider reportableClasses
-     */
+    #[DataProvider('reportableClasses')]
     public function testCannotReportOwnThing(string $class)
     {
         $reportable = static::makeReportable($class);
@@ -141,9 +141,7 @@ class UserReportTest extends TestCase
         $team->reportBy($reporter, static::reportParams());
     }
 
-    /**
-     * @dataProvider reportableClasses
-     */
+    #[DataProvider('reportableClasses')]
     public function testInvalidReason(string $class)
     {
         $reportable = static::makeReportable($class);
@@ -156,15 +154,13 @@ class UserReportTest extends TestCase
         ]));
     }
 
-    /**
-     * @dataProvider reportableClasses
-     */
+    #[DataProvider('reportableClasses')]
     public function testNoComments(string $class): void
     {
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
 
-        if ($class === Message::class) {
+        if ($reportable instanceof Message || $reportable instanceof Comment) {
             $this->expectCountChange(fn () => UserReport::count(), 1);
         } else {
             $this->expectException(ValidationException::class);
@@ -174,9 +170,7 @@ class UserReportTest extends TestCase
         ]));
     }
 
-    /**
-     * @dataProvider reportableClasses
-     */
+    #[DataProvider('reportableClasses')]
     public function testNoCommentsReasonOther(string $class): void
     {
         $reportable = static::makeReportable($class);
@@ -189,9 +183,7 @@ class UserReportTest extends TestCase
         ]));
     }
 
-    /**
-     * @dataProvider reportableClasses
-     */
+    #[DataProvider('reportableClasses')]
     public function testReportableInstance(string $class)
     {
         $reportable = static::makeReportable($class);
@@ -214,9 +206,7 @@ class UserReportTest extends TestCase
         $this->assertTrue($report->reportable->is($reportable));
     }
 
-    /**
-     * @dataProvider reportableClasses
-     */
+    #[DataProvider('reportableClasses')]
     public function testReportableNotificationEndpoint(string $class): void
     {
         $reportable = static::makeReportable($class);

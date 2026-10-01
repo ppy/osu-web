@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => '유저 불러오는 중...',
-    'searching_users' => '',
+    'searching_users' => '유저 검색하기...',
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',
     'title_compact' => '채팅',

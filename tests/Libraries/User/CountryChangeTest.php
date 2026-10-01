@@ -13,13 +13,12 @@ use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 class CountryChangeTest extends TestCase
 {
-    /**
-     * @group RequiresScoreIndexer
-     */
+    #[Group('RequiresScoreIndexer')]
     public function testDo(): void
     {
         $user = User::factory();

@@ -34,15 +34,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
+        'plays' => 'Žaidimai',
+        'points' => 'Taškai',
         'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'rating' => 'Reitingas',
+        'wins' => 'Laimėjimai',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Kambario pavadinimas',
     ],
 
     'performance' => [
@@ -50,15 +50,15 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Duomenys skaičiuojami...',
+        'last_updated' => 'Paskutinį kartą atnaujinta',
     ],
 
     'playlists' => [
         'charts' => '',
         'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'season_room' => 'sezono kambarys',
+        'seasons' => 'sezonai',
     ],
 
     'type' => [
@@ -67,9 +67,9 @@ return [
         'global' => 'pasaulis',
         'kudosu' => 'kudosu',
         'matchmaking' => '',
-        'playlists' => '',
+        'playlists' => 'grojaraščiai',
         'team' => 'komandos',
-        'top_plays' => '',
+        'top_plays' => 'geriausi žaidmai',
     ],
 
     'seasons' => [

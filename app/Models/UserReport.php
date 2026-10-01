@@ -29,7 +29,8 @@ use Illuminate\Notifications\RoutesNotifications;
  */
 class UserReport extends Model
 {
-    use RoutesNotifications, Validatable;
+    use RoutesNotifications;
+    use Validatable;
 
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const MAX_FIELD_LENGTHS = [
@@ -85,7 +86,7 @@ class UserReport extends Model
                 Chat\Message::class => 'chat',
                 Comment::class => 'comment',
                 Forum\Post::class => 'forum',
-                User::class => 'user',
+                User::class => $this->reason === 'InappropriateChat' ? 'chat' : 'user',
                 Team::class => 'team',
             };
 
@@ -99,6 +100,17 @@ class UserReport extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function isCommentOptional(): bool
+    {
+        static $optionalTypes = [
+            MorphMap::MAP[Chat\Message::class],
+            MorphMap::MAP[Comment::class],
+        ];
+
+        return $this->reason !== 'Other'
+            && in_array($this->reportable_type, $optionalTypes, true);
+    }
+
     public function isRecent(): bool
     {
         return $this->timestamp->addDays(1)->isFuture();
@@ -108,7 +120,7 @@ class UserReport extends Model
     {
         $this->validationErrors()->reset();
 
-        if (!present(trim($this->comments)) && (!($this->reportable instanceof Chat\Message) || $this->reason === 'Other')) {
+        if (!present(trim($this->comments)) && !$this->isCommentOptional()) {
             $this->validationErrors()->add('comments', 'required');
         }
 

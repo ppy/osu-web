@@ -15,6 +15,7 @@ class GroupPermissionTest extends TestCase
 {
     public static function dataProviderForTestGroup()
     {
+        // The third argument is only for testGroupWithOAuth
         return [
             ['admin', 'isAdmin', false],
             ['alumni', 'isAlumni', false],
@@ -30,6 +31,7 @@ class GroupPermissionTest extends TestCase
 
     public static function dataProviderForTestForumModerator()
     {
+        // The third argument is only for testForumModeratorWithOAuthOtherScope
         return [
             ['admin', [], false],
             ['admin', ['gmt'], false],
@@ -60,7 +62,7 @@ class GroupPermissionTest extends TestCase
     }
 
     #[DataProvider('dataProviderForTestGroup')]
-    public function testGroupWithoutOAuth(string $group, string $method)
+    public function testGroupWithoutOAuth(string $group, string $method, bool $_inGroupWithOAuth)
     {
         $user = User::factory()->withGroup($group)->create();
         $this->actAsUser($user);
@@ -69,7 +71,7 @@ class GroupPermissionTest extends TestCase
     }
 
     #[DataProvider('dataProviderForTestForumModerator')]
-    public function testForumModeratorWithOAuthAllScope(string $group, array $forumGroups)
+    public function testForumModeratorWithOAuthAllScope(string $group, array $forumGroups, bool $_inGroupWithOtherScope)
     {
 
         $user = User::factory()->withGroup($group)->create();

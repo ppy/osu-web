@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Бийтмапове',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'няма бийтмапове',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Explicit',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

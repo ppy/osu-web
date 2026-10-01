@@ -12,18 +12,17 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Genre;
-use App\Models\Group;
 use App\Models\Language;
 use App\Models\Solo\Score;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
 use App\Models\UserRelation;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
-/**
- * @group RequiresScoreIndexer
- */
+#[Group('RequiresScoreIndexer')]
 class ScoreEsIndexTest extends TestCase
 {
     private static Beatmap $beatmap;
@@ -115,9 +114,7 @@ class ScoreEsIndexTest extends TestCase
         });
     }
 
-    /**
-     * @dataProvider dataProviderForTestUserRank
-     */
+    #[DataProvider('dataProviderForTestUserRank')]
     public function testUserRank(string $key, ?array $params, int $rank): void
     {
         $score = static::$scores[$key]->fresh();

@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'recibir notificaciones cuando haya respuestas en las discusiones de mapas en las que estás participando',
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
         'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
         'comment_reply' => 'recibir notificaciones de respuestas a tus comentarios',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'modo de juego predeterminado',
         'keyboard' => 'teclado',
         'mouse' => 'ratón',
         'tablet' => 'tableta',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquear los mensajes privados de personas que no están en tu lista de amigos',
+        'friends_only_info' => '',
         'hide_online' => 'ocultar tu presencia en línea',
         'hide_online_info' => 'esto se relaciona con el modo «aparecer desconectado» en osu!lazer',
         'title' => 'Privacidad',

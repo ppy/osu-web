@@ -16,4 +16,8 @@
 
 [youtube]https://www.youtube.com/embed/YOeKD8ig3eM?rel=0[/youtube]
 
+(these are past the embed limit)
+
 [youtube]YOeKD8ig3eM[/youtube]
+
+[youtube]https://www.youtube.com/embed/YOeKD8ig3eM?rel=0[/youtube]

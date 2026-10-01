@@ -641,9 +641,11 @@
           "RX",
           "AP",
           "SO",
+          "WG",
           "MG",
           "RP",
           "AS",
+          "DP",
           "TD"
         ],
         "RequiresConfiguration": false,
@@ -779,6 +781,7 @@
           }
         ],
         "IncompatibleMods": [
+          "AT",
           "TR",
           "MG",
           "RP",
@@ -1244,6 +1247,7 @@
           "HD",
           "TC",
           "TP",
+          "AT",
           "TR",
           "WG",
           "SI",

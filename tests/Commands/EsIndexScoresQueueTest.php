@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Models\Solo\Score;
 use Artisan;
 use LaravelRedis;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class EsIndexScoresQueueTest extends TestCase
@@ -30,9 +31,7 @@ class EsIndexScoresQueueTest extends TestCase
         return LaravelRedis::llen(static::queueKey());
     }
 
-    /**
-     * @dataProvider dataProviderForTestParameterValidity
-     */
+    #[DataProvider('dataProviderForTestParameterValidity')]
     public function testParameterValidity(array $params, bool $isValid)
     {
         if (!$isValid) {
@@ -46,9 +45,7 @@ class EsIndexScoresQueueTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProviderForTestQueueScores
-     */
+    #[DataProvider('dataProviderForTestQueueScores')]
     public function testQueueScores(callable $setUp, array|callable $params, int $change): void
     {
         $setUp();

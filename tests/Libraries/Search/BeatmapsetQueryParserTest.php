@@ -8,6 +8,7 @@ namespace Tests\Libraries\Search;
 use App\Libraries\Search\BeatmapsetQueryParser;
 use App\Models\Beatmapset;
 use Carbon\CarbonImmutable;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapsetQueryParserTest extends TestCase
@@ -109,9 +110,7 @@ class BeatmapsetQueryParserTest extends TestCase
         return CarbonImmutable::parse($timeString)->getTimestampMs();
     }
 
-    /**
-     * @dataProvider queryDataProvider
-     */
+    #[DataProvider('queryDataProvider')]
     public function testParse(?string $query, ?array $expected)
     {
         $this->assertSame(json_encode($expected), json_encode(BeatmapsetQueryParser::parse($query)));

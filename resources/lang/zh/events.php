@@ -7,7 +7,7 @@ return [
     'achievement' => '<strong><em>:user</em></strong> 解锁了 "<strong>:achievement</strong>" 成就！',
     'beatmap_playcount' => ':beatmap 已经游玩了 :count 次！',
     'beatmapset_approve' => '<strong>:user</strong> 制作的 :beatmapset 已经 :approval ！',
-    'beatmapset_delete' => ':beatmapset 已删除。',
+    'beatmapset_delete' => ':beatmapset 已被删除。',
     'beatmapset_revive' => '<strong>:user</strong> 已经恢复了 :beatmapset。',
     'beatmapset_update' => '<strong><em>:user</em></strong> 更新了谱面 "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> 提交了一个新谱面 ":beatmapset"',

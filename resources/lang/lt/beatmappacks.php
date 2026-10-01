@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'sukūrė :author',
         'download' => 'Atsisiųsti',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'išvalyta',
             'not_cleared' => 'neišvalyta',

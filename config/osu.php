@@ -45,6 +45,7 @@ return [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
         'uid' => '1337',
+        'youtube_embed_max' => get_int(env('BBCODE_YOUTUBE_EMBED_MAX')) ?? 5,
     ],
     'beatmaps' => [
         'max' => 50,
@@ -209,6 +210,7 @@ return [
         'processing_queue' => presence(env('SCORES_PROCESSING_QUEUE')) ?? 'osu-queue:score-statistics',
         'submission_enabled' => get_bool(env('SCORES_SUBMISSION_ENABLED')) ?? true,
         'user_summary_min_id' => get_int(env('SCORES_USER_SUMMARY_MIN_ID')) ?? 4101082566,
+        'leaderboard_totals_enabled' => get_bool(env('SCORES_LEADERBOARD_TOTALS_ENABLED')) ?? true,
     ],
 
     'seasonal' => [

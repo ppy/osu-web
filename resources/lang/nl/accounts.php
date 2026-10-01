@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokkeer privéberichten van mensen niet in jouw vriendenlijst',
+        'friends_only_info' => '',
         'hide_online' => 'verberg je online aanwezigheid',
         'hide_online_info' => 'Deze maps naar de "verschijnen offline" in osu!lazer',
         'title' => 'Privacy',

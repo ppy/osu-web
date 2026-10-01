@@ -17,7 +17,9 @@ use Illuminate\Queue\SerializesModels;
 
 class RegenerateBeatmapsetMedia implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * The number of seconds the job can run before timing out.

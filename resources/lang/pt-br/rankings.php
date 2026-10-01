@@ -55,8 +55,8 @@ return [
     ],
 
     'playlists' => [
-        'charts' => 'spotlights(antigo)',
-        'featured' => 'destaque',
+        'charts' => 'spotlights (antigo)',
+        'featured' => 'em destaque',
         'season_room' => 'sala da temporada',
         'seasons' => 'temporadas',
     ],

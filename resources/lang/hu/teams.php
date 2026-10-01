@@ -6,35 +6,35 @@
 return [
     'applications' => [
         'accept' => [
-            'ok' => '',
+            'ok' => 'Felvettem egy felhasználót a csapatba.',
         ],
         'destroy' => [
-            'ok' => '',
+            'ok' => 'Kérelem megszakítva.',
         ],
         'reject' => [
-            'ok' => '',
+            'ok' => 'Elutasították a kérelmet.',
         ],
         'store' => [
-            'ok' => '',
+            'ok' => 'Kérelem elküldve.',
         ],
     ],
 
     'card' => [
-        'members' => '',
+        'members' => ':count_delimited tag|:count_delimited tagok',
     ],
 
     'create' => [
-        'submit' => 'Csapat létrehozása',
+        'submit' => 'Csapat Létrehozása',
 
         'form' => [
-            'name_help' => '',
+            'name_help' => 'A csapatod neve. A név jelenleg végleges.',
             'short_name_help' => 'Legfeljebb 4 karakter.',
-            'title' => "",
+            'title' => "Alkossunk egy új csapatot",
         ],
 
         'intro' => [
-            'description' => "",
-            'search_link' => '',
+            'description' => "Játssz együtt barátaiddal – akár a régiekkel, akár újakkal. Jelenleg nem vagy tagja egyetlen csapatnak sem. Csatlakozz egy :search_link csapathoz a csapat oldalának felkeresésével, vagy hozz létre saját csapatot ezen az oldalon.",
+            'search_link' => 'létező csapat',
             'title' => 'Csapat!',
         ],
     ],
@@ -45,7 +45,7 @@ return [
 
     'edit' => [
         'ok' => 'A beállítások mentése sikeresen megtörtént.',
-        'title' => 'Csapat beállításai',
+        'title' => 'Csapat Beállításai',
 
         'description' => [
             'label' => 'Leírás',
@@ -54,17 +54,17 @@ return [
 
         'flag' => [
             'label' => 'Csapatzászló',
-            'title' => 'Csapatzászló beállítása',
+            'title' => 'Csapatzászló Beállítása',
         ],
 
         'header' => [
-            'label' => 'Fejléc kép',
-            'title' => 'Fejléc kép beállítása',
+            'label' => 'Fejléc Kép',
+            'title' => 'Fejléc Kép Beállítása',
         ],
 
         'settings' => [
-            'application_help' => '',
-            'default_ruleset_help' => '',
+            'application_help' => 'Hogy engedélyezzék-e az embereknek, hogy jelentkezzenek a csapatba',
+            'default_ruleset_help' => 'A csapatoldal megnyitásakor alapértelmezésként kiválasztandó szabálykészlet',
             'flag_help' => 'Legfeljebb :width×:height méretű',
             'header_help' => 'Legfeljebb :width×:height méretű',
             'title' => 'Csapat beállításai',
@@ -96,26 +96,26 @@ return [
         ],
 
         'index' => [
-            'title' => 'Tagok kezelése',
+            'title' => 'Tagok Kezelése',
 
             'applications' => [
-                'accept_confirm' => '',
-                'created_at' => 'Kérelem ideje',
+                'accept_confirm' => 'Fel kell venni a(z) :user felhasználót a csapatba?',
+                'created_at' => 'Kérelem Ideje',
                 'empty' => 'Nincs csatlakozási kérelem.',
-                'empty_slots' => 'Szabad helyek',
-                'empty_slots_overflow' => '',
-                'reject_confirm' => '',
-                'title' => 'Csatlakozási kérelmek',
+                'empty_slots' => 'Szabad Helyek',
+                'empty_slots_overflow' => ':count_delimited felhasználó túlcsordulás|:count_delimited felhasználók túlcsordulás',
+                'reject_confirm' => 'Elutasítsa a(z) :user felhasználó csatlakozási kérését?',
+                'title' => 'Csatlakozási Kérelmek',
             ],
 
             'table' => [
-                'joined_at' => 'Csatlakozás ideje',
+                'joined_at' => 'Csatlakozás Ideje',
                 'remove' => 'Eltávolítás',
-                'remove_confirm' => '',
-                'set_leader' => '',
-                'set_leader_confirm' => '',
+                'remove_confirm' => 'Töröljük a(z) :user felhasználót a csapatból?',
+                'set_leader' => 'A csapat vezetésének átadása',
+                'set_leader_confirm' => 'A csapat vezetését átadni a(z) :user felhasználónak?',
                 'status' => 'Állapot',
-                'title' => 'Jelenlegi tagok',
+                'title' => 'Jelenlegi Tagok',
             ],
 
             'status' => [
@@ -125,7 +125,7 @@ return [
         ],
 
         'set_leader' => [
-            'success' => '',
+            'success' => 'A :user felhasználó mostantól a csapatvezető.',
         ],
     ],
 
@@ -135,11 +135,11 @@ return [
 
     'show' => [
         'bar' => [
-            'chat' => 'Csapat chat',
-            'destroy' => 'Csapat feloszlatása',
+            'chat' => 'Csapat Chat',
+            'destroy' => 'Csapat Feloszlatása',
             'join' => 'Jelentkezés',
-            'join_cancel' => 'Jelentkezés visszavonása',
-            'part' => 'Kilépés a csapatból',
+            'join_cancel' => 'Jelentkezés Visszavonása',
+            'part' => 'Kilépés a Csapatból',
         ],
 
         'info' => [
@@ -158,11 +158,11 @@ return [
         ],
 
         'statistics' => [
-            'empty_slots' => '',
-            'first_places' => '',
+            'empty_slots' => ':count_delimited szabad hely|:count_delimited szabad helyek',
+            'first_places' => 'Első helyek',
             'leader' => 'Csapatvezető',
             'rank' => 'Rang',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Rangsorolt beatmapek',
         ],
     ],
 

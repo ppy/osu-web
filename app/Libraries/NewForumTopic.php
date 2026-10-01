@@ -35,7 +35,7 @@ class NewForumTopic
 
             $build = $this->user->soloScores()->last()?->build
                 // the build above will be null if the user last played on stable
-                ?? $this->user->clients()->last('timestamp')?->build;
+                ?? $this->user->legacyGameClients()->last('timestamp')?->build;
             $stream = $build?->parent()?->updateStream;
 
             if ($stream !== null) {

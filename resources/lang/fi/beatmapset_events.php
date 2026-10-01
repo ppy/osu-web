@@ -61,9 +61,11 @@ return [
         'approve' => 'Hyväksyntä',
         'beatmap_owner_change' => 'Vaikeustason omistajan muutos',
         'discussion_delete' => 'Poista keskustelu',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Keskustelun vastauksen poistaminen',
         'discussion_post_restore' => 'Keskustelun vastauksen palautus',
         'discussion_restore' => 'Keskustelun palauttaminen',
+        'discussion_unlock' => '',
         'disqualify' => 'Hylkäys',
         'genre_edit' => 'Genren muokkaus',
         'issue_reopen' => 'Keskustelun uudelleenavaaminen',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Kelpuuttaminen',
         'rank' => 'Luokittelu',
         'remove_from_loved' => 'Rakastetun poisto',
+        'tags_edit' => '',
     ],
 ];

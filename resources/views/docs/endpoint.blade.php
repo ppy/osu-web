@@ -110,6 +110,7 @@
               'name' => $name,
               'type' => null,
               'required' => true,
+              'deprecated' => false,
               'description' => null,
               'example' => $example,
               'endpointId' => $endpoint->endpointId(),
@@ -129,6 +130,7 @@
               'name' => $parameter->name,
               'type' => $parameter->type ?? 'string',
               'required' => $parameter->required,
+              'deprecated' => $parameter->deprecated,
               'description' => $parameter->description,
               // TODO: show correct example (from $parameter->example)
               'example' => '',
@@ -154,6 +156,7 @@
               'name' => $parameter->name,
               'type' => $parameter->type,
               'required' => $parameter->required,
+              'deprecated' => $parameter->deprecated,
               'description' => $parameter->description,
               // TODO: show correct example (from $parameter->example)
               'example' => '',

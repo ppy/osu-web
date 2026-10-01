@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* İstemci Kimlik Bilgileri ile izin verilmez',
+        'all_scope_no_mix' => '* diğer kapsamlarla birlikte geçerli değildir',
+        'client_missing_owner' => 'İstemci sahibi eksik',
+        'client_unauthorized' => 'İstemci yetkilendirilmemiş.',
+        'delegate_bot_only' => 'Müşteri Kimlik Bilgileriyle Yetkilendirme özelliği yalnızca botlar tarafından kullanılabilir.',
+        'client_credentials_only' => 'Bu kapsam yalnızca client_credentials token\'ları için geçerlidir.',
+        'delegate_invalid_combination' => 'Bu kapsam kombinasyonu için yetki devri desteklenmemektedir.',
+        'delegate_required' => 'temsilci scope gerekli.',
+        'empty' => 'Scope olmayan tokenler geçerli değil.',
+        'bot_only' => 'Bu scope sadece botlar veya sahip olduğun istemciler için mevcut.',
     ],
 ];

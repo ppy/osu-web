@@ -14,17 +14,16 @@ use App\Models\BeatmapPackItem;
 use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Genre;
-use App\Models\Group;
 use App\Models\Language;
 use App\Models\Solo\Score;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
-/**
- * @group RequiresScoreIndexer
- */
+#[Group('RequiresScoreIndexer')]
 class BeatmapPackUserCompletionTest extends TestCase
 {
     private static array $users;
@@ -86,9 +85,7 @@ class BeatmapPackUserCompletionTest extends TestCase
 
     protected $connectionsToTransact = [];
 
-    /**
-     * @dataProvider dataProviderForTestBasic
-     */
+    #[DataProvider('dataProviderForTestBasic')]
     public function testBasic(string $userType, ?string $packRuleset, bool $completed): void
     {
         $user = static::$users[$userType];

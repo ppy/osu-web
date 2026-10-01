@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\UserNotificationOption;
 use Event;
 use Mail;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 use ReflectionClass;
 use ReflectionClassConstant;
@@ -40,17 +41,13 @@ class BroadcastNotificationTest extends TestCase
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
 
-    /**
-     * @dataProvider notificationNamesDataProvider
-     */
+    #[DataProvider('notificationNamesDataProvider')]
     public function testAllNotificationNamesHaveNotificationClasses($name)
     {
         $this->assertNotNull(BroadcastNotificationBase::getNotificationClass($name));
     }
 
-    /**
-     * @dataProvider notificationJobClassesDataProvider
-     */
+    #[DataProvider('notificationJobClassesDataProvider')]
     public function testNotificationOptionNameHasDeliveryModes($class)
     {
         $predicate = $class::NOTIFICATION_OPTION_NAME === null
@@ -59,9 +56,7 @@ class BroadcastNotificationTest extends TestCase
         $this->assertTrue($predicate, "NOTIFICATION_OPTION_NAME for {$class} must be null or in UserNotificationOption::HAS_DELIVERY_MODES");
     }
 
-    /**
-     * @dataProvider userNotificationDetailsDataProvider
-     */
+    #[DataProvider('userNotificationDetailsDataProvider')]
     public function testSendNotificationWithOptions($details)
     {
         $user = User::factory()->create();

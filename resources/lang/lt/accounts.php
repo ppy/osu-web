@@ -81,7 +81,7 @@ return [
         'beatmapset_discussion_qualified_problem' => 'gauti pranešimus dėl naujų problemų kvalifikuotuose beatmap\'uose šiuose režimuose ',
         'beatmapset_disqualify' => 'gauti pranešimus, kai šių režimų beatmap\'ai diskvalifikuojami',
         'comment_reply' => 'gauti pranešimus apie atsakymus ant jūsų komentarų',
-        'news_post' => '',
+        'news_post' => 'gauti pranešimus apie naujienų įrašus',
         'title' => 'Pranešimai',
         'topic_auto_subscribe' => 'automatiškai įjungti pranešimus naujuose forumo temose kurias tu sukūrei',
 
@@ -135,7 +135,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'pagrindinis žaidimo režimas',
         'keyboard' => 'klaviatūra',
         'mouse' => 'pelė',
         'tablet' => 'grafinė planšetė',
@@ -145,6 +145,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokuoti privačias žinutes iš žmonių kurių nėra draugų sąraše',
+        'friends_only_info' => '',
         'hide_online' => 'paslėpti jūsų prisijungimo sesiją',
         'hide_online_info' => '',
         'title' => 'Privatumas',
@@ -168,8 +169,8 @@ return [
     ],
 
     'user_totp' => [
-        'title' => '',
-        'usage_note' => '',
+        'title' => 'Autentifikavimo programa',
+        'usage_note' => 'Naudoti autentifikavimo programa vietoje el. pašto dėl patvirtinimo. Patvirtinimas el. paštu vis tiek bus galimas kaip atsarginis būdas.',
 
         'button' => [
             'remove' => 'Pašalinti',

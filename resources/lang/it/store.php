@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
         'subtotal' => 'Subtotale',
         'total' => 'Totale',
+        'unavailable' => 'Nessuna informazione aggiuntiva disponibile per questo ordine.',
 
         'details' => [
             'order_number' => 'Ordine #',

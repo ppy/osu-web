@@ -8,20 +8,17 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Models\Country;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class HelpersTest extends TestCase
 {
-    /**
-     * @dataProvider dataForGetStringSplit
-     */
+    #[DataProvider('dataForGetStringSplit')]
     public function testGetStringSplit(string $input, array $expected): void
     {
         $this->assertSame($expected, get_string_split($input));
     }
 
-    /**
-     * @dataProvider dataForClassWithModifiers
-     */
+    #[DataProvider('dataForClassWithModifiers')]
     public function testClassWithModifiers($class, $modifiers, $expected): void
     {
         $this->assertSame($expected, class_with_modifiers($class, ...$modifiers));
@@ -54,9 +51,7 @@ class HelpersTest extends TestCase
         $this->assertTrue(is_sql_unique_exception($exception));
     }
 
-    /**
-     * @dataProvider dataForGetLengthSeconds
-     */
+    #[DataProvider('dataForGetLengthSeconds')]
     public function testGetLengthSeconds(string $input, array $expected): void
     {
         $this->assertSame($expected, get_length_seconds($input));

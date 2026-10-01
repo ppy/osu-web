@@ -58,6 +58,11 @@ return [
         'metadata' => [
             'nominated' => 'Aday gösterilen bir mapin metaverisini değiştiremezsiniz. Hatalı ayarlandığını düşünüyorsanız bir BN ya da NAT üyesiyle iletişime geçiniz.',
         ],
+
+        'rate' => [
+            'owner' => 'Katıldığınız bir beatmap setine puan veremezsiniz.',
+            'status' => 'Bu duruma sahip bir beatmap setine puan veremezsiniz.',
+        ],
     ],
 
     'beatmap_tag' => [

@@ -7,6 +7,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 
 interface SuggestionJson {
   highlight: string;
+  locale: string;
   path: string;
   title: string;
 }
@@ -17,6 +18,7 @@ export class WikiSearchController {
   @observable suggestions: SuggestionJson[] = [];
 
   private readonly debouncedFetchSuggestions = debounce(() => this.fetchSuggestions(), 200);
+  @observable private locale: string;
   @observable private query = '';
   private xhr?: JQueryXHR;
 
@@ -32,8 +34,9 @@ export class WikiSearchController {
     return this.selectedItem == null ? this.query : this.selectedItem.title;
   }
 
-  constructor() {
+  constructor(locale: string) {
     makeObservable(this);
+    this.locale = locale;
   }
 
   @action
@@ -82,12 +85,13 @@ export class WikiSearchController {
   }
 
   @action
-  updateQuery(query: string) {
+  updateQuery(query: string, locale: string) {
     const newQuery = query.trim();
     const previousQuery = this.query.trim();
 
     this.query = query;
     this.selectedIndex = -1;
+    this.locale = locale;
 
     // just adding more spaces to either end of the query shouldn't perform more queries
     if (previousQuery === newQuery) return;
@@ -103,7 +107,10 @@ export class WikiSearchController {
 
   @action
   private fetchSuggestions() {
-    this.xhr = $.getJSON(route('suggestions.wiki'), { query: this.query.trim() })
+    this.xhr = $.getJSON(route('suggestions.wiki'), {
+      locale: this.locale,
+      query: this.query.trim(),
+    })
       .done(action((response: SuggestionJson[]) => {
         if (response != null) {
           this.suggestions = observable(response);

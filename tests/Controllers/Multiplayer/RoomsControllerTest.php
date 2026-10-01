@@ -16,6 +16,7 @@ use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Illuminate\Support\Arr;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class RoomsControllerTest extends TestCase
@@ -72,9 +73,7 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
     }
 
-    /**
-     * @dataProvider dataProviderForTestStoreWithInvalidPlayableMods
-     */
+    #[DataProvider('dataProviderForTestStoreWithInvalidPlayableMods')]
     public function testStoreWithInvalidPlayableMods(string $type, string $modType): void
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
@@ -100,9 +99,7 @@ class RoomsControllerTest extends TestCase
         $this->assertSame("mod cannot be set as {$modType}: AT", $responseJson['error']);
     }
 
-    /**
-     * @dataProvider dataProviderForTestStoreWithInvalidRealtimeAllowedMods
-     */
+    #[DataProvider('dataProviderForTestStoreWithInvalidRealtimeAllowedMods')]
     public function testStoreWithInvalidRealtimeAllowedMods(string $type, bool $ok): void
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
@@ -127,9 +124,7 @@ class RoomsControllerTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider dataProviderForTestStoreWithInvalidRealtimeMods
-     */
+    #[DataProvider('dataProviderForTestStoreWithInvalidRealtimeMods')]
     public function testStoreWithInvalidRealtimeMods(string $type, bool $ok): void
     {
         $token = Token::factory()->create(['scopes' => ['*']]);

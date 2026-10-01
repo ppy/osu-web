@@ -30,6 +30,11 @@ return [
         'guest_title' => 'Мапе',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'нема мапе',
 
@@ -63,6 +68,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Експлицитно',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

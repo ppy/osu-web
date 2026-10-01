@@ -19,6 +19,7 @@ use App\Models\Notification;
 use App\Models\User;
 use Faker;
 use Illuminate\Support\Facades\Event;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 use Tests\TestCase;
 
@@ -322,9 +323,7 @@ class ReviewTest extends TestCase
     }
 
     // valid document containing issue embeds should reset nominations (for GMT)
-    /**
-     * @dataProvider dataProviderForQualifiedProblem
-     */
+    #[DataProvider('dataProviderForQualifiedProblem')]
     public function testCreateDocumentDocumentValidWithNewIssuesShouldNotify($state, $shouldNotify)
     {
         $gmtUser = User::factory()->withGroup('gmt')->create();
@@ -642,9 +641,7 @@ class ReviewTest extends TestCase
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
-    /**
-     * @dataProvider dataProviderForQualifiedProblem
-     */
+    #[DataProvider('dataProviderForQualifiedProblem')]
     public function testUpdateDocumentWithNewIssueShouldNotifyIfQualified($state, $shouldNotify)
     {
         $gmtUser = User::factory()->withGroup('gmt')->create();

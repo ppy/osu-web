@@ -79,7 +79,7 @@ return [
         'notifications' => ':count_delimited thông báo|:count_delimited thông báo',
         'player' => ':count_delimited người chơi|:count_delimited người chơi',
         'plus_others' => '+ :count_delimited khác!|+ :count_delimited khác!',
-        'post' => ':count_delimited bài viết|:count_delimited bài viết',
+        'post' => ':count_delimited bài đăng|:count_delimited bài đăng',
         'second_short_unit' => 'giây',
         'star_priority' => ':count_delimited ưu tiên sao|:count_delimited
 ưu tiên sao',

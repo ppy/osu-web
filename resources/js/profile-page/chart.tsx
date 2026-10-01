@@ -64,7 +64,7 @@ export default class Chart extends React.Component<Props> {
         circleLine: true,
         curve: curveLinear,
         formatX: (d: Date) => moment.utc(d).format(trans('common.datetime.year_month_short.moment')),
-        formatY: (d: number) => formatNumber(d),
+        formatY: (d: number) => Number.isInteger(d) ? formatNumber(d) : '',
         infoBoxFormatX: (d: Date) => moment.utc(d).format(trans('common.datetime.year_month.moment')),
         infoBoxFormatY: (d: number) => `<strong>${this.props.labelY}</strong> ${escape(formatNumber(d))}`,
         marginRight: 60, // more spacing for x axis label

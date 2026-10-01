@@ -61,9 +61,11 @@ return [
         'approve' => 'Ухвалена',
         'beatmap_owner_change' => 'Змена ўладальніка цяжкасці',
         'discussion_delete' => 'Выдаленне абмеркавання',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Выдаленне адказаў абмеркавання',
         'discussion_post_restore' => 'Аднаўленне адказаў абмеркавання',
         'discussion_restore' => 'Аднаўленне абмеркавання',
+        'discussion_unlock' => '',
         'disqualify' => 'Дыскваліфікацыя',
         'genre_edit' => 'Змяніць жанр',
         'issue_reopen' => 'Пераадкрыванне абмеркавання',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Кваліфікацыя',
         'rank' => 'Рэйтынг',
         'remove_from_loved' => 'Выдаленне з Любімых',
+        'tags_edit' => '',
     ],
 ];

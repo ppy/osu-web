@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'terima notifikasi untuk balasan baru pada diskusi beatmap yang kamu ikuti',
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap Qualified di mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
         'comment_reply' => 'terima notifikasi untuk balasan baru pada komentar yang kamu tulis',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'mode permainan bawaan',
         'keyboard' => 'keyboard',
         'mouse' => 'mouse',
         'tablet' => 'tablet',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
+        'friends_only_info' => '',
         'hide_online' => 'sembunyikan status onlinemu',
         'hide_online_info' => 'pengaturan ini akan terhubung ke mode "tampil offline" di osu!lazer',
         'title' => 'Privasi',

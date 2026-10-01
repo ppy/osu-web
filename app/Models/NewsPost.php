@@ -30,7 +30,9 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class NewsPost extends Model implements CommentableInterface, Wiki\WikiObject
 {
-    use Memoizes, Traits\CommentableDefaults, Traits\WithDbCursorHelper;
+    use Memoizes;
+    use Traits\CommentableDefaults;
+    use Traits\WithDbCursorHelper;
 
     // in minutes
     const CACHE_DURATION = 86400;

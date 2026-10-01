@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => '',
         'download' => 'Stiahnúť',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'splnené',
             'not_cleared' => 'nesplnené',
@@ -33,7 +34,7 @@ return [
         'artist' => 'Interpret/Album',
         'chart' => 'Oslňujúce',
         'featured' => 'Vybraní umelci',
-        'loved' => '',
+        'loved' => 'Projekt Milované',
         'standard' => 'Obyčajné',
         'theme' => 'Témy',
         'tournament' => 'Turnaj',

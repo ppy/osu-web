@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'Benachrichtigungen über Antworten in Beatmap-Diskussionen erhalten, an denen du teilnimmst',
         'beatmapset_discussion_qualified_problem' => 'Erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
         'beatmapset_disqualify' => 'Erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
         'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'Standardspielmodus',
         'keyboard' => 'Tastatur',
         'mouse' => 'Maus',
         'tablet' => 'Tablet',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht in deiner Freundesliste sind',
+        'friends_only_info' => '',
         'hide_online' => 'Online-Status verbergen',
         'hide_online_info' => 'Dies entspricht dem "Offline"-Modus in osu!lazer',
         'title' => 'Privatsphäre',

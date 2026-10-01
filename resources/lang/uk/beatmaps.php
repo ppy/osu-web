@@ -26,7 +26,7 @@ return [
         'edited' => 'Останнє редагування :editor :update_time.',
         'guest' => 'Гостьова складність від :user',
         'kudosu_denied' => 'Відмовлено в отриманні кудосу.',
-        'include_replies' => '',
+        'include_replies' => 'Включно з їх відповідями',
         'message_placeholder_deleted_beatmap' => 'Ця складність була видалена, і більше вона не може бути обговорена.',
         'message_placeholder_locked' => 'Обговорення цієї бітмапи відключено.',
         'message_placeholder_silenced' => "Не можна коментувати поки ви заглушені.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Вирішено',
         'restore' => 'відновити',
         'show_deleted' => 'Показати видалені',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Показати відповіді інших користувачів',
         'title' => 'Обговорення',
         'unresolved_count' => ':count_delimited невирішена проблема|:count_delimited невирішеної проблеми|:count_delimited невирішених проблем',
 
@@ -132,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => 'вставити абзац',
                 'praise' => 'вставити похвалу',
                 'problem' => 'вставити проблему',

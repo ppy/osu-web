@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Карталар',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'карталар жоқ',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Былапыт',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

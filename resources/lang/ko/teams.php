@@ -34,7 +34,7 @@ return [
 
         'intro' => [
             'description' => "현재 팀에 속해 있지 않습니다. 팀에 참가하거나 새로 만들어 친구와 함께 플레이해 보세요. 팀 페이지에 방문하여 팀에 가입하거나 이 페이지에서 팀을 새로 만들 수 있습니다.",
-            'search_link' => '',
+            'search_link' => '기존 팀',
             'title' => '팀!',
         ],
     ],
@@ -102,7 +102,7 @@ return [
                 'accept_confirm' => '유저 :user 님을 팀에 추가할까요?',
                 'created_at' => '요청 일시',
                 'empty' => '현재 가입 요청이 없습니다.',
-                'empty_slots' => '빈 슬롯',
+                'empty_slots' => '빈 자리',
                 'empty_slots_overflow' => ':count_delimited 명 초과|:count_delimited 명 초과',
                 'reject_confirm' => ':user 님의 참가 신청을 거절할까요?',
                 'title' => '가입 요청',

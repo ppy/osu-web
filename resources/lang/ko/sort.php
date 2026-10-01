@@ -38,7 +38,7 @@ return [
     ],
 
     'teams' => [
-        'created' => '',
+        'created' => '생성일',
         'relevance' => '연관성',
         'name' => '이름',
         'short-name' => '짧은 이름',

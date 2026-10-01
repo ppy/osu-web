@@ -60,7 +60,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => 'Lọc theo Mods',
+                'title' => 'Lọc theo Mod',
                 'description' => 'Chỉ liên kết với những người chơi HDHR ư? Không vấn đề gì!',
             ],
 
@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Tùy Biến',
-                'description' => "Tùy biến trang cá nhân của bạn bằng cách thêm một user page đầy đủ có thể chỉnh sửa.",
+                'description' => "Trở nên nổi bật với ảnh bìa tùy chỉnh, tạo mục \"me!\" theo ý thích, hoặc thậm chí thay đổi màu sắc trang cá nhân thành bất kỳ màu nào bạn muốn.",
             ],
 
             'beatmap_filters' => [
@@ -110,13 +110,13 @@ return [
             ],
 
             'feature_votes' => [
-                'title' => 'Bầu Chọn Tính Năng',
-                'description' => 'Bầu chọn cho các tính năng theo yêu cầu. (2 lần mỗi tháng)',
+                'title' => 'Bình Chọn Tính Năng',
+                'description' => 'Bình chọn cho các tính năng theo yêu cầu. (2 lần mỗi tháng)',
             ],
 
             'sort_options' => [
                 'title' => 'Tùy Chọn Sắp Xếp',
-                'description' => 'Cho phép xem xếp hạng theo quốc gia / bạn bè / theo-mod của beatmap trong game.',
+                'description' => 'Có thể xem xếp hạng của beatmap theo quốc gia / bạn bè / mod cụ thể trong game.',
             ],
 
             'more_favourites' => [

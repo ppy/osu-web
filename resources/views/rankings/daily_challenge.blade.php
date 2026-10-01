@@ -139,6 +139,16 @@
                     </div>
                 </div>
             </div>
+            @if (present($room->description))
+                <div class="counter-box counter-box--ranking">
+                    <div class="counter-box__title">
+                        {{ osu_trans('rankings.daily_challenge.theme') }}
+                    </div>
+                    <div class="counter-box__count">
+                        {{ $room->description }}
+                    </div>
+                </div>
+            @endif
         @endif
     </div>
 @endsection

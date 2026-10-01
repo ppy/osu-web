@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => '',
         'download' => 'Prenesite',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'opravljeno',
             'not_cleared' => 'neopravljeno',

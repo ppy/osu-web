@@ -30,6 +30,20 @@ class UserCompactTransformer extends TransformerAbstract
         'userGroups',
     ];
 
+    // Minimum list of table fields required for the transformer with no includes.
+    const DEFAULT_SELECT_FIELDS = [
+        'country_acronym',
+        'group_id',
+        'osu_subscriber',
+        'user_allow_pm',
+        'user_allow_viewonline',
+        'user_avatar',
+        'user_colour',
+        'user_id',
+        'user_lastvisit',
+        'username',
+    ];
+
     // Paired with static::listIncludesPreload
     const LIST_INCLUDES = [
         ...self::CARD_INCLUDES,
@@ -200,10 +214,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeBlocks(User $user)
     {
-        return $this->collection(
-            $user->relations()->blocks()->get(),
-            new UserRelationTransformer()
-        );
+        return $this->collection($user->blocks, new UserRelationTransformer());
     }
 
     public function includeCommentsCount(User $user)
@@ -285,7 +296,7 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeFriends(User $user)
     {
         return $this->collection(
-            $user->relationFriends,
+            $user->friendsWithMutual,
             new UserRelationTransformer()
         );
     }
@@ -377,6 +388,7 @@ class UserCompactTransformer extends TransformerAbstract
     {
         $allStats = $user
             ->matchmakingStats()
+            ->default()
             ->whereHas('pool', fn ($q) => $q->where([
                 'ruleset_id' => Beatmap::MODES[$this->mode],
                 'type' => 'ranked_play',

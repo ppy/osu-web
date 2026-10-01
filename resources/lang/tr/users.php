@@ -230,6 +230,10 @@ return [
                 'week' => ':value',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => 'Daha az detay göster',
+            'to_v2' => 'Daha fazla detay göster',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => 'Yenilgiler',
+            'plays' => 'Toplam Maç',
+            'rank' => 'Rütbe',
+            'rating' => 'Derecelendirme',
+            'recent_history' => 'Son Maç Geçmişi',
+            'tier' => 'Seviye',
             'title' => 'Quick Play',
+            'wins' => 'Galibiyetler',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => ':date tarihinde en yüksek rank: :rank',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Yeni Yıldız Sıralaması / PP algoritması :link.',
+            'title_link' => 'sunucuya aktarılıyor',
+            'message' => 'Yeni skorlar kullanıcı profilinde hemen görünmeyebilir.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'İlk :value',
+            'label' => 'Öne Çıkanlar',
             'total_score' => 'Toplam skor',
+        ],
+        'solo' => [
+            'title' => 'Tek Kişilik Oyun',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

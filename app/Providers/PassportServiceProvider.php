@@ -17,7 +17,8 @@ class PassportServiceProvider extends BasePassportServiceProvider
     /**
      * Overrides RefreshTokenGrant to copy verified attribute of the token
      */
-    protected function makeRefreshTokenGrant()
+    #[\Override]
+    protected function makeRefreshTokenGrant(): RefreshTokenGrant
     {
         $repository = $this->app->make(RefreshTokenRepository::class);
 

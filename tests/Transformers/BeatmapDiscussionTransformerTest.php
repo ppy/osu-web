@@ -8,16 +8,15 @@ namespace Tests\Transformers;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Transformers\BeatmapDiscussionTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapDiscussionTransformerTest extends TestCase
 {
     protected $deletedBeatmapDiscussion;
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
-    public function testWithOAuth(?string $groupIdentifier)
+    #[DataProvider('groupsDataProvider')]
+    public function testWithOAuth(?string $groupIdentifier, bool $_visibleWithoutOAuth)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
 
@@ -28,9 +27,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
         $this->assertEmpty($json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testWithoutOAuth(?string $groupIdentifier, bool $visible)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
@@ -47,6 +44,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
 
     public static function groupsDataProvider()
     {
+        // The second argument is only for testWithoutOAuth
         return [
             ['admin', true],
             ['bng', false],

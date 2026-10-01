@@ -13,7 +13,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { deletedUserJson } from 'models/user';
 import core from 'osu-core-singleton';
 import BeatmapsetDiscussionsShowStore from 'stores/beatmapset-discussions-show-store';
-import { findDefault, group, sortWithMode } from 'utils/beatmap-helper';
+import { findDefault, group, isOwner, sortWithMode } from 'utils/beatmap-helper';
 import { canModeratePosts, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { parseJsonNullable, storeJson } from 'utils/json';
 import { Filter, filters } from './current-discussions';
@@ -470,6 +470,14 @@ export default class DiscussionsState {
 
   beatmapOwners(beatmap: WithBeatmapOwners<BeatmapJson>) {
     return beatmap.owners.map((user) => this.store.users.get(user.id) ?? deletedUser(user.id));
+  }
+
+  canPostNote(beatmap: WithBeatmapOwners<BeatmapJson> | null, page: DiscussionPage) {
+    return core.currentUser != null
+      && (core.currentUser.id === this.beatmapset.user_id
+        || (beatmap != null && isOwner(core.currentUser.id, beatmap) && ['general', 'timeline', 'reviews'].includes(page))
+        || core.currentUser.is_bng
+        || canModeratePosts());
   }
 
   @action

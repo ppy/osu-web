@@ -92,7 +92,7 @@ abstract class VariantModel extends Model
 
     public function setTotalScoreAttribute($value)
     {
-        $this->total_score = $value;
+        $this->total_score = (int) $value;
     }
 
     public function setTotalSecondsPlayedAttribute($value)

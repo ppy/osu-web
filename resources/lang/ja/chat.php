@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'ユーザーの読み込み中・・・',
-    'searching_users' => '',
+    'searching_users' => 'ユーザーを検索中…',
     'talking_in' => ':channelで会話中',
     'talking_with' => ':nameと会話中',
     'title_compact' => 'チャット',

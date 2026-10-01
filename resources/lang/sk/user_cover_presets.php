@@ -5,33 +5,33 @@
 
 return [
     'index' => [
-        'batch_disable' => '',
-        'batch_enable' => '',
+        'batch_disable' => 'Vypnúť Vybrané',
+        'batch_enable' => 'Zapnúť Vybrané',
 
         'batch_confirm' => [
-            '_' => '',
-            'disable' => '',
-            'enable' => '',
-            'items' => '',
+            '_' => ':action :items?',
+            'disable' => 'Vypnúť',
+            'enable' => 'Zapnúť',
+            'items' => ':count_delimited záhlavie|:count_delimited záhlavia',
         ],
 
         'create_form' => [
-            'files' => '',
-            'submit' => '',
-            'title' => '',
+            'files' => 'Súbory',
+            'submit' => 'Uložiť',
+            'title' => 'Pridať Nové',
         ],
 
         'item' => [
-            'click_to_disable' => '',
-            'click_to_enable' => '',
-            'enabled' => '',
-            'disabled' => '',
-            'image_store' => '',
-            'image_update' => '',
+            'click_to_disable' => 'Vypni kliknutím',
+            'click_to_enable' => 'Zapni kliknutím',
+            'enabled' => 'Zapnuté',
+            'disabled' => 'Vypnuté',
+            'image_store' => 'Nastaviť Obrázok',
+            'image_update' => 'Vymeniť Obrázok',
         ],
     ],
     'store' => [
-        'failed' => '',
-        'ok' => '',
+        'failed' => 'Stala sa chyba pri výtvore záhlavia: :error',
+        'ok' => 'Záhlavia vytvorené',
     ],
 ];

@@ -6,13 +6,12 @@
 namespace Tests\Libraries;
 
 use App\Libraries\BBCodeFromDB;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BBCodeFromDBTest extends TestCase
 {
-    /**
-     * @dataProvider examples
-     */
+    #[DataProvider('examples')]
     public function testGenerateHTML($name, $path)
     {
         $dbFilePath = "{$path}/{$name}.db.txt";
@@ -27,9 +26,7 @@ class BBCodeFromDBTest extends TestCase
         $this->assertSame($referenceOutput, $output);
     }
 
-    /**
-     * @dataProvider removeQuoteExamples
-     */
+    #[DataProvider('removeQuoteExamples')]
     public function testRemoveBlockQuotes($name, $path)
     {
         $dbFilePath = "{$path}/{$name}.db.txt";
@@ -55,5 +52,6 @@ class BBCodeFromDBTest extends TestCase
         parent::setUp();
 
         config_set('osu.bbcode.uid', '1');
+        config_set('osu.bbcode.youtube_embed_max', 10);
     }
 }

@@ -19,13 +19,14 @@ return [
     'show' => [
         'created_by' => 'bởi :author',
         'download' => 'Tải Xuống',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'đã chơi',
             'not_cleared' => 'chưa chơi',
         ],
         'no_diff_reduction' => [
             '_' => ':link liên kết không thể sử dụng để qua gói này.',
-            'link' => 'Mods làm giảm độ khó',
+            'link' => 'Các mod giảm độ khó',
         ],
     ],
 

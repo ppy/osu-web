@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'κανένα beatmap',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Άσεμνο περιεχόμενο',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

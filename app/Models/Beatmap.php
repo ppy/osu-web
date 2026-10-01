@@ -54,7 +54,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Beatmap extends Model implements AfterCommit
 {
-    use Memoizes, SoftDeletes;
+    use Memoizes;
+    use SoftDeletes;
 
     public $convert = false;
 
@@ -74,6 +75,8 @@ class Beatmap extends Model implements AfterCommit
         'fruits' => 2,
         'mania' => 3,
     ];
+
+    const TOP_TAG_IDS_CACHE_PREFIX = 'beatmap_top_tag_ids:';
 
     const VARIANT_BY_ID = [
         self::MODES['osu'] => [
@@ -252,7 +255,7 @@ class Beatmap extends Model implements AfterCommit
 
     public function expireTopTagIds()
     {
-        \Cache::delete("beatmap_top_tag_ids:{$this->getKey()}");
+        \Cache::delete(static::TOP_TAG_IDS_CACHE_PREFIX.$this->getKey());
     }
 
     public function getAttribute($key)
@@ -380,6 +383,11 @@ class Beatmap extends Model implements AfterCommit
         return $maxCombo?->value;
     }
 
+    public function preloadTopTagIds(array $data): void
+    {
+        $this->memoized['topTagIds'] = $data;
+    }
+
     public function slowTopTagIds(): array
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -407,11 +415,11 @@ class Beatmap extends Model implements AfterCommit
 
     public function topTagIds()
     {
-        // TODO: Add option to multi query when beatmapset requests all tags for beatmaps?
+        // can be preloaded across single beatmapset with App\Libraries\Beatmapset\PreloadBeatmapTopTagIds
         return $this->memoize(
             __FUNCTION__,
             fn () => \Cache::remember(
-                "beatmap_top_tag_ids:{$this->getKey()}",
+                static::TOP_TAG_IDS_CACHE_PREFIX.$this->getKey(),
                 $GLOBALS['cfg']['osu']['beatmap_tags']['cache_duration'],
                 fn () => $this->beatmapTags()->topTagIds()->limit($GLOBALS['cfg']['osu']['beatmap_tags']['top_count'])->get()->toArray(),
             ),

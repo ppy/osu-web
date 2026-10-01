@@ -28,6 +28,7 @@ export default function Pp({ stats }: { stats: UserStatisticsJson }) {
       value={(
         <div
           data-html-title={extraTooltip}
+          data-tooltip-position='bottom left'
           title=''
         >
           {formatNumberRounded(stats.pp)}

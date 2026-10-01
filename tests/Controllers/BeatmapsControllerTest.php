@@ -11,6 +11,8 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 class BeatmapsControllerTest extends TestCase
@@ -18,9 +20,7 @@ class BeatmapsControllerTest extends TestCase
     private $user;
     private $beatmap;
 
-    /**
-     * @group RequiresBeatmapDifficultyLookupCache
-     */
+    #[Group('RequiresBeatmapDifficultyLookupCache')]
     public function testAttributes(): void
     {
         $beatmap = $this->createExistingOsuBeatmap();
@@ -104,9 +104,7 @@ class BeatmapsControllerTest extends TestCase
         ])->assertStatus(422);
     }
 
-    /**
-     * @dataProvider dataProviderForTestLookupForApi
-     */
+    #[DataProvider('dataProviderForTestLookupForApi')]
     public function testLookupForApi(string $key, callable $valueFn): void
     {
         $beatmap = Beatmap::factory()->create();

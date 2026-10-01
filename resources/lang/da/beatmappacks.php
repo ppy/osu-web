@@ -19,6 +19,7 @@ return [
     'show' => [
         'created_by' => 'af :author',
         'download' => 'Download',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => 'ryddet',
             'not_cleared' => 'ikke ryddet',

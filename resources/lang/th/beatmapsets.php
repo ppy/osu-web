@@ -29,6 +29,11 @@ return [
         'guest_title' => 'บีทแมพ',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'ไม่มีบีทแมพ',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'ไม่เหมาะสม',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [

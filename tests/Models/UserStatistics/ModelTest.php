@@ -8,22 +8,19 @@ namespace Tests\Models\UserStatistics;
 use App\Exceptions\ClassNotFoundException;
 use App\Models\Beatmap;
 use App\Models\UserStatistics\Model;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ModelTest extends TestCase
 {
-    /**
-     * @dataProvider validModes
-     */
+    #[DataProvider('validModes')]
     public function testGetClass($mode, $variant)
     {
         $class = Model::getClass($mode, $variant);
         $this->assertInstanceOf(Model::class, new $class());
     }
 
-    /**
-     * @dataProvider invalidModes
-     */
+    #[DataProvider('invalidModes')]
     public function testGetClassByThrowsExceptionIfModeDoesNotExist($mode, $variant)
     {
         $this->expectException(ClassNotFoundException::class);

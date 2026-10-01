@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmapy',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'žádné beatmapy',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => 'Explicitní',
+    ],
+
+    'rate' => [
+        'invalid' => 'Neplatné hodnocení.',
     ],
 
     'show' => [
@@ -157,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Pouze Lazer',
+            'description' => 'Kvůli specifickým mechanikám lze tuto beatmapu hrát pouze na osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link pro zobrazení skóre zahraných na této beatmapě.',
+                'enable_link' => 'Povol lazer režim',
             ],
         ],
 
@@ -190,7 +199,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Přesnost',
-                'combo' => 'Maximální Kombo',
+                'combo' => 'Maximální kombo',
                 'miss' => 'Minuto',
                 'mods' => 'Módy',
                 'pin' => 'Připnout',
@@ -212,7 +221,7 @@ return [
             ],
             'score' => [
                 'first' => 'V čele',
-                'own' => 'Vaše nejlepší',
+                'own' => 'Tvoje nejlepší',
             ],
             'supporter_link' => [
                 '_' => 'Klikni :here pro zobrazení všech výhod, které dostaneš!',
@@ -225,7 +234,7 @@ return [
             'cs-mania' => 'Počet kláves',
             'drain' => 'Vysávání životů',
             'accuracy' => 'Přesnost',
-            'ar' => 'Rychlost zjevování koleček',
+            'ar' => 'Rychlost zjevování',
             'stars' => 'Počet hvězd',
             'total_length' => 'Délka (Délka vysávání životů: :hit_length)',
             'bpm' => 'BPM',

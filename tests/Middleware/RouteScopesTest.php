@@ -11,6 +11,7 @@ use App\Models\Build;
 use App\Models\Changelog;
 use App\Models\Comment;
 use App\Models\UpdateStream;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Route;
 use Tests\TestCase;
 
@@ -18,9 +19,7 @@ class RouteScopesTest extends TestCase
 {
     private static $expectations;
 
-    /**
-     * @dataProvider routeScopesDataProvider
-     */
+    #[DataProvider('routeScopesDataProvider')]
     public function testApiRouteScopes($route)
     {
         $this->importExpectations();
@@ -30,9 +29,7 @@ class RouteScopesTest extends TestCase
         $this->assertSame(static::$expectations[$key], $route, $key);
     }
 
-    /**
-     * @dataProvider routesDataProvider
-     */
+    #[DataProvider('routesDataProvider')]
     public function testUnscopedRequestsRequireAuthentication(string $url, string $method, array $middlewares)
     {
         // factory some objects so unauthed endpoints don't 404.

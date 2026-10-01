@@ -29,6 +29,11 @@ return [
         'guest_title' => '비트맵',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => '비트맵 없음',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => '19금',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [
@@ -157,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Lazer 전용',
+            'description' => '특수한 메커니즘으로 인해 이 비트맵은 osu!lazer에서만 플레이할 수 있습니다.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => '이 비트맵에서 기록한 점수를 보려면 :enable_link하세요.',
+                'enable_link' => 'lazer 모드를 활성화',
             ],
         ],
 

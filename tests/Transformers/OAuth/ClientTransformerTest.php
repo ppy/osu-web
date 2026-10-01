@@ -8,6 +8,7 @@ namespace Tests\Transformers\OAuth;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Transformers\OAuth\ClientTransformer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ClientTransformerTest extends TestCase
@@ -23,7 +24,7 @@ class ClientTransformerTest extends TestCase
         $json = json_item($this->client, new ClientTransformer(), ['redirect', 'secret']);
 
         $this->assertSame($this->client->redirect, $json['redirect']);
-        $this->assertSame($this->client->secret, $json['secret']);
+        $this->assertTrue(\Hash::check($json['secret'], $this->client->secret));
     }
 
     public function testRedirectAndSecretNotVisibleToOtherUsers()
@@ -36,9 +37,7 @@ class ClientTransformerTest extends TestCase
         $this->assertArrayNotHasKey('secret', $json);
     }
 
-    /**
-     * @dataProvider groupsDataProvider
-     */
+    #[DataProvider('groupsDataProvider')]
     public function testRedirectAndSecretNotVisibleToGroup($groupIdentifier)
     {
         $user = User::factory()->withGroup($groupIdentifier)->create();

@@ -61,9 +61,11 @@ return [
         'approve' => 'Approval',
         'beatmap_owner_change' => 'Besitzerwechsel der Difficulty',
         'discussion_delete' => 'Diskussion löschen',
+        'discussion_lock' => '',
         'discussion_post_delete' => 'Antwort in der Diskussion entfernen',
         'discussion_post_restore' => 'Antwort in der Diskussion wiederherstellen',
         'discussion_restore' => 'Diskussion wiederherstellen',
+        'discussion_unlock' => '',
         'disqualify' => 'Disqualifikation',
         'genre_edit' => 'Genre-Änderung',
         'issue_reopen' => 'Diskussion wiedereröffnen',
@@ -83,5 +85,6 @@ return [
         'qualify' => 'Qualifikation',
         'rank' => 'Rangliste',
         'remove_from_loved' => 'Loved entfernen',
+        'tags_edit' => '',
     ],
 ];

@@ -21,7 +21,7 @@ return [
         'forum_topic' => 'diễn đàn',
         'news_post' => 'tin tức',
         'team' => 'đội',
-        'user' => 'hồ sơ',
+        'user' => 'trang cá nhân',
     ],
 
     'filters' => [
@@ -75,18 +75,18 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Trạng thái Beatmap đã thay đổi',
-                'beatmapset_disqualify' => '":title" đã bị bỏ xếp hạng',
-                'beatmapset_disqualify_compact' => 'Beatmap đã bị bỏ xếp hạng',
-                'beatmapset_love' => '":title" đã được tiến vào danh mục Được yêu thích',
-                'beatmapset_love_compact' => 'Beatmap đã được tiến vào danh mục Được yêu thích',
+                'beatmapset_disqualify' => '":title" đã bị hủy trạng thái đủ điều kiện',
+                'beatmapset_disqualify_compact' => 'Beatmap đã bị hủy trạng thái đủ điều kiện',
+                'beatmapset_love' => '":title" đã được tiến vào danh mục loved',
+                'beatmapset_love_compact' => 'Beatmap đã được tiến vào danh mục loved',
                 'beatmapset_nominate' => '":title" đã được đề cử',
                 'beatmapset_nominate_compact' => 'Beatmap đã được đề cử',
-                'beatmapset_qualify' => '":title" đã nhận được đủ đề cử và tiến vào danh mục Được xếp hạng',
-                'beatmapset_qualify_compact' => 'Beatmap đã được thêm vào hàng chờ xếp hạng',
+                'beatmapset_qualify' => '":title" đã nhận được đủ đề cử và đã vào hàng chờ xếp hạng',
+                'beatmapset_qualify_compact' => 'Beatmap đã vào hàng chờ xếp hạng',
                 'beatmapset_rank' => '":title" đã được xếp hạng',
                 'beatmapset_rank_compact' => 'Beatmap đã được xếp hạng',
-                'beatmapset_remove_from_loved' => '":title" đã bị xóa bởi Loved',
-                'beatmapset_remove_from_loved_compact' => 'Beatmap đã bị xóa bởi Loved',
+                'beatmapset_remove_from_loved' => '":title" đã bị gỡ khỏi Loved',
+                'beatmapset_remove_from_loved_compact' => 'Beatmap đã bị gỡ khỏi Loved',
                 'beatmapset_reset_nominations' => 'Đề cử cho ":title" đã được đặt lại',
                 'beatmapset_reset_nominations_compact' => 'Đề cử đã đặt lại',
             ],
@@ -248,12 +248,12 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '":title" đã bị loại',
-                'beatmapset_love' => '":title" đã được thăng chức lên loved',
+                'beatmapset_disqualify' => '":title" đã bị hủy trạng thái đủ điều kiện',
+                'beatmapset_love' => '":title" đã được tiến vào danh mục loved',
                 'beatmapset_nominate' => '":title" đã được đề cử',
-                'beatmapset_qualify' => '":title" đã đạt đủ đề cử và lọt vào hàng đợi xếp hạng',
+                'beatmapset_qualify' => '":title" đã đạt đủ đề cử và đã vào hàng chờ xếp hạng',
                 'beatmapset_rank' => '":title" đã được xếp hạng',
-                'beatmapset_remove_from_loved' => '":title" đã bị xóa bởi Loved',
+                'beatmapset_remove_from_loved' => '":title" đã bị gỡ khỏi Loved',
                 'beatmapset_reset_nominations' => 'Đề cử cho ":title" đã được đặt lại',
             ],
 

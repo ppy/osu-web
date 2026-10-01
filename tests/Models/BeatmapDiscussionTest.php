@@ -11,15 +11,15 @@ use App\Models\Beatmapset;
 use App\Models\KudosuHistory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapDiscussionTest extends TestCase
 {
     /**
      * Valid beatmapset status always maps to a scope method sanity test.
-     *
-     * @dataProvider validBeatmapsetStatuses
      */
+    #[DataProvider('validBeatmapsetStatuses')]
     public function testBeatmapsetScopesExist($scope)
     {
         $this->assertInstanceOf(Builder::class, Beatmapset::$scope());

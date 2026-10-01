@@ -36,7 +36,7 @@ return [
     'matchmaking' => [
         'plays' => 'Zahrání',
         'points' => 'Bodů',
-        'provisional' => 'Nedostatek odehraných zápasů pro přesné stanovení hodnocení',
+        'provisional' => 'Prozatimní hodnocení kvůli nedostatečnému počtu nedávných zápasů',
         'rating' => 'Hodnocení',
         'wins' => 'Výher',
     ],

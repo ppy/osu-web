@@ -230,6 +230,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
@@ -334,7 +338,7 @@ return [
                     'count_label' => 'Repriser sedda',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Mest sedda repriser',
                 ],
             ],
             'kudosu' => [
@@ -403,7 +407,7 @@ return [
                 'show_more' => 'se fler inlägg',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Rankade spelmatcher',
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Snabbspel',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Högsta rank: :rank den :date',
         ],
         'score_processing' => [
-            'title' => '',
+            'title' => 'En ny Star Rating / PP algoritm är :link.',
             'title_link' => '',
             'message' => '',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Topp :value',
+            'label' => '',
             'total_score' => 'Totalpoäng',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',

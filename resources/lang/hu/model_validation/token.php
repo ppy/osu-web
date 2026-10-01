@@ -5,15 +5,15 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '',
-        'all_scope_no_mix' => '',
-        'client_missing_owner' => '',
-        'client_unauthorized' => '',
-        'delegate_bot_only' => '',
-        'client_credentials_only' => '',
-        'delegate_invalid_combination' => '',
-        'delegate_required' => '',
-        'empty' => '',
-        'bot_only' => '',
+        'all_scope_no_client_credentials' => '* ügyfél-hitelesítő adatok használata esetén nem megengedett',
+        'all_scope_no_mix' => '* más hatályokkal együtt nem érvényes',
+        'client_missing_owner' => 'Az ügyfélnél hiányzik a tulajdonos.',
+        'client_unauthorized' => 'Az ügyfél nem rendelkezik jogosultsággal.',
+        'delegate_bot_only' => 'Az ügyfél-hitelesítő adatokkal történő delegálás kizárólag a botok számára elérhető.',
+        'client_credentials_only' => 'Ez a hatály kizárólag a client_credentials típusú tokenekre vonatkozik.',
+        'delegate_invalid_combination' => 'A felhatalmazás nem támogatott ebben a hatálykombinációban.',
+        'delegate_required' => 'A delegátum hatókörének megadása kötelező.',
+        'empty' => 'A hatókör nélküli tokenek érvénytelenek.',
+        'bot_only' => 'Ez a hozzáférési kör kizárólag botok vagy a saját klienseid számára érhető el.',
     ],
 ];

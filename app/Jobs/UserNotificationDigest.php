@@ -20,7 +20,8 @@ use Mail;
 
 class UserNotificationDigest implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     private $fromId;
     private $now;

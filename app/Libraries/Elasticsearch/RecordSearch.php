@@ -7,15 +7,9 @@ namespace App\Libraries\Elasticsearch;
 
 abstract class RecordSearch extends Search
 {
-    protected $idField;
-    protected $recordType;
-
-    public function __construct(string $index, SearchParams $params, $recordType, $idField = '_id')
+    public function __construct(string $index, SearchParams $params, protected string $recordType, protected string $idField = '_id')
     {
         parent::__construct($index, $params);
-
-        $this->idField = $idField;
-        $this->recordType = $recordType;
     }
 
     public function data()

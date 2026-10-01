@@ -23,8 +23,8 @@ return [
         ],
 
         'forum' => [
-            'write' => 'Criar e editar tópicos e postagens do fórum em seu nome.',
-            'write_manage' => 'Gerencie tópicos e postagens do fórum em seu nome.',
+            'write' => 'Criar e editar tópicos e publicações do fórum em seu nome.',
+            'write_manage' => 'Gerenciar tópicos e publicações do fórum em seu nome.',
         ],
 
         'friends' => [

@@ -47,10 +47,7 @@ class WikiSearch extends RecordSearch
         return $pages;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         $langQuery = (new BoolQuery())
             ->shouldMatch(1)

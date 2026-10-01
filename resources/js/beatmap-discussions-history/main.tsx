@@ -36,7 +36,6 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
               </a>
               <Discussion
                 discussion={discussion}
-                discussionsState={null}
                 isTimelineVisible={false}
                 store={this.store}
               />

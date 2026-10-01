@@ -10,6 +10,8 @@ import disableConstructs, { DisabledType } from 'remark-plugins/disable-construc
 import { maxMessagePreviewLength, propsFromHref } from 'utils/beatmapset-discussion-helper';
 import { presence } from 'utils/string';
 
+
+const allowedElements: (keyof typeof components)[] = ['a', 'code', 'em', 'img', 'p', 'pre', 'strong'];
 const components = Object.freeze({
   a: linkRenderer,
   code: textRenderer,
@@ -45,6 +47,7 @@ export default class PlainTextPreview extends React.Component<Props> {
   render() {
     return (
       <ReactMarkdown
+        allowedElements={allowedElements}
         className='plain-text-preview'
         components={components}
         rehypePlugins={[[rehypeTruncate, { maxChars: this.props.maxLength ?? maxMessagePreviewLength }]]}

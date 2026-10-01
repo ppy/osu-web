@@ -29,6 +29,11 @@ return [
         'guest_title' => 'ビートマップ',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'ビートマップがありません',
 
@@ -62,6 +67,10 @@ return [
 
     'nsfw_badge' => [
         'label' => '過激表現を含む',
+    ],
+
+    'rate' => [
+        'invalid' => '評価が無効です。',
     ],
 
     'show' => [
@@ -157,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Lazerのみ',
+            'description' => '特殊な仕様が含まれているため、このビートマップはosu!lazerでのみプレイ可能です。',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link をクリックして、この譜面で記録されたスコアを表示します。',
+                'enable_link' => 'Lazer モードの有効化',
             ],
         ],
 

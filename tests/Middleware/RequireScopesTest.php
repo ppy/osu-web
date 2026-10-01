@@ -9,6 +9,7 @@ use App\Http\Middleware\RequireScopes;
 use App\Models\User;
 use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Request;
 use Tests\TestCase;
 
@@ -18,9 +19,7 @@ class RequireScopesTest extends TestCase
     protected $request;
     protected $user;
 
-    /**
-     * @dataProvider clientCredentialsTestDataProvider
-     */
+    #[DataProvider('clientCredentialsTestDataProvider')]
     public function testClientCredentials($scopes, $expectedException)
     {
         $this->setRequest(['public']);
@@ -91,9 +90,7 @@ class RequireScopesTest extends TestCase
         $this->assertTrue(!oauth_token()->isClientCredentials());
     }
 
-    /**
-     * @dataProvider userScopesTestDataProvider
-     */
+    #[DataProvider('userScopesTestDataProvider')]
     public function testUserScopes($requiredScopes, $userScopes, $expectedException)
     {
         $this->setRequest($requiredScopes);

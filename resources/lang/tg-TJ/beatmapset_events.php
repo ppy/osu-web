@@ -61,9 +61,11 @@ return [
         'approve' => '',
         'beatmap_owner_change' => '',
         'discussion_delete' => '',
+        'discussion_lock' => '',
         'discussion_post_delete' => '',
         'discussion_post_restore' => '',
         'discussion_restore' => '',
+        'discussion_unlock' => '',
         'disqualify' => '',
         'genre_edit' => '',
         'issue_reopen' => '',
@@ -83,5 +85,6 @@ return [
         'qualify' => '',
         'rank' => '',
         'remove_from_loved' => '',
+        'tags_edit' => '',
     ],
 ];

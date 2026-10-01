@@ -233,6 +233,10 @@ CAPTCHA認証を成功させてから再試行してください。
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '詳細を非表示',
+            'to_v2' => '詳細を表示',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'カバー画像の変更',
@@ -419,7 +423,7 @@ CAPTCHA認証を成功させてから再試行してください。
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
                 'view_details' => '詳細を表示',
-                'title' => 'ランク',
+                'title' => 'スコア',
 
                 'best' => [
                     'title' => 'ベストパフォーマンス',
@@ -478,7 +482,14 @@ CAPTCHA認証を成功させてから再試行してください。
         ],
 
         'matchmaking' => [
+            'losses' => '敗北数',
+            'plays' => '総試合数',
+            'rank' => 'ランク',
+            'rating' => 'レーティング',
+            'recent_history' => '最新の対戦履歴',
+            'tier' => 'ティア',
             'title' => 'ランクマッチ',
+            'wins' => '勝利数',
         ],
 
         'not_found' => [
@@ -511,13 +522,17 @@ CAPTCHA認証を成功させてから再試行してください。
             'highest' => '最高ランク: :rank (:dateに取得)',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'スターレーティングとPPの新しい計算アルゴリズムが、:link。',
+            'title_link' => '順次導入されます',
+            'message' => '最新のスコアがユーザープロフィールに反映されるまで、時間がかかる場合があります。',
         ],
         'season_stats' => [
             'division_top_percentage' => 'トップ :value',
+            'label' => 'スポットライト',
             'total_score' => '合計スコア',
+        ],
+        'solo' => [
+            'title' => 'ソロプレイ',
         ],
         'stats' => [
             'hit_accuracy' => '精度',

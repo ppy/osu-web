@@ -24,6 +24,9 @@
 
                     <span class="account-edit-entry__checkbox-label">
                         {{ osu_trans('accounts.privacy.friends_only') }}
+                        <span class="account-edit-entry__checkbox-label-info">
+                            {{ osu_trans('accounts.privacy.friends_only_info') }}
+                        </span>
                     </span>
 
                     <div class="account-edit-entry__checkbox-status">
@@ -67,8 +70,10 @@
                         <div class="block-list__content hidden js-account-edit-blocklist-content">
                             @foreach ($blocks as $block)
                                 <div class="block-list-item">
-                                    <a class="block-list-item__link" href='{{route('users.show', $block->user_id)}}'>{{ $block->username }}</a>
-                                    <div class="js-react" data-react="blockButton" data-target="{{$block->user_id}}"></div>
+                                    <a class="block-list-item__link" href='{{ route('users.show', $block->zebra_id) }}'>
+                                        {{ $block->target->username }}
+                                    </a>
+                                    <div class="js-react" data-react="blockButton" data-target="{{ $block->zebra_id }}"></div>
                                 </div>
                             @endforeach
                         </div>

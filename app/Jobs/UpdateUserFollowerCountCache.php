@@ -12,7 +12,8 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class UpdateUserFollowerCountCache implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable;
+    use InteractsWithQueue;
+    use Queueable;
 
     protected $userId;
 

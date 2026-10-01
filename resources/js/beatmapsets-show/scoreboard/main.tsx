@@ -156,22 +156,18 @@ export default class Main extends React.Component<Props> {
     return (
       <div>
         <div className='beatmap-scoreboard-top'>
-          <div className='beatmap-scoreboard-top__item'>
-            <TopCard
-              beatmap={this.controller.beatmap}
-              position={1}
-              score={this.data.scores[0]}
-            />
-          </div>
+          <TopCard
+            beatmap={this.controller.beatmap}
+            position={1}
+            score={this.data.scores[0]}
+          />
 
           {this.data.user_score != null && this.data.scores[0].user.id !== this.data.user_score.score.user.id &&
-            <div className='beatmap-scoreboard-top__item'>
-              <TopCard
-                beatmap={this.controller.beatmap}
-                position={this.data.user_score.position}
-                score={this.data.user_score.score}
-              />
-            </div>
+            <TopCard
+              beatmap={this.controller.beatmap}
+              position={this.data.user_score.position}
+              score={this.data.user_score.score}
+            />
           }
         </div>
 

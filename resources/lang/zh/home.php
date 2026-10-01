@@ -77,7 +77,7 @@ return [
 
         'wiki_page' => [
             'link' => '在 wiki 中搜索',
-            'more_simple' => '查看更多维基搜索结果',
+            'more_simple' => '查看更多 wiki 搜索结果',
             'title' => 'Wiki',
         ],
     ],

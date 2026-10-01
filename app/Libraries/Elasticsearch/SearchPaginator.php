@@ -9,9 +9,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class SearchPaginator extends LengthAwarePaginator
 {
-    protected $search;
-
-    public function __construct(Search $search, $perPage, $currentPage = null, array $options = [])
+    public function __construct(protected Search $search, int $perPage, ?int $currentPage = null, array $options = [])
     {
         if (!isset($options['path'])) {
             $options['path'] = LengthAwarePaginator::resolveCurrentPath();

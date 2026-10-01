@@ -230,6 +230,10 @@ return [
                 'week' => ':valuew',
             ],
         ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
@@ -475,7 +479,14 @@ return [
         ],
 
         'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'tier' => '',
             'title' => 'Partida Classificada',
+            'wins' => '',
         ],
 
         'not_found' => [
@@ -508,13 +519,17 @@ return [
             'highest' => 'Classificação mais alta: :rank em :date',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Um novo algoritmo de classificação por estrelas/PP está :link.',
+            'title_link' => 'a ser implementado',
+            'message' => 'As pontuações recentes não podem ser refletidas imediatamente em perfis de usuário.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Topo :value',
+            'label' => '',
             'total_score' => 'Pontuação total',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',

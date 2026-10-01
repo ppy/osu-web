@@ -89,7 +89,7 @@ return [
             '_' => 'toimitusvaihtoehdot',
             'beatmap_owner_change' => 'vieraileva vaikeustaso',
             'beatmapset:modding' => 'beatmapin modaus',
-            'channel_mention' => '',
+            'channel_mention' => 'maininta keskustelussa',
             'channel_message' => 'yksityisviestit',
             'channel_team' => 'tiimin yksityisviestit',
             'comment_new' => 'uudet kommentit',
@@ -101,10 +101,10 @@ return [
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'kun sinut on lisätty vieraskartoittajana rytmikartan vaikeustasoon',
             'beatmapset:modding' => '',
             'channel_mention' => '',
-            'channel_message' => '',
+            'channel_message' => 'kun saat uuden yksityisviestin',
             'channel_team' => '',
             'comment_new' => '',
             'forum_topic_reply' => '',
@@ -134,7 +134,7 @@ return [
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'oletuspelimuoto',
         'keyboard' => 'näppäimistö',
         'mouse' => 'hiiri',
         'tablet' => 'piirtopöytä',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
+        'friends_only_info' => '',
         'hide_online' => 'piilota paikallaolotilasi',
         'hide_online_info' => 'tämä vastaa osu!lazerin ”näy offline-tilassa” -tilaa',
         'title' => 'Yksityisyys',

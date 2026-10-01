@@ -113,6 +113,7 @@ return [
         'shopify_expired' => 'Ang link ng checkout para sa order na ito ay nag-expire na.',
         'subtotal' => 'Subtotal',
         'total' => 'Kabuuan',
+        'unavailable' => '',
 
         'details' => [
             'order_number' => 'Order #',

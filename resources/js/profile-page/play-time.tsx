@@ -12,8 +12,8 @@ interface Props {
   stats: UserStatisticsJson;
 }
 
-export default function PlayTime({ stats }: Props) {
-  const playTime = moment.duration(stats.play_time, 'seconds');
+export function playTimeStrings(playTimeSeconds: number) {
+  const playTime = moment.duration(playTimeSeconds, 'seconds');
 
   const daysLeftOver = Math.floor(playTime.asDays());
   const hours = playTime.hours();
@@ -30,8 +30,14 @@ export default function PlayTime({ stats }: Props) {
 
   const title = transChoice(`common.count.${titleUnit}`, titleValue);
 
-  let timeString = daysLeftOver > 0 ? `${formatNumber(daysLeftOver)}d ` : '';
-  timeString += `${hours}h ${minutes}m`;
+  let value = daysLeftOver > 0 ? `${formatNumber(daysLeftOver)}d ` : '';
+  value += `${hours}h ${minutes}m`;
+
+  return { title, value };
+}
+
+export default function PlayTime({ stats }: Props) {
+  const { title, value } = playTimeStrings(stats.play_time);
 
   return (
     <ValueDisplay
@@ -39,7 +45,7 @@ export default function PlayTime({ stats }: Props) {
       modifiers='plain plain-wide'
       value={
         <span data-tooltip-position='bottom center' title={title}>
-          {timeString}
+          {value}
         </span>
       }
     />

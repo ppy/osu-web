@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'otrzymuj powiadomienia o odpowiedziach w dyskusjach, w których uczestniczysz',
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
         'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
         'comment_reply' => 'otrzymuj powiadomienia o odpowiedziach do twoich komentarzy',
@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokuj wiadomości prywatne od osób spoza listy znajomych',
+        'friends_only_info' => '',
         'hide_online' => 'ukryj swoją obecność online',
         'hide_online_info' => 'jednoznaczne ze statusem „Nie przeszkadzać” w osu!lazer',
         'title' => 'Prywatność',

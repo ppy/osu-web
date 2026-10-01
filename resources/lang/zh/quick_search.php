@@ -11,7 +11,7 @@ return [
         'other' => '其他',
         'team' => '战队',
         'user' => '玩家',
-        'wiki_page' => '维基',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
@@ -27,7 +27,7 @@ return [
             'other' => '其他',
             'team' => '战队',
             'user' => '玩家',
-            'wiki_page' => '百科',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

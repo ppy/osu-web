@@ -23,7 +23,7 @@ return [
         'length' => 'Hossz',
         'relevance' => 'Relevancia',
         'title' => 'Cím',
-        'update' => 'Frissités',
+        'update' => 'Frissítés',
     ],
 
     'forum_posts' => [
@@ -38,10 +38,10 @@ return [
     ],
 
     'teams' => [
-        'created' => '',
-        'relevance' => '',
-        'name' => '',
-        'short-name' => '',
+        'created' => 'Létrehozva',
+        'relevance' => 'Relevancia',
+        'name' => 'Név',
+        'short-name' => 'Rövid Név',
     ],
 
     'users' => [

@@ -23,6 +23,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Event;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Queue;
 use Tests\TestCase;
 
@@ -32,9 +33,7 @@ class DiscussionTest extends TestCase
 
     private User $mapper;
 
-    /**
-     * @dataProvider minPlaysVerificationDataProvider
-     */
+    #[DataProvider('minPlaysVerificationDataProvider')]
     public function testMinPlaysVerification(\Closure $minPlays, bool $verified, bool $success)
     {
         config_set('osu.user.post_action_verification', false);
@@ -63,9 +62,8 @@ class DiscussionTest extends TestCase
     /**
      * See testReopeningProblemDoesNotDisqualifyOrResetNominations for assertions
      * jobs are not queued when reopening a resolved discussion.
-     *
-     * @dataProvider newDiscussionQueuesJobsDataProvider
      */
+    #[DataProvider('newDiscussionQueuesJobsDataProvider')]
     public function testNewDiscussionQueuesJobs(string $state, ?string $group, array $queued, array $notQueued)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -88,9 +86,7 @@ class DiscussionTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider shouldDisqualifyOrResetNominationsDataProvider
-     */
+    #[DataProvider('shouldDisqualifyOrResetNominationsDataProvider')]
     public function testShouldDisqualifyOrResetNominations(string $state, ?string $group, string $messageType, bool $expects)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -143,9 +139,7 @@ class DiscussionTest extends TestCase
         (new Discussion($this->mapper, $beatmapset, $this->makeParams('mapper_note'), static::TEST_MESSAGE))->handle();
     }
 
-    /**
-     * @dataProvider newMapperNoteByOtherUsersDataProvider
-     */
+    #[DataProvider('newMapperNoteByOtherUsersDataProvider')]
     public function testNewMapperNoteByOtherUsers(?string $group, bool $expected)
     {
         $user = User::factory()->withGroup($group)->create()->markSessionVerified();
@@ -200,9 +194,7 @@ class DiscussionTest extends TestCase
 
     //region Reporting problem on a beatmap
 
-    /**
-     * @dataProvider problemOnQualifiedBeatmapsetDataProvider
-     */
+    #[DataProvider('problemOnQualifiedBeatmapsetDataProvider')]
     public function testProblemOnQualifiedBeatmapset(string $state, string $assertMethod)
     {
         $user = User::factory()->create()->markSessionVerified();
@@ -244,11 +236,7 @@ class DiscussionTest extends TestCase
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
 
-    /**
-     * @dataProvider problemOnQualifiedBeatmapsetModesNotificationDataProvider
-     *
-     * @return void
-     */
+    #[DataProvider('problemOnQualifiedBeatmapsetModesNotificationDataProvider')]
     public function testProblemOnQualifiedBeatmapsetModesNotification(string $mode, array $notificationModes, bool $expectsNotification)
     {
         $user = User::factory()->create()->markSessionVerified();

@@ -36,7 +36,7 @@ class UserTotpKey extends Model
             return $existingKey;
         }
 
-        $key = $user->userTotpKey()->createOrFirst([], [
+        $key = $user->userTotpKey()->firstOrCreate([], [
             'uri' => static::generateUri($user),
         ]);
         $user->setRelation('userTotpKey', $key);
