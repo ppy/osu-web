@@ -14,10 +14,12 @@ use League\CommonMark\Parser\Cursor;
 class Parser extends AbstractBlockContinueParser
 {
     private Element $block;
+    private int $fenceLength;
 
-    public function __construct(string $className)
+    public function __construct(string $className, int $fenceLength)
     {
         $this->block = new Element($className);
+        $this->fenceLength = $fenceLength;
     }
 
     public function getBlock(): AbstractBlock
@@ -39,9 +41,7 @@ class Parser extends AbstractBlockContinueParser
     {
         $currentLine = $cursor->getLine();
 
-        // TODO: closing block length is supposed to match opening block length which can be > 3;
-        // what's supposed to happen when they don't match currently is undefined.
-        if ($currentLine === ':::') {
+        if ($currentLine === str_repeat(':', $this->fenceLength)) {
             return BlockContinue::finished();
         }
 
