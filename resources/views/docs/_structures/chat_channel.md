@@ -39,6 +39,7 @@ Optional attributes:
 
 Field                   | Type                                             | Description
 ----------------------- | ------------------------------------------------ | ------------------
+active_user_count       | integer?                                         | returned in presence responses and only for public channels
 current_user_attributes | [CurrentUserAttributes](#currentuserattributes)? | only present on some responses
 last_read_id            | integer?                                         | Deprecated; use `current_user_attributes.last_read_id`.
 last_message_id         | integer?                                         | `message_id` of last known message (only returned in presence responses)
