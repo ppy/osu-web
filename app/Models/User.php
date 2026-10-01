@@ -291,6 +291,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
     }
 
+    private static function kudosuRankThreshold(): ?int
+    {
+        $cacheDuration = 43200; // 12 hours
+
+        return Cache::remember(static::KUDOSU_RANK_THRESHOLD_CACHE_KEY, $cacheDuration, function () {
+            return static::default()
+                ->where('osu_kudostotal', '>', 0)
+                ->orderByDesc('osu_kudostotal')
+                ->offset(static::KUDOSU_MAX_RESULTS - 1)
+                ->value('osu_kudostotal');
+        });
+    }
+
     public function userCountryHistory(): HasMany
     {
         return $this->hasMany(UserCountryHistory::class);
@@ -1633,26 +1646,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return get_int(Cache::get(self::CACHING['mapping_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheMappingFollowerCount();
     }
 
-    public function events()
-    {
-        return $this->hasMany(Event::class);
-    }
-
-    public function beatmapsetRatings()
-    {
-        return $this->hasMany(BeatmapsetUserRating::class);
-    }
-
-    public function givenKudosu()
-    {
-        return $this->hasMany(KudosuHistory::class, 'giver_id');
-    }
-
-    public function receivedKudosu()
-    {
-        return $this->hasMany(KudosuHistory::class, 'receiver_id');
-    }
-
     public function kudosuRank(): ?int
     {
         if ($this->osu_kudostotal === 0) {
@@ -1671,17 +1664,24 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    private static function kudosuRankThreshold(): ?int
+    public function events()
     {
-        $cacheDuration = 43200; // 12 hours
+        return $this->hasMany(Event::class);
+    }
 
-        return Cache::remember(static::KUDOSU_RANK_THRESHOLD_CACHE_KEY, $cacheDuration, function () {
-            return static::default()
-                ->where('osu_kudostotal', '>', 0)
-                ->orderByDesc('osu_kudostotal')
-                ->offset(static::KUDOSU_MAX_RESULTS - 1)
-                ->value('osu_kudostotal');
-        });
+    public function beatmapsetRatings()
+    {
+        return $this->hasMany(BeatmapsetUserRating::class);
+    }
+
+    public function givenKudosu()
+    {
+        return $this->hasMany(KudosuHistory::class, 'giver_id');
+    }
+
+    public function receivedKudosu()
+    {
+        return $this->hasMany(KudosuHistory::class, 'receiver_id');
     }
 
     public function supporterTags()
