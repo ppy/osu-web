@@ -120,7 +120,7 @@ class Beatmap extends Model implements AfterCommit
 
         $lookupMap ??= array_flip(static::MODES);
 
-        return $lookupMap[$int] ?? null;
+        return $lookupMap[$int ?? ''] ?? null;
     }
 
     public function baseDifficultyRatings()
