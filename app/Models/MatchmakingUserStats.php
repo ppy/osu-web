@@ -89,6 +89,7 @@ class MatchmakingUserStats extends Model
     public function getRank(): int
     {
         return $this->attributes['rank'] ?? 1 + static::default()
+            ->nonProvisional()
             ->where('rating', '>', $this->rating)
             ->where('pool_id', $this->pool_id)
             ->count();
