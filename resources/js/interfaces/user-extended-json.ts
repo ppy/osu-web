@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Ruleset from 'interfaces/ruleset';
-import UserKudosuJson from 'interfaces/user-kudosu-json';
 import UserJson from 'interfaces/user-json';
+import UserKudosuJson from 'interfaces/user-kudosu-json';
 
 export const profileExtraPages = [
   'beatmaps',
