@@ -273,7 +273,7 @@ class UserTest extends TestCase
 
     public function testKudosuRankReturnsNullForZeroTotal()
     {
-        Cache::forget('kudosu_rank_threshold:v1');
+        Cache::forget(User::KUDOSU_RANK_THRESHOLD_CACHE_KEY);
         $user = User::factory()->create(['osu_kudostotal' => 0]);
 
         $this->assertNull($user->kudosuRank());
@@ -281,7 +281,7 @@ class UserTest extends TestCase
 
     public function testKudosuRankReturnsNullBelowThreshold()
     {
-        Cache::put('kudosu_rank_threshold:v1', 50, 60);
+        Cache::put(User::KUDOSU_RANK_THRESHOLD_CACHE_KEY, 50, 60);
         $user = User::factory()->create(['osu_kudostotal' => 10]);
 
         $this->assertNull($user->kudosuRank());
@@ -289,7 +289,7 @@ class UserTest extends TestCase
 
     public function testKudosuRank()
     {
-        Cache::forget('kudosu_rank_threshold:v1');
+        Cache::forget(User::KUDOSU_RANK_THRESHOLD_CACHE_KEY);
         $topUser = User::factory()->create(['osu_kudostotal' => 30_000]);
         $middleUser = User::factory()->create(['osu_kudostotal' => 20_000]);
         $tiedUser = User::factory()->create(['osu_kudostotal' => 20_000]);

@@ -8,7 +8,6 @@ namespace App\Models;
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
-use App\Http\Controllers\RankingController;
 use App\Jobs\EsDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
@@ -233,6 +232,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     ];
 
     const INACTIVE_DAYS = 180;
+
+    const KUDOSU_MAX_RESULTS = 1000;
+    const KUDOSU_RANK_THRESHOLD_CACHE_KEY = 'kudosu_rank_threshold:v1';
 
     const MAX_FIELD_LENGTHS = [
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
@@ -1673,11 +1675,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $cacheDuration = 43200; // 12 hours
 
-        return Cache::remember('kudosu_rank_threshold:v1', $cacheDuration, function () {
+        return Cache::remember(static::KUDOSU_RANK_THRESHOLD_CACHE_KEY, $cacheDuration, function () {
             return static::default()
                 ->where('osu_kudostotal', '>', 0)
                 ->orderByDesc('osu_kudostotal')
-                ->offset(RankingController::KUDOSU_MAX_RESULTS - 1)
+                ->offset(static::KUDOSU_MAX_RESULTS - 1)
                 ->value('osu_kudostotal');
         });
     }

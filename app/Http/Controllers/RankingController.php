@@ -28,7 +28,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
  */
 class RankingController extends Controller
 {
-    const KUDOSU_MAX_RESULTS = 1000;
     const MAX_RESULTS = 10000;
     const PAGE_SIZE = Model::PER_PAGE;
     // in display order
@@ -359,13 +358,13 @@ class RankingController extends Controller
      */
     public function kudosu()
     {
-        $maxPage = static::KUDOSU_MAX_RESULTS / static::PAGE_SIZE;
+        $maxPage = User::KUDOSU_MAX_RESULTS / static::PAGE_SIZE;
         $page = min(get_int(request('page')) ?? 1, $maxPage);
 
         $scores = User::default()
             ->with('team')
             ->orderBy('osu_kudostotal', 'desc')
-            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, static::KUDOSU_MAX_RESULTS);
+            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, User::KUDOSU_MAX_RESULTS);
 
         if (is_json_request()) {
             return ['ranking' => json_collection(

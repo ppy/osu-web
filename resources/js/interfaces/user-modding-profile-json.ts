@@ -16,7 +16,7 @@ type ModdingProfileIncludes =
   | 'statistics';
 
 type UserModdingProfileJson = UserExtendedJson & Required<Pick<UserExtendedJson, ModdingProfileIncludes>> & {
-  kudosu: UserExtendedJson['kudosu'] & { rank: number | null };
+  kudosu: UserExtendedJson['kudosu'] & Required<Pick<UserExtendedJson['kudosu'], 'rank'>>;
 };
 
 export default UserModdingProfileJson;
