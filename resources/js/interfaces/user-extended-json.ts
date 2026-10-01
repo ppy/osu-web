@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Ruleset from 'interfaces/ruleset';
+import UserKudosuJson from 'interfaces/user-kudosu-json';
 import UserJson from 'interfaces/user-json';
 
 export const profileExtraPages = [
@@ -35,11 +36,7 @@ interface UserExtendedAdditionalAttributes {
   has_supported: boolean;
   interests: string | null;
   join_date: string;
-  kudosu: {
-    available: number;
-    rank?: number | null;
-    total: number;
-  };
+  kudosu: UserKudosuJson;
   location: string | null;
   max_blocks: number;
   max_friends: number;

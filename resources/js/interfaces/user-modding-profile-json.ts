@@ -15,8 +15,6 @@ type ModdingProfileIncludes =
   | 'ranked_beatmapset_count'
   | 'statistics';
 
-type UserModdingProfileJson = UserExtendedJson & Required<Pick<UserExtendedJson, ModdingProfileIncludes>> & {
-  kudosu: UserExtendedJson['kudosu'] & Required<Pick<UserExtendedJson['kudosu'], 'rank'>>;
-};
+type UserModdingProfileJson = UserExtendedJson & Required<Pick<UserExtendedJson, ModdingProfileIncludes>>;
 
 export default UserModdingProfileJson;
