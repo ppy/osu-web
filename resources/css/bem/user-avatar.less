@@ -1,0 +1,62 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.user-avatar {
+  @transition: opacity ease-in-out 220ms;
+  --avatar-border-radius: @border-radius-base;
+  --avatar-size: 70px;
+
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  flex: none;
+  position: relative;
+
+  &--card {
+    --avatar-border-radius: 6px;
+    --avatar-size: 60px;
+  }
+
+  &--full-circle {
+    --avatar-size: 100%;
+    --avatar-border-radius: 50%;
+  }
+
+  &--has-box-shadow {
+    .default-box-shadow();
+  }
+
+  &--list {
+    --avatar-border-radius: 6px 0 0 6px;
+    --avatar-size: 40px;
+  }
+
+  &__image {
+    .full-size();
+    border-radius: var(--avatar-border-radius);
+    object-fit: contain;
+    background-color: var(--hsl-b4);
+    transition: @transition;
+    opacity: 0;
+
+    &--loaded {
+      opacity: 1;
+    }
+  }
+
+  &__spinner {
+    .full-size();
+    .center-content();
+    border-radius: var(--avatar-border-radius);
+    color: #fff;
+    font-size: 14px;
+    background: fade(#fff, 10%);
+    transition: @transition;
+    opacity: 0.25;
+
+    &--loaded {
+      // needs display: none or element to be removed to remove the layer in Safari
+      // but can't transition a display change...
+      opacity: 0;
+    }
+  }
+}
