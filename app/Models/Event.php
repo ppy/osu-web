@@ -49,6 +49,7 @@ class Event extends Model
         'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified|loved)\!$!",
         'beatmapsetDelete' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been deleted.$!",
         'beatmapsetRevive' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
+        'beatmapsetGraveyard' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been sent to eternal slumber\.$!",
         'beatmapsetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
         'beatmapsetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
         'medal' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" medal\!$!",
@@ -129,6 +130,22 @@ class Event extends Model
                 $params = [
                     'text' => sprintf($template, $beatmapsetLink['html'], tag('b', [], $userLink['html'])),
                     'text_clean' => sprintf($template, $beatmapsetLink['clean'], $userLink['clean']),
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $beatmapset->user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 5,
+                ];
+
+                break;
+
+            case 'beatmapsetGraveyard':
+                $beatmapset = $options['beatmapset'];
+                $beatmapsetLink = static::beatmapsetLink($beatmapset);
+
+                $template = '%s has been sent to eternal slumber.';
+                $params = [
+                    'text' => sprintf($template, $beatmapsetLink['html']),
+                    'text_clean' => sprintf($template, $beatmapsetLink['clean']),
                     'beatmapset_id' => $beatmapset->getKey(),
                     'user_id' => $beatmapset->user->getKey(),
                     'private' => false,
@@ -411,6 +428,13 @@ class Event extends Model
         return [
             'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
+        ];
+    }
+
+    public function parseMatchesBeatmapsetGraveyard($matches)
+    {
+        return [
+            'beatmapset' => $this->arrayBeatmapset($matches),
         ];
     }
 

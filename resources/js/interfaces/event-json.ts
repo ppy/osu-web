@@ -11,6 +11,7 @@ type EventType =
   | 'beatmapsetApprove'
   | 'beatmapsetDelete'
   | 'beatmapsetRevive'
+  | 'beatmapsetGraveyard'
   | 'beatmapsetUpdate'
   | 'beatmapsetUpload'
   | 'rank'
@@ -72,6 +73,11 @@ interface BeatmapsetReviveEvent extends EventBase {
   user: EventUser;
 }
 
+interface BeatmapsetGraveyardEvent extends EventBase {
+  beatmapset: EventBeatmapset;
+  type: 'beatmapsetGraveyard';
+}
+
 interface BeatmapsetUpdateEvent extends EventBase {
   beatmapset: EventBeatmapset;
   type: 'beatmapsetUpdate';
@@ -128,6 +134,7 @@ type EventJson =
   | BeatmapsetApproveEvent
   | BeatmapsetDeleteEvent
   | BeatmapsetReviveEvent
+  | BeatmapsetGraveyardEvent
   | BeatmapsetUpdateEvent
   | BeatmapsetUploadEvent
   | RankEvent

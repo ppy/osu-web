@@ -57,6 +57,33 @@ class BeatmapsetsControllerTest extends TestCase
         $this->assertSame($followerNotificationCount + 1, $follower->userNotifications()->count());
     }
 
+    public function testBroadcastGraveyard()
+    {
+        $beatmapset = Beatmapset::factory()->create(['user_id' => User::factory()]);
+        $follower = User::factory()->create();
+
+        $follower->follows()->create([
+            'subtype' => 'mapping',
+            'notifiable' => $beatmapset->user,
+        ]);
+
+        $notificationCount = Notification::count();
+        $followerNotificationCount = $follower->userNotifications()->count();
+
+        $url = route('interop.beatmapsets.broadcast-graveyard', [
+            'beatmapset' => $beatmapset,
+            'timestamp' => time(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertSuccessful();
+
+        $this->assertSame($notificationCount + 1, Notification::count());
+        $this->assertSame($followerNotificationCount + 1, $follower->userNotifications()->count());
+    }
+
     public function testDestroy()
     {
         $beatmapset = Beatmapset::factory()->create([
