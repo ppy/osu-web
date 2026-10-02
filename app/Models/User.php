@@ -212,7 +212,14 @@ use Request;
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, OAuthenticatable, Traits\ReportableInterface
 {
-    use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserScoreable, Traits\UserStore, Validatable;
+    use Authenticatable;
+    use HasApiTokens;
+    use Memoizes;
+    use Traits\Es\UserSearch;
+    use Traits\Reportable;
+    use Traits\UserScoreable;
+    use Traits\UserStore;
+    use Validatable;
 
     const PLAYSTYLES = [
         'mouse' => 1,
@@ -233,6 +240,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     ];
 
     const INACTIVE_DAYS = 180;
+
+    const KUDOSU_MAX_RESULTS = 1000;
+    const KUDOSU_RANK_THRESHOLD_CACHE_KEY = 'kudosu_rank_threshold:v1';
 
     const MAX_FIELD_LENGTHS = [
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
@@ -288,6 +298,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $variantSuffix = $variant === null ? '' : "_{$variant}";
 
         return 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
+    }
+
+    private static function kudosuRankThreshold(): ?int
+    {
+        $cacheDuration = 43200; // 12 hours
+
+        return Cache::remember(static::KUDOSU_RANK_THRESHOLD_CACHE_KEY, $cacheDuration, function () {
+            return static::default()
+                ->where('osu_kudostotal', '>', 0)
+                ->orderByDesc('osu_kudostotal')
+                ->offset(static::KUDOSU_MAX_RESULTS - 1)
+                ->value('osu_kudostotal');
+        });
     }
 
     public function userCountryHistory(): HasMany
@@ -917,6 +940,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'follows',
             'forumPosts',
             'friends',
+            'friendsWithMutual',
             'githubUser',
             'givenKudosu',
             'legacyGameClients',
@@ -935,7 +959,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'rankHighests',
             'rankHistories',
             'receivedKudosu',
-            'relationFriends',
             'relations',
             'replaysWatchedCounts',
             'reportedIn',
@@ -1494,30 +1517,24 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->orderBy('timestamp', 'ASC');
     }
 
-    public function relationFriends(): HasMany
-    {
-        return $this->relations()->friends()->withMutual();
-    }
-
-    public function relations()
+    public function relations(): HasMany
     {
         return $this->hasMany(UserRelation::class);
     }
 
-    public function blocks()
+    public function blocks(): HasMany
     {
-        return $this
-            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
-            ->wherePivot('foe', true)
-            ->default();
+        return $this->relations()->blocks();
     }
 
-    public function friends()
+    public function friends(): HasMany
     {
-        return $this
-            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
-            ->wherePivot('friend', true)
-            ->default();
+        return $this->relations()->friends();
+    }
+
+    public function friendsWithMutual(): HasMany
+    {
+        return $this->friends()->withMutual();
     }
 
     public function channels()
@@ -1630,6 +1647,24 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return get_int(Cache::get(self::CACHING['mapping_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheMappingFollowerCount();
     }
 
+    public function kudosuRank(): ?int
+    {
+        if ($this->osu_kudostotal === 0) {
+            return null;
+        }
+
+        return $this->memoize(__FUNCTION__, function () {
+            $threshold = static::kudosuRankThreshold();
+            if ($threshold !== null && $this->osu_kudostotal < $threshold) {
+                return null;
+            }
+
+            return static::default()
+                ->where('osu_kudostotal', '>', $this->osu_kudostotal)
+                ->count() + 1;
+        });
+    }
+
     public function events()
     {
         return $this->hasMany(Event::class);
@@ -1677,7 +1712,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function blockedUserIds()
     {
-        return $this->blocks->pluck('user_id');
+        return $this->blocks->pluck('zebra_id');
     }
 
     public function userGroupsForBadges()
@@ -1749,18 +1784,26 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function hasBlocked(self $user)
+    public function hasBlocked(self $target): bool
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return new Set($this->blocks->pluck('user_id'));
-        })->contains($user->getKey());
+        $targetId = $target->getKey();
+
+        return $targetId === $this->getKey()
+            ? false
+            : $this
+                ->memoize(__FUNCTION__, fn () => new Set($this->blocks->pluck('zebra_id')))
+                ->contains($targetId);
     }
 
-    public function hasFriended(self $user)
+    public function hasFriended(self $target): bool
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return new Set($this->friends->pluck('user_id'));
-        })->contains($user->getKey());
+        $targetId = $target->getKey();
+
+        return $targetId === $this->getKey()
+            ? false
+            : $this
+                ->memoize(__FUNCTION__, fn () => new Set($this->friends->pluck('zebra_id')))
+                ->contains($targetId);
     }
 
     public function hasFavourited($beatmapset)
@@ -2373,6 +2416,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function preferredLocale()
     {
         return $this->user_lang;
+    }
+
+    public function reportableAdditionalInfo(UserReport $report): ?string
+    {
+        return match ($report->reason) {
+            'InappropriateChat' => Chat\Message::recentUserMessagesForReport($this->getKey()),
+            default => null,
+        };
     }
 
     public function url(?string $ruleset = null)

@@ -27,7 +27,8 @@ use Ds\Set;
  */
 class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Validatable;
+    use Traits\Reportable;
+    use Validatable;
 
     const MESSAGE_LIMIT = 16_000; // column limit for 4 bytes utf8
     const MESSAGE_LIMIT_TIMELINE = 750;

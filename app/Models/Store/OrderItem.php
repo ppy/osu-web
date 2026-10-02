@@ -29,7 +29,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class OrderItem extends Model
 {
-    use SoftDeletes, Validatable;
+    use SoftDeletes;
+    use Validatable;
 
     protected $primaryKey = 'id';
 

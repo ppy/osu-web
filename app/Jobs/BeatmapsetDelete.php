@@ -20,7 +20,10 @@ use Illuminate\Queue\SerializesModels;
 
 class BeatmapsetDelete implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /** @var Beatmapset */
     private $beatmapset;
