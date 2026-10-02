@@ -415,6 +415,9 @@ return [
             'realtime' => [
                 'title' => 'Multiplayer Games',
             ],
+            'screenshots' => [
+                'title' => 'Screenshots',
+            ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
                 'not_ranked' => 'Only ranked beatmaps award pp',
