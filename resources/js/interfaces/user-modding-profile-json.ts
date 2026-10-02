@@ -7,7 +7,10 @@ import { ProfileHeaderIncludes } from './user-json';
 type ModdingProfileIncludes =
   ProfileHeaderIncludes
   | 'graveyard_beatmapset_count'
+  | 'guest_beatmapset_count'
+  | 'kudosu'
   | 'loved_beatmapset_count'
+  | 'nominated_beatmapset_count'
   | 'pending_beatmapset_count'
   | 'ranked_beatmapset_count'
   | 'statistics';

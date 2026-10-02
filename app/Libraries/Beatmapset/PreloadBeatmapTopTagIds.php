@@ -14,26 +14,23 @@ class PreloadBeatmapTopTagIds
 {
     public static function handle(Beatmapset $beatmapset): void
     {
-        $store = $GLOBALS['cfg']['cache']['default'];
-        $cacheDriver = $GLOBALS['cfg']['cache']['stores'][$store];
-        if ($cacheDriver['driver'] !== 'redis') {
-            return;
-        }
-
         $beatmapIds = $beatmapset->beatmaps->pluck('beatmap_id')->all();
         // may happen in test
         if (count($beatmapIds) === 0) {
             return;
         }
-        $keys = prefix_strings(Beatmap::TOP_TAG_IDS_CACHE_PREFIX, $beatmapIds);
+
         $allDataByBeatmapId = array_combine(
             $beatmapIds,
-            \LaravelRedis::connection($cacheDriver['connection'])->mget($keys),
+            \LaravelRedis::connection('cache')->mget(prefix_strings(Beatmap::TOP_TAG_IDS_CACHE_PREFIX, $beatmapIds)),
         );
+
         foreach ($beatmapset->beatmaps as $beatmap) {
             $data = $allDataByBeatmapId[$beatmap->getKey()];
-            if ($data !== null) {
-                $beatmap->preloadTopTagIds(unserialize($data));
+            if ($data === null) {
+                $beatmap->topTagIds(false);
+            } else {
+                $beatmap->setMemoize('topTagIds', unserialize($data));
             }
         }
     }
