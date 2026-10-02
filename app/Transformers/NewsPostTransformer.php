@@ -11,6 +11,7 @@ class NewsPostTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'content',
+        'content_markdown',
         'navigation',
         'preview',
     ];
@@ -36,6 +37,11 @@ class NewsPostTransformer extends TransformerAbstract
     public function includeContent(NewsPost $post)
     {
         return $this->primitive($post->bodyHtml());
+    }
+
+    public function includeContentMarkdown(NewsPost $post)
+    {
+        return $this->primitive($post->markdown());
     }
 
     public function includeNavigation(NewsPost $post)
