@@ -16,7 +16,7 @@
 @section('content')
     <nav class="osu-page">
         <!-- Mobile Navigation -->
-        @include('layout._header_mobile')
+        @include('layout._header_mobile', ['titleOverride' => ''])
 
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
