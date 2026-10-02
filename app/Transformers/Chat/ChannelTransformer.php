@@ -19,7 +19,6 @@ class ChannelTransformer extends TransformerAbstract
     ];
 
     const LISTING_INCLUDES = [
-        'active_user_count',
         'current_user_attributes',
         'last_read_id',
         ...self::CONVERSATION_INCLUDES,
@@ -60,7 +59,7 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeActiveUserCount(Channel $channel): ResourceInterface
     {
-        return $this->primitive($channel->isPublic() ? $channel->activeUserCountCached() : null);
+        return $this->primitive($channel->activeUserCount);
     }
 
     public function includeCurrentUserAttributes(Channel $channel)
