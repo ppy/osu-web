@@ -30,7 +30,7 @@
                             $statusIsRendered = false;
                         @endphp
                         @foreach (App\Models\UserProfileCustomization::BEATMAPSET_DOWNLOAD as $name)
-                            @if ($name === 'direct' && !$currentUser->isSupporter())
+                            @if ($name === 'direct' && !$currentUser->isSupporter() && $customization['legacy_score_only'])
                                 @continue
                             @endif
                             <label class="account-edit-entry__checkbox">
@@ -42,7 +42,7 @@
                                 ]])
 
                                 <span class="account-edit-entry__checkbox-label">
-                                    {{ osu_trans("accounts.options.beatmapset_download.{$name}") }}
+                                    {{ osu_trans('accounts.options.beatmapset_download.'.($name === 'direct' && !$customization['legacy_score_only'] ? 'lazer' : $name)) }}
                                 </span>
 
                                 @if (!$statusIsRendered)
