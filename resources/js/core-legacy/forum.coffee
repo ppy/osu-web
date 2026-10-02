@@ -8,12 +8,19 @@ import { bottomPage, formatNumber, isInputElement } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 import { present } from 'utils/string'
 import { currentUrl, updateHistory } from 'utils/turbolinks'
+import { updateQueryString } from 'utils/url'
 
 replaceUrl = (url) ->
   updateHistory url, 'replace'
 
 # browsers have limit on replaceState calls
 debouncedReplaceUrl = _.debounce replaceUrl, 250
+
+getMoreNext = () ->
+  document.querySelector('.js-forum__posts-show-more--next')
+
+getMorePrevious = () ->
+  document.querySelector('.js-forum__posts-show-more--previous')
 
 export default class Forum
   boot: =>
@@ -114,7 +121,7 @@ export default class Forum
 
 
   startingPostLoaded: =>
-    morePrevious = document.querySelector('.js-forum__posts-show-more--previous')
+    morePrevious = getMorePrevious()
     startingPostLoaded = morePrevious.dataset.noMore == '1'
 
     if !startingPostLoaded
@@ -127,7 +134,7 @@ export default class Forum
 
 
   lastPostLoaded: =>
-    moreNext = document.querySelector('.js-forum__posts-show-more--next')
+    moreNext = getMoreNext()
     lastPostLoaded = moreNext.dataset.noMore == '1'
 
     if !lastPostLoaded
@@ -317,8 +324,19 @@ export default class Forum
         toRemoveEnd = @posts.length - @maxPosts
 
       if toRemoveStart < toRemoveEnd
-        parent = @posts[0].parentNode
-        parent.removeChild(post) for post in _.slice(@posts, toRemoveStart, toRemoveEnd)
+        post.remove() for post in [@posts...].slice(toRemoveStart, toRemoveEnd)
+
+        newParams = cursor_string: null
+
+        if mode == 'previous'
+          moreLink = getMoreNext()
+          newParams.start = +@posts[@posts.length - 1].dataset.postId + 1
+        else
+          moreLink = getMorePrevious()
+          newParams.end = +@posts[0].dataset.postId - 1
+
+        moreLink.dataset.noMore = ''
+        moreLink.href = updateQueryString(moreLink.href, newParams)
 
       @refreshLoadMoreLinks()
 
