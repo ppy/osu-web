@@ -47,6 +47,7 @@ class Channel extends Model
 
     use Validatable;
 
+    const ACTIVE_USER_COUNT_CACHE_PREFIX = 'chat_channel:active_user_count:';
     const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
@@ -193,6 +194,21 @@ class Channel extends Model
         return $this->isPublic()
             ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
             : $this->userIds();
+    }
+
+    public function activeUserCount(): int
+    {
+        return max(1, count($this->activeUserIds()));
+    }
+
+    public function activeUserCountCached(bool $checkExistingCache = true): int
+    {
+        return $this->memoize(__FUNCTION__, fn () => cache_get_or_set(
+            $checkExistingCache,
+            static::ACTIVE_USER_COUNT_CACHE_PREFIX.$this->getKey(),
+            600,
+            $this->activeUserCount(...),
+        ));
     }
 
     /**
@@ -408,8 +424,15 @@ class Channel extends Model
 
         $userId = $user->getKey();
 
-        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($userId) {
-            return $this->users()->firstWhere('user_id', '<>', $userId);
+        return $this->memoize(__FUNCTION__.':'.$userId, function () use ($user, $userId) {
+            foreach ($this->userIds() as $targetId) {
+                if ($targetId !== $userId) {
+                    return $this->users()->firstWhere('user_id', $targetId);
+                }
+            }
+
+            // all ids point to self
+            return $user;
         });
     }
 

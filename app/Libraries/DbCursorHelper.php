@@ -16,7 +16,7 @@ class DbCursorHelper
     public function __construct($sorts, $defaultSort, $requestedSort = null)
     {
         $this->sortName = $requestedSort;
-        $this->sort = $sorts[$requestedSort] ?? null;
+        $this->sort = $sorts[$requestedSort ?? ''] ?? null;
 
         if ($this->sort === null) {
             $this->sort = $sorts[$defaultSort];
