@@ -34,6 +34,7 @@ export default class Forum
     @refreshCounterPaused = true
 
     @maxPosts = 250
+    @newPostsCheckInterval = 3 * 60 * 1000
 
     $(document).on 'turbo:load', @throttledBoot
 
@@ -44,6 +45,8 @@ export default class Forum
     $(document).on 'keyup', @keyboardNavigation
     $(document).on 'click', '.js-forum-topic-moderate--toggle-deleted', @toggleDeleted
     $(document).on 'turbo:before-cache', debouncedReplaceUrl.cancel
+
+    setInterval @checkNewPosts, @newPostsCheckInterval
 
 
   userCanModerate: ->
@@ -165,7 +168,11 @@ export default class Forum
 
     currentPost = null
 
-    if bottomPage()
+    atBottom = bottomPage()
+    @checkNewPosts() if atBottom && !@wasAtBottom
+    @wasAtBottom = atBottom
+
+    if atBottom
       currentPost = @posts[@posts.length - 1]
     else
       scrollOffset = core.stickyHeader.scrollOffsetValue
@@ -283,12 +290,23 @@ export default class Forum
   postUrlN: (postN) ->
     "#{currentUrl().pathname}?n=#{postN}"
 
+  checkNewPosts: =>
+    return if document.hidden
+
+    link = document.querySelector('.js-forum__posts-show-more--next')
+
+    return unless link? && link.dataset.noMore == '1'
+
+    @loadMore link, true
+
 
   showMore: (e) =>
     e.preventDefault()
 
-    link = e.currentTarget
+    @loadMore e.currentTarget
 
+
+  loadMore: (link, silent = false) =>
     return if link.classList.contains('js-disabled')
 
     link.classList.add 'js-disabled'
@@ -336,6 +354,8 @@ export default class Forum
     .always ->
       link.classList.remove 'js-disabled'
     .fail (xhr) =>
+      return if silent
+
       link.dataset.failed = '1'
       onError xhr
 
