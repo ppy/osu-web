@@ -11,14 +11,20 @@ import { wikiUrl } from 'utils/url';
 interface Props {
   beatmapset: BeatmapsetJson;
   modifiers?: Modifiers;
-  type: 'featured_artist' | 'nsfw' | 'spotlight';
+  type: 'exclusive' | 'featured_artist' | 'nsfw' | 'spotlight';
 }
 
 export default function BeatmapsetBadge(props: Props) {
   let url: string | undefined;
+
   switch (props.type) {
+    case 'exclusive':
+      if ((props.beatmapset.track_id == null) || !props.beatmapset.is_exclusive_track) return null;
+
+      url = route('tracks.show', { track: props.beatmapset.track_id });
+      break;
     case 'featured_artist':
-      if (props.beatmapset.track_id == null) return null;
+      if ((props.beatmapset.track_id == null) || props.beatmapset.is_exclusive_track) return null;
 
       url = route('tracks.show', { track: props.beatmapset.track_id });
       break;
