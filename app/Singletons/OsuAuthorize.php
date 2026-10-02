@@ -1144,6 +1144,19 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkCommentReply(?User $user, Comment $parent): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($parent->user->hasBlocked($user)) {
+            return 'comment.blocked';
+        }
+
+        return 'ok';
+    }
+
     public function checkCommentRestore(?User $user, Comment $comment): string
     {
         if ($this->doCheckUser($user, 'CommentModerate')->can()) {
@@ -1168,7 +1181,7 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param Comment $comment
+     * @param CommentableInterface $commentable
      * @return string
      * @throws AuthorizationCheckException
      */
@@ -1180,6 +1193,10 @@ class OsuAuthorize
 
         if ($commentable->commentLocked()) {
             return 'comment.store.disabled';
+        }
+
+        if ($commentable instanceof Beatmapset && $commentable->user?->hasBlocked($user)) {
+            return 'comment.blocked';
         }
 
         return 'ok';
