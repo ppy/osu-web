@@ -28,7 +28,6 @@ export default class BeatmapList extends React.PureComponent<Props> {
         text: (
           <BeatmapListItem
             beatmap={beatmap}
-            beatmapUrl={makeUrl({ beatmap, filter: this.props.discussionsState.currentFilter })}
             beatmapset={this.props.discussionsState.beatmapset}
             count={count}
             showNonGuestOwner={false}

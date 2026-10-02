@@ -66,11 +66,9 @@
     color: var(--decoration-colour);
   }
 
-  &__option {
-    .reset-input();
-    .link-plain();
-
-    --colour: hsl(var(--hsl-c1));
+  &__content {
+    position: relative;
+    pointer-events: none;
     display: flex;
     gap: 5px;
     padding: var(--option-padding);
@@ -80,6 +78,15 @@
     &--select {
       justify-content: space-between;
     }
+  }
+
+  &__bg-link {
+    .full-size();
+  }
+
+  &__option {
+    position: relative;
+    --colour: hsl(var(--hsl-c1));
 
     &--selected {
       background-color: var(--option-selected-bg);
