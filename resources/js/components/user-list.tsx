@@ -4,8 +4,8 @@
 import GroupJson from 'interfaces/group-json';
 import Ruleset from 'interfaces/ruleset';
 import UserJson from 'interfaces/user-json';
+import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
-import { observer } from 'mobx-react';
 import { usernameSortAscending } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
@@ -32,6 +32,7 @@ const sortModes = ['last_visit', 'rank', 'username'] as const;
 
 interface Props {
   group?: GroupJson;
+  userRelations?: Map<number, UserRelationJson | undefined>;
   users: UserJson[];
 }
 
@@ -47,7 +48,6 @@ function rankSortDescending(x: UserJson, y: UserJson) {
   return (x.statistics?.global_rank ?? Number.MAX_VALUE) - (y.statistics?.global_rank ?? Number.MAX_VALUE);
 }
 
-@observer
 export class UserList extends React.PureComponent<Props> {
   state: Readonly<State> = {
     playMode: this.playmodeFromUrl,
@@ -324,12 +324,12 @@ export class UserList extends React.PureComponent<Props> {
     );
   }
 
-  private filterUsersByRelationship(users: UserJson[], filter: RelationshipFilter) {
+  private filterUsersByRelationship(users: UserJson[], userRelations: Map<number, UserRelationJson | undefined>, filter: RelationshipFilter) {
     switch (filter) {
       case 'mutual':
-        return users.filter((user) => core.currentUserModel.friends.get(user.id)?.mutual);
+        return users.filter((user) => userRelations.get(user.id)?.mutual);
       case 'non_mutual':
-        return users.filter((user) => !core.currentUserModel.friends.get(user.id)?.mutual);
+        return users.filter((user) => !userRelations.get(user.id)?.mutual);
       default:
         return users;
     }
@@ -373,8 +373,10 @@ export class UserList extends React.PureComponent<Props> {
           ?.includes(playmode)
       ));
     }
-    users = this.filterUsersByStatus(users, statusFilter);
-    return this.filterUsersByRelationship(users, relationshipFilter);
+    if (this.props.group == null && this.props.userRelations != null) {
+      users = this.filterUsersByRelationship(users, this.props.userRelations, relationshipFilter);
+    }
+    return this.filterUsersByStatus(users, statusFilter);
   }
 
   private renderPlaymodeFilter() {
