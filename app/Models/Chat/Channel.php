@@ -47,7 +47,6 @@ class Channel extends Model
 
     use Validatable;
 
-    const ACTIVE_USER_COUNT_CACHE_PREFIX = 'chat_channel:active_user_count:';
     const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
@@ -56,6 +55,7 @@ class Channel extends Model
         'name' => 50,
     ];
 
+    public ?int $activeUserCount = null;
     public ?string $uuid = null;
 
     protected $attributes = [
@@ -189,26 +189,26 @@ class Channel extends Model
         return '#pm_'.implode('-', $userIds);
     }
 
+    public static function preloadPublicChannelActiveUserCount(iterable $allPublicChannels): void
+    {
+        $cachedCount = \Cache::remember('chat_channels:public_channel_users', 600, function () use ($allPublicChannels) {
+            $count = [];
+            foreach ($allPublicChannels as $channel) {
+                $count[$channel->getKey()] = count($channel->activeUserIds());
+            }
+            return $count;
+        });
+
+        foreach ($allPublicChannels as $channel) {
+            $channel->activeUserCount = $cachedCount[$channel->getKey()] ?? 0;
+        }
+    }
+
     public function activeUserIds()
     {
         return $this->isPublic()
             ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
             : $this->userIds();
-    }
-
-    public function activeUserCount(): int
-    {
-        return max(1, count($this->activeUserIds()));
-    }
-
-    public function activeUserCountCached(bool $checkExistingCache = true): int
-    {
-        return $this->memoize(__FUNCTION__, fn () => cache_get_or_set(
-            $checkExistingCache,
-            static::ACTIVE_USER_COUNT_CACHE_PREFIX.$this->getKey(),
-            600,
-            $this->activeUserCount(...),
-        ));
     }
 
     /**
