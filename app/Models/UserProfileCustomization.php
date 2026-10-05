@@ -209,7 +209,7 @@ class UserProfileCustomization extends Model
     public function setExtrasOrderAttribute($value)
     {
         $value = is_array($value)
-            ? static::repairExtrasOrder(get_arr($value, get_string(...)))
+            ? static::repairExtrasOrder(array_filter($value, is_string(...)))
             : null;
 
         $this->setOption('extras_order', $value);
