@@ -25,7 +25,6 @@ class UserChannelList
     {
         $this->loadChannels();
         $this->preloadUsers();
-        $this->preloadActiveUserCount();
 
         $filteredChannels = $this->channels->filter(fn (Channel $channel) => $channel->isVisibleFor($this->user));
 
@@ -58,31 +57,6 @@ class UserChannelList
         }
 
         $this->channels = $userChannels->pluck('channel');
-    }
-
-    private function preloadActiveUserCount(): void
-    {
-        $channels = $this->channels->filter(fn ($c) => $c->isPublic());
-        $channelIds = $channels->pluck('channel_id')->all();
-
-        if (count($channelIds) <= 1) {
-            return;
-        }
-
-        $allDataByChannelId = array_combine(
-            $channelIds,
-            \LaravelRedis::connection('cache')
-                ->mget(prefix_strings(Channel::ACTIVE_USER_COUNT_CACHE_PREFIX, $channelIds)),
-        );
-
-        foreach ($channels as $channel) {
-            $count = get_int($allDataByChannelId[$channel->getKey()]);
-            if ($count === null) {
-                $channel->activeUserCountCached(false);
-            } else {
-                $channel->setMemoize('activeUserCountCached', $count);
-            }
-        }
     }
 
     private function preloadUsers()
