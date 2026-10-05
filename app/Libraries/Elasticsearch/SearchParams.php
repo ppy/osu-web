@@ -62,9 +62,7 @@ abstract class SearchParams
 
     public function blockedUserIds()
     {
-        $user = auth()->user();
-
-        return $user !== null ? $user->blockedUserIds()->toArray() : [];
+        return \Auth::user()?->blockedUserIds()->toArray() ?? [];
     }
 
     public function isQueryStringTooShort()

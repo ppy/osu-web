@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Mostrar menos detalhes',
+            'to_v2' => 'Mostrar mais detalhes',
         ],
         'edit' => [
             'cover' => [
@@ -293,7 +293,7 @@ return [
                     'title' => 'Beatmaps no cemitério',
                 ],
                 'guest' => [
-                    'title' => 'Beatmaps de Participação de Visitantes',
+                    'title' => 'Beatmaps com participação de convidado',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps Loved',
@@ -479,14 +479,14 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => 'Derrotas',
+            'plays' => 'Total de partidas',
+            'rank' => 'Classificação',
+            'rating' => 'Avaliação',
+            'recent_history' => 'Histórico da última partida',
+            'tier' => 'Nível',
             'title' => 'Competitivo',
-            'wins' => '',
+            'wins' => 'Vitórias',
         ],
 
         'not_found' => [
@@ -525,7 +525,7 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
-            'label' => '',
+            'label' => 'Destaques',
             'total_score' => 'Pontuação total',
         ],
         'solo' => [

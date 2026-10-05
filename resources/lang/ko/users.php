@@ -485,9 +485,9 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
-            'tier' => '',
+            'tier' => '티어',
             'title' => '빠른 대전',
-            'wins' => '',
+            'wins' => '승',
         ],
 
         'not_found' => [
@@ -526,7 +526,7 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => '상위 :value',
-            'label' => '',
+            'label' => '스포트라이트',
             'total_score' => '총 점수',
         ],
         'solo' => [

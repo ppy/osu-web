@@ -145,6 +145,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokuoti privačias žinutes iš žmonių kurių nėra draugų sąraše',
+        'friends_only_info' => '',
         'hide_online' => 'paslėpti jūsų prisijungimo sesiją',
         'hide_online_info' => '',
         'title' => 'Privatumas',

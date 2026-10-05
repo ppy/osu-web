@@ -32,7 +32,7 @@ class CurrentStats
             ];
         });
 
-        $this->onlineFriends = Auth::user() ? Auth::user()->friends()->online()->count() : 0;
+        $this->onlineFriends = Auth::user()?->friends()->online()->count() ?? 0;
         $this->currentOnline = $data['currentOnline'];
         $this->currentGames = $data['currentGames'];
         $this->graphData = $data['graphData'];

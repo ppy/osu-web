@@ -12,7 +12,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ForumNewReply extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $topic;
     public $user;

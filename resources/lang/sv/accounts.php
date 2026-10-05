@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blockera privata meddelanden från icke-vänner',
+        'friends_only_info' => '',
         'hide_online' => 'dölj din online-närvaro',
         'hide_online_info' => 'denna kartor till "visas offline" läge i osu!laser',
         'title' => 'Sekretess',

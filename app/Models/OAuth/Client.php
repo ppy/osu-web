@@ -163,6 +163,10 @@ class Client extends PassportClient
             return false;
         }
 
+        if (isset($this->plainSecret)) {
+            $this->secret_hint = substr($this->plainSecret, -4);
+        }
+
         return parent::save($options);
     }
 
@@ -185,24 +189,12 @@ class Client extends PassportClient
     protected function grantTypes(): Attribute
     {
         return Attribute::make(
-            get: fn (): array => array_keys(array_filter([
+            get: fn (?string $value): array => isset($value) ? $this->fromJson($value) : array_keys(array_filter([
                 'authorization_code' => !$this->firstParty(),
                 'client_credentials' => $this->confidential(),
                 'password' => $this->password_client,
                 'refresh_token' => true,
             ])),
-        );
-    }
-
-    #[\Override]
-    protected function secret(): Attribute
-    {
-        return Attribute::make(
-            set: function (?string $value): ?string {
-                $this->plainSecret = $value;
-
-                return $value;
-            },
         );
     }
 

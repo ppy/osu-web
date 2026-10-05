@@ -20,7 +20,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
 
         $params = [
             'client_id' => $client->getKey(),
-            'client_secret' => $client->secret,
+            'client_secret' => $client->plainSecret,
             'grant_type' => 'client_credentials',
             'scope' => $scope,
         ];
@@ -36,7 +36,7 @@ class OAuthClientCredentialsRequestTest extends TestCase
 
         $params = [
             'client_id' => $client->getKey(),
-            'client_secret' => $client->secret,
+            'client_secret' => $client->plainSecret,
             'grant_type' => 'client_credentials',
             'scope' => $scope,
         ];

@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Kamu tidak bisa memberikan nilai kepada set beatmap yang.mana kamu terlibat di dalamnya.',
+            'status' => 'Kamu tidak bisa memberikan nilai kepada set beatmap dengan status ini.',
         ],
     ],
 
@@ -124,8 +124,8 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Cobalah untuk bermain terlebih dahulu sebelum membuat postingan pada forum! Apabila kamu mengalami masalah dengan permainanmu, silakan buat postingan pada forum Help & Support.',
-                'too_many_help_posts' => "Kamu perlu untuk bermain lebih banyak sebelum kamu dapat membuat postingan tambahan. Apabila kamu masih menemui masalah saat bermain, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Cobalah untuk bermain terlebih dulu sebelum membuat postingan pada forum! Apabila kamu mengalami masalah saat bermain, silakan buat postingan pada forum Help & Support.',
+                'too_many_help_posts' => "Kamu perlu untuk bermain lebih banyak sebelum kamu bisa membuat lebih banyak postingan. Apabila kamu masih menemui masalah saat bermain, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 

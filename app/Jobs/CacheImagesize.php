@@ -14,7 +14,9 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class CacheImagesize implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
 
     public function __construct(private string $url)
     {

@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'Tautan checkout untuk pesanan ini sudah kedaluwarsa.',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
-        'unavailable' => '',
+        'unavailable' => 'Tidak ada informasi tambahan yang tersedia untuk pesanan ini.',
 
         'details' => [
             'order_number' => 'Pesanan #',

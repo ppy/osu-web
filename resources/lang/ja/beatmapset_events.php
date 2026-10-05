@@ -85,6 +85,6 @@ return [
         'qualify' => 'Qualification',
         'rank' => 'ランキング',
         'remove_from_loved' => 'Lovedから削除',
-        'tags_edit' => '',
+        'tags_edit' => 'タグの編集',
     ],
 ];

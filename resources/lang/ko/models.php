@@ -9,6 +9,6 @@ return [
     'name' => [
         'App\Models\Beatmap' => '비트맵 난이도',
         'App\Models\Beatmapset' => '비트맵',
-        'App\Models\Solo\Score' => '',
+        'App\Models\Solo\Score' => '점수',
     ],
 ];

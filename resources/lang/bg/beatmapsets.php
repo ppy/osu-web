@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Бийтмапове',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'няма бийтмапове',
 

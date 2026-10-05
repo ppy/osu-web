@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'sem beatmaps',
 
@@ -65,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Avaliação inválida.',
     ],
 
     'show' => [

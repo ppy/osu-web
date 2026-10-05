@@ -58,7 +58,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Room extends Model
 {
-    use Memoizes, SoftDeletes, WithDbCursorHelper;
+    use Memoizes;
+    use SoftDeletes;
+    use WithDbCursorHelper;
 
     const SORTS = [
         'ended' => [

@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht in deiner Freundesliste sind',
+        'friends_only_info' => '',
         'hide_online' => 'Online-Status verbergen',
         'hide_online_info' => 'Dies entspricht dem "Offline"-Modus in osu!lazer',
         'title' => 'Privatsphäre',

@@ -29,6 +29,11 @@ return [
         'guest_title' => 'Бітмапи',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => ' бітмапи відсутні',
 

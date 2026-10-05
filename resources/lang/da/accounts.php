@@ -144,6 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloker privatbeskeder fra folk der ikke er på din venneliste',
+        'friends_only_info' => '',
         'hide_online' => 'skjul din online status',
         'hide_online_info' => 'dette mapper til "fremstå offline"-tilstanden i osu!lazer',
         'title' => 'Privatliv',

@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => 'Odhlásiť',
+        'home' => 'Prejsť na ovládací panel',
+        'logout' => 'Odhlásiť sa',
         'text' => 'Už môžeš túto kartu/okno zatvoriť',
-        'title' => 'Verifikácia osu! clienta bola dokončená',
+        'title' => 'Verifikácia osu! klienta bola dokončená',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => 'Verifikácia osu! clienta',
+        'confirm' => 'Klikni na tlačítko na dokončenie verifikácie klienta.',
+        'title' => 'Verifikácia osu! klienta',
     ],
 ];

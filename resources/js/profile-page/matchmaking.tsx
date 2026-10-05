@@ -98,7 +98,7 @@ function poolDisplayName(pool: MatchmakingPoolJson) {
 }
 
 function rankText(stats: null | ProfilePageMatchmakingStatsJson) {
-  return stats == null
+  return stats == null || stats.is_rating_provisional
     ? '-'
     : (
       <span
@@ -145,7 +145,10 @@ function popup(allStats: ProfilePageMatchmakingStatsJson[]) {
             {formatNumber(stats.plays)}
           </div>
           <div className='matchmaking-popup__value'>
-            {formatNumber(stats.rating)}{stats.is_rating_provisional ? '*' : ''}
+            {stats.is_rating_provisional
+              ? <span title={trans('rankings.matchmaking.provisional')}>{formatNumber(stats.rating)}*</span>
+              : formatNumber(stats.rating)
+            }
           </div>
         </div>
       ))}

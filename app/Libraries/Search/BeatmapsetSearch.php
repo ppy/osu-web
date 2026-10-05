@@ -174,7 +174,7 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addFollowsFilter($query)
     {
-        if ($this->params->showFollows && $this->params->user !== null) {
+        if ($this->params->showFollows) {
             $followIds = Follow::where(['subtype' => 'mapping', 'user_id' => $this->params->user->getKey()])->pluck('notifiable_id')->all();
 
             $query->filter(['terms' => ['user_id' => $followIds]]);
@@ -278,7 +278,7 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addRecommendedFilter($query)
     {
-        if ($this->params->showRecommended && $this->params->user !== null) {
+        if ($this->params->showRecommended) {
             // TODO: index convert difficulties and handle them.
             $difficulty = $this->params->getRecommendedDifficulty();
             $query->filter([
@@ -361,9 +361,7 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['beatmaps.approved' => Beatmapset::STATES['loved']]]);
                 break;
             case 'favourites':
-                if ($this->params->user !== null) {
-                    $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
-                }
+                $favs = model_pluck($this->params->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
                 $query->must(['ids' => ['values' => $favs ?? []]]);
                 $queryForFilter = $mainQuery;
                 break;

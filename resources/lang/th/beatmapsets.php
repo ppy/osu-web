@@ -29,6 +29,11 @@ return [
         'guest_title' => 'บีทแมพ',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => 'ไม่มีบีทแมพ',
 

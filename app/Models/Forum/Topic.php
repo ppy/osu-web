@@ -77,7 +77,8 @@ use Illuminate\Database\QueryException;
  */
 class Topic extends Model implements AfterCommit
 {
-    use Memoizes, Validatable;
+    use Memoizes;
+    use Validatable;
     use SoftDeletes {
         restore as private origRestore;
     }

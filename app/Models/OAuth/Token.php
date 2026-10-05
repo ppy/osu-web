@@ -23,7 +23,9 @@ use Laravel\Passport\Token as PassportToken;
 class Token extends PassportToken implements ScopeAuthorizable, SessionVerificationInterface
 {
     // PassportToken doesn't have factory
-    use HasFactory, FasterAttributes, IncrementInstance;
+    use HasFactory;
+    use FasterAttributes;
+    use IncrementInstance;
 
     const SCOPES_CLIENT_CREDENTIALS_ONLY = ['delegate', 'forum.write_manage', 'group_permissions'];
     const SCOPES_EXCLUDE_FROM_ALL = ['delegate', 'group_permissions'];

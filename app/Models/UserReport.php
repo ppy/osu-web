@@ -29,7 +29,8 @@ use Illuminate\Notifications\RoutesNotifications;
  */
 class UserReport extends Model
 {
-    use RoutesNotifications, Validatable;
+    use RoutesNotifications;
+    use Validatable;
 
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const MAX_FIELD_LENGTHS = [
@@ -85,7 +86,7 @@ class UserReport extends Model
                 Chat\Message::class => 'chat',
                 Comment::class => 'comment',
                 Forum\Post::class => 'forum',
-                User::class => 'user',
+                User::class => $this->reason === 'InappropriateChat' ? 'chat' : 'user',
                 Team::class => 'team',
             };
 

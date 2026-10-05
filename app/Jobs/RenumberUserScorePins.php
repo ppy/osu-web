@@ -13,7 +13,8 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class RenumberUserScorePins implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable;
+    use InteractsWithQueue;
+    use Queueable;
 
     public function __construct(private int $userId, private int $rulesetId)
     {
