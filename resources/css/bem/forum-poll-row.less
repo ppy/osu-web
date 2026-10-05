@@ -2,10 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .forum-poll-row {
-  @_top: forum-poll-row;
+  --forum-poll-bar-opacity: 0.5;
   margin: 3px 0; // vertical +2px from __row
   display: flex;
   flex-direction: column;
+
+  &--top {
+    --forum-poll-bar-opacity: 1;
+  }
 
   &__row {
     margin: 2px 0;
@@ -15,6 +19,9 @@
 
   &__text {
     flex: 1;
+    display: flex;
+    gap: 5px;
+    align-items: baseline;
   }
 
   &__result {
