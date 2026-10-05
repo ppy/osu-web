@@ -36,7 +36,7 @@ export class ArtEntryList extends BaseEntryList
         i != null && i.props.index < 3
 
     div className: 'contest__art-list',
-      div className: 'contest__vote-summary--art',
+      div className: 'contest__vote-summary--art sticky-toolbar',
         @renderToggleShowVotedOnly()
         span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
         el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
