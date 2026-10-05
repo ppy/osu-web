@@ -18,7 +18,7 @@ use App\Models\Solo\Score;
  */
 class UserProfileCustomization extends Model
 {
-    const DEFAULTS = [
+    const array DEFAULTS = [
         'audio_autoplay' => false,
         'audio_muted' => false,
         'audio_volume' => 0.45,
@@ -43,7 +43,7 @@ class UserProfileCustomization extends Model
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    const SECTIONS = [
+    const array SECTIONS = [
         'me',
         'recent_activity',
         'top_ranks',
@@ -53,13 +53,13 @@ class UserProfileCustomization extends Model
         'kudosu',
     ];
 
-    const BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
+    const array BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
 
-    const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
+    const array BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
-    public const array SCORING_MODES = ['standardised', 'classic'];
+    const array SCORING_MODES = ['standardised', 'classic'];
 
-    const USER_LIST = [
+    const array USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
