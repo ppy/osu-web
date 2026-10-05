@@ -136,6 +136,14 @@ class UserProfileCustomization extends Model
         };
     }
 
+    #[\Override]
+    public function refresh(): void
+    {
+        $this->cachedOptions = null;
+
+        parent::refresh();
+    }
+
     public function setAudioAutoplayAttribute($value)
     {
         $this->setOption('audio_autoplay', get_bool($value));
@@ -198,6 +206,15 @@ class UserProfileCustomization extends Model
         $this->setOption('comments_sort', $value);
     }
 
+    public function setExtrasOrderAttribute($value)
+    {
+        $value = is_array($value)
+            ? static::repairExtrasOrder(get_arr($value, get_string(...)))
+            : null;
+
+        $this->setOption('extras_order', $value);
+    }
+
     public function setForumPostsShowDeletedAttribute($value)
     {
         $this->setOption('forum_posts_show_deleted', get_bool($value));
@@ -206,6 +223,16 @@ class UserProfileCustomization extends Model
     public function setLegacyScoreOnlyAttribute($value): void
     {
         $this->setOption('legacy_score_only', get_bool($value));
+    }
+
+    public function setProfileCoverExpandedAttribute($value)
+    {
+        $this->setOption('profile_cover_expanded', get_bool($value));
+    }
+
+    public function setProfileDetailV2Attribute($value)
+    {
+        $this->setOption('profile_detail_v2', get_bool($value));
     }
 
     public function setScoringModeAttribute($value): void
@@ -242,33 +269,6 @@ class UserProfileCustomization extends Model
         }
 
         $this->setOption('user_list_view', $value);
-    }
-
-    public function setExtrasOrderAttribute($value)
-    {
-        $value = is_array($value)
-            ? static::repairExtrasOrder(get_arr($value, get_string(...)))
-            : null;
-
-        $this->setOption('extras_order', $value);
-    }
-
-    public function setProfileCoverExpandedAttribute($value)
-    {
-        $this->setOption('profile_cover_expanded', get_bool($value));
-    }
-
-    public function setProfileDetailV2Attribute($value)
-    {
-        $this->setOption('profile_detail_v2', get_bool($value));
-    }
-
-    #[\Override]
-    public function refresh(): void
-    {
-        $this->cachedOptions = null;
-
-        parent::refresh();
     }
 
     private function getExtrasOrderAttribute(): array
