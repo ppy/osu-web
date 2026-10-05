@@ -208,6 +208,7 @@
     display: grid;
     grid-template-rows: @user-card-icon-size 1fr;
     margin-left: var(--card-item-spacing);
+    height: var(--avatar-size);
 
     .@{top}--list & {
       grid-gap: var(--card-item-spacing);
@@ -368,5 +369,9 @@
     min-width: 0;
     font-weight: 600;
     gap: 2px;
+
+    .@{top}--list & {
+      flex-wrap: nowrap;
+    }
   }
 }
