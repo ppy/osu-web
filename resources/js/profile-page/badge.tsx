@@ -4,27 +4,41 @@
 import Img2x from 'components/img2x';
 import UserBadgeJson from 'interfaces/user-badge-json';
 import { escape } from 'lodash';
+import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
 import { present } from 'utils/string';
+import BadgePinButton from './badge-pin-button';
+import Controller from './controller';
 
 interface Props {
   badge: UserBadgeJson;
+  controller: Controller | undefined;
 }
 
+@observer
 export default class Badge extends React.PureComponent<Props> {
   render() {
-    return present(this.props.badge.url) ? (
-      <a className='u-contents' href={this.props.badge.url}>
-        {this.renderImage()}
-      </a>
-    ) : this.renderImage();
+    return (
+      <div className='profile-badge'>
+        {present(this.props.badge.url) ? (
+          <a className='u-contents' href={this.props.badge.url}>
+            {this.renderImage()}
+          </a>
+        ) : this.renderImage()}
+        {this.props.controller != null && (
+          <span className='profile-badge__pin'>
+            <BadgePinButton badge={this.props.badge} controller={this.props.controller} />
+          </span>
+        )}
+      </div>
+    );
   }
 
   private renderImage() {
     return (
       <Img2x
-        className='profile-badge'
+        className='profile-badge__image'
         data-html-title={this.renderTitle()}
         src={this.props.badge.image_url}
         title={this.props.badge.description}

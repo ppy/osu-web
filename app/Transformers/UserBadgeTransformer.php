@@ -17,8 +17,10 @@ class UserBadgeTransformer extends TransformerAbstract
         return [
             'awarded_at' => json_time($badge->awarded),
             'description' => $badge->description,
+            'image' => $badge->image,
             'image@2x_url' => $image2xUrl,
             'image_url' => $imageUrl,
+            'name' => $badge->name,
             'url' => $badge->url,
         ];
     }
