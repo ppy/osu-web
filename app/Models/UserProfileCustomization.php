@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Models\Solo\Score;
@@ -16,7 +18,7 @@ use App\Models\Solo\Score;
  */
 class UserProfileCustomization extends Model
 {
-    const DEFAULTS = [
+    const array DEFAULTS = [
         'audio_autoplay' => false,
         'audio_muted' => false,
         'audio_volume' => 0.45,
@@ -41,7 +43,7 @@ class UserProfileCustomization extends Model
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    const SECTIONS = [
+    const array SECTIONS = [
         'me',
         'recent_activity',
         'top_ranks',
@@ -51,13 +53,13 @@ class UserProfileCustomization extends Model
         'kudosu',
     ];
 
-    const BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
+    const array BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
 
-    const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
+    const array BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
-    public const array SCORING_MODES = ['standardised', 'classic'];
+    const array SCORING_MODES = ['standardised', 'classic'];
 
-    const USER_LIST = [
+    const array USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
@@ -136,6 +138,14 @@ class UserProfileCustomization extends Model
         };
     }
 
+    #[\Override]
+    public function refresh(): void
+    {
+        $this->cachedOptions = null;
+
+        parent::refresh();
+    }
+
     public function setAudioAutoplayAttribute($value)
     {
         $this->setOption('audio_autoplay', get_bool($value));
@@ -198,6 +208,15 @@ class UserProfileCustomization extends Model
         $this->setOption('comments_sort', $value);
     }
 
+    public function setExtrasOrderAttribute($value)
+    {
+        $value = is_array($value)
+            ? static::repairExtrasOrder(array_filter($value, is_string(...)))
+            : null;
+
+        $this->setOption('extras_order', $value);
+    }
+
     public function setForumPostsShowDeletedAttribute($value)
     {
         $this->setOption('forum_posts_show_deleted', get_bool($value));
@@ -206,6 +225,16 @@ class UserProfileCustomization extends Model
     public function setLegacyScoreOnlyAttribute($value): void
     {
         $this->setOption('legacy_score_only', get_bool($value));
+    }
+
+    public function setProfileCoverExpandedAttribute($value)
+    {
+        $this->setOption('profile_cover_expanded', get_bool($value));
+    }
+
+    public function setProfileDetailV2Attribute($value)
+    {
+        $this->setOption('profile_detail_v2', get_bool($value));
     }
 
     public function setScoringModeAttribute($value): void
@@ -242,33 +271,6 @@ class UserProfileCustomization extends Model
         }
 
         $this->setOption('user_list_view', $value);
-    }
-
-    public function setExtrasOrderAttribute($value)
-    {
-        $value = is_array($value)
-            ? static::repairExtrasOrder(get_arr($value, get_string(...)))
-            : null;
-
-        $this->setOption('extras_order', $value);
-    }
-
-    public function setProfileCoverExpandedAttribute($value)
-    {
-        $this->setOption('profile_cover_expanded', get_bool($value));
-    }
-
-    public function setProfileDetailV2Attribute($value)
-    {
-        $this->setOption('profile_detail_v2', get_bool($value));
-    }
-
-    #[\Override]
-    public function refresh(): void
-    {
-        $this->cachedOptions = null;
-
-        parent::refresh();
     }
 
     private function getExtrasOrderAttribute(): array
