@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Can not undo hyping.',
             'has_reply' => 'Can not delete discussion with replies',
+            'caused_disqualify_or_nomination_reset' => 'Can not delete a discussion that caused a disqualification or nomination reset.',
         ],
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
@@ -43,6 +44,7 @@ return [
             'not_owner' => 'You can only delete your own posts.',
             'resolved' => 'You can not delete a post of a resolved discussion.',
             'system_generated' => 'Automatically generated post can not be deleted.',
+            'caused_disqualify_or_nomination_reset' => 'Can not delete a post that caused a disqualification or nomination reset.',
         ],
 
         'edit' => [
