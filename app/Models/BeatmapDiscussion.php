@@ -261,6 +261,13 @@ class BeatmapDiscussion extends Model
         return $this->message_type === 'problem';
     }
 
+    public function causedDisqualifyOrNominationReset(): bool
+    {
+        return $this->beatmapset->disqualificationAndNominationResetEvents()->contains(function ($event) {
+            return is_array($event->comment) && $event->beatmap_discussion_id === $this->getKey();
+        });
+    }
+
     public function refreshKudosu($event, $eventExtraData = [])
     {
         // remove own votes

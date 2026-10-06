@@ -210,6 +210,10 @@ class OsuAuthorize
             return 'unauthorized';
         }
 
+        if ($discussion->causedDisqualifyOrNominationReset()) {
+            return $prefix.'caused_disqualify_or_nomination_reset';
+        }
+
         if ($discussion->message_type === 'hype') {
             return $prefix.'is_hype';
         }
@@ -429,6 +433,10 @@ class OsuAuthorize
 
         if ($user->user_id !== $post->user_id) {
             return $prefix.'not_owner';
+        }
+
+        if ($post->isFirstPost() && $post->beatmapDiscussion->causedDisqualifyOrNominationReset()) {
+            return $prefix.'caused_disqualify_or_nomination_reset';
         }
 
         if (!$post->canEdit()) {

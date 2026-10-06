@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
@@ -223,6 +224,18 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->deletePost($reply, $this->user)->assertStatus(403);
         $this->assertFalse($reply->fresh()->trashed());
+    }
+
+    public function testPostDestroyWhenPostCausedDisqualifyOrNominationReset()
+    {
+        $this->beatmapset->events()->create([
+            'comment' => ['beatmap_discussion_id' => $this->beatmapDiscussion->getKey()],
+            'type' => BeatmapsetEvent::DISQUALIFY,
+            'user_id' => $this->user->getKey(),
+        ]);
+
+        $this->deletePost($this->beatmapDiscussionPost, $this->user)->assertStatus(403);
+        $this->assertFalse($this->beatmapDiscussionPost->fresh()->trashed());
     }
 
     public function testPostDestroyWhenDiscussionResolved()
