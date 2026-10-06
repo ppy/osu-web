@@ -9,18 +9,28 @@ max_combo   | integer
 
 ### osu
 
-Field                        | Type
----------------------------- | ----
-aim_difficulty               | float
-aim_difficult_slider_count   | float
-speed_difficulty             | float
-speed_note_count             | float
-slider_factor                | float
-aim_difficult_strain_count   | float
-speed_difficult_strain_count | float
+Field                            | Type
+-------------------------------- | ----
+aim_difficulty                   | float
+aim_difficult_slider_count       | float
+speed_difficulty                 | float
+speed_note_count                 | float
+flashlight_difficulty            | float
+reading_difficulty               | float
+slider_factor                    | float
+aim_top_weighted_slider_factor   | float
+speed_top_weighted_slider_factor | float
+aim_difficult_strain_count       | float
+speed_difficult_strain_count     | float
+reading_difficult_note_count     | float
+nested_score_per_object          | float
+legacy_score_base_multiplier     | float
+maximum_legacy_combo_score       | float
 
 ### taiko
 
-Field               | Type
-------------------- | ----
-mono_stamina_factor | float
+Field                    | Type
+------------------------ | ----
+rhythm_difficulty_factor | float
+mono_stamina_factor      | float
+consistency_factor       | float
