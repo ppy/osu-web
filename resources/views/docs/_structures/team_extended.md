@@ -11,6 +11,7 @@
   "default_ruleset_id": 0,
   "description": "[b]example description[/b]",
   "is_open": true,
+  "url": "https://example.com",
   "empty_slots": 7,
   "leader": {
     "avatar_url": "https://osu.ppy.sh/images/layout/avatar-guest@2x.png",
@@ -76,7 +77,6 @@
       }
     }
   ],
-  "members_count": 1,
   "statistics": {
     "play_count": 123,
     "ranked_score": 63742331,
@@ -95,6 +95,7 @@ Represents a team. Extends [Team](#team) object with additional attributes.
 | default_ruleset_id | integer                           |                                                             |
 | description        | string?                           |                                                             |
 | is_open            | boolean                           | Whether the team is currently accepting member applications |
+| url                | string?                           | The URL displayed on the team's profile page                |
 
 
 
