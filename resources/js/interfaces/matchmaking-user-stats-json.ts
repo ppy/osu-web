@@ -6,7 +6,7 @@ import MatchmakingUserEloHistoryJson from './matchmaking-user-elo-history-json';
 
 interface MatchmakingUserStatsJsonAvailableIncludes {
   pool: MatchmakingPoolJson;
-  recent_history: MatchmakingUserEloHistoryJson[] | null;
+  recent_history: MatchmakingUserEloHistoryJson[];
 }
 
 interface MatchmakingUserStatsJsonDefaultAttributes {
