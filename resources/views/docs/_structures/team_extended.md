@@ -95,6 +95,7 @@ Represents a team. Extends [Team](#team) object with additional attributes.
 | default_ruleset_id | integer                           |                                                             |
 | description        | string?                           |                                                             |
 | is_open            | boolean                           | Whether the team is currently accepting member applications |
+| url                | string?                           | The URL displayed on the team's profile page                |
 
 
 
