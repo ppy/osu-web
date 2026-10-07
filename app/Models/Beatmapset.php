@@ -1281,13 +1281,6 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         });
     }
 
-    public function disqualificationAndNominationResetEvents()
-    {
-        return $this->memoize(__FUNCTION__, function () {
-            return $this->events()->disqualificationAndNominationResetEvents()->get();
-        });
-    }
-
     public function nominationsByType(): array
     {
         $nominations = $this->beatmapsetNominations()

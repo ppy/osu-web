@@ -263,9 +263,10 @@ class BeatmapDiscussion extends Model
 
     public function causedDisqualifyOrNominationReset(): bool
     {
-        return $this->beatmapset->disqualificationAndNominationResetEvents()->contains(function ($event) {
-            return is_array($event->comment) && $event->beatmap_discussion_id === $this->getKey();
-        });
+        return $this->isProblem() && $this->beatmapset->events()
+            ->disqualificationAndNominationResetEvents()
+            ->where('comment->beatmap_discussion_id', $this->getKey())
+            ->exists();
     }
 
     public function refreshKudosu($event, $eventExtraData = [])
