@@ -207,7 +207,7 @@ class Channel extends Model
     public function activeUserIds()
     {
         return $this->isPublic()
-            ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), time() - static::CHAT_ACTIVITY_TIMEOUT, 'inf')
             : $this->userIds();
     }
 
