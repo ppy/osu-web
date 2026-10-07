@@ -238,6 +238,20 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($this->beatmapDiscussionPost->fresh()->trashed());
     }
 
+    public function testPostEditWhenPostCausedDisqualifyOrNominationReset()
+    {
+        $message = $this->beatmapDiscussionPost->message;
+
+        $this->beatmapset->events()->create([
+            'comment' => ['beatmap_discussion_id' => $this->beatmapDiscussion->getKey()],
+            'type' => BeatmapsetEvent::DISQUALIFY,
+            'user_id' => $this->user->getKey(),
+        ]);
+
+        $this->putPost("{$message} edited", $this->beatmapDiscussionPost, $this->user)->assertStatus(403);
+        $this->assertSame($message, $this->beatmapDiscussionPost->fresh()->message);
+    }
+
     public function testPostDestroyWhenDiscussionResolved()
     {
         // reply made before resolve

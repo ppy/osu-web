@@ -471,6 +471,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($post->isFirstPost() && $post->beatmapDiscussion->causedDisqualifyOrNominationReset()) {
+            return $prefix.'caused_disqualify_or_nomination_reset';
+        }
+
         if (!$post->canEdit()) {
             return $prefix.'resolved';
         }
