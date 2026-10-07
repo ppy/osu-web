@@ -10,9 +10,9 @@ namespace App\Models;
 use App\Exceptions\UserVerificationException;
 use BaconQrCode\Renderer\PlainTextRenderer;
 use BaconQrCode\Writer;
+use Carbon\FactoryImmutable as CarbonFactoryImmutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OTPHP\Factory;
-use OTPHP\InternalClock;
 use OTPHP\TOTP;
 
 /**
@@ -51,7 +51,7 @@ class UserTotpKey extends Model
 
     public static function generateUri(User $user): string
     {
-        $totp = TOTP::generate(new InternalClock());
+        $totp = TOTP::generate(CarbonFactoryImmutable::getDefaultInstance());
         $totp->setIssuer($GLOBALS['cfg']['osu']['totp']['issuer_name']);
         // this assumes username to never contain colon `:`
         $totp->setLabel($user->username);
@@ -61,7 +61,7 @@ class UserTotpKey extends Model
 
     public static function isValidKey(string $uri, string $key): bool
     {
-        return Factory::loadFromProvisioningUri($uri, new InternalClock())->verify($key, null, 10);
+        return Factory::loadFromProvisioningUri($uri, CarbonFactoryImmutable::getDefaultInstance())->verify($key, null, 10);
     }
 
     public function user(): BelongsTo
