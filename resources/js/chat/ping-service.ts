@@ -12,7 +12,7 @@ import RetryDelay from 'utils/retry-delay';
 export default class PingService {
   private lastHistoryId?: number;
   // standard polling time of 0 to 20 seconds from default RetryDelay random
-  private readonly retryDelay = new RetryDelay(0, 45000);
+  private readonly retryDelay = new RetryDelay(45000, 90000);
   private timerId?: number;
   private xhr?: JQuery.jqXHR<AckResponseJson>;
 
