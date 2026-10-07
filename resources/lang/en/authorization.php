@@ -51,6 +51,7 @@ return [
             'not_owner' => 'Only the poster can edit post.',
             'resolved' => 'You can not edit a post of a resolved discussion.',
             'system_generated' => 'Automatically generated post can not be edited.',
+            'caused_disqualify_or_nomination_reset' => 'Can not edit a post that caused a disqualification or nomination reset.',
         ],
     ],
 
