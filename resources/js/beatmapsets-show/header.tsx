@@ -305,6 +305,8 @@ export default class Header extends React.Component<Props> {
   private renderDownloadButtons() {
     if (core.currentUser == null || this.controller.beatmapset.availability.download_disabled) return;
 
+    const legacyScoreOnly = core.userPreferences.get('legacy_score_only');
+
     return (
       <>
         {this.controller.beatmapset.video ? (
@@ -324,10 +326,10 @@ export default class Header extends React.Component<Props> {
         }))}
 
         {this.downloadButton({
-          href: core.currentUser.is_supporter
+          href: core.currentUser.is_supporter || !legacyScoreOnly
             ? beatmapDownloadDirect(this.controller.currentBeatmap.id)
             : route('support-the-game'),
-          topTextKey: 'direct',
+          topTextKey: legacyScoreOnly ? 'direct' : 'lazer',
         })}
       </>
     );
