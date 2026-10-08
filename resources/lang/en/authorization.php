@@ -83,6 +83,7 @@ return [
     ],
 
     'comment' => [
+        'blocked' => 'Cannot comment to a user that is blocking you',
         'store' => [
             'disabled' => 'Comments are disabled',
         ],
