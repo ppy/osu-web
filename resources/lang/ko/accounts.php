@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => '친구 목록에 없는 사람들이 보낸 개인 메시지를 차단',
-        'friends_only_info' => '',
+        'friends_only_info' => '이 차단은 osu!lazer 멀티플레이 초대와 랭크 플레이의 1:1 대결 요청에도 적용됩니다',
         'hide_online' => '온라인 상태 숨기기',
         'hide_online_info' => '이는 osu!lazer의 “오프라인으로 표시” 모드와 동일합니다.',
         'title' => '개인 정보',

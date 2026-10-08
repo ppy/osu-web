@@ -58,5 +58,11 @@ return [
             'false' => 'Poista',
             'true' => 'Poistettu',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

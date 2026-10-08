@@ -484,6 +484,7 @@ return [
             'rank' => 'Rütbe',
             'rating' => 'Derecelendirme',
             'recent_history' => 'Son Maç Geçmişi',
+            'recent_history_provisional' => '',
             'tier' => 'Seviye',
             'title' => 'Quick Play',
             'wins' => 'Galibiyetler',
@@ -517,6 +518,8 @@ return [
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
             'highest' => ':date tarihinde en yüksek rank: :rank',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Yeni Yıldız Sıralaması / PP algoritması :link.',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Toplam Skor',
             // modding stats
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Sevilen Beatmapler',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Onay Bekleyen Beatmapler',
             'ranked_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
         ],

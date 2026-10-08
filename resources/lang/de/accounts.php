@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht in deiner Freundesliste sind',
-        'friends_only_info' => '',
+        'friends_only_info' => 'Dadurch werden in osu!lazer auch Einladungen in den Mehrspielermodus und zu Duellen im "Ranked Play"-Modus blockiert',
         'hide_online' => 'Online-Status verbergen',
         'hide_online_info' => 'Dies entspricht dem "Offline"-Modus in osu!lazer',
         'title' => 'Privatsphäre',

@@ -17,7 +17,7 @@ return [
 
     'download' => [
         'limit_exceeded' => 'Spomal, hraj viac.',
-        'no_mirrors' => '',
+        'no_mirrors' => 'Nie sú žiadne dostupné servery pre stiahnutie.',
     ],
 
     'featured_artist_badge' => [
@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited obľúbenie|:count_delimited obľúbení',
+        'playcount' => ':count_delimited zahranie|:count_delimited zahraní',
     ],
 
     'panel' => [
@@ -46,21 +46,21 @@ return [
     ],
 
     'nominate' => [
-        'bng_limited_too_many_rulesets' => '',
-        'full_nomination_required' => '',
+        'bng_limited_too_many_rulesets' => 'Skušobný nominátori nemôžu nominovať viaceré herné módy.',
+        'full_nomination_required' => 'Musíš byť plnohodnotný nominátor aby si mohol finálne nominovať herný mód.',
         'hybrid_requires_modes' => 'Hybridná beatmapa vyžaduje, aby ste vybrali aspoň jeden herný režim k nominovaní.',
         'incorrect_mode' => 'Nemáte oprávnenie nominovať za mód: :mode',
-        'invalid_limited_nomination' => '',
-        'invalid_ruleset' => '',
+        'invalid_limited_nomination' => 'Táto beatmapa má neplatné nominácie a nemôže byť kvalifikovaná.',
+        'invalid_ruleset' => 'Táto nominácia má neplatné herné módy.',
         'too_many' => 'Požiadavka na nomináciu je už splnená.',
-        'too_many_non_main_ruleset' => '',
+        'too_many_non_main_ruleset' => 'Požiadavky pre nomináciu pre nie hlavný herný mód bol splnený.',
 
         'dialog' => [
             'confirmation' => 'Ste si istí, že chcete nominovať tuto beatmapu?',
-            'different_nominator_warning' => '',
+            'different_nominator_warning' => 'Kvalifikovanie tejto beatmapy s inými nominátormi resetuje jej pozíciu v rade kvalifikovaných beatmáp.',
             'header' => 'Nominovať beatmapu',
             'hybrid_warning' => 'poznámka: môžete nominovať len raz, takže sa uistite, že nominujete za všetky herné režimy, ktoré chcete',
-            'current_main_ruleset' => '',
+            'current_main_ruleset' => 'Hlavný herný mód je: :ruleset',
             'which_modes' => 'Nominovať pre aké módy?',
         ],
     ],
@@ -70,15 +70,15 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Neplatné hodnotenie.',
     ],
 
     'show' => [
         'discussion' => 'Diskusia',
 
         'admin' => [
-            'full_size_cover' => '',
-            'page' => '',
+            'full_size_cover' => 'Zobraziť plnú veľkosť úvodného obrázku',
+            'page' => 'Zobraziť administratívnu stránku',
         ],
 
         'deleted_banner' => [
@@ -155,12 +155,12 @@ return [
             'nominators' => 'Nominátori',
             'nsfw' => 'Explicitný obsah',
             'offset' => 'Online offset',
-            'pack_tags' => '',
+            'pack_tags' => 'Balíčky beatmáp',
             'points-of-failure' => 'Body Neúspechu',
             'source' => 'Zdroj',
             'storyboard' => 'Táto beatmapa obsahuje storyboard',
             'success-rate' => 'Úspešnosť',
-            'success_rate_plays' => '',
+            'success_rate_plays' => ':passes z :count_delimited zahrania|:passes z :count_delimited zahraní',
             'user_tags' => 'Tagy od Hráčov',
             'video' => 'Táto beatmapa obsahuje video',
         ],
@@ -170,8 +170,8 @@ return [
             'description' => 'Kvôli špecifickým mechanikám sa táto mapa môže hrať len na osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link pre zobrazenie skóre zahraných na tejto beatmape.',
+                'enable_link' => 'Zapni lazer režim',
             ],
         ],
 
@@ -189,7 +189,7 @@ return [
         'scoreboard' => [
             'achieved' => 'dosiahol :when',
             'country' => 'Rebríček Krajiny',
-            'error' => 'Nepodarilo sa načisť rebríčky',
+            'error' => 'Nepodarilo sa načítať rebríčky',
             'friend' => 'Rebríček Priateľov',
             'global' => 'Celosvetový Rebríček',
             'supporter-link' => 'Kliknite <a href=":link">tu</a> pre zobrazenie všetkych výhod, ktoré dostanete!',
@@ -246,7 +246,7 @@ return [
             'nominations' => 'Nominácie',
             'playcount' => 'Počet zahraní',
             'favourites' => 'Obľúbenia',
-            'no_favourites' => '',
+            'no_favourites' => 'Zatiaľ žiadne obľúbenia',
         ],
 
         'status' => [
@@ -255,7 +255,7 @@ return [
             'loved' => 'Milované',
             'qualified' => 'Kvalifikované',
             'wip' => 'Nedorobené',
-            'pending' => 'Nevybavené',
+            'pending' => 'Čakajúce',
             'graveyard' => 'Cintorín',
         ],
     ],

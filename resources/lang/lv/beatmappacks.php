@@ -19,7 +19,7 @@ return [
     'show' => [
         'created_by' => 'no :author',
         'download' => 'Lejupielādēt',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Izaicinājums',
         'item' => [
             'cleared' => 'nokārtots',
             'not_cleared' => 'nav nokārtots',
@@ -33,7 +33,7 @@ return [
     'mode' => [
         'artist' => 'Mākslinieks/Albums',
         'chart' => 'Uzmanības Centrā',
-        'featured' => 'Kontraktētais Mākslinieks',
+        'featured' => 'Sadarbības izpildītājs',
         'loved' => 'Iemīļoto Projekts',
         'standard' => 'Standarta',
         'theme' => 'Tēma',

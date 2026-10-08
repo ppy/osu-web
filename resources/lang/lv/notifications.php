@@ -15,7 +15,7 @@ return [
 
     'action_type' => [
         '_' => 'visi',
-        'beatmapset' => 'ritma-mapes',
+        'beatmapset' => ' bītkartes',
         'build' => 'izveidojumi',
         'channel' => 'čats',
         'forum_topic' => 'forums',
@@ -26,7 +26,7 @@ return [
 
     'filters' => [
         '_' => 'visi',
-        'beatmapset' => 'ritma-mapes',
+        'beatmapset' => ' bītkartes',
         'build' => 'izveidojumi',
         'channel' => 'čats',
         'forum_topic' => 'forums',
@@ -37,16 +37,16 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Ritma-mape',
+            '_' => ' Bītkarte',
 
             'beatmap_owner_change' => [
                 '_' => 'Viesu grūtība',
-                'beatmap_owner_change' => 'Tu tagad esi ":beatmap" grūtības īpašnieks priekš ritma-mapes ":title"',
+                'beatmap_owner_change' => 'Tu tagad esi ":beatmap" grūtības īpašnieks priekš bītkartes ":title"',
                 'beatmap_owner_change_compact' => 'Tu tagad esi ":beatmap" grūtības īpašnieks',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Ritma-mapes diskusija',
+                '_' => 'Bītkartes diskusija',
                 'beatmapset_discussion_lock' => 'Diskusija uz ":title" tika aizslēgta',
                 'beatmapset_discussion_lock_compact' => 'Diskusija tika aizslēgta',
                 'beatmapset_discussion_post_new' => 'Jauns raksts uz ":title" no :username: ":content"',
@@ -74,19 +74,19 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Ritma-mapes status izmainijās',
+                '_' => 'Bītkartes status izmainijās',
                 'beatmapset_disqualify' => '":title" tika diskvalificēta',
-                'beatmapset_disqualify_compact' => 'Ritma-mape tika diskvalificēta',
+                'beatmapset_disqualify_compact' => 'Bītkarte tika diskvalificēta',
                 'beatmapset_love' => '":title" tika paaugstināta uz iemīļotu',
-                'beatmapset_love_compact' => 'Ritma-mape tika paaugstināta uz iemīļotu',
+                'beatmapset_love_compact' => 'Bītkarte tika paaugstināta uz iemīļotu',
                 'beatmapset_nominate' => '":title" tika nominēta',
-                'beatmapset_nominate_compact' => 'Ritma-mape tika nominēta',
+                'beatmapset_nominate_compact' => 'Bītkarte tika nominēta',
                 'beatmapset_qualify' => '":title" saņēma pietiekami daudz nomināciju, un iestājās novērtējamo rindā',
-                'beatmapset_qualify_compact' => 'Ritma-mape iestājās novērtējamo rindā',
-                'beatmapset_rank' => '":title" tika novērtēta',
-                'beatmapset_rank_compact' => 'Ritma-mape tika novērtēta',
+                'beatmapset_qualify_compact' => 'Bītkarte pievienota rangošanas rindai',
+                'beatmapset_rank' => '":title" tika rangota',
+                'beatmapset_rank_compact' => 'Bītkarte tika rangota',
                 'beatmapset_remove_from_loved' => '":title" tika noņemta no Iemīļota',
-                'beatmapset_remove_from_loved_compact' => 'Ritma-mape tika noņemta no iemīļota',
+                'beatmapset_remove_from_loved_compact' => 'Bītkarte tika noņemta no iemīļota',
                 'beatmapset_reset_nominations' => '":title" Nominācija tika atiestatīta',
                 'beatmapset_reset_nominations_compact' => 'Nominācija tika atiestatīta',
             ],
@@ -125,12 +125,12 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Pieminējums čatā',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username pieminēja tevi :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'pieminēts kanālā :name',
                 ],
             ],
 
@@ -171,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Jaunumi (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -206,14 +206,14 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => 'Jauna ritma-mape',
+                '_' => 'Jauna bītkarte',
 
-                'user_beatmapset_new' => 'Jauna ritma-mape ":title" no :username',
-                'user_beatmapset_new_compact' => 'Jauna ritma-mape ":title"',
-                'user_beatmapset_new_group' => 'Jaunas ritma-mapes no :username',
+                'user_beatmapset_new' => 'Jauna bītkarte ":title" no :username',
+                'user_beatmapset_new_compact' => 'Jauna bītkarte ":title"',
+                'user_beatmapset_new_group' => 'Jaunas bītkartes no :username',
 
                 'user_beatmapset_revive' => 'Ritma-mapi ":title" atjaunināja :username',
-                'user_beatmapset_revive_compact' => 'Ritma-mape ":title" atjaunināta',
+                'user_beatmapset_revive_compact' => 'Bītkarte ":title" atdzīvināta',
             ],
         ],
 
@@ -230,11 +230,11 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Jaunumi',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Tu tagad esi ":title" ritma-mapes viesis',
+                'beatmap_owner_change' => 'Tagad esi bītkartes ":title" viesautors',
             ],
 
             'beatmapset_discussion' => [
@@ -258,7 +258,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => 'Ritma-mapei ":title" ir jauni komentāri',
+                'comment_new' => 'Bītkartei":title" ir jauni komentāri',
             ],
         ],
 
@@ -270,7 +270,7 @@ return [
                 'channel_message' => 'Tu saņēmi jaunu ziņu no :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username pieminēja tevi :name ":title"',
             ],
 
             'channel_team' => [
@@ -306,8 +306,8 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username ir izveidojis jaunas ritma-mapes',
-                'user_beatmapset_revive' => ':username ir atjauninājis ritma-mapes',
+                'user_beatmapset_new' => ':username ir izveidojis jaunas bītkartes',
+                'user_beatmapset_revive' => ':username atdzīvināja bītkartes',
             ],
         ],
     ],

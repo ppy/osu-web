@@ -58,5 +58,11 @@ return [
             'false' => 'Verwijderen',
             'true' => 'Verwijderd',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

@@ -13,7 +13,7 @@ return [
     ],
 
     'room' => [
-        'hosted_by' => 'hospedado por :user',
+        'hosted_by' => 'host: :user',
         'invalid_password' => 'Senha de sala inválida',
         'map_count' => ':count_delimited mapa|:count_delimited mapas',
         'player_count' => ':count_delimited jogador|:count_delimited jogadores',

@@ -416,7 +416,7 @@ return [
                 'title' => 'Partite Multigiocatore',
             ],
             'top_ranks' => [
-                'download_replay' => 'Scarica Replay',
+                'download_replay' => 'Scarica replay',
                 'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata al :percentage',
                 'view_details' => 'Visualizza dettagli',
@@ -480,10 +480,11 @@ return [
 
         'matchmaking' => [
             'losses' => 'Sconfitte',
-            'plays' => '',
+            'plays' => 'Partite Totali',
             'rank' => 'Posizione',
             'rating' => 'Punteggio',
-            'recent_history' => '',
+            'recent_history' => 'Cronologia ultimi scontri',
+            'recent_history_provisional' => '',
             'tier' => 'Grado',
             'title' => 'Ranked Play',
             'wins' => 'Vittorie',
@@ -517,6 +518,8 @@ return [
             'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica Globale',
             'highest' => 'Posizione più alta: :rank il :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'È :link un nuovo algoritmo di Valutazione in Stelle / PP.',
@@ -529,7 +532,7 @@ return [
             'total_score' => 'Punteggio totale',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Giocatore Singolo',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Punteggio Totale',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Beatmap Amate',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Beatmap In Attesa',
             'ranked_beatmapset_count' => 'Beatmap Classificate',
         ],

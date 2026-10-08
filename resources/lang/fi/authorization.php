@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Et voi arvostella rytmikarttasettiä, jossa olet mukana.',
+            'status' => 'Et voi arvostella rytmikarttasettiä tällä statuksella.',
         ],
     ],
 

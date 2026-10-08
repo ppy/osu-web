@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Mostrar menos pormenores',
+            'to_v2' => 'Mostrar mais pormenores',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,15 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => 'Derrotas',
+            'plays' => 'Partidas Totais',
+            'rank' => 'Classificação',
+            'rating' => 'Pontuação',
+            'recent_history' => 'Histórico da Última Partida',
+            'recent_history_provisional' => '',
+            'tier' => 'Patamar',
             'title' => 'Partida Classificada',
-            'wins' => '',
+            'wins' => 'Vitórias',
         ],
 
         'not_found' => [
@@ -517,6 +518,8 @@ return [
             'global' => 'Classificação global para :mode',
             'global_simple' => 'Classificação global',
             'highest' => 'Classificação mais alta: :rank em :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Um novo algoritmo de classificação por estrelas/PP está :link.',
@@ -525,11 +528,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Topo :value',
-            'label' => '',
+            'label' => 'Destaques',
             'total_score' => 'Pontuação total',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Jogo Individual',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Pontuação total',
             // modding stats
             'graveyard_beatmapset_count' => 'Mapas no cemitério',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Mapas adorados',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Mapas pendentes',
             'ranked_beatmapset_count' => 'Mapas classificados e aprovados',
         ],

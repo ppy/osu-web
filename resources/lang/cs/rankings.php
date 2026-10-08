@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Obtížnost',
+        'theme' => '',
         'top_10p' => 'Skóre pro Top 10%',
         'top_50p' => 'Skóre pro Top 50%',
         'unavailable' => [

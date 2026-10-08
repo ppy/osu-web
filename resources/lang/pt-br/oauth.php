@@ -27,7 +27,7 @@ return [
 
     'client' => [
         'id' => 'ID do Cliente',
-        'name' => 'Nome da Aplicação',
+        'name' => 'Nome da aplicação',
         'redirect' => 'URL de Callback da Aplicação',
         'reset' => 'Redefinir segredo do cliente',
         'reset_failed' => 'Falha ao redefinir segredo do cliente',
@@ -57,6 +57,12 @@ return [
         'revoked' => [
             'false' => 'Excluir',
             'true' => 'Excluído',
+        ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
         ],
     ],
 ];

@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'izdzēsta ritma-mape',
+        'beatmap-deleted' => 'izdzēsta bītkarte',
         'failed' => 'IZGĀZĀS',
         'header' => 'Daudzspēlētāju Mači',
         'in-progress' => '(notiek spēle)',

@@ -33,7 +33,7 @@ return [
             'login_required' => 'Đăng nhập để tìm beatmap',
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm beatmap',
-            'title' => 'Beatmaps',
+            'title' => 'Beatmap',
         ],
 
         'forum_post' => [
@@ -41,7 +41,7 @@ return [
             'link' => 'Tìm trong diễn đàn',
             'login_required' => 'Đăng nhập để tìm kiếm trong diễn đàn',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong diễn đàn',
-            'title' => 'Diễn Đàn',
+            'title' => 'Diễn đàn',
 
             'label' => [
                 'forum' => 'tìm trong diễn đần',

@@ -19,7 +19,7 @@ return [
         'nav_title' => 'tiesāt',
         'no_current_vote' => 'tu vēl nebalsoji.',
         'update' => 'atjaunināt',
-        'unsaved_changes' => '',
+        'unsaved_changes' => 'nesaglabātās izmaiņas',
         'validation' => [
             'missing_score' => 'trūkst rezultāts',
             'contest_vote_judged' => 'nevar balsot vērtētos konkursos',
@@ -32,7 +32,7 @@ return [
         'creator' => 'autors',
         'score' => 'Rezultāts',
         'score_std' => 'Standartizēti Rezultāti',
-        'total_score' => 'Kopējais rezultāts',
+        'total_score' => 'kopējais rezultāts',
         'total_score_std' => 'kopējais standartizēto rezultātu skaits',
     ],
 
@@ -44,7 +44,7 @@ return [
         'show_voted_only' => 'Rādīt balsotos',
 
         'best_of' => [
-            'none_played' => "Neizskatās, ka jūs spēlējāt kādu no bītmapēm, kas atbilst šim konkursam!",
+            'none_played' => "Neizskatās, ka tu esi spēlējis kādu ritma-karti, kas atbilst šim konkursam!",
         ],
 
         'button' => [
@@ -59,7 +59,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Pirms balsošanas ir jāspēlē visas bītmapes norādītajos sarakstos',
+                'incomplete_play' => 'Pirms balsošanas ir jāiziet visas ritma-kartes norādītajos sarakstos',
             ],
         ],
     ],
@@ -70,11 +70,11 @@ return [
         'silenced_or_restricted' => 'Jūs nevarat piedalīties konkursos, kamēr esat ierobežots vai apklusināts.',
         'preparation' => 'Mēs pašlaik gatavojam šo konkursu. Lūdzu, pacietīgi gaidiet!',
         'drop_here' => 'Iemetiet savu pieteikumu šeit',
-        'allowed_extensions' => '',
-        'max_size' => '',
-        'required_dimensions' => '',
+        'allowed_extensions' => ':types faili tiek pieņemti',
+        'max_size' => 'Maks. izmērs: :limit',
+        'required_dimensions' => 'Izmēriem jābūt :widthx:height',
         'download' => 'Lejupielādēt .osz',
-        'wrong_file_type' => '',
+        'wrong_file_type' => 'Šajā konkursā tiek pieņemti tikai :types faili.',
         'wrong_dimensions' => 'Šajā konkursā pieteikumiem jābūt :widthx:height',
         'too_big' => 'Dalība šajā konkursā var būt tikai līdz :limit.',
     ],
@@ -108,7 +108,7 @@ return [
 
     'show' => [
         'admin' => [
-            'page' => 'Apskatīt informāciju un ierakstes',
+            'page' => 'Skatīt informāciju un iesniegumus',
         ],
     ],
 ];

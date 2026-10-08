@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited 件のお気に入り|:count_delimited 件のお気に入り',
+        'playcount' => ':count_delimited 回プレイ|:count_delimited 回プレイ',
     ],
 
     'panel' => [

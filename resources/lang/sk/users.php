@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Globálna pozícia pre :mode',
             'global_simple' => 'Celkové umiestnenie',
             'highest' => '',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Celkové Skóre',
             // modding stats
             'graveyard_beatmapset_count' => 'Irelevantné beatmapy',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Obľúbené beatmapy',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Čakajúce Beatmapy',
             'ranked_beatmapset_count' => 'Hodnotené a Schválené Beatmapy',
         ],

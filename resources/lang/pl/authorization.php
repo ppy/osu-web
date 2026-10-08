@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => 'Nie możesz ocenić zbioru beatmap, w której uczestniczysz.',
-            'status' => 'Nie możesz ocenić zbioru beatmap w tym statusem.',
+            'owner' => 'Nie możesz ocenić beatmapy, której jesteś współtwórcą.',
+            'status' => 'Nie możesz ocenić beatmapy o tym statusie.',
         ],
     ],
 

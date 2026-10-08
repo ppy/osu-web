@@ -484,6 +484,7 @@ return [
             'rank' => '排名',
             'rating' => '等级分',
             'recent_history' => '最新比赛历史',
+            'recent_history_provisional' => '',
             'tier' => '段位',
             'title' => '排位模式',
             'wins' => '获胜次数',
@@ -517,6 +518,8 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => ':date 达成生涯最高排名 :rank',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '新的难度星级 / PP 算法 :link 。',
@@ -547,7 +550,9 @@ return [
             'total_score' => '总分',
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => '待定 (Pending) 谱面',
             'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],

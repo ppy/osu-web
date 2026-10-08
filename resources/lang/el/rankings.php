@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Δυσκολία',
+        'theme' => '',
         'top_10p' => 'Κορυφαία 10% Βαθμολογία',
         'top_50p' => 'Κορυφαία 50% Βαθμολογία',
         'unavailable' => [

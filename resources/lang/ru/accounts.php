@@ -114,8 +114,7 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => 'подключенные приложения
-',
+        'authorized_clients' => 'подключенные приложения',
         'own_clients' => 'мои приложения',
         'title' => 'OAuth',
     ],
@@ -145,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'блокировать личные сообщения ото всех, кроме друзей',
-        'friends_only_info' => '',
+        'friends_only_info' => 'с этой настройкой также скрываются приглашения в комнату и вызовы на дуэль в osu!lazer',
         'hide_online' => 'скрывать, что я в сети',
         'hide_online_info' => 'это соответствует статусу "невидимка" в osu!lazer',
         'title' => 'Конфиденциальность',

@@ -9,11 +9,11 @@ return [
         'all_scope_no_mix' => '* nav derīgs ar citām darbības jomām',
         'client_missing_owner' => 'Klientam trūkst īpašnieks.',
         'client_unauthorized' => 'Klients nav autorizēts.',
-        'delegate_bot_only' => 'Deleģēšana ar klienta pilnvarām ir pieejama tikai tērzēšanas robotiem.',
+        'delegate_bot_only' => 'Deleģēšana ar klienta akreditācijas datiem ir pieejama tikai botiem.',
         'client_credentials_only' => 'Šis darbības tvērums ir derīgs tikai client_credentials tipa marķieriem.',
         'delegate_invalid_combination' => 'Šai darbības jomu kombinācijai deleģēšana netiek atbalstīta.',
         'delegate_required' => 'ir nepieciešama delegāta darbības joma.',
         'empty' => 'Žetoni bez darbības jomām nav derīgi.',
-        'bot_only' => 'Šī darbības joma ir pieejama tikai tērzēšanas robotiem vai jūsu klientiem.',
+        'bot_only' => 'Šī darbības joma ir pieejama tikai botiem vai taviem klientiem.',
     ],
 ];

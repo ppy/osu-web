@@ -23,7 +23,7 @@ return [
                 'description' => 'Các khoản đóng góp sẽ được sử dụng để duy trì máy chủ vận hành trang web, dịch vụ chơi nhiều người, bảng xếp hạng trực tuyến, v.v.',
             ],
             'featured-artists' => [
-                'title' => 'Featured Artists',
+                'title' => 'Nghệ sĩ nổi bật',
                 'description' => 'Với sự hỗ trợ của bạn, chúng tôi có thể tiếp cận thêm nhiều nghệ sĩ tuyệt vời hơn nữa và cấp phép cho âm nhạc tuyệt vời hơn để dùng trong osu!',
                 'link_text' => 'Xem danh sách hiện hành &raquo;',
             ],

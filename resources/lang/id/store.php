@@ -94,7 +94,7 @@ return [
                 'title' => 'Pesananmu sudah dikirim!',
                 'tracking_details' => 'Berikut rincian pelacakan yang terkait:',
                 'no_tracking_details' => [
-                    '_' => "Kami tidak memiliki rincian pelacakan apa pun karena kami mengirim paketmu via Air Mail, namun pesananmu seharusnya akan sampai dalam 1-3 minggu. Untuk pengiriman ke Eropa, terkadang bea cukai setempat bisa menunda pesananmu di luar kendali kami. Apabila kamu memiliki sesuatu yang ingin ditanyakan, silakan balas email konfirmasi pesanan yang kamu terima (atau :link).",
+                    '_' => "Kami tidak memiliki rincian pelacakan karena kami mengirimkan paketmu via Air Mail, namun pesananmu seharusnya akan sampai dalam 1-3 minggu. Untuk pengiriman ke Eropa, terkadang bea cukai setempat bisa menunda pesananmu di luar kendali kami. Apabila kamu memiliki pertanyaan atau kendala, silakan balas email konfirmasi pemesanan yang kamu terima (atau :link).",
                     'link_text' => 'kirimi kami email',
                 ],
             ],

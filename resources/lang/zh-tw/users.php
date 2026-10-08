@@ -484,6 +484,7 @@ return [
             'rank' => '排名',
             'rating' => '等級分',
             'recent_history' => '最新對戰紀錄',
+            'recent_history_provisional' => '',
             'tier' => '階級',
             'title' => '排位模式',
             'wins' => '獲勝次數',
@@ -517,6 +518,8 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => '最高排名:rank於:date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '新的難度星級與 PP 演算法： :link。',
@@ -547,7 +550,9 @@ return [
             'total_score' => '總分',
             // modding stats
             'graveyard_beatmapset_count' => '已閒置的圖譜',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => '社群喜愛的圖譜',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => '待處理的圖譜',
             'ranked_beatmapset_count' => '已進榜 & 批准的圖譜',
         ],

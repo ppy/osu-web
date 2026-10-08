@@ -30,7 +30,7 @@ return [
     ],
 
     'scores' => [
-        'button' => 'Segnala Punteggio',
+        'button' => 'Segnala punteggio',
         'title' => 'Segnalare il punteggio di :username?',
     ],
 

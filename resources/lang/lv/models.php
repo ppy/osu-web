@@ -7,8 +7,8 @@ return [
     'not_found' => "Specificētais :model netika atrasts.",
 
     'name' => [
-        'App\Models\Beatmap' => 'ritma-mapes grūtība',
-        'App\Models\Beatmapset' => 'ritma-mape',
-        'App\Models\Solo\Score' => '',
+        'App\Models\Beatmap' => 'bītkartes grūtība',
+        'App\Models\Beatmapset' => 'bītkarte',
+        'App\Models\Solo\Score' => 'punkti',
     ],
 ];

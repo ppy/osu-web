@@ -28,7 +28,7 @@ return [
         'beatmapsets' => [
             'show' => 'tiedot',
             'discussions' => 'keskustelut',
-            'versions' => '',
+            'versions' => 'versiohistoria',
         ],
 
         'changelog' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'modaus',
             'playlists' => 'soittolistat',
-            'ranked-play' => '',
+            'ranked-play' => 'kilpailullinen',
             'realtime' => 'moninpeli',
             'show' => 'tiedot',
         ],
@@ -115,7 +115,7 @@ return [
             'copyright' => 'Tekijänoikeudet (DMCA)',
             'jp_sctl' => '',
             'privacy' => 'Yksityisyys',
-            'rules' => '',
+            'rules' => 'Säännöt',
             'server_status' => 'Palvelimen tilanne',
             'source_code' => 'Lähdekoodi',
             'terms' => 'Käyttöehdot',
@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
-            'create_team' => '',
+            'create_team' => 'Luo Tiimi',
             'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
             'legacy_score_only_toggle' => 'Lazer-tila',

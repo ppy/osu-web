@@ -486,6 +486,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -519,6 +520,8 @@ return [
             'global' => 'דירוג עולמי ל- :mode',
             'global_simple' => 'דירוג עולמי',
             'highest' => '',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -549,7 +552,9 @@ return [
             'total_score' => 'סך כל התוצאות',
             // modding stats
             'graveyard_beatmapset_count' => 'מפות נטושות',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'מפות אוהבות',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => '',
             'ranked_beatmapset_count' => '',
         ],

@@ -58,5 +58,11 @@ return [
             'false' => 'Delete',
             'true' => 'Naibura',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

@@ -58,5 +58,11 @@ return [
             'false' => 'Xóa',
             'true' => 'Đã xóa',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'رتبه جهانی برای :mode',
             'global_simple' => 'رتبه جهانی',
             'highest' => '',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'مجموع امتیاز ها',
             // modding stats
             'graveyard_beatmapset_count' => 'بیت مپ های فراموش شده',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'بیت مپ های "دوست داشته شده"',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'بیت مپ های در انتظار',
             'ranked_beatmapset_count' => 'بیت مپ های رتبه بندی شده',
         ],

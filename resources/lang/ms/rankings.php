@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Kesukaran',
+        'theme' => '',
         'top_10p' => 'Markah 10% Teratas',
         'top_50p' => 'Markah 50% Teratas',
         'unavailable' => [

@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => 'Main Peringkat',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Pangkat dunia :mode',
             'global_simple' => 'Pangkat Dunia',
             'highest' => 'Pangkat tertinggi: :rank pada :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Algoritma Penarafan Bintang / PP baharu :link.',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Jumlah Markah',
             // modding stats
             'graveyard_beatmapset_count' => 'Peta Rentak di Kubur',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Peta Rentak Kegemaran',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Peta Rentak Tergantung',
             'ranked_beatmapset_count' => 'Peta Rentak Berpangkat',
         ],

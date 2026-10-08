@@ -26,7 +26,7 @@ return [
         'edited' => 'Pēdējo reizi rediģēja :editor :update_time.',
         'guest' => 'Viesa grūtības līmenis: :user',
         'kudosu_denied' => 'Liegts saņemt kudosu.',
-        'include_replies' => '',
+        'include_replies' => 'Iekļaut atbildes',
         'message_placeholder_deleted_beatmap' => 'Šis grūtības līmenis ir izdzēsts, tāpēc to vairs nevar apspriest.',
         'message_placeholder_locked' => 'Šīs ritma-mapes diskusijas ir izslēgtas.',
         'message_placeholder_silenced' => "Nevar publicēt diskusiju, kamēr apklusināts.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Atrisināts',
         'restore' => 'atjaunot',
         'show_deleted' => 'Rādīt dzēstos',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Rādīt citas atbildes',
         'title' => 'Diskusijas',
         'unresolved_count' => ':count_delimited neatrisināta problēma|:count_delimited neatrisinātas problēmas',
 
@@ -83,14 +83,14 @@ return [
             'nomination_reset' => 'Atiestatīt Nomināciju',
             'praise' => 'Uzslavēt',
             'problem' => 'Problēma',
-            'problem_warning' => 'Sūdzēties par problēmu',
+            'problem_warning' => 'Ziņot par problēmu',
             'review' => 'Atsauksme',
             'suggestion' => 'Ieteikums',
         ],
 
         'message_type_title' => [
             'disqualify' => 'Publicēt Diskvalifikāciju',
-            'hype' => 'Iesūti Uzmudrinājumu!',
+            'hype' => 'Iesūti Uzmundrinājumu!',
             'mapper_note' => 'Publicēt piezīmi',
             'nomination_reset' => 'Noņemt visas nominācijas',
             'praise' => 'Publicēt Slavējumu',
@@ -132,7 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => '',
+                'mapper_note' => 'ievietot piezīmi',
                 'paragraph' => 'ievietot rindkopu',
                 'praise' => 'ievietot uzslavu',
                 'problem' => 'ievietot problēmu',
@@ -165,7 +165,7 @@ return [
             'graveyard' => "Šī ritma-karte nav atjaunināta kopš :date, tāpēc tā ir pamesta...",
             'loved' => 'Šī ritma-karte tika iemīļota :date!',
             'ranked' => 'Šī ritma-karte tika novērtēta :date!',
-            'wip' => 'Piezīme: Šī ritma-karte ir atzīmēta kā "work-in-progress" (WIP).',
+            'wip' => 'Piezīme: Šo ritma-karti ir atzīmēja kā "darbs progresā" (WIP) tās izveidotājs.',
         ],
 
         'votes' => [
@@ -189,7 +189,7 @@ return [
         'new_time' => "Tu esi saņēmis jaunu uzslavu: :new_time.",
         'remaining' => 'Tev ir palikušas :remaining uzslavas.',
         'required_text' => 'Uzslava: :current/:required',
-        'section_title' => 'Uzslavu-Banītis',
+        'section_title' => 'Uzslavu-Bānītis',
         'title' => 'Uzslavēt',
     ],
 
@@ -198,7 +198,7 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => 'Tu jau esi nominējis šo ritma-karti.',
+        'already_nominated' => 'Tu jau esi nominējis šo bītkarti.',
         'cannot_nominate' => 'Tu nevari nominēt šīs ritma-kartes spēles režīmu.',
         'delete' => 'Dzēst',
         'delete_own_confirm' => 'Vai esi pārliecināts? Ritma-Karte tiks izdzēsta un tu tiksi nogādāts atpakaļ uz savu profilu.',
@@ -212,7 +212,7 @@ return [
         'love_choose' => 'Izvēlieties grūtību priekš iemīļots',
         'love_confirm' => 'Vai tev patīk šī ritma-karte?',
         'nominate' => 'Nominēt',
-        'nominate_confirm' => 'Nominēt šo ritma-karti?',
+        'nominate_confirm' => 'Nominēt šo bītkarti?',
         'nominated_by' => 'nominēja :users',
         'not_enough_hype' => "Nav pietiekami daudz atbalsta.",
         'remove_from_loved' => 'Noņemt no Iemīļots',
@@ -220,7 +220,7 @@ return [
         'required_text' => 'Nominācijas :current/:required',
         'reset_message_deleted' => 'dzēsts',
         'title' => 'Nominācijas status',
-        'unresolved_issues' => 'Ir vēljoprojām neatrisinātas problēmas, kuras ir nepieciešams adresēt.',
+        'unresolved_issues' => 'Joprojām ir neatrisinātas problēmas, kas vispirms jānovērš.',
 
         'rank_estimate' => [
             '_' => 'Tiek paredzēts, ka šī ritma-karte tiks novērtēta :date, ja netiks konstatētas problēmas. Tā ir #:position :queue.',
@@ -248,10 +248,10 @@ return [
             'prompt' => 'rakstiet atslēgas vārdus...',
             'login_required' => 'Ieiet, lai meklētu.',
             'options' => 'Vairāk Meklēšanas Opcijas',
-            'rank_filter_note' => '',
-            'supporter_filter' => 'Filtrēšanai pēc :filters ir nepieciešams aktīvs osu!atbalstītāja piekariņš',
+            'rank_filter_note' => 'Profila augstāko rangu skaits un šajā lapā redzamie rezultāti ir balstīti uz taviem augstākajiem "standartizētajiem" (jeb "lazer") rezultātiem ritma-kartēs.',
+            'supporter_filter' => 'Filtrēšanai pēc :filters ir nepieciešams aktīvs osu!supporter birka',
             'not-found' => 'nav rezultātu',
-            'not-found-quote' => '... nah, nekas netika atrasts.',
+            'not-found-quote' => '... nē, nekas netika atrasts.',
             'filters' => [
                 'extra' => 'Papildus',
                 'general' => 'Vispārīgi',
@@ -277,17 +277,17 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrēšanai pēc :filters ir nepieciešams aktīvs :link',
-                'link_text' => 'osu!atbalstītāja piekariņš',
+                'link_text' => 'osu!supporter birka',
             ],
             'tag_picker' => [
-                'tooltip' => '',
-                'prompt' => '',
+                'tooltip' => 'pārlūkot lietotāju birkas',
+                'prompt' => 'raksti lai meklētu',
             ],
         ],
     ],
     'general' => [
         'converts' => 'Iekļaut pārveidotās ritma-kartes',
-        'featured_artists' => 'Kontraktētie Mākslinieki',
+        'featured_artists' => 'Sadarbības izpildītāji',
         'follows' => 'Abonētie kartētāji',
         'recommended' => 'Ieteiktais grūtības līmenis',
         'spotlights' => 'Ritma-Kartes Uzmanības Centrā',
@@ -312,7 +312,7 @@ return [
         'pending' => 'Procesā',
         'wip' => 'WIP',
         'qualified' => 'Kvalificēts',
-        'ranked' => 'Rangots',
+        'ranked' => 'Novērtēts',
     ],
     'genre' => [
         'any' => 'Viss',
@@ -375,7 +375,7 @@ return [
     ],
     'panel' => [
         'playcount' => 'Spēlējumu skaits: :count',
-        'favourites' => 'Patīk: :count',
+        'favourites' => 'Iemīļotie: :count',
     ],
     'variant' => [
         'mania' => [

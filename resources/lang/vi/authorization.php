@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Bạn không thể đánh giá một bộ beatmap mà mình tham gia thực hiện.',
+            'status' => 'Bạn không thể đánh giá một bộ beatmap ở trạng thái này.',
         ],
     ],
 

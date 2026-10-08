@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokovat soukromé zprávy od lidí, kteří nejsou v tvém seznamu přátel',
-        'friends_only_info' => '',
+        'friends_only_info' => 'toto blokování se také vztahuje na osu!lazer multiplayer pozvánky a požadavky na duel v hodnocené hře',
         'hide_online' => 'skrýt tvůj online status',
         'hide_online_info' => 'toto je stejné, jako "neviditelný" režim v osu!lazer',
         'title' => 'Soukromí',

@@ -49,7 +49,7 @@ return [
         'retry' => 'Thử lại',
         'save' => 'Lưu',
         'saving' => 'Đang lưu...',
-        'search' => 'Tìm Kiếm',
+        'search' => 'Tìm kiếm',
         'see_more' => 'xem thêm',
         'show' => 'hiện',
         'show_deleted' => 'Hiển thị bình luận đã xóa',

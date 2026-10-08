@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'ระดับความยาก',
+        'theme' => '',
         'top_10p' => 'คะแนน Top 10%',
         'top_50p' => 'คะแนน Top 50%',
         'unavailable' => [

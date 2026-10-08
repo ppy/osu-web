@@ -38,7 +38,7 @@ return [
     ],
 
     'teams' => [
-        'created' => '',
+        'created' => 'Izveidots',
         'relevance' => 'Aktualitāte',
         'name' => 'Vārds',
         'short-name' => 'Īsais vārds',

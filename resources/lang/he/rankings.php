@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'רמת קושי',
+        'theme' => '',
         'top_10p' => '',
         'top_50p' => '',
         'unavailable' => [

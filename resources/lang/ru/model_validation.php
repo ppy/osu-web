@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => 'Указан неверный :attribute.',
+    'invalid' => 'Указан неверный параметр :attribute.',
     'not_negative' => ':attribute не может быть отрицательным.',
     'required' => 'Поле :attribute обязательно для заполнения.',
     'too_long' => 'Максимально допустимое количество символов в поле :attribute — не более :limit.',
@@ -12,20 +12,20 @@ return [
     'wrong_confirmation' => 'Поля не совпадают.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Временная отметка указана, но карта не найдена.',
-        'beatmapset_no_hype' => "К карте нельзя применить функции хайпа.",
+        'beatmap_missing' => 'Тайм-код указан, но сложность карты не найдена.',
+        'beatmapset_no_hype' => "Нельзя хайпануть эту карту.",
         'hype_requires_null_beatmap' => 'Хайп может быть применен только в Общей (все сложности) секции.',
-        'invalid_beatmap_id' => 'Указана неверная сложность.',
-        'invalid_beatmapset_id' => 'Указана неправильная карта.',
+        'invalid_beatmap_id' => 'Указана несуществующая сложность.',
+        'invalid_beatmapset_id' => 'Указана несуществующая карта.',
         'locked' => 'Обсуждение закрыто.',
 
         'attributes' => [
             'message_type' => 'Тип сообщения',
-            'timestamp' => 'Временная отметка',
+            'timestamp' => 'Тайм-код',
         ],
 
         'hype' => [
-            'discussion_locked' => "Эта карта закрыта для обсуждения, поэтому на данный момент её нельзя хайпануть",
+            'discussion_locked' => "Обсуждение этой карты закрыто, поэтому её пока нельзя хайпануть",
             'guest' => 'Вам нужно войти, чтобы хайпить.',
             'hyped' => 'Вы уже хайпили на этой карте.',
             'limit_exceeded' => 'Вы уже использовали весь свой хайп.',
@@ -34,8 +34,8 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Указанная временная отметка выходит за рамки её длины.',
-            'negative' => "Временная отметка не может быть отрицательной.",
+            'exceeds_beatmapset_length' => 'Указанный тайм-код выходит за рамки длительности карты.',
+            'negative' => "Тайм-код не может быть отрицательным.",
         ],
     ],
 
@@ -58,7 +58,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => 'Указан неверный :attribute.',
+        'invalid' => 'Указан неверный параметр :attribute.',
     ],
 
     'forum' => [
@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
-            'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
+            'beatmapset_post_no_delete' => 'Нельзя удалить пост с метаданными карты.',
+            'beatmapset_post_no_edit' => 'Нельзя редактировать пост с метаданными карты.',
             'first_post_no_delete' => 'Невозможно удалить первый пост',
             'missing_topic' => 'Отсутствует тема поста',
             'only_quote' => 'Ваш ответ содержит только цитату.',
@@ -169,7 +169,7 @@ return [
         'wrong_current_password' => 'Текущий пароль неверный.',
         'wrong_email_confirmation' => 'Почты не совпадают.',
         'wrong_password_confirmation' => 'Пароли не совпадают.',
-        'too_long' => 'Превышено максимальное количество символов - можно использовать только до :limit characters символов.',
+        'too_long' => 'Превышено максимальное количество символов - можно использовать только до :limit символов.',
 
         'attributes' => [
             'username' => 'Ник',
@@ -180,7 +180,7 @@ return [
         'change_username' => [
             'restricted' => 'Вы не можете сменить свой ник, пока ваш аккаунт ограничен.',
             'supporter_required' => [
-                '_' => 'Вы должны :link , чтобы изменить свой ник!',
+                '_' => 'Вы должны :link, чтобы изменить свой ник!',
                 'link_text' => 'поддержать osu!',
             ],
             'username_is_same' => 'Это уже и есть Ваш никнейм!',
@@ -188,7 +188,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'На рейтинговые карты нельзя пожаловаться',
+        'no_ranked_beatmapset' => 'Нельзя пожаловаться на рейтинговые карты',
         'not_in_channel' => 'Вас нет в этом канале.',
         'in_team' => 'Вы являетесь частью команды.',
         'reason_not_valid' => 'Причина :reason недопустима для этой жалобы.',

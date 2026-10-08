@@ -65,9 +65,9 @@ return [
 
     'github_user' => [
         'info' => "Se você é um contribuidor dos repositórios de código aberto do osu!, vincular sua conta do GitHub aqui associará suas entradas ao registro de alterações com seu perfil do osu!. Contas do GitHub sem histórico de contribuições para o osu! não podem ser vinculadas.",
-        'link' => 'Conectar conta do GitHub',
+        'link' => 'Vincular conta do GitHub',
         'title' => 'GitHub',
-        'unlink' => 'Desconectar conta do GitHub',
+        'unlink' => 'Desvincular conta do GitHub',
 
         'error' => [
             'already_linked' => 'Esta conta do GitHub já está vinculada a outro usuário.',
@@ -87,14 +87,14 @@ return [
 
         'options' => [
             '_' => 'opções de entrega',
-            'beatmap_owner_change' => 'dificuldade do convidado',
+            'beatmap_owner_change' => 'dificuldade de convidado',
             'beatmapset:modding' => 'modding de beatmap',
             'channel_mention' => 'menções no bate-papo',
             'channel_message' => 'mensagens privadas',
             'channel_team' => 'mensagens do bate-papo da equipe',
             'comment_new' => 'novos comentários',
             'forum_topic_reply' => 'resposta em tópico',
-            'mail' => 'email',
+            'mail' => 'correio',
             'mapping' => 'criador do beatmap',
             'news_post' => 'notícias',
             'push' => 'push',
@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquear mensagens de pessoas que não estão na sua lista de amigos',
-        'friends_only_info' => '',
+        'friends_only_info' => 'este bloqueio também se aplica a convites multiplayer do osu!lazer e a pedidos de duelo competitivo',
         'hide_online' => 'ocultar sua presença online',
         'hide_online_info' => 'isso corresponde ao modo "aparecer offline" no osu!lazer',
         'title' => 'Privacidade',

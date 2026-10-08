@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited회 즐겨찾기|:count_delimited회 즐겨찾기',
+        'playcount' => ':count_delimited회 플레이|:count_delimited회 플레이',
     ],
 
     'panel' => [
@@ -70,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => '잘못된 평점입니다.',
     ],
 
     'show' => [

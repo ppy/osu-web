@@ -5,27 +5,27 @@
 
 return [
     'create' => [
-        'finish' => '',
-        'key' => '',
-        'key_copy' => '',
-        'key_link' => '',
-        'password' => '',
-        'start' => '',
+        'finish' => 'Valmis',
+        'key' => 'Skannaa QR-koodi todennussovelluksella ja syötä vahvistusavain',
+        'key_copy' => 'Tai klikkaa tätä linkkiä kopioidaksesi avaimen todennussovellusta varten',
+        'key_link' => 'Käytä tätä linkkiä jos olet puhelimella',
+        'password' => 'Ottaaksesi todennussovelluksen vahvistuksen käyttöön, syötä nykyinen salasanasi',
+        'start' => 'Jatka',
     ],
 
     'destroy' => [
-        'missing' => '',
-        'ok' => '',
+        'missing' => 'Sinulla ei ole todennussovelluksen vahvistusta asetettu.',
+        'ok' => 'Todennussovelluksen vahvistus poistettu.',
     ],
 
     'edit' => [
-        'password' => '',
-        'start' => '',
+        'password' => 'Syötä nykyinen salasanasi poistaaksesi todennussovelluksen vahvistuksen käytöstä.',
+        'start' => 'Poista',
     ],
 
     'store' => [
-        'existing' => '',
-        'ok' => '',
-        'restart' => '',
+        'existing' => 'Todennussovelluksen vahvistus on jo käytössä.',
+        'ok' => 'Todennussovelluksen vahvistus on otettu käyttöön',
+        'restart' => 'Tapahtui virhe. Aloita prosessi alusta.',
     ],
 ];

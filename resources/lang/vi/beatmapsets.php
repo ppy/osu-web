@@ -26,12 +26,12 @@ return [
 
     'index' => [
         'title' => 'Danh Sách Beatmap',
-        'guest_title' => 'Beatmaps',
+        'guest_title' => 'Beatmap',
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited lượt yêu thích|:count_delimited lượt yêu thích',
+        'playcount' => ':count_delimited lượt chơi|:count_delimited lượt chơi',
     ],
 
     'panel' => [
@@ -70,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Đánh giá không hợp lệ.',
     ],
 
     'show' => [
@@ -97,7 +97,7 @@ return [
             'updated_timeago' => 'cập nhật lần cuối vào :timeago',
 
             'download' => [
-                '_' => 'Tải Xuống',
+                '_' => 'Tải xuống',
                 'direct' => '',
                 'no-video' => 'không Video',
                 'video' => 'cùng Video',
@@ -111,7 +111,7 @@ return [
 
         'details_date' => [
             'approved' => 'được chấp nhận :timeago',
-            'loved' => 'được loved vào :timeago',
+            'loved' => 'được yêu thích :timeago',
             'qualified' => 'đủ điều kiện :timeago',
             'ranked' => 'được xếp hạng :timeago',
             'submitted' => 'được đăng :timeago',
@@ -148,8 +148,8 @@ return [
 
         'info' => [
             'description' => 'Mô Tả',
-            'genre' => 'Thể Loại',
-            'language' => 'Ngôn Ngữ',
+            'genre' => 'Thể loại',
+            'language' => 'Ngôn ngữ',
             'mapper_tags' => 'Thẻ do người tạo thêm',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
             'nominators' => 'Người đề cử',
@@ -198,7 +198,7 @@ return [
             'title' => 'Bảng Xếp hạng',
 
             'headers' => [
-                'accuracy' => 'Độ Chính Xác',
+                'accuracy' => 'Độ chính xác',
                 'combo' => 'Combo Tối Đa',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
@@ -252,7 +252,7 @@ return [
         'status' => [
             'ranked' => 'Đã được xếp hạng',
             'approved' => 'Được Chấp Nhận',
-            'loved' => 'Loved',
+            'loved' => 'Được yêu thích',
             'qualified' => 'Đủ điều kiện',
             'wip' => 'WIP',
             'pending' => 'Đang Chờ',
