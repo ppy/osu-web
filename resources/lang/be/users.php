@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => 'Ранкавана гульня',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Глабальны рэйтынг для :mode',
             'global_simple' => 'Глабальны рэйтынг',
             'highest' => 'Найвышэйшы ранг: :rank, :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Усяго ачкоў',
             // modding stats
             'graveyard_beatmapset_count' => 'Закінутыя бітмапы',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Любімыя бітмапы',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Бітмапы у чаканні',
             'ranked_beatmapset_count' => 'Ранкаваныя бітмапы',
         ],

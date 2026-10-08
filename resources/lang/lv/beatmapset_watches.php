@@ -5,16 +5,16 @@
 
 return [
     'index' => [
-        'description' => 'Šīs ir bītmapju diskusijas, kurām jūs sekojat. Jums tiks paziņots, kad būs jauni raksti vai atjauninājumi.',
-        'title_compact' => 'bītmapes diskusiju saraksts',
+        'description' => 'Šīs ir ritma-karšu diskusijas, kurām tu seko. Tev paziņos, kad būs jauni raksti vai atjauninājumi.',
+        'title_compact' => 'ritma-karšu diskusiju saraksts',
 
         'counts' => [
-            'total' => 'Vērotas bītmapes',
-            'unread' => 'Bītmapes ar jaunu aktivitāti',
+            'total' => 'Novērtotās ritma-kartes',
+            'unread' => 'Ritma-kartes ar jaunu aktivitāti',
         ],
 
         'table' => [
-            'empty' => 'Netiek vērota neviena bītmapju diskusija.',
+            'empty' => 'Netiek vērota neviena ritma-karšu diskusija.',
             'last_update' => 'Pēdējais atjauninājums',
             'open_issues' => 'Aktuālās problēmas',
             'state' => 'Stāvoklis',

@@ -125,22 +125,22 @@ return [
             ],
 
             'channel_mention' => [
-                '_' => '',
+                '_' => 'Keskustelumaininta',
 
                 'public' => [
-                    'channel_mention' => '',
-                    'channel_mention_compact' => '',
-                    'channel_mention_group' => '',
+                    'channel_mention' => ':username mainitsi sinut kohteessa :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'mainittu kohteessa :name',
                 ],
             ],
 
             'channel_team' => [
-                '_' => '',
+                '_' => 'Uusi tiimiviesti',
 
                 'team' => [
-                    'channel_team' => '',
-                    'channel_team_compact' => '',
-                    'channel_team_group' => '',
+                    'channel_team' => ':username sanoo ":title"',
+                    'channel_team_compact' => ':username sanoo ":title"',
+                    'channel_team_group' => ':username sanoo ":title"',
                 ],
             ],
         ],
@@ -171,10 +171,10 @@ return [
             ],
 
             'news_post' => [
-                '_' => '',
+                '_' => 'Uutiset (:series)',
 
-                'news_post_new' => '',
-                'news_post_new_compact' => '',
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -195,12 +195,12 @@ return [
                 'team_application_accept' => "Olet nyt tiimin :title jäsen",
                 'team_application_accept_compact' => "Olet nyt tiimin :title jäsen",
 
-                'team_application_group' => '',
+                'team_application_group' => 'Tiimin liittymispyyntöjen päivitykset',
 
                 'team_application_reject' => 'Sinun pyyntösi tiimiin :title on hylätty',
                 'team_application_reject_compact' => 'Sinun pyyntösi tiimiin :title on hylätty',
-                'team_application_store' => '',
-                'team_application_store_compact' => '',
+                'team_application_store' => ':title pyysi päästä liittymään tiimiisi',
+                'team_application_store_compact' => ':title pyysi päästä liittymään tiimiisi',
             ],
         ],
 
@@ -230,7 +230,7 @@ return [
     ],
 
     'mail' => [
-        'news' => '',
+        'news' => 'Uutiset',
 
         'beatmapset' => [
             'beatmap_owner_change' => [
@@ -264,17 +264,17 @@ return [
 
         'channel' => [
             'announcement' => [
-                'channel_announcement' => '',
+                'channel_announcement' => 'Uusi ilmoitus kohteessa ":name"',
             ],
             'channel' => [
-                'channel_message' => '',
+                'channel_message' => 'Olet saanut uuden viestin käyttäjältä :username',
             ],
             'channel_mention' => [
-                'channel_mention' => '',
+                'channel_mention' => ':username mainitsi sinut kohteessa :name ":title"',
             ],
 
             'channel_team' => [
-                'channel_team' => '',
+                'channel_team' => 'Uusi viesti tiimissä ":name"',
             ],
         ],
 
@@ -300,7 +300,7 @@ return [
             'team_application' => [
                 'team_application_accept' => "Olet nyt tiimin :title jäsen",
                 'team_application_reject' => 'Pyyntösi tiimiin :title on hylätty',
-                'team_application_store' => '',
+                'team_application_store' => ':title pyysi päästä liittymään tiimiisi',
             ],
         ],
 

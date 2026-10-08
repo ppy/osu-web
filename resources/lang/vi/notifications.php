@@ -146,7 +146,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Chi tiết thay đổi',
+            '_' => 'Nhật ký thay đổi',
 
             'comment' => [
                 '_' => 'Bình luận mới',

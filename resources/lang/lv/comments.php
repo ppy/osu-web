@@ -17,7 +17,7 @@ return [
     'title' => 'Komentāri',
 
     'commentable_name' => [
-        'beatmapset' => 'Bītmape',
+        'beatmapset' => 'Bītkarte',
         'build' => 'Izmaiņu Žurnāls',
         'news_post' => 'Jaunumi',
         '_deleted' => 'Dzēsta Vienība',

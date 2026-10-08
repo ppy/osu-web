@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
-        'friends_only_info' => '',
+        'friends_only_info' => 'tùy chọn chặn này cũng chặn lời mời chơi nhiều người và yêu cầu đấu xếp hạng trong osu!lazer',
         'hide_online' => 'ẩn trạng thái trực tuyến của bạn',
         'hide_online_info' => 'tính năng này tương ứng với chế độ "xuất hiện ngoại tuyến" trong osu!lazer',
         'title' => 'Quyền Riêng Tư',

@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Pasaulinis reitingas tarp :mode',
             'global_simple' => 'Pasaulinis Reitingas',
             'highest' => 'Aukščiausias reitingas: :rank kada: :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -548,7 +551,9 @@ return [
             'total_score' => 'Visi taškai',
             // modding stats
             'graveyard_beatmapset_count' => 'Apleisti Beatmap\'ai',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Mylimi Beatmap\'ai',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Laukiantis Beatmap\'ai',
             'ranked_beatmapset_count' => 'Reitinguoti Beatmap\'ai',
         ],

@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'フレンドリストにいない人からのプライベートメッセージをブロックする',
-        'friends_only_info' => '',
+        'friends_only_info' => 'このブロック機能は、osu!lazerのマルチプレイヤーへの招待や、ランクマッチでの対戦リクエストにも適用されます',
         'hide_online' => 'オンライン状態を隠す',
         'hide_online_info' => 'これはosu!lazerの「オフラインで表示する」にマップされます',
         'title' => 'プライバシー',

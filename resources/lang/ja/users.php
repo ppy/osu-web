@@ -487,6 +487,7 @@ CAPTCHA認証を成功させてから再試行してください。
             'rank' => 'ランク',
             'rating' => 'レーティング',
             'recent_history' => '最新の対戦履歴',
+            'recent_history_provisional' => '',
             'tier' => 'ティア',
             'title' => 'ランクマッチ',
             'wins' => '勝利数',
@@ -520,6 +521,8 @@ CAPTCHA認証を成功させてから再試行してください。
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
             'highest' => '最高ランク: :rank (:dateに取得)',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'スターレーティングとPPの新しい計算アルゴリズムが、:link。',
@@ -550,7 +553,9 @@ CAPTCHA認証を成功させてから再試行してください。
             'total_score' => '合計スコア',
             // modding stats
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Lovedされたビートマップ',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Pendingのビートマップ',
             'ranked_beatmapset_count' => 'Rankedされたビートマップ',
         ],

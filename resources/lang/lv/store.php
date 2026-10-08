@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'Šī pasūtījuma norēķināšanās saitei ir beidzies derīguma termiņš.',
         'subtotal' => 'Starpsumma',
         'total' => 'Kopā',
-        'unavailable' => '',
+        'unavailable' => 'Šim pasūtījumam nav pieejama papildu informācija.',
 
         'details' => [
             'order_number' => 'Pasūtījums #',

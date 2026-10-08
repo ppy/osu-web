@@ -5,7 +5,7 @@
 
 return [
     'pinned_topics' => 'Piespraustās Tēmas',
-    'slogan' => "ir bīstami spēlēt vienam.",
+    'slogan' => "spēlēt vienatnē ir bīstami.",
     'subforums' => 'Apakšforuma',
     'title' => 'Forums',
 
@@ -202,7 +202,7 @@ return [
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Izbeigt abonementu šim tematam?',
-                'title' => 'Izbeigt abonementu.',
+                'title' => 'Izbeigt abonementu',
             ],
         ],
     ],
@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Dzēstie Raksti',
             'total_posts' => 'Raksti Kopumā',
-            'total_watches' => '',
+            'total_watches' => 'Abonenti',
 
             'feature_vote' => [
                 'current' => 'Pašreizējā Prioritāte: +:count',

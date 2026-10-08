@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => 'Nepareizs :attribute specificēts.',
+    'invalid' => 'Nepareiza :attribute specificēta.',
     'not_negative' => ':attribute nevar būt negatīvs.',
     'required' => ':attribute ir nepieciešams.',
     'too_long' => ':attribute pārsniedza maksimālo garumu - drīkst būt tikai līdz :limit zīmēm.',
@@ -13,10 +13,10 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Laika skala ir norādīta, bet trūkst ritma-mape.',
-        'beatmapset_no_hype' => "Ritma-mapi nevar uzslavēt.",
+        'beatmapset_no_hype' => "Ritma-karti nevar uzslavēt.",
         'hype_requires_null_beatmap' => 'Publikācija ir jāuzstāda Galvenajā (visu sarežģītību) sadaļā.',
         'invalid_beatmap_id' => 'Nederīgs sarežģījums norādīts.',
-        'invalid_beatmapset_id' => 'Nederīga ritma-mape norādīta.',
+        'invalid_beatmapset_id' => 'Nederīga ritma-karte norādīta.',
         'locked' => 'Diskusija ir slēgta.',
 
         'attributes' => [
@@ -25,16 +25,16 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Šī ritma-mape ir pašlaik aizvērta diskusijām, un to nevar ",
+            'discussion_locked' => "Šī ritma-karte ir pašlaik aizvērta diskusijām, un to nevar ",
             'guest' => 'Ir jāielogojas, lai uzslavētu.',
             'hyped' => 'Tu jau esi uzslavējis šo ritma-mapi.',
             'limit_exceeded' => 'Tu esi izmantojis visus savus uzslavējumus.',
             'not_hypeable' => 'Šo ritma-mapi nevar uzslavēt',
-            'owner' => 'Nevar uzslavēt pats savu ritma-mapi.',
+            'owner' => 'Nevar uzslavēt pats savu ritma-karti.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Norādītā laika josla ir pārsniegusi ritma-mapes garumu.',
+            'exceeds_beatmapset_length' => 'Norādītā laika josla ir pārsniegusi ritma-kartes garumu.',
             'negative' => "Laika josla nevar būt negatīva.",
         ],
     ],
@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Nav atļauts izdzēst ritma-mapes metadatu rakstu.',
-            'beatmapset_post_no_edit' => 'Nedrīkst rediğēt ritma-mapes metadatu rakstu.',
+            'beatmapset_post_no_delete' => 'Nav atļauts izdzēst ritma-kartes metadatu rakstu.',
+            'beatmapset_post_no_edit' => 'Nedrīkst rediğēt ritma-kartes metadatu rakstu.',
             'first_post_no_delete' => 'Nevar izdzēst pašu pirmo rakstu',
             'missing_topic' => 'Rakstam pietrūkst temats',
             'only_quote' => 'Tava atbilde satur tikai citējumu.',
@@ -188,7 +188,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Novērtējamas ritma-mapes nevar tikt nosūdzētas',
+        'no_ranked_beatmapset' => 'Par rangotām bītkartēm nevar ziņot',
         'not_in_channel' => 'Tu neesi šajā kanālā.',
         'in_team' => 'Tu esi daļa no komandas.',
         'reason_not_valid' => ':reason nav saistīts ar šīs sūdzības tipu.',

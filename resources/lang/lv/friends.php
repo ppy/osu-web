@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'blocked' => '',
+    'blocked' => 'Šis lietotājs tevi ir bloķējis.',
     'title_compact' => 'draugi',
     'too_many' => 'Sasniegts draugu limits',
 

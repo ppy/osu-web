@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'A rendelés fizetési linkje lejárt.',
         'subtotal' => 'Részösszeg',
         'total' => 'Összesen',
-        'unavailable' => '',
+        'unavailable' => 'Nincs további információ ehhez a rendeléshez.',
 
         'details' => [
             'order_number' => 'Rendelési szám',

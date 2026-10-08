@@ -58,5 +58,11 @@ return [
             'false' => 'Odstrániť',
             'true' => 'Vymazané',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

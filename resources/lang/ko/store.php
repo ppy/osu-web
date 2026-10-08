@@ -113,7 +113,7 @@ return [
         'shopify_expired' => '이 주문의 결제 링크가 만료되었습니다.',
         'subtotal' => '소계',
         'total' => '합계',
-        'unavailable' => '',
+        'unavailable' => '이 주문에 대한 추가 정보가 없습니다.',
 
         'details' => [
             'order_number' => '주문 #',

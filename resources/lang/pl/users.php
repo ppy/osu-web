@@ -484,6 +484,7 @@ return [
             'rank' => 'Ranga',
             'rating' => 'Ranga',
             'recent_history' => 'Najnowsza historia meczu',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => 'Gra rankingowa',
             'wins' => 'Wygrane',
@@ -517,6 +518,8 @@ return [
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
             'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => ':link nowego algorytmu przeliczania trudności beatmap oraz PP.',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Łączny wynik',
             // modding stats
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Oczekujące beatmapy',
             'ranked_beatmapset_count' => 'Rankingowe beatmapy',
         ],

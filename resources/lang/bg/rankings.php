@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Трудност',
+        'theme' => '',
         'top_10p' => 'Топ 10% резултати ',
         'top_50p' => 'Топ 50% резултати ',
         'unavailable' => [

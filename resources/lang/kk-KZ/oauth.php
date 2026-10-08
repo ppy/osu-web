@@ -58,5 +58,11 @@ return [
             'false' => 'Жою',
             'true' => 'Жойылған',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

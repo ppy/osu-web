@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => 'в избранных у :count_delimited игрока|в избранных у :count_delimited игроков|в избранных у :count_delimited игроков',
+        'playcount' => ':count_delimited игра|:count_delimited игры|:count_delimited игр',
     ],
 
     'panel' => [
@@ -70,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => 'Недопустимый рейтинг.',
+        'invalid' => 'Недопустимая оценка.',
     ],
 
     'show' => [

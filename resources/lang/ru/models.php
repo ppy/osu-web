@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'not_found' => "Указанная :model не найдена.",
+    'not_found' => ":model по этой ссылке не найден(-а).",
 
     'name' => [
         'App\Models\Beatmap' => 'сложность карты',
         'App\Models\Beatmapset' => 'карта',
-        'App\Models\Solo\Score' => 'счет',
+        'App\Models\Solo\Score' => 'рекорд',
     ],
 ];

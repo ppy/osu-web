@@ -232,8 +232,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => '간략히 보기',
+            'to_v2' => '자세히 보기',
         ],
         'edit' => [
             'cover' => [
@@ -480,11 +480,12 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
+            'losses' => '패',
+            'plays' => '대전 횟수',
+            'rank' => '랭크',
+            'rating' => '평점',
+            'recent_history' => '최근 대전 기록',
+            'recent_history_provisional' => '',
             'tier' => '티어',
             'title' => '빠른 대전',
             'wins' => '승',
@@ -518,6 +519,8 @@ return [
             'global' => ':mode 세계 순위',
             'global_simple' => '세계 순위',
             'highest' => '최고 순위: :rank, :date에 달성',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '새로운 별점 / PP 알고리즘이 :link입니다.',
@@ -530,7 +533,7 @@ return [
             'total_score' => '총 점수',
         ],
         'solo' => [
-            'title' => '',
+            'title' => '솔로 플레이',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
@@ -544,11 +547,13 @@ return [
             'ranked_score' => '기록된 점수',
             'replays_watched_by_others' => '리플레이가 재생된 횟수',
             'score_ranks' => '점수 순위',
-            'total_hits' => '총 타격 횟수',
+            'total_hits' => '총 히트 횟수',
             'total_score' => '총 점수',
             // modding stats
             'graveyard_beatmapset_count' => '묻힌 비트맵',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Loved 비트맵',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => '대기 중인 비트맵',
             'ranked_beatmapset_count' => '랭크된 비트맵',
         ],

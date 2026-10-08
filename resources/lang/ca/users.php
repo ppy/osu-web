@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Mostra menys detalls',
+            'to_v2' => 'Mostra més detalls',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,15 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
+            'losses' => 'Perdudes',
+            'plays' => 'Partides totals',
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => 'Partides ràpides',
-            'wins' => '',
+            'wins' => 'Victòries',
         ],
 
         'not_found' => [
@@ -517,6 +518,8 @@ return [
             'global' => 'Classifació global per :mode',
             'global_simple' => 'Classificació global',
             'highest' => 'Classificació més alta: :rank el :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Una puntuació / algoritme PP que està :link.',
@@ -529,7 +532,7 @@ return [
             'total_score' => 'Puntuació total',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Partides en solitari',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisió',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Puntuació total',
             // modding stats
             'graveyard_beatmapset_count' => 'Mapes abandonats',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Mapes estimats',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Mapes pendents',
             'ranked_beatmapset_count' => 'Mapes Classificats',
         ],

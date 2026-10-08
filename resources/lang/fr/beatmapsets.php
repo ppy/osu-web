@@ -30,7 +30,7 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
+        'favourites' => ':count_delimited favori|:count_delimited favoris',
         'playcount' => '',
     ],
 

@@ -59,5 +59,11 @@ Er du sikker på, at du vil nulstille klienthemmeligheden? Dette vil fjerne alle
             'false' => 'Fjern',
             'true' => 'Slettet',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

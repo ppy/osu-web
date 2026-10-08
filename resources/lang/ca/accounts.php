@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloca els missatges privats de persones que no són a la llista d\'amics',
-        'friends_only_info' => '',
+        'friends_only_info' => 'aquest bloc també s\'aplica a les sol·licituds d\'invitacions multijugadors d\'osu!lazer i de duels amb classificació',
         'hide_online' => 'amaga la teva presència en línia',
         'hide_online_info' => 'va relacionat amb el mode «Mostra\'m desconnectat» a l\'osu!lazer',
         'title' => 'Privadesa',

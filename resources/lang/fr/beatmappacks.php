@@ -12,7 +12,7 @@ return [
 
         'blurb' => [
             'important' => 'LISEZ CECI AVANT DE TÉLÉCHARGER',
-            'install_instruction' => 'Installation : Une fois qu\'un pack a été téléchargé, extrayez le contenu du pack dans le dossier Songs d\'osu! et le client s\'occupera du reste.',
+            'install_instruction' => 'Installation : Une fois qu\'un pack a été téléchargé, extrayez le contenu du pack dans un dossier, sélectionnez les fichiers osz et glissez-les dans une instance active d\'osu!.',
         ],
     ],
 

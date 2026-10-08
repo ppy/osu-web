@@ -58,5 +58,11 @@ return [
             'false' => 'Обришите',
             'true' => 'Обрисано',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

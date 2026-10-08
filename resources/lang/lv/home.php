@@ -28,13 +28,13 @@ return [
         'title' => 'meklēt',
 
         'artist_track' => [
-            'more_simple' => 'Apskatīt vēl kontraktētā mākslinieka dziesmas meklēšanas rezultātus',
+            'more_simple' => 'Apskatīt vēl sadarbības izpildītāja dziesmas meklēšanas rezultātus',
         ],
         'beatmapset' => [
-            'login_required' => 'Ielogojieties, lai meklētu bītmapes',
+            'login_required' => 'Ierakstieties lai meklētu ritma-kartes',
             'more' => ':count vairāk ritma-mapju meklēšanas rezultāti',
             'more_simple' => 'Redzēt vairāk ritma-mapju meklēšanas rezultātus',
-            'title' => 'Bītmapes',
+            'title' => 'Ritma-kartes',
         ],
 
         'forum_post' => [
@@ -55,8 +55,8 @@ return [
 
         'mode' => [
             'all' => 'visi',
-            'artist_track' => 'kontraktētā mākslinieka dziesmas',
-            'beatmapset' => 'bītmape',
+            'artist_track' => 'sadarbības izpildītāja dziesma',
+            'beatmapset' => 'ritma-kartes',
             'forum_post' => 'forums',
             'team' => 'komanda',
             'user' => 'spēlētājs',
@@ -64,7 +64,7 @@ return [
         ],
 
         'team' => [
-            'login_required' => '',
+            'login_required' => 'Pieraksties, lai meklētu komandas',
             'more_simple' => 'Apskatīt vēl komandas meklēšanas rezultātus',
         ],
 
@@ -78,8 +78,8 @@ return [
 
         'wiki_page' => [
             'link' => 'Meklēt vikipēdijā',
-            'more_simple' => 'Rādīt vairāk wiki meklēšanas rezultātus',
-            'title' => 'Wiki',
+            'more_simple' => 'Rādīt vairāk viki meklēšanas rezultātus',
+            'title' => 'Viki',
         ],
     ],
 
@@ -119,9 +119,9 @@ return [
                 'description' => 'spiediet uz augšējās pogas, lai lejupielādētu instalācijas failu, tad palaidiet to!',
             ],
             'beatmaps' => [
-                'title' => 'paņemt bītmapi',
+                'title' => 'iegūt ritma-kartes',
                 'description' => [
-                    '_' => ':browse lietotāju veidoto bītmapju klāstu un sāciet spēlēt!',
+                    '_' => ':browse lietotāju veidoto ritma-karšu klāstu un sāc spēlēt!',
                     'browse' => 'pārlūkot',
                 ],
             ],
@@ -143,10 +143,10 @@ return [
         ],
         'beatmaps' => [
             'daily_challenge' => 'Dienas Izaicinājuma Ritma-Karte',
-            'new' => 'Jaunās Rankotās Bītmapes',
-            'popular' => 'Populārās Bītmapes',
+            'new' => 'Jaunās Novērtētās Ritma-kartes',
+            'popular' => 'Populārās Ritma-kartes',
             'by_user' => 'pēc :user',
-            'resets' => 'restartējās :ends',
+            'resets' => 'restartēt :ends',
         ],
         'buttons' => [
             'download' => 'Lejupielādēt osu!',
@@ -154,11 +154,11 @@ return [
             'store' => 'osu!veikals',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Izceltā tiešraide',
         ],
         'show' => [
             'admin' => [
-                'page' => 'Avērt adminu konsoli',
+                'page' => 'Avērt administrātoru konsoli',
             ],
         ],
     ],

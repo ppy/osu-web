@@ -19,7 +19,7 @@ return [
     'show' => [
         'created_by' => 'tehnyt :author',
         'download' => 'Lataa',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Haaste',
         'item' => [
             'cleared' => 'läpäisty',
             'not_cleared' => 'läpäisemätön',

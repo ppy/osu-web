@@ -11,11 +11,12 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Vaikeustaso',
-        'top_10p' => '',
-        'top_50p' => '',
+        'theme' => '',
+        'top_10p' => 'Top 10% Tulokset',
+        'top_50p' => 'Top 50% Tulokset',
         'unavailable' => [
-            'future' => '',
-            'past' => '',
+            'future' => 'Ei päivittäistä haastetta valitulle päivälle!',
+            'past' => 'Ei päivittäistä haastetta valitulle päivälle!',
         ],
     ],
 
@@ -34,15 +35,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Pelikerrat',
+        'points' => 'Pisteet',
+        'provisional' => 'Alustava luokitus, joka johtuu viimeaikaisten otteluiden vähyydestä',
+        'rating' => 'Luokitus',
+        'wins' => 'Voitot',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Huoneen Nimi',
     ],
 
     'performance' => [
@@ -50,36 +51,36 @@ return [
     ],
 
     'top_plays' => [
-        'empty' => '',
-        'last_updated' => '',
+        'empty' => 'Dataa lasketaan...',
+        'last_updated' => 'Viimeksi päivitetty',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'kohdevalot (vanha)',
+        'featured' => 'esillä',
+        'season_room' => 'kausihuone',
+        'seasons' => 'kaudet',
     ],
 
     'type' => [
         'country' => 'maat',
         'daily_challenge' => 'päivittäinen haaste',
-        'global' => '',
+        'global' => 'maailma',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
-        'team' => '',
-        'top_plays' => '',
+        'matchmaking' => 'kilpailullinen',
+        'playlists' => 'soittolistat',
+        'team' => 'tiimi',
+        'top_plays' => 'parhaat suoritukset',
     ],
 
     'seasons' => [
         'empty' => 'Tällä kaudella ei ole vielä huoneita.',
         'ongoing' => 'Tämä kausi on edelleen käynnissä (lisää soittolistoja tullaan lisäämään).',
         'room_count' => 'Soittolistojen määrä',
-        'summary' => '',
+        'summary' => 'Näytä kauden yhteenveto',
         'url' => 'Lisätietoja tästä kaudesta.',
         'validation' => [
-            'not_enough_factors' => '',
+            'not_enough_factors' => 'tulostietoja ei ole tarpeeksi oikeaa laskentaa varten',
         ],
     ],
 
@@ -94,8 +95,8 @@ return [
         'accuracy' => 'Tarkkuus',
         'active_users' => 'Aktiiviset käyttäjät',
         'country' => 'Maa',
-        'division' => '',
-        'members' => '',
+        'division' => 'Divisioona',
+        'members' => 'Jäsenet',
         'play_count' => 'Pelikerrat',
         'performance' => 'Suorituskyky',
         'total_score' => 'Kokonaispisteet',

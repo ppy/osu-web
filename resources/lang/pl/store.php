@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'Link do płatności za to zamówienie wygasł.',
         'subtotal' => 'Łącznie',
         'total' => 'Łącznie',
-        'unavailable' => '',
+        'unavailable' => 'Brak dodatkowych informacji dla tego zamówienia.',
 
         'details' => [
             'order_number' => 'Zamówienie #',

@@ -18,7 +18,7 @@ return [
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
-        'build' => 'Changelog',
+        'build' => 'Nhật ký thay đổi',
         'news_post' => 'Tin tức',
         '_deleted' => 'Mục Đã Xóa',
     ],

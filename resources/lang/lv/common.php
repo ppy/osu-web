@@ -58,7 +58,7 @@ return [
         'submit' => 'Iesniegt',
         'unpin' => 'atspraust',
         'update' => 'Atjaunināt',
-        'upload_image' => 'augšuplādēt attēlu',
+        'upload_image' => 'augšupielādēt attēlu',
 
         'watch' => [
             'to_0' => 'Novērsties',
@@ -67,9 +67,9 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count žetons|:count žetoni',
+        'badges' => ':count_delimited žetons|:count_delimited žetoni',
         'days' => ':count_delimited diena|:count_delimited dienas',
-        'hour_short_unit' => 'st|st',
+        'hour_short_unit' => 'hr/hrs',
         'hours' => ':count_delimited stunda|:count_delimited stundas',
         'item' => ':count_delimited vienība|:count_delimited vienības',
         'minute_short_unit' => 'min|min',
@@ -79,7 +79,7 @@ return [
         'player' => ':count_delimited spēlētājs |:count_delimited spēlētāji',
         'plus_others' => '+ :count_delimited cits!|+ :count_delimited citi!',
         'post' => ':count_delimited raksts|:count_delimited raksti',
-        'second_short_unit' => 'sek|sek',
+        'second_short_unit' => 's|s',
         'star_priority' => ':count_delimited zvaigžņu prioritāte|:count_delimited zvaigžņu prioritātes',
         'update' => ':count_delimited atjauninājums|:count_delimited atjauninājumi',
         'view' => ':count_delimited skatījums|:count_delimited skatījumi',
@@ -101,11 +101,11 @@ return [
             'php' => 'g',
         ],
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => 'MMMM GGGG',
+            'php' => 'MMMM g',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'MMMM GGGG',
         ],
     ],
 
@@ -125,8 +125,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'iepr.',
-        'next' => 'nāk.',
+        'previous' => 'iepriekšējais',
+        'next' => 'nākamais',
     ],
 
     'score_count' => [
@@ -135,14 +135,14 @@ return [
         'count_50' => '50',
         'count_geki' => '',
         'count_katu' => '200',
-        'count_miss' => 'Miss',
+        'count_miss' => 'Netrāpījumi',
     ],
 
     'scoreboard_time' => [
         'd' => '%d d',
         'dd' => '%d d',
-        'h' => '%d st',
-        'hh' => '%d st',
+        'h' => '%dh',
+        'hh' => '%dh',
         'm' => 'tagad',
         'mm' => 'tagad',
         'month' => '%d min',
@@ -155,7 +155,7 @@ return [
 
     'time' => [
         'days_ago' => 'pirms :count_delimited dienas|pirms :count_delimited dienām',
-        'hours_ago' => 'pirms:count stundas|pirms:count stundām',
+        'hours_ago' => 'pirms :count_delimited stundas|pirms :count_delimited stundām',
         'now' => 'tagad',
         'remaining' => 'Atlikušais Laiks',
     ],

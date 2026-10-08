@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'ielādē lietotājus...',
-    'searching_users' => '',
+    'searching_users' => 'meklē lietotājus...',
     'talking_in' => 'runā :channel',
     'talking_with' => 'runā ar :name',
     'title_compact' => 'čats',
@@ -52,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Pievienojies kanālam, lai skatītu tā ziņojumus.',
+        'join' => 'Pievienoties kanālam',
     ],
 
     'input' => [

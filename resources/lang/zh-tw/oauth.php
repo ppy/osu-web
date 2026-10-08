@@ -58,5 +58,11 @@ return [
             'false' => '刪除',
             'true' => '已刪除',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

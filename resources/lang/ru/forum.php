@@ -300,7 +300,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} не осталось голосов|{1} остался :count_delimited голос|[2,*] осталось :count_delimited голоса|[2,*] осталось :count_delimited голосов',
+                    'count' => '{0} не осталось голосов|{1} остался :count_delimited голос|[2,4] осталось :count_delimited голоса|[5,*] осталось :count_delimited голосов',
                     'current' => 'У вас :votes.',
                     'not_enough' => "У вас больше нет голосов",
                 ],

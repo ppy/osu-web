@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited vastaus on piilotettu.|:count_delimited vastausta on piilotettu.',
 
     'authorizations' => [
         'update' => [
@@ -113,6 +113,6 @@ return [
     'user_filter' => [
         'everyone' => 'Jokainen',
         'label' => 'Suodata käyttäjien mukaan',
-        'multiple' => '',
+        'multiple' => ':count_delimited käyttäjä valittu|:count_delimited käyttäjää valittu',
     ],
 ];

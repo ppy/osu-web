@@ -132,7 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => '',
+                'mapper_note' => 'thêm ghi chú',
                 'paragraph' => 'chèn đoạn văn',
                 'praise' => 'chèn lời ca ngợi',
                 'problem' => 'chèn vấn đề',
@@ -146,7 +146,7 @@ return [
 
         'sort' => [
             'created_at' => 'Thời gian tạo',
-            'timeline' => 'Timeline',
+            'timeline' => 'Dòng thời gian',
             'updated_at' => 'Cập nhật lần cuối',
         ],
 
@@ -302,12 +302,12 @@ return [
         'undefined' => 'chưa đặt',
     ],
     'status' => [
-        'any' => 'Bất Kì',
+        'any' => 'Bất kì',
         'approved' => 'Được Chấp Nhận',
         'favourites' => 'Yêu thích',
         'graveyard' => 'Đắp mộ',
         'leaderboard' => 'Có bảng xếp hạng',
-        'loved' => 'Loved',
+        'loved' => 'Được yêu mến',
         'mine' => 'Map của tôi',
         'pending' => 'Đang chờ',
         'wip' => 'Chưa xong',
@@ -315,7 +315,7 @@ return [
         'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [
-        'any' => 'Bất Kì',
+        'any' => 'Bất kì',
         'unspecified' => 'Chưa Xác Định',
         'video-game' => 'Video Game',
         'anime' => 'Anime',
@@ -331,7 +331,7 @@ return [
         'jazz' => 'Jazz',
     ],
     'language' => [
-        'any' => 'Bất Kì',
+        'any' => 'Bất kì',
         'english' => 'Tiếng Anh',
         'chinese' => 'Tiếng Trung',
         'french' => 'Tiếng Pháp',
@@ -354,8 +354,8 @@ return [
     ],
 
     'played' => [
-        'any' => 'Bất Kì',
-        'played' => 'Đã Chơi',
+        'any' => 'Bất kì',
+        'played' => 'Đã chơi',
         'unplayed' => 'Chưa Chơi',
     ],
     'extra' => [
@@ -363,7 +363,7 @@ return [
         'storyboard' => 'Có Storyboard',
     ],
     'rank' => [
-        'any' => 'Bất Kì',
+        'any' => 'Bất kì',
         'XH' => 'Silver SS',
         'X' => '',
         'SH' => 'Silver S',

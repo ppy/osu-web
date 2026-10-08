@@ -35,8 +35,8 @@ return [
     ],
 
     'team' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmoita tiimistä',
+        'title' => 'Ilmoita käyttäjän :username tiimi?',
     ],
 
     'user' => [

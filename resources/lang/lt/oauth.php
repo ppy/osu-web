@@ -58,5 +58,11 @@ return [
             'false' => 'Ištrinti',
             'true' => 'Ištrintas',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

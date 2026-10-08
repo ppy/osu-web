@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'hidden_replies' => '',
+    'hidden_replies' => ':count_delimited atbilde ir paslēpta.|:count_delimited atbildes ir paslēptas.',
 
     'authorizations' => [
         'update' => [
-            'null_user' => 'Vajag būt pierakstījušamies, lai rediģētu.',
+            'null_user' => 'Lai rediģētu, ir jāpierakstās.',
             'system_generated' => 'Sistēmas-ģenerēto rakstu nevar rediģēt.',
             'wrong_user' => ' Lai rediģētu, ir jābūt raksta īpašniekam.',
         ],
@@ -52,7 +52,7 @@ return [
         'created_at' => 'Raksta datums',
         'deleted_at' => 'Dzēšanas datums',
         'message_type' => 'Tips',
-        'permalink' => 'Patstāvīgā saitne',
+        'permalink' => 'Bezgalīgā saitne',
     ],
 
     'nearby_posts' => [
@@ -106,13 +106,13 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => 'visparīgi',
+        'general' => 'vispārīgi',
         'general_all' => 'vispārīgi (viss)',
     ],
 
     'user_filter' => [
         'everyone' => 'Visi',
         'label' => 'Filtrēt pēc lietotāja',
-        'multiple' => '',
+        'multiple' => ':count_delimited lietotājs atlasīts|:count_delimited lietotāji atlasīti',
     ],
 ];

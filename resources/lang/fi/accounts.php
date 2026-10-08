@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_reply' => 'vastaanota ilmoituksia vastauksiin rytmikarttakeskusteluista, joissa olet ollut osallisena',
         'beatmapset_discussion_qualified_problem' => 'vastaanota ilmoituksia uusista ongelmista seuraavien pelimuotojen kelpuutetuissa rytmikartoissa',
         'beatmapset_disqualify' => 'vastaanota ilmoituksia, kun rytmikarttoja hylätään seuraavissa pelimuodoissa',
         'comment_reply' => 'vastaanota ilmoituksia vastauksista kommentteihisi',
@@ -102,14 +102,14 @@ return [
 
         'tooltips' => [
             'beatmap_owner_change' => 'kun sinut on lisätty vieraskartoittajana rytmikartan vaikeustasoon',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
+            'beatmapset:modding' => 'kun rytmikartta keskusteluissa joita seuraat, saa päivityksiä tai kun rytmikartassasi on ongelmia tai ehdotuksia.',
+            'channel_mention' => 'kun sinut mainitaan julkisella kanavalla',
             'channel_message' => 'kun saat uuden yksityisviestin',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'channel_team' => 'kun tiimisi keskustelukanava saa uuden viestin',
+            'comment_new' => 'kun uusia kommentteja on kohteessa, jota seuraat',
+            'forum_topic_reply' => 'kun foorumiaiheita joita katsot saa uusia vastauksia',
+            'mapping' => 'kun kartoittaja jota seuraat julkaisee rytmikartan',
+            'news_post' => 'kun uusia uutisviestejä julkaistaan',
         ],
     ],
 
@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'estä yksityisviestit henkilöiltä jotka eivät ole kaverilistallasi',
-        'friends_only_info' => '',
+        'friends_only_info' => 'tämä osio koskee myös osu!lazerin moninpelikutsuja ja kilpailullisten pelien kaksintaistelupyyntöjä',
         'hide_online' => 'piilota paikallaolotilasi',
         'hide_online_info' => 'tämä vastaa osu!lazerin ”näy offline-tilassa” -tilaa',
         'title' => 'Yksityisyys',

@@ -12,12 +12,12 @@ return [
     'unread_messages' => 'pesan yang belum dibaca',
 
     'cannot_send' => [
-        'channel' => 'Kamu sedang tidak bisa mengirim pesan pada kanal percakapan ini.',
+        'channel' => 'Kamu sedang tidak bisa mengirim pesan pada kanal ini.',
         'user' => 'Kamu sedang tidak bisa mengirimkan pesan kepada pengguna ini.',
     ],
 
     'channels' => [
-        'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal percakapan ini? Kamu akan tetap menerima pesan dari kanal percakapan ini.',
+        'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal ini? Kamu akan tetap menerima pesan dari kanal ini.',
         'create' => 'buat pengumuman',
         'join' => 'gabung kanal baru',
         'none' => 'tidak ada kanal',
@@ -27,7 +27,7 @@ return [
                 'ANNOUNCE' => 'Pengumuman',
                 'GROUP' => 'Grup',
                 'PM' => 'Pesan pribadi',
-                'PUBLIC' => 'Kanal Percakapan',
+                'PUBLIC' => 'Kanal Obrolan',
                 'TEAM' => 'Tim',
             ],
         ],
@@ -47,8 +47,8 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Tidak ada apa-apa di sini. Mungkin kamu sudah meninggalkan kanal percakapan ini, atau kanal yang ingin kamu tuju sudah tidak ada...',
-        'title' => 'kanal percakapan tidak ditemukan',
+        'message' => 'Tidak ada apa-apa di sini. Mungkin kamu sudah meninggalkan kanal ini, atau kanal yang ingin kamu tuju sudah tidak ada...',
+        'title' => 'kanal tidak ditemukan',
     ],
 
     'not_joined' => [
@@ -65,6 +65,6 @@ return [
     ],
 
     'join_channels' => [
-        'loading' => 'Memuat daftar kanal percakapan...',
+        'loading' => 'Memuat daftar kanal...',
     ],
 ];

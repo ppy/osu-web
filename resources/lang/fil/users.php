@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Pandaigdigang ranggo para sa :mode',
             'global_simple' => 'Pandaigdigang Ranggo',
             'highest' => 'Pinakamataas na ranggo: :rank sa :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Kabuuang Puntos',
             // modding stats
             'graveyard_beatmapset_count' => 'Mga Abandunadong Beatmap',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Mga Loved na Beatmap',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Mga Nakabinbing mga Beatmap',
             'ranked_beatmapset_count' => 'Mga Na-rank na Beatmap',
         ],

@@ -72,7 +72,7 @@ return [
         'drop_here' => 'Solte a sua inscrição aqui',
         'allowed_extensions' => 'Arquivos :types são aceitos',
         'max_size' => 'Tamanho máximo: :limit',
-        'required_dimensions' => '',
+        'required_dimensions' => 'As dimensões devem ser :widthx:height',
         'download' => 'Baixar .osz',
         'wrong_file_type' => 'Somente arquivos :types são aceitos para este concurso.',
         'wrong_dimensions' => 'Inscrições devem ser :widthx:height',
