@@ -14,6 +14,13 @@
         {{ osu_trans('rankings.top_plays.empty') }}
     @endsection
 @else
+    @section('ranking-header')
+        <div class="osu-page osu-page--ranking-info">
+            <div class="grid-items grid-items--ranking-filter">
+                @include('rankings._country_filter', ['params' => ['mode' => $rulesetName]])
+            </div>
+        </div>
+    @endsection
     @section('scores-header')
         <p>
             <small>{{ osu_trans('rankings.top_plays.last_updated') }}: {!! timeago($lastUpdate) !!}</small>
@@ -24,6 +31,7 @@
             class="u-contents js-react"
             data-props="{{ json_encode([
                 'first_score_rank' => $scores->firstItem(),
+                'mode' => $rulesetName,
                 'scores' => $scoresJson,
             ]) }}"
             data-react="ranking-top-plays"
