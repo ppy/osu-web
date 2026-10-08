@@ -1,7 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapTagStore from 'beatmaps/beatmap-tag-store';
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
+import ListingTagPickerController from 'beatmaps/listing-tag-picker-controller';
 import ChatWorker from 'chat/chat-worker';
 import AccountEdit from 'core/account-edit';
 import AccountEditAvatar from 'core/account-edit-avatar';
@@ -48,7 +50,6 @@ import SocketWorker from 'socket-worker';
 import Store from 'store';
 import RootDataStore from 'stores/root-data-store';
 import { parseJsonNullable } from 'utils/json';
-import UserTagPickerController from './beatmaps/user-tag-picker-controller';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -57,8 +58,9 @@ export default class OsuCore {
   readonly accountEditBlocklist;
   readonly animateNav;
   readonly bbcodeAutoPreview;
+  readonly beatmapListingTagPickerController;
   readonly beatmapsetSearchController;
-  readonly beatmapTagPickerController;
+  readonly beatmapTagStore;
   readonly bladePopup;
   readonly browserTitleWithNotificationCount;
   readonly captcha;
@@ -160,8 +162,10 @@ export default class OsuCore {
     this.userLoginObserver = new UserLoginObserver();
     this.windowFocusObserver = new WindowFocusObserver();
 
+    this.beatmapTagStore = new BeatmapTagStore();
+
+    this.beatmapListingTagPickerController = new ListingTagPickerController();
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
-    this.beatmapTagPickerController = new UserTagPickerController();
 
     this.socketWorker = new SocketWorker();
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
