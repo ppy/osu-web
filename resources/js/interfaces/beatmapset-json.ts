@@ -115,6 +115,7 @@ interface BeatmapsetJsonDefaultAttributes {
   favourite_count: number;
   hype: HypeData | null;
   id: number;
+  is_exclusive_track: boolean;
   nsfw: boolean;
   offset: number;
   play_count: number;
@@ -147,6 +148,7 @@ export function deletedBeatmapset(): BeatmapsetJson {
     favourite_count: 0,
     hype: null,
     id: 0,
+    is_exclusive_track: false,
     nsfw: false,
     offset: 0,
     play_count: 0,
