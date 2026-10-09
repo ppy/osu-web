@@ -210,7 +210,7 @@ class OsuAuthorize
             return 'unauthorized';
         }
 
-        if ($discussion->causedDisqualifyOrNominationReset()) {
+        if ($discussion->isResetPost()) {
             return $prefix.'caused_disqualify_or_nomination_reset';
         }
 
@@ -435,7 +435,7 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
-        if ($post->isFirstPost() && $post->beatmapDiscussion->causedDisqualifyOrNominationReset()) {
+        if ($post->isFirstPost() && $post->beatmapDiscussion->isResetPost()) {
             return $prefix.'caused_disqualify_or_nomination_reset';
         }
 
@@ -471,7 +471,7 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
-        if ($post->isFirstPost() && $post->beatmapDiscussion->causedDisqualifyOrNominationReset()) {
+        if ($post->isFirstPost() && $post->beatmapDiscussion->isResetPost()) {
             return $prefix.'caused_disqualify_or_nomination_reset';
         }
 

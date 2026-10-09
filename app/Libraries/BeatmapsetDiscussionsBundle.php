@@ -39,11 +39,15 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
     {
         static $discussionIncludes = ['starting_post', 'current_user_attributes'];
 
+        $discussions = $this->getDiscussions();
+        $relatedDiscussions = $this->getRelatedDiscussions();
+        BeatmapDiscussion::preloadResetPosts($discussions->concat($relatedDiscussions));
+
         return array_merge([
             'beatmaps' => json_collection($this->getBeatmaps(), new BeatmapTransformer()),
             'beatmapsets' => json_collection($this->getBeatmapsets(), new BeatmapsetTransformer()),
-            'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
-            'included_discussions' => json_collection($this->getRelatedDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
+            'discussions' => json_collection($discussions, new BeatmapDiscussionTransformer(), $discussionIncludes),
+            'included_discussions' => json_collection($relatedDiscussions, new BeatmapDiscussionTransformer(), $discussionIncludes),
             'reviews_config' => Review::config(),
             'users' => json_collection($this->getUsers(), new UserCompactTransformer(), ['groups']),
         ], cursor_for_response($this->getCursor()));
