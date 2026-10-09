@@ -73,7 +73,7 @@ export default function Stats({ user }: Props) {
   return (
     <div className='modding-profile-stats'>
       <div className='profile-detail-stats-card profile-detail-stats-card--modding'>
-        <div className='profile-detail-stats-card__top'>
+        <div className='profile-detail-stats-card__top profile-detail-stats-card__top--modding'>
           <div className='profile-detail-stats-card__title'>
             <div className='profile-detail-stats-card__title-icon'>
               <span className='svg-icon svg-icon--stats' />
