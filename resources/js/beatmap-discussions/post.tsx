@@ -85,12 +85,12 @@ export default class Post extends React.Component<Props> {
         && this.isOwn
         && this.props.post.id > this.props.resolvedStateChangedPostId
         && !this.beatmapset.discussion_locked
-        && !this.causedDisqualifyOrNominationReset
+        && !this.isResetPost
       );
   }
 
   @computed
-  private get causedDisqualifyOrNominationReset() {
+  private get isResetPost() {
     return this.props.type === 'discussion' && this.beatmapset?.events.some((event) => (
       (event.type === 'disqualify' || event.type === 'nomination_reset')
       && typeof event.comment !== 'string'

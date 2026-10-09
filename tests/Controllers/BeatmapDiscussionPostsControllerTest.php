@@ -226,7 +226,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($reply->fresh()->trashed());
     }
 
-    public function testPostDestroyWhenPostCausedDisqualifyOrNominationReset()
+    public function testPostDestroyWhenPostIsResetPost()
     {
         $this->beatmapset->events()->create([
             'comment' => ['beatmap_discussion_id' => $this->beatmapDiscussion->getKey()],
@@ -238,7 +238,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($this->beatmapDiscussionPost->fresh()->trashed());
     }
 
-    public function testPostEditWhenPostCausedDisqualifyOrNominationReset()
+    public function testPostEditWhenPostIsResetPost()
     {
         $message = $this->beatmapDiscussionPost->message;
 

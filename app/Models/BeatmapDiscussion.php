@@ -10,7 +10,9 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionPosts BeatmapDiscussionPost
@@ -67,6 +69,8 @@ class BeatmapDiscussion extends Model
 
     const VALID_BEATMAPSET_STATUSES = ['ranked', 'qualified', 'disqualified', 'never_qualified'];
     const VOTES_TO_SHOW = 50;
+
+    public ?bool $preloadedResetPosts = null;
 
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [], array $extraParams = [])
@@ -158,6 +162,33 @@ class BeatmapDiscussion extends Model
         }
 
         return ['query' => $query, 'params' => $params];
+    }
+
+    public static function preloadResetPosts(Collection $discussions)
+    {
+        $ids = [];
+        foreach ($discussions as $discussion) {
+            if ($discussion->isProblem()) {
+                $ids[] = $discussion->getKey();
+            }
+        }
+
+        $resetIds = new Set();
+        if ($ids !== []) {
+            $events = BeatmapsetEvent::disqualificationAndNominationResetEvents()
+                ->whereIn('comment->beatmap_discussion_id', $ids)
+                ->get();
+
+            foreach ($events as $event) {
+                if ($event->beatmap_discussion_id !== null) {
+                    $resetIds->add($event->beatmap_discussion_id);
+                }
+            }
+        }
+
+        foreach ($discussions as $discussion) {
+            $discussion->preloadedResetPosts = $resetIds->contains($discussion->getKey());
+        }
     }
 
     private static function getValidBeatmapsetStatus($rawParam)
@@ -261,9 +292,22 @@ class BeatmapDiscussion extends Model
         return $this->message_type === 'problem';
     }
 
-    public function causedDisqualifyOrNominationReset(): bool
+    public function isResetPost(): bool
     {
-        return $this->isProblem() && $this->beatmapset->events()
+        if ($this->preloadedResetPosts !== null) {
+            return $this->preloadedResetPosts;
+        }
+
+        if (!$this->isProblem()) {
+            return false;
+        }
+
+        $beatmapset = $this->beatmapset;
+        if ($beatmapset->relationLoaded('events')) {
+            return $beatmapset->resetPostIds()->contains($this->getKey());
+        }
+
+        return $beatmapset->events()
             ->disqualificationAndNominationResetEvents()
             ->where('comment->beatmap_discussion_id', $this->getKey())
             ->exists();

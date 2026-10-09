@@ -1281,6 +1281,24 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         });
     }
 
+    public function resetPostIds(): Set
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            $ids = new Set();
+
+            foreach ($this->events as $event) {
+                if (
+                    ($event->type === BeatmapsetEvent::DISQUALIFY || $event->type === BeatmapsetEvent::NOMINATION_RESET)
+                    && $event->beatmap_discussion_id !== null
+                ) {
+                    $ids->add($event->beatmap_discussion_id);
+                }
+            }
+
+            return $ids;
+        });
+    }
+
     public function nominationsByType(): array
     {
         $nominations = $this->beatmapsetNominations()
@@ -1337,6 +1355,7 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
             'beatmapDiscussions.beatmapDiscussionPosts',
             'beatmapDiscussions.beatmapDiscussionVotes',
+            'events',
         ]);
 
         foreach ($this->allBeatmaps as $beatmap) {
