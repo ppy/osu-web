@@ -6,13 +6,12 @@ import { ProfileHeaderIncludes } from './user-json';
 
 type ModdingProfileIncludes =
   ProfileHeaderIncludes
-  | 'graveyard_beatmapset_count'
+  | 'beatmaps_modded_count'
+  | 'beatmapset_status_counts'
   | 'guest_beatmapset_count'
+  | 'issues_resolved_count'
   | 'kudosu'
-  | 'loved_beatmapset_count'
   | 'nominated_beatmapset_count'
-  | 'pending_beatmapset_count'
-  | 'ranked_beatmapset_count'
   | 'statistics';
 
 type UserModdingProfileJson = UserExtendedJson & Required<Pick<UserExtendedJson, ModdingProfileIncludes>>;

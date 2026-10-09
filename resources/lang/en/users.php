@@ -549,12 +549,18 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
             // modding stats
+            'beatmaps_modded_count' => 'Total Beatmaps Modded',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
             'guest_beatmapset_count' => 'Guest Participation Beatmaps',
+            'issues_resolved_count' => 'Issues Resolved',
             'loved_beatmapset_count' => 'Loved Beatmaps',
+            'no_data' => 'No data',
             'nominated_beatmapset_count' => 'Nominated Ranked Beatmaps',
             'pending_beatmapset_count' => 'Pending Beatmaps',
+            'qualified_beatmapset_count' => 'Qualified Beatmaps',
             'ranked_beatmapset_count' => 'Ranked Beatmaps',
+            'title' => 'Stats',
+            'wip_beatmapset_count' => 'Work In Progress Beatmaps',
         ],
     ],
 

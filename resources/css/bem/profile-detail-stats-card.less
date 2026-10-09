@@ -22,6 +22,20 @@
     grid-template-rows: initial;
   }
 
+  &--modding {
+    grid-template-rows: auto auto;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.1)),
+      var(--bg);
+
+    @media @desktop {
+      align-items: center;
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: auto;
+      padding: var(--padding);
+    }
+  }
+
   &__bottom {
     display: grid;
     padding: var(--padding) 0;
@@ -145,6 +159,15 @@
       rgba(0, 0, 0, 0) 70%,
       rgba(0, 0, 0, 0.1)
     );
+
+    &--modding {
+      background: none;
+
+      @media @desktop {
+        justify-self: start;
+        padding: 0;
+      }
+    }
   }
 
   &__title {
