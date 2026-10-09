@@ -117,8 +117,10 @@ class ModdingHistoryEventsBundle
                     new BeatmapsetTransformer()
                 );
 
+                $discussions = $this->getDiscussions();
+                BeatmapDiscussion::preloadResetPosts($discussions);
                 $array['discussions'] = json_collection(
-                    $this->getDiscussions(),
+                    $discussions,
                     new BeatmapDiscussionTransformer(),
                     ['starting_post', 'current_user_attributes']
                 );

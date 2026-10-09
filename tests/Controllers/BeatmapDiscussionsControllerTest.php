@@ -10,6 +10,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use Faker;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -191,6 +192,18 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
+    public function testDestroyWhenDiscussionIsResetPost()
+    {
+        $this->discussion->beatmapset->events()->create([
+            'comment' => ['beatmap_discussion_id' => $this->discussion->getKey()],
+            'type' => BeatmapsetEvent::DISQUALIFY,
+            'user_id' => $this->discussion->user_id,
+        ]);
+
+        $this->deleteDiscussion($this->discussion, $this->discussion->user)->assertStatus(403);
+        $this->assertFalse($this->discussion->fresh()->trashed());
+    }
+
     public static function putVoteDataProvider()
     {
         return [
@@ -247,6 +260,13 @@ class BeatmapDiscussionsControllerTest extends TestCase
     private function currentScore()
     {
         return (int) $this->discussion->fresh()->beatmapDiscussionVotes()->sum('score');
+    }
+
+    private function deleteDiscussion(BeatmapDiscussion $discussion, User $user)
+    {
+        return $this
+            ->actingAsVerified($user)
+            ->delete(route('beatmapsets.discussions.destroy', $discussion));
     }
 
     private function putVote(?User $user, string $score)
