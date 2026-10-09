@@ -62,7 +62,6 @@ export default function DonutChart({ emptyTitle, slices }: Props) {
               d={arc(datum) ?? undefined}
               data-slice-key={datum.data.key}
               fill={isEmpty ? undefined : datum.data.colour}
-              onClick={onSliceEvent}
               onMouseLeave={onSliceEvent}
               onMouseOver={onSliceEvent}
               onTouchStart={onSliceEvent}
