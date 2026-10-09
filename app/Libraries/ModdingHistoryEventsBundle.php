@@ -165,9 +165,6 @@ class ModdingHistoryEventsBundle
                             'nominated_beatmapset_count',
                             'pending_beatmapset_count',
                             'ranked_beatmapset_count',
-                            'statistics',
-                            'statistics.country_rank',
-                            'statistics.rank',
                         ]
                     );
                 }
