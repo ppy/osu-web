@@ -449,7 +449,7 @@ export default class DiscussionsState {
       // TODO: maybe die instead?
       this.currentPage = query.mode;
       this.currentFilter = query.filter;
-      if (query.beatmapId != null) {
+      if (query.beatmapId != null && this.store.beatmaps.get(query.beatmapId) != null) {
         this.currentBeatmapId = query.beatmapId;
       }
 
