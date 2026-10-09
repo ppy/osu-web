@@ -7,11 +7,14 @@ import React from 'react';
 import { joinComponents } from 'utils/lang';
 
 interface Props {
+  tooltipPosition?: string;
   users: Pick<UserJson, 'id' | 'username'>[];
 }
 
 export default class UserLinkList extends React.PureComponent<Props> {
   render() {
-    return joinComponents(this.props.users.map((user) => <UserLink key={user.id} user={user} />));
+    return joinComponents(this.props.users.map((user) => (
+      <UserLink key={user.id} tooltipPosition={this.props.tooltipPosition} user={user} />
+    )));
   }
 }

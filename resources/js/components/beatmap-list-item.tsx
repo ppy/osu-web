@@ -10,12 +10,14 @@ import { hasOwners } from 'interfaces/with-beatmap-owners';
 import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
 
 interface BaseProps {
   beatmap: BeatmapJson | BeatmapExtendedJson;
   beatmapUrl?: string;
+  count?: number;
   inline?: boolean;
   modifiers?: Modifiers;
 }
@@ -56,6 +58,11 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
             </span>
           </div>
         </div>
+        {this.props.count != null &&
+          <span className='beatmap-list-item__count'>
+            {formatNumber(this.props.count)}
+          </span>
+        }
       </div>
     );
   }
@@ -83,7 +90,13 @@ export default class BeatmapListItem extends React.PureComponent<Props> {
 
     return (
       <StringWithComponent
-        mappings={{ mapper: <UserLinkList users={visibleOwners} /> }}
+        mappings={{
+          mapper: (
+            <span className='u-hover'>
+              <UserLinkList tooltipPosition='bottom center' users={visibleOwners} />
+            </span>
+          ),
+        }}
         pattern={trans(`beatmapsets.show.details.${translationKey}`)}
       />
     );
