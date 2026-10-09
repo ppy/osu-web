@@ -59,11 +59,16 @@ function statusColour(status: Status) {
 export default function Stats({ user }: Props) {
   const rank = user.kudosu.rank;
   const tier = rank == null ? null : kudosuRankTier(rank);
-  const slices = statusOrder.map((status) => ({
-    colour: statusColour(status),
-    key: status,
-    value: user.beatmapset_status_counts[status],
-  }));
+  const slices = statusOrder.map((status) => {
+    const value = user.beatmapset_status_counts[status];
+
+    return {
+      colour: statusColour(status),
+      key: status,
+      title: `${trans(`users.show.stats.${status}_beatmapset_count`)}: ${formatNumber(value)}`,
+      value,
+    };
+  });
 
   return (
     <div className='modding-profile-stats'>
@@ -122,7 +127,7 @@ export default function Stats({ user }: Props) {
           </ul>
 
           <div className='modding-profile-stats__chart'>
-            <DonutChart slices={slices} />
+            <DonutChart emptyTitle={trans('users.show.stats.no_data')} slices={slices} />
           </div>
         </div>
 

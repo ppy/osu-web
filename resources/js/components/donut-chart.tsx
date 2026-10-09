@@ -5,17 +5,34 @@ import * as d3 from 'd3';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
+const viewBoxSize = 200;
+const outerRadius = viewBoxSize / 2;
+
 interface DonutChartSlice {
   colour: string;
   key: string;
+  title?: string;
   value: number;
 }
 
 interface Props {
+  emptyTitle?: string;
   slices: DonutChartSlice[];
 }
 
-export default function DonutChart({ slices }: Props) {
+function onSliceEvent(event: React.SyntheticEvent<SVGPathElement>) {
+  const key = event.currentTarget.dataset.sliceKey;
+  if (key == null) return;
+
+  const anchor = event.currentTarget.closest('.donut-chart')?.querySelector<HTMLElement>(
+    `.donut-chart__anchor[data-slice-key="${key}"]`,
+  );
+  if (anchor == null) return;
+
+  $(anchor).trigger(event.type);
+}
+
+export default function DonutChart({ emptyTitle, slices }: Props) {
   const visibleSlices = slices.filter((slice) => slice.value > 0);
   const isEmpty = visibleSlices.length === 0;
   const pieSlices = isEmpty
@@ -29,21 +46,46 @@ export default function DonutChart({ slices }: Props) {
 
   const arc = d3.arc<d3.PieArcDatum<DonutChartSlice>>()
     .innerRadius(50)
-    .outerRadius(100)
+    .outerRadius(outerRadius)
     .cornerRadius(5);
 
+  const arcs = pie(pieSlices);
+
   return (
-    <svg aria-hidden='true' className='donut-chart' viewBox='0 0 200 200'>
-      <g transform='translate(100, 100)'>
-        {pie(pieSlices).map((datum) => (
-          <path
+    <div className='donut-chart'>
+      <svg aria-hidden='true' className='donut-chart__svg' viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
+        <g transform={`translate(${outerRadius}, ${outerRadius})`}>
+          {arcs.map((datum) => (
+            <path
+              key={datum.data.key}
+              className={classWithModifiers('donut-chart__slice', { empty: isEmpty })}
+              d={arc(datum) ?? undefined}
+              data-slice-key={datum.data.key}
+              fill={isEmpty ? undefined : datum.data.colour}
+              onClick={onSliceEvent}
+              onMouseLeave={onSliceEvent}
+              onMouseOver={onSliceEvent}
+              onTouchStart={onSliceEvent}
+            />
+          ))}
+        </g>
+      </svg>
+      {arcs.map((datum) => {
+        const [x, y] = arcs.length === 1 ? [0, -outerRadius] : arc.centroid(datum);
+
+        return (
+          <span
             key={datum.data.key}
-            className={classWithModifiers('donut-chart__slice', { empty: isEmpty })}
-            d={arc(datum) ?? undefined}
-            fill={isEmpty ? undefined : datum.data.colour}
+            className='donut-chart__anchor'
+            data-slice-key={datum.data.key}
+            style={{
+              left: `${((outerRadius + x) / viewBoxSize) * 100}%`,
+              top: `${((outerRadius + y) / viewBoxSize) * 100}%`,
+            }}
+            title={isEmpty ? emptyTitle : datum.data.title}
           />
-        ))}
-      </g>
-    </svg>
+        );
+      })}
+    </div>
   );
 }

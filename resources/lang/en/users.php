@@ -553,6 +553,7 @@ return [
             'guest_beatmapset_count' => 'Guest Participation Beatmaps',
             'issues_resolved_count' => 'Issues Resolved',
             'loved_beatmapset_count' => 'Loved Beatmaps',
+            'no_data' => 'No data',
             'nominated_beatmapset_count' => 'Nominated Ranked Beatmaps',
             'pending_beatmapset_count' => 'Pending Beatmaps',
             'qualified_beatmapset_count' => 'Qualified Beatmaps',
