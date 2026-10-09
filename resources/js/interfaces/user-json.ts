@@ -21,7 +21,7 @@ import UserReplaysWatchedCountJson from './user-replays-watched-count-json';
 import UserStatisticsJson from './user-statistics-json';
 import UserStatisticsRulesetsJson from './user-statistics-rulesets-json';
 
-export interface BeatmapsetStatusCountsJson {
+interface BeatmapsetStatusCountsJson {
   graveyard: number;
   loved: number;
   pending: number;
