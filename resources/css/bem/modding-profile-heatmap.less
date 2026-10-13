@@ -1,0 +1,153 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.modding-profile-heatmap {
+  --empty: hsl(var(--hsl-b2));
+  --cell-size: 18px;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+
+    @media @desktop {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__calendar {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    // so overflow starts at the most recent week
+    direction: rtl;
+  }
+
+  &__cell,
+  &__swatch {
+    --colour: var(--empty);
+    width: var(--cell-size);
+    height: $width;
+    border-radius: 3px;
+    background-color: var(--colour);
+
+    &--posts {
+      --hsl: var(--hsl-lime-1);
+    }
+
+    &--nominations {
+      --hsl: var(--hsl-purple-1);
+    }
+
+    &--ranks {
+      --hsl: var(--hsl-orange-1);
+    }
+
+    &--bright {
+      --colour: hsl(var(--hsl));
+    }
+
+    &--dim {
+      --colour: hsla(var(--hsl), 0.4);
+    }
+  }
+
+  &__swatch {
+    &--tooltip {
+      width: 2px;
+      height: 10px;
+      border-radius: 10000px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    direction: ltr;
+    grid-template-columns: auto repeat(var(--weeks), var(--cell-size));
+    grid-template-rows: auto repeat(7, var(--cell-size));
+    gap: 3px;
+    width: max-content;
+    margin-left: auto;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__help {
+    color: hsl(var(--hsl-l2));
+    font-size: 12px; // icon size
+    font-weight: normal;
+  }
+
+  &__legend {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: @font-size--normal;
+    flex: none;
+  }
+
+  &__legend-item {
+    display: grid;
+    gap: 4px;
+  }
+
+  &__legend-label {
+    font-weight: bold;
+  }
+
+  &__legend-scale {
+    display: grid;
+    grid-template-columns: max-content repeat(3, var(--cell-size)) max-content;
+    gap: 4px;
+    align-items: center;
+    color: hsl(var(--hsl-c2));
+  }
+
+  &__month {
+    font-size: @font-size--small;
+    color: hsl(var(--hsl-c2));
+    white-space: nowrap;
+    line-height: 1;
+    padding-bottom: 4px;
+  }
+
+  &__tooltip {
+    display: grid;
+    gap: 4px;
+    text-align: left;
+  }
+
+  &__tooltip-date {
+    color: hsl(var(--hsl-l1));
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  &__tooltip-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+  }
+
+  &__weekday {
+    font-size: @font-size--small;
+    color: hsl(var(--hsl-c2));
+    padding-right: 6px;
+    line-height: var(--cell-size);
+    text-align: right;
+    white-space: nowrap;
+  }
+}
