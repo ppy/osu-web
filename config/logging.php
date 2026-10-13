@@ -19,6 +19,11 @@ return [
 
     'default' => env('LOG_CHANNEL', 'single'),
 
+    'deprecations' => [
+        'channel' => presence(env('LOG_DEPRECATIONS_CHANNEL')) ?? env('LOG_CHANNEL', 'single'),
+        'trace' => env('LOG_DEPRECATIONS_TRACE', false),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Log Channels
