@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Grūtība',
+        'theme' => '',
         'top_10p' => 'Top 10% Rezultāti',
         'top_50p' => 'Top 50% Rezultāti',
         'unavailable' => [
@@ -34,15 +35,15 @@ return [
     ],
 
     'matchmaking' => [
-        'plays' => '',
-        'points' => '',
-        'provisional' => '',
-        'rating' => '',
-        'wins' => '',
+        'plays' => 'Izspēles',
+        'points' => 'Punkti',
+        'provisional' => 'Pagaidu reitings nepietiekama neseno maču skaita dēļ',
+        'rating' => 'Reitings',
+        'wins' => 'Uzvaras',
     ],
 
     'multiplayer' => [
-        'room_name' => '',
+        'room_name' => 'Istabas nosaukums',
     ],
 
     'performance' => [
@@ -51,14 +52,14 @@ return [
 
     'top_plays' => [
         'empty' => 'Dati tiek aprēķināti...',
-        'last_updated' => '',
+        'last_updated' => 'Pēdējais atjauninājums',
     ],
 
     'playlists' => [
-        'charts' => '',
-        'featured' => '',
-        'season_room' => '',
-        'seasons' => '',
+        'charts' => 'spotlights(vecie)',
+        'featured' => 'izceltie',
+        'season_room' => 'sezonas istaba',
+        'seasons' => 'sezonas',
     ],
 
     'type' => [
@@ -66,8 +67,8 @@ return [
         'daily_challenge' => 'dienas izaicinājums',
         'global' => 'globāli',
         'kudosu' => 'kudosu',
-        'matchmaking' => '',
-        'playlists' => '',
+        'matchmaking' => 'rangota spēle',
+        'playlists' => 'atskaņošanas saraksti',
         'team' => 'komanda',
         'top_plays' => 'labākie spēles momenti',
     ],
@@ -97,9 +98,9 @@ return [
         'division' => 'Divīzija',
         'members' => 'Dalībnieki',
         'play_count' => 'Spēļu skaits',
-        'performance' => 'Veiktspēja',
+        'performance' => 'Prasmes',
         'total_score' => 'Kopējais punktu skaits',
-        'ranked_score' => 'Novērtējamais Rezultāts',
+        'ranked_score' => 'Rangotie punkti',
         'average_score' => 'Vidējais punktu skaits',
         'average_performance' => 'Vid. Veik.',
         'ss' => '',

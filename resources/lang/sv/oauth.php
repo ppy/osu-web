@@ -58,5 +58,11 @@ return [
             'false' => 'Radera',
             'true' => 'Raderad',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

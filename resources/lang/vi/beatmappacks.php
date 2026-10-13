@@ -19,7 +19,7 @@ return [
     'show' => [
         'created_by' => 'bởi :author',
         'download' => 'Tải Xuống',
-        'no_diff_reduction_badge' => '',
+        'no_diff_reduction_badge' => 'Thử thách',
         'item' => [
             'cleared' => 'đã chơi',
             'not_cleared' => 'chưa chơi',

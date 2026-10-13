@@ -48,7 +48,7 @@ class Channel extends Model
     use Validatable;
 
     const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
-    const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
+    const CHAT_ACTIVITY_TIMEOUT = 300; // in seconds.
 
     const MAX_FIELD_LENGTHS = [
         'description' => 255,
@@ -90,7 +90,7 @@ class Channel extends Model
         $redis ??= LaravelRedis::client();
         $key = static::getAckKey($channelId);
         $redis->zadd($key, $timestamp, $userId);
-        $redis->expire($key, static::CHAT_ACTIVITY_TIMEOUT * 10);
+        $redis->expire($key, static::CHAT_ACTIVITY_TIMEOUT * 2);
     }
 
     /**
@@ -207,7 +207,7 @@ class Channel extends Model
     public function activeUserIds()
     {
         return $this->isPublic()
-            ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), time() - static::CHAT_ACTIVITY_TIMEOUT, 'inf')
             : $this->userIds();
     }
 

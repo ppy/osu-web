@@ -484,6 +484,7 @@ return [
             'rank' => 'Peringkat',
             'rating' => 'Rating',
             'recent_history' => 'Riwayat Pertandingan Terkini',
+            'recent_history_provisional' => '',
             'tier' => 'Tingkatan',
             'title' => 'Permainan Kilat',
             'wins' => 'Menang',
@@ -517,6 +518,8 @@ return [
             'global' => 'Peringkat global untuk :mode',
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Algoritma Star Rating / PP yang baru saat ini sedang :link.',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Jumlah Skor',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap Graveyard',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Beatmap Loved',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Beatmap Pending',
             'ranked_beatmapset_count' => 'Beatmap Ranked',
         ],

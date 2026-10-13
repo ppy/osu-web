@@ -58,5 +58,11 @@ return [
             'false' => 'Usuń',
             'true' => 'Usunięto',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

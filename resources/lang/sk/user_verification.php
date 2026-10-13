@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Prosím zadaj kód z tvojej autentifikačnej aplikácie.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Môžeš sa taktiež :link.',
+                'link' => 'odhlásiť',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Ak nemáš prístup do svojej aplikácie, :link.',
+                'link' => 'môžeš sa verifikovať pomocou mailu',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Nesprávny overovací kód.',
         'retries_exceeded' => 'Nesprávny overovací kód. Limit pokusov bol dosiahnutý, bol zaslaný nový overovací e-mail.',
         'reissued' => 'Overovací kôd bol znovú vygenerovaný, bol zaslaný nový overovací email.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'Verifikačný kód už bol použitý. Prosím počkaj a použi nový.',
+        'totp_gone' => 'Autentifikačný token bol odstránený, prepínam na overovanie mailom. Verifikačný mail bol poslaný.',
         'unknown' => 'Naskytol sa neznámý problém, bol zaslaný nový overovací email.',
     ],
 ];

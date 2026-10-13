@@ -10,7 +10,7 @@ return [
         'peak' => 'Vrchol, :count online užívateľov',
         'players' => '<strong>:count</strong> registrovaných hráčov',
         'title' => 'vitajte',
-        'see_more_news' => '',
+        'see_more_news' => 'zobraziť viac noviniek',
 
         'slogan' => [
             'main' => 'najlepšia free-to-win rytmická hra',
@@ -22,15 +22,15 @@ return [
         'advanced_link' => 'Pokročilé vyhľadávanie',
         'button' => 'Hľadať',
         'empty_result' => 'Nič sa nenašlo!',
-        'keyword_required' => '',
+        'keyword_required' => 'Je potrebné kľúčové slovo pre vyhľadávanie',
         'placeholder' => 'zadajte pre vyhľadávanie',
         'title' => 'Hľadať',
 
         'artist_track' => [
-            'more_simple' => '',
+            'more_simple' => 'Zobraziť viac skladieb od významných umelcov',
         ],
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Prihlás sa pre vyhladávanie beatmáp',
             'more' => ':count ďalších výsledkov vyhladávaní máp',
             'more_simple' => 'Zobraziť ďalšie výsledký vyhladávania máp',
             'title' => 'Beatmapy',
@@ -39,14 +39,14 @@ return [
         'forum_post' => [
             'all' => 'Všetky fóra',
             'link' => 'Prehľadať fórum',
-            'login_required' => '',
+            'login_required' => 'Prihlás sa pre vyhladávanie vo fóre',
             'more_simple' => 'Zobraziť ďalšie výsledky prehľadávania fóra',
             'title' => 'Fórum',
 
             'label' => [
                 'forum' => 'hľadať vo fóroch',
                 'forum_children' => 'zahrnúť subfóra',
-                'include_deleted' => '',
+                'include_deleted' => 'zahrnúť vymazané príspevky',
                 'topic_id' => 'téma #',
                 'username' => 'autor',
             ],
@@ -98,9 +98,9 @@ return [
         'video-guide' => 'video návod',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'ak máš problém so zapínaním hry alebo registrovaním účtu, :help_forum_link alebo :support_button.',
+            'help_forum_link' => 'pozri si pomocné fórum',
+            'support_button' => 'kontaktuj podporu',
         ],
 
         'os' => [
@@ -141,11 +141,11 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => '',
+            'daily_challenge' => 'Beatmapa dennej výzvy',
             'new' => 'Nové Hodnotené Beatmapy',
             'popular' => 'Populárne Beatmapy',
             'by_user' => 'od :user',
-            'resets' => '',
+            'resets' => 'resetuje sa :ends',
         ],
         'buttons' => [
             'download' => 'Stiahnuť osu!',
@@ -153,11 +153,11 @@ return [
             'store' => 'osu!store',
         ],
         'livestream' => [
-            'title' => '',
+            'title' => 'Odporúčané živé vysielanie',
         ],
         'show' => [
             'admin' => [
-                'page' => '',
+                'page' => 'Otvoriť administrátorskú konzolu',
             ],
         ],
     ],

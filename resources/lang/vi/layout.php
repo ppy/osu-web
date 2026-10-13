@@ -114,7 +114,7 @@ return [
             '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',
             'jp_sctl' => '',
-            'privacy' => 'Quyền Riêng Tư',
+            'privacy' => 'Quyền riêng tư',
             'rules' => 'Quy tắc',
             'server_status' => 'Trạng thái máy chủ',
             'source_code' => 'Mã Nguồn',

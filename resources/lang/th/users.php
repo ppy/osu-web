@@ -485,6 +485,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => 'ควิกเพลย์',
             'wins' => '',
@@ -518,6 +519,8 @@ return [
             'global' => 'อันดับทั่วโลกของ :mode',
             'global_simple' => 'อันดับทั่วโลก',
             'highest' => 'อันดับสูงสุด: :rank เมื่อ :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -548,7 +551,9 @@ return [
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'บีทแมพเลิฟด์',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'ranked_beatmapset_count' => 'บีทแมพที่จัดอันดับแล้ว',
         ],

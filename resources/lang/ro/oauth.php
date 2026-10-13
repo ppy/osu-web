@@ -59,5 +59,11 @@ Ești sigur că dorești să ștergi acest client?',
             'false' => 'Șterge',
             'true' => 'Șters',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

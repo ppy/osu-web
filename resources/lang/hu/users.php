@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Kevesebb részlet mutatása',
+            'to_v2' => 'Több részlet mutatása',
         ],
         'edit' => [
             'cover' => [
@@ -479,14 +479,15 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
+            'losses' => 'Vesztések',
+            'plays' => 'Összes meccs',
+            'rank' => 'Rang',
+            'rating' => 'Értékelés',
+            'recent_history' => 'Legutóbbi meccsek',
+            'recent_history_provisional' => '',
+            'tier' => 'Besorolás',
             'title' => 'Ranked',
-            'wins' => '',
+            'wins' => 'Nyerések',
         ],
 
         'not_found' => [
@@ -517,6 +518,8 @@ return [
             'global' => 'Globális rank a :mode-ra/re',
             'global_simple' => 'Globális Rangsor',
             'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Az új csillagbesorolási / PP-algoritmus a következő: :link .',
@@ -525,11 +528,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Legmagasabb :value',
-            'label' => '',
+            'label' => 'Kiemeltek',
             'total_score' => 'Összpontszám',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Egyjátékos',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Összpontszám',
             // modding stats
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Szeretett beatmapek',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Függő beatmapek',
             'ranked_beatmapset_count' => 'Rangsorolt beatmapek',
         ],

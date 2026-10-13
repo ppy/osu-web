@@ -483,7 +483,8 @@ return [
             'plays' => 'Total de partidas',
             'rank' => 'Classificação',
             'rating' => 'Avaliação',
-            'recent_history' => 'Histórico da última partida',
+            'recent_history' => 'Histórico de partidas',
+            'recent_history_provisional' => '',
             'tier' => 'Nível',
             'title' => 'Competitivo',
             'wins' => 'Vitórias',
@@ -517,6 +518,8 @@ return [
             'global' => 'Ranking global de :mode',
             'global_simple' => 'Classificação global',
             'highest' => 'Maior classificação: :rank em :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Um novo algoritmo de dificuldade / PP está :link.',
@@ -529,11 +532,11 @@ return [
             'total_score' => 'Pontuação total',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Individual',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
-            'hits_per_play' => 'Acertos por Jogadas',
+            'hits_per_play' => 'Acertos por jogada',
             'level' => 'Nível :level',
             'level_progress' => 'Progresso para o próximo nível',
             'maximum_combo' => 'Combo Máximo',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Pontuação Total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Beatmaps Loved',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Beatmaps Pendentes',
             'ranked_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
         ],
@@ -564,8 +569,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => 'por favor registre-se através do cliente do jogo!',
-        'from_web' => 'por favor registre-se através do site',
+        'from_client' => 'registre-se pelo do cliente do jogo!',
+        'from_web' => 'complete seu registro através do site do osu!',
         'saved' => 'Usuário criado',
     ],
     'verify' => [

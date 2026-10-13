@@ -39,7 +39,7 @@ return [
 
         'has_pending' => [
             '_' => 'Bạn có thanh toán chưa hoàn thành, nhấp vào :link để xem.',
-            'link_text' => 'đây',
+            'link_text' => 'ở đây',
         ],
 
         'pending_checkout' => [
@@ -113,7 +113,7 @@ return [
         'shopify_expired' => 'Link thanh toán cho đơn hàng này đã hết hạn.',
         'subtotal' => 'Tổng phụ',
         'total' => 'Tổng cộng',
-        'unavailable' => '',
+        'unavailable' => 'Không có thêm thông tin bổ sung nào cho đơn hàng này.',
 
         'details' => [
             'order_number' => 'Đơn hàng #',
@@ -189,7 +189,7 @@ return [
 
         'require_login' => [
             '_' => 'Bạn cần phải :link để nhận một thẻ osu!supporter!',
-            'link_text' => 'đăng nhập',
+            'link_text' => 'đã đăng nhập',
         ],
     ],
 
@@ -202,7 +202,7 @@ return [
 
         'require_login' => [
             '_' => 'Bạn cần phải :link để đổi tên!',
-            'link_text' => 'đăng nhập',
+            'link_text' => 'đã đăng nhập',
         ],
     ],
 

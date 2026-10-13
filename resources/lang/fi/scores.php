@@ -16,8 +16,8 @@ return [
             'by' => 'Pelaaja',
             'played_on' => 'Pelattu',
             'submitted_on' => 'Tulos lähetetty',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Katsottu',
+            'watched_count' => ':count_delimited kerran|:count_delimited kertaa',
 
             'rank' => [
                 'country' => 'Maakohtainen sijoitus',

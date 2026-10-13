@@ -66,14 +66,14 @@ return [
 
         'message_hint' => [
             'in_general' => 'Questo post andrà nella discussione generale della beatmap. Per moddare questa beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
-            'in_timeline' => 'Per moddare più timestamp, crea un post per ogni timestamp.',
+            'in_timeline' => 'Per moddare più timestamp, posta più volte (un post per timestamp).',
         ],
 
         'message_placeholder' => [
             'general' => 'Scrivi qui per postare in Generale (:version)',
             'generalAll' => 'Scrivi qui per postare in Generale (Tutte le difficoltà)',
             'review' => 'Scrivi qui per postare una revisione',
-            'timeline' => 'Scrivi qui per postare su Cronologia (:version)',
+            'timeline' => 'Scrivi qui per postare sulla Cronologia (:version)',
         ],
 
         'message_type' => [
@@ -101,7 +101,7 @@ return [
         ],
 
         'mode' => [
-            'events' => 'Cronologia',
+            'events' => 'Storico',
             'general' => 'Generale :scope',
             'reviews' => 'Revisioni',
             'timeline' => 'Cronologia',

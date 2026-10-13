@@ -13,6 +13,6 @@ return [
         'headline' => 'Tiešraides',
         'description' => 'Dati tiek atgādāti no twitch.tv ik pēc 5 minūtēm atkarībā no datu pārvaldes saraksta. Jūties brīvi ierindot sevi un sākt savu tiešraidi! Vairāk informācijas kā sagatavot uzstādījumus redzēsiet šeit :link.',
 
-        'link' => 'wiki lapa tiešsaistē',
+        'link' => 'viki lapa tiešsaistē',
     ],
 ];

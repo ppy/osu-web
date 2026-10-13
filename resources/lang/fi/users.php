@@ -168,16 +168,16 @@ return [
 
         'dmca' => [
             'message_1' => [
-                '_' => '',
-                'policy' => '',
+                '_' => 'Ilmoita tekijänoikeusrikkomuksesta DMCA-vaatimuksella osoitteeseen :mail :policy -käytännön mukaisesti.',
+                'policy' => 'osu! tekijänoikeuspolitiikka',
             ],
-            'message_2' => '',
+            'message_2' => 'Tämä koskee tapauksia, joissa ääniraitoja, visuaalista sisältöä tai rytmikartan sisältöä käytetään ilman asianmukaista lupaa.',
         ],
 
         'options' => [
             'cheating' => 'Huijaaminen',
-            'copyright_infringement' => '',
-            'inappropriate_chat' => '',
+            'copyright_infringement' => 'Tekijänoikeusrikkomus',
+            'inappropriate_chat' => 'Sopimaton chat-käyttäytyminen',
             'insults' => 'Loukkaa minua / muita',
             'multiple_accounts' => 'Käyttää useita tilejä',
             'nonsense' => 'Hölynpölyä',
@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Näytä vähemmän',
+            'to_v2' => 'Näytä lisätiedot',
         ],
         'edit' => [
             'cover' => [
@@ -338,7 +338,7 @@ return [
                     'count_label' => 'Uusintoja katsottu',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Katsotuimmat Uusinnat',
                 ],
             ],
             'kudosu' => [
@@ -407,7 +407,7 @@ return [
                 'show_more' => 'katso lisää julkaisuja',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Kilpailulliset Ottelut',
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
@@ -479,14 +479,15 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
-            'title' => '',
-            'wins' => '',
+            'losses' => 'Häviöt',
+            'plays' => 'Otteluita Yhteensä',
+            'rank' => 'Sijoitus',
+            'rating' => 'Luokitus',
+            'recent_history' => 'Viimeisin Otteluhistoria',
+            'recent_history_provisional' => '',
+            'tier' => 'Taso',
+            'title' => 'Kilpailullinen',
+            'wins' => 'Voitot',
         ],
 
         'not_found' => [
@@ -517,23 +518,25 @@ return [
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
             'highest' => 'Korkein sija :rank oli :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Uutta tähtiluokitus / PP algoritmia :link.',
+            'title_link' => 'otetaan käyttöön',
+            'message' => 'Viimeisimmät tulokset eivät välttämättä näy heti käyttäjäprofiileissa.',
         ],
         'season_stats' => [
-            'division_top_percentage' => '',
-            'label' => '',
-            'total_score' => '',
+            'division_top_percentage' => 'Top :value',
+            'label' => 'Kohdevaloissa',
+            'total_score' => 'Yhteispisteet',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Yksinpeli',
         ],
         'stats' => [
             'hit_accuracy' => 'Iskutarkkuus',
-            'hits_per_play' => '',
+            'hits_per_play' => 'Osumia pelausta kohden',
             'level' => 'Taso :level',
             'level_progress' => 'edistyminen seuraavalle tasolle',
             'maximum_combo' => 'Suurin iskuputki',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Pisteitä yhteensä',
             // modding stats
             'graveyard_beatmapset_count' => 'Haudatut rytmikartat',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Rakastetut rytmikartat',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Vireillä olevat rytmikartat',
             'ranked_beatmapset_count' => 'Rankatut rytmikartat',
         ],

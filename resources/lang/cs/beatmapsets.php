@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited má v oblíbených|:count_delimited mají v oblíbených|:count_delimited má v oblíbených',
+        'playcount' => ':count_delimited zahrání|:count_delimited zahrání|:count_delimited zahrání',
     ],
 
     'panel' => [

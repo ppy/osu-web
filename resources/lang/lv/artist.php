@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Kontraktētie Mākslinieki osu!',
-    'title' => 'Kontraktētie Mākslinieki',
+    'page_description' => 'Sadarbības izpildītāji osu!',
+    'title' => 'Sadarbības izpildītāji',
 
     'admin' => [
-        'hidden' => 'PAŠLAIK MĀKSLINIEKS IR PASLĒPTS',
+        'hidden' => 'IZPILDĪTĀJS PAŠLAIK IR PASLĒPTS',
     ],
 
     'beatmaps' => [

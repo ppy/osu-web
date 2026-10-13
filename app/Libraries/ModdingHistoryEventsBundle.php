@@ -164,9 +164,6 @@ class ModdingHistoryEventsBundle
                             'kudosu',
                             'kudosu.rank',
                             'nominated_beatmapset_count',
-                            'statistics',
-                            'statistics.country_rank',
-                            'statistics.rank',
                         ]
                     );
                 }

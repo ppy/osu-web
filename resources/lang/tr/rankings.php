@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Zorluk',
+        'theme' => '',
         'top_10p' => 'İlk %10 Skor',
         'top_50p' => 'İlk %50 Skor',
         'unavailable' => [

@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '?',
-            'beatmapset_covers' => '?',
+            'beatmapset' => 'ritma-karšu kopa',
+            'beatmapset_covers' => 'ritma-karšu kopas pārklājums',
             'contest' => 'konkurs',
             'contests' => 'konkursi',
             'root' => 'konsole',
@@ -37,7 +37,7 @@ return [
 
         'help' => [
             'index' => 'indekss',
-            'sitemap' => '?',
+            'sitemap' => 'Lapas Karte',
         ],
 
         'store' => [
@@ -53,7 +53,7 @@ return [
         'users' => [
             'modding' => 'moderēšana',
             'playlists' => 'dziesmu saraksti',
-            'ranked-play' => '',
+            'ranked-play' => 'novērtētie dueļi',
             'realtime' => 'daudzspēlētāju režīms',
             'show' => 'info',
         ],
@@ -124,7 +124,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => 'Nareizs pieprasījuma parametrs',
+            'error' => 'Nepareizs pieprasījuma parametrs',
             'description' => '',
         ],
         '404' => [
@@ -132,11 +132,11 @@ return [
             'description' => "Piedod, bet lapa kuru tu esi pieprasījis nav šeit!",
         ],
         '403' => [
-            'error' => "Tev šeit nevajedzētu būt.",
+            'error' => "Tev šeit nevajadzētu būt.",
             'description' => 'Vari mēģināt iet atpakaļ, tomēr.',
         ],
         '401' => [
-            'error' => "Tev šeit nevajedzētu būt.",
+            'error' => "Tev šeit nevajadzētu būt.",
             'description' => 'Tu varētu mēģināt iet atpakaļ. Vai varbūt pierakstīties.',
         ],
         '405' => [
@@ -144,7 +144,7 @@ return [
             'description' => "Piedod, bet lapa kuru tu esi pieprasījis nav šeit!",
         ],
         '422' => [
-            'error' => 'Nepareizs pieprasījuma prametrs',
+            'error' => 'Nepareizs pieprasījuma parametrs',
             'description' => '',
         ],
         '429' => [
@@ -196,7 +196,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Iestatījumi',
-            'create_team' => '',
+            'create_team' => 'Izveidot komandu',
             'follows' => 'Vērošanas saraksts',
             'friends' => 'Draugi',
             'legacy_score_only_toggle' => 'Lazer režīms',

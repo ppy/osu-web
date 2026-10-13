@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquer les messages privés des utilisateurs qui ne sont pas dans votre liste d’amis',
-        'friends_only_info' => '',
+        'friends_only_info' => 'ce blocage s\'applique aussi aux invitations multijoueurs et aux demandes de duel en partie classée dans osu!lazer',
         'hide_online' => 'masquer votre présence en ligne',
         'hide_online_info' => 'vous fera apparaître hors-ligne sur osu!lazer si activé',
         'title' => 'Confidentialité',

@@ -485,6 +485,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => 'اللعب المصنّف',
             'wins' => '',
@@ -518,6 +519,8 @@ return [
             'global' => 'الترتيب العالمي لـ :mode',
             'global_simple' => 'الترتيب العالمي',
             'highest' => 'أعلى ترتيب: :rank في :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -548,7 +551,9 @@ return [
             'total_score' => 'مجموع النقاط',
             // modding stats
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'خرائط Loved',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'الخرائط المعلقة',
             'ranked_beatmapset_count' => 'الخرائط المصنفة (Ranked)',
         ],

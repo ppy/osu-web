@@ -5,11 +5,11 @@
 
 return [
     'mode' => [
-        'artist_track' => '',
+        'artist_track' => 'Esittelyartistin kappale',
         'beatmapset' => 'Rytmikartta',
         'forum_post' => 'Foorumi',
         'other' => 'Muu',
-        'team' => '',
+        'team' => 'Tiimi',
         'user' => 'Pelaaja',
         'wiki_page' => 'Wiki',
     ],
@@ -19,15 +19,15 @@ return [
         'title' => ':mode: hakutulokset',
 
         'no_results' => [
-            '_' => '',
+            '_' => 'Ei tuloksia kohteelle :mode',
 
-            'artist_track' => '',
-            'beatmapset' => '',
-            'forum_post' => '',
-            'other' => '',
-            'team' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'artist_track' => 'Esittelyartistin kappaleet',
+            'beatmapset' => 'Rytmikartat',
+            'forum_post' => 'Keskustelupalstat',
+            'other' => 'Muut',
+            'team' => 'Tiimit',
+            'user' => 'Pelaajat',
+            'wiki_page' => 'Wiki',
         ],
     ],
 ];

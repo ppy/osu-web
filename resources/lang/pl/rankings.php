@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Poziom trudności',
+        'theme' => '',
         'top_10p' => 'Wynik 90. percentyla',
         'top_50p' => 'Wynik 50. percentyla',
         'unavailable' => [

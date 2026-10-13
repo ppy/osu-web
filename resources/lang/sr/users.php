@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Глобални ранг за :mode',
             'global_simple' => 'Глобални ранг',
             'highest' => 'Највиши ранг: :rank на :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Укупан резултат',
             // modding stats
             'graveyard_beatmapset_count' => 'Запуштене Мапе',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Loved Мапе',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Мапе на чекању',
             'ranked_beatmapset_count' => 'Ранговане Мапе',
         ],

@@ -58,5 +58,11 @@ return [
             'false' => 'Izdzēst',
             'true' => 'Izdzēsts',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];
