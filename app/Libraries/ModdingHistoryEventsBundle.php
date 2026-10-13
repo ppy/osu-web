@@ -163,6 +163,7 @@ class ModdingHistoryEventsBundle
                             'issues_resolved_count',
                             'kudosu',
                             'kudosu.rank',
+                            'modding_activity_heatmap',
                             'nominated_beatmapset_count',
                         ]
                     );

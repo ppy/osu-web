@@ -5,6 +5,7 @@ import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import CountryJson from './country-json';
 import DailyChallengeUserStatsJson from './daily-challenge-user-stats-json';
 import MatchmakingUserStatsJson from './matchmaking-user-stats-json';
+import ModdingActivityHeatmapJson from './modding-activity-heatmap-json';
 import ProfileBannerJson from './profile-banner';
 import RankHighestJson from './rank-highest-json';
 import RankHistoryJson from './rank-history-json';
@@ -61,6 +62,7 @@ interface UserJsonAvailableIncludes {
   loved_beatmapset_count: number;
   mapping_follower_count: number;
   matchmaking_stats: MatchmakingUserStatsJson[];
+  modding_activity_heatmap: ModdingActivityHeatmapJson;
   monthly_playcounts: UserMonthlyPlaycountJson[];
   nominated_beatmapset_count: number;
   page: {

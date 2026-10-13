@@ -11,6 +11,7 @@ type ModdingProfileIncludes =
   | 'guest_beatmapset_count'
   | 'issues_resolved_count'
   | 'kudosu'
+  | 'modding_activity_heatmap'
   | 'nominated_beatmapset_count';
 
 type UserModdingProfileJson = UserExtendedJson & Required<Pick<UserExtendedJson, ModdingProfileIncludes>>;
