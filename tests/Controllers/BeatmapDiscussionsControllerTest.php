@@ -192,7 +192,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
-    public function testDestroyWhenDiscussionIsResetPost()
+    public function testDestroyWhenDiscussionIsResetDiscussion()
     {
         $this->discussion->beatmapset->events()->create([
             'comment' => ['beatmap_discussion_id' => $this->discussion->getKey()],

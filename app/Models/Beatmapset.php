@@ -1281,7 +1281,7 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         });
     }
 
-    public function resetPostIds(): Set
+    public function resetDiscussionIds(): Set
     {
         return $this->memoize(__FUNCTION__, function () {
             $ids = new Set();

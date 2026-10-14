@@ -85,17 +85,19 @@ export default class Post extends React.Component<Props> {
         && this.isOwn
         && this.props.post.id > this.props.resolvedStateChangedPostId
         && !this.beatmapset.discussion_locked
-        && !this.isResetPost
+        && !this.isResetDiscussion
       );
   }
 
   @computed
-  private get isResetPost() {
-    return this.props.type === 'discussion' && this.beatmapset?.events.some((event) => (
-      (event.type === 'disqualify' || event.type === 'nomination_reset')
-      && typeof event.comment !== 'string'
-      && event.comment.beatmap_discussion_id === this.props.discussion.id
-    ));
+  private get isResetDiscussion() {
+    return this.props.type === 'discussion'
+      && this.props.discussion.message_type === 'problem'
+      && this.beatmapset?.events.some((event) => (
+        (event.type === 'disqualify' || event.type === 'nomination_reset')
+        && typeof event.comment !== 'string'
+        && event.comment.beatmap_discussion_id === this.props.discussion.id
+      ));
   }
 
   private get canDelete() {
