@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { switchNever } from 'utils/switch-never';
+import { SwitchError } from 'utils/switch-never';
 
 export type MarkdownFormat = 'blockquote' | 'bold' | 'code_block' | 'code_inline' | 'image' | 'italic' | 'link';
 
@@ -21,10 +21,8 @@ export function applyMarkdownFormat(value: string, start: number, end: number, f
       return wrap(value, start, end, '[', '](LINK)');
     case 'image':
       return wrap(value, start, end, '\n![', '](LINK)\n');
-    default: {
-      switchNever(format);
-      return { end, selectionEnd: end, selectionStart: start, start, text: '' };
-    }
+    default:
+      throw new SwitchError(format);
   }
 }
 
