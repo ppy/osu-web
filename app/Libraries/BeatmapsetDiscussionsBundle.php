@@ -37,7 +37,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 
     public function toArray()
     {
-        static $discussionIncludes = ['starting_post', 'current_user_attributes'];
+        static $discussionIncludes = ['starting_post'];
 
         return array_merge([
             'beatmaps' => json_collection($this->getBeatmaps(), new BeatmapTransformer()),
