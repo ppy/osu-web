@@ -19,7 +19,7 @@ return [
     ],
 
     'formatting' => [
-        'blockquote' => 'Blockquote',
+        'blockquote' => 'Quote',
         'bold' => 'Bold',
         'code_block' => 'Code block',
         'code_inline' => 'Inline code',
