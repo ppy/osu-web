@@ -192,10 +192,6 @@ export class NewReply extends React.Component<Props> {
               placeholder={trans('beatmaps.discussions.reply_placeholder')}
               value={this.message}
             />
-            <MarkdownSelectionToolbar
-              disabled={this.posting != null}
-              textareaRef={this.box}
-            />
           </div>
         </div>
 
@@ -208,6 +204,10 @@ export class NewReply extends React.Component<Props> {
 
         <div className={`${bn}__footer`}>
           <div className={`${bn}__actions`}>
+            <MarkdownSelectionToolbar
+              disabled={this.posting != null}
+              textareaRef={this.box}
+            />
             <div className={`${bn}__actions-group`}>
               {this.canResolve && !this.props.discussion.resolved && this.renderReplyButton('reply_resolve')}
 

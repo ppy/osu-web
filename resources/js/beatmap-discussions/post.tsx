@@ -311,14 +311,16 @@ export default class Post extends React.Component<Props> {
               style={{ minHeight: this.textareaMinHeight }}
               value={this.message}
             />
-            <MarkdownSelectionToolbar
-              disabled={this.isPosting}
-              textareaRef={this.textareaRef}
-            />
             <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
           </>
         )}
         <div className={`${bn}__actions`}>
+          {!this.isReview && (
+            <MarkdownSelectionToolbar
+              disabled={this.isPosting}
+              textareaRef={this.textareaRef}
+            />
+          )}
           <div className={`${bn}__actions-group`}>
             <div className={`${bn}__actions-group`}>
               <div className={`${bn}__action`}>

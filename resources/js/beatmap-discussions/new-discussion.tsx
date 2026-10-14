@@ -421,15 +421,16 @@ export class NewDiscussion extends React.Component<Props> {
           placeholder={this.textareaPlaceholder}
           value={this.canPost ? this.message : ''}
         />
-        <MarkdownSelectionToolbar
-          disabled={this.posting != null || !this.canPost}
-          textareaRef={this.inputBox}
-        />
-
-        <DiscussionMessageLengthCounter
-          isTimeline={this.isTimeline}
-          message={this.message}
-        />
+        <div className={`${bn}__toolbar`}>
+          <MarkdownSelectionToolbar
+            disabled={this.posting != null || !this.canPost}
+            textareaRef={this.inputBox}
+          />
+          <DiscussionMessageLengthCounter
+            isTimeline={this.isTimeline}
+            message={this.message}
+          />
+        </div>
       </>
     );
   }
