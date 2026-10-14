@@ -1,7 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-export type MarkdownFormat = 'blockquote' | 'bold' | 'code_block' | 'image' | 'inline_code' | 'italic' | 'link';
+import { switchNever } from 'utils/switch-never';
+
+export type MarkdownFormat = 'blockquote' | 'bold' | 'code_block' | 'code_inline' | 'image' | 'italic' | 'link';
 
 export function applyMarkdownFormat(value: string, start: number, end: number, format: MarkdownFormat) {
   switch (format) {
@@ -11,7 +13,7 @@ export function applyMarkdownFormat(value: string, start: number, end: number, f
       return codeBlock(value, start, end);
     case 'bold':
       return wrap(value, start, end, '**', '**');
-    case 'inline_code':
+    case 'code_inline':
       return wrap(value, start, end, '`', '`');
     case 'italic':
       return wrap(value, start, end, '*', '*');
@@ -19,43 +21,55 @@ export function applyMarkdownFormat(value: string, start: number, end: number, f
       return wrap(value, start, end, '[', '](LINK)');
     case 'image':
       return wrap(value, start, end, '\n![', '](LINK)\n');
+    default: {
+      switchNever(format);
+      return { end, selectionEnd: end, selectionStart: start, start, text: '' };
+    }
   }
 }
 
 function codeBlock(value: string, start: number, end: number) {
-  let text = '```\n' + value.slice(start, end) + '\n```';
-  if (start > 0 && value[start - 1] !== '\n') text = `\n${text}`;
-  if (end < value.length && value[end] !== '\n') text = `${text}\n`;
+  const { from, to } = lineRange(value, start, end);
+  const inner = value.slice(from, to);
+  const text = '```\n' + inner + '\n```';
+  const caret = inner === ''
+    ? from + '```\n'.length
+    : from + text.length;
 
-  const caret = start === end
-    ? start + text.indexOf('```\n') + '```\n'.length
-    : start + text.length;
+  return { end: to, selectionEnd: caret, selectionStart: caret, start: from, text };
+}
 
-  return { end, selectionEnd: caret, selectionStart: caret, start, text };
+function lineRange(value: string, start: number, end: number) {
+  const from = value.lastIndexOf('\n', start - 1) + 1;
+  const lineEnd = value.indexOf('\n', value[end - 1] === '\n' ? end - 1 : end);
+  const to = lineEnd === -1 ? value.length : lineEnd;
+
+  return { from, to };
 }
 
 function quote(value: string, start: number, end: number) {
-  const lineStart = value.lastIndexOf('\n', start - 1) + 1;
-  const lineEnd = value.indexOf('\n', value[end - 1] === '\n' ? end - 1 : end);
-  const to = lineEnd === -1 ? value.length : lineEnd;
-  const text = value.slice(lineStart, to).split('\n').map((line) => `> ${line}`).join('\n');
-  const caret = lineStart + text.length;
+  const { from, to } = lineRange(value, start, end);
+  const text = value.slice(from, to).split('\n').map((line) => `> ${line}`).join('\n');
+  const caret = from + text.length;
 
-  return { end: to, selectionEnd: caret, selectionStart: caret, start: lineStart, text };
+  return { end: to, selectionEnd: caret, selectionStart: caret, start: from, text };
 }
 
 function wrap(value: string, start: number, end: number, open: string, close: string) {
   const raw = value.slice(start, end);
   const selected = raw.trim();
   const from = start + raw.length - raw.trimStart().length;
-  const text = open + selected + close;
+  const prefix = open.startsWith('\n') && (from === 0 || value[from - 1] === '\n')
+    ? open.slice(1)
+    : open;
+  const text = prefix + selected + close;
   if (selected === '') {
     // an empty image should still select LINK so the url can be typed immediately.
-    const caret = from + open.length + (open.includes('![') ? close.indexOf('LINK') : 0);
+    const caret = from + prefix.length + (prefix.includes('![') ? close.indexOf('LINK') : 0);
 
     return {
       end: from,
-      selectionEnd: open.includes('![') ? caret + 'LINK'.length : caret,
+      selectionEnd: prefix.includes('![') ? caret + 'LINK'.length : caret,
       selectionStart: caret,
       start: from,
       text,
@@ -63,7 +77,7 @@ function wrap(value: string, start: number, end: number, open: string, close: st
   }
 
   const urlAt = close.indexOf('LINK');
-  const selectionStart = urlAt === -1 ? from : from + open.length + selected.length + urlAt;
+  const selectionStart = urlAt === -1 ? from : from + prefix.length + selected.length + urlAt;
   const selectionEnd = urlAt === -1 ? from + text.length : selectionStart + 'LINK'.length;
 
   return {

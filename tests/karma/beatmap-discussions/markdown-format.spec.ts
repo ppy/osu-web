@@ -25,6 +25,24 @@ describe('beatmap-discussions/markdown-format', () => {
       });
     });
 
+    it('does not prefix an image with a newline at the start of a line', () => {
+      expect(applyMarkdownFormat('hi', 0, 0, 'image')).toEqual({
+        end: 0,
+        selectionEnd: 8,
+        selectionStart: 4,
+        start: 0,
+        text: '![](LINK)\n',
+      });
+
+      expect(applyMarkdownFormat('a\nb', 2, 2, 'image')).toEqual({
+        end: 2,
+        selectionEnd: 10,
+        selectionStart: 6,
+        start: 2,
+        text: '![](LINK)\n',
+      });
+    });
+
     it('wraps a selection', () => {
       expect(applyMarkdownFormat('  hi  ', 0, 6, 'bold')).toEqual({
         end: 4,
@@ -53,7 +71,7 @@ describe('beatmap-discussions/markdown-format', () => {
       });
     });
 
-    it('quotes full lines and fences the selection', () => {
+    it('applies blockquote and code block to full lines', () => {
       expect(applyMarkdownFormat('one\ntwo', 0, 7, 'blockquote')).toEqual({
         end: 7,
         selectionEnd: 11,
@@ -62,12 +80,20 @@ describe('beatmap-discussions/markdown-format', () => {
         text: '> one\n> two',
       });
 
+      expect(applyMarkdownFormat('say hello there', 4, 9, 'blockquote')).toEqual({
+        end: 15,
+        selectionEnd: 17,
+        selectionStart: 17,
+        start: 0,
+        text: '> say hello there',
+      });
+
       expect(applyMarkdownFormat('say hello there', 4, 9, 'code_block')).toEqual({
-        end: 9,
-        selectionEnd: 19,
-        selectionStart: 19,
-        start: 4,
-        text: '\n```\nhello\n```\n',
+        end: 15,
+        selectionEnd: 23,
+        selectionStart: 23,
+        start: 0,
+        text: '```\nsay hello there\n```',
       });
     });
   });

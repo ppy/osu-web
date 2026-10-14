@@ -10,7 +10,7 @@ import type { MarkdownFormat } from './markdown-format';
 const formats: { format: MarkdownFormat; icon: string }[] = [
   { format: 'bold', icon: 'fas fa-bold' },
   { format: 'italic', icon: 'fas fa-italic' },
-  { format: 'inline_code', icon: 'fas fa-code' },
+  { format: 'code_inline', icon: 'fas fa-code' },
   { format: 'link', icon: 'fas fa-link' },
   { format: 'image', icon: 'fas fa-image' },
   { format: 'blockquote', icon: 'fas fa-quote-left' },
@@ -22,10 +22,13 @@ interface Props {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
 }
 
-export function MarkdownSelectionToolbar(props: Props) {
-  const handleMouseDown = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+// needed so textarea selection is kept
+function handleMouseDown(event: React.MouseEvent) {
+  event.preventDefault();
+}
 
+export function MarkdownSelectionToolbar(props: Props) {
+  const handleClick = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     const format = event.currentTarget.dataset.format as MarkdownFormat | undefined;
     const textarea = props.textareaRef.current;
     if (format == null || textarea == null) return;
@@ -46,6 +49,7 @@ export function MarkdownSelectionToolbar(props: Props) {
           className='btn-circle btn-circle--bbcode'
           data-format={button.format}
           disabled={props.disabled}
+          onClick={handleClick}
           onMouseDown={handleMouseDown}
           title={trans(`beatmap_discussions.formatting.${button.format}`)}
           type='button'
