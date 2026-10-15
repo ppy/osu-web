@@ -202,7 +202,7 @@ class ScoresControllerTest extends TestCase
 
     private function actAsPasswordClientUser(User $user): static
     {
-        $this->actAsScopedUser($user, ['*'], Client::factory()->create(['password_client' => true]));
+        $this->actAsScopedUser($user, ['*'], Client::factory()->passwordClient()->create());
 
         return $this;
     }
