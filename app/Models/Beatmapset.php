@@ -36,6 +36,7 @@ use Carbon\Carbon;
 use DB;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -1267,34 +1268,50 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         ];
     }
 
-    public function disqualificationEvent()
+    /**
+     * @return Collection<int, BeatmapsetEvent>
+     */
+    public function disqualificationAndNominationResetEvents(): Collection
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
-        });
+        return $this->memoize(__FUNCTION__, fn () =>
+            $this->events
+                ->filter(fn (BeatmapsetEvent $event) => in_array($event->type, BeatmapsetEvent::QUALIFICATION_RESET_EVENTS, true))
+                ->sortByDesc('created_at'));
     }
 
-    public function resetEvent()
+    public function disqualificationEvent(): BeatmapsetEvent|null
     {
-        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        return $this->memoize(__FUNCTION__, function () {
+            if ($this->relationLoaded('events')) {
+                return $this->disqualificationAndNominationResetEvents()
+                    ->first(fn (BeatmapsetEvent $event) => $event->type === BeatmapsetEvent::DISQUALIFY);
+            }
+
+            return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+        });
     }
 
     public function resetDiscussionIds(): Set
     {
         return $this->memoize(__FUNCTION__, function () {
             $ids = new Set();
-
-            foreach ($this->events as $event) {
-                if (
-                    ($event->type === BeatmapsetEvent::DISQUALIFY || $event->type === BeatmapsetEvent::NOMINATION_RESET)
-                    && $event->beatmap_discussion_id !== null
-                ) {
+            foreach ($this->disqualificationAndNominationResetEvents() as $event) {
+                if ($event->beatmap_discussion_id !== null) {
                     $ids->add($event->beatmap_discussion_id);
                 }
             }
 
             return $ids;
         });
+    }
+
+    public function resetEvent(): BeatmapsetEvent|null
+    {
+        if ($this->relationLoaded('events')) {
+            return $this->disqualificationAndNominationResetEvents()->first();
+        }
+
+        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
     }
 
     public function nominationsByType(): array
