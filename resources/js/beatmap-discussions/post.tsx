@@ -26,7 +26,7 @@ import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
+import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
@@ -231,7 +231,7 @@ export default class Post extends React.Component<Props> {
     this.canSave = validMessageLength(this.message, this.isTimeline);
   };
 
-  private readonly handleTextareaKeyDownCallback = (type: InputEventType) => {
+  private readonly handleTextareaKeyDownCallback: TextAreaCallback = (type) => {
     if (type === InputEventType.Submit) {
       this.updatePost();
     }
