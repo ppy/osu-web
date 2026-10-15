@@ -1276,9 +1276,7 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
 
     public function resetEvent()
     {
-        return $this->memoize(__FUNCTION__, function () {
-            return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
-        });
+        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
     }
 
     public function resetDiscussionIds(): Set
