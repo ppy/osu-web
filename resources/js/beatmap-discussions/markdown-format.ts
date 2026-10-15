@@ -3,7 +3,18 @@
 
 import { SwitchError } from 'utils/switch-never';
 
-export type MarkdownFormat = 'blockquote' | 'bold' | 'code_block' | 'code_inline' | 'image' | 'italic' | 'link';
+export const formats = ['bold', 'italic', 'code_inline', 'link', 'image', 'blockquote', 'code_block'] as const;
+export type MarkdownFormat = (typeof formats)[number];
+
+export const icons: Record<MarkdownFormat, string> = {
+  blockquote: 'fas fa-quote-left',
+  bold: 'fas fa-bold',
+  code_block: 'fas fa-file-code',
+  code_inline: 'fas fa-code',
+  image: 'fas fa-image',
+  italic: 'fas fa-italic',
+  link: 'fas fa-link',
+};
 
 export function applyMarkdownFormat(value: string, start: number, end: number, format: MarkdownFormat) {
   switch (format) {
@@ -27,62 +38,71 @@ export function applyMarkdownFormat(value: string, start: number, end: number, f
 }
 
 function codeBlock(value: string, start: number, end: number) {
-  const { from, to } = lineRange(value, start, end);
-  const inner = value.slice(from, to);
+  const { blockEnd, blockStart } = lineRange(value, start, end);
+  const inner = value.slice(blockStart, blockEnd);
   const text = '```\n' + inner + '\n```';
-  const caret = inner === ''
-    ? from + '```\n'.length
-    : from + text.length;
+  const selectionStart = inner === ''
+    ? blockStart + '```\n'.length
+    : blockStart + text.length;
 
-  return { end: to, selectionEnd: caret, selectionStart: caret, start: from, text };
+  return {
+    replaceEnd: blockEnd,
+    replaceStart: blockStart,
+    selectionLength: 0,
+    selectionStart,
+    text,
+  };
 }
 
 function lineRange(value: string, start: number, end: number) {
-  const from = value.lastIndexOf('\n', start - 1) + 1;
-  const lineEnd = value.indexOf('\n', value[end - 1] === '\n' ? end - 1 : end);
-  const to = lineEnd === -1 ? value.length : lineEnd;
+  const blockStart = value.lastIndexOf('\n', start - 1) + 1;
+  const newlineAt = value.indexOf('\n', end - 1);
+  const blockEnd = newlineAt === -1 ? value.length : newlineAt;
 
-  return { from, to };
+  return { blockEnd, blockStart };
 }
 
 function quote(value: string, start: number, end: number) {
-  const { from, to } = lineRange(value, start, end);
-  const text = value.slice(from, to).split('\n').map((line) => `> ${line}`).join('\n');
-  const caret = from + text.length;
+  const { blockEnd, blockStart } = lineRange(value, start, end);
+  const text = value.slice(blockStart, blockEnd).replace(/(^|\n)/g, '$1> ');
 
-  return { end: to, selectionEnd: caret, selectionStart: caret, start: from, text };
+  return {
+    replaceEnd: blockEnd,
+    replaceStart: blockStart,
+    selectionLength: 0,
+    selectionStart: blockStart + text.length,
+    text,
+  };
 }
 
 function wrap(value: string, start: number, end: number, open: string, close: string) {
   const raw = value.slice(start, end);
   const selected = raw.trim();
-  const from = start + raw.length - raw.trimStart().length;
-  const prefix = open.startsWith('\n') && (from === 0 || value[from - 1] === '\n')
-    ? open.slice(1)
-    : open;
-  const text = prefix + selected + close;
-  if (selected === '') {
-    // an empty image should still select LINK so the url can be typed immediately.
-    const caret = from + prefix.length + (prefix.includes('![') ? close.indexOf('LINK') : 0);
-
-    return {
-      end: from,
-      selectionEnd: prefix.includes('![') ? caret + 'LINK'.length : caret,
-      selectionStart: caret,
-      start: from,
-      text,
-    };
+  start += raw.length - raw.trimStart().length;
+  end = start + selected.length;
+  if (open.startsWith('\n') && (start === 0 || value[start - 1] === '\n')) {
+    open = open.slice(1);
   }
 
-  const urlAt = close.indexOf('LINK');
-  const selectionStart = urlAt === -1 ? from : from + prefix.length + selected.length + urlAt;
-  const selectionEnd = urlAt === -1 ? from + text.length : selectionStart + 'LINK'.length;
+  const text = open + selected + close;
+  let selectionStart: number;
+  let selectionLength: number;
+  if (selected === '') {
+    // image should always select LINK so the url can be typed immediately.
+    selectionStart = start + open.length + (open.includes('![') ? close.indexOf('LINK') : 0);
+    selectionLength = open.includes('![') ? 'LINK'.length : 0;
+  } else {
+    const urlAt = close.indexOf('LINK');
+    [selectionStart, selectionLength] = urlAt === -1
+      ? [start, text.length]
+      : [start + open.length + selected.length + urlAt, 'LINK'.length];
+  }
 
   return {
-    end: from + selected.length,
-    selectionEnd,
+    replaceEnd: end,
+    replaceStart: start,
+    selectionLength,
     selectionStart,
-    start: from,
     text,
   };
 }

@@ -4,25 +4,15 @@
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { applyMarkdownFormat } from './markdown-format';
+import { applyMarkdownFormat, formats, icons } from './markdown-format';
 import type { MarkdownFormat } from './markdown-format';
-
-const formats: { format: MarkdownFormat; icon: string }[] = [
-  { format: 'bold', icon: 'fas fa-bold' },
-  { format: 'italic', icon: 'fas fa-italic' },
-  { format: 'code_inline', icon: 'fas fa-code' },
-  { format: 'link', icon: 'fas fa-link' },
-  { format: 'image', icon: 'fas fa-image' },
-  { format: 'blockquote', icon: 'fas fa-quote-left' },
-  { format: 'code_block', icon: 'fas fa-file-code' },
-];
 
 interface Props {
   disabled?: boolean;
   textareaRef: React.RefObject<HTMLTextAreaElement>;
 }
 
-// needed so textarea selection is kept
+// prevent the textarea from losing focus
 function handleMouseDown(event: React.MouseEvent) {
   event.preventDefault();
 }
@@ -36,26 +26,26 @@ export function MarkdownSelectionToolbar(props: Props) {
     const edit = applyMarkdownFormat(textarea.value, textarea.selectionStart, textarea.selectionEnd, format);
 
     textarea.focus();
-    textarea.setSelectionRange(edit.start, edit.end);
+    textarea.setSelectionRange(edit.replaceStart, edit.replaceEnd);
     document.execCommand('insertText', false, edit.text);
-    textarea.setSelectionRange(edit.selectionStart, edit.selectionEnd);
+    textarea.setSelectionRange(edit.selectionStart, edit.selectionStart + edit.selectionLength);
   }, [props.textareaRef]);
 
   return (
     <div className={classWithModifiers('post-box-toolbar', 'discussion')}>
-      {formats.map((button) => (
+      {formats.map((format) => (
         <button
-          key={button.format}
+          key={format}
           className='btn-circle btn-circle--bbcode'
-          data-format={button.format}
+          data-format={format}
           disabled={props.disabled}
           onClick={handleClick}
           onMouseDown={handleMouseDown}
-          title={trans(`beatmap_discussions.formatting.${button.format}`)}
+          title={trans(`beatmap_discussions.formatting.${format}`)}
           type='button'
         >
           <span className='btn-circle__content'>
-            <span className={button.icon} />
+            <span className={icons[format]} />
           </span>
         </button>
       ))}
