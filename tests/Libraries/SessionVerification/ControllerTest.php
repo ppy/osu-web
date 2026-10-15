@@ -201,7 +201,7 @@ class ControllerTest extends TestCase
     public function testVerifyLinkOAuth(): void
     {
         $token = Token::factory()->create([
-            'client_id' => Client::factory()->create(['password_client' => true]),
+            'client_id' => Client::factory()->create(),
             'verified' => false,
         ]);
 
@@ -278,7 +278,7 @@ class ControllerTest extends TestCase
     public function testVerifyOAuth(): void
     {
         $token = Token::factory()->create([
-            'client_id' => Client::factory()->create(['password_client' => true]),
+            'client_id' => Client::factory()->create(),
             'verified' => false,
         ]);
 

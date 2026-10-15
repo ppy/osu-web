@@ -11,7 +11,6 @@ use App\Traits\Validatable;
 use Carbon\Carbon;
 use Database\Factories\OAuth\ClientFactory;
 use DB;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,8 +22,6 @@ use Laravel\Passport\RefreshToken;
  * @property string[] $grant_types
  * @property int $id
  * @property string $name
- * @property bool $password_client
- * @property bool $personal_access_client
  * @property string $provider
  * @property string $redirect
  * @property-read Collection<RefreshToken> $refreshTokens
@@ -83,6 +80,12 @@ class Client extends PassportClient
     public function setRedirectAttribute(string $value)
     {
         $this->attributes['redirect'] = implode(',', array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY)));
+    }
+
+    public function isPasswordClient(): bool
+    {
+        // skips the entire laravel and json stack
+        return strpos($this->attributes['grant_types'] ?? '', '"password"') !== false;
     }
 
     public function isValid()
@@ -172,7 +175,7 @@ class Client extends PassportClient
 
     public function scopeThirdParty($query)
     {
-        return $query->where('personal_access_client', false)->where('password_client', false);
+        return $query->whereNotNull('user_id');
     }
 
     public function user(): BelongsTo
@@ -183,19 +186,6 @@ class Client extends PassportClient
     public function validationErrorsTranslationPrefix(): string
     {
         return 'oauth.client';
-    }
-
-    #[\Override]
-    protected function grantTypes(): Attribute
-    {
-        return Attribute::make(
-            get: fn (?string $value): array => isset($value) ? $this->fromJson($value) : array_keys(array_filter([
-                'authorization_code' => !$this->firstParty(),
-                'client_credentials' => $this->confidential(),
-                'password' => $this->password_client,
-                'refresh_token' => true,
-            ])),
-        );
     }
 
     private function revokeTokens($timestamp)
