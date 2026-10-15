@@ -16,6 +16,7 @@ use App\Models\OAuth\Token;
 use App\Models\User;
 use App\Models\UserTotpKey;
 use OTPHP\Factory;
+use OTPHP\InternalClock;
 use Tests\TestCase;
 
 class ControllerTest extends TestCase
@@ -111,7 +112,7 @@ class ControllerTest extends TestCase
         $this->assertFalse(\Session::isVerified());
         $this->assertTrue($record->containsUser($user, 'verify'));
 
-        $key = Factory::loadFromProvisioningUri($userTotp->uri)->now();
+        $key = Factory::loadFromProvisioningUri($userTotp->uri, new InternalClock())->now();
 
         $this
             ->withPersistentSession($session)
