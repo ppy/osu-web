@@ -39,10 +39,11 @@ interface BaseProps {
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   resolvedStateChangedPostId: number;
-  type: string;
+  type: PostType;
   user: UserJson;
 }
 
+export type PostType = 'discussion' | 'reply';
 type Props = BaseProps & (HasDiscussionsEditable | HasDiscussionsReadOnly);
 
 @observer
