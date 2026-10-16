@@ -25,7 +25,7 @@ import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionsState from './discussions-state';
-import { MarkdownSelectionToolbar } from './markdown-selection-toolbar';
+import MarkdownSelectionToolbar from './markdown-selection-toolbar';
 import { hypeExplanationClass } from './nominations';
 
 const bn = 'beatmap-discussion-new';

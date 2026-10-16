@@ -30,7 +30,7 @@ import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
-import { MarkdownSelectionToolbar } from './markdown-selection-toolbar';
+import MarkdownSelectionToolbar from './markdown-selection-toolbar';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';

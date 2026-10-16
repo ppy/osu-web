@@ -17,7 +17,7 @@ function handleMouseDown(event: React.MouseEvent) {
   event.preventDefault();
 }
 
-export function MarkdownSelectionToolbar(props: Props) {
+export default function MarkdownSelectionToolbar(props: Props) {
   const handleClick = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     const format = event.currentTarget.dataset.format as MarkdownFormat | undefined;
     const textarea = props.textareaRef.current;
