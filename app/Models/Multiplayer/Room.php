@@ -56,6 +56,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
  * @property string $type
+ * @property string $type_pretty
  * @property string $queue_mode
  * @property bool $auto_skip
  */
@@ -78,7 +79,8 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
-    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
+    const DAILY_CHALLENGE_CATEGORY = 'daily_challenge';
+    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', self::DAILY_CHALLENGE_CATEGORY];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'ranked-play' => [self::RANKED_PLAY_TYPE],
@@ -419,6 +421,21 @@ class Room extends Model
         };
     }
 
+    public function getTypePrettyAttribute(): string
+    {
+        if ($this->type === self::RANKED_PLAY_TYPE) {
+            return 'ranked play';
+        }
+
+        if ($this->isDailyChallenge()) {
+            return 'daily challenge';
+        } else if ($this->type === self::PLAYLIST_TYPE) {
+            return 'playlist';
+        }
+
+        return 'multiplayer';
+    }
+
     public function assertCorrectPassword(?string $password): void
     {
         if ($this->password === null) {
@@ -490,6 +507,11 @@ class Room extends Model
     public function isFeatured(): bool
     {
         return $this->category === 'featured_artist';
+    }
+
+    public function isDailyChallenge(): bool
+    {
+        return $this->type === self::PLAYLIST_TYPE && $this->category === self::DAILY_CHALLENGE_CATEGORY;
     }
 
     public function isRealtime()
