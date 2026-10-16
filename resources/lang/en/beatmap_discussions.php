@@ -18,6 +18,16 @@ return [
         'empty' => 'Nothing has happened... yet.',
     ],
 
+    'formatting' => [
+        'blockquote' => 'Quote',
+        'bold' => 'Bold',
+        'code_block' => 'Code block',
+        'code_inline' => 'Inline code',
+        'image' => 'Image',
+        'italic' => 'Italic',
+        'link' => 'Link',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'deleted',
         'none_found' => 'No discussions matching that search criteria were found.',

@@ -81,11 +81,10 @@
   &__actions {
     display: flex;
 
-    .@{_top}--editing & {
-      justify-content: flex-end;
-    }
-
+    .@{_top}--editing &,
     .@{_top}--new-reply & {
+      align-items: center;
+      flex-wrap: wrap;
       justify-content: flex-end;
     }
 
