@@ -88,9 +88,10 @@ function wrap(value: string, start: number, end: number, open: string, close: st
   let selectionStart: number;
   let selectionLength: number;
   if (selected === '') {
-    // image should always select LINK so the url can be typed immediately.
-    selectionStart = start + open.length + (open.includes('![') ? close.indexOf('LINK') : 0);
-    selectionLength = open.includes('![') ? 'LINK'.length : 0;
+    [selectionStart, selectionLength] = open.includes('![')
+      // image should always select LINK so the url can be typed immediately.
+      : [start + open.length + close.indexOf('LINK'), 'LINK'.length]
+      ? [start + open.length, 0];
   } else {
     const urlAt = close.indexOf('LINK');
     [selectionStart, selectionLength] = urlAt === -1
