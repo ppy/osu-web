@@ -330,7 +330,11 @@ class UserProfileCustomization extends Model
     private function setOption(string $key, mixed $value): void
     {
         $this->cachedOptions ??= $this->options ?? [];
-        $this->cachedOptions[$key] = $value;
+        if ($value === null) {
+            unset($this->cachedOptions[$key]);
+        } else {
+            $this->cachedOptions[$key] = $value;
+        }
         $this->options = $this->cachedOptions;
     }
 }
