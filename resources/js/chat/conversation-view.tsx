@@ -4,7 +4,7 @@
 import ShowMoreLink from 'components/show-more-link';
 import { Spinner } from 'components/spinner';
 import StringWithComponent from 'components/string-with-component';
-import UserAvatar from 'components/user-avatar';
+import UserAvatarImg from 'components/user-avatar-img';
 import UserCardBrick from 'components/user-card-brick';
 import UserLink from 'components/user-link';
 import { each, isEmpty, last, throttle } from 'lodash';
@@ -216,10 +216,10 @@ export default class ConversationView extends React.Component<Props> {
         <div ref={this.chatViewRef} className={className} onScroll={this.handleOnScroll}>
           <div className='chat-conversation__new-chat-avatar'>
             {pmTargetJson == null ? (
-              <UserAvatar user={{ avatar_url: channel.icon }} />
+              <UserAvatarImg modifiers='has-box-shadow' user={{ avatar_url: channel.icon }} />
             ) : (
               <UserLink user={pmTargetJson}>
-                <UserAvatar user={pmTargetJson} />
+                <UserAvatarImg modifiers='has-box-shadow' user={pmTargetJson} />
               </UserLink>
             )}
           </div>
