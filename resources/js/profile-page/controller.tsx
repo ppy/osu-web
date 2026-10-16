@@ -11,6 +11,7 @@ import MatchmakingUserEloHistoryJson from 'interfaces/matchmaking-user-elo-histo
 import Ruleset from 'interfaces/ruleset';
 import ScoreJson, { isScoreJsonForUser, ScoreJsonForUser } from 'interfaces/score-json';
 import { ScoreReplayStatsJsonForUser } from 'interfaces/score-replay-stats-json';
+import ScreenshotJson from 'interfaces/screenshot-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import UserCoverPresetJson from 'interfaces/user-cover-preset-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
@@ -81,6 +82,7 @@ interface LazyPages {
   historical: HistoricalJson;
   kudosu: PageSectionWithoutCountJson<KudosuHistoryJson>;
   recent_activity: PageSectionWithoutCountJson<EventJson>;
+  screenshots: PageSectionWithoutCountJson<ScreenshotJson>;
   top_ranks: TopScoresJson;
 }
 
@@ -404,6 +406,16 @@ export default class Controller {
 
         break;
       }
+
+      case 'screenshots':
+        if (this.state.lazy.screenshots != null) {
+          this.xhr[section] = apiShowMore(
+            this.state.lazy.screenshots,
+            'users.screenshots',
+            baseParams,
+          );
+        }
+        break;
 
       default:
         throw new SwitchError(section);
