@@ -17,7 +17,7 @@ import { trans, transChoice } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
 import { NewReply } from './new-reply';
-import Post from './post';
+import Post, { PostType } from './post';
 import SystemPost from './system-post';
 import { UserCard } from './user-card';
 
@@ -220,7 +220,7 @@ export class Discussion extends React.Component<Props> {
     return object != null && (this.showDeleted || object.deleted_at == null);
   }
 
-  private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
+  private renderPost(post: BeatmapsetDiscussionPostJson, type: PostType) {
     const user = this.users.get(post.user_id) ?? deletedUserJson;
 
     if (post.system) {
