@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\BeatmapsetDelete;
 use App\Jobs\Notifications\UserBeatmapsetNew;
 use App\Jobs\Notifications\UserBeatmapsetRevive;
+use App\Jobs\Notifications\UserBeatmapsetGraveyard;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
@@ -38,6 +39,19 @@ class BeatmapsetsController extends Controller
 
         if (request()->boolean('create_event')) {
             Event::generate('beatmapsetRevive', ['beatmapset' => $beatmapset]);
+        }
+
+        return response()->noContent();
+    }
+
+    public function broadcastGraveyard($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        (new UserBeatmapsetGraveyard($beatmapset))->dispatch();
+
+        if (request()->boolean('create_event')) {
+            Event::generate('beatmapsetGraveyard', ['beatmapset' => $beatmapset]);
         }
 
         return response()->noContent();

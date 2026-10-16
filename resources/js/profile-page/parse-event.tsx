@@ -73,6 +73,14 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
         },
       };
 
+    case 'beatmapsetGraveyard':
+      return {
+        badge: <span className='fas fa-trash' />,
+        mappings: {
+          beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
+        },
+      };
+
     case 'beatmapsetUpdate':
       return {
         badge: <span className='fas fa-sync-alt' />,
