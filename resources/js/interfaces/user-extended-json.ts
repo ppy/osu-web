@@ -46,6 +46,7 @@ interface UserExtendedAdditionalAttributes {
   post_count: number;
   profile_hue: number | null;
   profile_order: ProfileExtraPage[];
+  profile_pinned_badge: string | null;
   title: string | null;
   title_url: string | null;
   twitter: string | null;

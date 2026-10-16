@@ -4,7 +4,9 @@
 export default interface UserBadgeJson {
   awarded_at: string;
   description: string;
+  image: string;
   'image@2x_url': string;
   image_url: string;
+  name: string | null;
   url: string;
 }
