@@ -29,8 +29,6 @@ class ClientTransformer extends TransformerAbstract
         return [
             'id' => $client->id,
             'name' => $client->name,
-            'password_client' => $client->password_client,
-            'personal_access_client' => $client->personal_access_client,
             'scopes' => $client->scopes,
             'user_id' => $client->user_id,
         ];
