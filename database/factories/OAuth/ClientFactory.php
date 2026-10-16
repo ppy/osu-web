@@ -24,9 +24,14 @@ class ClientFactory extends Factory
             'revoked' => false,
             'secret' => str_random(40),
             'user_id' => User::factory(),
-
-            'password_client' => false,
-            'personal_access_client' => false,
         ];
+    }
+
+    public function passwordClient(): static
+    {
+        return $this->state([
+            'grant_types' => ['password', 'refresh_token'],
+            'user_id' => null,
+        ]);
     }
 }
