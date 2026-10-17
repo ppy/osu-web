@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $participant_count
  * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
+ * @property bool $results_hidden
  * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
  * @property-read Season $season
  * @property \Carbon\Carbon $starts_at
@@ -104,6 +105,7 @@ class Room extends Model
         'ends_at' => 'datetime',
         'password' => PresentString::class,
         'pinned' => 'boolean',
+        'results_hidden' => 'boolean',
         'starts_at' => 'datetime',
         'tournament_mode' => 'boolean',
     ];
@@ -654,6 +656,7 @@ class Room extends Model
             'queue_mode',
             'auto_start_duration:int',
             'auto_skip:bool',
+            'results_hidden:bool',
         ], ['null_missing' => true]);
 
         if ($params['name'] === null) {
@@ -668,6 +671,7 @@ class Room extends Model
             'queue_mode' => $params['queue_mode'],
             'auto_start_duration' => $params['auto_start_duration'],
             'auto_skip' => $params['auto_skip'] ?? false,
+            'results_hidden' => $params['results_hidden'] ?? false,
             'user_id' => $host->getKey(),
             ...$extraParams,
         ]);

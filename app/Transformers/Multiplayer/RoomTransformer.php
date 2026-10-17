@@ -64,6 +64,7 @@ class RoomTransformer extends TransformerAbstract
             'queue_mode' => $room->queue_mode,
             'auto_skip' => $room->auto_skip,
             'pinned' => $room->pinned,
+            'results_hidden' => $room->results_hidden,
         ];
     }
 
