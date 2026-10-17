@@ -47,7 +47,10 @@ class ScoresController extends BaseController
      */
     public function index($roomId, $playlistId)
     {
-        $playlist = PlaylistItem::where('room_id', $roomId)->findOrFail($playlistId);
+        $playlist = PlaylistItem::where('room_id', $roomId)->with('room')->findOrFail($playlistId);
+
+        priv_check('MultiplayerRoomShowResults', $playlist->room)->ensureCan();
+
         $params = request()->all();
         $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
@@ -122,6 +125,11 @@ class ScoresController extends BaseController
     public function show($roomId, $playlistId, $id)
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
+
+        if (priv_check('MultiplayerRoomShowResults', $room)->can() === false) {
+            abort(404);
+        }
+
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
         $scoreLink = $playlistItem->scoreLinks()->findOrFail($id);
 
@@ -154,6 +162,11 @@ class ScoresController extends BaseController
     public function showUser($roomId, $playlistId, $userId)
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
+
+        if (priv_check('MultiplayerRoomShowResults', $room)->can() === false) {
+            abort(404);
+        }
+
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
         $scoreLink = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->scoreLink ?? abort(404);
 

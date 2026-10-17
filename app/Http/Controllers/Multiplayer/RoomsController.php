@@ -22,6 +22,7 @@ use App\Transformers\Multiplayer\UserScoreAggregateTransformer;
 use App\Transformers\UserCompactTransformer;
 use Ds\Map;
 use Ds\Set;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class RoomsController extends Controller
 {
@@ -44,6 +45,10 @@ class RoomsController extends Controller
 
         if (!$room->isRealtime()) {
             throw new InvariantException('retrieving events is only supported for realtime rooms');
+        }
+
+        if (!priv_check('MultiplayerRoomShowResults', $room)->can()) {
+            abort(404);
         }
 
         $params = get_params(request()->all(), null, [
@@ -208,10 +213,29 @@ class RoomsController extends Controller
         return RoomTransformer::createShowResponse($room);
     }
 
+    /**
+     * Get Room Leaderboard
+     *
+     * Returns leaderboard of the room, aggregated by user.
+     *
+     * ### Response Format
+     *
+     * Field       | Type                                         | Notes
+     * ------------|----------------------------------------------|-----------------------------------------------------------
+     * leaderboard | [UserScoreAggregate](#userscoreaggregate)[]? | Omitted if room results are hidden and user has no access.
+     * user_score  | [UserScoreAggregate](#userscoreaggregate)?   | Omitted if user has no score in the room.
+     *
+     * @group Multiplayer
+     *
+     * @param $roomId
+     * @return array
+     */
     public function leaderboard($roomId)
     {
         $limit = \Number::clamp(get_int(request('limit')) ?? Model::PER_PAGE, 1, 50);
         $room = Room::findOrFail($roomId);
+
+        $canSeeResults = priv_check('MultiplayerRoomShowResults', $room)->can();
 
         $currentUser = \Auth::user();
         $userScore = $currentUser === null
@@ -219,11 +243,11 @@ class RoomsController extends Controller
             : $room->topScores()->where('user_id', $currentUser->getKey())->first();
 
         return [
-            'leaderboard' => json_collection(
+            'leaderboard' => $canSeeResults ? json_collection(
                 $room->topScores()->paginate($limit),
                 new UserScoreAggregateTransformer(),
                 ['user.country', 'user.cover', 'user.team']
-            ),
+            ) : null,
             'user_score' => $userScore !== null ? json_item(
                 $userScore,
                 new UserScoreAggregateTransformer(),
@@ -272,7 +296,6 @@ class RoomsController extends Controller
         }
         $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
-        $highScores = $room->topScores()->paginate();
         $roomsQuery = Room::orderByDesc('id');
         if ($room->season === null) {
             if ($room->isFeatured()) {
@@ -289,9 +312,18 @@ class RoomsController extends Controller
             ? null
             : $room->topScores()->whereBelongsTo($currentUser)->first();
 
+        $canSeeResults = priv_check('MultiplayerRoomShowResults', $room)->can();
+
+        if ($canSeeResults) {
+            $highScores = $room->topScores()->paginate();
+        } else {
+            $highScores = new LengthAwarePaginator([], 0, 0);
+        }
+
         return ext_view('multiplayer.rooms.show', [
             'beatmaps' => $beatmaps,
             'beatmapsets' => $beatmapsets,
+            'canSeeResults' => $canSeeResults,
             'room' => $room,
             'rooms' => $roomsQuery?->get(),
             'scores' => $highScores,

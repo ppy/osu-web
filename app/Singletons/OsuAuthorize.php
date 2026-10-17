@@ -1926,6 +1926,33 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param Room $room
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkMultiplayerRoomShowResults(?User $user, Room $room): string
+    {
+        $prefix = 'room.show_results.';
+
+        if ($room->results_hidden === false) {
+            return 'ok';
+        }
+
+        $this->ensureLoggedIn($user);
+
+        if ($room->user_id === $user->getKey()) {
+            return 'ok';
+        }
+
+        if ($room->isRealtime() && $room->participants()->pluck('user_id')->contains($user->getKey())) {
+            return 'ok';
+        }
+
+        return $prefix.'hidden';
+    }
+
+    /**
+     * @param User|null $user
      * @return string
      * @throws AuthorizationCheckException
      */

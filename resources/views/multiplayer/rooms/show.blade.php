@@ -28,6 +28,7 @@
 @endphp
 @extends('rankings.index', [
     'hasFilter' => false,
+    'hasPager' => $canSeeResults,
     'hasMode' => false,
     'params' => $params,
     'titlePrepend' => "{$titlePrefix}{$room->name}",
@@ -92,24 +93,33 @@
                     {{ i18n_number_format(count($beatmaps)) }}
                 </div>
             </div>
-            <div class="counter-box counter-box--ranking">
-                <div class="counter-box__title">
-                    {{ osu_trans('rankings.spotlight.participants') }}
+            @if ($canSeeResults)
+                <div class="counter-box counter-box--ranking">
+                    <div class="counter-box__title">
+                        {{ osu_trans('rankings.spotlight.participants') }}
+                    </div>
+                    <div class="counter-box__count">
+                        {{ i18n_number_format($scores->total()) }}
+                    </div>
                 </div>
-                <div class="counter-box__count">
-                    {{ i18n_number_format($scores->total()) }}
-                </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection
 
 @section('scores')
+    @if ($room->results_hidden)
+        <div class="wiki-notice wiki-notice--rankings">
+            <span class="fas fa-info-circle"></span>
+            {{ osu_trans('rankings.multiplayer.results_hidden') }}
+        </div>
+    @endif
+
     @include('multiplayer.rooms._rankings_table', compact('scores'))
 @endsection
 
 @section('scores-header')
-    @if ($room->isRealtime())
+    @if ($room->isRealtime() && $canSeeResults)
         <a
             class="btn-osu-big btn-osu-big--rounded-thin"
             href="{{ route('multiplayer.rooms.events', ['room' => $room->getKey()]) }}"
