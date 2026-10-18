@@ -11,6 +11,7 @@ import CountdownTimer from 'components/countdown-timer';
 import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
 import MenuImages from 'components/menu-images';
+import Mods from 'components/mods';
 import QuickSearchButton from 'components/quick-search-button';
 import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingUserFilter from 'components/ranking-user-filter';
@@ -89,6 +90,10 @@ core.reactTurbolinks.register('main-notification-icon', (container) => (
 
 core.reactTurbolinks.register('menu-images', () => (
   <MenuImages images={observable(parseJson('json-menu-images'))} />
+));
+
+core.reactTurbolinks.register('mods', (container) => (
+  <Mods {...reqJson(container.dataset.mods)} />
 ));
 
 core.reactTurbolinks.register('notification-widget', (container) => (
