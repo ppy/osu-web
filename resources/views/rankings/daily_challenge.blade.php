@@ -182,6 +182,9 @@
                     <th class="ranking-page-table__heading">
                         {{ osu_trans('beatmapsets.show.scoreboard.headers.rank') }}
                     </th>
+                    <th class="ranking-page-table__heading">
+                        {{ osu_trans('beatmapsets.show.scoreboard.headers.mods') }}
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -233,6 +236,9 @@
                         </td>
                         <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                             <div class="score-rank score-rank--daily-challenge score-rank--{{ $score->rank }}"></div>
+                        </td>
+                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                            @include('rankings._mods', ['mods' => $score->data->mods])
                         </td>
                     </tr>
                     @if ($loop->first)
