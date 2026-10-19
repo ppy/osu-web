@@ -285,7 +285,7 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'bởi :artist',
-                'title' => 'Beatmaps',
+                'title' => 'Beatmap',
 
                 'favourite' => [
                     'title' => 'Beatmap Yêu Thích',
@@ -483,8 +483,9 @@ return [
             'losses' => 'Thua',
             'plays' => 'Tổng số trận đấu',
             'rank' => 'Hạng',
-            'rating' => '',
+            'rating' => 'Đánh giá',
             'recent_history' => 'Lịch sử đấu mới nhất',
+            'recent_history_provisional' => '',
             'tier' => 'Cấp',
             'title' => 'Chơi nhanh',
             'wins' => 'Thắng',
@@ -518,6 +519,8 @@ return [
             'global' => 'Hạng quốc tế cho :mode',
             'global_simple' => 'Hạng Toàn Cầu',
             'highest' => 'Hạng cao nhất: :rank vào :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Thuật toán tính Độ Khó / PP :link.',
@@ -548,7 +551,9 @@ return [
             'total_score' => 'Tổng Điểm',
             // modding stats
             'graveyard_beatmapset_count' => 'Các beatmap bị đắp mộ',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Số beatmap Yêu thích',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Beatmap Đang Chờ',
             'ranked_beatmapset_count' => 'Số beatmap được xếp hạng',
         ],

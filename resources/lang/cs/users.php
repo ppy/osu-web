@@ -484,6 +484,7 @@ return [
             'rank' => 'Umístění',
             'rating' => 'Hodnocení',
             'recent_history' => 'Historie posledních zápasů',
+            'recent_history_provisional' => '',
             'tier' => 'Úroveň',
             'title' => 'Hodnocená hra',
             'wins' => 'Výhry',
@@ -517,6 +518,8 @@ return [
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
             'highest' => 'Nejvyšší umístění :rank dne :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => ':link nového algoritmu pro počet hvězd / PP.',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Celkové skóre',
             // modding stats
             'graveyard_beatmapset_count' => 'Pohřbené beatmapy',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Beatmapy oblíbené komunitou',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Čekající beatmapy',
             'ranked_beatmapset_count' => 'Hodnocené beatmapy',
         ],

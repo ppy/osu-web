@@ -80,7 +80,7 @@ return [
         'confirm_restore' => 'Haluatko varmasti palauttaa aiheen?',
         'deleted' => 'poistettu aihe',
         'go_to_latest' => 'näytä viimeisin viesti',
-        'go_to_unread' => '',
+        'go_to_unread' => 'näytä ensimmäinen lukematon viesti',
         'has_replied' => 'Olet vastannut tähän aiheeseen',
         'in_forum' => ':forum -foorumissa',
         'latest_post' => ':when käyttäjältä :user',
@@ -287,7 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Poistetut viestit',
             'total_posts' => 'Vastauksia',
-            'total_watches' => '',
+            'total_watches' => 'Tilaajia yhteensä',
 
             'feature_vote' => [
                 'current' => 'Tärkeys tällä hetkellä: +:count',

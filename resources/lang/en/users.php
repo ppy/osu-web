@@ -484,6 +484,7 @@ return [
             'rank' => 'Rank',
             'rating' => 'Rating',
             'recent_history' => 'Latest Match History',
+            'recent_history_provisional' => 'Not enough data to display accurate stats. Play more games!',
             'tier' => 'Tier',
             'title' => 'Ranked Play',
             'wins' => 'Wins',
@@ -566,6 +567,12 @@ return [
         'all' => 'All',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => 'Relationship',
+        'all' => 'All',
+        'mutual' => 'Mutual',
+        'non_mutual' => 'Non-mutual',
     ],
     'store' => [
         'from_client' => 'please register via the game client instead!',

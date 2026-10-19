@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited preferito|:count_delimited preferiti',
+        'playcount' => ':count_delimited partita|:count_delimited partite',
     ],
 
     'panel' => [

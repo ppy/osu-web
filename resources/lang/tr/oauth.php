@@ -58,5 +58,11 @@ return [
             'false' => 'Sil',
             'true' => 'Silindi',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

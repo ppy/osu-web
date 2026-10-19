@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Models\Solo\Score;
@@ -16,7 +18,7 @@ use App\Models\Solo\Score;
  */
 class UserProfileCustomization extends Model
 {
-    const DEFAULTS = [
+    const array DEFAULTS = [
         'audio_autoplay' => false,
         'audio_muted' => false,
         'audio_volume' => 0.45,
@@ -33,7 +35,8 @@ class UserProfileCustomization extends Model
         'profile_cover_expanded' => true,
         'profile_detail_v2' => false,
         'scoring_mode' => self::SCORING_MODES[0],
-        'user_list_filter' => self::USER_LIST['filters']['default'],
+        'user_list_filter' => self::USER_LIST['filters']['status']['default'],
+        'user_list_relationship_filter' => self::USER_LIST['filters']['relationship']['default'],
         'user_list_sort' => self::USER_LIST['sorts']['default'],
         'user_list_view' => self::USER_LIST['views']['default'],
     ];
@@ -41,7 +44,7 @@ class UserProfileCustomization extends Model
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    const SECTIONS = [
+    const array SECTIONS = [
         'me',
         'recent_activity',
         'top_ranks',
@@ -51,14 +54,17 @@ class UserProfileCustomization extends Model
         'kudosu',
     ];
 
-    const BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
+    const array BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
 
-    const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
+    const array BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
 
-    public const array SCORING_MODES = ['standardised', 'classic'];
+    const array SCORING_MODES = ['standardised', 'classic'];
 
-    const USER_LIST = [
-        'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
+    const array USER_LIST = [
+        'filters' => [
+            'status' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
+            'relationship' => ['all' => ['all', 'mutual', 'non_mutual'], 'default' => 'all'],
+        ],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
         'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
     ];
@@ -131,9 +137,18 @@ class UserProfileCustomization extends Model
             'profile_detail_v2',
             'scoring_mode',
             'user_list_filter',
+            'user_list_relationship_filter',
             'user_list_sort',
             'user_list_view' => $this->getOption($key) ?? static::DEFAULTS[$key],
         };
+    }
+
+    #[\Override]
+    public function refresh(): void
+    {
+        $this->cachedOptions = null;
+
+        parent::refresh();
     }
 
     public function setAudioAutoplayAttribute($value)
@@ -198,6 +213,15 @@ class UserProfileCustomization extends Model
         $this->setOption('comments_sort', $value);
     }
 
+    public function setExtrasOrderAttribute($value)
+    {
+        $value = is_array($value)
+            ? static::repairExtrasOrder(array_filter($value, is_string(...)))
+            : null;
+
+        $this->setOption('extras_order', $value);
+    }
+
     public function setForumPostsShowDeletedAttribute($value)
     {
         $this->setOption('forum_posts_show_deleted', get_bool($value));
@@ -206,6 +230,16 @@ class UserProfileCustomization extends Model
     public function setLegacyScoreOnlyAttribute($value): void
     {
         $this->setOption('legacy_score_only', get_bool($value));
+    }
+
+    public function setProfileCoverExpandedAttribute($value)
+    {
+        $this->setOption('profile_cover_expanded', get_bool($value));
+    }
+
+    public function setProfileDetailV2Attribute($value)
+    {
+        $this->setOption('profile_detail_v2', get_bool($value));
     }
 
     public function setScoringModeAttribute($value): void
@@ -219,7 +253,7 @@ class UserProfileCustomization extends Model
 
     public function setUserListFilterAttribute($value)
     {
-        if ($value !== null && !in_array($value, static::USER_LIST['filters']['all'], true)) {
+        if ($value !== null && !in_array($value, static::USER_LIST['filters']['status']['all'], true)) {
             $value = null;
         }
 
@@ -235,6 +269,15 @@ class UserProfileCustomization extends Model
         $this->setOption('user_list_sort', $value);
     }
 
+    public function setUserListRelationshipFilterAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['filters']['relationship']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_relationship_filter', $value);
+    }
+
     public function setUserListViewAttribute($value)
     {
         if ($value !== null && !in_array($value, static::USER_LIST['views']['all'], true)) {
@@ -242,33 +285,6 @@ class UserProfileCustomization extends Model
         }
 
         $this->setOption('user_list_view', $value);
-    }
-
-    public function setExtrasOrderAttribute($value)
-    {
-        $value = is_array($value)
-            ? static::repairExtrasOrder(get_arr($value, get_string(...)))
-            : null;
-
-        $this->setOption('extras_order', $value);
-    }
-
-    public function setProfileCoverExpandedAttribute($value)
-    {
-        $this->setOption('profile_cover_expanded', get_bool($value));
-    }
-
-    public function setProfileDetailV2Attribute($value)
-    {
-        $this->setOption('profile_detail_v2', get_bool($value));
-    }
-
-    #[\Override]
-    public function refresh(): void
-    {
-        $this->cachedOptions = null;
-
-        parent::refresh();
     }
 
     private function getExtrasOrderAttribute(): array
@@ -314,7 +330,11 @@ class UserProfileCustomization extends Model
     private function setOption(string $key, mixed $value): void
     {
         $this->cachedOptions ??= $this->options ?? [];
-        $this->cachedOptions[$key] = $value;
+        if ($value === null) {
+            unset($this->cachedOptions[$key]);
+        } else {
+            $this->cachedOptions[$key] = $value;
+        }
         $this->options = $this->cachedOptions;
     }
 }

@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Тежина',
+        'theme' => '',
         'top_10p' => 'Топ 10% Резултати',
         'top_50p' => 'Топ 50% Резултати',
         'unavailable' => [

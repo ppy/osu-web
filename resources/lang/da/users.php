@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => 'Hurtigt Spil',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Global rang for :mode',
             'global_simple' => 'Global Rang',
             'highest' => 'Højeste rang :rank på :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Total Score',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps på Kirkegården',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Afventende Beatmaps',
             'ranked_beatmapset_count' => 'Ranked & Godkendte Beatmaps',
         ],

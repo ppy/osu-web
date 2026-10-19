@@ -5,6 +5,6 @@
 
 return [
     'update' => [
-        'invalid_ruleset' => 'Šis piekariņš nav saderīgs ar šo Ritma-Karti.',
+        'invalid_ruleset' => 'Šī birka nav saderīga ar šo Bītkarti.',
     ],
 ];

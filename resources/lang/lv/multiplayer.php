@@ -5,10 +5,10 @@
 
 return [
     'empty' => [
-        'active' => 'Pagaidām nav neviena notiekošā osu!(shitzer) :type_group spēlē!',
-        'ended' => 'Pagaidām nav neviena pabeigtā osu!(shitzer) :type_group spēlē!',
+        'active' => 'Pagaidām nav neviena notiekošā osu!(lazer) :type_group spēlē!',
+        'ended' => 'Pagaidām nav neviena pabeigtā osu!(lazer) :type_group spēlē!',
         'playlists' => 'sarakstu',
-        'ranked-play' => '',
+        'ranked-play' => 'rangota spēle',
         'realtime' => 'daudzspēlētāju režīma',
     ],
 
@@ -24,7 +24,7 @@ return [
         'errors' => [
             'duration_too_long' => 'Ilgums ir pārāk garš.',
             'name_too_long' => 'Istabas vārds ir par garu.',
-            'too_many_playlist_items' => '',
+            'too_many_playlist_items' => 'Pārāk daudz atskaņošanas saraksta vienumu.',
         ],
 
         'status' => [

@@ -5,7 +5,7 @@
 
 return [
     'mode' => [
-        'artist_track' => 'Kontraktēto Mākslinieku Dziesmas',
+        'artist_track' => 'Sadarbības Izpildītāja Dziesma',
         'beatmapset' => 'Bītmapes',
         'forum_post' => 'Forums',
         'other' => 'Cits',
@@ -22,7 +22,7 @@ return [
             '_' => 'No results for :mode',
 
             'artist_track' => 'Izlases mākslinieku celiņi',
-            'beatmapset' => 'Beatmapes',
+            'beatmapset' => 'Bītkartes',
             'forum_post' => 'Forumi',
             'other' => 'Citi',
             'team' => 'Komandas',

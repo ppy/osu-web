@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Nehézség',
+        'theme' => '',
         'top_10p' => 'Top 10% Pontszám',
         'top_50p' => 'Top 50% Pontszám',
         'unavailable' => [

@@ -28,7 +28,7 @@ return [
         'kudosu_denied' => 'Отказано в получении кудосу.',
         'include_replies' => 'Включая их ответы',
         'message_placeholder_deleted_beatmap' => 'Эта сложность была удалена, её больше нельзя обсудить.',
-        'message_placeholder_locked' => 'Возможность обсуждения этой карты закрыта.',
+        'message_placeholder_locked' => 'Обсуждение этой карты закрыто.',
         'message_placeholder_silenced' => "Запрещено публиковать посты в обсуждении, пока вы заглушены.",
         'message_type_select' => 'Выбрать тип комментария',
         'reply_notice' => 'Нажмите Enter, чтобы ответить.',
@@ -38,9 +38,9 @@ return [
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'show_deleted' => 'Показать удалённые',
-        'show_other_replies' => 'Показать ответы других',
+        'show_other_replies' => 'Показывать ответы других',
         'title' => 'Обсуждение',
-        'unresolved_count' => ':count_delimited нерешённых проблем|:count_delimited нерешённая проблема|:count_delimited нерешённые проблемы',
+        'unresolved_count' => ':count_delimited нерешённая проблема|:count_delimited нерешённые проблемы | :count_delimited нерешённых проблем',
 
         'collapse' => [
             'all-collapse' => 'Скрыть всё',
@@ -128,11 +128,11 @@ return [
                 'unsaved' => 'Не сохранено',
                 'timestamp' => [
                     'all-diff' => 'Отзывы к "Все сложности" не должны содержать тайм-кодов.',
-                    'diff' => 'Если :type начинается с тайм-кода, он появится в разделе "Тайм-коды".',
+                    'diff' => 'Если этот пост начинается с тайм-кода, он появится в разделе "Тайм-коды".',
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => 'вставить ноту',
+                'mapper_note' => 'добавить заметку',
                 'paragraph' => 'вставить параграф',
                 'praise' => 'вставить похвалу',
                 'problem' => 'вставить проблему',
@@ -161,7 +161,7 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Эта карта стала Одобреной :date!',
+            'approved' => 'Эта карта стала Одобренной :date!',
             'graveyard' => "Эта карта не обновлялась с :date и, похоже, что автор её забросил...",
             'loved' => 'Эта карта стала Любимой :date!',
             'ranked' => 'Эта карта стала Рейтинговой :date!',

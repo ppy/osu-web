@@ -35,7 +35,7 @@ export class EntryList extends BaseEntryList
         winnerVotes: if @state.contest.show_votes then _.maxBy(@state.contest.entries, (i) -> i.results.votes).results.votes
 
     div className: 'contest-voting-list__table',
-      div className: 'contest-voting-list__header',
+      div className: 'contest-voting-list__header sticky-toolbar',
         if @state.contest.show_votes
           div className: 'contest-voting-list__rank contest-voting-list__rank--blank'
         if @state.options.showPreview

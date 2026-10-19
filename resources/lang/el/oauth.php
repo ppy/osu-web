@@ -58,5 +58,11 @@ return [
             'false' => 'Διαγραφή',
             'true' => 'Διαγράφηκε',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

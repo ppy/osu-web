@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Kā būtu, ja tā vietā tu nedaudz paspēlētu osu!?',
+    'play_more' => 'Kā būtu, ja tā vietā tu nedaudz paspēlētu osu! :D',
     'require_login' => 'Lūdzu, pieraksties, lai turpinātu.',
     'require_verification' => 'Lūdzu, verificējies, lai turpinātu.',
     'restricted' => "Nevar veikt darbību, kamēr esi ierobežots.",
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "Nevar balsot par diskusiju, ko izveidojis bots",
+            'bot' => "Nevar balsot diskusijā, kuru izveidoja robots",
             'limit_exceeded' => 'Lūdzu, uzgaidi kādu laiku, pirms balso vēlreiz',
             'owner' => "Nevar balsot par savu diskusiju.",
             'wrong_beatmapset_state' => 'Var balsot tikai par pagaidu ritmu-kartēm diskusijām.',
@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Tu nevari novērtēt ritma-karšu kopu, kuras veidošanā tu esi piedalījies.',
+            'status' => 'Tu nevari novērtēt ritma-karšu kopu ar šādu statusu.',
         ],
     ],
 
@@ -103,7 +103,7 @@ return [
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Nav atļaujas moderēt šo forumu.',
+            'no_permission' => 'Tev nav atļauja uzraudzīt šo forumu.',
         ],
 
         'post' => [
@@ -184,7 +184,7 @@ return [
 
     'room' => [
         'destroy' => [
-            'not_owner' => 'Tikai izstabas īpašnieks var to aizvērt.',
+            'not_owner' => 'Tikai istabas īpašnieks var to aizvērt.',
         ],
     ],
 

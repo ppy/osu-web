@@ -105,7 +105,7 @@ return [
             'beatmapset:modding' => 'pada saat halaman diskusi beatmap yang kamu amati menerima pembaruan, atau apabila terdapat masalah atau saran pada beatmap milikmu',
             'channel_mention' => 'pada saat namamu dipanggil di kanal publik',
             'channel_message' => 'pada saat kamu menerima pesan pribadi baru',
-            'channel_team' => 'pada saat kanal percakapan timmu memiliki pesan baru',
+            'channel_team' => 'pada saat kanal obrolan timmu memiliki pesan baru',
             'comment_new' => 'pada saat terdapat komentar baru pada item yang kamu ikuti',
             'forum_topic_reply' => 'pada saat topik forum yang kamu amati menerima balasan baru',
             'mapping' => 'pada saat mapper yang kamu ikuti mengunggah beatmap',
@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
-        'friends_only_info' => '',
+        'friends_only_info' => 'pemblokiran ini juga berlaku bagi undangan multiplayer dan permintaan duel ranked play di osu!lazer',
         'hide_online' => 'sembunyikan status onlinemu',
         'hide_online_info' => 'pengaturan ini akan terhubung ke mode "tampil offline" di osu!lazer',
         'title' => 'Privasi',

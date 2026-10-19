@@ -58,5 +58,11 @@ return [
             'false' => '삭제',
             'true' => '삭제됨',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

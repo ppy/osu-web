@@ -74,10 +74,6 @@ export default class Matchmaking extends React.PureComponent<Props> {
   render() {
     const stats = this.stats;
 
-    if (stats.recent_history == null) {
-      return null;
-    }
-
     const provisional = stats.is_rating_provisional;
     const [rankValue, tierData] = provisional || stats.rank === -1
       ? ['-', null]
@@ -161,33 +157,11 @@ export default class Matchmaking extends React.PureComponent<Props> {
         </div>
 
         <div className='profile-detail-stats-card__middle profile-detail-stats-card__middle--matchmaking-play'>
-          <div className='matchmaking-result'>
-            <div className='matchmaking-result__title'>{trans('users.show.matchmaking.recent_history')}</div>
-            <div className='matchmaking-result__icons'>
-              {stats.recent_history.map((entry) => (
-                <a
-                  key={entry.id}
-                  className={`js-tooltip-time ${classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}`}
-                  href={route('multiplayer.rooms.show', { room: entry.room_id })}
-                  title={entry.created_at}
-                />
-              ))}
-            </div>
-          </div>
+          {this.renderRecentHistory()}
         </div>
 
         <div className='profile-detail-stats-card__bottom'>
-          {stats.recent_history.length === 0
-            ? (
-              <div className='profile-detail-stats-card__empty-chart'>
-                {trans('users.show.extra.unranked')}
-              </div>
-            ) : (
-              <div key={stats.pool_id} className='profile-detail-stats-card__chart'>
-                <MatchmakingChart controller={this.props.controller} poolId={stats.pool_id} />
-              </div>
-            )
-          }
+          {this.renderChart()}
         </div>
         <div className='profile-detail-stats-card__decor-corner' />
         <div className='profile-detail-stats-card__decor' />
@@ -202,6 +176,56 @@ export default class Matchmaking extends React.PureComponent<Props> {
 
     this.props.controller.state.matchmakingPoolId = poolId;
   };
+
+  private renderChart() {
+    if (this.stats.recent_history.length === 0) {
+      return (
+        <div className='profile-detail-stats-card__empty-chart'>
+          {trans('users.show.extra.unranked')}
+        </div>
+      );
+    }
+
+    return this.stats.is_rating_provisional
+      ? (
+        <div className='profile-detail-stats-card__empty-chart'>
+          <strong>-</strong>
+        </div>
+      ) : (
+        <div key={this.stats.pool_id} className='profile-detail-stats-card__chart'>
+          <MatchmakingChart controller={this.props.controller} poolId={this.stats.pool_id} />
+        </div>
+      );
+  }
+
+  private renderRecentHistory() {
+    if (this.stats.is_rating_provisional) {
+      return (
+        <div className='matchmaking-result matchmaking-result--provisional'>
+          <span className='fas fa-ghost' />
+          <span>
+            {trans('users.show.matchmaking.recent_history_provisional')}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <div className='matchmaking-result'>
+        <div className='matchmaking-result__title'>{trans('users.show.matchmaking.recent_history')}</div>
+        <div className='matchmaking-result__icons'>
+          {this.stats.recent_history.map((entry) => (
+            <a
+              key={entry.id}
+              className={`js-tooltip-time ${classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}`}
+              href={route('multiplayer.rooms.show', { room: entry.room_id })}
+              title={entry.created_at}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   private renderVariantSelector() {
     if (this.stats.pool.ruleset_id !== rulesetIds.mania) return null;

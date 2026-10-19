@@ -21,7 +21,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Kontraktētais mākslinieks',
+        'label' => 'Sadarbības izpildītājs',
     ],
 
     'index' => [
@@ -30,12 +30,12 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited favorīts|:count_delimited favorīti',
+        'playcount' => ':count_delimited izspēle|:count_delimited izspēles',
     ],
 
     'panel' => [
-        'empty' => 'nav ritma-mapju',
+        'empty' => 'nav ritma-karšu',
 
         'download' => [
             'all' => 'lejupielādēt',
@@ -70,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Nederīgs vērtējums.',
     ],
 
     'show' => [
@@ -78,7 +78,7 @@ return [
 
         'admin' => [
             'full_size_cover' => 'Skatīt pilna izmēra bildes pārvalku',
-            'page' => 'Apskatīt adminu lapu',
+            'page' => 'Apskatīt  lapu',
         ],
 
         'deleted_banner' => [
@@ -150,28 +150,28 @@ return [
             'description' => 'Apraksts',
             'genre' => 'Žanrs',
             'language' => 'Valoda',
-            'mapper_tags' => 'Kartētāju Piekariņš',
+            'mapper_tags' => 'Ritma-karšu Izveidotāju Piekariņš',
             'no_scores' => 'Rezultāti joprojām tiek aprēķināti...',
             'nominators' => 'Nominētāji',
             'nsfw' => 'Nepiemērots saturs',
             'offset' => 'Tiešsaistes nobīde',
-            'pack_tags' => '',
+            'pack_tags' => 'Ritma-Karšu Pakas',
             'points-of-failure' => 'Izkrišanas punkti',
             'source' => 'Avots',
             'storyboard' => 'Šī ritma-mape satur vizuālo saturu',
-            'success-rate' => 'Izdošanās līmenis',
-            'success_rate_plays' => '',
-            'user_tags' => 'Lietotāju Piekariņš',
+            'success-rate' => 'Sekmības rādītājs',
+            'success_rate_plays' => ':passes no :count_delimited izspēles|:passes no :count_delimited izspēlēm',
+            'user_tags' => 'Lietotāju Birkas',
             'video' => 'Šī ritma-mape satur video',
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Debīl Ekskluzīvs',
+            'description' => 'Īpašu mehāniku dēļ šo ritma-karti var spēlēt tikai osu!lazer.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link, lai skatītu šajā ritma-kartē sasniegtos rezultātus.',
+                'enable_link' => 'Ieslēgt debīl režīmu',
             ],
         ],
 
@@ -194,14 +194,14 @@ return [
             'global' => 'Pasaules rangi',
             'supporter-link' => 'Klikšķiniet <a href=":link">šeit</a>, lai redzētu visas modernās funkcijas, ko saņemat!',
             'supporter-only' => 'Jums nepieciešams būt atbalstītājam, lai redzētu draugu un valsts rangus!',
-            'team' => 'Komandas Novietojums',
+            'team' => 'Komandas Rangs',
             'title' => 'Rezultātu apkopojums',
 
             'headers' => [
                 'accuracy' => 'Precizitāte',
-                'combo' => 'Max Kombinācija',
+                'combo' => 'Maksimālā Kombinācija',
                 'miss' => 'Netrāpījumi',
-                'mods' => 'Modifikācijas',
+                'mods' => 'Modi',
                 'pin' => 'Piespraust',
                 'player' => 'Spēlētājs',
                 'pp' => '',
@@ -217,7 +217,7 @@ return [
                 'global' => 'Pagaidām nav rezultātu. Varbūt pamēģināt kādu uzstādīt?',
                 'loading' => 'Ielādē rezultātus...',
                 'team' => 'Neviens no tavas komandas pagaidām nav uzstādījis rezultātu uz šīs ritma-kartes!',
-                'unranked' => 'Nevērtējama ritma-mape.',
+                'unranked' => 'Nenovērtēta ritma-mape.',
             ],
             'score' => [
                 'first' => 'Vadībā',
@@ -232,11 +232,11 @@ return [
         'stats' => [
             'cs' => 'Apļu Lielums',
             'cs-mania' => 'Taustiņu Skaits',
-            'drain' => 'HP Izsīkšana',
+            'drain' => 'HP zudums',
             'accuracy' => 'Precizitāte',
             'ar' => 'Pietuvināšanās Ātrums',
             'stars' => 'Grūtība Zvaigznēs',
-            'total_length' => 'Garums (Izsīkšanas garums: :hit_length)',
+            'total_length' => 'Garums (spēles ilgums: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Apļu Skaits',
             'count_sliders' => 'Slīdņu Skaits',
@@ -246,11 +246,11 @@ return [
             'nominations' => 'Nominācijas',
             'playcount' => 'Reizes spēlēts',
             'favourites' => 'Iecienītās',
-            'no_favourites' => 'Vēl nav iecienīto',
+            'no_favourites' => 'Pagaidām nav iemīļota',
         ],
 
         'status' => [
-            'ranked' => 'Ierindota',
+            'ranked' => 'Novērtēta',
             'approved' => 'Apstiprināta',
             'loved' => 'Iemīļota',
             'qualified' => 'Kvalificēta',
@@ -261,6 +261,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => 'Uzmanības Centrā',
+        'label' => 'Izcelta',
     ],
 ];

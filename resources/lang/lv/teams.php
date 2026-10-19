@@ -34,7 +34,7 @@ return [
 
         'intro' => [
             'description' => "Spēlē kopā ar draugiem; esošajiem vai jauniem. Tu pašlaik neesi komandā. Pievienojies esoša komandā, apmeklējot komandas lapu, vai izveido savu komandu šeit.",
-            'search_link' => '',
+            'search_link' => 'esošā komanda',
             'title' => 'Komanda!',
         ],
     ],
@@ -159,10 +159,10 @@ return [
 
         'statistics' => [
             'empty_slots' => ':count_delimited vieta brīva|:count_delimited vietas brīvas',
-            'first_places' => '',
+            'first_places' => 'Pirmās vietas',
             'leader' => 'Komandas Līderis',
             'rank' => 'Rangs',
-            'ranked_beatmapsets' => '',
+            'ranked_beatmapsets' => 'Rangotās bītkartes',
         ],
     ],
 

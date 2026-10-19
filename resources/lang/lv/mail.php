@@ -5,9 +5,9 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Tikai padaram tev zināmu, ka kopš tava pēdējā apmeklējuma, ir noticis atjauninājums ritma-mapei ":title".',
-        'subject' => 'Atjauninājums ritma-kartei ":title"',
-        'unwatch' => 'Ja tu vairāk nevēlies vērot šo ritma-mapi, tad tu vari uzspiest uz "Nevērot" vai nu lapas apakšā vai nu modderācijas vērošanas lapā: ',
+        'new' => 'Vēlamies tevi informēt, ka kopš tava pēdējā apmeklējuma bītkarte ":title" ir atjaunināta.',
+        'subject' => 'Atjauninājums bītkartei ":title"',
+        'unwatch' => 'Ja vairs nevēlies sekot šai bītkartei, vari noklikšķināt uz augstāk esošajā lapā atrodamās saites "Pārtraukt sekošanu" vai izdarīt to bītkaršu pārbaudes uzraudzības saraksta lapā:',
         'visit' => 'Apmeklē diskusiju lapu šeit:',
     ],
 

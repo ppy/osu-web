@@ -5,7 +5,7 @@
 
 return [
     'loading_users' => 'ladataan käyttäjiä...',
-    'searching_users' => '',
+    'searching_users' => 'etsitään käyttäjiä...',
     'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustelu :name:n kanssa',
     'title_compact' => 'viestit',
@@ -52,8 +52,8 @@ return [
     ],
 
     'not_joined' => [
-        'message' => '',
-        'join' => '',
+        'message' => 'Liity kanavalle nähdäksesi sen viestit.',
+        'join' => 'Liity kanavalle',
     ],
 
     'input' => [

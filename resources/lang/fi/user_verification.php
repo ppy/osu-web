@@ -21,16 +21,16 @@ return [
     ],
 
     'box_totp' => [
-        'heading' => '',
+        'heading' => 'Anna koodi todennussovelluksesta.',
 
         'info' => [
             'logout' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Voit myös :link.',
+                'link' => 'kirjaudu ulos',
             ],
             'mail_fallback' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Jos et pääse sovellukseesi, :link.',
+                'link' => 'voit vahvistaa sähköpostilla sen sijaan',
             ],
         ],
     ],
@@ -40,8 +40,8 @@ return [
         'incorrect_key' => 'Virheellinen vahvistuskoodi.',
         'retries_exceeded' => 'Virheellinen vahvistuskoodi. Uudelleenyritysraja ylitetty, uusi vahvistussähköposti lähetetty.',
         'reissued' => 'Vahvistuskoodi uusittu, uusi vahvistussähköposti lähetetty.',
-        'totp_used_key' => '',
-        'totp_gone' => '',
+        'totp_used_key' => 'Vahvistuskoodi on jo käyetty. Odota ja käytä uutta koodia.',
+        'totp_gone' => 'Todennustunnus on poistettu, vaihdetaan sähköpostivahvistukseen. Vahvistussähköposti on lähetetty.',
         'unknown' => 'Tuntematon virhe tapahtui, uusi vahvistussähköposti lähetetty.',
     ],
 ];

@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'blocca messaggi privati da chi non è nella tua lista amici',
-        'friends_only_info' => '',
+        'friends_only_info' => 'questo blocco si applica anche agli inviti multigiocatore su osu!lazer e alle richieste di duello delle ranked play',
         'hide_online' => 'nascondi il tuo stato online',
         'hide_online_info' => 'su osu!lazer, funziona come l\'opzione "Mostrati offline"',
         'title' => 'Privacy',

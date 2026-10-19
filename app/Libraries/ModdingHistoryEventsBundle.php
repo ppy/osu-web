@@ -120,7 +120,7 @@ class ModdingHistoryEventsBundle
                 $array['discussions'] = json_collection(
                     $this->getDiscussions(),
                     new BeatmapDiscussionTransformer(),
-                    ['starting_post', 'current_user_attributes']
+                    ['starting_post']
                 );
 
                 $array['posts'] = json_collection(
@@ -165,9 +165,6 @@ class ModdingHistoryEventsBundle
                             'nominated_beatmapset_count',
                             'pending_beatmapset_count',
                             'ranked_beatmapset_count',
-                            'statistics',
-                            'statistics.country_rank',
-                            'statistics.rank',
                         ]
                     );
                 }

@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => '屏蔽来自陌生人的私信',
-        'friends_only_info' => '',
+        'friends_only_info' => '此屏蔽同时适用于 osu!lazer 的多人游戏邀请及排位模式的对决请求',
         'hide_online' => '隐藏在线状态',
         'hide_online_info' => '将同步到 osu!lazer 的隐身模式',
         'title' => '隐私',

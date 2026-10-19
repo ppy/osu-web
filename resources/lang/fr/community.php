@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personnalisation',
-                'description' => "Démarquez-vous en mettant en ligne une image de couverture personnalisée ou en créant une section \"moi !\" entièrement personnalisable sur votre profil d'utilisateur.",
+                'description' => "Démarquez-vous en mettant en ligne une image de couverture personnalisée, en créant une section \"moi !\" entièrement personnalisable sur votre profil d'utilisateur, ou même en utilisant la couleur de votre choix sur votre profil utilisateur.",
             ],
 
             'beatmap_filters' => [

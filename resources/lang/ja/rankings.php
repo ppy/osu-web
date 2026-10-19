@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '難易度',
+        'theme' => '',
         'top_10p' => '上位10%スコア',
         'top_50p' => '上位50%スコア',
         'unavailable' => [

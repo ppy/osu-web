@@ -120,7 +120,7 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => 'Mais Favoritos',
+                'title' => 'Mais favoritos',
                 'description' => 'O número máximo de beatmaps que você pode favoritar é aumentado de :normally &rarr; :supporter',
             ],
             'more_friends' => [

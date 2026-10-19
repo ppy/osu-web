@@ -118,16 +118,14 @@ export default class Main extends React.Component<BeatmapsetDiscussionsBundleJso
               currentMode={this.user.playmode}
               user={this.user}
             />
+            {this.user.active_tournament_banners.map((banner) => (
+              <ProfileTournamentBanner key={banner.id} banner={banner} />
+            ))}
             <Badges badges={this.user.badges} />
             {!this.user.is_bot && (
-              <>
-                {this.user.active_tournament_banners.map((banner) => (
-                  <ProfileTournamentBanner key={banner.id} banner={banner} />
-                ))}
-                <div className='profile-detail'>
-                  <Stats user={this.props.user} />
-                </div>
-              </>
+              <div className='profile-detail'>
+                <Stats user={this.props.user} />
+              </div>
             )}
             <DetailBar user={this.user} />
           </div>
