@@ -33,15 +33,13 @@ export default class Badge extends React.PureComponent<Props> {
   }
 
   private renderTitle() {
-    return this.props.badge.awarded_at == null
-      ? undefined
-      : `
-        <div class='profile-badge-tooltip'>
-          <div>${escape(this.props.badge.description)}</div>
-          <div class='profile-badge-tooltip__date'>
-            ${moment(this.props.badge.awarded_at).format('LL')}
-          </div>
+    return `
+      <div class='profile-badge-tooltip'>
+        <div>${escape(this.props.badge.description)}</div>
+        <div class='profile-badge-tooltip__date'>
+          ${moment(this.props.badge.awarded_at).format('LL')}
         </div>
-      `;
+      </div>
+    `;
   }
 }
