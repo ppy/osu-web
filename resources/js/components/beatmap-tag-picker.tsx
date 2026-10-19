@@ -3,8 +3,8 @@
 
 import { rulesetNames, rulesets } from 'interfaces/ruleset';
 import { groupBy } from 'lodash';
-import { action, computed } from 'mobx';
-import { observer } from 'mobx-react';
+import { computed, runInAction } from 'mobx';
+import { observer, useLocalObservable } from 'mobx-react';
 import BeatmapTag from 'models/beatmap-tag';
 import core from 'osu-core-singleton';
 import React, { useCallback, useEffect, useRef } from 'react';
@@ -18,16 +18,22 @@ interface Props {
 
 export default observer(function BeatmapUserTagPicker(props: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const onChange = action((e: React.ChangeEvent<HTMLInputElement>) => props.controller.query = e.target.value);
 
-  const groups = computed(() => {
-    const querySplit = props.controller.query.trim().toLowerCase().split(/\s+/);
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => runInAction(() => props.controller.query = e.target.value),
+    [props.controller],
+  );
 
-    const filtered = core.beatmapTagStore.tags.filter((tag) => tag.match(querySplit, props.controller.rulesetId));
-    const grouped = groupBy(filtered, (tag) => tag.categoryName);
+  const groups = useLocalObservable(() => ({
+    value: computed(() => {
+      const querySplit = props.controller.query.trim().toLowerCase().split(/\s+/);
 
-    return Object.entries(grouped).map(([name, tags]) => ({ name, tags }));
-  });
+      const filtered = core.beatmapTagStore.tags.filter((tag) => tag.match(querySplit, props.controller.rulesetId));
+      const grouped = groupBy(filtered, (tag) => tag.categoryName);
+
+      return Object.entries(grouped).map(([name, tags]) => ({ name, tags }));
+    }),
+  }));
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -45,7 +51,7 @@ export default observer(function BeatmapUserTagPicker(props: Props) {
       />
       <div className='beatmap-tag-picker__scroll-area u-fancy-scrollbar'>
         <div className='beatmap-tag-picker__list'>
-          {groups.get().map((group) => (
+          {groups.value.get().map((group) => (
             <React.Fragment key={group.name}>
               <span className='beatmap-tag-picker__category'>{group.name}</span>
               {group.tags.map((tag) => <UserTag key={tag.id} props={props} tag={tag} />)}
