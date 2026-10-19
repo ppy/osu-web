@@ -26,7 +26,7 @@ class UpdateUserInfo
 
         if ($user !== null) {
             $token = $user->token();
-            $shouldUpdate = $token === null || $token->client->password_client;
+            $shouldUpdate = $token === null || $token->client->isPasswordClient();
 
             if ($shouldUpdate) {
                 $isInactive = $user->isInactive();
