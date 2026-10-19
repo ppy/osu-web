@@ -58,5 +58,11 @@ return [
             'false' => '削除',
             'true' => '削除しました',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

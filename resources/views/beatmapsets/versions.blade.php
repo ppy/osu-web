@@ -2,12 +2,19 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $userPreferences = App\Models\UserProfileCustomization::forUser(Auth::user());
+    $showVisual = (!$beatmapset->nsfw || $userPreferences['beatmapset_show_nsfw'])
+        && (!$beatmapset->anime_cover ||$userPreferences['beatmapset_show_anime_cover']);
+@endphp
+
 @extends('master', [
     'pageDescription' => osu_trans('beatmapsets.index.title'),
 ])
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
+        'backgroundImage' => $showVisual ? $beatmapset->coverURL('slimcover') : null,
         'links' => [
             [
                 'title' => osu_trans('layout.header.beatmapsets.show'),

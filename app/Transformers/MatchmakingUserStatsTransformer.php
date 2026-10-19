@@ -42,7 +42,7 @@ class MatchmakingUserStatsTransformer extends TransformerAbstract
     public function includeRecentHistory(MatchmakingUserStats $stats): ResourceInterface
     {
         if ($stats->pool?->active !== true) {
-            return $this->primitive(null);
+            return $this->primitive([]);
         }
 
         $entries = $stats->history()->orderByDesc('id')->limit(10)->get();

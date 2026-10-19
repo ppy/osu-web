@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title' => 'Bītmapes Diskusijas Balsojumi',
+        'title' => 'Ritma-karšu Diskusijas Balsojumi',
     ],
 
     'item' => [

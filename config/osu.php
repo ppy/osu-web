@@ -45,6 +45,7 @@ return [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
         'uid' => '1337',
+        'youtube_embed_max' => get_int(env('BBCODE_YOUTUBE_EMBED_MAX')) ?? 5,
     ],
     'beatmaps' => [
         'max' => 50,

@@ -26,7 +26,7 @@ return [
         'edited' => 'Viimeksi muokannut :editor :update_time.',
         'guest' => 'Vieraileva vaikeustaso - :user',
         'kudosu_denied' => 'Evätty saamasta kudosua.',
-        'include_replies' => '',
+        'include_replies' => 'Sisällytä vastaukset',
         'message_placeholder_deleted_beatmap' => 'Tämä vaikeustaso on poistettu, joten siitä ei voi enää keskustella.',
         'message_placeholder_locked' => 'Keskustelu tälle beatmapille on poistettu käytöstä.',
         'message_placeholder_silenced' => "Keskusteluun ei voi osallistua mykistettynä.",
@@ -38,7 +38,7 @@ return [
         'resolved' => 'Ratkaistu',
         'restore' => 'palauta',
         'show_deleted' => 'Näytä poistetut',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Näytä muut vastaukset',
         'title' => 'Keskustelut',
         'unresolved_count' => ':count_delimited ratkaisematon ongelma|:count_delimited ratkaisematonta ongelmaa',
 
@@ -132,7 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
-                'mapper_note' => '',
+                'mapper_note' => 'laita nuotti',
                 'paragraph' => 'lisää kappale',
                 'praise' => 'lisää ylistystä',
                 'problem' => 'lisää ongelma',

@@ -87,7 +87,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
             $this->parseQuery();
             $status = $params['s'];
-            $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
+            $this->status = static::LEGACY_STATUS_MAP[$status ?? ''] ?? $status;
 
             $this->genre = $params['g'];
             $this->language = $params['l'];

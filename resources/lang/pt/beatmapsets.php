@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited favorito|:count_delimited favoritos',
+        'playcount' => ':count_delimited partida|:count_delimited partidas',
     ],
 
     'panel' => [
@@ -70,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Avaliação inválida.',
     ],
 
     'show' => [

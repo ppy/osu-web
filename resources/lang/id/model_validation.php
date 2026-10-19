@@ -189,7 +189,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap yang berstatus Ranked tidak bisa dilaporkan',
-        'not_in_channel' => 'Kamu tidak berada dalam kanal percakapan ini.',
+        'not_in_channel' => 'Kamu tidak berada dalam kanal ini.',
         'in_team' => 'Kamu adalah anggota tim ini.',
         'reason_not_valid' => ':reason bukan alasan yang valid untuk jenis laporan ini.',
         'self' => "Kamu tidak bisa melaporkan dirimu sendiri!",

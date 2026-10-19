@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '',
+        'theme' => '',
         'top_10p' => '',
         'top_50p' => '',
         'unavailable' => [

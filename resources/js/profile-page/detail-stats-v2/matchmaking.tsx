@@ -11,7 +11,7 @@ import Controller from 'profile-page/controller';
 import { ProfilePageMatchmakingStatsJson } from 'profile-page/extra-page-props';
 import { getHighestRankStats, tier } from 'profile-page/matchmaking';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers } from 'utils/css';
 import { fail } from 'utils/fail';
 import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -74,11 +74,8 @@ export default class Matchmaking extends React.PureComponent<Props> {
   render() {
     const stats = this.stats;
 
-    if (stats.recent_history == null) {
-      return null;
-    }
-
-    const [rankValue, tierData] = stats.rank === -1
+    const provisional = stats.is_rating_provisional;
+    const [rankValue, tierData] = provisional || stats.rank === -1
       ? ['-', null]
       : [`#${formatNumber(stats.rank)}`, tier(stats)];
     const rankValueStyle = tierData == null
@@ -90,15 +87,19 @@ export default class Matchmaking extends React.PureComponent<Props> {
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--matchmaking'>
         <div className='profile-detail-stats-card__top'>
-          {tierData != null &&
-            <div className='profile-detail-stats-card__matchmaking-tier-badge'>
-              <MatchmakingTierBadge
-                rank={stats.rank}
-                rulesetId={stats.pool.ruleset_id}
-                tier={tierData.title}
-              />
-            </div>
-          }
+          <div className='profile-detail-stats-card__matchmaking-tier-badge'>
+            {tierData == null
+              ? provisional && (
+                <div className='matchmaking-tier-badge matchmaking-tier-badge--Placeholder' />
+              ) : (
+                <MatchmakingTierBadge
+                  rank={stats.rank}
+                  rulesetId={stats.pool.ruleset_id}
+                  tier={tierData.title}
+                />
+              )
+            }
+          </div>
           <div className='profile-detail-stats-card__title'>
             <div className='profile-detail-stats-card__title-icon'>
               <span className='svg-icon svg-icon--multi' />
@@ -124,8 +125,11 @@ export default class Matchmaking extends React.PureComponent<Props> {
             <div />
             <ValueDisplay
               label={trans('users.show.matchmaking.rating')}
-              modifiers='rank rank-small'
-              value={formatNumber(stats.rating)}
+              modifiers={mergeModifiers('rank rank-small', { provisional })}
+              value={provisional
+                ? <span title={trans('rankings.matchmaking.provisional')}>{formatNumber(stats.rating)}*</span>
+                : formatNumber(stats.rating)
+              }
             />
             <ValueDisplay
               label={trans('users.show.matchmaking.tier')}
@@ -153,33 +157,11 @@ export default class Matchmaking extends React.PureComponent<Props> {
         </div>
 
         <div className='profile-detail-stats-card__middle profile-detail-stats-card__middle--matchmaking-play'>
-          <div className='matchmaking-result'>
-            <div className='matchmaking-result__title'>{trans('users.show.matchmaking.recent_history')}</div>
-            <div className='matchmaking-result__icons'>
-              {stats.recent_history.map((entry) => (
-                <a
-                  key={entry.id}
-                  className={`js-tooltip-time ${classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}`}
-                  href={route('multiplayer.rooms.show', { room: entry.room_id })}
-                  title={entry.created_at}
-                />
-              ))}
-            </div>
-          </div>
+          {this.renderRecentHistory()}
         </div>
 
         <div className='profile-detail-stats-card__bottom'>
-          {stats.recent_history.length === 0
-            ? (
-              <div className='profile-detail-stats-card__empty-chart'>
-                {trans('users.show.extra.unranked')}
-              </div>
-            ) : (
-              <div key={stats.pool_id} className='profile-detail-stats-card__chart'>
-                <MatchmakingChart controller={this.props.controller} poolId={stats.pool_id} />
-              </div>
-            )
-          }
+          {this.renderChart()}
         </div>
         <div className='profile-detail-stats-card__decor-corner' />
         <div className='profile-detail-stats-card__decor' />
@@ -194,6 +176,56 @@ export default class Matchmaking extends React.PureComponent<Props> {
 
     this.props.controller.state.matchmakingPoolId = poolId;
   };
+
+  private renderChart() {
+    if (this.stats.recent_history.length === 0) {
+      return (
+        <div className='profile-detail-stats-card__empty-chart'>
+          {trans('users.show.extra.unranked')}
+        </div>
+      );
+    }
+
+    return this.stats.is_rating_provisional
+      ? (
+        <div className='profile-detail-stats-card__empty-chart'>
+          <strong>-</strong>
+        </div>
+      ) : (
+        <div key={this.stats.pool_id} className='profile-detail-stats-card__chart'>
+          <MatchmakingChart controller={this.props.controller} poolId={this.stats.pool_id} />
+        </div>
+      );
+  }
+
+  private renderRecentHistory() {
+    if (this.stats.is_rating_provisional) {
+      return (
+        <div className='matchmaking-result matchmaking-result--provisional'>
+          <span className='fas fa-ghost' />
+          <span>
+            {trans('users.show.matchmaking.recent_history_provisional')}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <div className='matchmaking-result'>
+        <div className='matchmaking-result__title'>{trans('users.show.matchmaking.recent_history')}</div>
+        <div className='matchmaking-result__icons'>
+          {this.stats.recent_history.map((entry) => (
+            <a
+              key={entry.id}
+              className={`js-tooltip-time ${classWithModifiers('matchmaking-result-icon', `result-${entry.result}`)}`}
+              href={route('multiplayer.rooms.show', { room: entry.room_id })}
+              title={entry.created_at}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   private renderVariantSelector() {
     if (this.stats.pool.ruleset_id !== rulesetIds.mania) return null;

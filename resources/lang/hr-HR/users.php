@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Globalni rang za :mode',
             'global_simple' => 'Globalni rang',
             'highest' => 'Najviši položaj: :rank na :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Ukupni Bodovi',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmape na groblju',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Voljene beatmape',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Beatmape na čekanju',
             'ranked_beatmapset_count' => 'Rangirane beatmape',
         ],

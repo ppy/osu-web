@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Não pode avaliar um conjunto de mapas do qual faz parte.',
+            'status' => 'Não pode avaliar um conjunto de mapas com este estado.',
         ],
     ],
 

@@ -58,5 +58,11 @@ return [
             'false' => 'Hapus',
             'true' => 'Dihapus',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

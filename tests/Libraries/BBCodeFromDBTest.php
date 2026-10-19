@@ -52,5 +52,6 @@ class BBCodeFromDBTest extends TestCase
         parent::setUp();
 
         config_set('osu.bbcode.uid', '1');
+        config_set('osu.bbcode.youtube_embed_max', 10);
     }
 }

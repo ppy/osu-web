@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
             'highest' => 'Høyeste rangering: :rank den :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Samlet Poengsum',
             // modding stats
             'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Ventende Beatmaps',
             'ranked_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
         ],

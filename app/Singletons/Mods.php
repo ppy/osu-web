@@ -145,7 +145,7 @@ class Mods
             fn (int $carry, string $id) =>
                 $carry
                 | ($this->idToBitsetMap[$id] ?? 0)
-                | ($this->idToBitsetMap[static::IMPLIED_MODS[$id] ?? null] ?? 0),
+                | ($this->idToBitsetMap[static::IMPLIED_MODS[$id] ?? ''] ?? 0),
             0,
         );
     }

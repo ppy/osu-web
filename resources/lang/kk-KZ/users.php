@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => '',
             'global_simple' => '',
             'highest' => '',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => '',
             // modding stats
             'graveyard_beatmapset_count' => '',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => '',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => '',
             'ranked_beatmapset_count' => '',
         ],

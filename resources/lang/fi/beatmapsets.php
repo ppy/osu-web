@@ -25,17 +25,17 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmappien Listaus',
-        'guest_title' => 'Beatmapit',
+        'title' => 'Rytmikarttojen listaus',
+        'guest_title' => 'Rytmikartat',
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited suosikki|:count_delimited suosikkia',
+        'playcount' => ':count_delimited pelaus|:count_delimited pelausta',
     ],
 
     'panel' => [
-        'empty' => 'ei beatmappeja',
+        'empty' => 'ei rytmikarttoja',
 
         'download' => [
             'all' => 'lataa',
@@ -70,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Virheellinen luokitus.',
     ],
 
     'show' => [
@@ -166,12 +166,12 @@ return [
         ],
 
         'lazer_only' => [
-            'title' => '',
-            'description' => '',
+            'title' => 'Vain Lazer',
+            'description' => 'Erityisten mekaniikkojen takia, tämä rytmikartta on pelattavissa vain osu!lazerissa.',
 
             'scoreboard_switch_mode' => [
-                '_' => '',
-                'enable_link' => '',
+                '_' => ':enable_link nähdäksesi karttaan tehdyt tulokset.',
+                'enable_link' => 'Ota lazer tila käyttöön',
             ],
         ],
 

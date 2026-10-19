@@ -58,5 +58,11 @@ return [
             'false' => 'ลบ',
             'true' => 'ถูกลบแล้ว',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

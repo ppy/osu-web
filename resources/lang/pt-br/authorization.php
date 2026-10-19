@@ -60,8 +60,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'Você não pode avaliar um beatmap no qual está envolvido.',
+            'status' => 'Você não pode avaliar um beatmap neste estado.',
         ],
     ],
 
@@ -124,14 +124,14 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Por favor tente jogar o jogo antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
+                'play_more' => 'Por favor tente jogar antes de postar nos fóruns! Se você tiver algum problema com o jogo, por favor poste no fórum de Suporte e Ajuda.',
                 'too_many_help_posts' => "Você precisa jogar mais antes que possa criar publicações adicionais. Se você ainda estiver tendo problemas com o jogo, envie um email para support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Por favor, edite sua última publicação em vez de publicar novamente.',
+                'double_post' => 'Edite sua última publicação em vez de publicar novamente.',
                 'locked' => 'Não é possível responder a uma discussão trancada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é necessário.',
                 'no_permission' => 'Sem permissão para responder.',

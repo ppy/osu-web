@@ -12,7 +12,7 @@ return [
 
         'blurb' => [
             'important' => 'WAŻNE',
-            'install_instruction' => 'Instalacja: Rozpakuj zawartość pobranej paczki do folderu z beatmapami (Songs), a osu! zajmie się resztą.',
+            'install_instruction' => 'Instalacja: Rozpakuj zawartość pobranej paczki do folderu, zaznacz wszystkie pliki .osz, a następnie przeciągnij je na uruchomione osu!.',
         ],
     ],
 

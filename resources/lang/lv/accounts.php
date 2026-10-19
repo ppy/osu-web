@@ -77,11 +77,11 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => '',
-        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu spēles veida ritma-kartēmmap',
-        'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šāda spēles veida  ritma-kartes',
+        'beatmapset_discussion_reply' => 'saņemt paziņojumus par atbildēm ritma-karšu diskusijās, kurās tu piedalies',
+        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu spēles veida bītkartēm',
+        'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šādu režīmu sitkartes',
         'comment_reply' => 'saņemt paziņojumus par atbildēm uz saviem komentāriem',
-        'news_post' => '',
+        'news_post' => 'saņemt paziņojumus par ziņu ieraksti',
         'title' => 'Paziņojumi',
         'topic_auto_subscribe' => 'automātiski ieslēgt paziņojumus foruma tematiem, kurus esiet izveidojis',
 
@@ -89,27 +89,27 @@ return [
             '_' => 'piegādes opcijas',
             'beatmap_owner_change' => 'viesa grūtības līmenis',
             'beatmapset:modding' => 'ritma-karšu modifikācijas',
-            'channel_mention' => '',
+            'channel_mention' => 'pieminējums tērzētavā',
             'channel_message' => 'privātās tērzētavas ziņas',
-            'channel_team' => 'komandas tērzētavas ziņas',
+            'channel_team' => 'komandas čata ziņas',
             'comment_new' => 'jauni komentāri',
             'forum_topic_reply' => 'tēmas atbilde',
             'mail' => 'pasts',
-            'mapping' => 'ritma-kartes izveidotājs',
-            'news_post' => '',
+            'mapping' => 'bītkartes izveidotājs',
+            'news_post' => 'ziņu ieraksti',
             'push' => 'piespiestu',
         ],
 
         'tooltips' => [
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_mention' => '',
-            'channel_message' => '',
-            'channel_team' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mapping' => '',
-            'news_post' => '',
+            'beatmap_owner_change' => 'kad tevi pievieno kā viesu autoru ritma-kartes grūtībai',
+            'beatmapset:modding' => 'kad tavās novērotajās ritma-karšu diskusijās ir jauni ieraksti vai tavā ritma-kartē ir norādīta problēma vai ieteikums.',
+            'channel_mention' => 'kad tevi piemin publiskā kanālā',
+            'channel_message' => 'kad saņem jaunu privātu ziņojumu',
+            'channel_team' => 'kad tavas komandas tērzētavas kanālā ir jauns ziņojums',
+            'comment_new' => 'kad lietai, kuram tu seko, ir pievienots jauns komentārs',
+            'forum_topic_reply' => 'kad tavās vērotajās foruma tēmās ir jaunas atbildes',
+            'mapping' => 'kad ritma-karšu izveidotājs, kuram tu seko, augšupielādē ritma-karti',
+            'news_post' => 'kad ir jauni jaunumu ieraksti',
         ],
     ],
 
@@ -120,7 +120,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_anime_cover' => 'rādīt animācijas stila ritma-karšu attēlus',
         'beatmapset_show_nsfw' => 'slēpt brīdinājumus par nepiemērotu saturu ritma-mapēs',
         'beatmapset_title_show_original' => 'rādīt ritma-mapes metadatus oriģinālvalodā',
         'title' => 'Opcijas',
@@ -128,13 +128,13 @@ return [
         'beatmapset_download' => [
             '_' => 'noklusējuma ritma-mapes lejupielādes tips',
             'all' => 'ar video, ja pieejams',
-            'direct' => 'atvērt osu!direct',
+            'direct' => 'atvērt osu!tiešajā',
             'no_video' => 'bez video',
         ],
     ],
 
     'playstyles' => [
-        'default_ruleset' => '',
+        'default_ruleset' => 'noklusējuma spēles režīms',
         'keyboard' => 'tastatūra',
         'mouse' => 'pele',
         'tablet' => 'grafiskā planšete',
@@ -144,7 +144,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloķēt privātās ziņas no cilvēkiem, kuri nav jūsu draugu sarakstā',
-        'friends_only_info' => '',
+        'friends_only_info' => 'šis bloķējums attiecas arī uz osu!lazer vairāku spēlētāju režīma uzaicinājumiem un novērtēto spēles dueļu pieprasījumiem',
         'hide_online' => 'slēpt jūsu tiešsaistes klātbūtni',
         'hide_online_info' => 'tas atbilst “nerādīt tiešsaistē” režīmam osu!lazer',
         'title' => 'Konfidencialitāte',
@@ -168,7 +168,7 @@ return [
     ],
 
     'user_totp' => [
-        'title' => 'Autentifikatora lietotne',
+        'title' => 'Autentifikācijas lietotne',
         'usage_note' => 'Verifikācijai izmanto autentifikatora lietotni e-pasta vietā. E-pasta verifikācija joprojām būs pieejama kā rezerves opcija.',
 
         'button' => [

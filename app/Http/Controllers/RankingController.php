@@ -358,15 +358,13 @@ class RankingController extends Controller
      */
     public function kudosu()
     {
-        static $maxResults = 1000;
-
-        $maxPage = $maxResults / static::PAGE_SIZE;
+        $maxPage = User::KUDOSU_MAX_RESULTS / static::PAGE_SIZE;
         $page = min(get_int(request('page')) ?? 1, $maxPage);
 
         $scores = User::default()
             ->with('team')
             ->orderBy('osu_kudostotal', 'desc')
-            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, $maxResults);
+            ->paginate(static::PAGE_SIZE, ['*'], 'page', $page, User::KUDOSU_MAX_RESULTS);
 
         if (is_json_request()) {
             return ['ranking' => json_collection(

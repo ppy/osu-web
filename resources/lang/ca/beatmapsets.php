@@ -70,7 +70,7 @@ return [
     ],
 
     'rate' => [
-        'invalid' => '',
+        'invalid' => 'Valoració no vàlida',
     ],
 
     'show' => [

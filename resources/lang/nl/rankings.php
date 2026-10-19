@@ -11,6 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Moeilijkheid',
+        'theme' => '',
         'top_10p' => 'Top 10% Score',
         'top_50p' => 'Top 50% Score',
         'unavailable' => [

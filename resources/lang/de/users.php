@@ -483,7 +483,8 @@ return [
             'plays' => 'Spiele insgesamt',
             'rank' => 'Rang',
             'rating' => 'Wertung',
-            'recent_history' => '',
+            'recent_history' => 'Neuester Spielverlauf',
+            'recent_history_provisional' => '',
             'tier' => 'Stufe',
             'title' => 'Ranked Play',
             'wins' => 'Siege',
@@ -517,6 +518,8 @@ return [
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globaler Rang',
             'highest' => 'Höchster Rang: :rank am :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Eine neue Sternbewertung / PP-Algorithmus :link.',
@@ -525,11 +528,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
-            'label' => '',
+            'label' => 'Spotlights',
             'total_score' => 'Gesamtpunktzahl',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Einzelspieler',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
             'graveyard_beatmapset_count' => 'Begrabene Beatmaps',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Loved Beatmaps',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Ausstehende Beatmaps',
             'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
         ],

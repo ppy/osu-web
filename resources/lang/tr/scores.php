@@ -16,8 +16,8 @@ return [
             'by' => 'Oynayan:',
             'played_on' => 'Şurada oynandı',
             'submitted_on' => 'Gönderilme:',
-            'watched' => 'İzlenen',
-            'watched_count' => ':count_delimited zaman|:count_delimited zamanlar',
+            'watched' => 'İzlendi',
+            'watched_count' => ':count_delimited görüntülenme|:count_delimited görüntülenme',
 
             'rank' => [
                 'country' => 'Ülke Sıralaması',

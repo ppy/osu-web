@@ -6,7 +6,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use PDO;
+use Pdo\Mysql;
 
 class DbCreate extends Command
 {
@@ -22,13 +22,15 @@ class DbCreate extends Command
             ? "mysql:unix_socket={$defaultConnection['unix_socket']}"
             : "mysql:host={$defaultConnection['host']};port={$defaultConnection['port']}";
 
-        $pdo = new PDO($dsn, $defaultConnection['username'], $defaultConnection['password']);
+        $pdo = new Mysql($dsn, $defaultConnection['username'], $defaultConnection['password']);
 
         foreach ($GLOBALS['cfg']['database']['connections'] as $connection) {
             $db = $connection['database'];
 
-            $this->info("Creating database '{$db}'");
             $pdo->exec("CREATE DATABASE IF NOT EXISTS {$db} DEFAULT CHARSET utf8mb4");
+            if ($pdo->getWarningCount() === 0) {
+                $this->info("Created database '{$db}'");
+            }
         }
     }
 }

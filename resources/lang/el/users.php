@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Παγκόσμια κατάταξη για το :mode',
             'global_simple' => 'Παγκόσμια Κατάταξη',
             'highest' => 'Υψηλότερη κατάταξη: :rank στο :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Συνολική Βαθμολογία',
             // modding stats
             'graveyard_beatmapset_count' => 'Παρατημένα Beatmaps',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Αγαπημένα Beatmaps',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Εκκρεμείς Beatmaps',
             'ranked_beatmapset_count' => 'Κατάταξη Beatmaps',
         ],

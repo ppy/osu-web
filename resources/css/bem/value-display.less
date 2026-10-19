@@ -10,6 +10,7 @@
   --value-font-size-desktop: @font-size--title-small-4;
   --value-font-size: @font-size--title;
   --value-margin-top: 0;
+  --value-opacity: 1;
   display: flex;
   flex-direction: column;
   min-width: 60px;
@@ -36,6 +37,10 @@
 
   &--plain-wide {
     grid-column-end: span 2;
+  }
+
+  &--provisional {
+    --value-opacity: 0.6;
   }
 
   &--rank {
@@ -94,5 +99,6 @@
     font-size: var(--value-font-size);
     font-weight: 300;
     margin-top: var(--value-margin-top);
+    opacity: var(--value-opacity);
   }
 }

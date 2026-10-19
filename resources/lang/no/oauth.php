@@ -58,5 +58,11 @@ return [
             'false' => 'Slett',
             'true' => 'Slettet',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

@@ -24,7 +24,7 @@ return [
         'community_tournaments' => 'torneios da comunidade',
         'fanart_contests' => 'concursos de arte',
         'featured_artists' => 'Anúncios de artistas em destaque',
-        'game_updates' => 'atualizações do site e do client',
+        'game_updates' => 'atualizações do site e do cliente',
         'mappers_guild' => 'Guilda dos Mappers',
         'monthly_beatmapping_contest' => 'Concurso mensal de beatmaps',
         'merch_runs' => 'produtos do osu!',

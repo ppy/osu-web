@@ -179,7 +179,7 @@ class NotificationsBundle
 
         $last = $heads->last();
         $cursor = $last !== null ? ['id' => $last->max_id] : null;
-        $this->types[$type] = [
+        $this->types[$type ?? ''] = [
             'cursor' => $cursor,
             'name' => $type,
             'total' => $this->getTotalNotificationCount($type),

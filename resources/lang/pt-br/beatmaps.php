@@ -72,7 +72,7 @@ return [
         'message_placeholder' => [
             'general' => 'Digite aqui para publicar em Geral (:version)',
             'generalAll' => 'Digite aqui para publicar em Geral (Todas as dificuldades)',
-            'review' => 'Digite aqui para postar uma revisão',
+            'review' => 'Digite aqui para postar uma análise',
             'timeline' => 'Digite aqui para publicar em Linha do Tempo (:version)',
         ],
 
@@ -96,7 +96,7 @@ return [
             'praise' => 'Enviar elogio',
             'problem' => 'Enviar problema',
             'problem_warning' => 'Enviar problema',
-            'review' => 'Enviar avaliação',
+            'review' => 'Enviar análise',
             'suggestion' => 'Enviar sugestão',
         ],
 
@@ -120,7 +120,7 @@ return [
         ],
 
         'review' => [
-            'new' => 'Nova Revisão',
+            'new' => 'Nova análise',
             'embed' => [
                 'delete' => 'Excluir',
                 'missing' => '[DISCUSSÃO EXCLUÍDA]',

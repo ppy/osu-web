@@ -5,6 +5,15 @@
   display: grid;
   gap: 5px;
 
+  &--provisional {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 0 5px;
+    color: hsl(var(--hsl-c2));
+    font-size: @font-size--title-small;
+  }
+
   &__icons {
     display: flex;
     gap: 5px;

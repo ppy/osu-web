@@ -32,28 +32,28 @@ return [
             'verify_link' => 'konta verifikācija',
         ],
         'artists_controller' => [
-            '_' => 'kontraktētie mākslinieki',
+            '_' => 'sadarbības izpildītāji',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'ritma-mapju diskusijas raksts',
+            '_' => 'bītkaršu diskusijas raksts',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'ritma-mapju diskusijas',
+            '_' => 'bītkaršu diskusijas',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'ritma-mapju pakas',
+            '_' => 'bītkaršu pakas',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'ritma-mapju diskusiju balsis',
+            '_' => 'bītkaršu diskusiju balsis',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'ritma-mapju vēsture',
+            '_' => 'bītkaršu vēsture',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'ritma-mapes diskusija',
+            'discussion' => 'bītkartes diskusija',
             'index' => 'ritma-mapju saraksts',
-            'show' => 'ritma-mapes info',
-            'versions' => 'beatmapes versiju vēsture',
+            'show' => 'bītkartes info',
+            'versions' => 'bītkartes versiju vēsture',
         ],
         'changelog_controller' => [
             '_' => 'izmaiņu pieraksts',

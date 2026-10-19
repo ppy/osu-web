@@ -32,7 +32,7 @@ return [
         ],
 
         'multiplayer' => [
-            'write_manage' => '',
+            'write_manage' => 'Izveidot un pārvaldīt vairāku spēlētāju istabas tavā vārdā.',
         ],
 
         'public' => 'Lasīt publiskos datus tavā vārdā.',

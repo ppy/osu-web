@@ -26,8 +26,8 @@ return [
     'form' => [
         'group' => 'Группа',
         'group_all' => 'Все группы',
-        'max_date' => 'От',
-        'min_date' => 'До',
+        'max_date' => 'До',
+        'min_date' => 'От',
         'user' => 'Пользователь',
         'user_prompt' => 'Никнейм или ID',
     ],

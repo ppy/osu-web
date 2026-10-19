@@ -13,7 +13,6 @@ use App\Models\UserProfileCustomization;
 class BeatmapsetSearchParams extends SearchParams
 {
     const PLAYED_STATES = ['played', 'unplayed'];
-    const STATUSES_NO_CACHE = ['favourites', 'mine'];
 
     public ?array $accuracy = null;
     public ?array $ar = null;
@@ -79,10 +78,8 @@ class BeatmapsetSearchParams extends SearchParams
     {
         return !(
             present($this->queryString)
-            || !empty($this->rank)
-            || in_array($this->status, static::STATUSES_NO_CACHE, true)
-            || $this->showRecommended
-            || $this->playedFilter !== null
+            || $this->hasSupporterFeatures()
+            || $this->requiresUser()
             || !empty($this->blockedUserIds()) // don't cache result if blocking applied, unless filter is moved client-side.
         );
     }
@@ -106,13 +103,27 @@ class BeatmapsetSearchParams extends SearchParams
         return $this->recommendedDifficulty;
     }
 
+    /**
+     * This implies user-related search and thus requires user and can't be cached.
+     */
     public function hasSupporterFeatures(): bool
     {
         return $this->playedFilter !== null || !empty($this->rank);
     }
 
+    /**
+     * This doesn't include supporter features.
+     */
+    public function requiresUser(): bool
+    {
+        return in_array($this->status, ['favourites', 'mine'], true)
+            || $this->showFollows
+            || $this->showRecommended;
+    }
+
     public function shouldReturnEmptyResponse(): bool
     {
-        return !optional($this->user)->isSupporter() && $this->hasSupporterFeatures();
+        return ($this->user?->isSupporter() !== true && $this->hasSupporterFeatures())
+            || ($this->user === null && $this->requiresUser());
     }
 }

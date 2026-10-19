@@ -144,8 +144,8 @@ return [
             'was_valid_until' => 'Tukijamerkkisi oli voimassa :date asti.',
 
             'gifted' => [
-                '_' => '',
-                'users' => '',
+                '_' => 'Olet lahjoittanut yhteensä :dollars edestä tukijalahjoituksia :users käyttäjälle, joka on yhteensä :duration. Tuo on erittäin antelista! ',
+                'users' => ':count_delimited muu käyttäjä|:count_delimited muuta käyttäjää',
             ],
         ],
     ],

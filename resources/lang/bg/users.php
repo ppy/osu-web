@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Световна класация за :mode',
             'global_simple' => 'Глобално класиране',
             'highest' => 'Най-висок ранг: :rank на :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Общ брой точки',
             // modding stats
             'graveyard_beatmapset_count' => 'Изоставени бийтмапове',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Обичани бийтмапове',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Чакащи класиране бийтмапове',
             'ranked_beatmapset_count' => 'Класирани и одобрени бийтмапове',
         ],

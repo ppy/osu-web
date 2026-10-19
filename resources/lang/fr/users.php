@@ -484,6 +484,7 @@ return [
             'rank' => 'Classement',
             'rating' => 'Classement',
             'recent_history' => 'Historique des derniers matchs',
+            'recent_history_provisional' => '',
             'tier' => 'Palier',
             'title' => 'Partie classée',
             'wins' => 'Victoires',
@@ -517,6 +518,8 @@ return [
             'global' => 'Classement global en :mode',
             'global_simple' => 'Classement global',
             'highest' => 'Meilleur rang : :rank le :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => 'Un nouvel algorithme de difficulté/PP est :link.',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Score total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps dans le cimetière',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Beatmaps loved',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Beatmaps en attente',
             'ranked_beatmapset_count' => 'Beatmaps classées et approuvées',
         ],

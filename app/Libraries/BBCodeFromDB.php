@@ -366,10 +366,23 @@ class BBCodeFromDB
 
     public function parseYoutube(string $text): string
     {
-        return strtr($text, [
-            "[youtube:{$this->uid}]" => "<iframe class='u-embed-wide u-embed-wide--bbcode' src='https://www.youtube.com/embed/",
-            "[/youtube:{$this->uid}]" => "?rel=0' allowfullscreen></iframe>",
-        ]);
+        $max = $GLOBALS['cfg']['osu']['bbcode']['youtube_embed_max'];
+        $count = 0;
+
+        return preg_replace_callback(
+            "#\[youtube:{$this->uid}\](.+?)\[/youtube:{$this->uid}\]#",
+            function ($m) use (&$count, $max) {
+                return ++$count < $max
+                    ? tag('iframe', [
+                        'class' => 'u-embed-wide u-embed-wide--bbcode',
+                        'src' => "https://www.youtube.com/embed/{$m[1]}?rel=0",
+                        'allowfullscreen' => '',
+                    ]) : tag('a', [
+                        'href' => 'https://www.youtube.com/watch?v='.urlencode($m[1]),
+                    ], "See in YouTube ({$m[1]})");
+            },
+            $text
+        );
     }
 
     public function toHTML()

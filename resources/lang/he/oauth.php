@@ -58,5 +58,11 @@ return [
             'false' => 'מחק',
             'true' => 'נמחק',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

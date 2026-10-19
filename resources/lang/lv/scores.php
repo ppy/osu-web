@@ -14,10 +14,10 @@ return [
 
         'player' => [
             'by' => 'Spēlēja',
-            'played_on' => '',
+            'played_on' => 'Spēlēts',
             'submitted_on' => 'Iesūtīja',
-            'watched' => '',
-            'watched_count' => '',
+            'watched' => 'Skatīts',
+            'watched_count' => ':count_delimited reizi|:count_delimited reizes',
 
             'rank' => [
                 'country' => 'Valsts Vieta',
@@ -30,6 +30,6 @@ return [
         'non_best' => 'Tikai personīgie labākie rezultāti izsniedz pp',
         'no_pp' => 'šim rezultātam pp netiks izsniegts',
         'processing' => 'Šis rezultāts vēl kalkulējās un tiks parādīts drīz',
-        'no_rank' => 'Šim rezultātam nav novietojums, jo tas ir nenovērtējams vai atzīmēts izdzēšanai',
+        'no_rank' => 'Šim rezultātam nav rangs, jo tas ir nerangots vai atzīmēts izdzēšanai',
     ],
 ];

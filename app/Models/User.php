@@ -241,6 +241,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     const INACTIVE_DAYS = 180;
 
+    const KUDOSU_MAX_RESULTS = 1000;
+    const KUDOSU_RANK_THRESHOLD_CACHE_KEY = 'kudosu_rank_threshold:v1';
+
     const MAX_FIELD_LENGTHS = [
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 25,
@@ -295,6 +298,19 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $variantSuffix = $variant === null ? '' : "_{$variant}";
 
         return 'statistics'.studly_case("{$ruleset}{$variantSuffix}");
+    }
+
+    private static function kudosuRankThreshold(): ?int
+    {
+        $cacheDuration = 43200; // 12 hours
+
+        return Cache::remember(static::KUDOSU_RANK_THRESHOLD_CACHE_KEY, $cacheDuration, function () {
+            return static::default()
+                ->where('osu_kudostotal', '>', 0)
+                ->orderByDesc('osu_kudostotal')
+                ->offset(static::KUDOSU_MAX_RESULTS - 1)
+                ->value('osu_kudostotal');
+        });
     }
 
     public function userCountryHistory(): HasMany
@@ -1629,6 +1645,24 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function mappingFollowerCount()
     {
         return get_int(Cache::get(self::CACHING['mapping_follower_count']['key'].':'.$this->user_id)) ?? $this->cacheMappingFollowerCount();
+    }
+
+    public function kudosuRank(): ?int
+    {
+        if ($this->osu_kudostotal === 0) {
+            return null;
+        }
+
+        return $this->memoize(__FUNCTION__, function () {
+            $threshold = static::kudosuRankThreshold();
+            if ($threshold !== null && $this->osu_kudostotal < $threshold) {
+                return null;
+            }
+
+            return static::default()
+                ->where('osu_kudostotal', '>', $this->osu_kudostotal)
+                ->count() + 1;
+        });
     }
 
     public function events()

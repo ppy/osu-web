@@ -53,7 +53,7 @@ return [
             'discussion' => 'rytmikartan keskustelu',
             'index' => 'rytmikarttojen listaus',
             'show' => 'rytmikartan tiedot',
-            'versions' => '',
+            'versions' => 'rytmikartan versiohistoria',
         ],
         'changelog_controller' => [
             '_' => 'muutosloki',
@@ -72,7 +72,7 @@ return [
             'judge' => 'kilpailun tuomarointi',
         ],
         'group_history_controller' => [
-            '_' => '',
+            '_' => 'ryhmän historia',
         ],
         'groups_controller' => [
             'show' => 'ryhmät',
@@ -85,7 +85,7 @@ return [
             'testflight' => 'testflight',
         ],
         'legacy_matches_controller' => [
-            '_' => '',
+            '_' => 'ottelut',
         ],
         'legal_controller' => [
             '_' => 'tiedot',
@@ -116,7 +116,7 @@ return [
             'create' => 'luo tiimi',
             'edit' => 'tiimin asetukset',
             'leaderboard' => 'tiimin tulostaulukko',
-            'show' => '',
+            'show' => 'tiimin tiedot',
         ],
         'tournaments_controller' => [
             '_' => 'turnaukset',
@@ -125,7 +125,7 @@ return [
             '_' => 'käyttäjän kansikuvan esiasetukset',
         ],
         'user_totp_controller' => [
-            '_' => '',
+            '_' => 'todennussovellus',
         ],
         'users_controller' => [
             '_' => 'pelaajan tiedot',
@@ -138,7 +138,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            'events' => '',
+            'events' => 'huoneen historia',
         ],
     ],
     'passport' => [
@@ -151,7 +151,7 @@ return [
     ],
     'teams' => [
         'members_controller' => [
-            'index' => '',
+            'index' => 'tiimin jäsenet',
         ],
     ],
     'users' => [

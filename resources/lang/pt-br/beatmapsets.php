@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited favorito|:count_delimited favoritos',
+        'playcount' => ':count_delimited jogada|:count_delimited jogadas',
     ],
 
     'panel' => [
@@ -136,11 +136,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Se você encontrar um problema com este beatmap, por favor desqualifique-o :link.',
+                '_' => 'Se você encontrar um problema com este beatmap, desqualifique-o :link.',
             ],
 
             'report' => [
-                '_' => 'Se você encontrar um problema com este beatmap, por favor reporte-o :link para alertar a equipe.',
+                '_' => 'Se você encontrar um problema com este beatmap, reporte-o :link para alertar a equipe.',
                 'button' => 'Reportar Problema',
                 'link' => 'aqui',
             ],

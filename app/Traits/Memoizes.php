@@ -14,6 +14,11 @@ trait Memoizes
         $this->memoized = [];
     }
 
+    public function setMemoize(string $key, mixed $value): void
+    {
+        $this->memoized[$key] = $value;
+    }
+
     protected function memoize(string $key, callable $function)
     {
         if (!array_key_exists($key, $this->memoized)) {

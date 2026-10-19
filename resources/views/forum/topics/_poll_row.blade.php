@@ -6,10 +6,14 @@
     $percentage = $pollOption['total'] / max($pollSummary['total'], 1);
     $percentageFormatted = i18n_number_format($percentage, NumberFormatter::PERCENT, null, 2);
     $percentageStyle = i18n_number_format($percentage, NumberFormatter::PERCENT, null, 2, 'en');
+    $isTop = $canViewResults && $pollOption['total'] === $pollSummary['top_votes'];
 @endphp
-<div class="forum-poll-row {{ $pollOption['voted_by_user'] ? 'forum-poll-row--voted' : '' }}">
+<div class="{{ class_with_modifiers('forum-poll-row', ['top' => $isTop]) }}">
     <div class="forum-poll-row__row forum-poll-row__row--content">
         <div class="forum-poll-row__text">
+            @if ($pollOption['voted_by_user'])
+                <span class="fas fa-check-circle"></span>
+            @endif
             {!! $pollOption['textHTML'] !!}
         </div>
 
@@ -25,7 +29,7 @@
     </div>
 
     <div class="forum-poll-row__row forum-poll-row__row--content">
-        <div class="bar bar--forum-poll {{ $pollOption['voted_by_user'] ? 'bar--forum-poll-voted' : '' }}">
+        <div class="bar bar--forum-poll">
             <div
                 class="bar__fill"
                 style="width: {{ $canViewResults ? $percentageStyle : '100%' }}"

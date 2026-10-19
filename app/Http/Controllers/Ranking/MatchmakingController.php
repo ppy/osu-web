@@ -41,6 +41,7 @@ class MatchmakingController extends Controller
             ->allUserStats()
             ->with('user.team')
             ->default()
+            ->nonProvisional()
             ->orderByDesc('rating')
             ->paginate()
             ->withQueryString();

@@ -58,5 +58,11 @@ return [
             'false' => 'Изтриване',
             'true' => 'Изтрито',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

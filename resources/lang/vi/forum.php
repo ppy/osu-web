@@ -14,7 +14,7 @@ return [
 
         'create' => [
             '_' => 'Đặt ảnh bìa',
-            'button' => 'Tải lên ảnh',
+            'button' => 'Tải lên ảnh bìa',
             'info' => 'Kích cỡ ảnh bìa nên ở :dimensions. Bạn cũng có thể kéo ảnh vào đây để tải lên.',
         ],
 

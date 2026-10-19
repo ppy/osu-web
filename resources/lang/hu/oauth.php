@@ -58,5 +58,11 @@ return [
             'false' => 'Törlés',
             'true' => 'Törölve',
         ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
+        ],
     ],
 ];

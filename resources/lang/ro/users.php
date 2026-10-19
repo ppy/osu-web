@@ -484,6 +484,7 @@ return [
             'rank' => '',
             'rating' => '',
             'recent_history' => '',
+            'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
             'wins' => '',
@@ -517,6 +518,8 @@ return [
             'global' => 'Rang global pentru :mode',
             'global_simple' => 'Rang Global',
             'highest' => 'Rang maxim :rank atins pe :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
             'title' => '',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Scor Total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap-uri Inactive',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Beatmap-uri Iubite',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Beatmap-uri în Așteptare',
             'ranked_beatmapset_count' => 'Beatmap-uri Clasate',
         ],

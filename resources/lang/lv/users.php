@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => 'Dzēsts lietotājs',
+    'deleted' => '[dzēsts lietotājs]',
 
     'beatmapset_activities' => [
-        'title' => "Lietotāja Mooficēšanas Vēsture",
-        'title_compact' => 'Regulēšana',
+        'title' => ":user bītkaršu pārbaudes vēsture",
+        'title_compact' => 'Bītkaršu pārbaude',
 
         'discussions' => [
             'title_recent' => 'Nesen sāktas diskusijas',
@@ -49,7 +49,7 @@ return [
     ],
 
     'card' => [
-        'gift_supporter' => 'Uzdāvināt supporter statusu.',
+        'gift_supporter' => 'Uzdāvināt supporter birku.',
         'loading' => 'Notiek ielāde...',
         'send_message' => 'nosūtīt ziņu',
     ],
@@ -72,15 +72,15 @@ return [
 
     'disabled' => [
         'title' => 'Ak nē! Izskatās ka tavs konts ir atslēgts.',
-        'warning' => "Ja nu gadijumā tu esi pārkoiāpis noteikumu, lūdzu iegaumē, ka mums galvenokārt ir 1 mēneša uzgadīšanas laiks, kurā mēs attaisnojumus nepieņemsim. Pēc šī perioda, tu vari ar mums sazināties, ja uzskati ka tas ir nepieciešams. Lūdzu iegaumē, ja tu izveidosi jaunu kontu pēc tam kad viens tika atslēgts, <strong>1 mēneša uzgaidīsanas periods tiks pagarināts</strong>. Lūdzu arī iegaumē ka <strong>jo vairāk kontus tu izveidosi, jo tālāk tu pārkāpsi noteikumus</strong>. Mēs stingri iesakam nenoiet uz to ceļu.",
+        'warning' => "Ja esi pārkāpis kādu noteikumu, ņem vērā, ka parasti tiek piemērots viena mēneša gaidīšanas periods, kura laikā mēs neizskatām nekādus apžēlošanas pieprasījumus. Pēc šī perioda vari ar mums sazināties, ja uzskati to par nepieciešamu. Ņem vērā, ka jaunu kontu izveide pēc tam, kad kāds no taviem kontiem ir atspējots, <strong>pagarinās šo viena mēneša nogaidīšanas periodu</strong>. Tāpat ņem vērā, ka <strong>ar katru izveidoto kontu tu turpini pārkāpt noteikumus</strong>. Mēs stingri iesakām tā nerīkoties!",
 
         'if_mistake' => [
-            '_' => 'Ja tu domā ka tā ir kļūda, droši vari sazināties ar mums (caur :email vai uzspiežot "?" apakšējā labajā stūrī šajā lapā). Lūdzu iegum\'ē to ka mēs vienmēr esam ļoti pārliecināti par saviem lēmumiem, jo tie tiek balstīti uz ļoti stipru informāciju. Mums arī paliek opcija noraidīt tavu pieprasījumu, ja mums ir aizdomas, ka tu esi tīšām negodīgs.',
+            '_' => 'Ja tu domā ka tā ir kļūda, droši vari sazināties ar mums (caur :email vai uzspiežot "?" apakšējā labajā stūrī šajā lapā). Lūdzu iegaumē to ka mēs vienmēr esam ļoti pārliecināti par saviem lēmumiem, jo tie tiek balstīti uz ļoti stipru informāciju. Mums arī paliek opcija noraidīt tavu pieprasījumu, ja mums ir aizdomas, ka tu esi tīšām negodīgs.',
             'email' => 'e-pasts',
         ],
 
         'reasons' => [
-            'compromised' => 'Tavs konts ir konpensējams. Tas var būt uz neilgu laiku izslēgts, kamēr tā identitāe tiek apstiprināta.',
+            'compromised' => 'Tavs konts ir atzīts par uzlauztu. Tas var tikt īslaicīgi atspējots, kamēr tiek apstiprināta tā identitāte.',
             'opening' => 'Ir daudzi iesmesli, kuru rezultātā tavs konts var tikt izslēgt:',
 
             'tos' => [
@@ -132,8 +132,8 @@ return [
     ],
 
     'ogp' => [
-        'modding_description' => 'Ritma-mapes :counts',
-        'modding_description_empty' => 'Lietotājam nav ritma-mapes...',
+        'modding_description' => 'Bītkartes :counts',
+        'modding_description_empty' => 'Lietotājam nav bītkartes...',
 
         'description' => [
             '_' => 'Vieta (:ruleset): :global | :country',
@@ -171,7 +171,7 @@ return [
                 '_' => 'Lūdzu pasūdzēties par autortiesību politiku pārkāpumu, nosūtot DMCA prasību uz :mail saskaņā ar :policy.',
                 'policy' => 'osu! autortiesību politika',
             ],
-            'message_2' => 'Šis tiek piemērots visiem gadijumiem, kad audioieraksta vizuālais saturs vai ritma-kartes līmeis tiek izmantots bez pareizajām atļaujām.',
+            'message_2' => 'Tas attiecas uz gadījumiem, kad audio ieraksti, vizuālais saturs vai bītkartes saturs tiek izmantots bez atbilstošas atļaujas.',
         ],
 
         'options' => [
@@ -231,8 +231,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Rādīt mazāk informācijas',
+            'to_v2' => 'Rādīt vairāk informācijas',
         ],
         'edit' => [
             'cover' => [
@@ -275,7 +275,7 @@ return [
 
         'extra' => [
             'none' => 'neviens',
-            'unranked' => 'Nav beidzamo spēļu',
+            'unranked' => 'Nav pēdējo izspēļu',
 
             'achievements' => [
                 'achieved-on' => 'Sasniegts :date',
@@ -284,28 +284,28 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'no :artist',
-                'title' => 'Bītmape',
+                'title' => 'Bītkarte',
 
                 'favourite' => [
-                    'title' => 'Mīļākās Bītmapes',
+                    'title' => 'Mīļākās Bītkartes',
                 ],
                 'graveyard' => [
-                    'title' => 'Kapā Metamās Bītmapes',
+                    'title' => 'Pamestās Bītkartes',
                 ],
                 'guest' => [
-                    'title' => 'Viesu Dalības Ritma-Mapēs',
+                    'title' => 'Viesautoru bītkartes',
                 ],
                 'loved' => [
-                    'title' => 'Mīļākās Bītmapes',
+                    'title' => 'Mīļākās Bītkartes',
                 ],
                 'nominated' => [
-                    'title' => 'Nominētās Novērtētās Ritma-mapes',
+                    'title' => 'Nominētās Rangotās Bītkartes',
                 ],
                 'pending' => [
-                    'title' => 'Gaidošās Ritma-mapes',
+                    'title' => 'Gaidošās Bītkartes',
                 ],
                 'ranked' => [
-                    'title' => 'Novērtētās Ritma-mapes',
+                    'title' => 'Rangotās Bītkartes',
                 ],
             ],
             'discussions' => [
@@ -334,11 +334,11 @@ return [
                     'title' => 'Beidzamās Spēles (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Skatītie Atkārtojumi Vēsturiski',
-                    'count_label' => 'Atkārtojumi Apskatīti',
+                    'title' => 'Skatīto ierakstu vēsture',
+                    'count_label' => 'Skatītie ieraksti',
                 ],
                 'score_replay_stats' => [
-                    'title' => '',
+                    'title' => 'Visvairāk skatītie ieraksti',
                 ],
             ],
             'kudosu' => [
@@ -386,7 +386,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Balstīts uz to lielu ieguldījumu lietotājs ir veicis ritma-mapes modificēšanā. Apskatīt :link priekš vairāk informācijas.',
+                    '_' => 'Balstīts uz lietotāja ieguldījumu bītkaršu pārbaudē. Plašāku informāciju skatiet :link.',
                     'link' => 'šī lapa',
                 ],
             ],
@@ -407,7 +407,7 @@ return [
                 'show_more' => 'apskatīt vairāk rakstus',
             ],
             'ranked-play' => [
-                'title' => '',
+                'title' => 'Rangotās spēles mači',
             ],
             'recent_activity' => [
                 'title' => 'Nesenie',
@@ -416,8 +416,8 @@ return [
                 'title' => 'Daudzspēlētāju Spēles',
             ],
             'top_ranks' => [
-                'download_replay' => 'Lejupielādēt Spēles Ierakstu',
-                'not_ranked' => 'Tikai ierindotās bītmapes dod pp.',
+                'download_replay' => 'Lejupielādēt Ierakstu',
+                'not_ranked' => 'Tikai rangotas bītkartes piešķir pp',
                 'pp_weight' => 'nosvērti :percentage',
                 'view_details' => 'Skatīt detaļas',
                 'title' => 'Ranki',
@@ -479,14 +479,15 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'tier' => '',
-            'title' => '',
-            'wins' => '',
+            'losses' => 'Zaudējumi',
+            'plays' => 'Kopējaie mači',
+            'rank' => 'Rangs',
+            'rating' => 'Reitings',
+            'recent_history' => 'Pēdējo maču vēsture',
+            'recent_history_provisional' => '',
+            'tier' => 'Līga',
+            'title' => 'Rangota spēle',
+            'wins' => 'Uzvaras',
         ],
 
         'not_found' => [
@@ -517,19 +518,21 @@ return [
             'global' => 'Globālais ranks pēc :mode',
             'global_simple' => 'Globālās Pozīcijas',
             'highest' => 'Augstākais novietojums: :rank :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
         ],
         'score_processing' => [
-            'title' => '',
-            'title_link' => '',
-            'message' => '',
+            'title' => 'Jauns zvaigžņu vērtējuma / PP algoritms ir :link.',
+            'title_link' => 'tiek ieviests',
+            'message' => 'Jaunākie rezultāti var netikt uzreiz atspoguļoti lietotāju profilos.',
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
-            'label' => '',
+            'label' => 'Spotlights',
             'total_score' => 'Kopējais punktu skaits',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'Solo spēle',
         ],
         'stats' => [
             'hit_accuracy' => 'Trāpījuma Precizitāte',
@@ -540,16 +543,18 @@ return [
             'medals' => 'Medaļas',
             'play_count' => 'Spēļu skaits',
             'play_time' => 'Kopējais Spēlēšanas Laiks',
-            'ranked_score' => 'Novērtēto Punktu Daudzums',
-            'replays_watched_by_others' => 'Atkārtojumi, kurus citi ir noskatījušies',
+            'ranked_score' => 'Rangotie Punkti',
+            'replays_watched_by_others' => 'Citu skatītie ieraksti',
             'score_ranks' => 'Punktu Reitingi',
             'total_hits' => 'Totālie sitieni',
             'total_score' => 'Totālais Punktu Skaits',
             // modding stats
-            'graveyard_beatmapset_count' => 'Izmirušās Ritma-mapes',
-            'loved_beatmapset_count' => 'Iemīlētās Ritma-Mapes',
-            'pending_beatmapset_count' => 'Uzgaidāmās Ritma-mapes',
-            'ranked_beatmapset_count' => 'Novērtētās Ritma-mapes',
+            'graveyard_beatmapset_count' => 'Pamestās Bītkartes',
+            'guest_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Iemīlētās Bītkartes',
+            'nominated_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'Gaidošās Bītkartes',
+            'ranked_beatmapset_count' => 'Rangotās Bītkartes',
         ],
     ],
 

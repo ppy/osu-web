@@ -484,6 +484,7 @@ return [
             'rank' => 'Rank',
             'rating' => 'Rating',
             'recent_history' => 'Latest Match History',
+            'recent_history_provisional' => 'Not enough data to display accurate stats. Play more games!',
             'tier' => 'Tier',
             'title' => 'Ranked Play',
             'wins' => 'Wins',
@@ -517,6 +518,8 @@ return [
             'global' => 'Global rank for :mode',
             'global_simple' => 'Global Ranking',
             'highest' => 'Highest rank: :rank on :date',
+            'kudosu_outside_top_1000' => 'Rank is only shown after entering the top 1,000',
+            'kudosu_simple' => 'Kudosu Ranking',
         ],
         'score_processing' => [
             'title' => 'A new Star Rating / PP algorithm is :link.',
@@ -547,7 +550,9 @@ return [
             'total_score' => 'Total Score',
             // modding stats
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
+            'guest_beatmapset_count' => 'Guest Participation Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
+            'nominated_beatmapset_count' => 'Nominated Ranked Beatmaps',
             'pending_beatmapset_count' => 'Pending Beatmaps',
             'ranked_beatmapset_count' => 'Ranked Beatmaps',
         ],
@@ -562,6 +567,12 @@ return [
         'all' => 'All',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => 'Relationship',
+        'all' => 'All',
+        'mutual' => 'Mutual',
+        'non_mutual' => 'Non-mutual',
     ],
     'store' => [
         'from_client' => 'please register via the game client instead!',

@@ -58,7 +58,7 @@ export class UserEntryList extends React.Component
           h4 {},
             "#{@state.entries.length} Entries"
             if !_.isEmpty(deletedEntries)
-              ", #{deletedEntries.length} Deleted"
+              ", #{@state.entries.length - deletedEntries.length} Valid, #{deletedEntries.length} Deleted"
 
         div className: 'col-md-6 text-right',
           h4 {},

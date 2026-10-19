@@ -35,10 +35,11 @@ class ChannelsController extends Controller
      *
      * ### Response Format
      *
-     * Returns an array of [ChatChannel](#chatchannel)
+     * Returns an array of [ChatChannel](#chatchannel) with `active_user_count` attribute included
      *
      * @response [
      *   {
+     *     "active_user_count": 100,
      *     "channel_id": 5,
      *     "description": "The official osu! channel (english only).",
      *     "icon": "https://a.ppy.sh/2?1519081077.png",
@@ -50,10 +51,10 @@ class ChannelsController extends Controller
      */
     public function index()
     {
-        return json_collection(
-            Channel::public()->get(),
-            ChannelTransformer::forUser(auth()->user())
-        );
+        $channels = Channel::public()->get();
+        Channel::preloadPublicChannelActiveUserCount($channels);
+
+        return json_collection($channels, ChannelTransformer::forUser(\Auth::user()), ['active_user_count']);
     }
 
     /**
