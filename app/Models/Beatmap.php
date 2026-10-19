@@ -125,12 +125,14 @@ class Beatmap extends Model implements AfterCommit
 
     public function baseDifficultyRatings()
     {
-        return $this->difficulty()->where('mods', 0);
+        // the noop ruleset filter is to match primary key of the table
+        return $this->difficulty()->whereIn('mode', array_values(static::MODES))->where('mods', 0);
     }
 
     public function baseMaxCombo()
     {
-        return $this->difficultyAttribs()->noMods()->maxCombo();
+        // the noop ruleset filter is to match primary key of the table
+        return $this->difficultyAttribs()->whereIn('mode', array_values(static::MODES))->noMods()->maxCombo();
     }
 
     public function beatmapOwners()
