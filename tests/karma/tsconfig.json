@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
-    "baseUrl": "../../resources/js",
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
     "lib": ["es2020", "dom", "dom.iterable"],
     "module": "es2020",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noUnusedLocals": true,
+    "paths": {
+      "*": ["../../resources/js/*"]
+    },
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "es2015",
