@@ -25,6 +25,7 @@ import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionsState from './discussions-state';
+import MarkdownSelectionToolbar from './markdown-selection-toolbar';
 import { hypeExplanationClass } from './nominations';
 
 const bn = 'beatmap-discussion-new';
@@ -420,11 +421,16 @@ export class NewDiscussion extends React.Component<Props> {
           placeholder={this.textareaPlaceholder}
           value={this.canPost ? this.message : ''}
         />
-
-        <DiscussionMessageLengthCounter
-          isTimeline={this.isTimeline}
-          message={this.message}
-        />
+        <div className={`${bn}__toolbar`}>
+          <MarkdownSelectionToolbar
+            disabled={this.posting != null || !this.canPost}
+            textareaRef={this.inputBox}
+          />
+          <DiscussionMessageLengthCounter
+            isTimeline={this.isTimeline}
+            message={this.message}
+          />
+        </div>
       </>
     );
   }
