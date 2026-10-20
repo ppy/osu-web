@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserAvatar from 'components/user-avatar';
+import UserAvatarImg from 'components/user-avatar-img';
 import UserLink from 'components/user-link';
 import Reportable from 'interfaces/reportable';
 import { last } from 'lodash';
@@ -54,7 +54,7 @@ export default class MessageGroup extends React.Component<Props> {
             user={sender}
           >
             <div className='chat-message-group__avatar'>
-              <UserAvatar modifiers='full-circle' user={{ avatar_url: sender.avatarUrl }} />
+              <UserAvatarImg modifiers='full-circle' user={{ avatar_url: sender.avatarUrl }} />
             </div>
           </UserLink>
           <div className='chat-message-group__username u-ellipsis-overflow'>
