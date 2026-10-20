@@ -56,7 +56,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
  * @property string $type
- * @property string $type_pretty
+ * @property-read string $type_pretty
  * @property string $queue_mode
  * @property bool $auto_skip
  */
@@ -423,17 +423,11 @@ class Room extends Model
 
     public function getTypePrettyAttribute(): string
     {
-        if ($this->type === self::RANKED_PLAY_TYPE) {
-            return 'ranked play';
-        }
-
-        if ($this->isDailyChallenge()) {
-            return 'daily challenge';
-        } else if ($this->type === self::PLAYLIST_TYPE) {
-            return 'playlist';
-        }
-
-        return 'multiplayer';
+        return match ($this->type) {
+            static::RANKED_PLAY_TYPE => 'ranked play',
+            static::PLAYLIST_TYPE => $this->category === static::DAILY_CHALLENGE_CATEGORY ? 'daily challenge' : 'playlist',
+            default => 'multiplayer',
+        };
     }
 
     public function assertCorrectPassword(?string $password): void
@@ -507,11 +501,6 @@ class Room extends Model
     public function isFeatured(): bool
     {
         return $this->category === 'featured_artist';
-    }
-
-    public function isDailyChallenge(): bool
-    {
-        return $this->type === self::PLAYLIST_TYPE && $this->category === self::DAILY_CHALLENGE_CATEGORY;
     }
 
     public function isRealtime()
