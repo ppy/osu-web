@@ -5,6 +5,8 @@ import BeatmapsetEvent from 'components/beatmapset-event';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJson from 'interfaces/user-json';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import moment from 'moment';
 import React from 'react';
 import { trans } from 'utils/lang';
@@ -15,35 +17,46 @@ interface Props {
   users: Map<number | null | undefined, UserJson>;
 }
 
+@observer
 export class Events extends React.PureComponent<Props> {
-  render() {
-    const events = this.props.events.filter((event) => event.type !== 'nomination_reset_received');
+  @computed
+  get events() {
+    return this.props.events
+      .filter((event) => event.type !== 'nomination_reset_received')
+      .sort((a, b) => b.created_at === a.created_at
+        ? b.id > a.id ? 1 : -1
+        : b.created_at > a.created_at ? 1 : -1);
+  }
 
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
+
+
+  render() {
     return (
       <div className='beatmapset-events'>
-        {events.length === 0 ? (
+        {this.events.length === 0 ? (
           <div className='beatmapset-events__empty'>
             {trans('beatmap_discussions.events.empty')}
           </div>
-        ) : this.renderEvents(events)}
+        ) : [...this.renderEventsGenerator()]}
       </div>
     );
   }
 
-  private renderEvents(events: BeatmapsetEventJson[]) {
+  private *renderEventsGenerator() {
     let lastCreatedAtString: string | null = null;
 
-    const nodes: React.ReactNode[] = [];
-
-    for (let i = events.length - 1; i >= 0; i--) {
-      const event = events[i];
+    for (const event of this.events) {
       const createdAtString = moment(event.created_at).format('LL');
       if (lastCreatedAtString !== createdAtString) {
         lastCreatedAtString = createdAtString;
-        nodes.push(<div key={`date-${lastCreatedAtString}`} className='beatmapset-events__title'>{lastCreatedAtString}</div>);
+        yield <div key={`date-${lastCreatedAtString}`} className='beatmapset-events__title'>{lastCreatedAtString}</div>;
       }
 
-      nodes.push(
+      yield (
         <BeatmapsetEvent
           key={event.id}
           discussions={this.props.discussions}
@@ -51,10 +64,8 @@ export class Events extends React.PureComponent<Props> {
           mode='discussions'
           time={event.created_at}
           users={this.props.users}
-        />,
+        />
       );
     }
-
-    return nodes;
   }
 }
