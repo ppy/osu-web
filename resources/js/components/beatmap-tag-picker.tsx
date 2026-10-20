@@ -37,7 +37,7 @@ export default class BeatmapTagPicker extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.inputRef.current?.focus();
+    setTimeout(() => this.inputRef.current?.focus(), 20);
   }
 
   render() {
