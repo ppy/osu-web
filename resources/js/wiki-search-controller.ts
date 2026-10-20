@@ -5,14 +5,14 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 
-interface SuggestionJson {
+export interface SuggestionJson {
   highlight: string;
   locale: string;
   path: string;
   title: string;
 }
 
-export class WikiSearchController {
+export default class WikiSearchController {
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
   @observable suggestions: SuggestionJson[] = [];
