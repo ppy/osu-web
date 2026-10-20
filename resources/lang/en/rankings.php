@@ -44,6 +44,7 @@ return [
 
     'multiplayer' => [
         'room_name' => 'Room Name',
+        'results_hidden' => 'Rankings for this room are currently hidden from the public.',
     ],
 
     'performance' => [

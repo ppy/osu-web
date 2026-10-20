@@ -189,6 +189,9 @@ return [
         'destroy' => [
             'not_owner' => 'Only room owner can close it.',
         ],
+        'show_results' => [
+            'hidden' => 'Rankings for this multiplayer room are currently hidden.',
+        ],
     ],
 
     'score' => [
