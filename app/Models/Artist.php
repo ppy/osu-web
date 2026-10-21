@@ -9,6 +9,7 @@ use App\Traits\Memoizes;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
+ * @property string|null $alternative_name
  * @property string|null $bandcamp
  * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
  * @property string|null $cover_url
@@ -26,6 +27,7 @@ use App\Traits\Memoizes;
  * @property \Illuminate\Database\Eloquent\Collection $tracks ArtistTrack
  * @property string|null $twitter
  * @property \Carbon\Carbon|null $updated_at
+ * @property bool $use_for_linking
  * @property int|null $user_id
  * @property string|null $video_url
  * @property int $visible
@@ -37,6 +39,7 @@ class Artist extends Model
     use Memoizes;
 
     protected $casts = [
+        'use_for_linking' => 'boolean',
         'visible' => 'boolean',
     ];
 
@@ -58,6 +61,40 @@ class Artist extends Model
     public function tracks()
     {
         return $this->hasMany(ArtistTrack::class);
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'alternative_name',
+            'bandcamp',
+            'cover_url',
+            'description',
+            'facebook',
+            'header_url',
+            'id',
+            'label_id',
+            'name',
+            'patreon',
+            'soundcloud',
+            'spotify',
+            'twitter',
+            'user_id',
+            'video_url',
+            'website',
+            'youtube' => $this->getRawAttribute($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'use_for_linking',
+            'visible' => (bool) $this->getRawAttribute($key),
+
+            'albums',
+            'beatmapsets',
+            'label',
+            'tracks' => $this->getRelationValue($key),
+        };
     }
 
     /**
