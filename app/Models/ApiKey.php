@@ -51,6 +51,24 @@ class ApiKey extends Model
         return $query->where('revoked', false);
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'api_key',
+            'app_name',
+            'app_url',
+            'hit_count',
+            'key',
+            'miss_count',
+            'user_id' => $this->getRawAttribute($key),
+
+            'enabled',
+            'revoked' => (bool) $this->getRawAttribute($key),
+
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
     public function isValid(): bool
     {
         $this->validationErrors()->reset();
