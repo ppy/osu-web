@@ -34,6 +34,7 @@ class ApiKey extends Model
     ];
 
     public $casts = [
+        'enabled' => 'boolean',
         'revoked' => 'boolean',
     ];
     public $timestamps = false;
