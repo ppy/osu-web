@@ -423,9 +423,13 @@ class Room extends Model
 
     public function getTypePrettyAttribute(): string
     {
+        if ($this->category === static::DAILY_CHALLENGE_CATEGORY) {
+            return 'daily challenge';
+        }
+
         return match ($this->type) {
             static::RANKED_PLAY_TYPE => 'ranked play',
-            static::PLAYLIST_TYPE => $this->category === static::DAILY_CHALLENGE_CATEGORY ? 'daily challenge' : 'playlist',
+            static::PLAYLIST_TYPE => 'playlist',
             default => 'multiplayer',
         };
     }

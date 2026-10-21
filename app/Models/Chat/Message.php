@@ -194,7 +194,7 @@ class Message extends Model implements ReportableInterface
         // Matchmaking and daily challenge room names are predictable and contain information
         // that is already communicated somewhere else in the embed (including but not limited
         // to the room type handled below this if-else block), therefore we're not including them.
-        } else if ($room !== null && !$room->isMatchmaking() && $room->category !== Room::DAILY_CHALLENGE_CATEGORY) {
+        } elseif ($room !== null && !$room->isMatchmaking() && $room->category !== Room::DAILY_CHALLENGE_CATEGORY) {
             $header .= $room->name.' [**'.$channel->name.'**]';
         } else {
             $header .= '**'.$channel->name.'**';
