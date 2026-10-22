@@ -1,11 +1,11 @@
 ## Spotlight
 ```json
 {
-  "end_date": "2019-03-22T00:00:00+00:00",
+  "end_date": "2019-03-22T00:00:00Z",
   "id": 1,
   "mode_specific": false,
   "name": "Best spinning circles 2019",
-  "start_date": "2019-02-22T00:00:00+00:00",
+  "start_date": "2019-02-22T00:00:00Z",
   "type": "yearly",
 }
 ```

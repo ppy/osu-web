@@ -10,7 +10,7 @@
   "is_deleted": false,
   "is_online": false,
   "is_supporter": true,
-  "last_visit": "2020-01-01T00:00:00+00:00",
+  "last_visit": "2020-01-01T00:00:00Z",
   "pm_friends_only": false,
   "profile_colour": "#000000",
   "username": "osuuser",
@@ -18,7 +18,7 @@
   "discord": "osuuser#1337",
   "has_supported": true,
   "interests": null,
-  "join_date": "2010-01-01T00:00:00+00:00",
+  "join_date": "2010-01-01T00:00:00Z",
   "kudosu": {
     "total": 20,
     "available": 10
@@ -60,7 +60,7 @@
   "active_tournament_banner": null,
   "badges": [
     {
-      "awarded_at": "2015-01-01T00:00:00+00:00",
+      "awarded_at": "2015-01-01T00:00:00Z",
       "description": "Test badge",
       "image@2x_url": "https://assets.ppy.sh/profile-badges/test@2x.png",
       "image_url": "https://assets.ppy.sh/profile-badges/test.png",
@@ -149,7 +149,7 @@
   "support_level": 3,
   "user_achievements": [
     {
-      "achieved_at": "2020-01-01T00:00:00+00:00",
+      "achieved_at": "2020-01-01T00:00:00Z",
       "achievement_id": 1
     }
   ],

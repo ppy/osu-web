@@ -560,7 +560,8 @@ function json_date(?DateTimeInterface $date): ?string
 
 function json_time(?DateTimeInterface $time): ?string
 {
-    return $time === null ? null : $time->format(DateTime::ATOM);
+    // like DateTime::ATOM but with `Z` for UTC timezone
+    return $time === null ? null : $time->format('Y-m-d\TH:i:sp');
 }
 
 function log_error($exception, ?array $sentryTags = null): void

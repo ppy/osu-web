@@ -13,7 +13,7 @@
     {
       "commentable_id": 407,
       "commentable_type": "news_post",
-      "created_at": "2019-09-05T06:31:20+00:00",
+      "created_at": "2019-09-05T06:31:20Z",
       "deleted_at": null,
       "edited_at": null,
       "edited_by_id": null,
@@ -23,14 +23,14 @@
       "message_html": "<div class='osu-md-default'><p class=\"osu-md-default__paragraph\">yes</p>\n</div>",
       "parent_id": null,
       "replies_count": 0,
-      "updated_at": "2019-09-05T06:31:20+00:00",
+      "updated_at": "2019-09-05T06:31:20Z",
       "user_id": 1,
       "votes_count": 1337
     },
     {
       "commentable_id": 407,
       "commentable_type": "news_post",
-      "created_at": "2019-09-05T07:31:20+00:00",
+      "created_at": "2019-09-05T07:31:20Z",
       "deleted_at": null,
       "edited_at": null,
       "edited_by_id": null,
@@ -40,7 +40,7 @@
       "message_html": "<div class='osu-md-default'><p class=\"osu-md-default__paragraph\">absolutely</p>\n</div>",
       "parent_id": null,
       "replies_count": 0,
-      "updated_at": "2019-09-05T07:31:20+00:00",
+      "updated_at": "2019-09-05T07:31:20Z",
       "user_id": 2,
       "votes_count": 1337
     }
@@ -62,7 +62,7 @@
       "is_bot": false,
       "is_online": true,
       "is_supporter": true,
-      "last_visit": "2025-09-05T08:35:00+00:00",
+      "last_visit": "2025-09-05T08:35:00Z",
       "pm_friends_only": false,
       "profile_colour": null,
       "username": "pippi"
@@ -76,7 +76,7 @@
       "is_bot": false,
       "is_online": false,
       "is_supporter": true,
-      "last_visit": "2025-09-04T09:28:00+00:00",
+      "last_visit": "2025-09-04T09:28:00Z",
       "pm_friends_only": false,
       "profile_colour": null,
       "username": "yuzu"

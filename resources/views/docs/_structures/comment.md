@@ -3,7 +3,7 @@
 {
   "commentable_id": 407,
   "commentable_type": "news_post",
-  "created_at": "2019-09-05T06:31:20+00:00",
+  "created_at": "2019-09-05T06:31:20Z",
   "deleted_at": null,
   "edited_at": null,
   "edited_by_id": null,
@@ -14,7 +14,7 @@
   "parent_id": null,
   "pinned": true,
   "replies_count": 0,
-  "updated_at": "2019-09-05T06:31:20+00:00",
+  "updated_at": "2019-09-05T06:31:20Z",
   "user_id": 1,
   "votes_count": 0
 }

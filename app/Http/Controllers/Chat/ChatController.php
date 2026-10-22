@@ -110,7 +110,7 @@ class ChatController extends Controller
      *     "is_action": false,
      *     "message_id": 9150005005,
      *     "sender_id": 102,
-     *     "timestamp": "2024-12-23T01:23:45+00:00",
+     *     "timestamp": "2024-12-23T01:23:45Z",
      *     "type": "plain",
      *     "uuid": "some-uuid-string",
      *     "sender": {
@@ -123,7 +123,7 @@ class ChatController extends Controller
      *       "is_deleted": false,
      *       "is_online": true,
      *       "is_supporter": true
-     *       "last_visit": "2024-12-23T01:23:45+00:00",
+     *       "last_visit": "2024-12-23T01:23:45Z",
      *       "pm_friends_only": false,
      *       "profile_colour": "#333333",
      *       "username": "nekodex",
