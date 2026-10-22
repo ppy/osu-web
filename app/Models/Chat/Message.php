@@ -201,7 +201,7 @@ class Message extends Model implements ReportableInterface
         }
 
         if (!$channel->isPM()) {
-            $header .= ' ('.($room !== null ? $room->type_pretty : strtolower($channel->type)).')';
+            $header .= ' ('.($room !== null ? $room->getTypePretty() : strtolower($channel->type)).')';
         }
 
         return "{$header}\n\n{$history}";

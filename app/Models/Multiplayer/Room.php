@@ -56,7 +56,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
  * @property string $type
- * @property-read string $type_pretty
  * @property string $queue_mode
  * @property bool $auto_skip
  */
@@ -408,7 +407,6 @@ class Room extends Model
             'name' => $this->getName(),
             'password' => presence($this->getRawAttribute($key)),
             'recent_participant_ids' => $this->getRecentParticipantIds(),
-            'type_pretty' => $this->getTypePretty(),
 
             // relations
             'channel',
@@ -419,6 +417,19 @@ class Room extends Model
             'scoreLinks',
             'season',
             'userHighScores' => $this->getRelationValue($key),
+        };
+    }
+
+    public function getTypePretty(): string
+    {
+        if ($this->category === static::DAILY_CHALLENGE_CATEGORY) {
+            return 'daily challenge';
+        }
+
+        return match ($this->type) {
+            static::RANKED_PLAY_TYPE => 'ranked play',
+            static::PLAYLIST_TYPE => 'playlist',
+            default => 'multiplayer',
         };
     }
 
@@ -965,18 +976,5 @@ class Room extends Model
             __FUNCTION__,
             fn () => json_decode($this->attributes['recent_participant_ids'] ?? '', true) ?? []
         );
-    }
-
-    private function getTypePretty(): string
-    {
-        if ($this->category === static::DAILY_CHALLENGE_CATEGORY) {
-            return 'daily challenge';
-        }
-
-        return match ($this->type) {
-            static::RANKED_PLAY_TYPE => 'ranked play',
-            static::PLAYLIST_TYPE => 'playlist',
-            default => 'multiplayer',
-        };
     }
 }
