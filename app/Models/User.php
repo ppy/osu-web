@@ -178,7 +178,7 @@ use Request;
  * @property int $user_notify_type
  * @property string|null $user_occ
  * @property int $user_options
- * @property int $user_passchg
+ * @property Carbon|null $user_passchg
  * @property string $user_password
  * @property int|null $user_perm_from
  * @property int $user_post_show_days
@@ -186,7 +186,7 @@ use Request;
  * @property string $user_post_sortby_type
  * @property int $user_posts
  * @property int|null $user_rank
- * @property Carbon $user_regdate
+ * @property Carbon|null $user_regdate
  * @property string $user_sig
  * @property string $user_sig_bbcode_bitfield
  * @property string $user_sig_bbcode_uid
@@ -263,17 +263,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     protected $casts = [
         'lock_email_changes' => 'boolean',
         'osu_subscriber' => 'boolean',
+        'osu_subscriptionexpiry' => 'datetime',
         'user_allow_pm' => 'boolean',
         'user_allow_viewonline' => 'boolean',
-        'user_lastmark' => 'datetime',
-        'user_lastpost_time' => 'datetime',
-        'user_lastvisit' => 'datetime',
+        'user_lastmark' => TimestampOrZero::class,
+        'user_lastpost_time' => TimestampOrZero::class,
+        'user_lastvisit' => TimestampOrZero::class,
         'user_notify' => 'boolean',
         'user_passchg' => TimestampOrZero::class,
-        'user_regdate' => 'datetime',
+        'user_regdate' => TimestampOrZero::class,
         'user_timezone' => 'float',
     ];
-    protected $dateFormat = 'U';
     protected $primaryKey = 'user_id';
     protected $table = 'phpbb_users';
 
