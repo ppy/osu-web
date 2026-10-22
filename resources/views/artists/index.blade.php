@@ -40,7 +40,9 @@
                                 @endif
                             </div>
                             <a href="{{route('artists.show', $artist)}}" class="artist__name">{{$artist->name}}</a>
-                            <div class="artist__track-count">{{osu_trans_choice('artist.songs.count', $artist->tracks_count)}}</div>
+                            <div class="artist__track-count">
+                                {{ osu_trans_choice('artist.songs.count', $artist->getRawAttribute('tracks_count')) }}
+                            </div>
                         </div>
                     @endforeach
                 </div>
