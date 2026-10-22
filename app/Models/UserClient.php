@@ -21,12 +21,11 @@ use Exception;
 class UserClient extends Model
 {
     const CREATED_AT = 'timestamp';
+    const UPDATED_AT = null;
 
     public $incrementing = false;
-    public $timestamps = false;
 
     protected $casts = [
-        'timestamp' => 'datetime',
         'verified' => 'boolean',
     ];
     protected $primaryKey = ':composite';
