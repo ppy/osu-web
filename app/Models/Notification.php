@@ -143,11 +143,6 @@ class Notification extends Model
         return $query;
     }
 
-    public function getCategoryAttribute()
-    {
-        return static::NAME_TO_CATEGORY[$this->name] ?? $this->name;
-    }
-
     public function notifiable()
     {
         return $this->morphTo();
@@ -171,5 +166,37 @@ class Notification extends Model
     public function userNotifications()
     {
         return $this->hasMany(UserNotification::class);
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'id',
+            'name',
+            'notifiable_id',
+            'notifiable_type',
+            'priority',
+            'source_user_id' => $this->getRawAttribute($key),
+
+            'details' => $this->getArray($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'category' => $this->getCategory(),
+
+            'notifiable',
+            'source' => $this->getRelationValue($key),
+        };
+    }
+
+    private function getCategory()
+    {
+        $name = $this->name;
+
+        return static::NAME_TO_CATEGORY[$name] ?? $name;
     }
 }
