@@ -78,7 +78,8 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
-    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
+    const DAILY_CHALLENGE_CATEGORY = 'daily_challenge';
+    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', self::DAILY_CHALLENGE_CATEGORY];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'ranked-play' => [self::RANKED_PLAY_TYPE],
@@ -416,6 +417,19 @@ class Room extends Model
             'scoreLinks',
             'season',
             'userHighScores' => $this->getRelationValue($key),
+        };
+    }
+
+    public function getTypePretty(): string
+    {
+        if ($this->category === static::DAILY_CHALLENGE_CATEGORY) {
+            return 'daily challenge';
+        }
+
+        return match ($this->type) {
+            static::RANKED_PLAY_TYPE => 'ranked play',
+            static::PLAYLIST_TYPE => 'playlist',
+            default => 'multiplayer',
         };
     }
 

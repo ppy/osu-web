@@ -10,6 +10,7 @@ use App\Jobs\Notifications\ChannelMention;
 use App\Jobs\Notifications\ChannelMessage;
 use App\Jobs\Notifications\ChannelTeam;
 use App\Libraries\UsernameValidation;
+use App\Models\Multiplayer\Room;
 use App\Models\Traits\Reportable;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
@@ -185,7 +186,23 @@ class Message extends Model implements ReportableInterface
         $history = static::recentUserMessagesForReport($this->user_id, $this->getKey());
 
         $channel = $this->channel;
-        $header = 'Reported in: '.($channel->isPM() ? 'pm' : '**'.$channel->name.'** ('.strtolower($channel->type).')');
+        $room = $channel->room_id === null ? null : Room::find($channel->room_id);
+        $header = 'Reported in: ';
+
+        if ($channel->isPM()) {
+            $header .= 'pm';
+        // Matchmaking and daily challenge room names are predictable and contain information
+        // that is already communicated somewhere else in the embed (including but not limited
+        // to the room type handled below this if-else block), therefore we're not including them.
+        } elseif ($room !== null && !$room->isMatchmaking() && $room->category !== Room::DAILY_CHALLENGE_CATEGORY) {
+            $header .= $room->name.' [**'.$channel->name.'**]';
+        } else {
+            $header .= '**'.$channel->name.'**';
+        }
+
+        if (!$channel->isPM()) {
+            $header .= ' ('.($room !== null ? $room->getTypePretty() : strtolower($channel->type)).')';
+        }
 
         return "{$header}\n\n{$history}";
     }
