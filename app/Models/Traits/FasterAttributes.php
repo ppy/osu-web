@@ -16,11 +16,11 @@ trait FasterAttributes
         return $this->attributes[$key] ?? null;
     }
 
-    protected function getArray(string $key): ?array
+    protected function getArray(string $key, $associative = true): ?array
     {
         $value = $this->getRawAttribute($key);
 
-        return $value === null ? null : json_decode($value, true);
+        return $value === null ? null : json_decode($value, $associative);
     }
 
     protected function getNullableBool(string $key)

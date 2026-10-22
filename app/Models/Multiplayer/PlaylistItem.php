@@ -121,6 +121,36 @@ class PlaylistItem extends Model
         return $this->hasMany(ScoreToken::class);
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'beatmap_id',
+            'id',
+            'max_attempts',
+            'owner_id',
+            'playlist_order',
+            'room_id',
+            'ruleset_id' => $this->getRawAttribute($key),
+
+            'expired',
+            'freestyle' => (bool) $this->getRawAttribute($key),
+
+            'allowed_mods',
+            'required_mods' => $this->getArray($key, false),
+
+            'created_at',
+            'played_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'beatmap',
+            'detailEvent',
+            'highScores',
+            'room',
+            'scoreLinks',
+            'scoreTokens' => $this->getRelationValue($key),
+        };
+    }
+
     public function save(array $options = [])
     {
         $this->assertValid();
