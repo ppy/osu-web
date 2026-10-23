@@ -48,9 +48,8 @@
 
             @if (captcha_enabled())
                 <div class="dialog-form__row">
-                    <div class="js-captcha--container"></div>
+                    @include('objects._captcha', ['params' => []])
                 </div>
-                @include('objects._captcha_script')
             @endif
 
             <div class="dialog-form__row dialog-form__row--error js-login-form--error">
