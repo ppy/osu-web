@@ -108,9 +108,6 @@ class Game extends Model
             'end_time',
             'start_time' => $this->getTimeFast($key),
 
-            'end_time_json',
-            'start_time_json' => $this->getJsonTimeFast($key),
-
             'play_mode' => $this->getRulesetId(),
 
             'beatmap',

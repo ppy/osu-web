@@ -13,7 +13,7 @@ class ScoreTokenTransformer extends TransformerAbstract
     {
         return [
             'beatmap_id' => $scoreToken->beatmap_id,
-            'created_at' => $scoreToken->created_at_json,
+            'created_at' => $scoreToken->getJsonTime('created_at'),
             'id' => $scoreToken->getKey(),
             'playlist_item_id' => $scoreToken->playlist_item_id,
             'user_id' => $scoreToken->user_id,

@@ -291,9 +291,6 @@ class Beatmap extends Model implements AfterCommit
             'deleted_at',
             'last_update' => $this->getTimeFast($key),
 
-            'deleted_at_json',
-            'last_update_json' => $this->getJsonTimeFast($key),
-
             'diff_size' => $this->getDiffSize(),
             'difficultyrating' => $this->getDifficultyrating(),
             'mode' => $this->getMode(),

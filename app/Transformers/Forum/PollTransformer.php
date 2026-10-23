@@ -25,9 +25,9 @@ class PollTransformer extends TransformerAbstract
             'allow_vote_change' => $topic->poll_vote_change,
             'ended_at' => json_time($topic->pollEnd()),
             'hide_incomplete_results' => $topic->poll_hide_results,
-            'last_vote_at' => json_time($topic->poll_last_vote),
+            'last_vote_at' => $topic->getJsonTime('poll_last_vote'),
             'max_votes' => $topic->poll_max_options,
-            'started_at' => json_time($topic->poll_start),
+            'started_at' => $topic->getJsonTime('poll_start'),
             'title' => [
                 'bbcode' => $topic->pollTitleRaw(),
                 'html' => $topic->pollTitleHTML(),

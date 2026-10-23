@@ -16,8 +16,8 @@ class DailyChallengeUserStatsTransformer extends TransformerAbstract
         return [
             'daily_streak_best' => $stats->daily_streak_best ?? 0,
             'daily_streak_current' => $stats->daily_streak_current ?? 0,
-            'last_update' => json_time($stats->last_update),
-            'last_weekly_streak' => json_time($stats->last_weekly_streak),
+            'last_update' => $stats->getJsonTime('last_update'),
+            'last_weekly_streak' => $stats->getJsonTime('last_weekly_streak'),
             'playcount' => $stats->playcount ?? 0,
             'top_10p_placements' => $stats->top_10p_placements ?? 0,
             'top_50p_placements' => $stats->top_50p_placements ?? 0,
