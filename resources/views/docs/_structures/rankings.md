@@ -47,7 +47,7 @@
           "is_bot": false,
           "is_online": false,
           "is_supporter": true,
-          "last_visit": "2017-02-22T11:07:10+00:00",
+          "last_visit": "2017-02-22T11:07:10Z",
           "pm_friends_only": false,
           "profile_colour": null,
           "username": "serdman"

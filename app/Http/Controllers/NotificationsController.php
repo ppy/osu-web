@@ -64,7 +64,7 @@ class NotificationsController extends Controller
      *     {
      *       "id": 1,
      *       "name": "forum_topic_reply",
-     *       "created_at": "2019-04-24T07:12:43+00:00",
+     *       "created_at": "2019-04-24T07:12:43Z",
      *       "object_type": "forum_topic",
      *       "object_id": 1,
      *       "source_user_id": 1,

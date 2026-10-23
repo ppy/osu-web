@@ -42,7 +42,7 @@ class EventsController extends Controller
      * @response {
      *   events: [
      *     {
-     *       created_at: "2022-12-08T02:02:51+00:00",
+     *       created_at: "2022-12-08T02:02:51Z",
      *       id: 57,
      *       type: "achievement",
      *       achievement: { ... },

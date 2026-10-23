@@ -35,7 +35,7 @@ const testCurrentUserJson: CurrentUserJson = {
   is_restricted: false,
   is_silenced: false,
   is_supporter: true,
-  join_date: '2020-01-01T12:34:56+00:00',
+  join_date: '2020-01-01T12:34:56Z',
   kudosu: {
     available: 0,
     total: 0,
