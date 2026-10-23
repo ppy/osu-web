@@ -6,8 +6,14 @@ import Lang from 'lang.js';
 // pt-br isn't in original getPluralForm so the locale needs to be
 // temporarily changed to pt for the function to return correct form.
 function getPluralForm(count: number, locale: string) {
-  if (locale === 'pt-br') {
-    locale = 'pt';
+  switch (locale) {
+    case 'pt-br':
+      locale = 'pt';
+      break;
+
+    case 'es-419':
+      locale = 'es';
+      break;
   }
 
   return this._origGetPluralForm(count, locale); // eslint-disable-line
