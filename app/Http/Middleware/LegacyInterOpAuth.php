@@ -6,7 +6,6 @@
 namespace App\Http\Middleware;
 
 use App\Singletons\OsuAuthorize;
-use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -19,7 +18,7 @@ class LegacyInterOpAuth
             return 'missing_timestamp';
         }
 
-        $diff = Carbon::createFromTimestamp($timestamp)->diffInSeconds(absolute: true);
+        $diff = abs(time() - $timestamp);
         if ($diff > 300) {
             return 'expired_signature';
         }
