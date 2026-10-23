@@ -27,7 +27,7 @@ class UserGroupEventTransformer extends TransformerAbstract
     public function transform(UserGroupEvent $event): array
     {
         $json = [
-            'created_at' => $event->created_at_json,
+            'created_at' => $event->getJsonTime('created_at'),
             'group_id' => $event->group_id,
             'hidden' => $event->isHidden(),
             'id' => $event->id,

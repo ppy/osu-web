@@ -17,9 +17,9 @@ class PostTransformer extends TransformerAbstract
     public function transform(Post $post)
     {
         return [
-            'created_at' => json_time($post->post_time),
-            'deleted_at' => json_time($post->deleted_at),
-            'edited_at' => json_time($post->post_edit_time),
+            'created_at' => $post->getJsonTime('post_time'),
+            'deleted_at' => $post->getJsonTime('deleted_at'),
+            'edited_at' => $post->getJsonTime('post_edit_time'),
             'edited_by_id' => $post->post_edit_user,
             'forum_id' => $post->forum_id,
             'id' => $post->getKey(),

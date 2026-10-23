@@ -143,9 +143,6 @@ class UserNotificationOption extends Model
             'created_at',
             'updated_at' => $this->getTimeFast($key),
 
-            'created_at_json',
-            'updated_at_json' => $this->getJsonTimeFast($key),
-
             'user' => $this->getRelationValue($key),
         };
     }

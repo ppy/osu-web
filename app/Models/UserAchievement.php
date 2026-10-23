@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\DB;
  * @property-read Beatmap|null $beatmap
  * @property int|null $beatmap_id
  * @property \Carbon\Carbon $date
- * @property-read string $date_json
  * @property-read User $user
  * @property int $user_id
  */
@@ -81,8 +80,6 @@ class UserAchievement extends Model
             'user_id' => $this->getRawAttribute($key),
 
             'date' => $this->getTimeFast($key),
-
-            'date_json' => $this->getJsonTimeFast($key),
 
             'achievement',
             'beatmap',

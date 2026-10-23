@@ -27,8 +27,8 @@ class NewsPostTransformer extends TransformerAbstract
             'edit_url' => $post->editUrl(),
             'first_image' => $firstImage['1x'],
             'first_image@2x' => $firstImage['2x'],
-            'published_at' => json_time($post->published_at),
-            'updated_at' => json_time($post->updated_at),
+            'published_at' => $post->getJsonTime('published_at'),
+            'updated_at' => $post->getJsonTime('updated_at'),
             'slug' => $post->slug,
             'title' => $post->title(),
         ];

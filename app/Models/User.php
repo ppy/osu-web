@@ -65,7 +65,6 @@ use Request;
  * @property-read Country|null $country
  * @property string|null $country_acronym
  * @property-write string|null $current_password
- * @property-read Carbon|null $displayed_last_visit
  * @property-read string|null $email
  * @property-read Collection<Event> $events
  * @property-read Collection<FavouriteBeatmapset> $favourites
@@ -892,7 +891,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'osu_subscriptionexpiry' => $this->getTimeFast($key),
 
             // custom cast
-            'displayed_last_visit' => $this->getDisplayedLastVisit(),
             'osu_playstyle' => $this->getOsuPlaystyle(),
             'playmode' => $this->getPlaymode(),
             'user_avatar' => AvatarHelper::url($this),
@@ -2181,6 +2179,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         );
     }
 
+    public function getDisplayedLastVisit(): ?string
+    {
+        return $this->hide_presence ? null : $this->getJsonTime('user_lastvisit');
+    }
+
     public function playCount()
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -2456,11 +2459,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'reason' => 'Cheating',
             'user_id' => $this->getKey(),
         ];
-    }
-
-    private function getDisplayedLastVisit()
-    {
-        return $this->hide_presence ? null : $this->user_lastvisit;
     }
 
     private function getOsuPlaystyle()

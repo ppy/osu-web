@@ -26,7 +26,6 @@ class UserClient extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'timestamp' => 'datetime',
         'verified' => 'boolean',
     ];
     protected $primaryKey = ':composite';
