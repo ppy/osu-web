@@ -9,3 +9,5 @@ export default interface TagJson {
   name: string;
   ruleset_id: RulesetId|null;
 }
+
+export type TagJsonWithCount = TagJson & { count: number };
