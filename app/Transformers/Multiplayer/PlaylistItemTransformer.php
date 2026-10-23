@@ -25,7 +25,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'id' => $item->id,
             'room_id' => $item->room_id,
             'beatmap_id' => $item->beatmap_id,
-            'created_at' => json_time($item->created_at),
+            'created_at' => $item->getJsonTime('created_at'),
             'ruleset_id' => $item->ruleset_id,
             'allowed_mods' => $item->allowed_mods,
             'required_mods' => $item->required_mods,
@@ -33,7 +33,7 @@ class PlaylistItemTransformer extends TransformerAbstract
             'expired' => $item->expired,
             'owner_id' => $item->owner_id,
             'playlist_order' => $item->playlist_order,
-            'played_at' => json_time($item->played_at),
+            'played_at' => $item->getJsonTime('played_at'),
         ];
     }
 
@@ -51,7 +51,7 @@ class PlaylistItemTransformer extends TransformerAbstract
         $details = $item->detailEvent->event_detail ?? [
             'room_type' => Room::REALTIME_DEFAULT_TYPE,
         ];
-        $details['started_at'] = json_time(($detailEvent ?? $item)->created_at);
+        $details['started_at'] = ($detailEvent ?? $item)->getJsonTime('created_at');
 
         return $this->primitive($details);
     }

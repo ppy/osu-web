@@ -37,7 +37,7 @@ class UserTransformer extends UserCompactTransformer
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
             'interests' => $user->user_interests,
-            'join_date' => json_time($user->user_regdate),
+            'join_date' => $user->getJsonTime('user_regdate'),
             'location' => $user->user_from,
             'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
