@@ -10,6 +10,7 @@ namespace App\Libraries\User;
 use App\Http\Controllers\UsersController;
 use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\User;
 
 class ProfileCount
@@ -27,7 +28,9 @@ class ProfileCount
         Beatmapset::STATES['ranked'] => 'rankedBeatmapsets',
     ];
 
-    private readonly array $beatmapsetsByProfileSection;
+    private readonly int $beatmapsModded;
+    private readonly array $beatmapsetCountsByApproved;
+    private readonly int $issuesResolved;
 
     public function __construct(private readonly User $user)
     {
@@ -39,6 +42,9 @@ class ProfileCount
             'favouriteBeatmapsets' => $this->user->profileBeatmapsetsFavourite()->count(),
             'guestBeatmapsets' => $this->user->profileBeatmapsetsGuest()->count(),
             'nominatedBeatmapsets' => $this->user->profileBeatmapsetsNominated()->count(),
+
+            'beatmapsModded' => $this->beatmapsModded(),
+            'issuesResolved' => $this->issuesResolved(),
 
             'graveyardBeatmapsets',
             'lovedBeatmapsets',
@@ -59,22 +65,64 @@ class ProfileCount
         };
     }
 
-    private function beatmapsetsByProfileSection(): array
+    public function beatmapsetStatusCounts(): array
     {
-        return $this->beatmapsetsByProfileSection ??= $this->user
+        $counts = $this->beatmapsetCountsByApproved();
+        $count = fn (string $state): int => (int) ($counts[Beatmapset::STATES[$state]] ?? 0);
+
+        return [
+            'graveyard' => $count('graveyard'),
+            'loved' => $count('loved'),
+            'pending' => $count('pending'),
+            'qualified' => $count('qualified'),
+            'ranked' => $count('ranked') + $count('approved'),
+            'wip' => $count('wip'),
+        ];
+    }
+
+    private function beatmapsModded(): int
+    {
+        return $this->beatmapsModded ??= $this->user->beatmapDiscussions()
+            ->withoutTrashed()
+            ->ofType(['suggestion', 'problem', 'review'])
+            ->whereHas(
+                'visibleBeatmapset',
+                fn ($query) => $query->where('user_id', '<>', $this->user->getKey()),
+            )
+            ->distinct()
+            ->count('beatmapset_id');
+    }
+
+    private function beatmapsetCountsByApproved(): array
+    {
+        return $this->beatmapsetCountsByApproved ??= $this->user
             ->beatmapsets()
             ->active()
             ->selectRaw('COUNT(*) as beatmapset_count, approved')
             ->groupBy('approved')
-            ->get()
-            ->reduce(function ($carry, $item) {
-                $attrs = $item->getAttributes();
-                $key = static::BEATMAPSET_PROFILE_SECTION_MAP[$attrs['approved']];
-                $carry[$key] ??= 0;
-                $carry[$key] += $attrs['beatmapset_count'];
+            ->pluck('beatmapset_count', 'approved')
+            ->all();
+    }
 
-                return $carry;
-            }, []);
+    private function beatmapsetsByProfileSection(): array
+    {
+        $counts = [];
+
+        foreach ($this->beatmapsetCountsByApproved() as $approved => $count) {
+            $section = static::BEATMAPSET_PROFILE_SECTION_MAP[$approved];
+            $counts[$section] ??= 0;
+            $counts[$section] += $count;
+        }
+
+        return $counts;
+    }
+
+    private function issuesResolved(): int
+    {
+        return $this->issuesResolved ??= BeatmapsetEvent::where('user_id', $this->user->getKey())
+            ->where('type', BeatmapsetEvent::ISSUE_RESOLVE)
+            ->distinct()
+            ->count('comment->beatmap_discussion_id');
     }
 
     private function scoreReplayStats(): int

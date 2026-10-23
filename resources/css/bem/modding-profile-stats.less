@@ -1,0 +1,86 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.modding-profile-stats {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+
+  @media @desktop {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  &__body {
+    display: grid;
+    position: relative;
+    align-items: center;
+    min-width: 0;
+    min-height: calc(120px + var(--padding));
+    padding: 0 var(--padding) var(--padding);
+
+    @media @desktop {
+      display: contents;
+    }
+  }
+
+  &__chart {
+    display: grid;
+    position: absolute;
+    top: 0;
+    right: var(--padding);
+    bottom: var(--padding);
+    align-items: center;
+    justify-content: center;
+
+    @media @desktop {
+      position: static;
+      justify-self: end;
+    }
+  }
+
+  &__counts {
+    display: grid;
+    gap: 10px;
+  }
+
+  &__label {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  &__legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 20px;
+    min-width: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: @font-size--normal;
+
+    @media @desktop {
+      grid-template-columns: auto auto;
+      justify-self: center;
+    }
+  }
+
+  &__legend-item {
+    display: contents;
+  }
+
+  &__swatch {
+    width: 2px;
+    height: 10px;
+    border-radius: 10000px;
+    background-color: var(--colour);
+  }
+
+  &__value {
+    color: hsl(var(--hsl-c2));
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}

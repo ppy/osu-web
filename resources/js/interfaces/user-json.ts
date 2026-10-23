@@ -21,12 +21,23 @@ import UserReplaysWatchedCountJson from './user-replays-watched-count-json';
 import UserStatisticsJson from './user-statistics-json';
 import UserStatisticsRulesetsJson from './user-statistics-rulesets-json';
 
+interface BeatmapsetStatusCountsJson {
+  graveyard: number;
+  loved: number;
+  pending: number;
+  qualified: number;
+  ranked: number;
+  wip: number;
+}
+
 interface UserJsonAvailableIncludes {
   account_history: UserAccountHistoryJson[];
   active_tournament_banner: ProfileBannerJson | null;
   active_tournament_banners: ProfileBannerJson[];
   badges: UserBadgeJson[];
   beatmap_playcounts_count: number;
+  beatmaps_modded_count: number;
+  beatmapset_status_counts: BeatmapsetStatusCountsJson;
   blocks: UserRelationJson[];
   comments_count: number;
   country: CountryJson | null;
@@ -52,6 +63,7 @@ interface UserJsonAvailableIncludes {
   is_nat: boolean;
   is_restricted: boolean;
   is_silenced: boolean;
+  issues_resolved_count: number;
   loved_beatmapset_count: number;
   mapping_follower_count: number;
   matchmaking_stats: MatchmakingUserStatsJson[];
