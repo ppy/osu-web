@@ -14,23 +14,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * @property json|null $allowed_mods
- * @property Beatmap $beatmap
+ * @property ?object[] $allowed_mods
+ * @property-read Beatmap $beatmap
  * @property int $beatmap_id
- * @property \Carbon\Carbon|null $created_at
- * @property Event|null $detailEvent
+ * @property ?\Carbon\Carbon $created_at
+ * @property-read ?RealtimeRoomEvent $detailEvent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, PlaylistItemUserHighScore> $highScores
  * @property int $id
+ * @property ?int $max_attempts
  * @property int $owner_id
- * @property int|null $playlist_order
- * @property json|null $required_mods
+ * @property ?int $playlist_order
+ * @property ?object[] $required_mods
  * @property bool $freestyle
- * @property Room $room
+ * @property-read Room $room
  * @property int $room_id
- * @property int|null $ruleset_id
- * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
- * @property \Carbon\Carbon|null $updated_at
+ * @property int $ruleset_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, ScoreLink> $scoreLinks
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, ScoreToken> $scoreTokens
+ * @property ?\Carbon\Carbon $updated_at
  * @property bool $expired
- * @property \Carbon\Carbon|null $played_at
+ * @property ?\Carbon\Carbon $played_at
  */
 class PlaylistItem extends Model
 {
@@ -116,6 +119,36 @@ class PlaylistItem extends Model
     public function scoreTokens(): HasMany
     {
         return $this->hasMany(ScoreToken::class);
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'beatmap_id',
+            'id',
+            'max_attempts',
+            'owner_id',
+            'playlist_order',
+            'room_id',
+            'ruleset_id' => $this->getRawAttribute($key),
+
+            'expired',
+            'freestyle' => (bool) $this->getRawAttribute($key),
+
+            'allowed_mods',
+            'required_mods' => $this->getArray($key, false),
+
+            'created_at',
+            'played_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'beatmap',
+            'detailEvent',
+            'highScores',
+            'room',
+            'scoreLinks',
+            'scoreTokens' => $this->getRelationValue($key),
+        };
     }
 
     public function save(array $options = [])
