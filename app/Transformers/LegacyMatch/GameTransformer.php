@@ -22,8 +22,8 @@ class GameTransformer extends TransformerAbstract
         return [
             'beatmap_id' => $game->beatmap_id,
             'id' => $game->game_id,
-            'start_time' => $game->start_time_json,
-            'end_time' => $game->end_time_json,
+            'start_time' => $game->getJsonTime('start_time'),
+            'end_time' => $game->getJsonTime('end_time'),
             'match_id' => $game->match_id,
             'mode' => $game->mode,
             'mode_int' => $game->play_mode,

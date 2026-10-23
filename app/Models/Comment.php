@@ -167,11 +167,6 @@ class Comment extends Model implements Traits\ReportableInterface
             'edited_at',
             'updated_at' => $this->getTimeFast($key),
 
-            'created_at_json',
-            'deleted_at_json',
-            'edited_at_json',
-            'updated_at_json' => $this->getJsonTimeFast($key),
-
             'pinned' => (bool) $this->getRawAttribute($key),
 
             'disqus_user_data' => $this->getArray($key),

@@ -101,7 +101,7 @@ class ScoreTransformer extends TransformerAbstract
             'user_id' => $score->user_id,
             'accuracy' => $score->accuracy,
             'build_id' => $score->build_id,
-            'ended_at' => $score->ended_at_json,
+            'ended_at' => $score->getJsonTime('ended_at'),
             'has_replay' => $hasReplay,
             'is_perfect_combo' => $isPerfectCombo,
             'legacy_perfect' => $score->legacy_perfect ?? $isPerfectCombo,
@@ -111,7 +111,7 @@ class ScoreTransformer extends TransformerAbstract
             'passed' => $score->passed,
             'pp' => $score->pp,
             'ruleset_id' => $score->ruleset_id,
-            'started_at' => $score->started_at_json,
+            'started_at' => $score->getJsonTime('started_at'),
             'total_score' => $score->total_score,
             // TODO: remove this redundant field sometime after 2024-02
             'replay' => $hasReplay,
@@ -153,7 +153,7 @@ class ScoreTransformer extends TransformerAbstract
         return [
             'accuracy' => $score->accuracy(),
             'best_id' => $best?->getKey(),
-            'created_at' => $score->date_json,
+            'created_at' => $score->getJsonTime('date'),
             'id' => $id ?? $score->getKey(),
             'max_combo' => $score->maxcombo,
             'mode' => $mode,

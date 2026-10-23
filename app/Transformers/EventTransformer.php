@@ -12,12 +12,14 @@ class EventTransformer extends TransformerAbstract
     public function transform(Event $event)
     {
         $event->parse();
+        $createdAt = $event->getJsonTime('date');
 
-        return array_merge([
-            'created_at' => json_time($event->date),
-            'createdAt' => json_time($event->date), // TODO: remove when confirmed not used.
+        return [
+            'created_at' => $createdAt,
+            'createdAt' => $createdAt, // TODO: remove when confirmed not used.
             'id' => $event->getKey(),
             'type' => $event->type,
-        ], $event->details);
+            ...$event->details,
+        ];
     }
 }

@@ -23,7 +23,7 @@ class BuildTransformer extends TransformerAbstract
     public function transform(Build $build)
     {
         return [
-            'created_at' => json_time($build->date),
+            'created_at' => $build->getJsonTime('date'),
             'display_version' => $build->displayVersion(),
             'id' => $build->getKey(),
             'users' => $build->users ?? 0,

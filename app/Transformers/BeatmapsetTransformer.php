@@ -31,18 +31,18 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         return array_merge(parent::transform($beatmapset), [
             'bpm' => $beatmapset->bpm,
             'can_be_hyped' => $beatmapset->canBeHyped(),
-            'deleted_at' => $beatmapset->deleted_at_json,
+            'deleted_at' => $beatmapset->getJsonTime('deleted_at'),
             'discussion_enabled' => true, // TODO: deprecated 2022-06-08
             'discussion_locked' => $beatmapset->discussion_locked,
             'is_scoreable' => $beatmapset->isScoreable(),
-            'last_updated' => $beatmapset->last_update_json,
+            'last_updated' => $beatmapset->getJsonTime('last_update'),
             'legacy_thread_url' => ($beatmapset->thread_id ?? 0) !== 0 ? route('forum.topics.show', ['topic' => $beatmapset->thread_id]) : null,
             'nominations_summary' => $nominationsSummary,
             'ranked' => $beatmapset->approved,
-            'ranked_date' => $beatmapset->approved_date_json,
+            'ranked_date' => $beatmapset->getJsonTime('approved_date'),
             'rating' => $beatmapset->rating,
             'storyboard' => $beatmapset->storyboard,
-            'submitted_date' => $beatmapset->submit_date_json,
+            'submitted_date' => $beatmapset->getJsonTime('submit_date'),
             'tags' => $beatmapset->tags,
         ]);
     }

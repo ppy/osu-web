@@ -159,7 +159,7 @@ class UserCompactTransformer extends TransformerAbstract
             'is_deleted' => $user->trashed(),
             'is_online' => $user->isOnline(),
             'is_supporter' => $user->isSupporter(),
-            'last_visit' => json_time($user->displayed_last_visit),
+            'last_visit' => $user->getDisplayedLastVisit(),
             'pm_friends_only' => $user->pm_friends_only,
             'profile_colour' => $user->user_colour,
             'username' => $user->username,
