@@ -2,7 +2,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-badge {
+  --pin-opacity: 0;
+
   width: 86px;
   height: 40px;
-  object-fit: contain;
+  position: relative;
+
+  &:hover {
+    --pin-opacity: 1;
+  }
+
+  &__image {
+    .full-size();
+    object-fit: contain;
+  }
+
+  &__pin {
+    .fade-element(120ms);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    will-change: opacity;
+    opacity: var(--pin-opacity);
+  }
 }
