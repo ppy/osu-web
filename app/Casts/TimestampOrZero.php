@@ -27,6 +27,8 @@ class TimestampOrZero implements CastsAttributes
 
     public function set($model, string $key, $value, array $attributes)
     {
-        return $value === null ? 0 : $value->getTimestamp();
+        return $value === null
+            ? 0
+            : (is_int($value) ? $value : $value->getTimestamp());
     }
 }
