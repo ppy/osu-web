@@ -1458,19 +1458,12 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             $ratings[$i] = 0;
         }
 
-        if ($this->relationLoaded('userRatings')) {
-            foreach ($this->userRatings as $userRating) {
-                $ratings[$userRating->rating]++;
-            }
-        } else {
-            $userRatings = $this->userRatings()
-                ->select('rating', \DB::raw('count(*) as count'))
-                ->groupBy('rating')
-                ->get();
+        $userRatings = $this->relationLoaded('userRatings')
+            ? $this->userRatings
+            : $this->userRatings()->forRatingCount()->get();
 
-            foreach ($userRatings as $rating) {
-                $ratings[$rating->rating] = $rating->count;
-            }
+        foreach ($userRatings as $userRating) {
+            $ratings[$userRating->rating] += $userRating->getRawAttribute('rating_count') ?? 1;
         }
 
         return $ratings;
