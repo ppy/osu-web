@@ -21,11 +21,7 @@ interface Props {
 export class Events extends React.PureComponent<Props> {
   @computed
   get events() {
-    return this.props.events
-      .filter((event) => event.type !== 'nomination_reset_received')
-      .sort((a, b) => b.created_at === a.created_at
-        ? b.id > a.id ? 1 : -1
-        : b.created_at > a.created_at ? 1 : -1);
+    return this.props.events.filter((event) => event.type !== 'nomination_reset_received');
   }
 
   constructor(props: Props) {

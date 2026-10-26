@@ -101,7 +101,7 @@ export default class Main extends React.Component<Props> {
           {this.discussionsState.currentPage === 'events' ? (
             <Events
               discussions={this.store.discussions}
-              events={this.discussionsState.beatmapset.events}
+              events={this.discussionsState.sortedEvents}
               users={this.store.users}
             />
           ) : (
