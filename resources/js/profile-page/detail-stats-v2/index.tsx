@@ -50,7 +50,7 @@ export default class DetailStatsV2 extends React.Component<Props> {
           <div className='svg-icon svg-icon--trophy' />
         </div>
         <div className='profile-detail-stats-big__title-container'>
-          <div className='profile-detail-stats-big__label u-ellipsis-overflow'>
+          <div key={image} className='profile-detail-stats-big__label u-ellipsis-overflow'>
             {badge.name ?? badge.description}
           </div>
           <div className='profile-detail-stats-big__fancy-text1'>
