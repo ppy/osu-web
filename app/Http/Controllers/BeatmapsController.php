@@ -260,7 +260,7 @@ class BeatmapsController extends Controller
                 ->with([
                     'beatmapOwners.user' => fn ($q) => $q->select(['user_id', 'username']),
                     'beatmapset',
-                    'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
+                    'beatmapset.userRatings' => fn ($q) => $q->forRatingCount(),
                     'failtimes',
                 ])->withMaxCombo()
                 ->orderBy('beatmap_id')
