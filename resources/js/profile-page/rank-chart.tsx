@@ -71,6 +71,9 @@ export default class RankChart extends React.Component<Props> {
       const rankChart = new LineChart(this.rankChartArea.current, options);
       $(window).on('resize', rankChart.resize);
       this.disposers.add(() => $(window).off('resize', rankChart.resize));
+      const resizeObserver = new ResizeObserver(rankChart.resize);
+      resizeObserver.observe(this.rankChartArea.current);
+      this.disposers.add(() => resizeObserver.disconnect());
       this.rankChart = rankChart;
     }
 
