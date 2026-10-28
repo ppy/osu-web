@@ -48,6 +48,7 @@ beatmap_playcounts_count   | integer | |
 blocks                     | | |
 country                    | | |
 cover                      | | |
+current_season_stats       | [SeasonStats](#seasonstats)? | Best active [Season](#season) ranking for the requested ruleset.
 favourite_beatmapset_count | integer | |
 follow_user_mapping        | integer[] | |
 follower_count             | integer | |
