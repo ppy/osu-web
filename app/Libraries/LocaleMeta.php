@@ -199,7 +199,11 @@ class LocaleMeta
     ];
 
     private array $data;
-    private string $locale;
+
+    public function __construct(private string $locale)
+    {
+        $this->data = static::MAPPINGS[$locale];
+    }
 
     /**
      * Return cached instance of specified locale.
@@ -243,12 +247,6 @@ class LocaleMeta
         $ret = strtolower($locale);
 
         return static::isValid($ret) ? $ret : null;
-    }
-
-    public function __construct($locale)
-    {
-        $this->locale = $locale;
-        $this->data = static::MAPPINGS[$locale];
     }
 
     public function carbon(): string
