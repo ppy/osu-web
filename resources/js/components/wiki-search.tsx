@@ -7,7 +7,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import { wikiUrl } from 'utils/url';
-import { WikiSearchController } from 'wiki-search-controller';
+import WikiSearchController, { SuggestionJson } from 'wiki-search-controller';
 
 interface Props {
   locale: string;
@@ -52,7 +52,7 @@ export class WikiSearch extends React.Component<Props> {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        navigate(wikiUrl(this.controller.selectedItem.path, this.controller.selectedItem.locale));
+        navigate(this.makeUrl(this.controller.selectedItem));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       e.preventDefault();
@@ -108,7 +108,7 @@ export class WikiSearch extends React.Component<Props> {
                 ref={active ? this.selectedRef : undefined}
                 className={classWithModifiers('wiki-search__suggestion', { active })}
                 data-index={index}
-                href={wikiUrl(item.path, item.locale)}
+                href={this.makeUrl(item)}
               >
                 <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
               </a>
@@ -117,5 +117,11 @@ export class WikiSearch extends React.Component<Props> {
         }
       </div>
     );
+  }
+
+  private makeUrl(suggestion: SuggestionJson) {
+    const locale = suggestion.locale === fallbackLocale ? this.props.locale : suggestion.locale;
+
+    return wikiUrl(suggestion.path, locale);
   }
 }
