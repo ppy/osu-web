@@ -149,6 +149,7 @@ class LocaleMeta
             'name' => 'slovenščina',
         ],
         'sr' => [
+            'carbon' => 'sr_Cyrl',
             'flag' => 'RS',
             'moment' => 'sr-cyrl',
             'name' => 'српски',
@@ -237,6 +238,11 @@ class LocaleMeta
     {
         $this->locale = $locale;
         $this->data = static::MAPPINGS[$locale];
+    }
+
+    public function carbon(): string
+    {
+        return $this->data['carbon'] ?? $this->locale;
     }
 
     public function flag(): string
