@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -33,6 +34,11 @@ class Season extends Model
     public function scopeActive($query)
     {
         return $query->where('finalised', false);
+    }
+
+    public function scopeForRuleset($query, string $ruleset): Builder
+    {
+        return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
     }
 
     public static function latestOrId($id)

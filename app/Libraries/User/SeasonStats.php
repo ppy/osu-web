@@ -20,6 +20,20 @@ class SeasonStats
     ) {
     }
 
+    public static function currentFor(User $user, string $mode): ?array
+    {
+        $best = null;
+
+        foreach (Season::active()->forRuleset($mode)->get() as $season) {
+            $stats = (new static($user, $season))->get();
+            if ($stats !== null && ($best === null || static::isBetter($stats, $best))) {
+                $best = $stats;
+            }
+        }
+
+        return $best;
+    }
+
     public function calculate(): ?array
     {
         $score = $this->season->userScores()
@@ -68,6 +82,15 @@ class SeasonStats
     public function resetCache(): bool
     {
         return \Cache::forget($this->seasonCacheKey());
+    }
+
+    private static function isBetter(array $a, array $b): bool
+    {
+        if ($a['division']['threshold'] !== $b['division']['threshold']) {
+            return $a['division']['threshold'] < $b['division']['threshold'];
+        }
+
+        return $a['rank'] < $b['rank'];
     }
 
     private function seasonCacheKey(): string
