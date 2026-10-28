@@ -9,8 +9,19 @@ namespace App\Libraries;
 
 class LocaleMeta
 {
-    // Keys must be a superset of app.available_locales. Additional locales are
-    // available for use only in wiki articles
+    /**
+     * Keys must be a superset of app.available_locales. Additional locales are
+     * available for use only in wiki articles
+     *
+     * php (IntlDateFormatter etc) isn't mapped at the moment.
+     *
+     * Check respective packages for supported list of languages:
+     * carbon: vendor/nesbot/carbon/src/Carbon/Lang/
+     * html: lang attribute in html tag. Mainly for uppercasing country code if used.
+     * jsPlural: node_modules/lang.js/src/lang.js
+     * laravelPlural: vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php
+     * moment: node_modules/moment/locale/
+     */
     const MAPPINGS = [
         'ar' => [
             'flag' => 'SA',
