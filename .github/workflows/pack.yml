@@ -17,7 +17,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       -
         name: Docker meta
         id: meta
@@ -104,7 +104,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       -
         name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
