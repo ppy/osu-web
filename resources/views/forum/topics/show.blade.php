@@ -33,6 +33,7 @@
         class="hidden js-forum--topic-meta"
         data-user-can-moderate="{{ $userCanModerate }}"
         data-first-post-id="{{ $topic->topic_first_post_id }}"
+        data-locked="{{ (int) $topic->isLocked() }}"
         data-post-jump-to="{{ $jumpTo }}"
     ></div>
 
@@ -141,11 +142,22 @@
 
         @include('objects._show_more_link', [
             'additionalClasses' => 'js-forum-posts-show-more js-forum__posts-show-more--next',
-            'attributes' => ['data-mode' => 'next'],
-            'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postCount(),
+            'attributes' => [
+                'data-mode' => 'next',
+                'data-label-more' => osu_trans('common.buttons.show_more'),
+                'data-label-check' => osu_trans('forum.topics.new_posts.check'),
+                'data-label-load' => osu_trans('forum.topics.new_posts.load'),
+            ],
+            'hidden' => $topic->isLocked(),
             'modifiers' => 'forum-topic',
             'url' => $navUrls['next'],
         ])
+
+        @if (!$topic->isLocked())
+            <div class="js-forum__new-posts-note forum-topic-polling-note hidden">
+                {{ osu_trans('forum.topics.new_posts.polling_note') }}
+            </div>
+        @endif
     </div>
 
     @include('forum.topics._reply')
