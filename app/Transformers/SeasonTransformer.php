@@ -18,7 +18,9 @@ class SeasonTransformer extends TransformerAbstract
             'id' => $season->getKey(),
             'name' => $season->name,
             'room_count' => $season->rooms()->count(),
+            'ruleset_id' => $season->ruleset_id,
             'start_date' => $season->startDate(),
+            'variant' => $season->variant,
         ];
     }
 }

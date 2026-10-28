@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int|null $ruleset_id
  * @property float[]|null $score_factors
  * @property string|null $url
+ * @property string|null $variant
  */
 class Season extends Model
 {
