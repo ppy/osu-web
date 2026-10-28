@@ -121,7 +121,7 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ppy
           SENTRY_PROJECT: osu-web
-          SENTRY_URL: https://sentry.ppy.sh/
+          SENTRY_URL: ${{ secrets.SENTRY_URL }}
         with:
           environment: ${{ env.PRODUCTION_TRACK }}
           version: osu-web@${{ github.ref_type == 'branch' && github.sha || github.ref_type == 'tag' && github.ref_name }}
