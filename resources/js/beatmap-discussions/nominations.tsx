@@ -71,10 +71,6 @@ export class Nominations extends React.Component<Props> {
     return this.props.store.discussions;
   }
 
-  private get events() {
-    return this.beatmapset.events;
-  }
-
   private get isQualified() {
     return this.beatmapset.status === 'qualified';
   }
@@ -387,8 +383,7 @@ export class Nominations extends React.Component<Props> {
   private renderDiscussionLockMessage() {
     if (!this.beatmapset.discussion_locked) return;
 
-    for (let i = this.events.length - 1; i >= 0; i--) {
-      const event = this.events[i];
+    for (const event of this.props.discussionsState.sortedEvents) {
       if (event.type === 'discussion_lock') {
         return trans('beatmapset_events.event.discussion_lock', { text: event.comment.reason });
       }
