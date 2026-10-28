@@ -117,11 +117,11 @@ jobs:
       -
         name: Create Sentry release
         uses: getsentry/action-release@v1
+        if: ${{ env.PRODUCTION_TRACK == 'production' }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ppy
           SENTRY_PROJECT: osu-web
-          SENTRY_URL: https://sentry.ppy.sh/
         with:
           environment: ${{ env.PRODUCTION_TRACK }}
           version: osu-web@${{ github.ref_type == 'branch' && github.sha || github.ref_type == 'tag' && github.ref_name }}
