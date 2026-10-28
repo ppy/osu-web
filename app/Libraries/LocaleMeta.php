@@ -55,6 +55,7 @@ class LocaleMeta
         ],
         'es-419' => [
             'flag' => 'MX',
+            'jsPlural' => 'es',
             'laravelPlural' => 'es_MX',
             'moment' => 'es-mx',
             'name' => 'español (Latinoamérica)',
@@ -127,6 +128,7 @@ class LocaleMeta
         'pt-br' => [
             'flag' => 'BR',
             'html' => 'pt-BR',
+            'jsPlural' => 'pt',
             'laravelPlural' => 'pt_BR',
             'name' => 'português brasileiro',
         ],
@@ -205,6 +207,21 @@ class LocaleMeta
         return isset(static::MAPPINGS[$locale]);
     }
 
+    public static function jsPluralMap(): string
+    {
+        static $ret;
+        if (!isset($ret)) {
+            $map = [];
+            foreach (static::MAPPINGS as $locale => $data) {
+                if (isset($data['jsPlural'])) {
+                    $map[$locale] = $data['jsPlural'];
+                }
+            }
+            $ret = json_encode($map);
+        }
+
+        return $ret;
+    }
     public static function sanitizeCode(?string $locale): ?string
     {
         if ($locale === null) {
