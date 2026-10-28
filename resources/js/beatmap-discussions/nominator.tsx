@@ -8,7 +8,7 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import Ruleset from 'interfaces/ruleset';
 import { route } from 'laroute';
-import { forEachRight, map, uniq } from 'lodash';
+import { map, uniq } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -57,15 +57,15 @@ export class Nominator extends React.Component<Props> {
   private get nominationEvents() {
     const nominations: BeatmapsetEventJson[] = [];
 
-    forEachRight(this.beatmapset.events, (event) => {
+    for (const event of this.props.discussionsState.sortedEvents) {
       if (event.type === 'nomination_reset' || event.type === 'disqualify') {
-        return false;
+        break;
       }
 
       if (event.type === 'nominate') {
         nominations.push(event);
       }
-    });
+    }
 
     return nominations;
   }
