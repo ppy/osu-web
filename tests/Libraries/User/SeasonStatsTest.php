@@ -102,7 +102,6 @@ class SeasonStatsTest extends TestCase
         parent::setUp();
 
         Queue::fake();
-        \Cache::flush();
         $this->user = User::factory()->create();
     }
 
