@@ -14,6 +14,7 @@
     foreach ($availableLocales as $l) {
         $translatedPages[$l] = $urlFn($l);
     }
+    $extraLocale = $displayLocale;
 @endphp
 
-@extends('master', compact('canonicalUrl', 'translatedPages'))
+@extends('master', compact('canonicalUrl', 'extraLocale', 'translatedPages'))
