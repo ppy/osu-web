@@ -198,6 +198,8 @@ class LocaleMeta
         ],
     ];
 
+    private static array $instances = [];
+
     private array $data;
 
     public function __construct(private string $locale)
@@ -213,9 +215,7 @@ class LocaleMeta
      */
     public static function find(string $locale): self
     {
-        static $instances = [];
-
-        return $instances[$locale] ??= new static($locale);
+        return static::$instances[$locale] ??= new static($locale);
     }
 
     public static function isValid(?string $locale): bool
