@@ -39,7 +39,18 @@ export default observer(function Game(props: Props) {
     <div className='mp-history-game' id={`playlist-${props.playlistItem.id}`}>
       <GameHeader data={props.data} playlistItem={props.playlistItem} />
       <div className={classWithModifiers('mp-history-game__player-scores', { teams: showTeams })}>
-        {sortedScores.map((score) => (
+        <div className='mp-history-game__player-scores--header'>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span>{trans('matches.match.score.stats.score')}</span>
+          <span>{trans('matches.match.score.stats.accuracy')}</span>
+          <span></span>
+          <span>{trans('matches.match.score.stats.combo')}</span>
+          <span></span>
+          <span>{trans('matches.match.score.stats.free_mods')}</span>
+        </div>
+        {sortedScores.map((score, index) => (
           <Score
             key={score.match?.slot ?? score.id}
             data={props.data}
@@ -47,6 +58,7 @@ export default observer(function Game(props: Props) {
             requiredMods={requiredMods}
             score={score}
             showTeam={showTeams}
+            position={index + 1}
           />
         ))}
       </div>
