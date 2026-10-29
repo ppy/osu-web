@@ -8,8 +8,10 @@ namespace App\Libraries;
 use App\Exceptions\GitHubInvalidDataException;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
+use App\Exceptions\SilencedException;
 use App\Jobs\UpdateWiki;
 use GitHub;
+use Github\Exception\ApiLimitExceedException;
 use Github\Exception\RuntimeException as GithubException;
 use Illuminate\Support\Collection;
 
@@ -148,7 +150,11 @@ class OsuWiki
         } catch (GithubException $e) {
             $message = $e->getMessage();
 
-            if ($e->getCode() === 404) {
+            if ($e instanceof ApiLimitExceedException) {
+                if (rand(0, 100) !== 0) {
+                    throw new SilencedException(previous: $e);
+                }
+            } elseif ($e->getCode() === 404) {
                 throw new GitHubNotFoundException($message);
             } elseif (starts_with($message, 'This API returns blobs up to 1 MB in size.')) {
                 throw new GitHubTooLargeException($message);
