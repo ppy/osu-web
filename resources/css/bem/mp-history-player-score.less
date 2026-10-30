@@ -5,24 +5,55 @@
   .default-border-radius();
   .default-box-shadow();
 
-  --padding-h: 20px;
+  --padding-h: 10px;
   --padding-left-desktop: var(--padding-h);
   --score-link-bg: transparent;
-  --shapes-display: none;
-  --shapes-size: 0;
+  --team-indicator-display: none;
+  --team-indicator-size: 0;
+  --position-display: flex;
+  --zero-opacity: 0.4;
   background-color: @osu-colour-b2;
   display: grid;
-  grid-template-columns: var(--shapes-size) 1fr;
+  grid-template-columns: var(--team-indicator-size) 1fr;
   position: relative;
 
   &:hover {
     --score-link-bg: hsl(var(--hsl-b1));
+    --zero-opacity: 1;
   }
 
   &--team {
     --padding-left-desktop: 0;
-    --shapes-display: block;
-    --shapes-size: 10px;
+    --team-indicator-display: block;
+    --team-indicator-size: 10px;
+    --position-display: none;
+  }
+
+  &--position {
+    // workaround for implementing gradiented border
+    &:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: @border-radius-large;
+      background: linear-gradient(168deg, var(--colour) 0%, transparent 30%);
+      mask:
+        linear-gradient(#000 0 0) exclude,
+        linear-gradient(#000 0 0) content-box;
+    }
+
+    &-1 {
+      --colour: @osu-colour-orange-1;
+    }
+
+    &-2 {
+      --colour: #9a9a9a;
+    }
+
+    &-3 {
+      --colour: #ff884d;
+    }
   }
 
   @media @desktop {
@@ -40,11 +71,11 @@
     align-self: center;
   }
 
-  &__shapes {
+  &__team-indicator {
     width: auto; // follows grid
-    background-image: var(--bg);
+    background-color: var(--team-color);
     background-size: cover;
-    display: var(--shapes-display);
+    display: var(--team-indicator-display);
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
@@ -52,23 +83,24 @@
       background-size: contain;
       background-position: bottom left;
       background-repeat: no-repeat;
+      border-radius: @border-radius-large;
+      margin: 10px;
     }
 
     &--blue {
-      --bg: url("~@images/layout/mp-history/shapes-team-blue.svg");
+      --team-color: @osu-colour-blue-2;
     }
 
     &--red {
-      --bg: url("~@images/layout/mp-history/shapes-team-red.svg");
+      --team-color: @osu-colour-red-2;
     }
   }
 
   &__main {
-    padding: 10px 20px;
+    padding: 10px;
     display: grid;
-    // for mods and rank element (in mobile), using order and grid-column combination
-    grid-template-columns: 1fr auto;
-    gap: 5px;
+    grid-template-columns: auto auto auto auto 1fr auto;
+    gap: 8px;
     grid-column: 2 / -1;
     position: relative;
     pointer-events: none;
@@ -85,29 +117,87 @@
 
   &__info-box {
     display: flex;
-    grid-column: 1 / -1;
+    align-items: baseline;
+    flex-direction: column;
+    gap: 5px;
 
     @media @desktop {
-      padding: 0 10px; // TODO: replace with gap at __main if fixed in firefox
-      grid-column: initial;
+      align-items: initial;
+      flex-direction: row;
+      gap: 0;
+      padding: 0 5px; // TODO: replace with gap at __main if fixed in firefox
     }
 
-    &--mods {
-      order: 1;
-      grid-column: 1 / 2;
+    &--position {
+      .fancy-text(var(--colour));
+      grid-column: 1;
+      display: var(--position-display);
+
       @media @desktop {
-        order: 0;
+        grid-column: initial;
+        padding-left: 0; // TODO: replace with gap at __main if fixed in firefox
+      }
+
+      &-1 {
+        --colour: #ffd966, #ffb800;
+        font-weight: 700;
+      }
+
+      &-2 {
+        --colour: #fff, #999;
+        font-weight: 700;
+      }
+
+      &-3 {
+        --colour: #ffa666, #f4900c;
+        font-weight: 700;
+      }
+    }
+
+    &--user {
+      grid-row: 1 / 3;
+      grid-column: 2 / -1;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      min-width: 0;
+
+      @media @desktop {
+        grid-row: initial;
         grid-column: initial;
       }
     }
 
-    &--rank {
-      order: 1;
-      grid-column: 2 / 3;
+    &--score {
+      grid-row: 3;
+      grid-column: 2;
+
       @media @desktop {
-        padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
-        order: 0;
+        justify-content: flex-end;
         grid-column: initial;
+        grid-row: initial;
+      }
+    }
+
+    &--accuracy {
+      grid-row: 3;
+      grid-column: 3;
+
+      @media @desktop {
+        justify-content: flex-end;
+        grid-column: initial;
+        grid-row: initial;
+      }
+    }
+
+    &--combo {
+      grid-row: 3;
+      grid-column: 4;
+
+      @media @desktop {
+        justify-content: flex-end;
+        grid-column: initial;
+        grid-row: initial;
       }
     }
 
@@ -115,23 +205,47 @@
       flex-direction: row-reverse;
       align-items: baseline;
       gap: 2px;
+      grid-row: 3;
+      grid-column: 5;
 
       @media @desktop {
         align-items: center;
+        grid-row: initial;
+        grid-column: initial;
         display: grid;
         grid-template-columns: subgrid;
-        grid-column: 3 / 6;
         gap: 3px 0;
+        padding: 0 15px;
+      }
+
+      @media @narrow {
+        grid-row: 4;
+        grid-column: 2 / 6;
       }
     }
 
-    &--user {
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      min-width: 0;
+    &--mods {
+      grid-row: 3;
+      grid-column: 6;
+
       @media @desktop {
-        padding-left: 0; // TODO: replace with gap at __main if fixed in firefox
+        grid-row: initial;
+        grid-column: initial;
+        padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
+      }
+
+      @media @narrow {
+        grid-row: 4;
+      }
+    }
+
+    &--rank {
+      grid-column: 1;
+      grid-row: 2;
+
+      @media @desktop {
+        grid-column: initial;
+        grid-row: initial;
       }
     }
   }
@@ -149,26 +263,14 @@
 
   &__stat-row {
     display: flex;
-    justify-content: flex-end;
     align-items: baseline;
-    flex-direction: column;
+    flex-direction: row;
     flex: 1;
-    gap: 3px;
+    gap: 10px;
 
     @media @desktop {
-      flex-direction: row;
-      gap: 20px;
-      grid-column: 1 / -1;
-    }
-
-    &--first {
-      flex-direction: column-reverse;
-
-      @media @desktop {
-        display: grid;
-        grid-template-columns: subgrid;
-        gap: 40px;
-      }
+      gap: 15px;
+      justify-content: flex-end;
     }
   }
 
@@ -188,45 +290,48 @@
   &__stat {
     display: flex;
     align-items: baseline;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 5px;
 
-    &--small {
-      flex: none;
+    .hit-stat-colours({
+      color: hsl(@value);
+    });
+
+    @media @desktop {
+      gap: 0;
     }
   }
 
   &__stat-label {
     padding-right: 3px;
-    color: @osu-colour-c2;
 
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
   }
 
   &__stat-number {
-    font-weight: 700;
-    color: @osu-colour-c1;
     line-height: 1;
 
-    &--small {
-      font-size: 12px;
-    }
-
-    &--medium {
-      font-size: 14px;
-    }
-
-    &--large {
-      font-size: 20px;
-      color: @osu-colour-pink-1;
-
-      @media @desktop {
-        font-size: 25px;
-      }
+    &--zero {
+      opacity: var(--zero-opacity);
     }
   }
 
   &__value {
+    line-height: 1;
+
+    &-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: @osu-colour-c2;
+
+      @media @desktop {
+        display: none;
+      }
+    }
+
     &--perfect {
       color: hsl(@beatmap-score--hsl-perfect);
     }
