@@ -129,6 +129,9 @@ export default observer(function Score(props: Props) {
           </div>
         </div>
         <div className={`${classWithModifiers('mp-history-player-score__info-box', 'mods')} u-hover`}>
+          {props.score.mods.length > 0 && <span className={classWithModifiers('mp-history-player-score__value-label')}>
+            {trans('matches.match.score.stats.free_mods')}
+          </span>}
           <Mods mods={extraMods} />
         </div>
       </div>

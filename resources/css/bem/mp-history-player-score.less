@@ -99,7 +99,7 @@
   &__main {
     padding: 10px;
     display: grid;
-    grid-template-columns: auto 1fr 1fr auto;
+    grid-template-columns: auto auto auto auto 1fr auto;
     gap: 8px;
     grid-column: 2 / -1;
     position: relative;
@@ -118,11 +118,12 @@
   &__info-box {
     display: flex;
     align-items: baseline;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5px;
 
     @media @desktop {
       align-items: initial;
+      flex-direction: row;
       gap: 0;
       padding: 0 5px; // TODO: replace with gap at __main if fixed in firefox
     }
@@ -154,7 +155,7 @@
     }
 
     &--user {
-      grid-row: 1;
+      grid-row: 1 / 3;
       grid-column: 2 / -1;
       flex-direction: column;
       justify-content: center;
@@ -168,7 +169,7 @@
     }
 
     &--score {
-      grid-row: 2;
+      grid-row: 3;
       grid-column: 2;
 
       @media @desktop {
@@ -180,7 +181,7 @@
 
     &--accuracy {
       grid-row: 3;
-      grid-column: 2;
+      grid-column: 3;
 
       @media @desktop {
         justify-content: flex-end;
@@ -190,8 +191,8 @@
     }
 
     &--combo {
-      grid-row: 4;
-      grid-column: 2;
+      grid-row: 3;
+      grid-column: 4;
 
       @media @desktop {
         justify-content: flex-end;
@@ -204,8 +205,8 @@
       flex-direction: row-reverse;
       align-items: baseline;
       gap: 2px;
-      grid-column: 3;
-      grid-row: 2 / 6;
+      grid-row: 3;
+      grid-column: 5;
 
       @media @desktop {
         align-items: center;
@@ -216,20 +217,31 @@
         gap: 3px 0;
         padding: 0 15px;
       }
+
+      @media @narrow {
+        grid-row: 4;
+        grid-column: 2 / 6;
+      }
     }
 
     &--mods {
-      grid-column: 2 / -1;
+      grid-row: 3;
+      grid-column: 6;
 
       @media @desktop {
+        grid-row: initial;
         grid-column: initial;
         padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
+      }
+
+      @media @narrow {
+        grid-row: 4;
       }
     }
 
     &--rank {
-      grid-column: 4;
-      grid-row: 1;
+      grid-column: 1;
+      grid-row: 2;
 
       @media @desktop {
         grid-column: initial;
@@ -251,15 +263,14 @@
 
   &__stat-row {
     display: flex;
-    justify-content: flex-end;
     align-items: baseline;
-    flex-direction: column;
+    flex-direction: row;
     flex: 1;
-    gap: 3px;
+    gap: 10px;
 
     @media @desktop {
-      flex-direction: row;
       gap: 15px;
+      justify-content: flex-end;
     }
   }
 
@@ -279,6 +290,7 @@
   &__stat {
     display: flex;
     align-items: baseline;
+    flex-direction: column;
     gap: 5px;
 
     .hit-stat-colours({
@@ -286,7 +298,6 @@
     });
 
     @media @desktop {
-      flex-direction: column;
       gap: 0;
     }
   }
@@ -308,6 +319,8 @@
   }
 
   &__value {
+    line-height: 1;
+
     &-label {
       font-size: 12px;
       font-weight: 700;
