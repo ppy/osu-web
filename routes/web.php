@@ -370,6 +370,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('score-replay-stats', 'UsersController@scoreReplayStats')->name('score-replay-stats');
         Route::get('scores/{type}', 'UsersController@scores')->name('scores');
         Route::get('beatmapsets/{type}', 'UsersController@beatmapsets')->name('beatmapsets');
+        Route::get('screenshots', 'UsersController@screenshots')->name('screenshots');
     });
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');

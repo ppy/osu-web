@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Cache;
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
@@ -52,6 +53,23 @@ class Screenshot extends Model
         }
 
         return self::findOrFail($id);
+    }
+
+    public function dimensions(): ?array
+    {
+        return Cache::remember(
+            "screenshot:dimensions:{$this->getKey()}",
+            30 * 24 * 60 * 60,
+            function () {
+                $data = $this->fetch();
+
+                if ($data === null) {
+                    return null;
+                }
+
+                return read_image_properties_from_string($data);
+            },
+        );
     }
 
     public function store($file): void
