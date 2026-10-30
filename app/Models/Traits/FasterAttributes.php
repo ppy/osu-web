@@ -11,6 +11,37 @@ use Carbon\Carbon;
 
 trait FasterAttributes
 {
+    /**
+     * Fast Time Attribute to Json Transformer
+     *
+     * This is only usable for columns with default dateFormat (`Y-m-d H:i:s`)
+     * or unix timestamp.
+     */
+    public function getJsonTime(string $key): ?string
+    {
+        $value = $this->getRawAttribute($key);
+
+        if ($value === null) {
+            return null;
+        }
+
+        if (is_int($value)) {
+            return json_time(\DateTime::createFromTimestamp($value));
+        }
+
+        $isDatetimeColumn = $key === static::CREATED_AT
+            || $key === static::UPDATED_AT
+            || ($this->casts[$key] ?? '') === 'datetime';
+
+        if (!$isDatetimeColumn) {
+            throw new \TypeError("not a datetime column: '{$key}'");
+        }
+
+        $value[10] = 'T';
+
+        return "{$value}Z";
+    }
+
     public function getRawAttribute(string $key)
     {
         return $this->attributes[$key] ?? null;
@@ -28,27 +59,6 @@ trait FasterAttributes
         $raw = $this->getRawAttribute($key);
 
         return $raw === null ? null : (bool) $raw;
-    }
-
-    /**
-     * Fast Time Attribute to Json Transformer
-     *
-     * Key must be suffixed with `_json`.
-     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
-     */
-    protected function getJsonTimeFast(string $key): ?string
-    {
-        $value = $this->getRawAttribute(substr($key, 0, -5));
-
-        if ($value === null) {
-            return null;
-        }
-
-        // From: "2020-10-10 10:10:10"
-        // To: "2020-10-10T10:10:10Z"
-        $value[10] = 'T';
-
-        return "{$value}Z";
     }
 
     /**

@@ -76,7 +76,7 @@ class Message extends Model implements ReportableInterface
         $ret = [];
 
         foreach ($messages as $message) {
-            if ($message->timestamp_json > $minTimestamp) {
+            if ($message->getJsonTime('timestamp') > $minTimestamp) {
                 $ret[] = $message;
             }
         }
@@ -122,8 +122,6 @@ class Message extends Model implements ReportableInterface
             'is_action' => (bool) $this->getRawAttribute($key),
 
             'timestamp' => $this->getTimeFast($key),
-
-            'timestamp_json' => $this->getJsonTimeFast($key),
 
             'channel',
             'reportedIn',

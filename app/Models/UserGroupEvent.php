@@ -16,7 +16,6 @@ use InvalidArgumentException;
  * @property-read User|null $actor
  * @property int|null $actor_id
  * @property \Carbon\Carbon $created_at
- * @property-read string $created_at_json
  * @property array $details
  * @property-read Group $group
  * @property int $group_id
@@ -191,8 +190,6 @@ class UserGroupEvent extends Model
             'details' => json_decode($this->getRawAttribute($key), true),
 
             'created_at' => $this->getTimeFast($key),
-
-            'created_at_json' => $this->getJsonTimeFast($key),
 
             'actor',
             'user' => $this->getRelationValue($key),

@@ -13,7 +13,7 @@ class BuildHistoryChartTransformer extends TransformerAbstract
     {
         // $entry is output of ::changelog.
         return [
-            'created_at' => json_time($entry->created_at),
+            'created_at' => $entry->getJsonTime('created_at'),
             'user_count' => $entry->user_count,
             'label' => $entry->label,
         ];

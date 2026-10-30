@@ -303,9 +303,6 @@ class Score extends Model implements Traits\ReportableInterface
             'ended_at',
             'started_at' => $this->getTimeFast($key),
 
-            'ended_at_json',
-            'started_at_json' => $this->getJsonTimeFast($key),
-
             'best_id' => null,
 
             'is_perfect_combo' => $this->isPerfectCombo(),
@@ -478,7 +475,7 @@ class Score extends Model implements Traits\ReportableInterface
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,
             'countmiss' => $statistics->miss,
-            'date' => $this->ended_at_json,
+            'date' => $this->getRawAttribute('ended_at'),
             'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
             'maxcombo' => $this->max_combo,
             'pass' => $this->passed,

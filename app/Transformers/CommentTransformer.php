@@ -40,12 +40,12 @@ class CommentTransformer extends TransformerAbstract
 
             'legacy_name' => $comment->legacyName(),
 
-            'created_at' => $comment->created_at_json,
-            'updated_at' => $comment->updated_at_json,
+            'created_at' => $comment->getJsonTime('created_at'),
+            'updated_at' => $comment->getJsonTime('updated_at'),
 
-            'deleted_at' => $comment->deleted_at_json,
+            'deleted_at' => $comment->getJsonTime('deleted_at'),
 
-            'edited_at' => $comment->edited_at_json,
+            'edited_at' => $comment->getJsonTime('edited_at'),
             'edited_by_id' => $comment->edited_by_id,
         ];
     }

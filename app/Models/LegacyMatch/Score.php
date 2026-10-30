@@ -81,8 +81,6 @@ class Score extends Model
 
             'date' => $this->game->start_time,
 
-            'date_json' => $this->game->start_time_json,
-
             'best_id' => null,
             'has_replay' => false,
             'pp' => null,
@@ -97,7 +95,6 @@ class Score extends Model
             'beatmap_id' => $this->game->beatmap_id,
             'build_id' => null,
             'data' => $this->getData(),
-            'ended_at_json' => $this->date_json,
             'is_perfect_combo' => $this->perfect,
             'legacy_perfect' => $this->perfect,
             'legacy_score_id' => $this->getKey(),
@@ -105,8 +102,19 @@ class Score extends Model
             'max_combo' => $this->maxcombo,
             'passed' => $this->pass,
             'ruleset_id' => $this->game->play_mode,
-            'started_at_json' => null,
             'total_score' => $this->score,
+        };
+    }
+
+    public function getJsonTime(string $key): ?string
+    {
+        return match ($key) {
+            'date',
+            'ended_at' => $this->game->getJsonTime('start_time'),
+
+            'started_at' => null,
+
+            default => parent::getJsonTime($key),
         };
     }
 
