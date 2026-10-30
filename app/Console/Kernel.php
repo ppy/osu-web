@@ -46,6 +46,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('forum:topic-cover-cleanup --no-interaction')
             ->daily()
             ->onOneServer();
+        
+        $schedule->command('forum:lock-inactive-forum-topics')
+            ->daily() # SHOULD BE DISCUSSED
+            ->onOneServer();
 
         $schedule->command('rankings:recalculate-country-stats')
             ->cron('25 0,3,6,9,12,15,18,21 * * *')
