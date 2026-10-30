@@ -19,10 +19,10 @@ import { Data } from './content';
 interface Props {
   data: Data;
   playlistItem: PlaylistItemJsonForMultiplayerEvent;
+  position: number;
   requiredMods: Set<string>;
   score: ScoreJson;
   showTeam: boolean;
-  position: number;
 }
 
 function renderVersion(props: Props) {
@@ -123,7 +123,7 @@ export default observer(function Score(props: Props) {
                 className={classWithModifiers('mp-history-player-score__stat', `hit-${stat.attribute}`)}
               >
                 <span className='mp-history-player-score__stat-label'>{stat.label.short}</span>
-                <span className={classWithModifiers('mp-history-player-score__stat-number', {'zero': stat.value === 0})}>{formatNumber(stat.value)}</span>
+                <span className={classWithModifiers('mp-history-player-score__stat-number', { zero: stat.value === 0 })}>{formatNumber(stat.value)}</span>
               </div>
             ))}
           </div>
