@@ -15,3 +15,15 @@ Paragraph block
 [link](/link) **bold** *italic*
 
 :::
+
+:::: class-name
+
+4 character fence
+
+::::
+
+:::: class-name
+
+5 character fence
+
+::::
