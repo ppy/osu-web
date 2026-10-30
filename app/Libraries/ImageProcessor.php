@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries;
 
 use App\Exceptions\ImageProcessorException;
@@ -136,10 +138,21 @@ class ImageProcessor
             $outDim = $inDim;
         }
 
-        $image = imagecreatetruecolor($outDim[0], $outDim[1]);
+        $image = imagecreatetruecolor((int) $outDim[0], (int) $outDim[1]);
         imagesavealpha($image, true);
         imagefill($image, 0, 0, imagecolorallocatealpha($image, 0, 0, 0, 127));
-        imagecopyresampled($image, $inputImage, 0, 0, $start[0], $start[1], $outDim[0], $outDim[1], $inDim[0], $inDim[1]);
+        imagecopyresampled(
+            $image,
+            $inputImage,
+            0,
+            0,
+            (int) $start[0],
+            (int) $start[1],
+            (int) $outDim[0],
+            (int) $outDim[1],
+            (int) $inDim[0],
+            (int) $inDim[1],
+        );
 
         $toJpeg = true;
 
