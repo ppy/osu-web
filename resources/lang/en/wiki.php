@@ -14,6 +14,7 @@ return [
         'search' => 'Search existing pages for :link.',
         'stub' => 'This article is incomplete and waiting on someone to expand it.',
         'toc' => 'Contents',
+        'updated_at' => 'This page was last edited on :date.',
 
         'edit' => [
             'link' => 'Show on GitHub',
@@ -23,6 +24,8 @@ return [
         'translation' => [
             'legal' => 'This translation is provided for convenience only. The original :default shall be the sole legally binding version of this text.',
             'outdated' => 'This page contains an outdated translation of the original content. Please check the :default for the most accurate information (and consider updating the translation if you are able to help out)!',
+            'updated_at' => 'This translation was last updated on :date.',
+            'updated_at_outdated' => 'This translation was last updated on :date, and was outdated since :outdated_since.',
 
             'default' => 'English version',
         ],
