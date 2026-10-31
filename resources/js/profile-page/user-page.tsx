@@ -1,9 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ShowMoreLink from 'components/show-more-link';
 import StringWithComponent from 'components/string-with-component';
 import { route } from 'laroute';
-import { action, computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -15,6 +16,13 @@ import UserPageEditor from './user-page-editor';
 
 @observer
 export default class UserPage extends React.Component<ExtraPageProps> {
+  private readonly contentRef = React.createRef<HTMLDivElement>();
+  @observable private expanded = false;
+  private frame?: number;
+  private readonly innerRef = React.createRef<HTMLDivElement>();
+  @observable private overflowing = false;
+  private resizeObserver?: ResizeObserver;
+
   @computed
   private get canEdit() {
     return this.props.controller.withEdit || (core.currentUser != null && (core.currentUser.is_moderator || core.currentUser.is_admin));
@@ -24,6 +32,25 @@ export default class UserPage extends React.Component<ExtraPageProps> {
     super(props);
 
     makeObservable(this);
+  }
+
+  componentDidMount() {
+    this.resizeObserver = new ResizeObserver(this.measure);
+    this.observeContent();
+    this.measure();
+  }
+
+  componentDidUpdate() {
+    this.observeContent();
+    this.measure();
+  }
+
+  componentWillUnmount() {
+    this.resizeObserver?.disconnect();
+
+    if (this.frame != null) {
+      cancelAnimationFrame(this.frame);
+    }
   }
 
   render() {
@@ -50,15 +77,34 @@ export default class UserPage extends React.Component<ExtraPageProps> {
         {this.props.controller.state.editingUserPage ? (
           <UserPageEditor controller={this.props.controller} />
         ) : (
-          <div className='page-extra__content-overflow-wrapper-outer u-fancy-scrollbar'>
-            {this.props.controller.withEdit && isBlank ? (
-              this.renderPageNew()
-            ) : (
-              <div className='page-extra__content-overflow-wrapper-inner'>
-                {this.renderPageShow()}
-              </div>
+          <>
+            <div
+              className='page-extra__content-overflow-wrapper-outer u-fancy-scrollbar'
+              style={this.expanded ? { maxHeight: 'none' } : undefined}
+            >
+              {this.props.controller.withEdit && isBlank ? (
+                this.renderPageNew()
+              ) : (
+                <div
+                  ref={this.innerRef}
+                  className='page-extra__content-overflow-wrapper-inner'
+                  style={this.expanded ? { maxHeight: 'none' } : undefined}
+                >
+                  {this.renderPageShow()}
+                </div>
+              )}
+            </div>
+
+            {!isBlank && (this.expanded || this.overflowing) && (
+              <ShowMoreLink
+                callback={this.toggleExpanded}
+                direction={this.expanded ? 'up' : 'down'}
+                hasMore
+                label={this.expanded ? trans('common.buttons.show_less') : undefined}
+                modifiers='profile-page'
+              />
             )}
-          </div>
+          </>
         )}
       </div>
     );
@@ -68,6 +114,32 @@ export default class UserPage extends React.Component<ExtraPageProps> {
   private readonly editStart = () => {
     this.props.controller.state.editingUserPage = true;
   };
+
+  @action
+  private readonly measure = () => {
+    if (this.frame != null) {
+      cancelAnimationFrame(this.frame);
+    }
+
+    this.frame = requestAnimationFrame(action(() => {
+      this.frame = undefined;
+
+      if (this.expanded) return;
+
+      const el = this.innerRef.current;
+      this.overflowing = el != null && el.scrollHeight > el.clientHeight + 1;
+    }));
+  };
+
+  private observeContent() {
+    this.resizeObserver?.disconnect();
+
+    [this.contentRef.current, this.innerRef.current].forEach((el) => {
+      if (el != null) {
+        this.resizeObserver?.observe(el);
+      }
+    });
+  }
 
   private renderPageNew() {
     return (
@@ -122,4 +194,9 @@ export default class UserPage extends React.Component<ExtraPageProps> {
       />
     );
   }
+
+  @action
+  private readonly toggleExpanded = () => {
+    this.expanded = !this.expanded;
+  };
 }
