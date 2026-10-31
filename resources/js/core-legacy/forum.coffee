@@ -26,6 +26,7 @@ export default class Forum
   boot: =>
     @refreshCounterPaused = true
     @refreshLoadMoreLinks()
+    @restartNewPostsCheck()
 
     @initialScrollTo()
 
@@ -41,6 +42,8 @@ export default class Forum
     @refreshCounterPaused = true
 
     @maxPosts = 250
+    @newPostsCheckInterval = 3 * 60 * 1000
+    @pendingNewPosts = null
 
     $(document).on 'turbo:load', @throttledBoot
 
@@ -51,7 +54,7 @@ export default class Forum
     $(document).on 'keyup', @keyboardNavigation
     $(document).on 'click', '.js-forum-topic-moderate--toggle-deleted', @toggleDeleted
     $(document).on 'turbo:before-cache', debouncedReplaceUrl.cancel
-
+    $(document).on 'turbo:before-visit', @stopNewPostsCheck
 
   userCanModerate: ->
     @topicMeta().userCanModerate == '1'
@@ -155,8 +158,14 @@ export default class Forum
 
     lastPostLoaded = @lastPostLoaded()
 
-    $('.js-forum__posts-show-more--next')
-      .toggleClass 'hidden', lastPostLoaded
+    nextLink = document.querySelector('.js-forum__posts-show-more--next')
+    if nextLink?
+      nextLink.classList.toggle 'hidden', lastPostLoaded && @topicMeta().locked == '1'
+      labelKey = if !lastPostLoaded then 'labelMore' else if @pendingNewPosts? then 'labelLoad' else 'labelCheck'
+      label = nextLink.querySelector('.show-more-link__label-text')
+      label.textContent = nextLink.dataset[labelKey].trim() if label?
+
+    $('.js-forum__new-posts-note').toggleClass 'hidden', !lastPostLoaded
 
     if !@userCanModerate()
       $('.js-post-delete-toggle').hide()
@@ -290,12 +299,44 @@ export default class Forum
   postUrlN: (postN) ->
     "#{currentUrl().pathname}?n=#{postN}"
 
+  restartNewPostsCheck: =>
+    @stopNewPostsCheck()
+    @pendingNewPosts = null
+
+    return unless @loadMoreLinks.length && !@userViewingLockedTopic()
+
+    @newPostsTimer = setInterval @checkNewPosts, @newPostsCheckInterval
+
+
+  stopNewPostsCheck: =>
+    clearInterval @newPostsTimer
+    @newPostsTimer = null
+
+
+  userViewingLockedTopic: ->
+    @topicMeta()?.locked == '1'
+
+  checkNewPosts: =>
+    return if document.hidden || @pendingNewPosts?
+
+    link = document.querySelector('.js-forum__posts-show-more--next')
+
+    return unless link? && @lastPostLoaded() && !link.classList.contains('js-disabled')
+
+    $.get(link.href).done (data) =>
+      return unless data?
+
+      @pendingNewPosts = data
+      @refreshLoadMoreLinks()
+
 
   showMore: (e) =>
     e.preventDefault()
 
-    link = e.currentTarget
+    @loadMore e.currentTarget
 
+
+  loadMore: (link) =>
     return if link.classList.contains('js-disabled')
 
     link.classList.add 'js-disabled'
@@ -303,7 +344,13 @@ export default class Forum
     mode = link.dataset.mode
     refPost = if mode == 'previous' then @posts[0] else @endPost()
 
-    $.get(link.href)
+    if mode == 'next' && @pendingNewPosts?
+      request = $.Deferred().resolve(@pendingNewPosts).promise()
+      @pendingNewPosts = null
+    else
+      request = $.get(link.href)
+
+    request
     .done (data) =>
       if !data?
         link.dataset.noMore = '1'
@@ -311,6 +358,7 @@ export default class Forum
         return
 
       link.href = data.next_url
+      link.dataset.noMore = '0' if mode == 'next'
       scrollReference = refPost
       scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
