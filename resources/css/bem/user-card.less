@@ -68,47 +68,6 @@
     }
   }
 
-  &__avatar {
-    .full-size();
-    border-radius: @avatar-border-radius;
-    object-fit: contain;
-    background-color: @background-color;
-    transition: opacity ease-in-out @fade-duration;
-    opacity: 0;
-
-    &--loaded {
-      opacity: 1;
-    }
-
-    .@{top}--list & {
-      border-radius: @avatar-border-radius 0 0 @avatar-border-radius;
-    }
-  }
-
-  &__avatar-space {
-    width: var(--avatar-size);
-    height: var(--avatar-size);
-    flex: none;
-    position: relative;
-  }
-
-  &__avatar-spinner {
-    .full-size();
-    .center-content();
-    border-radius: @avatar-border-radius;
-    color: #fff;
-    font-size: 14px;
-    background: fade(#fff, 10%);
-    transition: opacity ease-in-out @fade-duration;
-    opacity: 0.25;
-
-    &--loaded {
-      // needs display: none or element to be removed to remove the layer in Safari
-      // but can't transition a display change...
-      opacity: 0;
-    }
-  }
-
   &__background {
     // to prevent annoying white-pixel artefacts appearing due to
     // browsers not handling 'overflow: hidden' properly
