@@ -48,6 +48,12 @@ return [
         ],
     ],
 
+    'chat' => [
+        'channel' => [
+            'unsupported_type' => 'Specified type is not supported.',
+        ],
+    ],
+
     'comment' => [
         'deleted_parent' => 'Replying to deleted comment is not allowed.',
         'top_only' => 'Pinning comment reply is not allowed.',
