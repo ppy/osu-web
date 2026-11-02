@@ -14,7 +14,8 @@
 
   &__body {
     display: grid;
-    position: relative;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
     align-items: center;
     min-width: 0;
     min-height: calc(120px + var(--padding));
@@ -42,15 +43,10 @@
 
   &__chart {
     display: grid;
-    position: absolute;
-    top: 0;
-    right: var(--padding);
-    bottom: var(--padding);
     align-items: center;
     justify-content: center;
 
     @media @desktop {
-      position: static;
       justify-self: end;
     }
   }
@@ -70,7 +66,7 @@
 
   &__legend {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, max-content) auto;
     gap: 4px 20px;
     min-width: 0;
     list-style: none;
