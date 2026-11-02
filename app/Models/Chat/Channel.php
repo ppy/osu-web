@@ -25,7 +25,6 @@ use Redis;
  * @property int[] $allowed_groups
  * @property int $channel_id
  * @property Carbon $creation_time
- * @property-read string $creation_time_json
  * @property string $description
  * @property int|null $last_message_id
  * @property-read Collection<Message> $messages
@@ -337,8 +336,6 @@ class Channel extends Model
             'room_id' => $this->getRoomId(),
 
             'creation_time' => $this->getTimeFast($key),
-
-            'creation_time_json' => $this->getJsonTimeFast($key),
 
             'messages',
             'multiplayerMatch',

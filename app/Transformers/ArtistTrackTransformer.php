@@ -37,7 +37,7 @@ class ArtistTrackTransformer extends TransformerAbstract
             'osz' => $track->osz,
             'preview' => $track->preview,
             'title' => $track->title,
-            'updated_at' => json_time($track->updated_at),
+            'updated_at' => $track->getJsonTime('updated_at'),
             'version' => $track->version,
         ];
     }

@@ -1044,14 +1044,6 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             'submit_date',
             'thread_icon_date' => $this->getTimeFast($key),
 
-            'approved_date_json',
-            'cover_updated_at_json',
-            'deleted_at_json',
-            'last_update_json',
-            'queued_at_json',
-            'submit_date_json',
-            'thread_icon_date_json' => $this->getJsonTimeFast($key),
-
             'active',
             'anime_cover',
             'comment_locked',

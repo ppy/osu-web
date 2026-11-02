@@ -48,14 +48,14 @@
                                     <small>
                                         ({!! osu_trans('users.show.lastvisit_online') !!})
                                     </small>
-                                @elseif (($lastvisit = $user->displayed_last_visit) !== null)
+                                @elseif (($lastvisit = $user->getDisplayedLastVisit()) !== null)
                                     <small>
                                         ({!! osu_trans('users.show.lastvisit', ['date' => timeago($lastvisit)]) !!})
                                     </small>
                                 @endif
                             </span>
                             <span>
-                                {!! timeago($member->created_at) !!}
+                                {!! timeago($member->getJsonTime('created_at')) !!}
                             </span>
                             <form
                                 action="{{ route('teams.members.set-leader', compact('member', 'team')) }}"

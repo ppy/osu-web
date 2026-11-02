@@ -17,10 +17,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $canonical_id
  * @property-read \Illuminate\Database\Eloquent\Collection<ChangelogEntry> $changelogEntries
  * @property \Carbon\Carbon|null $created_at
- * @property-read string|null $created_at_json
  * @property int $id
  * @property \Carbon\Carbon|null $updated_at
- * @property-read string|null $updated_at_json
  * @property-read User|null $user
  * @property int|null $user_id
  * @property string $username
@@ -82,9 +80,6 @@ class GithubUser extends Model
 
             'created_at',
             'updated_at' => $this->getTimeFast($key),
-
-            'created_at_json',
-            'updated_at_json' => $this->getJsonTimeFast($key),
 
             'changelogEntries',
             'user' => $this->getRelationValue($key),

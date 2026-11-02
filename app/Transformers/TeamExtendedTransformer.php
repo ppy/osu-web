@@ -23,7 +23,7 @@ class TeamExtendedTransformer extends TeamTransformer
         return [
             ...parent::transform($team),
             'cover_url' => $team->header()->url(),
-            'created_at' => json_time($team->created_at),
+            'created_at' => $team->getJsonTime('created_at'),
             'default_ruleset_id' => $team->default_ruleset_id,
             'description' => $team->description,
             'is_open' => $team->is_open,
