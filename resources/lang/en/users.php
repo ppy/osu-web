@@ -557,7 +557,7 @@ return [
             'total_score' => 'Total Score',
             // modding stats
             'activity_heatmap' => [
-                'help' => 'Updated every 6 hours',
+                'help' => 'Refreshed every 6 hours',
                 'less' => 'Less',
                 'more' => 'More',
                 'nominations' => 'Nominations',
