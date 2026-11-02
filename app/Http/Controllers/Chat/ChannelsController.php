@@ -245,7 +245,7 @@ class ChannelsController extends Controller
      *       "message_id": 1,
      *       "sender_id": 1,
      *       "channel_id": 1,
-     *       "timestamp": "2020-01-01T00:00:00+00:00",
+     *       "timestamp": "2020-01-01T00:00:00Z",
      *       "content": "Happy new year",
      *       "is_action": false,
      *       "sender": {

@@ -34,6 +34,7 @@ class ApiKey extends Model
     ];
 
     public $casts = [
+        'enabled' => 'boolean',
         'revoked' => 'boolean',
     ];
     public $timestamps = false;
@@ -49,6 +50,24 @@ class ApiKey extends Model
     public function scopeAvailable(Builder $query): Builder
     {
         return $query->where('revoked', false);
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'api_key',
+            'app_name',
+            'app_url',
+            'hit_count',
+            'key',
+            'miss_count',
+            'user_id' => $this->getRawAttribute($key),
+
+            'enabled',
+            'revoked' => (bool) $this->getRawAttribute($key),
+
+            'user' => $this->getRelationValue($key),
+        };
     }
 
     public function isValid(): bool

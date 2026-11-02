@@ -318,6 +318,6 @@ class Token extends PassportToken implements ScopeAuthorizable, SessionVerificat
         // already verified during grant process
         $this->verified ??= $GLOBALS['cfg']['osu']['user']['bypass_verification']
             || $this->user === null
-            || !$this->client->password_client;
+            || !$this->client->isPasswordClient();
     }
 }

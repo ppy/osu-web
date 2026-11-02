@@ -316,8 +316,7 @@ export default class DiscussionsState {
   @computed
   get nominators() {
     const nominators: UserJson[] = [];
-    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
-      const event = this.beatmapset.events[i];
+    for (const event of this.sortedEvents) {
       if (event.type === 'disqualify' || event.type === 'nomination_reset') {
         break;
       }
@@ -340,15 +339,9 @@ export default class DiscussionsState {
 
   @computed
   get previousNominatorIds() {
-    // TODO: use findLast in es2023
-    for (let i = this.beatmapset.events.length - 1; i >= 0; i--) {
-      const event = this.beatmapset.events[i];
-      if (event.type === 'disqualify') {
-        return typeof event.comment === 'string' ? [] : event.comment.nominator_ids ?? [];
-      }
-    }
-
-    return null;
+    const disqualifyEvent = this.sortedEvents.find((event) => event.type === 'disqualify');
+    if (disqualifyEvent == null) return null;
+    return typeof disqualifyEvent.comment === 'string' ? [] : disqualifyEvent.comment.nominator_ids ?? [];
   }
 
   @computed
@@ -359,6 +352,14 @@ export default class DiscussionsState {
   @computed
   get sortedBeatmaps() {
     return sortWithMode([...this.store.beatmaps.values()]);
+  }
+
+  @computed
+  get sortedEvents() {
+    return this.beatmapset.events.slice()
+      .sort((a, b) => b.created_at === a.created_at
+        ? b.id > a.id ? 1 : -1
+        : b.created_at > a.created_at ? 1 : -1);
   }
 
   @computed

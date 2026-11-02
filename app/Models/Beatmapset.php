@@ -36,6 +36,7 @@ use Carbon\Carbon;
 use DB;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -44,17 +45,17 @@ use Illuminate\Database\QueryException;
 /**
  * @property bool $active
  * @property bool $anime_cover
- * @property \Illuminate\Database\Eloquent\Collection $allBeatmaps Beatmap
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Beatmap> $allBeatmaps
  * @property int $approved
  * @property \Carbon\Carbon|null $approved_date
  * @property int|null $approvedby_id
  * @property User|null $approver
  * @property string $artist
  * @property string $artist_unicode
- * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
- * @property \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, BeatmapDiscussion> $beatmapDiscussions
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Beatmap> $beatmaps
  * @property int $beatmapset_id
- * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetNomination
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, BeatmapsetNomination> $beatmapsetNominations
  * @property mixed|null $body_hash
  * @property float $bpm
  * @property bool $comment_locked
@@ -62,7 +63,7 @@ use Illuminate\Database\QueryException;
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
  * @property string $creator
- * @property \Illuminate\Database\Eloquent\Collection $defaultBeatmaps Beatmap
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Beatmap> $defaultBeatmaps
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $difficulty_names
  * @property bool $discussion_locked
@@ -71,9 +72,9 @@ use Illuminate\Database\QueryException;
  * @property string|null $download_disabled_url
  * @property string[]|null $eligible_main_rulesets
  * @property bool $epilepsy
- * @property \Illuminate\Database\Eloquent\Collection $events BeatmapsetEvent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, BeatmapsetEvent> $events
  * @property int $favourite_count
- * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, FavouriteBeatmapset> $favourites
  * @property string|null $filename
  * @property int $filesize
  * @property int|null $filesize_novideo
@@ -105,12 +106,12 @@ use Illuminate\Database\QueryException;
  * @property ArtistTrack $track
  * @property int|null $track_id
  * @property User $user
- * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, BeatmapsetUserRating> $userRatings
  * @property int $user_id
- * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapsetVersion> $versions
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, BeatmapsetVersion> $versions
  * @property int $versions_available
  * @property bool $video
- * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, BeatmapsetWatch> $watches
  */
 class Beatmapset extends Model implements AfterCommit, CommentableInterface, Indexable, Traits\ReportableInterface
 {
@@ -1043,14 +1044,6 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             'submit_date',
             'thread_icon_date' => $this->getTimeFast($key),
 
-            'approved_date_json',
-            'cover_updated_at_json',
-            'deleted_at_json',
-            'last_update_json',
-            'queued_at_json',
-            'submit_date_json',
-            'thread_icon_date_json' => $this->getJsonTimeFast($key),
-
             'active',
             'anime_cover',
             'comment_locked',
@@ -1267,18 +1260,50 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
         ];
     }
 
-    public function disqualificationEvent()
+    /**
+     * @return Collection<int, BeatmapsetEvent>
+     */
+    public function disqualificationAndNominationResetEvents(): Collection
+    {
+        return $this->memoize(__FUNCTION__, fn () =>
+            $this->events
+                ->filter(fn (BeatmapsetEvent $event) => in_array($event->type, BeatmapsetEvent::QUALIFICATION_RESET_EVENTS, true))
+                ->sortByDesc('created_at'));
+    }
+
+    public function disqualificationEvent(): BeatmapsetEvent|null
     {
         return $this->memoize(__FUNCTION__, function () {
+            if ($this->relationLoaded('events')) {
+                return $this->disqualificationAndNominationResetEvents()
+                    ->first(fn (BeatmapsetEvent $event) => $event->type === BeatmapsetEvent::DISQUALIFY);
+            }
+
             return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
         });
     }
 
-    public function resetEvent()
+    public function resetDiscussionIds(): Set
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+            $ids = new Set();
+            foreach ($this->disqualificationAndNominationResetEvents() as $event) {
+                if ($event->beatmap_discussion_id !== null) {
+                    $ids->add($event->beatmap_discussion_id);
+                }
+            }
+
+            return $ids;
         });
+    }
+
+    public function resetEvent(): BeatmapsetEvent|null
+    {
+        if ($this->relationLoaded('events')) {
+            return $this->disqualificationAndNominationResetEvents()->first();
+        }
+
+        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
     }
 
     public function nominationsByType(): array
@@ -1337,6 +1362,7 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             'allBeatmaps.user', // TODO: for compatibility only, should migrate user_id to BeatmapOwner.
             'beatmapDiscussions.beatmapDiscussionPosts',
             'beatmapDiscussions.beatmapDiscussionVotes',
+            'events',
         ]);
 
         foreach ($this->allBeatmaps as $beatmap) {
@@ -1424,19 +1450,12 @@ class Beatmapset extends Model implements AfterCommit, CommentableInterface, Ind
             $ratings[$i] = 0;
         }
 
-        if ($this->relationLoaded('userRatings')) {
-            foreach ($this->userRatings as $userRating) {
-                $ratings[$userRating->rating]++;
-            }
-        } else {
-            $userRatings = $this->userRatings()
-                ->select('rating', \DB::raw('count(*) as count'))
-                ->groupBy('rating')
-                ->get();
+        $userRatings = $this->relationLoaded('userRatings')
+            ? $this->userRatings
+            : $this->userRatings()->forRatingCount()->get();
 
-            foreach ($userRatings as $rating) {
-                $ratings[$rating->rating] = $rating->count;
-            }
+        foreach ($userRatings as $userRating) {
+            $ratings[$userRating->rating] += $userRating->getRawAttribute('rating_count') ?? 1;
         }
 
         return $ratings;

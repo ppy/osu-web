@@ -40,7 +40,7 @@ export default class Detail extends React.Component<Props> {
           <ProfileTournamentBanner key={banner.id} banner={banner} />
         ))}
 
-        <Badges badges={user.badges} />
+        <Badges badges={user.badges} controller={this.props.controller} />
 
         {!user.is_bot && (
           <div className='profile-detail'>

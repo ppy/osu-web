@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => 'Unpin badge',
+                'to_1' => 'Pin badge',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',

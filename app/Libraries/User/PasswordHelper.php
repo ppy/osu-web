@@ -26,7 +26,7 @@ class PasswordHelper
         // anyways, this replacement is because the .NET library this interacts with
         // needs 2a since a string replacement on every connection is needless overhead
         // for a realtime processing server and only lowers max connections.
-        if (str_starts_with('$ay$', $hashedValue)) {
+        if (str_starts_with('$2a$', $hashedValue)) {
             $hashedValue[2] = 'y';
         }
 

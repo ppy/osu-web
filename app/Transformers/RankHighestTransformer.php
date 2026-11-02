@@ -13,7 +13,7 @@ class RankHighestTransformer extends TransformerAbstract
     {
         return [
             'rank' => $rankHighest->rank,
-            'updated_at' => $rankHighest->updated_at_json,
+            'updated_at' => $rankHighest->getJsonTime('updated_at'),
         ];
     }
 }

@@ -63,7 +63,7 @@ class UpdateUserInfoTest extends TestCase
 
     private function actAsClientUser(User $user): void
     {
-        $client = Client::factory()->create(['password_client' => true]);
+        $client = Client::factory()->passwordClient()->create();
         $this->actAsScopedUser($user, ['*'], $client);
     }
 }

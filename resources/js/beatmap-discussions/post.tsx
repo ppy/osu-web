@@ -26,10 +26,11 @@ import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
+import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import MarkdownSelectionToolbar from './markdown-selection-toolbar';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -39,10 +40,11 @@ interface BaseProps {
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   resolvedStateChangedPostId: number;
-  type: string;
+  type: PostType;
   user: UserJson;
 }
 
+export type PostType = 'discussion' | 'reply';
 type Props = BaseProps & (HasDiscussionsEditable | HasDiscussionsReadOnly);
 
 @observer
@@ -85,7 +87,19 @@ export default class Post extends React.Component<Props> {
         && this.isOwn
         && this.props.post.id > this.props.resolvedStateChangedPostId
         && !this.beatmapset.discussion_locked
+        && !this.isResetDiscussion
       );
+  }
+
+  @computed
+  private get isResetDiscussion() {
+    return this.props.type === 'discussion'
+      && this.props.discussion.message_type === 'problem'
+      && this.beatmapset?.events.some((event) => (
+        (event.type === 'disqualify' || event.type === 'nomination_reset')
+        && typeof event.comment !== 'string'
+        && event.comment.beatmap_discussion_id === this.props.discussion.id
+      ));
   }
 
   private get canDelete() {
@@ -219,7 +233,7 @@ export default class Post extends React.Component<Props> {
     this.canSave = validMessageLength(this.message, this.isTimeline);
   };
 
-  private readonly handleTextareaKeyDownCallback = (type: InputEventType) => {
+  private readonly handleTextareaKeyDownCallback: TextAreaCallback = (type) => {
     if (type === InputEventType.Submit) {
       this.updatePost();
     }
@@ -314,6 +328,12 @@ export default class Post extends React.Component<Props> {
           </>
         )}
         <div className={`${bn}__actions`}>
+          {!this.isReview && (
+            <MarkdownSelectionToolbar
+              disabled={this.isPosting}
+              textareaRef={this.textareaRef}
+            />
+          )}
           <div className={`${bn}__actions-group`}>
             <div className={`${bn}__actions-group`}>
               <div className={`${bn}__action`}>

@@ -17,6 +17,7 @@ interface ContestJsonAvailableIncludes {
 interface ContestJsonDefaultAttributes {
   id: number;
   name: string;
+  show_votes: boolean;
 }
 
 type ContestJson = ContestJsonDefaultAttributes & Partial<ContestJsonAvailableIncludes>;

@@ -50,3 +50,4 @@ declare const tooltipDefault: import('legacy-modules').TooltipDefault;
 // external (to typescript) classes
 declare const fallbackLocale: string;
 declare const currentLocale: string;
+declare const jsPluralLocaleMap: Partial<Record<string, string>>;

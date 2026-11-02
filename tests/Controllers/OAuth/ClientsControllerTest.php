@@ -72,8 +72,8 @@ class ClientsControllerTest extends TestCase
         $this->assertSame($this->owner->getKey(), $client->user_id);
         $this->assertSame('best client', $client->name);
         $this->assertSame('https://nowhere.local', $client->redirect);
-        $this->assertFalse($client->personal_access_client);
-        $this->assertFalse($client->password_client);
+        $this->assertNotContains('personal_access', $client->grant_types);
+        $this->assertFalse($client->isPasswordClient());
         $this->assertFalse($client->revoked);
         $this->assertSame($count + 1, Client::count());
     }

@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $mode
  * @property int $rank
  * @property \Carbon\Carbon $updated_at
- * @property-read string $updated_at_json
  * @property-read User $user
  * @property int $user_id
  */
@@ -38,8 +37,6 @@ class RankHighest extends Model
             'user_id' => $this->getRawAttribute($key),
 
             'updated_at' => $this->getTimeFast($key),
-
-            'updated_at_json' => $this->getJsonTimeFast($key),
 
             'user' => $this->getRelationValue($key),
         };

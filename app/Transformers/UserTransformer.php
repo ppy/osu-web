@@ -25,19 +25,17 @@ class UserTransformer extends UserCompactTransformer
         'kudosu',
     ];
 
-    public function transform(User $user)
+    public function transform(User $user): array
     {
-        $result = parent::transform($user);
-
-        $profileOrder = UserProfileCustomization::forUser($user)['extras_order'];
+        $options = UserProfileCustomization::forUser($user);
 
         return [
-            ...$result,
+            ...parent::transform($user),
             'cover_url' => $user->cover()->url(), // TODO: deprecated.
             'discord' => $user->user_discord,
             'has_supported' => $user->hasSupported(),
             'interests' => $user->user_interests,
-            'join_date' => json_time($user->user_regdate),
+            'join_date' => $user->getJsonTime('user_regdate'),
             'location' => $user->user_from,
             'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
@@ -46,7 +44,8 @@ class UserTransformer extends UserCompactTransformer
             'playstyle' => $user->osu_playstyle,
             'post_count' => $user->user_posts,
             'profile_hue' => $user->user_style,
-            'profile_order' => $profileOrder,
+            'profile_order' => $options['extras_order'],
+            'profile_pinned_badge' => $options['profile_pinned_badge'],
             'title' => $user->title(),
             'title_url' => $user->titleUrl(),
             'twitter' => $user->user_twitter,

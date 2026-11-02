@@ -7,7 +7,7 @@ import { NotificationIdentity } from 'notifications/notification-identity';
 export function makeNotificationJson(overrides: Record<string, unknown>) {
   const base = {
     category: 'beatmapset_discussion',
-    created_at: '2019-12-02T08:13:19+00:00',
+    created_at: '2019-12-02T08:13:19Z',
     details: {},
     id: 1,
     is_read: false,

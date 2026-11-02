@@ -62,15 +62,23 @@ export default class SelectOptions<T extends string | number> extends React.Pure
     return (
       <div ref={this.ref} className={className}>
         <div className={`${bn}__select`}>
-          <a className={classWithModifiers(`${bn}__option`, 'selector')} href={this.props.href} onClick={this.toggleSelector}>
-            {this.renderText(this.props.children)}
-            <div className={`${bn}__decoration`}>
-              <span className='fas fa-chevron-down' />
+          <div className={classWithModifiers(`${bn}__option`)}>
+            <a
+              className={classWithModifiers(`${bn}__bg-link`)}
+              href={this.props.href}
+              onClick={this.toggleSelector}
+            />
+
+            <div className={classWithModifiers(`${bn}__content`, 'select')}>
+              {this.renderText(this.props.children)}
+              <div className={`${bn}__decoration`}>
+                <span className='fas fa-chevron-down' />
+              </div>
             </div>
-          </a>
+          </div>
         </div>
 
-        <div className={`${bn}__selector`}>
+        <div className={`${bn}__options`}>
           {[...this.renderOptions()]}
         </div>
       </div>
@@ -100,20 +108,23 @@ export default class SelectOptions<T extends string | number> extends React.Pure
 
   private renderOption(option: RenderableOption<T>, selected: boolean) {
     return (
-      <a
-        key={option.id}
-        className={classWithModifiers(`${bn}__option`, { selected })}
-        data-id={option.id ?? undefined}
-        href={option.href}
-        onClick={this.optionSelected}
-      >
-        {this.props.useCheckmark && (
-          <span className={`${bn}__checkmark`}>
-            {selected && <span className='fas fa-check' />}
-          </span>
-        )}
-        {this.renderText(option.text)}
-      </a>
+      <div key={option.id} className={classWithModifiers(`${bn}__option`, { selected })}>
+        <a
+          className={classWithModifiers(`${bn}__bg-link`, { selected })}
+          data-id={option.id ?? undefined}
+          href={option.href}
+          onClick={this.optionSelected}
+        />
+
+        <div className={classWithModifiers(`${bn}__content`, { selected })}>
+          {this.props.useCheckmark && (
+            <span className={`${bn}__checkmark`}>
+              {selected && <span className='fas fa-check' />}
+            </span>
+          )}
+          {this.renderText(option.text)}
+        </div>
+      </div>
     );
   }
 

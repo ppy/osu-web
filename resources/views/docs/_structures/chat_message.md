@@ -6,7 +6,7 @@
   "is_action": false,
   "message_id": 9150005004,
   "sender_id": 2,
-  "timestamp": "2018-07-06T06:33:34+00:00",
+  "timestamp": "2018-07-06T06:33:34Z",
   "type": "plain",
   "uuid": "some-uuid-string",
   "sender": {

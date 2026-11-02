@@ -11,6 +11,7 @@ class NewsPostTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'content',
+        'content_markdown',
         'navigation',
         'preview',
     ];
@@ -26,8 +27,8 @@ class NewsPostTransformer extends TransformerAbstract
             'edit_url' => $post->editUrl(),
             'first_image' => $firstImage['1x'],
             'first_image@2x' => $firstImage['2x'],
-            'published_at' => json_time($post->published_at),
-            'updated_at' => json_time($post->updated_at),
+            'published_at' => $post->getJsonTime('published_at'),
+            'updated_at' => $post->getJsonTime('updated_at'),
             'slug' => $post->slug,
             'title' => $post->title(),
         ];
@@ -36,6 +37,11 @@ class NewsPostTransformer extends TransformerAbstract
     public function includeContent(NewsPost $post)
     {
         return $this->primitive($post->bodyHtml());
+    }
+
+    public function includeContentMarkdown(NewsPost $post)
+    {
+        return $this->primitive($post->markdown());
     }
 
     public function includeNavigation(NewsPost $post)

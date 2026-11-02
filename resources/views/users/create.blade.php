@@ -97,15 +97,12 @@
             </label>
 
             @if (captcha_enabled())
-                <div
-                    class="simple-form__row simple-form__row--no-label"
-                >
-                    <div
-                        class="simple-form__captcha js-captcha--container"
-                        data-captcha-triggered="1"
-                    ></div>
+                <div class="simple-form__row simple-form__row--no-label">
+                    @include('objects._captcha', ['params' => [
+                        'containerClass' => 'simple-form__captcha',
+                        'triggered' => true,
+                    ]])
                 </div>
-                @include('objects._captcha_script')
             @endif
 
             <div class="simple-form__row simple-form__row--no-label">

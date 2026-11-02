@@ -19,14 +19,14 @@ class BeatmapDiscussionPostTransformer extends TransformerAbstract
     {
         return [
             'beatmapset_discussion_id' => $post->beatmap_discussion_id,
-            'created_at' => json_time($post->created_at),
-            'deleted_at' => json_time($post->deleted_at),
+            'created_at' => $post->getJsonTime('created_at'),
+            'deleted_at' => $post->getJsonTime('deleted_at'),
             'deleted_by_id' => $post->deleted_by_id,
             'id' => $post->id,
             'last_editor_id' => $post->last_editor_id,
             'message' => $post->message,
             'system' => $post->system,
-            'updated_at' => json_time($post->updated_at),
+            'updated_at' => $post->getJsonTime('updated_at'),
             'user_id' => $post->user_id,
         ];
     }

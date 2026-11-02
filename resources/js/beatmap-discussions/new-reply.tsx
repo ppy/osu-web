@@ -19,6 +19,7 @@ import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionsState from './discussions-state';
+import MarkdownSelectionToolbar from './markdown-selection-toolbar';
 
 const bn = 'beatmap-discussion-post';
 
@@ -203,6 +204,10 @@ export class NewReply extends React.Component<Props> {
 
         <div className={`${bn}__footer`}>
           <div className={`${bn}__actions`}>
+            <MarkdownSelectionToolbar
+              disabled={this.posting != null}
+              textareaRef={this.box}
+            />
             <div className={`${bn}__actions-group`}>
               {this.canResolve && !this.props.discussion.resolved && this.renderReplyButton('reply_resolve')}
 

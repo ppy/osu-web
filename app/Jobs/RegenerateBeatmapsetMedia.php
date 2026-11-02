@@ -21,6 +21,9 @@ class RegenerateBeatmapsetMedia implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    // Handle transient errors on remote server
+    private const MAX_TRIES = 3;
+
     /**
      * The number of seconds the job can run before timing out.
      *
@@ -49,12 +52,19 @@ class RegenerateBeatmapsetMedia implements ShouldQueue
         );
     }
 
-    private function runTask(string $task, callable $taskFn): void
+    private function runTask(string $task, callable $taskFn, int $tries = 0): void
     {
         try {
             $taskFn();
             datadog_increment("{$task}.ok");
         } catch (\Throwable $e) {
+            // TODO: create and throw specific network error exception
+            if ($e instanceof BeatmapProcessorException && $tries < static::MAX_TRIES) {
+                sleep(5);
+                $this->runTask($task, $taskFn, $tries + 1);
+                return;
+            }
+
             datadog_increment("{$task}.error");
             log_error(new BeatmapProcessorException(previous: $e), [
                 'task' => $task,
