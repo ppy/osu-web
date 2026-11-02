@@ -30,6 +30,7 @@ class ProfileCount
 
     private readonly int $beatmapsModded;
     private readonly array $beatmapsetCountsByApproved;
+    private readonly array $beatmapsetsByProfileSection;
     private readonly int $issuesResolved;
 
     public function __construct(private readonly User $user)
@@ -106,15 +107,19 @@ class ProfileCount
 
     private function beatmapsetsByProfileSection(): array
     {
-        $counts = [];
+        if (!isset($this->beatmapsetsByProfileSection)) {
+            $counts = [];
 
-        foreach ($this->beatmapsetCountsByApproved() as $approved => $count) {
-            $section = static::BEATMAPSET_PROFILE_SECTION_MAP[$approved];
-            $counts[$section] ??= 0;
-            $counts[$section] += $count;
+            foreach ($this->beatmapsetCountsByApproved() as $approved => $count) {
+                $section = static::BEATMAPSET_PROFILE_SECTION_MAP[$approved];
+                $counts[$section] ??= 0;
+                $counts[$section] += $count;
+            }
+
+            $this->beatmapsetsByProfileSection = $counts;
         }
 
-        return $counts;
+        return $this->beatmapsetsByProfileSection;
     }
 
     private function issuesResolved(): int
