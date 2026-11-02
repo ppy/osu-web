@@ -557,11 +557,11 @@ return [
             'total_score' => 'Total Score',
             // modding stats
             'beatmaps_modded_count' => 'Total Beatmaps Modded',
+            'empty' => 'Beatmap counts will show here\nonce you submit beatmaps!',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
             'guest_beatmapset_count' => 'Guest Participation Beatmaps',
             'issues_resolved_count' => 'Issues Resolved',
             'loved_beatmapset_count' => 'Loved Beatmaps',
-            'no_data' => 'No data',
             'nominated_beatmapset_count' => 'Nominated Ranked Beatmaps',
             'pending_beatmapset_count' => 'Pending Beatmaps',
             'qualified_beatmapset_count' => 'Qualified Beatmaps',

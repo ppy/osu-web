@@ -11,37 +11,27 @@ const outerRadius = viewBoxSize / 2;
 interface DonutChartSlice {
   colour: string;
   key: string;
-  title?: string;
   value: number;
 }
 
 interface Props {
-  emptyTitle?: string;
+  hoveredKey: string | null;
+  onHover: (key: string | null) => void;
   slices: DonutChartSlice[];
 }
 
-function onSliceEvent(event: React.SyntheticEvent<SVGPathElement>) {
-  const key = event.currentTarget.dataset.sliceKey;
-  if (key == null) return;
+export default function DonutChart({ hoveredKey, onHover, slices }: Props) {
+  const onMouseEnter = React.useCallback((event: React.MouseEvent<SVGPathElement>) => {
+    onHover(event.currentTarget.dataset.sliceKey ?? null);
+  }, [onHover]);
 
-  const anchor = event.currentTarget.closest('.donut-chart')?.querySelector<HTMLElement>(
-    `.donut-chart__anchor[data-slice-key="${key}"]`,
-  );
-  if (anchor == null) return;
-
-  $(anchor).trigger(event.type);
-}
-
-export default function DonutChart({ emptyTitle, slices }: Props) {
-  const visibleSlices = slices.filter((slice) => slice.value > 0);
-  const isEmpty = visibleSlices.length === 0;
-  const pieSlices = isEmpty
-    ? [{ colour: '', key: 'empty', value: 1 }]
-    : visibleSlices;
+  const onMouseLeave = React.useCallback(() => {
+    onHover(null);
+  }, [onHover]);
 
   const pie = d3.pie<DonutChartSlice>()
     .sortValues(null)
-    .padAngle(visibleSlices.length > 1 ? 0.02 : 0)
+    .padAngle(slices.length > 1 ? 0.02 : 0)
     .value((slice) => slice.value);
 
   const arc = d3.arc<d3.PieArcDatum<DonutChartSlice>>()
@@ -49,42 +39,25 @@ export default function DonutChart({ emptyTitle, slices }: Props) {
     .outerRadius(outerRadius)
     .cornerRadius(5);
 
-  const arcs = pie(pieSlices);
-
   return (
     <div className='donut-chart'>
       <svg aria-hidden='true' className='donut-chart__svg' viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
         <g transform={`translate(${outerRadius}, ${outerRadius})`}>
-          {arcs.map((datum) => (
+          {pie(slices).map((datum) => (
             <path
               key={datum.data.key}
-              className={classWithModifiers('donut-chart__slice', { empty: isEmpty })}
+              className={classWithModifiers('donut-chart__slice', {
+                dimmed: hoveredKey != null && hoveredKey !== datum.data.key,
+              })}
               d={arc(datum) ?? undefined}
               data-slice-key={datum.data.key}
-              fill={isEmpty ? undefined : datum.data.colour}
-              onMouseLeave={onSliceEvent}
-              onMouseOver={onSliceEvent}
-              onTouchStart={onSliceEvent}
+              fill={datum.data.colour}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
             />
           ))}
         </g>
       </svg>
-      {arcs.map((datum) => {
-        const [x, y] = arcs.length === 1 ? [0, -outerRadius] : arc.centroid(datum);
-
-        return (
-          <span
-            key={datum.data.key}
-            className='donut-chart__anchor'
-            data-slice-key={datum.data.key}
-            style={{
-              left: `${((outerRadius + x) / viewBoxSize) * 100}%`,
-              top: `${((outerRadius + y) / viewBoxSize) * 100}%`,
-            }}
-            title={isEmpty ? emptyTitle : datum.data.title}
-          />
-        );
-      })}
     </div>
   );
 }

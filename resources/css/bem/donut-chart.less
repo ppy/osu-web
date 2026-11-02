@@ -12,15 +12,11 @@
     height: 100%;
   }
 
-  &__slice--empty {
-    fill: hsl(var(--hsl-b6));
-  }
+  &__slice {
+    .fade-element(@hover-transition-duration);
 
-  &__anchor {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
+    &--dimmed {
+      opacity: 0.4;
+    }
   }
 }
