@@ -556,6 +556,7 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
             // modding stats
+            'approved_beatmapset_count' => 'Approved Beatmaps',
             'beatmaps_modded_count' => 'Total Beatmaps Modded',
             'empty' => 'Beatmap counts will show here\nonce you submit beatmaps!',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',

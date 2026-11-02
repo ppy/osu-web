@@ -11,6 +11,7 @@ import { trans } from 'utils/lang';
 
 const statusOrder = [
   'ranked',
+  'approved',
   'qualified',
   'loved',
   'pending',
