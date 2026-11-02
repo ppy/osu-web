@@ -3,7 +3,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property Beatmapset $beatmapset
@@ -27,5 +31,12 @@ class BeatmapsetUserRating extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeForRatingCount(Builder $query): void
+    {
+        $query
+            ->select('beatmapset_id', 'rating', \DB::raw('COUNT(*) AS rating_count'))
+            ->groupBy(['beatmapset_id', 'rating']);
     }
 }

@@ -28,7 +28,7 @@ class MessageTransformer extends TransformerAbstract
             'is_action' => $message->is_action, // maybe deprecate?
             'message_id' => $message->message_id,
             'sender_id' => $message->user_id,
-            'timestamp' => $message->timestamp_json,
+            'timestamp' => $message->getJsonTime('timestamp'),
             'type' => $type,
         ];
 

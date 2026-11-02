@@ -33,8 +33,8 @@ class ContestTransformer extends TransformerAbstract
         return [
             'best_of' => $contest->isBestOf(),
             'description' => $contest->description_voting,
-            'entry_ends_at' => json_time($contest->entry_ends_at),
-            'entry_starts_at' => json_time($contest->entry_starts_at),
+            'entry_ends_at' => $contest->getJsonTime('entry_ends_at'),
+            'entry_starts_at' => $contest->getJsonTime('entry_starts_at'),
             'header_url' => $contest->header_url,
             'id' => $contest->id,
             'judged' => $contest->isJudged(),
@@ -52,7 +52,7 @@ class ContestTransformer extends TransformerAbstract
             'forced_height' => $contest->getForcedHeight(),
             'allowed_extensions' => $contest->getAllowedExtensions(),
             'max_filesize' => $contest->getMaxFilesize(),
-            'voting_ends_at' => json_time($contest->voting_ends_at),
+            'voting_ends_at' => $contest->getJsonTime('voting_ends_at'),
         ];
     }
 

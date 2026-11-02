@@ -9,8 +9,19 @@ namespace App\Libraries;
 
 class LocaleMeta
 {
-    // Keys must be a superset of app.available_locales. Additional locales are
-    // available for use only in wiki articles
+    /**
+     * Keys must be a superset of app.available_locales. Additional locales are
+     * available for use only in wiki articles
+     *
+     * php (IntlDateFormatter etc) isn't mapped at the moment.
+     *
+     * Check respective packages for supported list of languages:
+     * carbon: vendor/nesbot/carbon/src/Carbon/Lang/
+     * html: lang attribute in html tag. Mainly for uppercasing country code if used.
+     * jsPlural: node_modules/lang.js/src/lang.js
+     * laravelPlural: vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php
+     * moment: node_modules/moment/locale/
+     */
     const MAPPINGS = [
         'ar' => [
             'flag' => 'SA',
@@ -55,6 +66,7 @@ class LocaleMeta
         ],
         'es-419' => [
             'flag' => 'MX',
+            'jsPlural' => 'es',
             'laravelPlural' => 'es_MX',
             'moment' => 'es-mx',
             'name' => 'español (Latinoamérica)',
@@ -127,6 +139,7 @@ class LocaleMeta
         'pt-br' => [
             'flag' => 'BR',
             'html' => 'pt-BR',
+            'jsPlural' => 'pt',
             'laravelPlural' => 'pt_BR',
             'name' => 'português brasileiro',
         ],
@@ -147,6 +160,7 @@ class LocaleMeta
             'name' => 'slovenščina',
         ],
         'sr' => [
+            'carbon' => 'sr_Cyrl',
             'flag' => 'RS',
             'moment' => 'sr-cyrl',
             'name' => 'српски',
@@ -184,8 +198,14 @@ class LocaleMeta
         ],
     ];
 
+    private static array $instances = [];
+
     private array $data;
-    private string $locale;
+
+    public function __construct(private string $locale)
+    {
+        $this->data = static::MAPPINGS[$locale];
+    }
 
     /**
      * Return cached instance of specified locale.
@@ -195,9 +215,7 @@ class LocaleMeta
      */
     public static function find(string $locale): self
     {
-        static $instances = [];
-
-        return $instances[$locale] ??= new static($locale);
+        return static::$instances[$locale] ??= new static($locale);
     }
 
     public static function isValid(?string $locale): bool
@@ -205,6 +223,21 @@ class LocaleMeta
         return isset(static::MAPPINGS[$locale]);
     }
 
+    public static function jsPluralMap(): string
+    {
+        static $ret;
+        if (!isset($ret)) {
+            $map = [];
+            foreach (static::MAPPINGS as $locale => $data) {
+                if (isset($data['jsPlural'])) {
+                    $map[$locale] = $data['jsPlural'];
+                }
+            }
+            $ret = json_encode($map);
+        }
+
+        return $ret;
+    }
     public static function sanitizeCode(?string $locale): ?string
     {
         if ($locale === null) {
@@ -216,10 +249,9 @@ class LocaleMeta
         return static::isValid($ret) ? $ret : null;
     }
 
-    public function __construct($locale)
+    public function carbon(): string
     {
-        $this->locale = $locale;
-        $this->data = static::MAPPINGS[$locale];
+        return $this->data['carbon'] ?? $this->locale;
     }
 
     public function flag(): string

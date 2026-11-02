@@ -53,6 +53,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2026-10-13
+- [Get Beatmapset Discussions](#get-beatmapset-discussions) does not include `current_user_attributes` in the [BeatmapsetDiscussion](#beatmapsetdiscussion) object any more.
+
 ### 2025-04-10
 - `/beatmaps/{beatmap}/solo-scores` endpoint has been deprecated. Use `/beatmaps/{beatmap}/scores` instead.
 

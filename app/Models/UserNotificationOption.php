@@ -131,6 +131,22 @@ class UserNotificationOption extends Model
         $this->attributes['name'] = $value;
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'id',
+            'name',
+            'user_id' => $this->getRawAttribute($key),
+
+            'details' => $this->getArray($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
     public function getNewsPostSeries(): ?array
     {
         return $this->name === static::NEWS_POST

@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => 'Unpin badge',
+                'to_1' => 'Pin badge',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',
@@ -563,12 +570,13 @@ return [
                 ],
                 'title' => 'Activity Heatmap',
             ],
+            'approved_beatmapset_count' => 'Approved Beatmaps',
             'beatmaps_modded_count' => 'Total Beatmaps Modded',
+            'empty' => 'Beatmap counts will show here\nonce you submit beatmaps!',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
             'guest_beatmapset_count' => 'Guest Participation Beatmaps',
             'issues_resolved_count' => 'Issues Resolved',
             'loved_beatmapset_count' => 'Loved Beatmaps',
-            'no_data' => 'No data',
             'nominated_beatmapset_count' => 'Nominated Ranked Beatmaps',
             'pending_beatmapset_count' => 'Pending Beatmaps',
             'qualified_beatmapset_count' => 'Qualified Beatmaps',

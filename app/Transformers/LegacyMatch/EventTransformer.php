@@ -21,7 +21,7 @@ class EventTransformer extends TransformerAbstract
         return [
             'id' => $event->event_id,
             'detail' => $event->detail,
-            'timestamp' => json_time($event->timestamp),
+            'timestamp' => $event->getJsonTime('timestamp'),
             'user_id' => $event->user_id,
         ];
     }

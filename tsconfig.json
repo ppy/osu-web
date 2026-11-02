@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./resources/js",
     "experimentalDecorators": true,
     "jsx": "react",
     "lib": ["dom", "dom.iterable", "es2020"],
     "module": "es2020",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noUnusedLocals": true,
+    "paths": {
+      "*": ["./resources/js/*"]
+    },
     "resolveJsonModule": true,
     "sourceMap": true,
     "strictBindCallApply": true,
@@ -22,7 +24,8 @@
       "jqueryui",
       "timeago"
     ],
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+
   },
   "include": [
     "resources/js",

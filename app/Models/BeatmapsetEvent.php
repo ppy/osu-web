@@ -57,6 +57,11 @@ class BeatmapsetEvent extends Model
 
     const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
 
+    const QUALIFICATION_RESET_EVENTS = [
+        self::DISQUALIFY,
+        self::NOMINATION_RESET,
+    ];
+
     public static function log($type, $user, $object, $extraData = [])
     {
         if ($object instanceof BeatmapDiscussionPost) {

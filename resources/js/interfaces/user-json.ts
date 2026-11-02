@@ -23,6 +23,7 @@ import UserStatisticsJson from './user-statistics-json';
 import UserStatisticsRulesetsJson from './user-statistics-rulesets-json';
 
 interface BeatmapsetStatusCountsJson {
+  approved: number;
   graveyard: number;
   loved: number;
   pending: number;

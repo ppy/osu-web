@@ -17,7 +17,7 @@ el = React.createElement
 groupChangelogBuilds = (builds) ->
   _.groupBy builds, (build) ->
     # Assumes created_at an iso8601 datetime string and removes the time portion.
-    # Example: 2018-07-06T05:43:21+00:00
+    # Example: 2018-07-06T05:43:21Z
     build.created_at.substr(0, 10)
 
 

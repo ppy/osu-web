@@ -3,7 +3,7 @@
 {
   "id": 1,
   "name": "channel_message",
-  "created_at": "2019-04-24T07:12:43+00:00",
+  "created_at": "2019-04-24T07:12:43Z",
   "object_type": "channel",
   "object_id": 1,
   "source_user_id": 1,

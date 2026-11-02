@@ -34,6 +34,7 @@ class UserProfileCustomization extends Model
         'legacy_score_only' => false,
         'profile_cover_expanded' => true,
         'profile_detail_v2' => false,
+        'profile_pinned_badge' => null,
         'scoring_mode' => self::SCORING_MODES[0],
         'user_list_filter' => self::USER_LIST['filters']['status']['default'],
         'user_list_relationship_filter' => self::USER_LIST['filters']['relationship']['default'],
@@ -135,6 +136,7 @@ class UserProfileCustomization extends Model
             'forum_posts_show_deleted',
             'profile_cover_expanded',
             'profile_detail_v2',
+            'profile_pinned_badge',
             'scoring_mode',
             'user_list_filter',
             'user_list_relationship_filter',
@@ -242,6 +244,11 @@ class UserProfileCustomization extends Model
         $this->setOption('profile_detail_v2', get_bool($value));
     }
 
+    public function setProfilePinnedBadgeAttribute(mixed $value): void
+    {
+        $this->setOption('profile_pinned_badge', presence(substr(get_string($value) ?? '', 0, 255)));
+    }
+
     public function setScoringModeAttribute($value): void
     {
         if ($value !== null && !in_array($value, static::SCORING_MODES, true)) {
@@ -330,7 +337,11 @@ class UserProfileCustomization extends Model
     private function setOption(string $key, mixed $value): void
     {
         $this->cachedOptions ??= $this->options ?? [];
-        $this->cachedOptions[$key] = $value;
+        if ($value === null) {
+            unset($this->cachedOptions[$key]);
+        } else {
+            $this->cachedOptions[$key] = $value;
+        }
         $this->options = $this->cachedOptions;
     }
 }

@@ -24,7 +24,7 @@ class UserContestEntryTransformer extends TransformerAbstract
             'filesize' => $entry->filesize,
             'url' => $url,
             'thumb' => mini_asset($url),
-            'created_at' => json_time($entry->created_at),
+            'created_at' => $entry->getJsonTime('created_at'),
             'deleted' => $entry->deleted_at !== null,
         ];
     }

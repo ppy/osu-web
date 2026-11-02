@@ -28,7 +28,7 @@ class BeatmapsetEventTransformer extends TransformerAbstract
             'id' => $event->id,
             'type' => $event->type,
             'comment' => $event->comment,
-            'created_at' => json_time($event->created_at),
+            'created_at' => $event->getJsonTime('created_at'),
         ];
     }
 

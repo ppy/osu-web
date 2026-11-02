@@ -30,23 +30,26 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property int $auto_start_duration
  * @property string $category
  * @property string $status
- * @property Channel $channel
+ * @property-read Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
+ * @property-read ?PlaylistItem $currentPlaylistItem
+ * @property-read int|null $current_playlist_item_id This allows nested preloading of playlist item relations. playlist should be preloaded beforehand unless it's for single Room model.
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $description
  * @property \Carbon\Carbon $ends_at
- * @property User $host
+ * @property-read User $host
  * @property int $id
  * @property int|null $max_attempts
  * @property int|null $max_participants
  * @property string $name
  * @property int $participant_count
  * @property bool $pinned
- * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
- * @property \Illuminate\Database\Eloquent\Collection $scoreLinks ScoreLink
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, PlaylistItem> $playlist
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, ScoreLink> $scoreLinks
  * @property-read Season $season
  * @property \Carbon\Carbon $starts_at
  * @property bool $tournament_mode
@@ -75,7 +78,8 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
-    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', 'daily_challenge'];
+    const DAILY_CHALLENGE_CATEGORY = 'daily_challenge';
+    const CATEGORIES = ['normal', 'spotlight', 'featured_artist', self::DAILY_CHALLENGE_CATEGORY];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'ranked-play' => [self::RANKED_PLAY_TYPE],
@@ -254,7 +258,7 @@ class Room extends Model
     }
 
     /**
-     * See getCurrentPlaylistItemIdAttribute.
+     * See current_playlist_item_id.
      */
     public function currentPlaylistItem()
     {
@@ -373,14 +377,60 @@ class Room extends Model
         ", 'recent_participant_ids');
     }
 
-    public function getNameAttribute(?string $value): ?string
+    public function getAttribute($key)
     {
-        return $value === 'Unnamed room'
-            ? match ($this->type) {
-                'matchmaking' => 'Quick Play Match',
-                'ranked_play' => 'Ranked Play Match',
-                default => $value,
-            } : $value;
+        return match ($key) {
+            'auto_start_duration',
+            'category',
+            'channel_id',
+            'description',
+            'id',
+            'max_attempts',
+            'max_participants',
+            'participant_count',
+            'queue_mode',
+            'status',
+            'type',
+            'user_id' => $this->getRawAttribute($key),
+
+            'auto_skip',
+            'pinned',
+            'tournament_mode' => (bool) $this->getRawAttribute($key),
+
+            'created_at',
+            'deleted_at',
+            'ends_at',
+            'starts_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'current_playlist_item_id' => $this->findAndSetCurrentPlaylistItem()?->getKey(),
+            'name' => $this->getName(),
+            'password' => presence($this->getRawAttribute($key)),
+            'recent_participant_ids' => $this->getRecentParticipantIds(),
+
+            // relations
+            'channel',
+            'currentPlaylistItem',
+            'events',
+            'host',
+            'playlist',
+            'scoreLinks',
+            'season',
+            'userHighScores' => $this->getRelationValue($key),
+        };
+    }
+
+    public function getTypePretty(): string
+    {
+        if ($this->category === static::DAILY_CHALLENGE_CATEGORY) {
+            return 'daily challenge';
+        }
+
+        return match ($this->type) {
+            static::RANKED_PLAY_TYPE => 'ranked play',
+            static::PLAYLIST_TYPE => 'playlist',
+            default => 'multiplayer',
+        };
     }
 
     public function assertCorrectPassword(?string $password): void
@@ -472,24 +522,6 @@ class Room extends Model
     {
         // TODO: move grace period to config or use the beatmap's duration
         return $this->ends_at === null || Carbon::now()->lte($this->ends_at->addMinutes(5));
-    }
-
-    /**
-     * This allows nested preloading of playlist item relations.
-     *
-     * playlist should be preloaded beforehand unless it's for single Room model.
-     */
-    public function getCurrentPlaylistItemIdAttribute(): ?int
-    {
-        return $this->findAndSetCurrentPlaylistItem()?->getKey();
-    }
-
-    public function getRecentParticipantIdsAttribute()
-    {
-        return $this->memoize(
-            __FUNCTION__,
-            fn () => json_decode($this->attributes['recent_participant_ids'] ?? '', true) ?? []
-        );
     }
 
     /**
@@ -925,5 +957,24 @@ class Room extends Model
         // this is a defensive measure to prevent further breakage if the item's state is inconsistent
         // due to an external modification from osu-server-spectator.
         $playlistItem->assertValid();
+    }
+
+    private function getName(): ?string
+    {
+        $value = $this->getRawAttribute('name');
+        return $value === 'Unnamed room'
+            ? match ($this->type) {
+                'matchmaking' => 'Quick Play Match',
+                'ranked_play' => 'Ranked Play Match',
+                default => $value,
+            } : $value;
+    }
+
+    private function getRecentParticipantIds()
+    {
+        return $this->memoize(
+            __FUNCTION__,
+            fn () => json_decode($this->attributes['recent_participant_ids'] ?? '', true) ?? []
+        );
     }
 }

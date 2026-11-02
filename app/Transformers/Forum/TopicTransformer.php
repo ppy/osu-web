@@ -22,8 +22,8 @@ class TopicTransformer extends TransformerAbstract
     public function transform(Topic $topic): array
     {
         return [
-            'created_at' => json_time($topic->topic_time),
-            'deleted_at' => json_time($topic->deleted_at),
+            'created_at' => $topic->getJsonTime('topic_time'),
+            'deleted_at' => $topic->getJsonTime('deleted_at'),
             'first_post_id' => $topic->topic_first_post_id,
             'forum_id' => $topic->forum_id,
             'id' => $topic->getKey(),
@@ -32,7 +32,7 @@ class TopicTransformer extends TransformerAbstract
             'post_count' => $topic->postCount(),
             'title' => $topic->topic_title,
             'type' => $topic->typeStr($topic->topic_type),
-            'updated_at' => json_time($topic->topic_last_post_time),
+            'updated_at' => $topic->getJsonTime('topic_last_post_time'),
             'user_id' => $topic->topic_poster,
             'views' => $topic->topic_views,
         ];

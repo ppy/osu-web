@@ -15,7 +15,7 @@ class RealtimeRoomEventTransformer extends TransformerAbstract
     public function transform(RealtimeRoomEvent $event)
     {
         return [
-            'created_at' => json_time($event->created_at),
+            'created_at' => $event->getJsonTime('created_at'),
             'event_type' => $event->event_type,
             'id' => $event->getKey(),
             'playlist_item_id' => $event->playlist_item_id,

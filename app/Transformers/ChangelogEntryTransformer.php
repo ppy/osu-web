@@ -28,7 +28,7 @@ class ChangelogEntryTransformer extends TransformerAbstract
             'category' => $entry->category,
             'title' => $entry->title,
             'major' => $entry->major,
-            'created_at' => json_time($entry->created_at),
+            'created_at' => $entry->getJsonTime('created_at'),
         ];
     }
 

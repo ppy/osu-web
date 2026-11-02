@@ -301,6 +301,27 @@ export default class Controller {
     return xhr;
   }
 
+  @action
+  apiSetPinnedBadge(image: string | null): JQuery.jqXHR<CurrentUserJson> {
+    this.state.user.profile_pinned_badge = image;
+
+    this.xhr.setPinnedBadge?.abort();
+
+    const xhr = $.ajax(route('account.options'), {
+      data: {
+        user_profile_customization: {
+          profile_pinned_badge: image,
+        },
+      },
+      dataType: 'json',
+      method: 'PUT',
+    }).done(this.saveState) as JQuery.jqXHR<CurrentUserJson>;
+
+    this.xhr.setPinnedBadge = xhr;
+
+    return xhr;
+  }
+
   apiSetUserPage(newRaw: string): JQuery.jqXHR<{ html: string }> {
     this.xhr.setUserPage?.abort();
 

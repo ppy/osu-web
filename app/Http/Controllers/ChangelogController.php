@@ -82,7 +82,7 @@ class ChangelogController extends Controller
      *         "version": "20210520.2",
      *         "display_version": "20210520.2",
      *         "users": 23683,
-     *         "created_at": "2021-05-20T14:28:04+00:00",
+     *         "created_at": "2021-05-20T14:28:04Z",
      *         "update_stream": {
      *           "id": 5,
      *           "name": "stable40",
@@ -100,7 +100,7 @@ class ChangelogController extends Controller
      *       "version": "2021.619.1",
      *       "display_version": "2021.619.1",
      *       "users": 0,
-     *       "created_at": "2021-06-19T08:30:45+00:00",
+     *       "created_at": "2021-06-19T08:30:45Z",
      *       "update_stream": {
      *         "id": 7,
      *         "name": "lazer",
@@ -119,7 +119,7 @@ class ChangelogController extends Controller
      *           "title": "Fix game crashes due to attempting localisation load for unsupported locales",
      *           "message_html": null,
      *           "major": true,
-     *           "created_at": "2021-06-19T08:09:39+00:00",
+     *           "created_at": "2021-06-19T08:09:39Z",
      *           "github_user": {
      *             "display_name": "bdach",
      *             "github_url": "https://github.com/bdach",
@@ -302,7 +302,7 @@ class ChangelogController extends Controller
      *   "version": "20210520.2",
      *   "display_version": "20210520.2",
      *   "users": 22093,
-     *   "created_at": "2021-05-20T14:28:04+00:00",
+     *   "created_at": "2021-05-20T14:28:04Z",
      *   "update_stream": {
      *     "id": 5,
      *     "name": "stable40",
@@ -321,7 +321,7 @@ class ChangelogController extends Controller
      *       "title": "Spring is here!",
      *       "message_html": "<div class='changelog-md'><p class=\"changelog-md__paragraph\">New seasonal backgrounds ahoy! Amazing work by the artists.</p>\n</div>",
      *       "major": true,
-     *       "created_at": "2021-05-20T10:56:49+00:00",
+     *       "created_at": "2021-05-20T10:56:49Z",
      *       "github_user": {
      *         "display_name": "peppy",
      *         "github_url": null,
@@ -339,7 +339,7 @@ class ChangelogController extends Controller
      *       "version": "20210519.3",
      *       "display_version": "20210519.3",
      *       "users": 10,
-     *       "created_at": "2021-05-19T11:51:48+00:00",
+     *       "created_at": "2021-05-19T11:51:48Z",
      *       "update_stream": {
      *         "id": 5,
      *         "name": "stable40",

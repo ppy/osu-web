@@ -46,7 +46,7 @@ class MessagesController extends BaseController
      *     "message_id": 9150005004,
      *     "sender_id": 2,
      *     "channel_id": 5,
-     *     "timestamp": "2018-07-06T06:33:34+00:00",
+     *     "timestamp": "2018-07-06T06:33:34Z",
      *     "content": "i am a lazerface",
      *     "is_action": 0,
      *     "sender": {
@@ -65,7 +65,7 @@ class MessagesController extends BaseController
      *     "message_id": 9150005005,
      *     "sender_id": 102,
      *     "channel_id": 5,
-     *     "timestamp": "2018-07-06T06:33:42+00:00",
+     *     "timestamp": "2018-07-06T06:33:42Z",
      *     "content": "uh ok then",
      *     "is_action": 0,
      *     "sender": {
@@ -172,7 +172,7 @@ class MessagesController extends BaseController
      *   "message_id": 9150005004,
      *   "sender_id": 2,
      *   "channel_id": 5,
-     *   "timestamp": "2018-07-06T06:33:34+00:00",
+     *   "timestamp": "2018-07-06T06:33:34Z",
      *   "content": "i am a lazerface",
      *   "is_action": 0,
      *   "sender": {

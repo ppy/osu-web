@@ -560,7 +560,8 @@ function json_date(?DateTimeInterface $date): ?string
 
 function json_time(?DateTimeInterface $time): ?string
 {
-    return $time === null ? null : $time->format(DateTime::ATOM);
+    // like DateTime::ATOM but with `Z` for UTC timezone
+    return $time === null ? null : $time->format('Y-m-d\TH:i:sp');
 }
 
 function log_error($exception, ?array $sentryTags = null): void
@@ -1068,9 +1069,9 @@ function route_redirect($path, $target, string $method = 'get')
     return Route::$method($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
-function timeago($date)
+function timeago(\DateTimeInterface|string $date): string
 {
-    $formatted = json_time($date);
+    $formatted = is_string($date) ? $date : json_time($date);
 
     return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }

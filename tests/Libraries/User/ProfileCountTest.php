@@ -55,11 +55,12 @@ class ProfileCountTest extends TestCase
 
         $this->assertSame([
             'graveyard' => 1,
-            'loved' => 1,
-            'pending' => 1,
-            'qualified' => 1,
-            'ranked' => 2,
             'wip' => 1,
+            'pending' => 1,
+            'ranked' => 1,
+            'approved' => 1,
+            'qualified' => 1,
+            'loved' => 1,
         ], $user->profileCount()->beatmapsetStatusCounts());
 
         $this->assertSame(3, $user->profileCount()->get('rankedBeatmapsets'));

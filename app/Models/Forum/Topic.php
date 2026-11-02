@@ -484,8 +484,11 @@ class Topic extends Model implements AfterCommit
 
     public function pollEnd()
     {
-        if ($this->poll_start !== null && $this->poll_length !== 0) {
-            return $this->poll_start->copy()->addSeconds($this->poll_length);
+        $pollStart = $this->poll_start;
+        $pollLength = $this->poll_length;
+
+        if ($pollStart !== null && $pollLength !== 0) {
+            return $pollStart->copy()->addSeconds($pollLength);
         }
     }
 

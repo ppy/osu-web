@@ -47,7 +47,7 @@ class LegacyMatchesController extends Controller
      *     "matches": [
      *         {
      *             "id": 114428685,
-     *             "start_time": "2024-06-25T00:55:30+00:00",
+     *             "start_time": "2024-06-25T00:55:30Z",
      *             "end_time": null,
      *             "name": "peppy's game"
      *         },
@@ -116,8 +116,8 @@ class LegacyMatchesController extends Controller
      * @response {
      *     "match": {
      *         "id": 16155689,
-     *         "start_time": "2015-05-16T09:44:51+00:00",
-     *         "end_time": "2015-05-16T10:55:08+00:00",
+     *         "start_time": "2015-05-16T09:44:51Z",
+     *         "end_time": "2015-05-16T10:55:08Z",
      *         "name": "CWC 2015: (Australia) vs (Poland)"
      *     },
      *     "events": [
@@ -126,7 +126,7 @@ class LegacyMatchesController extends Controller
      *             "detail": {
      *                 "type": "match-created"
      *             },
-     *             "timestamp": "2015-05-16T09:44:51+00:00",
+     *             "timestamp": "2015-05-16T09:44:51Z",
      *             "user_id": null
      *         },
      *         // ...

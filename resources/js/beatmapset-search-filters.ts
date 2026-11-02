@@ -132,7 +132,7 @@ export class BeatmapsetSearchFilters {
   }
 
   @action
-  tagAdd(tag: BeatmapTag) {
+  tagAdd = (tag: BeatmapTag) => {
     const currentQuery = this.query;
     const tagString = tag.toQuery();
 
@@ -144,10 +144,13 @@ export class BeatmapsetSearchFilters {
       : `${tagString} `;
 
     this.update('query', newQuery);
-  }
+  };
+
+  tagEnabled = (tag: BeatmapTag) =>
+    (this.query ?? '').toLowerCase().includes(tag.toQuery().toLowerCase());
 
   @action
-  tagRemove(tag: BeatmapTag) {
+  tagRemove = (tag: BeatmapTag) => {
     const currentQuery = this.query;
 
     if (currentQuery === null) {
@@ -159,7 +162,7 @@ export class BeatmapsetSearchFilters {
       .replace('  ', ' ')
       .trim();
     this.update('query', newQuery);
-  }
+  };
 
   toKeyString() {
     return keyNames.map((key) => `${key}=${this.selectedValue(key)}`).join('&');

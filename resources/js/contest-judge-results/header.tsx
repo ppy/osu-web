@@ -51,6 +51,13 @@ export default class Header extends React.PureComponent<Props> {
           <OptionText entry={this.props.entry} />
         </SelectOptions>
 
+        {!this.props.contest.show_votes && (
+          <div className='contest-judge-results-header__warning'>
+            <div>{trans('contest.judge_results.provisional')}</div>
+            <div>{trans('contest.judge_results.hosts_only')}</div>
+          </div>
+        )}
+
         <div className='contest-judge-results-header__values'>
           {totalScoreStd != null && (
             <ValueDisplay

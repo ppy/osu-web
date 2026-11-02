@@ -64,7 +64,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver(): RemoteWebDriver
     {
-        // this is a copy of the original with --no-sandbox added (and linted)
+        // this is a copy of the original with "secure" and sandbox options added (and linted)
         $options = (new ChromeOptions())->addArguments(collect([
             $this->shouldStartMaximized() ? '--start-maximized' : '--window-size=1920,1080',
             '--disable-search-engine-choice-screen',
@@ -74,6 +74,7 @@ abstract class DuskTestCase extends BaseTestCase
                 '--disable-gpu',
                 '--headless=new',
                 '--no-sandbox',
+                "--unsafely-treat-insecure-origin-as-secure={$GLOBALS['cfg']['app']['url']}",
             ]);
         })->all());
 

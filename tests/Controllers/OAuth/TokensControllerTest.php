@@ -10,7 +10,6 @@ use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
-use Database\Factories\OAuth\ClientFactory;
 use Database\Factories\OAuth\RefreshTokenFactory;
 use Database\Factories\UserFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -57,10 +56,7 @@ class TokensControllerTest extends TestCase
         \Mail::fake();
 
         $user = User::factory()->create();
-        $client = (new ClientFactory())->create([
-            'grant_types' => ['password'],
-            'password_client' => true,
-        ]);
+        $client = Client::factory()->passwordClient()->create();
 
         $this->expectCountChange(fn () => $user->tokens()->count(), 1);
 
@@ -88,7 +84,7 @@ class TokensControllerTest extends TestCase
     {
         \Mail::fake();
 
-        $client = Client::factory()->create(['password_client' => true]);
+        $client = Client::factory()->passwordClient()->create();
         $accessToken = Token::factory()->create([
             'client_id' => $client,
             'scopes' => ['*'],

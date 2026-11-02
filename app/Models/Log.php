@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use App\Casts\TimestampOrZero;
+
 /**
  * @property Forum\Forum $forum
  * @property int $forum_id
@@ -35,8 +37,7 @@ class Log extends Model
 
     public $timestamps = false;
 
-    protected $casts = ['log_time' => 'datetime'];
-    protected $dateFormat = 'U';
+    protected $casts = ['log_time' => TimestampOrZero::class];
     protected $primaryKey = 'log_id';
     protected $table = 'phpbb_log';
 

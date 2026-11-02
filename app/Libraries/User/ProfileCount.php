@@ -30,6 +30,7 @@ class ProfileCount
 
     private readonly int $beatmapsModded;
     private readonly array $beatmapsetCountsByApproved;
+    private readonly array $beatmapsetsByProfileSection;
     private readonly int $issuesResolved;
 
     public function __construct(private readonly User $user)
@@ -68,16 +69,13 @@ class ProfileCount
     public function beatmapsetStatusCounts(): array
     {
         $counts = $this->beatmapsetCountsByApproved();
-        $count = fn (string $state): int => (int) ($counts[Beatmapset::STATES[$state]] ?? 0);
+        $result = [];
 
-        return [
-            'graveyard' => $count('graveyard'),
-            'loved' => $count('loved'),
-            'pending' => $count('pending'),
-            'qualified' => $count('qualified'),
-            'ranked' => $count('ranked') + $count('approved'),
-            'wip' => $count('wip'),
-        ];
+        foreach (Beatmapset::STATES as $state => $approved) {
+            $result[$state] = (int) ($counts[$approved] ?? 0);
+        }
+
+        return $result;
     }
 
     private function beatmapsModded(): int
@@ -106,15 +104,19 @@ class ProfileCount
 
     private function beatmapsetsByProfileSection(): array
     {
-        $counts = [];
+        if (!isset($this->beatmapsetsByProfileSection)) {
+            $counts = [];
 
-        foreach ($this->beatmapsetCountsByApproved() as $approved => $count) {
-            $section = static::BEATMAPSET_PROFILE_SECTION_MAP[$approved];
-            $counts[$section] ??= 0;
-            $counts[$section] += $count;
+            foreach ($this->beatmapsetCountsByApproved() as $approved => $count) {
+                $section = static::BEATMAPSET_PROFILE_SECTION_MAP[$approved];
+                $counts[$section] ??= 0;
+                $counts[$section] += $count;
+            }
+
+            $this->beatmapsetsByProfileSection = $counts;
         }
 
-        return $counts;
+        return $this->beatmapsetsByProfileSection;
     }
 
     private function issuesResolved(): int

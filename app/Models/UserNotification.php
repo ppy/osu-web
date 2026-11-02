@@ -145,4 +145,22 @@ class UserNotification extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'delivery',
+            'id',
+            'notification_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'is_read' => (bool) $this->getRawAttribute($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'notification',
+            'user' => $this->getRelationValue($key),
+        };
+    }
 }
