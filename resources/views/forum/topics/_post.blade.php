@@ -101,7 +101,7 @@
                     {!!
                         osu_trans_choice('forum.post.edited', $post->post_edit_count, [
                             'user' => link_to_user($post->lastEditorNormalized(), null, '', []),
-                            'when' => timeago($post->post_edit_time),
+                            'when' => timeago($post->getJsonTime('post_edit_time') ?? $post->getJsonTime('post_time')),
                         ])
                     !!}
                 </div>
