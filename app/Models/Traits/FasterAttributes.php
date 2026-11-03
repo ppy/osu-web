@@ -27,7 +27,7 @@ trait FasterAttributes
         $value = $this->getRawAttribute($key);
 
         if ($cast === TimestampOrZero::class) {
-            return $value === null
+            return $value === null || $value === 0
                 ? null
                 : json_time(\DateTime::createFromTimestamp($value));
         }
