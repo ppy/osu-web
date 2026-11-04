@@ -118,7 +118,7 @@ export class Header extends React.Component<Props> {
   private renderDownloadButtons() {
     if (core.currentUser == null) {
       return (
-        <div className={"beatmap-discussions-header-bottom__details"}>
+        <div className='beatmap-discussions-header-bottom__details'>
           <BigButton
             extraClasses={['js-user-link']}
             icon='fas fa-lock'
@@ -137,7 +137,7 @@ export class Header extends React.Component<Props> {
     const legacyScoreOnly = core.userPreferences.get('legacy_score_only');
 
     return (
-      <div className={"beatmap-discussions-header-bottom__details"}>
+      <div className='beatmap-discussions-header-bottom__details'>
         {this.downloadButton(
           route('beatmapsets.download', { beatmapset: this.beatmapset.id }),
           trans('beatmapsets.show.details.download._'),
