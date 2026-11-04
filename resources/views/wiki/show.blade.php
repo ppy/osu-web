@@ -3,15 +3,16 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $url = wiki_url($page->path, $page->requestedLocale);
+    $displayLocale = $page->requestedLocale;
+    $url = wiki_url($page->path, $displayLocale);
     $title = $page->title();
 
     $links = [];
 
     if (!($legal ?? false)) {
         $links[] = [
-            'title' => osu_trans('layout.header.help.index'),
-            'url' => wiki_url('Main_page', $page->requestedLocale),
+            'title' => osu_trans('layout.header.help.index', [], $displayLocale),
+            'url' => wiki_url('Main_page', $displayLocale),
         ];
     }
 
@@ -19,7 +20,7 @@
     if ($parentTitle !== null) {
         $link = ['title' => $parentTitle];
         if ($page->hasParent()) {
-            $link['url'] = wiki_url($page->parentPath(), $page->requestedLocale);
+            $link['url'] = wiki_url($page->parentPath(), $displayLocale);
         }
         $links[] = $link;
     }
@@ -53,7 +54,7 @@
                         data-mobile-toggle-target="wiki-toc"
                     >
                         <h2 class="sidebar__title">
-                            {{ osu_trans('wiki.show.toc') }}
+                            {{ osu_trans('wiki.show.toc', [], $displayLocale) }}
                         </h2>
 
                         <div class="visible-xs sidebar__mobile-toggle-icon">
@@ -77,13 +78,15 @@
                 @else
                     <div class="wiki-content">
                         <p>
-                            {{ osu_trans('wiki.show.missing', ['keyword' => $page->path ]) }}
+                            {{ osu_trans('wiki.show.missing', ['keyword' => $page->path], $displayLocale) }}
                         </p>
 
                         <p>
-                            {!! osu_trans('wiki.show.search', ['link' =>
-                                link_to(route('search', ['mode' => 'wiki_page', 'query' => $page->path]), $page->path)
-                            ]) !!}
+                            {!! osu_trans(
+                                'wiki.show.search',
+                                ['link' => link_to(route('search', ['mode' => 'wiki_page', 'query' => $page->path]), $page->path)],
+                                $displayLocale
+                            ) !!}
                         </p>
                     </div>
                 @endif

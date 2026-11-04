@@ -22,7 +22,7 @@ import TracklistTrack from 'components/tracklist-track';
 import { UserCard } from 'components/user-card';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
-import { WikiSearch } from 'components/wiki-search';
+import WikiSearch from 'components/wiki-search';
 import { observable } from 'mobx';
 import NotificationWidget from 'notification-widget/main';
 import core from 'osu-core-singleton';
@@ -162,7 +162,7 @@ core.reactTurbolinks.register('user-cards', (container) => (
 ));
 
 core.reactTurbolinks.register('wiki-search', (container) => (
-  <WikiSearch locale={reqStr(container.dataset.locale)} />
+  <WikiSearch {...reqJson(container.dataset.props)} />
 ));
 
 core.reactTurbolinks.register('landing-news', () => (
