@@ -10,7 +10,6 @@
   --score-link-bg: transparent;
   --team-indicator-display: none;
   --team-indicator-size: 0;
-  --position-display: flex;
   --zero-opacity: 0.4;
   background-color: @osu-colour-b2;
   display: grid;
@@ -26,7 +25,6 @@
     --padding-left-desktop: 0;
     --team-indicator-display: block;
     --team-indicator-size: 10px;
-    --position-display: none;
   }
 
   @media @desktop {
@@ -104,7 +102,6 @@
     &--position {
       .fancy-text(var(--colour));
       grid-column: 1;
-      display: var(--position-display);
 
       @media @desktop {
         grid-column: initial;
