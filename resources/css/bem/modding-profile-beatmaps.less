@@ -1,0 +1,83 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.modding-profile-beatmaps {
+  @_top: modding-profile-beatmaps;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  min-height: calc(120px + var(--padding));
+  padding: 0 var(--padding) var(--padding);
+
+  &--empty {
+    .center-content(flex);
+    flex-direction: column;
+    gap: 5px;
+    color: hsl(var(--hsl-f1));
+    font-size: @font-size--normal;
+    text-align: center;
+  }
+
+  &__empty-icon {
+    font-size: 24px; // icon size
+    display: contents;
+  }
+
+  &__chart {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__label {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  &__legend {
+    display: grid;
+    grid-template-columns: minmax(0, max-content) auto;
+    gap: 4px 20px;
+    min-width: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: @font-size--normal;
+  }
+
+  &__legend-item {
+    .fade-element(@hover-transition-duration);
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: center;
+
+    &--dimmed {
+      opacity: 0.4;
+    }
+  }
+
+  &__swatch {
+    width: 2px;
+    height: 10px;
+    border-radius: 10000px;
+    background-color: var(--colour);
+  }
+
+  &__value {
+    color: hsl(var(--hsl-c2));
+    font-weight: bold;
+    white-space: nowrap;
+
+    .@{_top}__legend-item--highlighted & {
+      color: hsl(var(--hsl-c1));
+    }
+  }
+}

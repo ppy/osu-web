@@ -212,6 +212,11 @@ return [
             ],
         ],
 
+        'beatmaps' => [
+            'empty' => 'Beatmap counts will show here\nonce you submit beatmaps!',
+            'title' => 'Beatmaps',
+        ],
+
         'comments_count' => [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',
@@ -497,6 +502,10 @@ return [
             'wins' => 'Wins',
         ],
 
+        'modding' => [
+            'title' => 'Modding',
+        ],
+
         'not_found' => [
             'reason_1' => 'They may have changed their username.',
             'reason_2' => 'The account may be temporarily unavailable due to security or abuse issues.',
@@ -555,10 +564,9 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
-            // modding stats
+            // beatmap counts
             'approved_beatmapset_count' => 'Approved Beatmaps',
             'beatmaps_modded_count' => 'Total Beatmaps Modded',
-            'empty' => 'Beatmap counts will show here\nonce you submit beatmaps!',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
             'guest_beatmapset_count' => 'Guest Participation Beatmaps',
             'issues_resolved_count' => 'Issues Resolved',
@@ -567,7 +575,6 @@ return [
             'pending_beatmapset_count' => 'Pending Beatmaps',
             'qualified_beatmapset_count' => 'Qualified Beatmaps',
             'ranked_beatmapset_count' => 'Ranked Beatmaps',
-            'title' => 'Stats',
             'wip_beatmapset_count' => 'Work In Progress Beatmaps',
         ],
     ],
