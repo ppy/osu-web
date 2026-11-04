@@ -29,33 +29,6 @@
     --position-display: none;
   }
 
-  &--position {
-    // workaround for implementing gradiented border
-    &:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      padding: 1px;
-      border-radius: @border-radius-large;
-      background: linear-gradient(168deg, var(--colour) 0%, transparent 30%);
-      mask:
-        linear-gradient(#000 0 0) exclude,
-        linear-gradient(#000 0 0) content-box;
-    }
-
-    &-1 {
-      --colour: @osu-colour-orange-1;
-    }
-
-    &-2 {
-      --colour: #9a9a9a;
-    }
-
-    &-3 {
-      --colour: #ff884d;
-    }
-  }
-
   @media @desktop {
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
