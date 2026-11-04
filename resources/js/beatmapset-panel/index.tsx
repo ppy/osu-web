@@ -140,8 +140,10 @@ export default class BeatmapsetPanel extends React.Component<Props> {
       return { title: trans('beatmapsets.availability.disabled') };
     }
 
+    const legacyScoreOnly = core.userPreferences.get('legacy_score_only');
+
     let type = core.userPreferences.get('beatmapset_download');
-    if (type === 'direct' && !core.currentUser.is_supporter) {
+    if (type === 'direct' && !core.currentUser.is_supporter && legacyScoreOnly) {
       type = 'all';
     }
 
@@ -150,7 +152,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
     if (type === 'direct') {
       url = beatmapsetDownloadDirect(this.props.beatmapset.id);
-      titleVariant = 'direct';
+      titleVariant = legacyScoreOnly ? 'direct' : 'lazer';
     } else {
       const params: Record<string, string|number> = {
         beatmapset: this.props.beatmapset.id,

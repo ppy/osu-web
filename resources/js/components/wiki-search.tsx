@@ -4,17 +4,17 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import { wikiUrl } from 'utils/url';
 import WikiSearchController, { SuggestionJson } from 'wiki-search-controller';
 
 interface Props {
   locale: string;
+  placeholder: string;
 }
 
 @observer
-export class WikiSearch extends React.Component<Props> {
+export default class WikiSearch extends React.PureComponent<Props> {
   private readonly controller = new WikiSearchController(this.props.locale);
   private readonly ref = React.createRef<HTMLDivElement>();
   private readonly selectedRef = React.createRef<HTMLAnchorElement>();
@@ -81,7 +81,7 @@ export class WikiSearch extends React.Component<Props> {
             className='wiki-search__input'
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            placeholder={trans('common.input.search')}
+            placeholder={this.props.placeholder}
             value={this.controller.displayText}
           />
           <button className='wiki-search__button' onClick={this.handleSearch}>
