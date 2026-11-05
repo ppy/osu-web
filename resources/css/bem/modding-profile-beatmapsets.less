@@ -2,8 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .modding-profile-beatmapsets {
-  @_top: modding-profile-beatmapsets;
-
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-evenly;
@@ -53,6 +51,7 @@
   }
 
   &__legend-item {
+    --value-colour: hsl(var(--hsl-c2));
     .fade-element(@hover-transition-duration);
     display: grid;
     grid-template-columns: subgrid;
@@ -61,6 +60,10 @@
 
     &--dimmed {
       opacity: 0.4;
+    }
+
+    &--highlighted {
+      --value-colour: hsl(var(--hsl-c1));
     }
   }
 
@@ -72,12 +75,8 @@
   }
 
   &__value {
-    color: hsl(var(--hsl-c2));
+    color: var(--value-colour);
     font-weight: bold;
     white-space: nowrap;
-
-    .@{_top}__legend-item--highlighted & {
-      color: hsl(var(--hsl-c1));
-    }
   }
 }
