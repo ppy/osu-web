@@ -96,8 +96,6 @@ export default class Modding extends React.PureComponent<Props> {
             />
           </div>
         </div>
-        <div className='profile-detail-stats-card__decor-corner' />
-        <div className='profile-detail-stats-card__decor' />
       </div>
     );
   }

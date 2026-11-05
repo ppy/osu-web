@@ -67,8 +67,6 @@ export default class Beatmaps extends React.PureComponent<Props, State> {
           </div>
         </div>
         {this.renderBody()}
-        <div className='profile-detail-stats-card__decor-corner' />
-        <div className='profile-detail-stats-card__decor' />
       </div>
     );
   }
