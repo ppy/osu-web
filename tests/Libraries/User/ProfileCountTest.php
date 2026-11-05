@@ -50,7 +50,6 @@ class ProfileCountTest extends TestCase
         Beatmapset::factory()->owner($user)->qualified()->create();
         Beatmapset::factory()->owner($user)->pending()->create();
         Beatmapset::factory()->owner($user)->state(['approved' => Beatmapset::STATES['wip']])->create();
-        Beatmapset::factory()->owner($user)->state(['approved' => Beatmapset::STATES['loved']])->create();
         Beatmapset::factory()->owner($user)->state(['approved' => Beatmapset::STATES['graveyard']])->create();
 
         $this->assertSame([
@@ -60,11 +59,12 @@ class ProfileCountTest extends TestCase
             'ranked' => 1,
             'approved' => 1,
             'qualified' => 1,
-            'loved' => 1,
         ], $user->profileCount()->beatmapsetStatusCounts());
 
         $this->assertSame(3, $user->profileCount()->get('rankedBeatmapsets'));
         $this->assertSame(2, $user->profileCount()->get('pendingBeatmapsets'));
+        $this->assertSame(0, $user->profileCount()->get('lovedBeatmapsets'));
+        $this->assertSame([], User::factory()->create()->profileCount()->beatmapsetStatusCounts());
     }
 
     public function testIssuesResolvedCount(): void

@@ -72,7 +72,9 @@ class ProfileCount
         $result = [];
 
         foreach (Beatmapset::STATES as $state => $approved) {
-            $result[$state] = (int) ($counts[$approved] ?? 0);
+            if (isset($counts[$approved])) {
+                $result[$state] = (int) $counts[$approved];
+            }
         }
 
         return $result;
