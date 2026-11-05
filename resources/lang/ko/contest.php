@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => '심사 결과',
         'creator' => '제작자',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => '점수',
         'score_std' => '표준화된 점수',
         'total_score' => '총 점수',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => '이 콘테스트의 심사위원입니다. 출품작의 심사는 이곳에서 하세요!',
         'judged_notice' => '이 콘테스트는 심사 시스템을 사용하고 있으며, 심사위원이 현재 출품작을 처리하고 있습니다.',
         'login_required' => '투표하려면 로그인해주세요.',

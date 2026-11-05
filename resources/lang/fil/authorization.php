@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Hindi ma-undo ang hyping.',
             'has_reply' => 'Hindi matanggal ang talakayan na may mga tugon',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Naabot mo na ang iyong limitasyon sa paghahalal ngayong araw na ito, subukan mo ulit bukas.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Ikaw lang ang makapagtanggal ng sarili mong mga post.',
             'resolved' => 'Hindi mo maaaring tanggalin ang isang post ng isang naresolbang talakayan.',
             'system_generated' => 'Ang awtomatikong post na nabuo ay hindi maaaring tanggalin.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Ang poster lang ang makakapag-edit ng post.',
             'resolved' => 'Hindi mo maaaring baguhin ang isang post ng naresolbang talakayan.',
             'system_generated' => 'Ang awtomatikong post na nabuo ay hindi maaaring baguhin.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

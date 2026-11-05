@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Sonuçlar değerlendiriliyor',
         'creator' => 'yapımcı',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Skor',
         'score_std' => 'Standardize puan',
         'total_score' => 'toplam skor',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Bu yarışmanın jürisi sensin. Yapımları değerlendir!',
         'judged_notice' => 'Bu yarışma yargı sistemini kullanıyor, yargılar şu anda girişleri işliyor.',
         'login_required' => 'Oylamak için lütfen giriş yapınız.',

@@ -18,6 +18,16 @@ return [
         'empty' => 'Нищо не се е случило... още.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'изтрито',
         'none_found' => 'Няма намерена дискусия, която отговаря на критерия за търсене.',

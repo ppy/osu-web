@@ -42,6 +42,7 @@ return [
             'video' => 'stiahnuť s videom',
             'no_video' => 'stiahnuť bez videa',
             'direct' => 'otvoriť v osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Stiahnuť',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'bez Videa',
                 'video' => 's Videom',
             ],

@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'претходно познати као',
         'plays_with' => 'Игра са :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Постовао :link',
             'count' => ':count_delimited коментар|:count_delimited коментара',
@@ -567,6 +574,12 @@ return [
         'all' => 'Све',
         'online' => 'Доступан',
         'offline' => 'Офлајн',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'молимо Вас да се региструјете преко клијента игре!',

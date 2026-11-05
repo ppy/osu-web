@@ -129,6 +129,7 @@ return [
             '_' => 'zadana vrsta za preuzimanje beatmap-a',
             'all' => 'sa videom ako je dostupno',
             'direct' => 'otvori u osu!direct',
+            'lazer' => '',
             'no_video' => 'bez videa',
         ],
     ],

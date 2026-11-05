@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Bedømmer resultater',
         'creator' => 'kreatør',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Score',
         'score_std' => 'Standardiseret Score',
         'total_score' => 'samlet score',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Du er dommeren af denne konkurrence. Bedøm indlæg her!',
         'judged_notice' => 'Denne konkurrence benytter bedømmelsessystemet, dommerne behandler i øjeblikket indlæggene.',
         'login_required' => 'Log venligst ind for at stemme.',

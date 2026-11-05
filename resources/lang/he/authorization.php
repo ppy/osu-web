@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'אי אפשר לבטל את ההתרגשות.',
             'has_reply' => 'לא ניתן למחוק דיונים המכילים מענה',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'אינך יכול להגיש עוד מועמדויות להיום, אנא נסה מחר שוב.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'אתה יכול למחוק רק את הפוסטים שלך.',
             'resolved' => 'אתה לא יכול למחוק פוסט של מקרה פתור.',
             'system_generated' => 'אי אפשר לערוך פוסט שנוצר באופן אוטומטי.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'רק המעלה יכול לערוך את הפוסט.',
             'resolved' => 'אתה לא יכול לערוך פוסט של מקרה פתור.',
             'system_generated' => 'אי אפשר לערוך פוסט שנוצר באופן אוטומטי.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

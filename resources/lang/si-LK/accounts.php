@@ -129,6 +129,7 @@ return [
             '_' => '',
             'all' => '',
             'direct' => '',
+            'lazer' => '',
             'no_video' => '',
         ],
     ],

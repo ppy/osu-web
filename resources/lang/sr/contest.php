@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => '',
         'creator' => 'аутор',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Резултат',
         'score_std' => '',
         'total_score' => 'укупан резултат',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => '',
         'judged_notice' => '',
         'login_required' => 'Молимо Вас да се пријавите како би сте гласали.',

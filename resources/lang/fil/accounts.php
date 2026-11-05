@@ -131,6 +131,7 @@ return [
             '_' => 'palagiang uri ng pagda-download ng beatmap',
             'all' => 'may video kung mayroon',
             'direct' => 'buksan sa osu!direct',
+            'lazer' => '',
             'no_video' => 'walang video',
         ],
     ],

@@ -42,6 +42,7 @@ return [
             'video' => 'preuzmi uz video',
             'no_video' => 'preuzmi bez videa',
             'direct' => 'otvori u osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Preuzmi',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'bez videa',
                 'video' => 'sa videom',
             ],

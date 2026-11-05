@@ -60,9 +60,9 @@ return [
         ],
 
         'secret' => [
-            'copy' => '',
-            'generate_new' => '',
-            'visible_once' => '',
+            'copy' => 'Asegúrate de copiar el valor antes de cerrar la ventana.',
+            'generate_new' => 'Restablece el cliente secreto para generar uno nuevo.',
+            'visible_once' => 'El cliente secreto solo es visible tras su creación inicial.',
         ],
     ],
 ];

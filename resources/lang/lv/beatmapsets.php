@@ -42,6 +42,7 @@ return [
             'video' => 'lejupielādēt ar video',
             'no_video' => 'lejupielādēt bez video',
             'direct' => 'atvērt ar osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Lejupielādēt',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'bez Video',
                 'video' => 'ar Video',
             ],

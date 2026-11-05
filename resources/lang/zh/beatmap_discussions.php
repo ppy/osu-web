@@ -18,6 +18,16 @@ return [
         'empty' => '目前还没有什么事件……呢。',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '已删除',
         'none_found' => '找不到符合条件的讨论内容',

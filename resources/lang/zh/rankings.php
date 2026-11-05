@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '难度',
-        'theme' => '',
+        'theme' => '主题',
         'top_10p' => '前 10% 成绩',
         'top_50p' => '前 50% 成绩',
         'unavailable' => [

@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Складність',
-        'theme' => '',
+        'theme' => 'Тема',
         'top_10p' => 'Для досягнення топ 10%',
         'top_50p' => 'Для досягнення топ 50%',
         'unavailable' => [

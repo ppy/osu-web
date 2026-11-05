@@ -18,6 +18,16 @@ return [
         'empty' => 'Nu s-a întâmplat nimic... încă.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'șters',
         'none_found' => 'Nu au fost găsite discuții potrivite pentru criteriile de căutare.',

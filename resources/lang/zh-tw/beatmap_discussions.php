@@ -18,6 +18,16 @@ return [
         'empty' => '什麼都還沒有發生…',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '已刪除',
         'none_found' => '找不到符合條件的討論內容',

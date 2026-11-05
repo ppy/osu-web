@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Bedömningsresultat',
         'creator' => 'skapare',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Poäng',
         'score_std' => 'Standardiserad poäng',
         'total_score' => 'total poäng',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Du är domare i denna tävling. Bedöm bidragen här!',
         'judged_notice' => 'Denna tävling använder bedömningssystemet, bedömarna bearbetar för närvarande bidragen.',
         'login_required' => 'Var vänlig logga in för att rösta.',

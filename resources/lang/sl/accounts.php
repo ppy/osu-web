@@ -129,6 +129,7 @@ return [
             '_' => 'privzeti tip prenosa beatmape',
             'all' => 'z videoposnetkom',
             'direct' => 'odpri v osu!direct',
+            'lazer' => '',
             'no_video' => 'brez videoposnetka',
         ],
     ],

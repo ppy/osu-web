@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'таксама вядомы як',
         'plays_with' => 'Гуляе з :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Апублікавана :link',
             'count' => ':count_delimited каментарый|:count_delimited каментарыі',
@@ -567,6 +574,12 @@ return [
         'all' => 'Усе',
         'online' => 'У сетцы',
         'offline' => 'Не ў сетцы',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'калі ласка, зарэгіструйцеся праз гульнявой кліент!',

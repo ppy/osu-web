@@ -18,6 +18,16 @@ return [
         'empty' => 'Нічога не адбылося... яшчэ.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'выдалена',
         'none_found' => 'Не знойдзена абмеркаванняў, супадаючых з гэтымі крытэрыямі пошука.',

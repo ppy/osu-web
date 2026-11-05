@@ -18,6 +18,16 @@ return [
         'empty' => 'No ha passat res... encara.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'eliminat',
         'none_found' => 'No s\'ha trobat cap discussió que coincideixi amb aquests criteris de cerca.',

@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'tunnettiin aiemmin nimellä',
         'plays_with' => 'Pelityyli: :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Julkaissut :link',
             'count' => ':count_delimited kommentin|:count_delimited kommenttia',
@@ -217,7 +224,7 @@ return [
             'daily' => 'Päivittäinen Putki',
             'daily_streak_best' => 'Paras Päivittäinen Putki',
             'daily_streak_current' => 'Nykyinen Päivittäinen Putki',
-            'playcount' => 'Osallistuminen Yhteensä',
+            'playcount' => 'Osallistumiset Yhteensä',
             'title' => 'Päivittäinen\nHaaste',
             'top_10p_placements' => 'Top 10% -Sijoitukset',
             'top_50p_placements' => 'Top 50% -Sijoitukset',
@@ -519,7 +526,7 @@ return [
             'global_simple' => 'Maailmanlaajuinen sijoitus',
             'highest' => 'Korkein sija :rank oli :date',
             'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_simple' => 'Kudosu sijoitus',
         ],
         'score_processing' => [
             'title' => 'Uutta tähtiluokitus / PP algoritmia :link.',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Pisteitä yhteensä',
             // modding stats
             'graveyard_beatmapset_count' => 'Haudatut rytmikartat',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Vierasyhteisön Rytmikartat',
             'loved_beatmapset_count' => 'Rakastetut rytmikartat',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Ehdollepannut Rankatut Rytmikartat',
             'pending_beatmapset_count' => 'Vireillä olevat rytmikartat',
             'ranked_beatmapset_count' => 'Rankatut rytmikartat',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Kaikki',
         'online' => 'Paikalla',
         'offline' => 'Ei paikalla',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'rekisteröidy pelin kautta!',

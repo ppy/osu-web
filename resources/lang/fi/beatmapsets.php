@@ -42,6 +42,7 @@ return [
             'video' => 'lataa videon kanssa',
             'no_video' => 'lataa ilman videota',
             'direct' => 'avaa osu!directissä',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Lataa',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'ilman videota',
                 'video' => 'videon kanssa',
             ],

@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Rezultate evaluare',
         'creator' => 'creator',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Scor',
         'score_std' => 'Scor Standardizat',
         'total_score' => 'scor total',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Sunteți un evaluator al acestui concurs. Evaluați intrările aici!',
         'judged_notice' => 'Acest concurs folosește sistemul prin evaluări. Evaluatorii procesează intrările momentan.',
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',

@@ -60,9 +60,9 @@ return [
         ],
 
         'secret' => [
-            'copy' => '',
-            'generate_new' => '',
-            'visible_once' => '',
+            'copy' => '请确保在离开页面之前将密钥复制到其他地方。',
+            'generate_new' => '重置第三方应用密钥将生成一个新的密钥。',
+            'visible_once' => '第三方应用密钥只在首次创建完成时可见。',
         ],
     ],
 ];

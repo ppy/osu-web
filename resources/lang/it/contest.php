@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Risultati della valutazione',
         'creator' => 'autore',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Punteggio',
         'score_std' => 'Punteggio standardizzato',
         'total_score' => 'punteggio totale',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Sei un giudice di questo concorso. Valuta qui le iscrizioni!',
         'judged_notice' => 'Questo concorso sta utilizzando il sistema di valutazione, i giudici stanno attualmente analizzando le voci.',
         'login_required' => 'Effettua il login per poter votare.',

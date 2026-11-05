@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => '',
         'creator' => '',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => '',
         'score_std' => '',
         'total_score' => '',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => '',
         'judged_notice' => '',
         'login_required' => '',

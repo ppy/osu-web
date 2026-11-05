@@ -38,7 +38,7 @@ return [
         'resolved' => 'Išspręsta',
         'restore' => 'atkurti',
         'show_deleted' => 'Peržiūrėti ištrintus',
-        'show_other_replies' => '',
+        'show_other_replies' => 'Rodyti kitus atsakymus',
         'title' => 'Diskusijos',
         'unresolved_count' => '',
 

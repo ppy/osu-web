@@ -60,9 +60,9 @@ return [
         ],
 
         'secret' => [
-            'copy' => '',
-            'generate_new' => '',
-            'visible_once' => '',
+            'copy' => '在離開前請先確認你已經複製好密鑰。',
+            'generate_new' => '重置客戶端密鑰來生成一組新的。',
+            'visible_once' => '客戶端密鑰只會在剛建立時顯示。',
         ],
     ],
 ];

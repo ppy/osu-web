@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'dříve znám jako',
         'plays_with' => 'Hraje s :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Postnul :link',
             'count' => ':count_delimited komentář|:count_delimited komentáře|:count_delimited komentářů',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Umístění',
             'rating' => 'Hodnocení',
             'recent_history' => 'Historie posledních zápasů',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Nedostatek dat pro zobrazení přesných statistik. Zahraj si více her!',
             'tier' => 'Úroveň',
             'title' => 'Hodnocená hra',
             'wins' => 'Výhry',
@@ -514,12 +521,12 @@ return [
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',
-            'country_simple' => 'Místní hodnocení',
+            'country_simple' => 'Místní pozice',
             'global' => 'Globální pozice pro :mode',
-            'global_simple' => 'Světové hodnocení',
+            'global_simple' => 'Světová pozice',
             'highest' => 'Nejvyšší umístění :rank dne :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'Pozice se zobrazuje pouze po vstupu do top 1000',
+            'kudosu_simple' => 'Kudosu pozice',
         ],
         'score_processing' => [
             'title' => ':link nového algoritmu pro počet hvězd / PP.',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Celkové skóre',
             // modding stats
             'graveyard_beatmapset_count' => 'Pohřbené beatmapy',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Beatmapy s účastí jako host',
             'loved_beatmapset_count' => 'Beatmapy oblíbené komunitou',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Nominované hodnocené beatmapy',
             'pending_beatmapset_count' => 'Čekající beatmapy',
             'ranked_beatmapset_count' => 'Hodnocené beatmapy',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Všichni',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'prosím, zaregistruj se přes herního klienta!',

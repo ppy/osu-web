@@ -18,6 +18,16 @@ return [
         'empty' => 'Nic się nie wydarzyło... jeszcze.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'usunięta',
         'none_found' => 'Nie znaleziono dyskusji pasujących do podanych kryteriów wyszukiwania.',

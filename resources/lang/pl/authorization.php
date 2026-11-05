@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Nie możesz cofnąć nagłośnienia.',
             'has_reply' => 'Nie możesz usunąć dyskusji z odpowiedziami',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Osiągnięto dzienny limit nominacji, spróbuj ponownie jutro.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Możesz usuwać tylko swoje posty.',
             'resolved' => 'Nie możesz usunąć posta z rozwiązanej dyskusji.',
             'system_generated' => 'Nie możesz usunąć automatycznie wygenerowanego posta.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Tylko autor posta może go edytować.',
             'resolved' => 'Nie możesz edytować posta z rozwiązanej dyskusji.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

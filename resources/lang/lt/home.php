@@ -93,7 +93,7 @@ return [
         'other_os' => 'kitos platformos',
         'quick_start_guide' => 'pagalba pradedančiam',
         'stable_text' => 'jei ieškote senesnio',
-        'tagline_1' => '',
+        'tagline_1' => 'Ko laukiate?',
         'tagline_2' => 'Pradėkime!',
         'video-guide' => 'vaizdo gidas',
 

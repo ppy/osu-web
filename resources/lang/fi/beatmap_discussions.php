@@ -18,6 +18,16 @@ return [
         'empty' => 'Mitään ei ole tapahtunut... vielä.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'poistettu',
         'none_found' => 'Hakukriteereihin täsmääviä keskusteluja ei löytynyt.',

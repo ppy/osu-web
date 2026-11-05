@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'nâm-ı diğer',
         'plays_with' => ':devices ile oynuyor',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => ':link gönderdi',
             'count' => ':count_delimited yorum|:count_delimited yorum',
@@ -567,6 +574,12 @@ return [
         'all' => 'Tümü',
         'online' => 'Çevrimiçi',
         'offline' => 'Çevrimdışı',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'lütfen bunun yerine oyun istemcisi ile kaydolun!',

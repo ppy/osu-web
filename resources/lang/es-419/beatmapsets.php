@@ -30,8 +30,8 @@ return [
     ],
 
     'ogp' => [
-        'favourites' => '',
-        'playcount' => '',
+        'favourites' => ':count_delimited favorito|:count_delimited favoritos',
+        'playcount' => ':count_delimited jugada|:count_delimited jugadas',
     ],
 
     'panel' => [
@@ -42,6 +42,7 @@ return [
             'video' => 'descargar con video',
             'no_video' => 'descargar sin video',
             'direct' => 'abrir en osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Descargar',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'sin video',
                 'video' => 'con video',
             ],

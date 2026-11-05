@@ -6,20 +6,20 @@
 return [
     'cart' => [
         'checkout' => 'Kassa',
-        'empty_cart' => 'Poista kaikki tuotteet ostoskärrystä',
-        'info' => ':count_delimited tuote ostoskärryssä ($:subtotal)|:count_delimited tuotetta ostoskärryssä ($:subtotal)',
+        'empty_cart' => 'Poista kaikki tuotteet ostoskorista',
+        'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotetta ostoskorissa ($:subtotal)',
         'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
-        'title' => 'Ostoskärry',
+        'title' => 'Ostoskori',
         'total' => 'yhteensä',
 
         'errors_no_checkout' => [
-            'line_1' => 'Jassoo... kassalle ei pääse, sillä ostoskärryssäsi on ongelmia!',
+            'line_1' => 'Jassoo... kassalle ei pääse, sillä ostoskorissasi on ongelmia!',
             'line_2' => 'Poista tai päivitä ylläolevat tavarat jatkaaksesi.',
         ],
 
         'empty' => [
-            'text' => 'Ostoskärrysi on tyhjä.',
+            'text' => 'Ostoskorisi on tyhjä.',
             'return_link' => [
                 '_' => 'Palaa takaisin :link tehdäksesi löytöjä!',
                 'link_text' => 'kauppasivulle',
@@ -28,12 +28,12 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Oijoi, ostoskärryssäsi on ongelmia!',
+        'cart_problems' => 'Oijoi, ostoskorissasi on ongelmia!',
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
         'hide_from_activity' => 'Älä ilmoita osu!supporter tilauksesta profiilissani',
-        'old_cart' => 'Ostoskärrysi näyttää olevan vanhentunut ja on ladattu uudestaan, ole hyvä ja yritä uudelleen.',
+        'old_cart' => 'Ostoskorisi näyttää olevan vanhentunut ja on ladattu uudestaan, ole hyvä ja yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
         'title_compact' => 'kassa',
 
@@ -173,7 +173,7 @@ return [
             'out_with_alternative' => 'Valitettavasti tätä tuotetta ei ole enää saatavilla. Käytä valikkoa valitaksesi toinen vaihtoehto tai tarkista myöhemmin uudelleen!',
         ],
 
-        'add_to_cart' => 'Lisää kärryihin',
+        'add_to_cart' => 'Lisää ostoskoriin',
         'notify' => 'Ilmoita minulle, kun saatavilla!',
         'out_of_stock' => 'Ei varastossa',
 

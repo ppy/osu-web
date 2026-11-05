@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Hype kann nicht rückgängig gemacht werden.',
             'has_reply' => 'Eine Diskussion mit Antworten kann nicht gelöscht werden',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Du kannst nur deine eigenen Beiträge löschen.',
             'resolved' => 'Du kannst einen Beitrag einer vollendeten Diskussion nicht löschen.',
             'system_generated' => 'Automatisch generierter Beitrag kann nicht gelöscht werden.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
             'resolved' => 'Du kannst einen Beitrag einer vollendeten Diskussion nicht bearbeiten.',
             'system_generated' => 'Automatisch erzeugte Beiträge können nicht bearbeitet werden.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

@@ -60,9 +60,9 @@ return [
         ],
 
         'secret' => [
-            'copy' => '',
-            'generate_new' => '',
-            'visible_once' => '',
+            'copy' => 'Nezapomeň si zkopírovat jeho hodnotu před odchodem ze stránky.',
+            'generate_new' => 'Resetuj tajný klíč klienta pro vygenerování nového.',
+            'visible_once' => 'Tajný klíč klienta je viditelný pouze po počátečním vytvoření.',
         ],
     ],
 ];

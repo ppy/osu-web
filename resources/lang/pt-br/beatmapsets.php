@@ -42,6 +42,7 @@ return [
             'video' => 'baixar com vídeo',
             'no_video' => 'baixar sem vídeo',
             'direct' => 'abrir no osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Baixar',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'sem Vídeo',
                 'video' => 'com Vídeo',
             ],
@@ -189,12 +191,12 @@ return [
         'scoreboard' => [
             'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
-            'error' => 'Falha ao carregar a classificação',
+            'error' => 'Falha ao carregar ranking',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
             'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
-            'team' => 'Classificação da equipe',
+            'team' => 'Ranking da equipe',
             'title' => 'Placar',
 
             'headers' => [
@@ -216,7 +218,7 @@ return [
                 'friend' => 'Nenhum de seus amigos fez uma pontuação nesse beatmap ainda!',
                 'global' => 'Nenhuma pontuação ainda. Não quer tentar fazer uma?',
                 'loading' => 'Carregando pontuações...',
-                'team' => 'Ninguém da sua equipe definiu uma pontuação neste beatmap ainda!',
+                'team' => 'Ninguém de sua equipe definiu uma pontuação neste beatmap ainda!',
                 'unranked' => 'Beatmap não ranqueado.',
             ],
             'score' => [

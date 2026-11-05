@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Resultats de l\'avaluació',
         'creator' => 'creador',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Puntuació',
         'score_std' => 'Puntuació Estandarditzada',
         'total_score' => 'puntuació total',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Ets un avaluador d\'aquest concurs. Avalua les entrades aquí!',
         'judged_notice' => 'Aquest concurs està utilitzant el sistema d\'avaluació, els avaluadors actualment estan processant les entrades.',
         'login_required' => 'Si us plau, inicia sessió per a votar.',

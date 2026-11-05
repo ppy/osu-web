@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'anteriormente conhecido como',
         'plays_with' => 'Joga com :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Publicou :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Classificação',
             'rating' => 'Avaliação',
             'recent_history' => 'Histórico de partidas',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Dados insuficientes para mostrar estatísticas precisas. Jogue mais partidas!',
             'tier' => 'Nível',
             'title' => 'Competitivo',
             'wins' => 'Vitórias',
@@ -514,12 +521,12 @@ return [
         ],
         'rank' => [
             'country' => 'Ranking nacional de :mode',
-            'country_simple' => 'Classificação nacional',
+            'country_simple' => 'Ranking nacional',
             'global' => 'Ranking global de :mode',
-            'global_simple' => 'Classificação global',
+            'global_simple' => 'Ranking global',
             'highest' => 'Maior classificação: :rank em :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'O rank só é exibido após entrar nos melhores 1.000',
+            'kudosu_simple' => 'Ranking de Kudosu',
         ],
         'score_processing' => [
             'title' => 'Um novo algoritmo de dificuldade / PP está :link.',
@@ -536,7 +543,7 @@ return [
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
-            'hits_per_play' => 'Acertos por jogada',
+            'hits_per_play' => 'Acertos por Jogada',
             'level' => 'Nível :level',
             'level_progress' => 'Progresso para o próximo nível',
             'maximum_combo' => 'Combo Máximo',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Pontuação Total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Beatmaps com participação de convidado',
             'loved_beatmapset_count' => 'Beatmaps Loved',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Beatmaps ranqueados nominados',
             'pending_beatmapset_count' => 'Beatmaps Pendentes',
             'ranked_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Todos',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'registre-se pelo do cliente do jogo!',
