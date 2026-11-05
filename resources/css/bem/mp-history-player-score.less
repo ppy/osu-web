@@ -119,21 +119,21 @@
       @media @desktop {
         padding-left: 0; // TODO: replace with gap at __main if fixed in firefox
       }
+    }
 
-      &-1 {
-        --colour: #ffd966, #ffb800;
-        font-weight: 700;
-      }
+    &--position-1 {
+      --colour: #ffd966, #ffb800;
+      font-weight: 700;
+    }
 
-      &-2 {
-        --colour: #fff, #999;
-        font-weight: 700;
-      }
+    &--position-2 {
+      --colour: #fff, #999;
+      font-weight: 700;
+    }
 
-      &-3 {
-        --colour: #ffa666, #f4900c;
-        font-weight: 700;
-      }
+    &--position-3 {
+      --colour: #ffa666, #f4900c;
+      font-weight: 700;
     }
 
     &--user {
@@ -252,19 +252,20 @@
     }
   }
 
+  &__value-label {
+    line-height: 1;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: @osu-colour-c2;
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
   &__value {
     line-height: 1;
-
-    &-label {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: @osu-colour-c2;
-
-      @media @desktop {
-        display: none;
-      }
-    }
 
     &--perfect {
       color: hsl(@beatmap-score--hsl-perfect);
