@@ -71,16 +71,29 @@
     padding: 10px;
     display: grid;
     grid-template-columns: auto auto auto auto 1fr auto;
+    grid-template-areas:
+      "position name  name     name  name  name"
+      "rank     name  name     name  name  name"
+      ".        score accuracy combo stats mods";
     gap: 8px;
     grid-column: 2 / -1;
     position: relative;
     pointer-events: none;
+
+    @media @narrow {
+      grid-template-areas:
+        "position name  name     name  name  name"
+        "rank     name  name     name  name  name"
+        ".        score accuracy combo combo combo"
+        ".        stats stats    stats stats mods";
+    }
 
     @media @desktop {
       padding-left: var(--padding-left-desktop);
       padding-right: var(--padding-h);
       display: grid;
       grid-template-columns: subgrid;
+      grid-template-areas: unset;
       gap: 0; // TODO: using "0 20px" here causes overflow in stats area in firefox
       align-items: center;
     }
@@ -101,10 +114,9 @@
 
     &--position {
       .fancy-text(var(--colour));
-      grid-column: 1;
+      grid-area: position;
 
       @media @desktop {
-        grid-column: initial;
         padding-left: 0; // TODO: replace with gap at __main if fixed in firefox
       }
 
@@ -125,98 +137,50 @@
     }
 
     &--user {
-      grid-row: 1 / 3;
-      grid-column: 2 / -1;
+      grid-area: name;
       flex-direction: column;
       justify-content: center;
       gap: 5px;
       min-width: 0;
-
-      @media @desktop {
-        grid-row: initial;
-        grid-column: initial;
-      }
     }
 
     &--score {
-      grid-row: 3;
-      grid-column: 2;
-
-      @media @desktop {
-        justify-content: flex-end;
-        grid-column: initial;
-        grid-row: initial;
-      }
+      grid-area: score;
     }
 
     &--accuracy {
-      grid-row: 3;
-      grid-column: 3;
-
-      @media @desktop {
-        justify-content: flex-end;
-        grid-column: initial;
-        grid-row: initial;
-      }
+      grid-area: accuracy;
     }
 
     &--combo {
-      grid-row: 3;
-      grid-column: 4;
-
-      @media @desktop {
-        justify-content: flex-end;
-        grid-column: initial;
-        grid-row: initial;
-      }
+      grid-area: combo;
     }
 
     &--stats {
       flex-direction: row-reverse;
       align-items: baseline;
       gap: 2px;
-      grid-row: 3;
-      grid-column: 5;
+      grid-area: stats;
 
       @media @desktop {
         align-items: center;
-        grid-row: initial;
-        grid-column: initial;
         display: grid;
         grid-template-columns: subgrid;
         gap: 3px 0;
         padding: 0 15px;
       }
-
-      @media @narrow {
-        grid-row: 4;
-        grid-column: 2 / 6;
-      }
     }
 
     &--mods {
-      grid-row: 3;
-      grid-column: 6;
+      grid-area: mods;
 
       @media @desktop {
-        grid-row: initial;
-        grid-column: initial;
         padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
-      }
-
-      @media @narrow {
-        grid-row: 4;
       }
     }
 
     &--rank {
-      grid-column: 1;
-      grid-row: 2;
-
-      @media @desktop {
-        grid-column: initial;
-        grid-row: initial;
-      }
+      grid-area: rank;
     }
   }
 

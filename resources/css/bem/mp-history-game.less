@@ -132,10 +132,10 @@
     border-radius: 0 0 @border-radius-base @border-radius-base;
 
     @media @desktop {
-      // team position rank total_score accuracy name combo stats mods
       grid-template-columns:
         var(--team-indicator-size)
         auto auto auto auto 1fr auto auto auto;
+      grid-template-areas: "team position rank score accuracy name combo stats mods";
       column-gap: 0;
     }
 
