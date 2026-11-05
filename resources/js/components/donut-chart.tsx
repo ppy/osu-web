@@ -14,30 +14,24 @@ interface DonutChartSlice {
   value: number;
 }
 
+const pie = d3.pie<DonutChartSlice>()
+  .sortValues(null)
+  .value((slice) => slice.value);
+
+const arc = d3.arc<d3.PieArcDatum<DonutChartSlice>>()
+  .innerRadius(50)
+  .outerRadius(outerRadius)
+  .cornerRadius(5);
+
 interface Props {
   hoveredKey: string | null;
-  onHover: (key: string | null) => void;
+  onMouseEnter: React.MouseEventHandler<SVGPathElement>;
+  onMouseLeave: React.MouseEventHandler<SVGPathElement>;
   slices: DonutChartSlice[];
 }
 
-export default function DonutChart({ hoveredKey, onHover, slices }: Props) {
-  const onMouseEnter = React.useCallback((event: React.MouseEvent<SVGPathElement>) => {
-    onHover(event.currentTarget.dataset.sliceKey ?? null);
-  }, [onHover]);
-
-  const onMouseLeave = React.useCallback(() => {
-    onHover(null);
-  }, [onHover]);
-
-  const pie = d3.pie<DonutChartSlice>()
-    .sortValues(null)
-    .padAngle(slices.length > 1 ? 0.02 : 0)
-    .value((slice) => slice.value);
-
-  const arc = d3.arc<d3.PieArcDatum<DonutChartSlice>>()
-    .innerRadius(50)
-    .outerRadius(outerRadius)
-    .cornerRadius(5);
+export default function DonutChart({ hoveredKey, onMouseEnter, onMouseLeave, slices }: Props) {
+  pie.padAngle(slices.length > 1 ? 0.02 : 0);
 
   return (
     <div className='donut-chart'>
