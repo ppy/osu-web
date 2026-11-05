@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Kết quả đánh giá',
         'creator' => 'tác giả',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Điểm',
         'score_std' => 'Điểm hàng loạt',
         'total_score' => 'tổng điểm',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Bạn là giám khảo của cuộc thi này. Đánh giá các bài thi ở đây!',
         'judged_notice' => 'Cuộc thi này sử dụng hệ thống đánh giá, các giám khảo đang xử lý các bài thi.',
         'login_required' => 'Hãy đăng nhập để bình chọn.',

@@ -42,6 +42,7 @@ return [
             'video' => 'λήψη με βίντεο',
             'no_video' => 'λήψη χωρίς βίντεο',
             'direct' => 'άνοιγμα με osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Λήψη',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'χωρίς Βίντεο',
                 'video' => 'με Βίντεο',
             ],

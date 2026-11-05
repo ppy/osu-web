@@ -129,6 +129,7 @@ return [
             '_' => 'tipo predeterminado de descarga de los mapas',
             'all' => 'con video si está disponible',
             'direct' => 'abrir en osu!direct',
+            'lazer' => '',
             'no_video' => 'sin video',
         ],
     ],
@@ -144,7 +145,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquear los mensajes privados de las personas que no estén en tu lista de amigos',
-        'friends_only_info' => '',
+        'friends_only_info' => 'esto también aplica a las invitaciones multijugador de osu!lazer y a las solicitudes de duelo en partidas clasificatorias',
         'hide_online' => 'ocultar tu presencia en línea',
         'hide_online_info' => 'esto se relaciona con el modo «aparecer desconectado» en osu!lazer',
         'title' => 'Privacidad',

@@ -308,7 +308,7 @@ return [
         'graveyard' => 'Cemitério',
         'leaderboard' => 'Tem placar',
         'loved' => 'Loved',
-        'mine' => 'Meus Maps',
+        'mine' => 'Meus Mapas',
         'pending' => 'Pendentes & Em Progresso',
         'wip' => 'Trabalho em progresso',
         'qualified' => 'Qualificados',

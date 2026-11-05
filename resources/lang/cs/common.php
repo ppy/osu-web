@@ -42,7 +42,7 @@ return [
         'refresh' => 'Aktualizovat',
         'reply' => 'Odpovědět',
         'reply_reopen' => 'Odpovědět a znovu otevřít',
-        'reply_resolve' => 'Odpovědět a archivovat',
+        'reply_resolve' => 'Odpovědět a vyřešit',
         'reset' => 'Resetovat',
         'restore' => 'Obnovit',
         'retry' => 'Opakovat',

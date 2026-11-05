@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Hype nejde vziať späť.',
             'has_reply' => 'Nemôžete vymazávať diskusie s odpoveďami',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Dosiahli ste limit nominácii pre tento deň, prosím, skúste to znovu zajtra.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Môžete odstrániť iba vaše vlastné príspevky.',
             'resolved' => 'Nemôžete vymazať príspevky vyriešenej diskusie.',
             'system_generated' => 'Automaticky generovaný príspevok nie je možné odstrániť.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Príspevok môže upravovať iba autor.',
             'resolved' => 'Nemôžete upravovať príspevky vyriešenej diskusie.',
             'system_generated' => 'Automaticky generovaný príspevok nie je možné upravovať.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

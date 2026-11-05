@@ -18,6 +18,16 @@ return [
         'empty' => 'Non è successo nulla... per ora.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'eliminata',
         'none_found' => 'Nessuna discussione corrispondente ai criteri di ricerca trovata.',

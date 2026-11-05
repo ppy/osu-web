@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'Anciennement connu en tant que',
         'plays_with' => 'Joue avec :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'A publié :link',
             'count' => ':count_delimited commentaire|:count_delimited commentaires',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Classement',
             'rating' => 'Classement',
             'recent_history' => 'Historique des derniers matchs',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Pas assez de données pour afficher des statistiques précises. Jouez plus !',
             'tier' => 'Palier',
             'title' => 'Partie classée',
             'wins' => 'Victoires',
@@ -518,8 +525,8 @@ return [
             'global' => 'Classement global en :mode',
             'global_simple' => 'Classement global',
             'highest' => 'Meilleur rang : :rank le :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'Le classement est affiché seulement après être entré dans le top 1 000',
+            'kudosu_simple' => 'Classement Kudosu',
         ],
         'score_processing' => [
             'title' => 'Un nouvel algorithme de difficulté/PP est :link.',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Score total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps dans le cimetière',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Beatmaps en tant qu\'Invité',
             'loved_beatmapset_count' => 'Beatmaps loved',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Beatmaps Classées Nominées',
             'pending_beatmapset_count' => 'Beatmaps en attente',
             'ranked_beatmapset_count' => 'Beatmaps classées et approuvées',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Tous',
         'online' => 'En ligne',
         'offline' => 'Hors-ligne',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'veuillez vous inscrire via le client du jeu à la place !',

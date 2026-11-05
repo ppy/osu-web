@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Wyniki oceny prac',
         'creator' => 'twórca',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Wynik',
         'score_std' => 'Wynik standaryzowany',
         'total_score' => 'całkowity wynik',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Jesteś członkiem jury tego konkursu. Oceń zgłoszone prace tutaj!',
         'judged_notice' => 'Ten konkurs jest oceniany przez jury - członkowie zespołu są w trakcie przetwarzania zgłoszonych prac.',
         'login_required' => 'Zaloguj się, aby zagłosować.',

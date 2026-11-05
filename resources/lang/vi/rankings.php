@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Độ khó',
-        'theme' => '',
+        'theme' => 'Chủ đề',
         'top_10p' => 'Điểm thuộc top 10%',
         'top_50p' => 'Điểm thuộc top 50%',
         'unavailable' => [

@@ -129,6 +129,7 @@ return [
             '_' => 'výchozí typ stahování map',
             'all' => 's videem, je-li k dispozici',
             'direct' => 'otevřít v osu!direct',
+            'lazer' => '',
             'no_video' => 'bez videa',
         ],
     ],

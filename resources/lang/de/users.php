@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'auch bekannt als',
         'plays_with' => 'Spielt mit :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => ':link abgegeben',
             'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Rang',
             'rating' => 'Wertung',
             'recent_history' => 'Neuester Spielverlauf',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Nicht genügend Daten, um präzise Statistiken anzuzeigen. Spiel mehr!',
             'tier' => 'Stufe',
             'title' => 'Ranked Play',
             'wins' => 'Siege',
@@ -518,8 +525,8 @@ return [
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globaler Rang',
             'highest' => 'Höchster Rang: :rank am :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'Der Rang wird nur bei den 1000 besten Plätzen angezeigt',
+            'kudosu_simple' => 'Kudosu-Rang',
         ],
         'score_processing' => [
             'title' => 'Eine neue Sternbewertung / PP-Algorithmus :link.',
@@ -532,7 +539,7 @@ return [
             'total_score' => 'Gesamtpunktzahl',
         ],
         'solo' => [
-            'title' => 'Einzelspieler',
+            'title' => 'Einzelspielermodus',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
             'graveyard_beatmapset_count' => 'Begrabene Beatmaps',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Als Gast beigetragene Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Nominierte Ranked Beatmaps',
             'pending_beatmapset_count' => 'Ausstehende Beatmaps',
             'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Alle',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'Bitte registriere dich stattdessen über den Spiel-Client!',

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Gembaran tidak boleh dibuat asal.',
             'has_reply' => 'Perbincangan berbalas tidak boleh dipadam',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai had pencalonan anda buat hari ini. Sila cuba lagi esok.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Anda hanya boleh memadam hantaran sendiri.',
             'resolved' => 'Anda tidak boleh memadam hantaran perbincangan yang diselesaikan.',
             'system_generated' => 'Hantaran janaan automatik tidak boleh dipadam.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Hanya penghantar boleh menyunting hantaran.',
             'resolved' => 'Anda tidak boleh menyunting hantaran perbincangan yang diselesaikan.',
             'system_generated' => 'Hantaran janaan automatik tidak boleh disunting.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

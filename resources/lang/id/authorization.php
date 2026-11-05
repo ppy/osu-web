@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Pemberian hype tidak bisa diurungkan.',
             'has_reply' => 'Topik diskusi yang memiliki balasan tidak bisa dihapus',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Kamu sudah mencapai batas nominasi kamu untuk hari ini. Silakan coba lagi besok.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Kamu hanya bisa menghapus postingan milikmu sendiri.',
             'resolved' => 'Kamu tidak bisa menghapus postingan pada topik diskusi yang sudah terjawab.',
             'system_generated' => 'Postingan yang dihasilkan secara otomatis tidak bisa dihapus.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Postingan ini hanya bisa disunting oleh pengirimnya.',
             'resolved' => 'Kamu tidak bisa menyunting postingan pada topik diskusi yang sudah terjawab.',
             'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 
@@ -73,11 +76,11 @@ return [
 
     'chat' => [
         'blocked' => 'Kamu tidak bisa mengirim pesan kepada pengguna yang kamu blokir atau memblokir dirimu.',
-        'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak berada dalam daftar temannya.',
+        'friends_only' => 'Pengguna ini memblokir pesan dari pengguna lain yang tidak ada dalam daftar temannya.',
         'moderated' => 'Kanal obrolan ini sedang dimoderasi.',
         'no_access' => 'Kamu tidak memiliki akses ke kanal obrolan ini.',
         'no_announce' => 'Kamu tidak memiliki izin untuk membuat pengumuman.',
-        'receive_friends_only' => 'Pengguna ini mungkin tidak akan bisa membalas karena kamu hanya menerima pesan dari pengguna yang berada dalam daftar temanmu.',
+        'receive_friends_only' => 'Pengguna ini mungkin tidak akan bisa membalas karena kamu hanya menerima pesan dari pengguna yang ada dalam daftar temanmu.',
         'restricted' => 'Kamu tidak bisa mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Kamu tidak bisa mengirim pesan pada saat kamu sedang di-silence, di-restrict, atau di-ban.',
     ],

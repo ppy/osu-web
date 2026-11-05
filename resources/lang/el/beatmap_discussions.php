@@ -18,6 +18,16 @@ return [
         'empty' => 'Δεν έχει συμβεί τίποτα... ακόμη.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'διαγραμμένο',
         'none_found' => 'Δεν βρέθηκαν συζητήσεις που να ταιριάζουν με τα κριτήρια αναζήτησης.',

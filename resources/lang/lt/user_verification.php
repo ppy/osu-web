@@ -26,7 +26,7 @@ return [
         'info' => [
             'logout' => [
                 '_' => '',
-                'link' => '',
+                'link' => 'atsijungti',
             ],
             'mail_fallback' => [
                 '_' => '',

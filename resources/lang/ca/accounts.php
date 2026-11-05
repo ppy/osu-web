@@ -129,6 +129,7 @@ return [
             '_' => 'tipus de baixada de mapa predeterminat',
             'all' => 'amb vídeo si està disponible',
             'direct' => 'obre a osu!direct',
+            'lazer' => '',
             'no_video' => 'sense vídeo',
         ],
     ],

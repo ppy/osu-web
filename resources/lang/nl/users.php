@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'vroeger bekend als',
         'plays_with' => 'Speelt met :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Heeft :link gepost',
             'count' => ':count_delimited reactie|:count_delimited reacties',
@@ -567,6 +574,12 @@ return [
         'all' => 'Alle',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'registreer je alsjeblieft via de game client!',

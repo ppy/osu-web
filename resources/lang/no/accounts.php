@@ -129,6 +129,7 @@ return [
             '_' => 'standard nedlastingstype for beatmap',
             'all' => 'med video hvis tilgjengelig',
             'direct' => 'åpne i osu!direct',
+            'lazer' => '',
             'no_video' => 'uten video',
         ],
     ],

@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'antigamente conhecido como',
         'plays_with' => 'Joga com :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Publicou :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
@@ -299,7 +306,7 @@ return [
                     'title' => 'Mapas adorados',
                 ],
                 'nominated' => [
-                    'title' => 'Mapas classificados nomeados',
+                    'title' => 'Mapas Classificados Nomeados',
                 ],
                 'pending' => [
                     'title' => 'Mapas pendentes',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Classificação',
             'rating' => 'Pontuação',
             'recent_history' => 'Histórico da Última Partida',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Não há dados suficientes para mostrar estatísticas precisas. Jogue mais jogos!',
             'tier' => 'Patamar',
             'title' => 'Partida Classificada',
             'wins' => 'Vitórias',
@@ -518,8 +525,8 @@ return [
             'global' => 'Classificação global para :mode',
             'global_simple' => 'Classificação global',
             'highest' => 'Classificação mais alta: :rank em :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'A classificação só é mostrada após entrar nos 1000 melhores',
+            'kudosu_simple' => 'Classificação do Kudosu',
         ],
         'score_processing' => [
             'title' => 'Um novo algoritmo de classificação por estrelas/PP está :link.',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Pontuação total',
             // modding stats
             'graveyard_beatmapset_count' => 'Mapas no cemitério',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Mapas Onde Participaram Convidados',
             'loved_beatmapset_count' => 'Mapas adorados',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Mapas Classificados Nomeados',
             'pending_beatmapset_count' => 'Mapas pendentes',
             'ranked_beatmapset_count' => 'Mapas classificados e aprovados',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Todos',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'Registe-se através do cliente do jogo!',

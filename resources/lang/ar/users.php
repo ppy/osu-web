@@ -206,6 +206,13 @@ return [
         'previous_usernames' => 'سابقاََ',
         'plays_with' => 'يستخدم :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'نَشَر :link',
             'count' => ':count_delimited تعليق|:count_delimited تعليقات',
@@ -568,6 +575,12 @@ return [
         'all' => 'الكل',
         'online' => 'متصل',
         'offline' => 'غير متصل',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'الرجاء التسجيل داخل اللعبة بدلاً من هنا!',

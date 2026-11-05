@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'شناخته شده به',
         'plays_with' => 'با :devices بازی می کند',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'پست کرده :link',
             'count' => ':count_delimited نظر|:count_delimited نظرات',
@@ -567,6 +574,12 @@ return [
         'all' => 'همه',
         'online' => 'آنلاین',
         'offline' => 'آفلاین',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '',

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Nu poți anula hype-ul.',
             'has_reply' => 'Nu se poate șterge o discuție cu răspunsuri',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Ai atins limita de nominalizări pentru această zi, te rugăm să încerci din nou mâine.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Poți să ștergi doar postările proprii.',
             'resolved' => 'Nu poți șterge o postare dintr-o discuție rezolvată.',
             'system_generated' => 'Postările generate automat nu pot fi șterse.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Doar creatorul poate edita această postare.',
             'resolved' => 'Nu poți edita o postare dintr-o discuție rezolvată.',
             'system_generated' => 'Postările generate automat nu pot fi editate.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

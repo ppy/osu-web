@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Kan inte ångra hyping.',
             'has_reply' => 'Kan inte radera en diskussion med svar',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Du har uppnått din nomineringsgräns för idag, var god försök igen imorgon.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Du kan bara ta bort dina egna inlägg.',
             'resolved' => 'Du kan inte radera ett inlägg i en löst diskussion.',
             'system_generated' => 'Automatiskt genererade inlägg kan inte tas bort.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Endast den som lade upp inlägget kan redigera inlägget.',
             'resolved' => 'Du kan inte redigera ett inlägg i en löst diskussion.',
             'system_generated' => 'Automatiskt genererade inlägg kan inte redigeras.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

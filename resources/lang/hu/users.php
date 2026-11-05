@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'korábbi nevén',
         'plays_with' => 'Ezekkel játszik: :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => ':link posztolva',
             'count' => ':count_delimited komment|:count_delimited komment',
@@ -567,6 +574,12 @@ return [
         'all' => 'Összes',
         'online' => 'Elérhető',
         'offline' => 'Nem elérhető',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'kérlek regisztrálj inkább a játék klienssel!',

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Vous ne pouvez pas retirer votre hype.',
             'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Vous pouvez uniquement supprimer vos propres posts.',
             'resolved' => 'Vous ne pouvez pas supprimer un post d\'une discussion résolue.',
             'system_generated' => 'Les posts automatiquement générés ne peuvent pas être supprimés.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
             'resolved' => 'Vous ne pouvez pas modifier un post d\'une discussion résolue.',
             'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

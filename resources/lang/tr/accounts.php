@@ -129,6 +129,7 @@ return [
             '_' => 'varsayılan beatmap indirme tipi',
             'all' => 'eğer varsa video ile beraber',
             'direct' => 'osu!direct\'de aç',
+            'lazer' => '',
             'no_video' => 'video olmadan',
         ],
     ],

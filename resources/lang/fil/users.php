@@ -198,12 +198,19 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Sumali noong :date',
-        'lastvisit' => 'Huling nakitang :date',
+        'lastvisit' => 'Huling nakita noong :date',
         'lastvisit_online' => 'Kasalukuyang online',
         'missingtext' => 'Baka nagkamali ka ng pag type!(Or baka na ban ang gumagamit.)',
-        'origin_country' => 'Nangganling sa :country',
+        'origin_country' => 'Nanggaling sa :country',
         'previous_usernames' => 'dating kilala bilang',
         'plays_with' => 'Naglalaro gamit ang :devices',
+
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
 
         'comments_count' => [
             '_' => 'Nag-post sa :link',
@@ -567,6 +574,12 @@ return [
         'all' => 'Lahat',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'pakirehistro sa pamamagitan ng game client sa halip!',

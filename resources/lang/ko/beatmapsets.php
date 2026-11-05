@@ -42,6 +42,7 @@ return [
             'video' => '영상 포함된 것으로 받기',
             'no_video' => '영상이 없는 것으로 받기',
             'direct' => 'osu!direct에서 열기',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => '다운로드',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => '영상 미포함',
                 'video' => '영상 포함',
             ],

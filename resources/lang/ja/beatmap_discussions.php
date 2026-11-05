@@ -18,6 +18,16 @@ return [
         'empty' => 'まだ何もありません。',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '削除済み',
         'none_found' => '検索条件に一致するディスカッションは見つかりませんでした。',

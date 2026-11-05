@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Sunkumas',
-        'theme' => '',
+        'theme' => 'Tema',
         'top_10p' => 'Top 10% Rezultatas',
         'top_50p' => 'Top 50% Rezultatas',
         'unavailable' => [

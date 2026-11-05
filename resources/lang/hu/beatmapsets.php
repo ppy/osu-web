@@ -42,6 +42,7 @@ return [
             'video' => 'letöltés videóval',
             'no_video' => 'letöltés videó nélkül',
             'direct' => 'megnyitás osu!direct-ben',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Letöltés',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'Videó nélkül',
                 'video' => 'Videóval',
             ],

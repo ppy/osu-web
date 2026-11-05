@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Mga resulta sa paghuhusga',
         'creator' => 'tagagawa',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Puntos',
         'score_std' => '',
         'total_score' => 'kabuuang puntos',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Ikaw ay isang tagahatol ng paligsahang ito. Hatulan ang mga kalahok dito!',
         'judged_notice' => 'Ang patimpalak na ito ay gumagamit ng sistema ng paghusga, ang mga hukom ay kasalukuyang nagpoproseso ng mga entry.',
         'login_required' => 'Paki-sign-in upang bumoto.',

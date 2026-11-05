@@ -129,6 +129,7 @@ return [
             '_' => 'tip implicit de descărcare a beatmap-urilor',
             'all' => 'cu video dacă e disponibil',
             'direct' => 'deschide în osu!direct',
+            'lazer' => '',
             'no_video' => 'fără video',
         ],
     ],

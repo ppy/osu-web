@@ -18,6 +18,16 @@ return [
         'empty' => 'Ingenting har skjedd... enda.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'slettet',
         'none_found' => 'Det er ingen tråd som sammensvarer dine søke kriterier.',

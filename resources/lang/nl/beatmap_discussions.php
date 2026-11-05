@@ -18,6 +18,16 @@ return [
         'empty' => 'Er is nog niets gebeurt... nog niet.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'verwijderd',
         'none_found' => 'Er zijn geen discussies gevonden die overeenkomen met de zoekcriteria.',

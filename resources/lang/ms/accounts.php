@@ -129,6 +129,7 @@ return [
             '_' => 'jenis pemuatan turun peta rentak asal',
             'all' => 'dengan video ketika tersedia',
             'direct' => 'buka di osu!direct',
+            'lazer' => '',
             'no_video' => 'tanpa video',
         ],
     ],

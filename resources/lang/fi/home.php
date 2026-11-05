@@ -141,7 +141,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'daily_challenge' => 'Päivän haasterytmikartta',
+            'daily_challenge' => 'Päivän rytmikarttahaaste',
             'new' => 'Uudet rankatut rytmikartat',
             'popular' => 'Suositut Beatmapit',
             'by_user' => 'tehnyt :user',

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Nevar atsaukt atbalstīšanu.',
             'has_reply' => 'Nevar dzēst diskusijas ar atbildēm',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Jūs esat sasniedzis šīs dienas nomināciju limitu, lūdzu, mēģiniet vēlreiz rīt.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Jūs varat dzēst tikai savus rakstus.',
             'resolved' => 'Jūs nevarat dzēst atrisināto diskusiju rakstus.',
             'system_generated' => 'Automātiski ģenerēto rakstu nevar izdzēst.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Tikai publicētājs var rediģēt rakstu.',
             'resolved' => 'Jūs nevarat rediģēt atrisinātas diskusijas rakstu.',
             'system_generated' => 'Automātiski ģenerētu rakstu nevar rediģēt.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

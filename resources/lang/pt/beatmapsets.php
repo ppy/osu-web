@@ -42,6 +42,7 @@ return [
             'video' => 'transferir com vídeo',
             'no_video' => 'transferir sem vídeo',
             'direct' => 'abrir no osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Transferir',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'sem vídeo',
                 'video' => 'com vídeo',
             ],

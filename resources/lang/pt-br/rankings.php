@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Dificuldade',
-        'theme' => '',
+        'theme' => 'Tema',
         'top_10p' => 'Pontuações dos Melhores 10%',
         'top_50p' => 'Pontuações dos Melhores 50%',
         'unavailable' => [
@@ -98,7 +98,7 @@ return [
         'division' => 'Divisão',
         'members' => 'Membros',
         'play_count' => 'Vezes Jogadas',
-        'performance' => 'Desempenho',
+        'performance' => 'Performance',
         'total_score' => 'Pontuação Total',
         'ranked_score' => 'Pontuação Ranqueada',
         'average_score' => 'Pont. Média',

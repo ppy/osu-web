@@ -18,6 +18,16 @@ return [
         'empty' => '아무 일도 일어나지 않았네요... 아직은요.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '삭제됨',
         'none_found' => '해당 검색 기준과 일치하는 토론을 찾을 수 없습니다.',

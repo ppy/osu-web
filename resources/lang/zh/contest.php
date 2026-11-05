@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => '打分结果',
         'creator' => '谱师',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => '分数',
         'score_std' => '标准分数',
         'total_score' => '总分',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => '你是此竞赛的评委。请在这里打分！',
         'judged_notice' => '此竞赛使用了打分系统。评委正在打分。',
         'login_required' => '请登录后再投票.',

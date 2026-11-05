@@ -18,6 +18,16 @@ return [
         'empty' => 'Tiada yang terjadi... lagi.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'dipadam',
         'none_found' => 'Tiada perbincangan sepadan dengan ukur tara carian ditemui.',

@@ -13,7 +13,7 @@ return [
         ],
 
         'player' => [
-            'by' => 'Laro ni',
+            'by' => 'Nilaro ni',
             'played_on' => 'Nilaro sa',
             'submitted_on' => 'Sinumite noong',
             'watched' => 'Pinanood',
