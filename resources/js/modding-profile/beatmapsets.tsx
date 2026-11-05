@@ -98,7 +98,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
   @action
   private readonly onMouseLeave = () => {
     this.hoveredKey = null;
-  }
+  };
 
   private renderChart() {
     const hoveredKey = this.hoveredKey;
