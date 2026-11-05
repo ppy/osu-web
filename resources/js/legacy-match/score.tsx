@@ -69,7 +69,7 @@ export default observer(function Score(props: Props) {
         <div className={classWithModifiers('mp-history-player-score__info-box', 'rank')}>
           <div className={classWithModifiers('score-rank', rank(props.score))} />
         </div>
-        <div className={classWithModifiers('mp-history-player-score__info-box', ['score'])}>
+        <div className={classWithModifiers('mp-history-player-score__info-box', 'score')}>
           <span className={classWithModifiers('mp-history-player-score__value-label')}>
             {trans('matches.match.score.stats.score')}
           </span>
@@ -77,7 +77,7 @@ export default observer(function Score(props: Props) {
             {formatNumber(props.score.total_score)}
           </span>
         </div>
-        <div className={classWithModifiers('mp-history-player-score__info-box', ['accuracy'])}>
+        <div className={classWithModifiers('mp-history-player-score__info-box', 'accuracy')}>
           <span className={classWithModifiers('mp-history-player-score__value-label')}>
             {trans('matches.match.score.stats.accuracy')}
           </span>
@@ -85,7 +85,7 @@ export default observer(function Score(props: Props) {
             {formatNumber(props.score.accuracy, 2, { style: 'percent' })}
           </span>
         </div>
-        <div className={classWithModifiers('mp-history-player-score__info-box', ['user'])}>
+        <div className={classWithModifiers('mp-history-player-score__info-box', 'user')}>
           <div className='mp-history-player-score__username-box'>
             <a
               className='mp-history-player-score__country-flag u-hover'
@@ -107,7 +107,7 @@ export default observer(function Score(props: Props) {
             </span>
           )}
         </div>
-        <div className={classWithModifiers('mp-history-player-score__info-box', ['combo'])}>
+        <div className={classWithModifiers('mp-history-player-score__info-box', 'combo')}>
           <span className={classWithModifiers('mp-history-player-score__value-label')}>
             {trans('matches.match.score.stats.combo')}
           </span>
