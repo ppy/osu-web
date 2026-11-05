@@ -8,7 +8,7 @@ import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
-const bn = 'modding-profile-beatmaps';
+const bn = 'modding-profile-beatmapsets';
 
 const chartKeys = [
   'ranked',
@@ -50,13 +50,13 @@ function chartValue(user: UserModdingProfileJson, key: ChartKey) {
     : user.beatmapset_status_counts[key];
 }
 
-export default class Beatmaps extends React.PureComponent<Props, State> {
+export default class Beatmapsets extends React.PureComponent<Props, State> {
   state: State = { hoveredKey: null };
 
   render() {
     return (
-      <div className='profile-detail-stats-card profile-detail-stats-card--beatmaps'>
-        <div className='profile-detail-stats-card__top profile-detail-stats-card__top--beatmaps'>
+      <div className='profile-detail-stats-card profile-detail-stats-card--beatmapsets'>
+        <div className='profile-detail-stats-card__top profile-detail-stats-card__top--beatmapsets'>
           <div className='profile-detail-stats-card__title'>
             <div className='profile-detail-stats-card__title-icon'>
               <span className='svg-icon svg-icon--stats' />

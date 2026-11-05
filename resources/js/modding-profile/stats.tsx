@@ -3,7 +3,7 @@
 
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
 import * as React from 'react';
-import Beatmaps from './beatmaps';
+import Beatmapsets from './beatmapsets';
 import Modding from './modding';
 
 interface Props {
@@ -15,7 +15,7 @@ export default class Stats extends React.PureComponent<Props> {
     return (
       <div className='modding-profile-stats'>
         <Modding user={this.props.user} />
-        <Beatmaps user={this.props.user} />
+        <Beatmapsets user={this.props.user} />
       </div>
     );
   }
