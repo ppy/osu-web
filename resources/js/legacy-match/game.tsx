@@ -39,7 +39,7 @@ export default observer(function Game(props: Props) {
     <div className='mp-history-game' id={`playlist-${props.playlistItem.id}`}>
       <GameHeader data={props.data} playlistItem={props.playlistItem} />
       <div className={classWithModifiers('mp-history-game__player-scores', { teams: showTeams })}>
-        <div className='mp-history-game__player-scores--header'>
+        <div className='mp-history-game__player-scores-header'>
           <span />
           <span />
           <span />
