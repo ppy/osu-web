@@ -59,13 +59,13 @@ export default observer(function Score(props: Props) {
           href={route('scores.show', { score: props.score.id })}
         />
       }
-      <div className={classWithModifiers('mp-history-player-score__team-indicator', team)} />
+      {props.showTeam && <div className={classWithModifiers('mp-history-player-score__team-indicator', team)} />}
       <div className='mp-history-player-score__main'>
-        <div className={classWithModifiers('mp-history-player-score__info-box', ['position', positionModifier])}>
-          {!props.showTeam && <span className={classWithModifiers('mp-history-player-score__value')}>
+        {!props.showTeam && <div className={classWithModifiers('mp-history-player-score__info-box', ['position', positionModifier])}>
+          <span className={classWithModifiers('mp-history-player-score__value')}>
             #{formatNumber(props.position)}
-          </span>}
-        </div>
+          </span>
+        </div>}
         <div className={classWithModifiers('mp-history-player-score__info-box', 'rank')}>
           <div className={classWithModifiers('score-rank', rank(props.score))} />
         </div>
