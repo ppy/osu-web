@@ -124,7 +124,6 @@
   }
 
   &__player-scores {
-    --team-indicator-size: 0;
     padding: 10px;
     background-color: @osu-colour-b3;
     display: grid;
@@ -132,15 +131,9 @@
     border-radius: 0 0 @border-radius-base @border-radius-base;
 
     @media @desktop {
-      grid-template-columns:
-        var(--team-indicator-size)
-        auto auto auto auto 1fr auto auto auto;
+      grid-template-columns: auto auto auto auto auto 1fr auto auto auto;
       grid-template-areas: "team position rank score accuracy name combo stats mods";
       column-gap: 0;
-    }
-
-    &--teams {
-      --team-indicator-size: 35px;
     }
   }
 
