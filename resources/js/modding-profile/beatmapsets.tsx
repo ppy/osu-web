@@ -3,6 +3,8 @@
 
 import DonutChart from 'components/donut-chart';
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
@@ -27,10 +29,6 @@ interface Props {
   user: UserModdingProfileJson;
 }
 
-interface State {
-  hoveredKey: ChartKey | null;
-}
-
 function chartColour(key: ChartKey) {
   switch (key) {
     case 'approved':
@@ -47,13 +45,32 @@ function chartColour(key: ChartKey) {
 function chartValue(user: UserModdingProfileJson, key: ChartKey) {
   return key === 'guest'
     ? user.guest_beatmapset_count
-    : user.beatmapset_status_counts[key];
+    : user.beatmapset_status_counts[key] ?? 0;
 }
 
-export default class Beatmapsets extends React.PureComponent<Props, State> {
-  state: State = { hoveredKey: null };
+@observer
+export default class Beatmapsets extends React.PureComponent<Props> {
+  @observable private hoveredKey: ChartKey | null = null;
+
+  @computed
+  private get slices() {
+    return chartKeys
+      .filter((key) => chartValue(this.props.user, key) > 0)
+      .map((key) => ({
+        colour: chartColour(key),
+        key,
+        value: chartValue(this.props.user, key),
+      }));
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
 
   render() {
+    const empty = this.slices.length === 0;
+
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--beatmapsets'>
         <div className='profile-detail-stats-card__top profile-detail-stats-card__top--beatmapsets'>
@@ -66,74 +83,57 @@ export default class Beatmapsets extends React.PureComponent<Props, State> {
             </div>
           </div>
         </div>
-        {this.renderBody()}
+        <div className={classWithModifiers(bn, { empty })}>
+          {empty ? this.renderEmpty() : this.renderChart()}
+        </div>
       </div>
     );
   }
 
-  private readonly onHoverEnd = () => {
-    this.setState({ hoveredKey: null });
+  @action
+  private readonly onMouseEnter = (event: React.MouseEvent<HTMLElement | SVGPathElement>) => {
+    this.hoveredKey = event.currentTarget.dataset.sliceKey as ChartKey ?? null;
   };
 
-  private readonly onLegendEnter = (event: React.MouseEvent<HTMLLIElement>) => {
-    this.setState({ hoveredKey: event.currentTarget.dataset.sliceKey as ChartKey });
-  };
-
-  private readonly onSliceHover = (key: string | null) => {
-    this.setState({ hoveredKey: key as ChartKey | null });
-  };
-
-  private renderBody() {
-    const { user } = this.props;
-    const hoveredKey = this.state.hoveredKey;
-    const visibleKeys = chartKeys.filter((key) => chartValue(user, key) > 0);
-    const empty = visibleKeys.length === 0;
-
-    return (
-      <div className={classWithModifiers(bn, { empty })}>
-        {empty ? this.renderEmpty() : this.renderChart(visibleKeys, hoveredKey)}
-      </div>
-    );
+  @action
+  private readonly onMouseLeave = () => {
+    this.hoveredKey = null;
   }
 
-  private renderChart(visibleKeys: ChartKey[], hoveredKey: ChartKey | null) {
-    const { user } = this.props;
-    const slices = visibleKeys.map((key) => ({
-      colour: chartColour(key),
-      key,
-      value: chartValue(user, key),
-    }));
+  private renderChart() {
+    const hoveredKey = this.hoveredKey;
 
     return (
       <>
         <div className={`${bn}__chart`}>
           <DonutChart
             hoveredKey={hoveredKey}
-            onHover={this.onSliceHover}
-            slices={slices}
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+            slices={this.slices}
           />
         </div>
 
-        <ul className={`${bn}__legend`} onMouseLeave={this.onHoverEnd}>
-          {visibleKeys.map((key) => (
+        <ul className={`${bn}__legend`} onMouseLeave={this.onMouseLeave}>
+          {this.slices.map((slice) => (
             <li
-              key={key}
+              key={slice.key}
               className={classWithModifiers(`${bn}__legend-item`, {
-                dimmed: hoveredKey != null && hoveredKey !== key,
-                highlighted: hoveredKey === key,
+                dimmed: hoveredKey != null && hoveredKey !== slice.key,
+                highlighted: hoveredKey === slice.key,
               })}
-              data-slice-key={key}
-              onMouseEnter={this.onLegendEnter}
+              data-slice-key={slice.key}
+              onMouseEnter={this.onMouseEnter}
             >
               <span className={`${bn}__label`}>
                 <span
                   className={`${bn}__swatch`}
-                  style={{ '--colour': chartColour(key) } as React.CSSProperties}
+                  style={{ '--colour': slice.colour } as React.CSSProperties}
                 />
-                {trans(`users.show.stats.${key}_beatmapset_count`)}
+                {trans(`users.show.stats.${slice.key}_beatmapset_count`)}
               </span>
               <span className={`${bn}__value`}>
-                {formatNumber(chartValue(user, key))}
+                {formatNumber(slice.value)}
               </span>
             </li>
           ))}
