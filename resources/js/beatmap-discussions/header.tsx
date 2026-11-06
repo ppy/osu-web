@@ -16,10 +16,12 @@ import Ruleset, { rulesets } from 'interfaces/ruleset';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { hasGuestOwners } from 'utils/beatmap-helper';
 import { getArtist, getTitle, showVisual } from 'utils/beatmapset-helper';
 import { trans, transChoice } from 'utils/lang';
+import { beatmapDownloadDirect } from 'utils/url';
 import BeatmapList from './beatmap-list';
 import Chart from './chart';
 import DiscussionsState from './discussions-state';
@@ -94,11 +96,65 @@ export class Header extends React.Component<Props> {
     );
   }
 
+  private downloadButton(href: string, text: string) {
+    return (
+      <div className='beatmap-discussions-header-bottom__button'>
+        <BigButton
+          href={href}
+          icon='fas fa-download'
+          modifiers='full'
+          text={text}
+        />
+      </div>
+    );
+  }
+
   @action
   private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: Ruleset) => {
     event.preventDefault();
     this.discussionsState.changeGameMode(mode);
   };
+
+  private renderDownloadButtons() {
+    if (core.currentUser == null) {
+      return (
+        <div className='beatmap-discussions-header-bottom__details'>
+          <BigButton
+            extraClasses={['js-user-link']}
+            icon='fas fa-lock'
+            modifiers='full'
+            text={{
+              bottom: trans('beatmapsets.show.details.login_required.bottom'),
+              top: trans('beatmapsets.show.details.login_required.top'),
+            }}
+          />
+        </div>
+      );
+    }
+
+    if (this.beatmapset.availability.download_disabled) return null;
+
+    const legacyScoreOnly = core.userPreferences.get('legacy_score_only');
+
+    return (
+      <div className='beatmap-discussions-header-bottom__details'>
+        {this.downloadButton(
+          route('beatmapsets.download', { beatmapset: this.beatmapset.id }),
+          trans('beatmapsets.show.details.download._'),
+        )}
+        {this.beatmapset.video && this.downloadButton(
+          route('beatmapsets.download', { beatmapset: this.beatmapset.id, noVideo: 1 }),
+          trans('beatmapsets.show.details.download.no-video'),
+        )}
+        {this.downloadButton(
+          core.currentUser.is_supporter || !legacyScoreOnly
+            ? beatmapDownloadDirect(this.currentBeatmap.id)
+            : route('support-the-game'),
+          trans(`beatmapsets.show.details.download.${legacyScoreOnly ? 'direct' : 'lazer'}`),
+        )}
+      </div>
+    );
+  }
 
   private renderHeaderBottom() {
     const bn = 'beatmap-discussions-header-bottom';
@@ -115,14 +171,7 @@ export class Header extends React.Component<Props> {
           <div className={`${bn}__details`}>
             <Subscribe beatmapset={this.beatmapset} discussionsState={this.discussionsState} />
           </div>
-          <div className={`${bn}__details`}>
-            <BigButton
-              href={route('beatmapsets.show', { beatmapset: this.beatmapset.id })}
-              icon='fas fa-info'
-              modifiers='full'
-              text={trans('beatmaps.discussions.beatmap_information')}
-            />
-          </div>
+          {this.renderDownloadButtons()}
         </div>
         <div className={`${bn}__content ${bn}__content--nomination`}>
           <Nominations
