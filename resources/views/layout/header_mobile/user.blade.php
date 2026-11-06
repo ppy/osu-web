@@ -7,17 +7,7 @@
     $teamId = $currentUser?->team?->getKey() ?? $currentUser?->teamApplication?->team_id;
 @endphp
 <div class="navbar-mobile-item js-click-menu--close">
-    @if ($currentUser === null)
-        <a
-            class="js-user-link navbar-mobile-item__main navbar-mobile-item__main--user"
-            href="#"
-            title="{{ osu_trans('users.anonymous.login_link') }}"
-        >
-            <span class="avatar avatar--guest avatar--navbar-mobile"></span>
-
-            {{ osu_trans('users.anonymous.username') }}
-        </a>
-    @else
+    @if ($currentUser !== null)
         <div
             class="navbar-mobile-item__main js-react"
             data-is-current-user="1"
