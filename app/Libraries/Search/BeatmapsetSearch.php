@@ -66,6 +66,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addFeaturedArtistFilter($query);
         $this->addFeaturedArtistsFilter($query);
         $this->addFollowsFilter($query);
+        $this->addExclusiveTracksFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
@@ -169,6 +170,14 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->params->showFeaturedArtists) {
             $query->filter(['exists' => ['field' => 'track_id']]);
+        }
+    }
+
+    private function addExclusiveTracksFilter($query)
+    {
+        if ($this->params->showExclusiveTracks) {
+            $trackIds = ArtistTrack::where('exclusive', true)->pluck('id');
+            $query->filter(['terms' => ['track_id' => $trackIds]]);
         }
     }
 
