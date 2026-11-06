@@ -212,7 +212,7 @@ return [
             ],
         ],
 
-        'beatmaps' => [
+        'beatmapsets' => [
             'empty' => 'Beatmap counts will show here\nonce you submit beatmaps!',
             'title' => 'Beatmaps',
         ],

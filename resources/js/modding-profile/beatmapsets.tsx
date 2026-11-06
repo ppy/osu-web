@@ -79,7 +79,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
               <span className='svg-icon svg-icon--stats' />
             </div>
             <div>
-              {trans('users.show.beatmaps.title')}
+              {trans('users.show.beatmapsets.title')}
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
           <span className='fas fa-ghost' />
         </span>
         <div>
-          {trans('users.show.beatmaps.empty').split('\\n').map((line, i) => (
+          {trans('users.show.beatmapsets.empty').split('\\n').map((line, i) => (
             <div key={i}>{line}</div>
           ))}
         </div>
