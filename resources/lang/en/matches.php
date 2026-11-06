@@ -38,6 +38,7 @@ return [
                 'accuracy' => 'Accuracy',
                 'combo' => 'Combo',
                 'score' => 'Score',
+                'free_mods' => 'Free mods',
             ],
         ],
 
