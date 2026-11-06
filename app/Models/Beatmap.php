@@ -309,6 +309,11 @@ class Beatmap extends Model implements AfterCommit
         };
     }
 
+    public function getDisplayDifficultyrating(): float
+    {
+        return floor($this->difficultyrating * 100) / 100;
+    }
+
     public function getUserPlaycount(): int
     {
         if (!array_key_exists('user_playcount', $this->attributes)) {
