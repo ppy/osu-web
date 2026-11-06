@@ -69,8 +69,6 @@ export default class Beatmapsets extends React.PureComponent<Props> {
   }
 
   render() {
-    const empty = this.slices.length === 0;
-
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--beatmapsets'>
         <div className='profile-detail-stats-card__top profile-detail-stats-card__top--beatmapsets'>
@@ -83,9 +81,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
             </div>
           </div>
         </div>
-        <div className={classWithModifiers(bn, { empty })}>
-          {empty ? this.renderEmpty() : this.renderChart()}
-        </div>
+        {this.slices.length === 0 ? this.renderEmpty() : this.renderChart()}
       </div>
     );
   }
@@ -104,7 +100,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
     const hoveredKey = this.hoveredKey;
 
     return (
-      <>
+      <div className={bn}>
         <div className={`${bn}__chart`}>
           <DonutChart
             hoveredKey={hoveredKey}
@@ -138,13 +134,13 @@ export default class Beatmapsets extends React.PureComponent<Props> {
             </li>
           ))}
         </ul>
-      </>
+      </div>
     );
   }
 
   private renderEmpty() {
     return (
-      <>
+      <div className={classWithModifiers(bn, 'empty')}>
         <span className={`${bn}__empty-icon`}>
           <span className='fas fa-ghost' />
         </span>
@@ -153,7 +149,7 @@ export default class Beatmapsets extends React.PureComponent<Props> {
             <div key={i}>{line}</div>
           ))}
         </div>
-      </>
+      </div>
     );
   }
 }
