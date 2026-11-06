@@ -1,7 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-module.exports = {
+const { FlatCompat } = require('@eslint/eslintrc');
+const js = require('@eslint/js');
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+});
+
+module.exports = compat.config({
   env: {
     es2021: true,
     node: true,
@@ -258,4 +266,4 @@ module.exports = {
     radix: 'error',
     'sort-keys': ['error', 'asc', { caseSensitive: false }],
   },
-};
+});
