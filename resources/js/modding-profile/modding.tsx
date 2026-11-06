@@ -61,10 +61,9 @@ export default class Modding extends React.PureComponent<Props> {
               value={
                 <div
                   className={classWithModifiers('rank-value', tier ?? 'base')}
-                  data-html-title={rank == null ? trans('users.show.rank.kudosu_outside_top_1000') : undefined}
                   data-tooltip-position='bottom left'
                   style={rankValueStyle}
-                  title=''
+                  title={rank == null ? trans('users.show.rank.kudosu_outside_top_1000') : undefined}
                 >
                   {rank != null ? `#${formatNumber(rank)}` : '-'}
                 </div>
