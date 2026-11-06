@@ -112,6 +112,7 @@ use Request;
  * @property-read Collection<LegacyScoreFirst\Mania> $scoresFirstMania
  * @property-read Collection<LegacyScoreFirst\Osu> $scoresFirstOsu
  * @property-read Collection<LegacyScoreFirst\Taiko> $scoresFirstTaiko
+ * @property-read Collection<Screenshot> $screenshots
  * @property-read Collection<UserSeasonScoreAggregate> $seasonScores
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
@@ -970,6 +971,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'scoresMania',
             'scoresOsu',
             'scoresTaiko',
+            'screenshots',
             'soloScores',
             'statisticsFruits',
             'statisticsMania',
@@ -1265,6 +1267,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function scorePins()
     {
         return $this->hasMany(ScorePin::class);
+    }
+
+    public function screenshots(): HasMany
+    {
+        return $this->hasMany(Screenshot::class)->where('deleted', false);
     }
 
     public function userGroups()
