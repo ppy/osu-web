@@ -4,6 +4,7 @@
 import BasicSelectOptions from 'components/basic-select-options';
 import RoomList from 'components/room-list';
 import TimeWithTooltip from 'components/time-with-tooltip';
+import { rulesetNames } from 'interfaces/ruleset';
 import SeasonJson from 'interfaces/season-json';
 import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
@@ -18,6 +19,13 @@ interface Props {
 }
 
 export default function Main(props: Props) {
+  const ruleset = props.currentSeason.ruleset_id != null
+    ? rulesetNames[props.currentSeason.ruleset_id]
+    : undefined;
+  const variant = ruleset != null && props.currentSeason.variant != null
+    ? trans(`beatmaps.variant.${ruleset}.${props.currentSeason.variant}`)
+    : null;
+
   return (
     <>
       <div className='osu-page osu-page--ranking-info osu-page--ranking-info-extra'>
@@ -31,6 +39,26 @@ export default function Main(props: Props) {
         />
 
         <div className='grid-items grid-items--ranking-info-bar'>
+          {ruleset != null &&
+            <div className='counter-box counter-box--ranking'>
+              <div className='counter-box__title'>
+                {trans('rankings.seasons.game_mode')}
+              </div>
+              <div className='counter-box__count'>
+                <span className={`fal fa-extra-mode-${ruleset}`} /> {trans(`beatmaps.mode.${ruleset}`)}
+              </div>
+            </div>
+          }
+          {variant != null &&
+            <div className='counter-box counter-box--ranking'>
+              <div className='counter-box__title'>
+                {trans('rankings.seasons.variant')}
+              </div>
+              <div className='counter-box__count'>
+                {variant}
+              </div>
+            </div>
+          }
           {props.currentSeason.start_date !== null &&
             <div className='counter-box counter-box--ranking'>
               <div className='counter-box__title'>

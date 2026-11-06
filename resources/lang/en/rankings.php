@@ -75,6 +75,7 @@ return [
 
     'seasons' => [
         'empty' => 'There are no rooms in this season yet.',
+        'game_mode' => 'Game Mode',
         'ongoing' => 'This season is still ongoing (there will be more playlists added).',
         'room_count' => 'Playlist count',
         'summary' => 'View Season Summary',
@@ -82,6 +83,7 @@ return [
         'validation' => [
             'not_enough_factors' => 'there is not enough score factors for proper calculation',
         ],
+        'variant' => 'Variant',
     ],
 
     'spotlight' => [
