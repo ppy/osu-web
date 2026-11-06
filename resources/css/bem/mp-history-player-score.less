@@ -5,24 +5,35 @@
   .default-border-radius();
   .default-box-shadow();
 
-  --padding-h: 10px;
-  --padding-left-desktop: var(--padding-h);
-  --score-link-bg: transparent;
-  --team-indicator-display: none;
+  --score-link-bg: hsl(var(--hsl-b2));
   --zero-opacity: 0.4;
-  background-color: @osu-colour-b2;
-  display: grid;
-  grid-template-columns: auto 1fr;
   position: relative;
+  z-index: 0;
+  background-color: var(--score-link-bg);
+  padding: 10px;
 
-  &:hover {
-    --score-link-bg: hsl(var(--hsl-b1));
-    --zero-opacity: 1;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto 1fr auto;
+  grid-template-areas:
+      "team position name  name     name  name  name"
+      "team rank     name  name     name  name  name"
+      "team .        score accuracy combo stats mods";
+  gap: 8px;
+
+  @media @narrow {
+    grid-template-areas:
+        "team position name  name     name  name  name"
+        "team rank     name  name     name  name  name"
+        "team .        score accuracy combo combo combo"
+        "team .        stats stats    stats stats mods";
   }
 
-  &--team {
-    --padding-left-desktop: 0;
-    --team-indicator-display: block;
+  @media @desktop {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-areas: unset;
+    gap: 0; // TODO: using "0 20px" here causes overflow in stats area in firefox
+    align-items: center;
   }
 
   @media @desktop {
@@ -41,10 +52,13 @@
   }
 
   &__team-indicator {
-    width: 15px;
+    width: 10px;
+    height: 100%;
     background-color: var(--team-color);
     background-size: cover;
-    display: var(--team-indicator-display);
+    display: block;
+    // escapes the grid and its 10px padding
+    position: absolute;
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
@@ -53,7 +67,9 @@
       background-position: bottom left;
       background-repeat: no-repeat;
       border-radius: @border-radius-large;
-      margin: 10px;
+      width: 15px;
+      position: relative;
+      grid-area: team;
     }
 
     &--blue {
@@ -65,36 +81,9 @@
     }
   }
 
-  &__main {
-    padding: 10px;
-    display: grid;
-    grid-template-columns: auto auto auto auto 1fr auto;
-    grid-template-areas:
-      "position name  name     name  name  name"
-      "rank     name  name     name  name  name"
-      ".        score accuracy combo stats mods";
-    gap: 8px;
-    grid-column: 2 / -1;
-    position: relative;
-    pointer-events: none;
-
-    @media @narrow {
-      grid-template-areas:
-        "position name  name     name  name  name"
-        "rank     name  name     name  name  name"
-        ".        score accuracy combo combo combo"
-        ".        stats stats    stats stats mods";
-    }
-
-    @media @desktop {
-      padding-left: var(--padding-left-desktop);
-      padding-right: var(--padding-h);
-      display: grid;
-      grid-template-columns: subgrid;
-      grid-template-areas: unset;
-      gap: 0; // TODO: using "0 20px" here causes overflow in stats area in firefox
-      align-items: center;
-    }
+  &:hover {
+    --score-link-bg: hsl(var(--hsl-b1));
+    --zero-opacity: 1;
   }
 
   &__info-box {
@@ -107,7 +96,7 @@
       align-items: initial;
       flex-direction: row;
       gap: 0;
-      padding: 0 5px; // TODO: replace with gap at __main if fixed in firefox
+      padding: 0 5px; // TODO: replace with gap in .mp-history-player-score if fixed in firefox
     }
 
     &--position {
@@ -115,7 +104,7 @@
       grid-area: position;
 
       @media @desktop {
-        padding-left: 0; // TODO: replace with gap at __main if fixed in firefox
+        padding-left: 0; // TODO: replace with gap in .mp-history-player-score if fixed in firefox
       }
     }
 
@@ -140,6 +129,10 @@
       justify-content: center;
       gap: 5px;
       min-width: 0;
+
+      a {
+        z-index: 1;
+      }
     }
 
     &--score {
@@ -216,7 +209,6 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background-color: var(--score-link-bg);
   }
 
   &__stat {
