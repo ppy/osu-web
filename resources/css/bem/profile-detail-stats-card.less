@@ -19,6 +19,15 @@
     flex-direction: column;
   }
 
+  &--beatmapsets {
+    grid-template-rows: 1fr;
+  }
+
+  &--modding {
+    grid-template-rows: auto;
+    align-content: start;
+  }
+
   &__bottom {
     display: grid;
     padding: var(--padding) 0;
@@ -68,6 +77,10 @@
       rgba(0, 0, 0, 0) 70%,
       rgba(0, 0, 0, 0.1)
     );
+
+    &--beatmapsets {
+      grid-template-rows: auto 1fr;
+    }
   }
 
   &__title {
