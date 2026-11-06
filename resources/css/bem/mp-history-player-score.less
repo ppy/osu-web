@@ -17,16 +17,9 @@
   grid-template-areas:
       "team position name  name     name  name  name"
       "team rank     name  name     name  name  name"
-      "team .        score accuracy combo stats mods";
+      "team .        score accuracy combo combo combo"
+      "team .        stats stats    stats stats mods";
   gap: 8px;
-
-  @media @narrow {
-    grid-template-areas:
-        "team position name  name     name  name  name"
-        "team rank     name  name     name  name  name"
-        "team .        score accuracy combo combo combo"
-        "team .        stats stats    stats stats mods";
-  }
 
   @media @desktop {
     display: grid;
