@@ -148,16 +148,16 @@
     }
 
     &--stats {
-      flex-direction: row-reverse;
-      align-items: baseline;
-      gap: 2px;
       grid-area: stats;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      flex: 1;
+      gap: 10px;
 
       @media @desktop {
-        align-items: center;
-        display: grid;
-        grid-template-columns: subgrid;
-        gap: 3px 0;
+        justify-content: flex-end;
+        gap: 15px;
         padding: 0 15px;
       }
     }
@@ -184,19 +184,6 @@
   &__username-box {
     display: flex;
     gap: 5px;
-  }
-
-  &__stat-row {
-    display: flex;
-    align-items: baseline;
-    flex-direction: row;
-    flex: 1;
-    gap: 10px;
-
-    @media @desktop {
-      gap: 15px;
-      justify-content: flex-end;
-    }
   }
 
   &__mods {

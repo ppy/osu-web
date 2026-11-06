@@ -115,17 +115,15 @@ export default observer(function Score(props: Props) {
         </span>
       </div>
       <div className={classWithModifiers('mp-history-player-score__info-box', 'stats')}>
-        <div className='mp-history-player-score__stat-row'>
-          {calculateStatisticsFor(props.score, 'leaderboard').map((stat) => (
-            <div
-              key={stat.label.short}
-              className={classWithModifiers('mp-history-player-score__stat', `hit-${stat.attribute}`)}
-            >
-              <span className='mp-history-player-score__stat-label'>{stat.label.short}</span>
-              <span className={classWithModifiers('mp-history-player-score__stat-number', { zero: stat.value === 0 })}>{formatNumber(stat.value)}</span>
-            </div>
-          ))}
-        </div>
+        {calculateStatisticsFor(props.score, 'leaderboard').map((stat) => (
+          <div
+            key={stat.label.short}
+            className={classWithModifiers('mp-history-player-score__stat', `hit-${stat.attribute}`)}
+          >
+            <span className='mp-history-player-score__stat-label'>{stat.label.short}</span>
+            <span className={classWithModifiers('mp-history-player-score__stat-number', { zero: stat.value === 0 })}>{formatNumber(stat.value)}</span>
+          </div>
+        ))}
       </div>
       <div className={`${classWithModifiers('mp-history-player-score__info-box', 'mods')} u-hover`}>
         {props.score.mods.length > 0 && <span className={classWithModifiers('mp-history-player-score__value-label')}>
