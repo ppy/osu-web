@@ -93,6 +93,7 @@ interface UserJsonDefaultAttributes {
   last_visit: string | null;
   pm_friends_only: boolean;
   profile_colour: string | null;
+  profile_hue: number | null;
   username: string;
 }
 

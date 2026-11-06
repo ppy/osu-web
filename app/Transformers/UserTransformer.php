@@ -43,7 +43,6 @@ class UserTransformer extends UserCompactTransformer
             'playmode' => $user->playmode,
             'playstyle' => $user->osu_playstyle,
             'post_count' => $user->user_posts,
-            'profile_hue' => $user->user_style,
             'profile_order' => $options['extras_order'],
             'profile_pinned_badge' => $options['profile_pinned_badge'],
             'title' => $user->title(),

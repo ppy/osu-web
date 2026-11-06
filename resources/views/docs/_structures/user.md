@@ -4,6 +4,7 @@
   "id": 2,
   "username": "peppy",
   "profile_colour": "#3366FF",
+  "profile_hue": 42,
   "avatar_url": "https://a.ppy.sh/2?1519081077.png",
   "country_code": "AU",
   "is_active": true,
@@ -30,6 +31,7 @@ is_supporter    | boolean                   | does this user have supporter?
 last_visit      | [Timestamp](#timestamp)?  | last access time. `null` if the user hides online presence
 pm_friends_only | boolean                   | whether or not the user allows PM from other than friends
 profile_colour  | string?                   | colour of username/profile highlight, hex code (e.g. `#333333`)
+profile_hue     | integer?                  | custom profile colour hue in HSL degrees (0–359).
 username        | string                    | user's display name
 
 <div id="user-optionalattributes" data-unique="user-optionalattributes"></div>
