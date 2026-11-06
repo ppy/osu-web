@@ -45,7 +45,7 @@ export default class Modding extends React.PureComponent<Props> {
 
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--modding'>
-        <div className='profile-detail-stats-card__top profile-detail-stats-card__top--modding'>
+        <div className='profile-detail-stats-card__top'>
           <div className='profile-detail-stats-card__title'>
             <div className='profile-detail-stats-card__title-icon'>
               <span className='svg-icon svg-icon--star' />

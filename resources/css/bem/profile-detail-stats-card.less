@@ -22,15 +22,8 @@
     flex-direction: column;
   }
 
-  &--beatmapsets,
-  &--modding {
-    background:
-      linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.1)),
-      var(--bg);
-  }
-
   &--beatmapsets {
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
   }
 
   &--modding {
@@ -162,9 +155,8 @@
       rgba(0, 0, 0, 0.1)
     );
 
-    &--beatmapsets,
-    &--modding {
-      background: none;
+    &--beatmapsets {
+      grid-template-rows: auto 1fr;
     }
   }
 

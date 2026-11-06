@@ -80,8 +80,8 @@ export default class Beatmapsets extends React.PureComponent<Props> {
               {trans('users.show.beatmapsets.title')}
             </div>
           </div>
+          {this.slices.length === 0 ? this.renderEmpty() : this.renderChart()}
         </div>
-        {this.slices.length === 0 ? this.renderEmpty() : this.renderChart()}
       </div>
     );
   }
