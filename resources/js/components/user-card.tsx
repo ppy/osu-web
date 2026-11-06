@@ -12,7 +12,6 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { present } from 'utils/string';
 import { giftSupporterTagUrl } from 'utils/url';
 import FlagCountry from './flag-country';
 import FlagTeam from './flag-team';
@@ -20,10 +19,10 @@ import FollowUserMappingButton from './follow-user-mapping-button';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import PopupMenuState from './popup-menu-state';
 import { ReportReportable } from './report-reportable';
-import { Spinner } from './spinner';
 import StringWithComponent from './string-with-component';
 import SupporterIcon from './supporter-icon';
 import TimeWithTooltip from './time-with-tooltip';
+import UserAvatarImg from './user-avatar-img';
 import UserCardBrick from './user-card-brick';
 import UserGroupBadges from './user-group-badges';
 
@@ -67,7 +66,6 @@ export class UserCard extends React.PureComponent<Props, State> {
     username: trans('users.card.loading'),
   };
 
-  @observable private avatarLoaded = false;
   @observable private backgroundLoaded = false;
   private readonly popupMenuState = new PopupMenuState();
   private url?: string;
@@ -89,16 +87,12 @@ export class UserCard extends React.PureComponent<Props, State> {
     return Number.isFinite(this.user.id) && this.user.id > 0;
   }
 
-  private get isUserNotFound() {
-    return this.user.id === -1;
-  }
-
   private get isUserVisible() {
     return this.isUserLoaded && !this.user.is_deleted;
   }
 
   private get user() {
-    return this.props.user || UserCard.userLoading;
+    return this.props.user ?? UserCard.userLoading;
   }
 
   constructor(props: Props) {
@@ -132,7 +126,7 @@ export class UserCard extends React.PureComponent<Props, State> {
         <div className='user-card__card'>
           <div className='user-card__content user-card__content--details'>
             <div className='user-card__user'>
-              {this.renderAvatar()}
+              <UserAvatarImg modifiers={this.props.mode} user={this.user} />
             </div>
             <div className='user-card__details'>
               {this.renderIcons()}
@@ -145,27 +139,6 @@ export class UserCard extends React.PureComponent<Props, State> {
           </div>
           {this.renderStatusBar()}
         </div>
-      </div>
-    );
-  }
-
-  renderAvatar() {
-    const modifiers = this.avatarLoaded ? 'loaded' : null;
-    const hasAvatar = present(this.user.avatar_url) && !this.isUserNotFound;
-
-    return (
-      <div className='user-card__avatar-space'>
-        <div className={classWithModifiers('user-card__avatar-spinner', modifiers)}>
-          {hasAvatar && <Spinner modifiers={modifiers} />}
-        </div>
-        {this.isUserLoaded && hasAvatar && (
-          <img
-            className={classWithModifiers('user-card__avatar', modifiers)}
-            onError={this.onAvatarLoad} // remove spinner if error
-            onLoad={this.onAvatarLoad}
-            src={this.user.avatar_url}
-          />
-        )}
       </div>
     );
   }
@@ -322,11 +295,6 @@ export class UserCard extends React.PureComponent<Props, State> {
       </div>
     );
   }
-
-  @action
-  private readonly onAvatarLoad = () => {
-    this.avatarLoaded = true;
-  };
 
   @action
   private readonly onBackgroundLoad = () => {
