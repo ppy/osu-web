@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack",
-    "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
+    "lint": "cross-env ESLINT_USE_FLAT_CONFIG=true eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
     "pretty": "prettier --check .",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack",
@@ -102,6 +102,8 @@
     "ziggy-js": "^1.8.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^2.1.4",
+    "@eslint/js": "^8.57.1",
     "@stylistic/eslint-plugin": "^2.11.0",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
