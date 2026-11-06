@@ -8,7 +8,6 @@
   gap: 10px;
   align-items: center;
   min-width: 0;
-  min-height: calc(120px + var(--padding));
   padding: 0 var(--padding) var(--padding);
 
   &--empty {
@@ -33,7 +32,7 @@
 
   &__label {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 5px;
     min-width: 0;
@@ -41,7 +40,7 @@
 
   &__legend {
     display: grid;
-    grid-template-columns: minmax(0, max-content) auto;
+    grid-template-columns: 1fr auto;
     gap: 4px 20px;
     min-width: 0;
     list-style: none;
