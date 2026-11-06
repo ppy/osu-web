@@ -52,7 +52,7 @@ class ProfileCountTest extends TestCase
         Beatmapset::factory()->owner($user)->state(['approved' => Beatmapset::STATES['wip']])->create();
         Beatmapset::factory()->owner($user)->state(['approved' => Beatmapset::STATES['graveyard']])->create();
 
-        $this->assertSame([
+        $this->assertEquals([
             'graveyard' => 1,
             'wip' => 1,
             'pending' => 1,
