@@ -177,7 +177,7 @@ class Room extends Model
             'user:any',
         ], ['null_missing' => true]);
 
-        $maxLimit ??= 250;
+        $maxLimit ??= 500; // TODO: need to reconsider this. pagination or otherwise.
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
