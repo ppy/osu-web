@@ -89,9 +89,9 @@ return [
                 'description' => 'Filter beatmap searches by played and unplayed maps, or by rank achieved.',
             ],
 
-            'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
+            'colour_galore' => [
+                'title' => 'Colour Galore',
+                'description' => 'Be recognised in-game with your new bright chat username colour.',
             ],
 
             'speedy_downloads' => [
