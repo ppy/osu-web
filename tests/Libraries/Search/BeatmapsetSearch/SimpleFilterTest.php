@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class SimpleFilterTest extends TestCase
 {
+    protected array $defaultExpectedSort = ['approved_date', 'id'];
+
     // Date tests in DateFilterTest
     private const KEYS = [
         'ar' => 'diff_approach',
@@ -31,23 +33,23 @@ class SimpleFilterTest extends TestCase
         $data = [];
         foreach (array_keys(static::KEYS) as $offset => $key) {
             $value = $offset + 2;
-            $data[] = [['q' => "{$key}={$value}"], [0, 1]];
-            $data[] = [['q' => "{$key}>{$value}"], [1, 2]];
-            $data[] = [['q' => "{$key}>={$value}"], [0, 1, 2]];
+            $data[] = [['q' => "{$key}={$value}"], [1, 0]];
+            $data[] = [['q' => "{$key}>{$value}"], [2, 1]];
+            $data[] = [['q' => "{$key}>={$value}"], [2, 1, 0]];
             $data[] = [['q' => "{$key}<{$value}"], [0]];
-            $data[] = [['q' => "{$key}<={$value}"], [0, 1]];
+            $data[] = [['q' => "{$key}<={$value}"], [1, 0]];
         }
 
         $data[] = [['q' => 'od>9 ar<3'], []];
 
         $data[] = [['q' => 'favourites=150'], []]; // if you really want an exact number of favourites...
         $data[] = [['q' => 'favourites>200'], [2]];
-        $data[] = [['q' => 'favourites>=200'], [1, 2]];
+        $data[] = [['q' => 'favourites>=200'], [2, 1]];
         $data[] = [['q' => 'favourites<200'], [0]];
-        $data[] = [['q' => 'favourites<=200'], [0, 1]];
+        $data[] = [['q' => 'favourites<=200'], [1, 0]];
 
-        $data[] = [['q' => 'od>7'], [0, 1, 2]];
-        $data[] = [['q' => 'od>7 favourites>123'], [1, 2]];
+        $data[] = [['q' => 'od>7'], [2, 1, 0]];
+        $data[] = [['q' => 'od>7 favourites>123'], [2, 1]];
 
         // no matches because there is no beatmap that matches both conditions
         // even though the beatmapset has both in different beatmaps.
