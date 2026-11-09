@@ -69,7 +69,7 @@ export default class BeatmapTagPicker extends React.Component<Props> {
   private readonly onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => this.props.controller.query = e.target.value;
 }
 
-const UserTag = observer(function UserTag({ tag, props }: { props: Props; tag: BeatmapTag }) {
+const UserTag = observer(function({ tag, props }: { props: Props; tag: BeatmapTag }) {
   const active = props.controller.isTagEnabled(tag);
 
   const onClick = useCallback(() => {
