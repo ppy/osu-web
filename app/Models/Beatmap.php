@@ -101,7 +101,7 @@ class Beatmap extends Model implements AfterCommit
 
     public static function isModeValid(?string $mode)
     {
-        return array_key_exists($mode, static::MODES);
+        return array_key_exists($mode ?? '', static::MODES);
     }
 
     public static function isVariantValid(?string $mode, ?string $variant)
