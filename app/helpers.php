@@ -572,6 +572,9 @@ function log_error($exception, ?array $sentryTags = null): void
 
 function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
 {
+    if ($exception instanceof App\Exceptions\SilencedException) {
+        return null;
+    }
     // Fallback in case error happening before config is initialised
     if (!($GLOBALS['cfg']['sentry']['dsn'] ?? false)) {
         return null;
