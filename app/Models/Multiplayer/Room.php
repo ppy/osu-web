@@ -192,7 +192,7 @@ class Room extends Model
             $category = null;
         }
 
-        if (!array_key_exists($typeGroup, static::TYPE_GROUPS)) {
+        if (!array_key_exists($typeGroup ?? '', static::TYPE_GROUPS)) {
             $typeGroup = 'playlists';
         }
 
