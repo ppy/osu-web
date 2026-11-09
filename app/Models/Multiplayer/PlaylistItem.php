@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\ScoreToken;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -119,6 +120,15 @@ class PlaylistItem extends Model
     public function scoreTokens(): HasMany
     {
         return $this->hasMany(ScoreToken::class);
+    }
+
+    public function scopeWithDifficultyrating(Builder $query): void
+    {
+        $query->addSelect([
+            'difficultyrating' => Beatmap
+                ::select('difficultyrating')
+                ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id')),
+        ]);
     }
 
     public function getAttribute($key)

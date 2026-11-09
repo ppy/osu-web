@@ -162,7 +162,7 @@ class RoomsController extends Controller
         $params = request()->all();
         $params['user'] = auth()->user();
 
-        $includes = ['host.country', 'playlist.beatmap'];
+        $includes = ['host.country', 'playlist' => fn ($q) => $q->withDifficultyrating()];
 
         $search = Room::search($params);
 
