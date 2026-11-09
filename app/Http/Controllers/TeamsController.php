@@ -191,6 +191,7 @@ class TeamsController extends Controller
                 [
                     ...prefix_strings('leader.', UserCompactTransformer::CARD_INCLUDES),
                     ...prefix_strings('members.', UserCompactTransformer::CARD_INCLUDES),
+                    'statistics.rank',
                 ],
             ));
         } else {
