@@ -167,6 +167,7 @@ class RoomsController extends Controller
         $search = Room::search($params);
 
         $rooms = $search['query']
+            ->whereHas('playlist', fn ($q) => $q->where('beatmap_id', '<>', 0))
             ->with($includes)
             ->withRecentParticipantIds()
             ->get();
