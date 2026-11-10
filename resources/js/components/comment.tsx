@@ -276,11 +276,13 @@ export default class Comment extends React.Component<Props> {
 
         <div className='comment__container'>
           <div className='comment__message'>
-            <p className='osu-md osu-md--comment osu-md__paragraph'>
-              {trans('users.blocks.comment_text')}
-              {' '}
-              {this.renderForceShowButton()}
-            </p>
+            <div className='osu-md osu-md--comment'>
+              <p className='osu-md__paragraph'>
+                {trans('users.blocks.comment_text')}
+                {' '}
+                {this.renderForceShowButton()}
+              </p>
+            </div>
           </div>
         </div>
       </div>
