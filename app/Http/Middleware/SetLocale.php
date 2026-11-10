@@ -14,6 +14,30 @@ use Illuminate\Http\Request;
 
 class SetLocale
 {
+    public static function setLocaleWeb(Request $request): void
+    {
+        $locale = Auth::user()?->user_lang ?? presence($request->cookie('locale'));
+        static::setLocale($locale, $request);
+    }
+
+    protected static function setLocale(?string $locale, Request $request): void
+    {
+        if ($locale !== null) {
+            $locale = get_valid_locale($locale);
+        }
+        $locale ??= static::localeFromHeader($request);
+
+        App::setLocale($locale);
+        // Carbon setLocale normalizes the locale
+        Carbon::setLocale(locale_meta($locale)->carbon());
+    }
+
+    private static function localeFromHeader(Request $request): string
+    {
+        return (new Parser())->languageRegionCompatibleFor($request->server('HTTP_ACCEPT_LANGUAGE'))
+            ?? $GLOBALS['cfg']['app']['fallback_locale'];
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -24,29 +48,8 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $this->setLocale(
-            Auth::user()?->user_lang ?? presence($request->cookie('locale')),
-            $request,
-        );
+        static::setLocaleWeb($request);
 
         return $next($request);
-    }
-
-    protected function setLocale(?string $locale, Request $request): void
-    {
-        if ($locale !== null) {
-            $locale = get_valid_locale($locale);
-        }
-        $locale ??= $this->localeFromHeader($request);
-
-        App::setLocale($locale);
-        // Carbon setLocale normalizes the locale
-        Carbon::setLocale(locale_meta($locale)->carbon());
-    }
-
-    private function localeFromHeader(Request $request): string
-    {
-        return (new Parser())->languageRegionCompatibleFor($request->server('HTTP_ACCEPT_LANGUAGE'))
-            ?? $GLOBALS['cfg']['app']['fallback_locale'];
     }
 }
