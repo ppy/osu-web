@@ -72,6 +72,8 @@ class UserCompactTransformer extends TransformerAbstract
         'active_tournament_banners',
         'badges',
         'beatmap_playcounts_count',
+        'beatmaps_modded_count',
+        'beatmapset_status_counts',
         'blocks',
         'comments_count',
         'country',
@@ -96,6 +98,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_nat',
         'is_restricted',
         'is_silenced',
+        'issues_resolved_count',
         'kudosu',
         'loved_beatmapset_count',
         'mapping_follower_count',
@@ -212,6 +215,16 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeBeatmapPlaycountsCount(User $user)
     {
         return $this->primitive($user->profileCount()->get('beatmapPlaycounts'));
+    }
+
+    public function includeBeatmapsModdedCount(User $user)
+    {
+        return $this->primitive($user->profileCount()->get('beatmapsModded'));
+    }
+
+    public function includeBeatmapsetStatusCounts(User $user)
+    {
+        return $this->primitive($user->profileCount()->beatmapsetStatusCounts());
     }
 
     public function includeBlocks(User $user)
@@ -369,6 +382,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeIsSilenced(User $user)
     {
         return $this->primitive($user->isSilenced());
+    }
+
+    public function includeIssuesResolvedCount(User $user)
+    {
+        return $this->primitive($user->profileCount()->get('issuesResolved'));
     }
 
     public function includeKudosu(User $user): ResourceInterface
