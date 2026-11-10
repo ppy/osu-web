@@ -21,15 +21,7 @@ import UserReplaysWatchedCountJson from './user-replays-watched-count-json';
 import UserStatisticsJson from './user-statistics-json';
 import UserStatisticsRulesetsJson from './user-statistics-rulesets-json';
 
-interface BeatmapsetStatusCountsJson {
-  approved?: number;
-  graveyard?: number;
-  loved?: number;
-  pending?: number;
-  qualified?: number;
-  ranked?: number;
-  wip?: number;
-}
+type BeatmapsetStatusCountsJson = Partial<Record<BeatmapsetStatus, number>>;
 
 interface UserJsonAvailableIncludes {
   account_history: UserAccountHistoryJson[];
