@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import CountryJson from './country-json';
 import DailyChallengeUserStatsJson from './daily-challenge-user-stats-json';
 import MatchmakingUserStatsJson from './matchmaking-user-stats-json';
