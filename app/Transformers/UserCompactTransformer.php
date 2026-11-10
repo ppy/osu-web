@@ -41,6 +41,7 @@ class UserCompactTransformer extends TransformerAbstract
         'user_colour',
         'user_id',
         'user_lastvisit',
+        'user_style',
         'username',
     ];
 
@@ -162,6 +163,7 @@ class UserCompactTransformer extends TransformerAbstract
             'last_visit' => $user->getDisplayedLastVisit(),
             'pm_friends_only' => $user->pm_friends_only,
             'profile_colour' => $user->user_colour,
+            'profile_hue' => $user->user_style,
             'username' => $user->username,
         ];
     }

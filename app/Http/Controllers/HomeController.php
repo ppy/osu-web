@@ -73,7 +73,7 @@ class HomeController extends Controller
         ];
 
         $platform = get_string(request('platform'));
-        if (!array_key_exists($platform, $lazerPlatformNames)) {
+        if ($platform === null || !array_key_exists($platform, $lazerPlatformNames)) {
             $deviceDetector = new DeviceDetector(\Request::header('User-Agent') ?? '');
             $deviceDetector->parse();
             $family = $deviceDetector->getOs('family');

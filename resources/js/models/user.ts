@@ -28,6 +28,7 @@ export default class User {
   @observable lastVisit: string | null = null;
   @observable pmFriendsOnly = false;
   @observable profileColour = '';
+  @observable profileHue: number | null = null;
   @observable username = '';
 
   constructor(id: number) {
@@ -59,6 +60,7 @@ export default class User {
       last_visit: this.lastVisit,
       pm_friends_only: this.pmFriendsOnly,
       profile_colour: this.profileColour,
+      profile_hue: this.profileHue,
       username: this.username,
     };
   }
@@ -74,6 +76,7 @@ export default class User {
     this.isSupporter = json.is_supporter;
     this.pmFriendsOnly = json.pm_friends_only;
     this.profileColour= json.profile_colour ?? '';
+    this.profileHue = json.profile_hue;
     this.username = json.username;
 
     if (json.groups != null) {
