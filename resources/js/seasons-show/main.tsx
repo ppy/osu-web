@@ -42,7 +42,7 @@ export default function Main(props: Props) {
           {ruleset != null &&
             <div className='counter-box counter-box--ranking'>
               <div className='counter-box__title'>
-                {trans('rankings.seasons.game_mode')}
+                {trans('rankings.seasons.ruleset')}
               </div>
               <div className='counter-box__count'>
                 <span className={`fal fa-extra-mode-${ruleset}`} /> {trans(`beatmaps.mode.${ruleset}`)}

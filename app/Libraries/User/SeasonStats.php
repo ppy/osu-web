@@ -20,11 +20,11 @@ class SeasonStats
     ) {
     }
 
-    public static function currentFor(User $user, string $mode): ?array
+    public static function currentFor(User $user, string $ruleset): ?array
     {
         $best = null;
 
-        foreach (Season::active()->forRuleset($mode)->get() as $season) {
+        foreach (Season::active()->forRuleset($ruleset)->get() as $season) {
             $stats = (new static($user, $season))->get();
             if ($stats !== null && ($best === null || static::isBetter($stats, $best))) {
                 $best = $stats;

@@ -75,9 +75,9 @@ return [
 
     'seasons' => [
         'empty' => 'There are no rooms in this season yet.',
-        'game_mode' => 'Game Mode',
         'ongoing' => 'This season is still ongoing (there will be more playlists added).',
         'room_count' => 'Playlist count',
+        'ruleset' => 'Ruleset',
         'summary' => 'View Season Summary',
         'url' => 'Display more informations on that season.',
         'validation' => [
