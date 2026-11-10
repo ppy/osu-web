@@ -18,6 +18,16 @@ return [
         'empty' => 'Kol kas nieko neįvyko...',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'ištrintas',
         'none_found' => 'Jokių diskusijų atitinkančių šių paieškos kriterijų nebuvo rasta.',

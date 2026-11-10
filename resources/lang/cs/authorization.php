@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Hype nelze vrátit zpět.',
             'has_reply' => 'Nelze odstranit diskusi s odpověďmi',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Dosáhl jsi dnešního limitu nominací, zkus to prosím zítra.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Můžeš odstranit pouze svoje příspěvky.',
             'resolved' => 'Nemůžete odstranit příspěvek v vyřešené diskusi.',
             'system_generated' => 'Automaticky generované příspěvky nelze odstranit.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Pouze autor může příspěvek upravovat.',
             'resolved' => 'Nemůžete upravit příspěvek ve vyřešené diskusi.',
             'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

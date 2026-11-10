@@ -18,6 +18,16 @@ return [
         'empty' => 'Ништа се не дешава... за сад.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'обрисано',
         'none_found' => 'Не постоји дискусија која одговара вашем критеријуму.',

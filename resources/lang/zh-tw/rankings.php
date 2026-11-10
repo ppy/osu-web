@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => '難度',
-        'theme' => '',
+        'theme' => '主題',
         'top_10p' => '前 10% 的分數',
         'top_50p' => '前 50% 的分數',
         'unavailable' => [

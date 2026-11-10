@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => '',
             'has_reply' => '',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => '',
@@ -43,12 +44,14 @@ return [
             'not_owner' => '',
             'resolved' => '',
             'system_generated' => '',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => '',
             'resolved' => '',
             'system_generated' => '',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

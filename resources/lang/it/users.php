@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'conosciuto in precedenza come',
         'plays_with' => 'Gioca con :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Ha postato :link',
             'count' => ':count_delimited commento|:count_delimited commenti',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Posizione',
             'rating' => 'Punteggio',
             'recent_history' => 'Cronologia ultimi scontri',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Dati non sufficienti per visualizzare statistiche accurate. Gioca più partite!',
             'tier' => 'Grado',
             'title' => 'Ranked Play',
             'wins' => 'Vittorie',
@@ -518,8 +525,8 @@ return [
             'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica Globale',
             'highest' => 'Posizione più alta: :rank il :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'Il grado viene indicato solo dopo essere entrati tra i primi 1.000',
+            'kudosu_simple' => 'Classifica Kudosu',
         ],
         'score_processing' => [
             'title' => 'È :link un nuovo algoritmo di Valutazione in Stelle / PP.',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Punteggio Totale',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap Abbandonate',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Beatmap Ospitate',
             'loved_beatmapset_count' => 'Beatmap Amate',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Beatmap Classificate Nominate',
             'pending_beatmapset_count' => 'Beatmap In Attesa',
             'ranked_beatmapset_count' => 'Beatmap Classificate',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Tutti',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'registrati attraverso il gioco!',

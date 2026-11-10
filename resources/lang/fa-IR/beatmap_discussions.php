@@ -18,6 +18,16 @@ return [
         'empty' => 'هنوز چیزی رخ نداده است.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'حذف شده',
         'none_found' => 'هیچ گفتگویی منطبق با جستجوی شما یافت نشد.',

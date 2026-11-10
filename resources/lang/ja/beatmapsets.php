@@ -42,6 +42,7 @@ return [
             'video' => '動画ありでダウンロード',
             'no_video' => '動画なしでダウンロード',
             'direct' => 'osu!directで開く',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'ダウンロード',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => '動画なし',
                 'video' => '動画あり',
             ],

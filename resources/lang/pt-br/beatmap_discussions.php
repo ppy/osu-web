@@ -18,6 +18,16 @@ return [
         'empty' => 'Nada aconteceu... ainda.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'excluído',
         'none_found' => 'Não foram encontradas discussões que correspondam aos critérios de pesquisa.',

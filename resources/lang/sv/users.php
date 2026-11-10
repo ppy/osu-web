@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Upplagd :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
@@ -567,6 +574,12 @@ return [
         'all' => 'Alla',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'vänligen registrera dig via spelklienten istället!',

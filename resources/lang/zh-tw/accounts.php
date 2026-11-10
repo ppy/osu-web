@@ -129,6 +129,7 @@ return [
             '_' => '預設圖譜下載類型',
             'all' => '包含影片',
             'direct' => '在 osu!direct 中開啟',
+            'lazer' => '',
             'no_video' => '不包含影片',
         ],
     ],

@@ -18,6 +18,16 @@ return [
         'empty' => 'Nič sa nestalo... zatiaľ.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'odstránené',
         'none_found' => 'Nenašli sa žiadne diskusie, zodpovedajúci zadaným požiadavkám.',

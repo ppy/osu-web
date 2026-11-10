@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'نمیتوانید hype را بازانجام دهید.',
             'has_reply' => 'نمیتوانید گفت و گویی که پاسخ دارد را حذف کنید',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'شما به بیشترین مقدار nominations امروزتان رسیده اید. لطفا دوباره فردا تلاش کنید.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'شما فقط میتوانید پست های خودتان را حذف کنید.',
             'resolved' => 'شما نمی توانید یک پست از یک گفت و گوی حل شده را حذف کنید.',
             'system_generated' => 'پست هایی که خودکار ساخته شده اند، نمیتوانند حذف شوند.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'فقط ارسال کننده پست میتواند آن را ویرایش کند.',
             'resolved' => 'شما نمیتوانید یک پست از یک گفت و گوی حل شده را ویرایش کنید.',
             'system_generated' => 'پست هایی که خودکار ساخته شده اند، نمیتوانند ویرایش شوند.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

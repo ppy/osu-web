@@ -71,6 +71,7 @@ trait BeatmapsetSearch
                     // TODO: remove adding $beatmap->user_id once everything else also populated beatmap_owners by default.
                     // Duplicate user_id in the array should be fine for now since the field isn't scored for querying.
                     'user_id' => $beatmap->beatmapOwners->pluck('user_id')->add($beatmap->user_id),
+                    'difficultyrating' => $beatmap->getDisplayDifficultyrating(),
                     default => $beatmap->$field,
                 };
 
@@ -95,6 +96,7 @@ trait BeatmapsetSearch
                             'top_tags',
                             'user_id' => $beatmapValues[$field],
 
+                            'difficultyrating' => $convert->getDisplayDifficultyrating(),
                             default => $convert->$field,
                         };
                     }

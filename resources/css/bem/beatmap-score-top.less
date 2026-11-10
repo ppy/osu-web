@@ -4,8 +4,18 @@
 .beatmap-score-top {
   @_top: beatmap-score-top;
 
+  background-color: hsl(var(--hsl-b3));
+  .default-border-radius();
+  .default-box-shadow();
+
+  align-items: center;
+  justify-content: space-between;
+
   position: relative;
   display: grid;
+  gap: 10px;
+  padding: 10px 20px;
+  pointer-events: none;
 
   @media @desktop {
     grid-column: 1 / -1;
@@ -13,13 +23,11 @@
   }
 
   &__achieved {
-    margin-bottom: 2px; // more balanced margin
     font-size: @font-size--small;
   }
 
   &__avatar {
     flex: none;
-    margin: 0px 10px;
   }
 
   &__flags {
@@ -30,6 +38,7 @@
 
   &__link-container {
     .full-size();
+    pointer-events: auto;
   }
 
   &__position {
@@ -47,37 +56,9 @@
     padding-bottom: 5px;
   }
 
-  &__section {
-    position: relative;
-    pointer-events: none;
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-
-    background-color: hsl(var(--hsl-b3));
-    .default-border-radius();
-    .default-box-shadow();
-
-    align-items: center;
-    justify-content: space-between;
-
-    @media @desktop {
-      display: grid;
-      grid-template-columns: subgrid;
-      grid-column: 1 / -1;
-    }
-  }
-
   &__stat {
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
-
-    @media @mobile {
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
   }
 
   &__stat-header {
@@ -87,7 +68,7 @@
 
     padding-bottom: 2px;
 
-    border-bottom: 2px solid @osu-colour-b3;
+    border-bottom: 2px solid hsl(var(--hsl-b2));
     text-transform: uppercase;
 
     min-width: 50px;
@@ -139,9 +120,9 @@
     display: flex;
     flex-shrink: 1;
     justify-content: space-around;
+    gap: 10px;
 
     @media @desktop {
-      margin: 5px 10px 5px 0px;
       justify-content: flex-end;
     }
 
@@ -151,19 +132,16 @@
   }
 
   &__user-box {
-    flex: none;
     display: grid;
     gap: 4px;
-
-    @media @desktop {
-      margin-right: 10px;
-    }
+    width: max-content;
   }
 
   &__username {
     font-size: 18px;
     font-weight: 700;
     display: block;
+    line-height: 1;
     .link-inverted();
   }
 
@@ -171,10 +149,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
 
     &--left {
-      flex-shrink: 0;
-
       @media @desktop {
         display: grid;
         grid-template-columns: subgrid;
@@ -184,12 +163,10 @@
 
     &--right {
       flex-wrap: wrap;
-      justify-content: flex-end;
       align-items: flex-start;
-      width: 100%; // 'cuz ie is a poop
 
-      @media @mobile {
-        justify-content: space-around;
+      @media @desktop {
+        justify-content: flex-end;
       }
     }
   }

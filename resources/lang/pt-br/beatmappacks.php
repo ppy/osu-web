@@ -34,7 +34,7 @@ return [
         'artist' => 'Artista/Álbum',
         'chart' => 'Destaques',
         'featured' => 'Artista em Destaque',
-        'loved' => 'Projeto Loved',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
         'tournament' => 'Torneio',

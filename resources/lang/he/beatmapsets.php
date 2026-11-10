@@ -42,6 +42,7 @@ return [
             'video' => 'להוריד עם סירטון',
             'no_video' => 'להוריד בלי סירטון',
             'direct' => 'פתח ב- osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'הורד',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'ללא וידאו',
                 'video' => 'עם וידאו',
             ],

@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Eredmények elbírálása',
         'creator' => 'készítő',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Pontszám',
         'score_std' => 'Szabványosított pontszám',
         'total_score' => 'összpontszám',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Ennek a versenynek a zsűrije vagy. Itt bírálhatod el a bejegyzéseket!',
         'judged_notice' => 'Ez a verseny a bírálati rendszerrel zajlik, a zsűrik jelenleg dolgoznak a bejegyzéseken.',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',

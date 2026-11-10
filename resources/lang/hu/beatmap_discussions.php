@@ -18,6 +18,16 @@ return [
         'empty' => 'Semmi sem történt... eddig.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'törölve',
         'none_found' => 'Nem található a keresési feltételeknek megfelelő beszélgetés.',

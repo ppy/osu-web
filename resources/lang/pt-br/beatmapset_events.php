@@ -83,7 +83,7 @@ return [
         'nsfw_toggle' => 'Marcação explícita',
         'offset_edit' => 'Editar atraso de áudio',
         'qualify' => 'Qualificações',
-        'rank' => 'Classificação',
+        'rank' => 'Ranking',
         'remove_from_loved' => 'Remoção de Loved',
         'tags_edit' => 'Edição de tags',
     ],

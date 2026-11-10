@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'buvo žinomas kaip',
         'plays_with' => 'Žaidžia su :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Publikuota :link',
             'count' => ':count_delimited komentaras|:count_delimited komentarų',
@@ -231,8 +238,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Rodyti mažiau detalių',
+            'to_v2' => 'Rodyti daugiau detalių',
         ],
         'edit' => [
             'cover' => [
@@ -479,7 +486,7 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
+            'losses' => 'Pralaimėjimai',
             'plays' => '',
             'rank' => '',
             'rating' => '',
@@ -487,7 +494,7 @@ return [
             'recent_history_provisional' => '',
             'tier' => '',
             'title' => '',
-            'wins' => '',
+            'wins' => 'Laimėjimai',
         ],
 
         'not_found' => [
@@ -568,6 +575,12 @@ return [
         'all' => 'Visi',
         'online' => 'Prisijungęs',
         'offline' => 'Atsijungęs',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'prašome registruotis per žaidimo klientą!',

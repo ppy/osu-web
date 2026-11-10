@@ -4,10 +4,7 @@
 .profile-detail-stats-card {
   --bg: hsl(var(--bg-hsl));
   --bg-hsl: var(--hsl-b3);
-  --border-gradient-end-colour: rgba(255, 255, 255, 0);
-  --border-gradient-start-colour: rgba(255, 255, 255, 0.4);
   --border-radius: @border-radius-large;
-  --border-width: 1px;
   --padding: 10px;
   border-radius: var(--border-radius);
   background: var(--bg);
@@ -46,80 +43,6 @@
     position: absolute;
     display: grid;
     inset: 0 15px 0 0;
-  }
-
-  &__decor {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    // left line
-    &::after {
-      content: "";
-      position: absolute;
-      display: block;
-      left: 0;
-      top: var(--border-radius);
-      height: calc(100% - var(--border-radius) * 2);
-      width: var(--border-width);
-      background: linear-gradient(
-        to bottom,
-        var(--border-gradient-start-colour),
-        var(--border-gradient-end-colour)
-      );
-    }
-
-    // top line
-    &::before {
-      content: "";
-      position: absolute;
-      display: block;
-      top: 0;
-      left: var(--border-radius);
-      width: calc(100% - var(--border-radius) * 2);
-      height: var(--border-width);
-      background: linear-gradient(
-        to right,
-        var(--border-gradient-start-colour),
-        var(--border-gradient-end-colour)
-      );
-    }
-  }
-
-  // fake the corner using circles instead of border so it vaguely matches the adjacent lines
-  &__decor-corner {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: var(--border-radius);
-    height: $width;
-    overflow: hidden;
-
-    // inner circle
-    &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      top: var(--border-width);
-      left: $top;
-      width: calc((var(--border-radius) - var(--border-width)) * 2);
-      height: $width;
-      border-radius: 100%;
-      background: var(--bg);
-    }
-
-    // outer circle
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: calc(var(--border-radius) * 2);
-      height: $width;
-      border-radius: 100%;
-      background: var(--border-gradient-start-colour);
-    }
   }
 
   &__empty-chart {

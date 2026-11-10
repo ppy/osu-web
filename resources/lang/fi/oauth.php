@@ -60,7 +60,7 @@ return [
         ],
 
         'secret' => [
-            'copy' => '',
+            'copy' => 'Varmista, että kopioit arvon ennen pois navigointia.',
             'generate_new' => '',
             'visible_once' => '',
         ],

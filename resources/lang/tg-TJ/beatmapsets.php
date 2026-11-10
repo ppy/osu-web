@@ -42,6 +42,7 @@ return [
             'video' => '',
             'no_video' => '',
             'direct' => '',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => '',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => '',
                 'video' => '',
             ],

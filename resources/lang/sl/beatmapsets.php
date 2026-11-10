@@ -42,6 +42,7 @@ return [
             'video' => 'prenesi z videoposnetkom',
             'no_video' => 'prenesi brez videoposnetka',
             'direct' => 'odpri v osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Prenesi',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'brez videoposnetka',
                 'video' => 'z videoposnetkom',
             ],

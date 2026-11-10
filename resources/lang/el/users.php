@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'προηγουμένως γνωστός ως',
         'plays_with' => 'Παίζει με :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Καταχωρήθηκε :link',
             'count' => ':count_delimited σχόλια|:count_delimited σχόλια',
@@ -567,6 +574,12 @@ return [
         'all' => 'Όλα',
         'online' => 'Συνδεδεμένοι',
         'offline' => 'Αποσυνδεδεμένοι',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'παρακαλώ εγγραφείτε μέσω του πελάτη του παιχνιδιού!',

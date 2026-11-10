@@ -71,7 +71,7 @@ return [
 
             'application_state' => [
                 'state_0' => 'Fechado',
-                'state_1' => 'Aberto',
+                'state_1' => 'Aberta',
             ],
         ],
     ],
@@ -143,7 +143,7 @@ return [
         ],
 
         'info' => [
-            'created' => 'Formado',
+            'created' => 'Formada',
         ],
 
         'members' => [

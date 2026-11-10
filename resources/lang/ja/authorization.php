@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'hypeは取り消し不可能です。',
             'has_reply' => '返信の付いているディスカッションは削除できません。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => '一日のノミネーションの上限に達しました。明日もう一度お試しください。',
@@ -43,12 +44,14 @@ return [
             'not_owner' => '自分の投稿のみを削除できます。',
             'resolved' => '解決済みのディスカッションを削除することはできません。',
             'system_generated' => '自動生成された投稿は削除できません。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => '投稿者のみ編集できます。',
             'resolved' => '解決済みのディスカッションを編集することはできません。',
             'system_generated' => '自動生成された投稿は編集できません。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

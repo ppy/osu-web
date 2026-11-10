@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Vērtēšanas rezultāti',
         'creator' => 'autors',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Rezultāts',
         'score_std' => 'Standartizēti Rezultāti',
         'total_score' => 'kopējais rezultāts',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Tu esi šī konkursa tiesnesis. Iesniegtos ierakstus vērtē šeit!',
         'judged_notice' => 'Šajā konkursā tiek izmantota vērtēšanas sistēma, vērtētāji pašlaik apstrādā iesniegtos darbus.',
         'login_required' => 'Lūdzu, pierakstieties, lai balsotu.',

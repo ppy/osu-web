@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Nije moguće poništiti hyping.',
             'has_reply' => 'Ne može se obrisati rasprava sa komentarima',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Dostigao si svoje dnevno ograničenje za nominiranje, molimo te da pokušaš ponovo sutra.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Možeš izbrisati samo svoje vlastite objave.',
             'resolved' => 'Ne možeš izbrisati objavu riješene rasprave.',
             'system_generated' => 'Automatski generirana objava se ne može izbrisati.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Samo objavljivač može urediti objavu.',
             'resolved' => 'Ne možeš urediti objavu riješene rasprave.',
             'system_generated' => 'Automatski generirana objava se ne može uređivati.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

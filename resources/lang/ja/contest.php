@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => '判定結果',
         'creator' => '作成者',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'スコア',
         'score_std' => '標準得点',
         'total_score' => '合計スコア',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'あなたはこのコンテストの審査員です、ここでエントリーを審査しましょう！',
         'judged_notice' => 'このコンテストでは審査制度を使用し、審査員が応募作品を審査しています。',
         'login_required' => '投票するにはログインが必要です。',

@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Resultados da apreciação',
         'creator' => 'criador',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Pontuação',
         'score_std' => 'Pontuação padronizada',
         'total_score' => 'pontuação total',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'É um dos jurados deste concurso. Avalie as participações aqui!',
         'judged_notice' => 'Este concurso está a utilizar o sistema de avaliação. Os jurados estão atualmente a analisar as participações.',
         'login_required' => 'Inicie a sessão para votar.',

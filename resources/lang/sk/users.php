@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'v minulosti známy ako',
         'plays_with' => 'Hrá s :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => '',
             'count' => '',
@@ -567,6 +574,12 @@ return [
         'all' => 'Všetko',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '',

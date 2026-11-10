@@ -18,6 +18,16 @@ return [
         'empty' => 'อืม... ยังไม่มีอะไรเกิดขึ้น',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'ถูกลบไปแล้ว',
         'none_found' => 'ไม่พบการสนทนาตามเกณฑ์การค้นหาที่เลือก',

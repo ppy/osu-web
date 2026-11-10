@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Level',
-        'theme' => '',
+        'theme' => 'Thema',
         'top_10p' => '90%-Perzentil',
         'top_50p' => 'Median',
         'unavailable' => [
@@ -37,7 +37,7 @@ return [
     'matchmaking' => [
         'plays' => 'Spiele',
         'points' => 'Punkte',
-        'provisional' => 'Vorläufige Wertung, da noch nicht genug Runden absolviert wurden',
+        'provisional' => 'Vorläufige Wertung, da noch nicht genug Spiele absolviert wurden',
         'rating' => 'Wertung',
         'wins' => 'Siege',
     ],

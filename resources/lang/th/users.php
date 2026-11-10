@@ -206,6 +206,13 @@ return [
         'previous_usernames' => 'เคยมีชื่อว่า',
         'plays_with' => 'เล่นด้วย :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'โพสต์แล้ว :link',
             'count' => ':count_delimited ความคิดเห็น|:count_delimited ความคิดเห็น',
@@ -568,6 +575,12 @@ return [
         'all' => 'ทั้งหมด',
         'online' => 'ออนไลน์',
         'offline' => 'ออฟไลน์',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'โปรดลงทะเบียนผ่านในเกมแทน!',

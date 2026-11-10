@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Không thể hủy bỏ hype.',
             'has_reply' => 'Không thể xóa cuộc thảo luận có trả lời trong đó',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Bạn đã đạt giới hạn số lần đề cử của hôm nay, hãy thử lại vào ngày mai.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Bạn chỉ có thể xóa bài đăng của chính mình.',
             'resolved' => 'Bạn không thể xoá một bài đăng về một thảo luận đã được giải quyết.',
             'system_generated' => 'Không thể xóa bài đăng được tạo tự động.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Chỉ người đăng mới có thể chỉnh sửa bài đăng.',
             'resolved' => 'Bạn không thể sửa một bài đăng về một thảo luận đã được giải quyết.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

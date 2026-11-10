@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Beoordelingsresultaten',
         'creator' => 'maker',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Score',
         'score_std' => 'Gestandaardiseerde Score',
         'total_score' => 'totale score',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Jij bent een jurylid voor deze wedstrijd. Beoordeel de inzendingen hier!',
         'judged_notice' => 'Deze wedstrijd maakt gebruik van het jurysysteem, de jury verwerkt momenteel de inzendingen.',
         'login_required' => 'Log in om te kunnen stemmen.',

@@ -64,6 +64,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     last_visit: '',
     pm_friends_only: true,
     profile_colour: '',
+    profile_hue: null,
     username: trans('users.card.loading'),
   };
 

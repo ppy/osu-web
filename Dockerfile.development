@@ -18,6 +18,7 @@ RUN echo "install_weak_deps=False" >> /etc/dnf/dnf.conf && \
       mysql8.4 \
       nodejs \
       php-zts-cli \
+      php-zts-curl \
       php-zts-ds \
       php-zts-fileinfo \
       php-zts-ffi \

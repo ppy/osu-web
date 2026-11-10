@@ -23,7 +23,7 @@ class BeatmapsetQueryParser
                 case 'star':
                 case 'stars':
                     $key = 'stars';
-                    $option = static::makeFloatRangeOption($op, $m['value'], 0.01 / 2);
+                    $option = static::makeFloatRangeOption($op, $m['value'], 0.0);
                     break;
                 case 'ar':
                     $option = static::makeFloatRangeOption($op, $m['value'], 0.1 / 2);
@@ -163,14 +163,14 @@ class BeatmapsetQueryParser
         return null;
     }
 
-    private static function makeFloatRangeOption($operator, $value, $tolerance)
+    private static function makeFloatRangeOption($operator, $value, float $tolerance): ?array
     {
         // Some locales have `,` as decimal separator.
         // Note that thousand separator is not (yet?) supported.
         $value = str_replace(',', '.', $value);
 
         if (!is_numeric($value)) {
-            return;
+            return null;
         }
 
         $value = get_float($value);
@@ -182,22 +182,20 @@ class BeatmapsetQueryParser
                     'lte' => $value + $tolerance,
                 ];
             case '<':
-                return [
-                    'lte' => $value - $tolerance,
-                ];
+                return $tolerance === 0.0
+                    ? ['lt' => $value]
+                    : ['lte' => $value - $tolerance];
             case '<=':
-                return [
-                    'lte' => $value + $tolerance,
-                ];
+                return ['lte' => $value + $tolerance];
             case '>':
-                return [
-                    'gte' => $value + $tolerance,
-                ];
+                return $tolerance === 0.0
+                    ? ['gt' => $value]
+                    : ['gte' => $value + $tolerance];
             case '>=':
-                return [
-                    'gte' => $value - $tolerance,
-                ];
+                return ['gte' => $value - $tolerance];
         }
+
+        return null;
     }
 
     private static function makeIntOption($operator, $value)

@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'agrāk pazīstams kā',
         'plays_with' => 'Spēlē ar :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Publicēja :link',
             'count' => ':count_delimited komentārs|:count_delimited komentāri',
@@ -567,6 +574,12 @@ return [
         'all' => 'Viss',
         'online' => 'Pieslēdzies',
         'offline' => 'Atslēdzies',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'lūdzu tā vietā reğistrējies ar spēles klijentu!',

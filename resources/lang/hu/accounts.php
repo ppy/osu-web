@@ -129,6 +129,7 @@ return [
             '_' => 'alapértelmezett beatmap letöltési típus',
             'all' => 'videóval, ha elérhető',
             'direct' => 'megnyitás osu!direct-ben',
+            'lazer' => '',
             'no_video' => 'videó nélkül',
         ],
     ],

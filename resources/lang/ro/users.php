@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'cunoscut anterior ca',
         'plays_with' => 'Joacă cu :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'A postat :link',
             'count' => 'un comentariu|:count_delimited comentarii|:count_delimited de comentarii',
@@ -567,6 +574,12 @@ return [
         'all' => 'Tot',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'te rugăm să te înregistrezi prin intermediul jocului!',

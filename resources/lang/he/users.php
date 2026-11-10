@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'לשעבר ידוע בתור',
         'plays_with' => 'משחק עם :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'פורסם :link
 ',
@@ -569,6 +576,12 @@ return [
         'all' => 'הכל',
         'online' => 'מחובר',
         'offline' => 'מנותק',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '',
