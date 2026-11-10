@@ -66,8 +66,6 @@ export default class Detail extends React.Component<Props> {
   }
 
   private renderDetailToggle() {
-    return null;
-
     const activated = core.userPreferences.get('profile_detail_v2');
 
     const title = activated
