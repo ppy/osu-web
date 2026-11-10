@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => '評分結果',
         'creator' => '作者',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => '分數',
         'score_std' => '標準分數',
         'total_score' => '總分',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => '您是此競賽的評委。請在這裡評分。',
         'judged_notice' => '本競賽使用評分系統，評委正在進行評分。',
         'login_required' => '請登入後再投票。',

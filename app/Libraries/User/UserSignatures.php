@@ -17,6 +17,11 @@ class UserSignatures
     {
         $userId = $user->getKey();
 
+        // deleted user
+        if ($userId === null) {
+            return null;
+        }
+
         if (!array_key_exists($userId, $this->html)) {
             $sig = $user->user_sig;
 

@@ -18,6 +18,16 @@ return [
         'empty' => 'Belum ada hal apa pun yang terjadi... hingga saat ini.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'dihapus',
         'none_found' => 'Tidak ada topik diskusi yang sesuai dengan kriteria pencarian.',

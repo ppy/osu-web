@@ -130,6 +130,7 @@ return [
             '_' => 'predvolený typ sťahovania beatmáp',
             'all' => 's videom, ak je dostupné',
             'direct' => 'otvoriť v osu!direct',
+            'lazer' => '',
             'no_video' => 'bez videa',
         ],
     ],

@@ -21,7 +21,7 @@
   @_menu-width-visible: 30px;
 
   // Extend by 1px on respective corner to prevent gap on some zoom levels.
-  // Sizing is based on @border-radius--large.
+  // Sizing is based on @border-radius-large.
   @_top-left-inverted-corner-path: path(
     "M-1 -1 L-1 10 L0 10 A10 10 0 0 1 10 0 L10 -1 Z"
   );
@@ -65,7 +65,7 @@
 
   position: relative;
   background-color: @beatmapset-panel-bg;
-  border-radius: @border-radius--large;
+  border-radius: @border-radius-large;
   font-size: @font-size--normal;
   height: var(--panel-height);
   min-width: 0;
@@ -94,7 +94,7 @@
   &::before {
     content: "";
     background-color: inherit;
-    height: @border-radius--large;
+    height: @border-radius-large;
     width: 100%;
     bottom: 0;
     left: 0;
@@ -182,7 +182,7 @@
     --border-radius: 0;
 
     &--play {
-      --border-radius: @border-radius--large 0 0 @border-radius--large;
+      --border-radius: @border-radius-large 0 0 @border-radius-large;
       width: calc(var(--play-width) + 10px);
       flex: none;
     }
@@ -210,7 +210,7 @@
       top: 0;
       // Adjust radius to prevent bleeding of the underneath cover
       // when hover background (of &__play) is active.
-      border-radius: @border-radius--large - 1px;
+      border-radius: @border-radius-large - 1px;
       background-color: hsl(var(--hsl-b3));
 
       @media @desktop {
@@ -231,15 +231,14 @@
   &__info {
     flex: 1;
     min-width: 10px;
-    padding: 4px @border-radius--large 6px;
+    padding: 4px @border-radius-large 6px;
     position: relative;
     background: var(--info-bg);
     display: flex;
     flex-direction: column;
     // Adjust radius to prevent bleeding of the underneath cover
     // when hover background (of &__play) is active.
-    border-radius: (@border-radius--large - 1px) 0 0
-      (@border-radius--large - 1px);
+    border-radius: (@border-radius-large - 1px) 0 0 (@border-radius-large - 1px);
   }
 
   &__info-row {
@@ -336,7 +335,7 @@
     flex: none;
     background-color: var(--menu-bg);
     position: relative;
-    border-radius: 0 @border-radius--large @border-radius--large 0;
+    border-radius: 0 @border-radius-large @border-radius-large 0;
     transition: var(--transition);
 
     @media @desktop {
@@ -346,7 +345,7 @@
     &::after,
     &::before {
       content: "";
-      width: @border-radius--large;
+      width: @border-radius-large;
       height: $width;
       position: absolute;
       background-color: inherit;
@@ -426,13 +425,12 @@
     position: relative;
     // Adjust radius to prevent bleeding of the underneath cover
     // when hover background is active.
-    border-radius: (@border-radius--large - 1px) 0 0
-      (@border-radius--large - 1px);
+    border-radius: (@border-radius-large - 1px) 0 0 (@border-radius-large - 1px);
 
     &::after,
     &::before {
       content: "";
-      width: @border-radius--large;
+      width: @border-radius-large;
       height: $width;
       position: absolute;
       background-color: inherit;

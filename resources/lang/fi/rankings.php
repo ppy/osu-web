@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Vaikeustaso',
-        'theme' => '',
+        'theme' => 'Teema',
         'top_10p' => 'Top 10% Tulokset',
         'top_50p' => 'Top 50% Tulokset',
         'unavailable' => [

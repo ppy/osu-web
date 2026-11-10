@@ -42,6 +42,7 @@ return [
             'video' => 'video ile indir',
             'no_video' => 'videosuz indir',
             'direct' => 'osu!direct\'de aç',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'İndir',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'Video olmadan',
                 'video' => 'Video ile',
             ],

@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Publicó :link',
             'count' => 'un comentario|:count_delimited comentarios',
@@ -231,8 +238,8 @@ return [
             ],
         ],
         'detail_switch' => [
-            'to_v1' => '',
-            'to_v2' => '',
+            'to_v1' => 'Mostrar menos detalles',
+            'to_v2' => 'Mostrar más detalles',
         ],
         'edit' => [
             'cover' => [
@@ -479,15 +486,15 @@ return [
         ],
 
         'matchmaking' => [
-            'losses' => '',
-            'plays' => '',
-            'rank' => '',
-            'rating' => '',
-            'recent_history' => '',
-            'recent_history_provisional' => '',
-            'tier' => '',
+            'losses' => 'Derrotas',
+            'plays' => 'Total de partidas',
+            'rank' => 'Clasificación',
+            'rating' => 'Puntos',
+            'recent_history' => 'Historial de partidas recientes',
+            'recent_history_provisional' => 'No hay datos suficientes para mostrar estadísticas precisas. ¡Juega más partidas!',
+            'tier' => 'Rango',
             'title' => 'Partidas clasificatorias',
-            'wins' => '',
+            'wins' => 'Victorias',
         ],
 
         'not_found' => [
@@ -518,8 +525,8 @@ return [
             'global' => 'Clasificación global para :mode',
             'global_simple' => 'Clasificación global',
             'highest' => 'Clasificación más alta: :rank el :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'La clasificación solo se muestra tras entrar en el top 1000',
+            'kudosu_simple' => 'Clasificación de Kudosu',
         ],
         'score_processing' => [
             'title' => 'Un nuevo algoritmo de calificación por estrellas / PP está :link.',
@@ -528,11 +535,11 @@ return [
         ],
         'season_stats' => [
             'division_top_percentage' => 'Top :value',
-            'label' => '',
+            'label' => 'Spotlights',
             'total_score' => 'Puntuación total',
         ],
         'solo' => [
-            'title' => '',
+            'title' => 'En solitario',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Puntuación total',
             // modding stats
             'graveyard_beatmapset_count' => 'Mapas abandonados',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Mapas con participación de invitado',
             'loved_beatmapset_count' => 'Mapas amados',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Mapas clasificados nominados',
             'pending_beatmapset_count' => 'Mapas pendientes',
             'ranked_beatmapset_count' => 'Mapas clasificados',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Todos',
         'online' => 'En línea',
         'offline' => 'Sin conexión',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '¡regístrate a través del cliente del juego en su lugar!',

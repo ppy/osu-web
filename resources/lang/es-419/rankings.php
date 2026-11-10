@@ -11,7 +11,7 @@ return [
 
     'daily_challenge' => [
         'beatmap' => 'Dificultad',
-        'theme' => '',
+        'theme' => 'Tema',
         'top_10p' => 'Puntuación del top 10 %',
         'top_50p' => 'Puntuación del top 50 %',
         'unavailable' => [

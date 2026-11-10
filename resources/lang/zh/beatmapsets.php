@@ -42,6 +42,7 @@ return [
             'video' => '包含视频下载',
             'no_video' => '不含视频下载',
             'direct' => '在 osu!direct 中查看',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => '下载',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => '不包含视频',
                 'video' => '包含视频',
             ],

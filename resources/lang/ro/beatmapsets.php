@@ -42,6 +42,7 @@ return [
             'video' => 'descarcă cu video',
             'no_video' => 'descarcă fără video',
             'direct' => 'deschide în osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Descarcă',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'fără video',
                 'video' => 'cu video',
             ],

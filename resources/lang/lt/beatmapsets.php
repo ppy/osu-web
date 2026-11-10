@@ -42,6 +42,7 @@ return [
             'video' => 'atsisiųsti su vaizdo įrašu',
             'no_video' => 'atsisiųsti be vaizdo įrašo',
             'direct' => 'atidaryti per osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Atsisiųsti',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'be vaizdo įrašo',
                 'video' => 'su vaizdo įrašu',
             ],
@@ -155,7 +157,7 @@ return [
             'nominators' => 'Nominatoriai',
             'nsfw' => 'Eksplicitinis turinys',
             'offset' => 'Tinklo poslinkis',
-            'pack_tags' => '',
+            'pack_tags' => 'Beatmap\'ų Rinkiniai',
             'points-of-failure' => 'Pralaimėjimų Vietos',
             'source' => 'Šaltinis',
             'storyboard' => 'Šis beatmap\'as turi foninę animaciją',

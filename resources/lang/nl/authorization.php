@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Hyping kan niet ongedaan gemaakt worden.',
             'has_reply' => 'Je kan geen discussie met reacties verwijderen',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Je hebt je dagelijkse nominatie-limiet bereikt, probeer het morgen opnieuw.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'U kunt alleen uw eigen berichten verwijderen.',
             'resolved' => 'U kunt een bericht van een opgeloste discussie niet verwijderen.',
             'system_generated' => 'Automatisch gegenereerd bericht kan niet worden verwijderd.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
             'resolved' => 'U kunt geen bericht van een opgeloste discussie bewerken.',
             'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

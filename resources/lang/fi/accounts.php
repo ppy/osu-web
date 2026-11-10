@@ -129,6 +129,7 @@ return [
             '_' => 'rytmikarttojen oletuslataustyyppi',
             'all' => 'videon kanssa jos saatavilla',
             'direct' => 'avaa osu!directissä',
+            'lazer' => '',
             'no_video' => 'ilman videota',
         ],
     ],

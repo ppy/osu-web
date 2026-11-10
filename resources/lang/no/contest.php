@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Resultatene fra juryen',
         'creator' => 'skaper',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Score',
         'score_std' => '',
         'total_score' => 'total score',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Du er en dommer i denne konkurransen. Døm innslagene her!',
         'judged_notice' => 'Denne konkurransen bruker dommersystemet, dommerne dømmer innslagene for øyeblikket.',
         'login_required' => 'Vennligst logg inn for å stemme.',

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'No es pot desfer l\'eufòria.',
             'has_reply' => 'No es pot eliminar una discussió amb respostes',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Has assolit el teu límit de nominacions diàries, si us plau torna-ho a intentar demà.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Només pots eliminar les teves publicacions.',
             'resolved' => 'No podeu suprimir una publicació d\'una discussió resolta.',
             'system_generated' => 'La publicació generada automàticament no es pot eliminar.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Només el creador pot editar la publicació.',
             'resolved' => 'No podeu editar una publicació d\'una discussió resolta.',
             'system_generated' => 'No es pot editar una publicació generada automàticament.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

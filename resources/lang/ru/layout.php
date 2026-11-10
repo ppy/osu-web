@@ -199,7 +199,7 @@ return [
             'create_team' => 'Создать команду',
             'follows' => 'Подписки',
             'friends' => 'Друзья',
-            'legacy_score_only_toggle' => 'Lazer-рекорды',
+            'legacy_score_only_toggle' => 'Режим Lazer',
             'legacy_score_only_toggle_tooltip' => 'Режим отображения, который показывает рекорды, поставленные в клиенте lazer с новым алгоритмом подсчёта очков',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',

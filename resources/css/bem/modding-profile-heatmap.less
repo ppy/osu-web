@@ -135,11 +135,25 @@
     text-align: center;
   }
 
+  &__tooltip-label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+
   &__tooltip-row {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 20px;
     align-items: center;
+  }
+
+  &__tooltip-value {
+    color: hsl(var(--hsl-c2));
+    font-weight: bold;
+    white-space: nowrap;
   }
 
   &__weekday {

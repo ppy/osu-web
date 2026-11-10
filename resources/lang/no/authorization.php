@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Kan ikke angre hyping.',
             'has_reply' => 'Kan ikke slette en diskusjon med svar',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Du har nådd din nominasjons-grense for dagen, vennligst prøv igjen i morgen.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Du kan bare slette dine egne innlegg.',
             'resolved' => 'Du kan ikke slette et innlegg på en besvart tråd.',
             'system_generated' => 'Innlegg som er automatisk generert kan ikke bli slettet.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Bare senderen kan redigere innlegget.',
             'resolved' => 'Du kan ikke redigere et innlegg på en besvart tråd.',
             'system_generated' => 'Innlegg som er automatisk generert kan ikke bli endret.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

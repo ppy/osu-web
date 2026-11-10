@@ -205,6 +205,13 @@ return [
         'previous_usernames' => '이전 아이디',
         'plays_with' => '플레이 장비: :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => ':link 작성됨',
             'count' => '댓글 :count_delimited개',
@@ -568,6 +575,12 @@ return [
         'all' => '모두',
         'online' => '온라인',
         'offline' => '오프라인',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '게임 클라이언트에서 가입해주세요!',

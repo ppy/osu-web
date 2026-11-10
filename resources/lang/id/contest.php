@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Hasil penjurian',
         'creator' => 'pembuat',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Skor',
         'score_std' => 'Skor Terstandardisasi',
         'total_score' => 'jumlah skor',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Kamu adalah juri pada kontes ini. Nilai entri yang masuk di sini!',
         'judged_notice' => 'Kontes ini menggunakan sistem penjurian, dan para juri saat ini sedang menilai entri yang masuk.',
         'login_required' => 'Silakan masuk untuk memberikan suara.',

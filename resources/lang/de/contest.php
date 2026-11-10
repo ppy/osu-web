@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Jury-Ergebnisse',
         'creator' => 'Ersteller',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Ergebnis',
         'score_std' => 'Standardisierte Punktzahl',
         'total_score' => 'Gesamtergebnis',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Du bist ein Juror bei diesem Wettbewerb. Bewerte die Beiträge hier!',
         'judged_notice' => 'Dieser Wettbewerb läuft über das Bewertungssystem, die Jury bearbeitet derzeit die Beiträge.',
         'login_required' => 'Bitte einloggen, um abzustimmen',

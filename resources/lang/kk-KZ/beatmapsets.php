@@ -42,6 +42,7 @@ return [
             'video' => 'бейнесімен жүктеу',
             'no_video' => 'бейнесіз жүктеу',
             'direct' => 'osu!direct-те ашу',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Жүктеу',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'бейнесіз',
                 'video' => 'бейнемен',
             ],

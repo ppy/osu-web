@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import CountryJson from './country-json';
 import DailyChallengeUserStatsJson from './daily-challenge-user-stats-json';
 import MatchmakingUserStatsJson from './matchmaking-user-stats-json';
@@ -22,15 +23,7 @@ import UserReplaysWatchedCountJson from './user-replays-watched-count-json';
 import UserStatisticsJson from './user-statistics-json';
 import UserStatisticsRulesetsJson from './user-statistics-rulesets-json';
 
-interface BeatmapsetStatusCountsJson {
-  approved: number;
-  graveyard: number;
-  loved: number;
-  pending: number;
-  qualified: number;
-  ranked: number;
-  wip: number;
-}
+type BeatmapsetStatusCountsJson = Partial<Record<BeatmapsetStatus, number>>;
 
 interface UserJsonAvailableIncludes {
   account_history: UserAccountHistoryJson[];
@@ -108,6 +101,7 @@ interface UserJsonDefaultAttributes {
   last_visit: string | null;
   pm_friends_only: boolean;
   profile_colour: string | null;
+  profile_hue: number | null;
   username: string;
 }
 

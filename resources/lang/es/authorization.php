@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'No se puede deshacer el hyping.',
             'has_reply' => 'No se puede eliminar una discusión con respuestas',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Solo puedes eliminar tus publicaciones.',
             'resolved' => 'No puedes eliminar una publicación de una discusión resuelta.',
             'system_generated' => 'La publicación generada automáticamente no puede ser eliminada.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Solo el creador puede editar la publicación.',
             'resolved' => 'No puedes editar una publicación de una discusión resuelta.',
             'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 
@@ -60,8 +63,8 @@ return [
         ],
 
         'rate' => [
-            'owner' => '',
-            'status' => '',
+            'owner' => 'No puedes valorar un mapa del que formas parte.',
+            'status' => 'No puedes valorar un mapa con este estado.',
         ],
     ],
 

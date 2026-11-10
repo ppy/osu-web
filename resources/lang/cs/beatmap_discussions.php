@@ -18,6 +18,16 @@ return [
         'empty' => 'Nic se nestalo... zatím.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'odstraněno',
         'none_found' => 'Nenalezeny žádné diskuze, odpovídající zadaným požadavkům.',

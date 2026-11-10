@@ -5,7 +5,7 @@
 
 return [
     'invalid_scope' => [
-        'all_scope_no_client_credentials' => '* não é permitido com as credenciais de cliente',
+        'all_scope_no_client_credentials' => '* não é permitido com Credenciais de Cliente',
         'all_scope_no_mix' => '* não é permitido com outros escopos',
         'client_missing_owner' => 'O cliente está sem dono.',
         'client_unauthorized' => 'O cliente não está autorizado.',

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Não é possível desfazer o hype.',
             'has_reply' => 'Não é possível excluir uma discussão com respostas',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Você só pode excluir suas próprias publicações.',
             'resolved' => 'Você não pode excluir a publicação de uma discussão resolvida.',
             'system_generated' => 'Publicações geradas automaticamente não podem ser excluídas.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Somente o autor pode editar a publicação.',
             'resolved' => 'Você não pode editar a publicação de uma discussão resolvida.',
             'system_generated' => 'Publicações geradas automaticamente não podem ser editadas.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

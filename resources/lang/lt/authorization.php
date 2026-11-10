@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Skatinimo atšaukimas negalimas.',
             'has_reply' => 'Diskusijų su atsakymais ištrinti negalima',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Jau pasiekei dienos nominacijų limitą, pamėgink rytoj.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Jūs galite ištrinti tik savo įrašus.',
             'resolved' => 'Jūs negalite ištrinti įrašo kuris priklauso išspręstai diskusijai.',
             'system_generated' => 'Automatiškai sugeneruotas įrašas negali būti ištrintas.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Tik įrašo autorius gali redaguoti įrašą.',
             'resolved' => 'Jūs negalite redaguoti įrašo kuris priklauso išspręstai diskusijai.',
             'system_generated' => 'Automatiškai sugeneruoti įrašai negali būti redaguojami.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

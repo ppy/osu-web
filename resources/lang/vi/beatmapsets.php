@@ -42,6 +42,7 @@ return [
             'video' => 'tải xuống cùng video',
             'no_video' => 'tải xuống không video',
             'direct' => 'mở trong osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Tải xuống',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'không Video',
                 'video' => 'cùng Video',
             ],

@@ -18,6 +18,16 @@ return [
         'empty' => 'No ha pasado nada... aún.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'eliminado',
         'none_found' => 'No se encontraron discusiones que coincidieran con los criterios de búsqueda.',

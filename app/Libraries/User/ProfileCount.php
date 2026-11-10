@@ -68,11 +68,11 @@ class ProfileCount
 
     public function beatmapsetStatusCounts(): array
     {
-        $counts = $this->beatmapsetCountsByApproved();
+        static $intToStr = array_flip(Beatmapset::STATES);
         $result = [];
 
-        foreach (Beatmapset::STATES as $state => $approved) {
-            $result[$state] = (int) ($counts[$approved] ?? 0);
+        foreach ($this->beatmapsetCountsByApproved() as $approved => $count) {
+            $result[$intToStr[$approved]] = $count;
         }
 
         return $result;

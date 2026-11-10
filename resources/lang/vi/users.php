@@ -206,6 +206,13 @@ return [
         'previous_usernames' => 'từng được biết đến là',
         'plays_with' => 'Chơi bằng :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Đã đăng :link',
             'count' => ':count_delimited bình luận|:count_delimited bình luận',
@@ -520,7 +527,7 @@ return [
             'global_simple' => 'Hạng Toàn Cầu',
             'highest' => 'Hạng cao nhất: :rank vào :date',
             'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_simple' => 'Xếp hạng kudosu',
         ],
         'score_processing' => [
             'title' => 'Thuật toán tính Độ Khó / PP :link.',
@@ -568,6 +575,12 @@ return [
         'all' => 'Tất cả',
         'online' => 'Trực Tuyến',
         'offline' => 'Ngoại Tuyến',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'vui lòng đăng kí thông qua game!',

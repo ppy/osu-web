@@ -42,6 +42,7 @@ return [
             'video' => 'mit Video herunterladen',
             'no_video' => 'ohne Video herunterladen',
             'direct' => 'in osu!direct öffnen',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Herunterladen',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'ohne Video',
                 'video' => 'mit Video',
             ],

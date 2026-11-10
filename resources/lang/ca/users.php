@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'conegut anteriorment com',
         'plays_with' => 'Juga amb :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Ha publicat :link',
             'count' => ':count_delimited comentari|:count_delimited comentaris',
@@ -567,6 +574,12 @@ return [
         'all' => 'Tots',
         'online' => 'En línia',
         'offline' => 'Desconnectat',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'si us plau, registreu-vos a través del client del joc!',

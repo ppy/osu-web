@@ -18,6 +18,16 @@ return [
         'empty' => 'Chưa có gì xảy ra cả.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'đã xóa',
         'none_found' => 'Không có cuộc thảo luận nào khớp với bộ lọc tìm kiếm.',

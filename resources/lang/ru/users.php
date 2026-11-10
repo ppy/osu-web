@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'ранее известный как',
         'plays_with' => 'Играет с :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => ':link',
             'count' => ':count_delimited комментарий|:count_delimited комментария|:count_delimited комментариев',
@@ -263,7 +270,7 @@ return [
             ],
 
             'hue' => [
-                'reset_no_supporter' => 'Вы уверены, что хотите сбросить цвет профиля к стандартному? Изменять цвет можно только с тегом osu!supporter.',
+                'reset_no_supporter' => 'Вы действительно хотите сбросить цвет профиля к стандартному? Изменять цвет можно только с тегом osu!supporter.',
                 'title' => 'Цвет',
 
                 'supporter' => [
@@ -484,7 +491,7 @@ return [
             'rank' => 'Место',
             'rating' => 'Рейтинг',
             'recent_history' => 'История последних матчей',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Недостаточно данных для отображения точной статистики. Сыграйте больше матчей!',
             'tier' => 'Ранг',
             'title' => 'Рейтинговая игра',
             'wins' => 'Победы',
@@ -509,7 +516,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Всего :link на форуме,',
+            '_' => ':link на форуме',
             'count' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         ],
         'rank' => [
@@ -518,8 +525,8 @@ return [
             'global' => 'Мировой рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
             'highest' => 'Наивысший: :rank от :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'Рейтинг будет отображён только после вхождения в топ 1,000',
+            'kudosu_simple' => 'Рейтинг по Кудосу',
         ],
         'score_processing' => [
             'title' => 'Сейчас ко всем рекордам применяется :link подсчёта сложности / PP.',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Всего очков',
             // modding stats
             'graveyard_beatmapset_count' => 'Заброшенные карты',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Карты с гостевым участием',
             'loved_beatmapset_count' => 'Любимые карты',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Номинированные рейтинговые карты',
             'pending_beatmapset_count' => 'Карты на рассмотрении',
             'ranked_beatmapset_count' => 'Рейтинговые карты',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Все',
         'online' => 'В сети',
         'offline' => 'Не в сети',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'Пожалуйста, зарегистрируйтесь через игровой клиент!',

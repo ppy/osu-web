@@ -59,11 +59,11 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
     <div className={`${bn}__tooltip`}>
       {types.map((type) => (
         <div key={type} className={`${bn}__tooltip-row`}>
-          <span className='modding-profile-stats__label'>
+          <span className={`${bn}__tooltip-label`}>
             <span className={classWithModifiers(`${bn}__swatch`, [type, 'bright', 'tooltip'])} />
             {trans(`users.show.stats.activity_heatmap.${type}`)}
           </span>
-          <span className='modding-profile-stats__value'>
+          <span className={`${bn}__tooltip-value`}>
             {formatNumber(day[type])}
           </span>
         </div>
@@ -195,8 +195,6 @@ export default function ActivityHeatmap({ heatmap }: Props) {
           </div>
         </div>
       </div>
-      <div className='profile-detail-stats-card__decor-corner' />
-      <div className='profile-detail-stats-card__decor' />
     </div>
   );
 }

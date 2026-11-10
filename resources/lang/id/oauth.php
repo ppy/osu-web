@@ -60,9 +60,9 @@ return [
         ],
 
         'secret' => [
-            'copy' => '',
-            'generate_new' => '',
-            'visible_once' => '',
+            'copy' => 'Pastikan untuk menyalin nilai ini sebelum meninggalkan halaman.',
+            'generate_new' => 'Atur ulang client secret untuk menghasilkan yang baru.',
+            'visible_once' => 'Client secret hanya bisa dilihat setelah pertama kali dihasilkan.',
         ],
     ],
 ];

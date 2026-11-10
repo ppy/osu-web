@@ -42,6 +42,7 @@ return [
             'video' => 'i-download nang may bidyo',
             'no_video' => 'i-download nang walang bidyo',
             'direct' => 'buksan sa osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'I-download',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'walang Video',
                 'video' => 'may Video',
             ],

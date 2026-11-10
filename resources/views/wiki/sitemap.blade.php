@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    $displayLocale = $page->requestedLocale;
     $urlFn = fn (string $locale): string => route('wiki.sitemap', compact('locale'));
     $sitemapUrl = $urlFn($locale);
     $availableLocales = new Ds\Set($GLOBALS['cfg']['app']['available_locales']);
@@ -11,7 +12,7 @@
 @extends('wiki.layout', [
     'availableLocales' => $availableLocales,
     'canonicalUrl' => $sitemapUrl,
-    'titlePrepend' => osu_trans('layout.header.help.sitemap'),
+    'titlePrepend' => osu_trans('layout.header.help.sitemap', [], $displayLocale),
     'urlFn' => $urlFn,
 ])
 
@@ -19,11 +20,11 @@
     @component('layout._page_header_v4', ['params' => [
         'links' => [
             [
-                'title' => osu_trans('layout.header.help.index'),
+                'title' => osu_trans('layout.header.help.index', [], $displayLocale),
                 'url' => wiki_url('Main_page'),
             ],
             [
-                'title' => osu_trans('layout.header.help.sitemap'),
+                'title' => osu_trans('layout.header.help.sitemap', [], $displayLocale),
                 'url' => $sitemapUrl,
             ],
         ],
@@ -41,7 +42,7 @@
                             data-remote="true"
                             data-url="{{ $sitemapUrl }}"
                             data-method="PUT"
-                            title="{{ osu_trans('wiki.show.edit.refresh') }}"
+                            title="{{ osu_trans('wiki.show.edit.refresh', [], $displayLocale) }}"
                         >
                             <i class="fas fa-sync"></i>
                         </button>
@@ -60,7 +61,7 @@
     @endcomponent
 
     <div class="osu-page osu-page--generic">
-        <h1>{{ osu_trans('layout.header.help.sitemap') }}</h1>
+        <h1>{{ osu_trans('layout.header.help.sitemap', [], $displayLocale) }}</h1>
         <div class="osu-md">
             @include('wiki._sitemap_section', $sitemap)
         </div>

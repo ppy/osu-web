@@ -17,8 +17,8 @@ class BeatmapsetQueryParserTest extends TestCase
     {
         return [
             // basic options
-            ['stars=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
-            ['star=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 0.995, 'lte' => 1.005]]]],
+            ['stars=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 1.0, 'lte' => 1.0]]]],
+            ['star=1', ['keywords' => null, 'options' => ['stars' => ['gte' => 1.0, 'lte' => 1.0]]]],
             ['ar=2', ['keywords' => null, 'options' => ['ar' => ['gte' => 1.95, 'lte' => 2.05]]]],
             ['dr=3', ['keywords' => null, 'options' => ['dr' => ['gte' => 2.95, 'lte' => 3.05]]]],
             ['hp<4', ['keywords' => null, 'options' => ['dr' => ['lte' => 3.95]]]],
@@ -66,7 +66,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['dr=1 hp<9', ['keywords' => null, 'options' => ['dr' => ['gte' => 0.95, 'lte' => 8.95]]]],
 
             // keyword with options
-            ['hello stars>=1 stars<4', ['keywords' => 'hello', 'options' => ['stars' => ['gte' => 0.995, 'lte' => 3.995]]]],
+            ['hello stars>=1 stars<4', ['keywords' => 'hello', 'options' => ['stars' => ['gte' => 1.0, 'lt' => 4.0]]]],
 
             // keywords with option in between
             ['hello ar<:1 world', ['keywords' => 'hello  world', 'options' => ['ar' => ['lte' => 1.05]]]],
@@ -76,7 +76,7 @@ class BeatmapsetQueryParserTest extends TestCase
             ['dr=a', ['keywords' => 'dr=a', 'options' => []]],
 
             // taken from https://github.com/ppy/osu/blob/b3e96c8385fdfec3ea1bb3899f74763ccafa055c/osu.Game.Tests/NonVisual/Filtering/FilterQueryParserTest.cs
-            ['stars<4 easy', ['keywords' => 'easy', 'options' => ['stars' => ['lte' => 3.995]]]],
+            ['stars<=4 easy', ['keywords' => 'easy', 'options' => ['stars' => ['lte' => 4.0]]]],
             ['ar>=9 difficult', ['keywords' => 'difficult', 'options' => ['ar' => ['gte' => 8.95]]]],
             ['dr>2 quite specific dr<:6', ['keywords' => 'quite specific', 'options' => ['dr' => ['gte' => 2.05, 'lte' => 6.05]]]],
             ['hp>2 quite specific hp<=6', ['keywords' => 'quite specific', 'options' => ['dr' => ['gte' => 2.05, 'lte' => 6.05]]]],

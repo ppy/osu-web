@@ -18,6 +18,16 @@ return [
         'empty' => 'Ništa se nije dogodilo... još.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'izbrisano',
         'none_found' => 'Nisu pronađene rasprave koje odgovaraju tim kriterijima pretraživanja.',

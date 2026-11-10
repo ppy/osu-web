@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'tidligere kjent som',
         'plays_with' => 'Spiller med :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'La ut :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
@@ -567,6 +574,12 @@ return [
         'all' => 'Alle',
         'online' => 'Tilkoblet',
         'offline' => 'Frakoblet',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'vennligst registrer deg via spillklienten i stedet!',
