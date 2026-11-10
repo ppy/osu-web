@@ -4,7 +4,7 @@
 import BasicSelectOptions from 'components/basic-select-options';
 import RoomList from 'components/room-list';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { rulesetNames } from 'interfaces/ruleset';
+import { rulesetNames, rulesetVariantIdToName } from 'interfaces/ruleset';
 import SeasonJson from 'interfaces/season-json';
 import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
@@ -22,9 +22,7 @@ export default function Main(props: Props) {
   const ruleset = props.currentSeason.ruleset_id != null
     ? rulesetNames[props.currentSeason.ruleset_id]
     : undefined;
-  const variant = ruleset != null && props.currentSeason.variant != null
-    ? trans(`beatmaps.variant.${ruleset}.${props.currentSeason.variant}`)
-    : null;
+  const variantName = rulesetVariantIdToName[props.currentSeason.variant_id ?? 0];
 
   return (
     <>
@@ -49,13 +47,13 @@ export default function Main(props: Props) {
               </div>
             </div>
           }
-          {variant != null &&
+          {variantName !== '' &&
             <div className='counter-box counter-box--ranking'>
               <div className='counter-box__title'>
                 {trans('rankings.seasons.variant')}
               </div>
               <div className='counter-box__count'>
-                {variant}
+                {trans(`beatmaps.variant.${ruleset}.${variantName}`)}
               </div>
             </div>
           }

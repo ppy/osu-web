@@ -14,14 +14,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('seasons', function (Blueprint $table) {
-            $table->string('variant')->nullable();
+            $table->smallInteger('variant_id')->after('ruleset_id')->nullable();
         });
     }
 
     public function down(): void
     {
         Schema::table('seasons', function (Blueprint $table) {
-            $table->dropColumn('variant');
+            $table->dropColumn('variant_id');
         });
     }
 };

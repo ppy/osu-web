@@ -16,7 +16,7 @@
     "room_count": 3,
     "ruleset_id": 3,
     "start_date": "2026-07-27T00:00:00Z",
-    "variant": "4k"
+    "variant_id": 4
   },
   "total_score": 123456
 }

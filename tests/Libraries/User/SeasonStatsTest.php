@@ -30,18 +30,18 @@ class SeasonStatsTest extends TestCase
         $stats = SeasonStats::currentFor($this->user, 'mania');
 
         $this->assertSame($season->getKey(), $stats['season']['id']);
-        $this->assertNull($stats['season']['variant']);
+        $this->assertNull($stats['season']['variant_id']);
     }
 
     public function testCurrentForPicksLowerDivisionThreshold(): void
     {
         $season4k = $this->createSeason([
             'ruleset_id' => Beatmap::MODES['mania'],
-            'variant' => '4k',
+            'variant_id' => 4,
         ]);
         $season7k = $this->createSeason([
             'ruleset_id' => Beatmap::MODES['mania'],
-            'variant' => '7k',
+            'variant_id' => 7,
         ]);
         $this->seedRanking($season4k, rank: 1);
         $this->seedRanking($season7k, rank: 5);
@@ -49,7 +49,7 @@ class SeasonStatsTest extends TestCase
         $stats = SeasonStats::currentFor($this->user, 'mania');
 
         $this->assertSame($season4k->getKey(), $stats['season']['id']);
-        $this->assertSame('4k', $stats['season']['variant']);
+        $this->assertSame(4, $stats['season']['variant_id']);
     }
 
     public function testCurrentForSameThresholdPicksLowerRank(): void
@@ -57,11 +57,11 @@ class SeasonStatsTest extends TestCase
         $thresholds = [1.0];
         $season4k = $this->createSeason([
             'ruleset_id' => Beatmap::MODES['mania'],
-            'variant' => '4k',
+            'variant_id' => 4,
         ], $thresholds);
         $season7k = $this->createSeason([
             'ruleset_id' => Beatmap::MODES['mania'],
-            'variant' => '7k',
+            'variant_id' => 7,
         ], $thresholds);
         $this->seedRanking($season4k, rank: 3);
         $this->seedRanking($season7k, rank: 8);
@@ -76,11 +76,11 @@ class SeasonStatsTest extends TestCase
     {
         $season4k = $this->createSeason([
             'ruleset_id' => Beatmap::MODES['mania'],
-            'variant' => '4k',
+            'variant_id' => 4,
         ]);
         $season7k = $this->createSeason([
             'ruleset_id' => Beatmap::MODES['mania'],
-            'variant' => '7k',
+            'variant_id' => 7,
         ]);
         $this->seedRanking($season4k, rank: 1, includeUser: false);
         $this->seedRanking($season7k, rank: 5);
