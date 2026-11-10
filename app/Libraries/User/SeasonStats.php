@@ -34,6 +34,15 @@ class SeasonStats
         return $best;
     }
 
+    private static function isBetter(array $a, array $b): bool
+    {
+        if ($a['division']['threshold'] !== $b['division']['threshold']) {
+            return $a['division']['threshold'] < $b['division']['threshold'];
+        }
+
+        return $a['rank'] < $b['rank'];
+    }
+
     public function calculate(): ?array
     {
         $score = $this->season->userScores()
@@ -82,15 +91,6 @@ class SeasonStats
     public function resetCache(): bool
     {
         return \Cache::forget($this->seasonCacheKey());
-    }
-
-    private static function isBetter(array $a, array $b): bool
-    {
-        if ($a['division']['threshold'] !== $b['division']['threshold']) {
-            return $a['division']['threshold'] < $b['division']['threshold'];
-        }
-
-        return $a['rank'] < $b['rank'];
     }
 
     private function seasonCacheKey(): string
