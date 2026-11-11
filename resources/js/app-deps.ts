@@ -10,10 +10,10 @@ import 'setup-jquery';
 // imported separately as it requires window jquery (setup by the import above)
 import 'jquery-ujs';
 
-import { patchPluralHandler } from 'lang-overrides';
 import Lang from 'lang.js';
 import { configure as mobxConfigure } from 'mobx';
 import * as moment from 'moment';
+import { resetLang } from 'utils/lang';
 import { popup } from 'utils/popup';
 import { reloadPage } from 'utils/turbolinks';
 
@@ -52,6 +52,8 @@ declare global {
     _styles: SharedStyles;
     currentLocale: string;
     currentUser: CurrentUserJson | { id: undefined };
+    defaultNumberFormatter: Intl.NumberFormat;
+    defaultSuffixedNumberFormatter: Intl.NumberFormat;
     fallbackLocale: string;
     jQuery: JQueryStatic;
     Lang: Lang;
@@ -63,11 +65,7 @@ declare global {
 }
 
 window.LangMessages ??= {};
-window.Lang = patchPluralHandler(new Lang({
-  fallback: window.fallbackLocale,
-  locale: window.currentLocale,
-  messages: window.LangMessages,
-}));
+resetLang();
 window.moment = moment;
 window.popup = popup;
 window.reloadPage = reloadPage;

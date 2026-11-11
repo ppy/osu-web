@@ -67,11 +67,9 @@ export function formatDuration(valueSecond: number) {
   return `${m}:${padTimeComponent(s)}`;
 }
 
-const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
-
 export function formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string) {
   if (precision == null && options == null && locale == null) {
-    return defaultNumberFormatter.format(num);
+    return window.defaultNumberFormatter.format(num);
   }
 
   options ??= {};
@@ -88,17 +86,10 @@ export function formatStarRating(num: number) {
   return formatNumber(floor(num, 2), 2);
 }
 
-const defaultSuffixedNumberOptions = {
-  maximumFractionDigits: 1,
-  minimumFractionDigits: 0,
-  notation: 'compact',
-} as const;
-const defaultSuffixedNumberFormatter = new Intl.NumberFormat(window.currentLocale, defaultSuffixedNumberOptions);
-
 export function formatNumberSuffixed(num?: number) {
   return num == null
     ? undefined
-    : defaultSuffixedNumberFormatter.format(num);
+    : window.defaultSuffixedNumberFormatter.format(num);
 }
 
 export function htmlElementOrNull(thing: unknown) {

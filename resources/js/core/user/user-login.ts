@@ -6,6 +6,7 @@ import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
+import { resetLang } from 'utils/lang';
 import { reloadPage } from 'utils/turbolinks';
 
 declare global {
@@ -21,6 +22,7 @@ interface CaptchaTriggeredResponse {
 
 interface LoginSuccessJson {
   csrf_token: string;
+  current_locale: string;
   header: string;
   header_popup: string;
   user: UserJson;
@@ -113,6 +115,9 @@ export default class UserLogin {
       return;
     }
     const callback = this.callback;
+
+    window.currentLocale = data.current_locale;
+    resetLang();
 
     if (callback == null) {
       reloadPage();

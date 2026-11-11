@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { patchPluralHandler } from 'lang-overrides';
 import Lang from 'lang.js';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
@@ -29,6 +30,20 @@ export function joinComponents(array: React.ReactElement[], key = 'common.array_
   }
 
   return <>{nodes}</>;
+}
+
+export function resetLang() {
+  window.defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);
+  window.defaultSuffixedNumberFormatter = new Intl.NumberFormat(window.currentLocale, {
+    maximumFractionDigits: 1,
+    minimumFractionDigits: 0,
+    notation: 'compact',
+  });
+  window.Lang = patchPluralHandler(new Lang({
+    fallback: window.fallbackLocale,
+    locale: window.currentLocale,
+    messages: window.LangMessages,
+  }));
 }
 
 export function trans(key: string, replacements: Replacements = {}, locale?: string) {
