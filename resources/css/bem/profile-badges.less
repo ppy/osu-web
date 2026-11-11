@@ -3,10 +3,12 @@
 
 .profile-badges {
   .inner-shadow-top();
+  --badge-width: 86px;
+  --badge-height: 40px;
   --gutter: @gutter-v2;
   background-color: hsl(var(--hsl-b4));
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--badge-width), 1fr));
   gap: 10px;
   padding: 10px var(--gutter);
 
