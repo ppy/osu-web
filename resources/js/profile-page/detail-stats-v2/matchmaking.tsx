@@ -200,7 +200,9 @@ export default class Matchmaking extends React.PureComponent<Props> {
     if (this.stats.is_rating_provisional) {
       return (
         <div className='matchmaking-result matchmaking-result--provisional'>
-          <span className='fas fa-ghost' />
+          <span className='matchmaking-result__provisional-icon'>
+            <span className='fas fa-ghost' />
+          </span>
           <span>
             {trans('users.show.matchmaking.recent_history_provisional')}
           </span>
