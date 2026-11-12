@@ -9,7 +9,7 @@ const byteSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 const kilo = 1000;
 
 export function bottomPage() {
-  return bottomPageDistance() === 0;
+  return bottomPageDistance() <= 1;
 }
 
 export function bottomPageDistance() {
