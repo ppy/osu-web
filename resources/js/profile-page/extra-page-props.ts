@@ -40,7 +40,7 @@ export type ProfilePageUserJson = Omit<UserExtendedJson, 'matchmaking_stats'> & 
   matchmaking_stats: ProfilePageMatchmakingStatsJson[];
 };
 
-export const profilePageSections = [...beatmapsetSections, ...topScoreSections, ...historicalSections, 'recentActivity', 'recentlyReceivedKudosu'] as const;
+export const profilePageSections = [...beatmapsetSections, ...topScoreSections, ...historicalSections, 'recentActivity', 'recentlyReceivedKudosu', 'screenshots'] as const;
 export type ProfilePageSection = typeof profilePageSections[number];
 
 export default interface ExtraPageProps {

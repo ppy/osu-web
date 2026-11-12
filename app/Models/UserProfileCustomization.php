@@ -53,6 +53,7 @@ class UserProfileCustomization extends Model
         'historical',
         'beatmaps',
         'kudosu',
+        'screenshots',
     ];
 
     const array BEATMAPSET_CARD_SIZES = ['normal', 'extra'];
