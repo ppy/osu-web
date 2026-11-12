@@ -2,12 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .profile-detail-stats-big {
-  --border-colour: transparent;
-  --icon-colour: inherit;
   --pin-opacity: 0;
 
   .default-box-shadow();
-  box-shadow+: inset 0 0 0 2px var(--border-colour);
   background-color: hsl(var(--hsl-b3));
   background-image: linear-gradient(
     to bottom,
@@ -26,11 +23,6 @@
     --pin-opacity: 1;
   }
 
-  &--daily-challenge-played {
-    --border-colour: hsl(var(--hsl-green-3));
-    --icon-colour: hsl(var(--hsl-green-1));
-  }
-
   &__badge {
     .default-border-radius();
     .center-content();
@@ -38,6 +30,27 @@
     width: 86px;
     object-fit: contain;
     background-color: rgba(0, 0, 0, 0.25);
+    position: relative;
+
+    &--daily-challenge-played {
+      box-shadow: 0 0 0 2px @osu-colour-lime-1;
+
+      &::before {
+        .fas();
+        .center-content();
+        background-color: @osu-colour-lime-1;
+        border-radius: 50%;
+        color: @osu-colour-b6;
+        content: @fa-var-check;
+        font-size: 8px; // icon size
+        height: 16px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translate(50%, -50%);
+        width: $height;
+      }
+    }
   }
 
   &__fancy-text {
@@ -47,7 +60,6 @@
   &__icon {
     display: contents;
     font-size: 24px; // icon size
-    color: var(--icon-colour);
   }
 
   &__label {

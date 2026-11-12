@@ -199,7 +199,7 @@ export default class DailyChallenge extends React.Component<Props> {
     return (
       <div
         ref={this.valueRef}
-        className={classWithModifiers('profile-detail-stats-big', { 'daily-challenge-played': this.playedToday })}
+        className='profile-detail-stats-big'
         onMouseOver={this.onMouseOver}
       >
         <div className='profile-detail-stats-big__icon'>
@@ -211,7 +211,7 @@ export default class DailyChallenge extends React.Component<Props> {
           </div>
           {trans('users.show.daily_challenge.playcount')}
         </div>
-        <div className='profile-detail-stats-big__badge'>
+        <div className={classWithModifiers('profile-detail-stats-big__badge', { 'daily-challenge-played': this.playedToday })}>
           <div
             className='profile-detail-stats-big__fancy-text'
             style={tierStylePlaycount(this.props.stats.playcount)}
