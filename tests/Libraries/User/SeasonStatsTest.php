@@ -25,7 +25,7 @@ class SeasonStatsTest extends TestCase
     public function testCurrentForBackCompatNullVariant(): void
     {
         $season = $this->createSeason(['ruleset_id' => Beatmap::MODES['mania']]);
-        $this->seedRanking($season, rank: 1);
+        $this->seedRanking($season, userRank: 1);
 
         $stats = SeasonStats::currentFor($this->user, 'mania');
 
@@ -43,8 +43,8 @@ class SeasonStatsTest extends TestCase
             'ruleset_id' => Beatmap::MODES['mania'],
             'variant_id' => 7,
         ]);
-        $this->seedRanking($season4k, rank: 1);
-        $this->seedRanking($season7k, rank: 5);
+        $this->seedRanking($season4k, userRank: 1);
+        $this->seedRanking($season7k, userRank: 5);
 
         $stats = SeasonStats::currentFor($this->user, 'mania');
 
@@ -63,8 +63,8 @@ class SeasonStatsTest extends TestCase
             'ruleset_id' => Beatmap::MODES['mania'],
             'variant_id' => 7,
         ], $thresholds);
-        $this->seedRanking($season4k, rank: 3);
-        $this->seedRanking($season7k, rank: 8);
+        $this->seedRanking($season4k, userRank: 3);
+        $this->seedRanking($season7k, userRank: 8);
 
         $stats = SeasonStats::currentFor($this->user, 'mania');
 
@@ -82,8 +82,8 @@ class SeasonStatsTest extends TestCase
             'ruleset_id' => Beatmap::MODES['mania'],
             'variant_id' => 7,
         ]);
-        $this->seedRanking($season4k, rank: 1, includeUser: false);
-        $this->seedRanking($season7k, rank: 5);
+        $this->seedRanking($season4k);
+        $this->seedRanking($season7k, userRank: 5);
 
         $stats = SeasonStats::currentFor($this->user, 'mania');
 
@@ -131,22 +131,14 @@ class SeasonStatsTest extends TestCase
         ]);
     }
 
-    private function seedRanking(Season $season, int $rank, bool $includeUser = true): void
+    private function seedRanking(Season $season, ?int $userRank = null): void
     {
-        if ($includeUser) {
-            $this->addScore($season, $this->user, self::PARTICIPANT_COUNT - $rank + 1);
-        }
+        for ($rank = 1; $rank <= self::PARTICIPANT_COUNT; $rank++) {
+            $user = $rank === $userRank
+                ? $this->user
+                : User::factory()->create();
 
-        for ($otherRank = 1; $otherRank <= self::PARTICIPANT_COUNT; $otherRank++) {
-            if ($includeUser && $otherRank === $rank) {
-                continue;
-            }
-
-            $this->addScore(
-                $season,
-                User::factory()->create(),
-                self::PARTICIPANT_COUNT - $otherRank + 1,
-            );
+            $this->addScore($season, $user, self::PARTICIPANT_COUNT - $rank + 1);
         }
     }
 }
