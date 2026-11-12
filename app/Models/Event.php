@@ -7,7 +7,6 @@ namespace App\Models;
 
 use App\Models\Traits\WithDbCursorHelper;
 use App\Transformers\AchievementTransformer;
-use Carbon\Carbon;
 use Sentry\State\Scope;
 
 /**
@@ -28,6 +27,9 @@ use Sentry\State\Scope;
 class Event extends Model
 {
     use WithDbCursorHelper;
+
+    const CREATED_AT = 'date';
+    const UPDATED_AT = null;
 
     protected const DEFAULT_SORT = 'id_desc';
     protected const SORTS = [
@@ -61,11 +63,10 @@ class Event extends Model
 
     public $timestamps = false;
 
-    protected $casts = ['date' => 'datetime'];
     protected $primaryKey = 'event_id';
     protected $table = 'osu_events';
 
-    public static function generate($type, $options)
+    public static function generate($type, $options): static
     {
         switch ($type) {
             case 'achievement':
@@ -276,13 +277,7 @@ class Event extends Model
                 break;
         }
 
-        if (isset($params)) {
-            if (!isset($params['date'])) {
-                $params['date'] = Carbon::now();
-            }
-
-            return static::create($params);
-        }
+        return static::create($params);
     }
 
     public function user()
