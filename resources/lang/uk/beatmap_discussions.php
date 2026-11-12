@@ -18,6 +18,16 @@ return [
         'empty' => 'Нічого не відбулось... поки що.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'видалено',
         'none_found' => 'Не знайдено жодної дискусії, що відповідає критеріям пошуку.',

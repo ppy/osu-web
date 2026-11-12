@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Tuomaroinnin tulokset',
         'creator' => 'tekijä',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Pisteet',
         'score_std' => 'Standardoitu Pistemäärä',
         'total_score' => 'yhteispisteet',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Olet tämän kilpailun tuomari. Arvostele tuotoksia täällä!',
         'judged_notice' => 'Tämä kilpailu käyttää tuomarointijärjestelmää, tuomarit käsittelevät tuotoksia parhaillaan.',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',

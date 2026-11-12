@@ -129,6 +129,7 @@ return [
             '_' => 'tipo di download predefinito per le beatmap',
             'all' => 'con video, se disponibile',
             'direct' => 'apri in osu!direct',
+            'lazer' => '',
             'no_video' => 'senza video',
         ],
     ],

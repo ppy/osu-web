@@ -163,8 +163,6 @@ export default class Matchmaking extends React.PureComponent<Props> {
         <div className='profile-detail-stats-card__bottom'>
           {this.renderChart()}
         </div>
-        <div className='profile-detail-stats-card__decor-corner' />
-        <div className='profile-detail-stats-card__decor' />
       </div>
     );
   }

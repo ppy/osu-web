@@ -31,6 +31,8 @@ return [
         '_' => '
 Vertinimo rezultatai',
         'creator' => 'kūrėjas',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Rezultatas',
         'score_std' => 'Standartizuotas Rezultatas',
         'total_score' => 'bendras rezultatas',
@@ -38,6 +40,7 @@ Vertinimo rezultatai',
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Jus esate vertintojas šiame konkurse. Vertinkite pateikimus čia!',
         'judged_notice' => 'Šis konkursas naudoja vertinimo sistemą, vertintojai tvarkosi su pateikimais.',
         'login_required' => 'Balsavimui reikia prisijungti.',

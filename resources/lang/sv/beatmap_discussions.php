@@ -18,6 +18,16 @@ return [
         'empty' => 'Inget har hänt... ännu.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'raderad',
         'none_found' => 'Inga diskussioner som matchar det sökkriteriet hittades.',

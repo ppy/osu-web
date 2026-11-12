@@ -18,6 +18,16 @@ return [
         'empty' => 'Noch ist nichts passiert.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'gelöscht',
         'none_found' => 'Es wurden keine Diskussionen gefunden, die mit diesen Suchkriterien übereinstimmen.',

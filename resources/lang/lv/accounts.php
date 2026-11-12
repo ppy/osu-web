@@ -129,6 +129,7 @@ return [
             '_' => 'noklusējuma ritma-mapes lejupielādes tips',
             'all' => 'ar video, ja pieejams',
             'direct' => 'atvērt osu!tiešajā',
+            'lazer' => '',
             'no_video' => 'bez video',
         ],
     ],

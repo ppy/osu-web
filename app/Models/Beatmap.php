@@ -101,7 +101,7 @@ class Beatmap extends Model implements AfterCommit
 
     public static function isModeValid(?string $mode)
     {
-        return array_key_exists($mode, static::MODES);
+        return array_key_exists($mode ?? '', static::MODES);
     }
 
     public static function isVariantValid(?string $mode, ?string $variant)
@@ -291,9 +291,6 @@ class Beatmap extends Model implements AfterCommit
             'deleted_at',
             'last_update' => $this->getTimeFast($key),
 
-            'deleted_at_json',
-            'last_update_json' => $this->getJsonTimeFast($key),
-
             'diff_size' => $this->getDiffSize(),
             'difficultyrating' => $this->getDifficultyrating(),
             'mode' => $this->getMode(),
@@ -310,6 +307,11 @@ class Beatmap extends Model implements AfterCommit
             'failtimes',
             'user' => $this->getRelationValue($key),
         };
+    }
+
+    public function getDisplayDifficultyrating(): float
+    {
+        return floor($this->difficultyrating * 100) / 100;
     }
 
     public function getUserPlaycount(): int

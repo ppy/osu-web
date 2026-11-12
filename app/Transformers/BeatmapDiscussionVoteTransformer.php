@@ -13,10 +13,10 @@ class BeatmapDiscussionVoteTransformer extends TransformerAbstract
     {
         return [
             'beatmapset_discussion_id' => $vote->beatmap_discussion_id,
-            'created_at' => json_time($vote->created_at),
+            'created_at' => $vote->getJsonTime('created_at'),
             'id' => $vote->getKey(),
             'score' => $vote->score,
-            'updated_at' => json_time($vote->updated_at),
+            'updated_at' => $vote->getJsonTime('updated_at'),
             'user_id' => $vote->user_id,
         ];
     }

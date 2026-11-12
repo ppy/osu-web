@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'dahulu dikenali selaku',
         'plays_with' => 'Bermain dengan :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Dihantar :link',
             'count' => ':count_delimited komen',
@@ -567,6 +574,12 @@ return [
         'all' => 'Semua',
         'online' => 'Dalam talian',
         'offline' => 'Luar Talian',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'sila mendaftar dari pelanggan mainan!',

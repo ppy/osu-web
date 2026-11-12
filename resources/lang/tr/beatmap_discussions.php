@@ -18,6 +18,16 @@ return [
         'empty' => 'Hiçbir şey olmadı... henüz.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'silindi',
         'none_found' => 'Arama kriterlerine uyan bir tartışma bulunamadı.',

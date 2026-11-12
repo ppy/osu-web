@@ -42,6 +42,7 @@ return [
             'video' => 'muat turun dengan video',
             'no_video' => 'muat turun tanpa video',
             'direct' => 'buka di osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Muat Turun',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'tanpa Video',
                 'video' => 'dengan Video',
             ],

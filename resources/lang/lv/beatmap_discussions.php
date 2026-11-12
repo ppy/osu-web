@@ -18,6 +18,16 @@ return [
         'empty' => 'Nekas nav noticis... pagaidām.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'izdzēsts',
         'none_found' => 'Netika atrastas diskusijas šim meklēšanas kritērijam.',

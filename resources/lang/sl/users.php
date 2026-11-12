@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'prej znan kot',
         'plays_with' => 'Igra z :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Objavil :link',
             'count' => ':count_delimited komentar|:count_delimited komentarjev',
@@ -567,6 +574,12 @@ return [
         'all' => 'Vse',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'namesto tega se registriraj prek odjemalca igre!',

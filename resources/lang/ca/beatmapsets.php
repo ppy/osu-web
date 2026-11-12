@@ -42,6 +42,7 @@ return [
             'video' => 'descarregar amb vídeo',
             'no_video' => 'descarregar sense vídeo',
             'direct' => 'obre a osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Descarregar',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'sense vídeo',
                 'video' => 'amb vídeo',
             ],

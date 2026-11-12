@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'لا يمكن التراجع عن التصعيد.',
             'has_reply' => 'لا يمكن حذف النقاش مع الردود',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'لقد وصلت إلى حد الترشيح الخاص بك لهذا اليوم، يرجى المحاولة مرة أخرى غدا.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'يمكنك حذف مشاركاتك فقط.',
             'resolved' => 'لا يمكنك حذف مشاركة تابعة لـ مناقشة مغلقة.',
             'system_generated' => 'المنشورات المتكونة تلقائيا لا يمكن حذفها.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'فقط الناشر يمكن ان يعدل المنشور.',
             'resolved' => 'لا يمكنك تعديل منشور مناقشة مغلقة.',
             'system_generated' => 'المنشورات المتكونة تلقائيا لا يمكن تعديلها.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

@@ -82,18 +82,7 @@ return [
 
     'locale' => 'en',
 
-    /*
-     * Make sure to check locale name mapping for other components.
-     * carbon is in Http\Middleware\SetLocale (no helper... yet?).
-     * html, momentjs, and laravel are in LocaleMeta.
-     * php (IntlDateFormatter etc) isn't mapped at the moment.
-     * Check respective packages for supported list of languages.
-     *
-     * carbon: list in vendor/nesbot/carbon/src/Carbon/Lang/
-     * html: lang attribute in html tag. Mainly for uppercasing country code if used.
-     * laravel: list in vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php
-     * momentjs: list in node_modules/moment/locale/
-     */
+    // This needs corresponding entries in LocaleMeta
     'available_locales' => [
         // separate the default
         'en',

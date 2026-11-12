@@ -18,6 +18,16 @@ return [
         'empty' => 'שום דבר לא קרה... עדיין.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'נמחק',
         'none_found' => 'לא נמצאו אשכולות לפי הקריטריונים המבוקשים.',

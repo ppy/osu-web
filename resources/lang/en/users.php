@@ -212,6 +212,11 @@ return [
             ],
         ],
 
+        'beatmapsets' => [
+            'empty' => 'Beatmap counts will show here\nonce you submit beatmaps!',
+            'title' => 'Beatmaps',
+        ],
+
         'comments_count' => [
             '_' => 'Posted :link',
             'count' => ':count_delimited comment|:count_delimited comments',
@@ -243,7 +248,7 @@ return [
         ],
         'edit' => [
             'cover' => [
-                'button' => 'Change Profile Cover',
+                'button' => 'Change Profile Cover and Colour',
                 'defaults_info' => 'More cover options will be available in the future',
                 'holdover_remove_confirm' => "The previously selected cover is not available for selection anymore. You can't select it back after switching to a different cover. Proceed?",
                 'title' => 'Cover',
@@ -497,6 +502,10 @@ return [
             'wins' => 'Wins',
         ],
 
+        'modding' => [
+            'title' => 'Modding',
+        ],
+
         'not_found' => [
             'reason_1' => 'They may have changed their username.',
             'reason_2' => 'The account may be temporarily unavailable due to security or abuse issues.',
@@ -555,13 +564,18 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
-            // modding stats
+            // beatmap counts
+            'approved_beatmapset_count' => 'Approved Beatmaps',
+            'beatmaps_modded_count' => 'Total Beatmaps Modded',
             'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
             'guest_beatmapset_count' => 'Guest Participation Beatmaps',
+            'issues_resolved_count' => 'Issues Resolved',
             'loved_beatmapset_count' => 'Loved Beatmaps',
             'nominated_beatmapset_count' => 'Nominated Ranked Beatmaps',
             'pending_beatmapset_count' => 'Pending Beatmaps',
+            'qualified_beatmapset_count' => 'Qualified Beatmaps',
             'ranked_beatmapset_count' => 'Ranked Beatmaps',
+            'wip_beatmapset_count' => 'Work In Progress Beatmaps',
         ],
     ],
 

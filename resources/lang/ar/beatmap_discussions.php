@@ -18,6 +18,16 @@ return [
         'empty' => 'لم يحدث أي شيء... حتى الآن.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'حُذفت',
         'none_found' => 'لم تم العثور على أي مناقشات تطابق معايير البحث.',

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'A hype-olást nem lehet visszavonni.',
             'has_reply' => 'Nem lehet hozzászólásokkal rendelkező beszélgetést törölni',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Elérted a napi ajánlási limited, próbáld újra holnap.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Csak a saját hozzászólásaidat tudod törölni.',
             'resolved' => 'Nem törölhetsz bejegyzést egy megbeszélt témában.',
             'system_generated' => 'Az automatikusan létrehozott hozzászólások nem törölhetőek.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Csak a posztoló tudja szerkeszteni a posztot.',
             'resolved' => 'Nem szerkeszthetsz bejegyzést egy megbeszélt témában.',
             'system_generated' => 'Automatikusan generált posztot nem lehet szerkeszteni.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

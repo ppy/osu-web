@@ -98,7 +98,7 @@ return [
         'video-guide' => 'panduan video',
 
         'help' => [
-            '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, silakan :help_forum_link atau :support_button.',
+            '_' => 'apabila kamu menemui masalah pada saat memulai permainan atau mendaftarkan akun, silakan :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
@@ -111,7 +111,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'buat akunnya',
-                'description' => 'ikuti petunjuk yang tertera pada saat memulai permainan untuk masuk atau membuat akun baru',
+                'description' => 'ikuti petunjuk yang muncul pada saat memulai permainan untuk masuk atau membuat akun baru',
             ],
             'download' => [
                 'title' => 'unduh permainannya',

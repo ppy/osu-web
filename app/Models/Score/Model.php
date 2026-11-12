@@ -64,8 +64,6 @@ abstract class Model extends BaseModel
 
             'date' => $this->getTimeFast($key),
 
-            'date_json' => $this->getJsonTimeFast($key),
-
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
 
             'best_id' => $this->getRawAttribute('high_score_id'),

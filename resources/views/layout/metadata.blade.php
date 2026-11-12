@@ -92,6 +92,7 @@
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
     var fallbackLocale = {!! json_encode($fallbackLocale) !!};
+    var jsPluralLocaleMap = {!! $currentLocaleMeta::jsPluralMap() !!};
 </script>
 
 <script src="{{ unmix('js/runtime.js') }}" data-turbo-eval="false"></script>

@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Výsledky souzení',
         'creator' => 'autor',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Skóre',
         'score_std' => 'Standardizované skóre',
         'total_score' => 'celkové skóre',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Jsi soudcem této soutěže. Podívej se zde na příspěvky!',
         'judged_notice' => 'Tato soutěž využívá systém souzení, soudci v současné době zpracovávají příspěvky.',
         'login_required' => 'Pro hlasování se prosím přihlas.',

@@ -205,6 +205,13 @@ return [
         'previous_usernames' => '',
         'plays_with' => '',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => '',
             'count' => '',
@@ -567,6 +574,12 @@ return [
         'all' => 'Бәрі',
         'online' => 'Онлайн',
         'offline' => 'Офлайн',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '',

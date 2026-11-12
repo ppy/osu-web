@@ -208,6 +208,13 @@ CAPTCHA認証を成功させてから再試行してください。
         'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => '投稿 :link',
             'count' => ':count_delimited コメント',
@@ -522,7 +529,7 @@ CAPTCHA認証を成功させてから再試行してください。
             'global_simple' => '世界ランキング',
             'highest' => '最高ランク: :rank (:dateに取得)',
             'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_simple' => 'Kudosuランキング',
         ],
         'score_processing' => [
             'title' => 'スターレーティングとPPの新しい計算アルゴリズムが、:link。',
@@ -553,9 +560,9 @@ CAPTCHA認証を成功させてから再試行してください。
             'total_score' => '合計スコア',
             // modding stats
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'ゲスト難易度のビートマップ',
             'loved_beatmapset_count' => 'Lovedされたビートマップ',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'ノミネートしたRankedビートマップ',
             'pending_beatmapset_count' => 'Pendingのビートマップ',
             'ranked_beatmapset_count' => 'Rankedされたビートマップ',
         ],
@@ -570,6 +577,12 @@ CAPTCHA認証を成功させてから再試行してください。
         'all' => '全て',
         'online' => 'オンライン',
         'offline' => 'オフライン',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '代わりにゲームクライアントから登録してください！',

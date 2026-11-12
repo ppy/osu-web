@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Hasil penilaian',
         'creator' => 'pencipta',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Markah',
         'score_std' => 'Markah Terpiawai',
         'total_score' => 'jumlah markah',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Anda penilai peraduan ini. Nilai penyertaan di sini!',
         'judged_notice' => 'Peraduan ini menggunakan tatanan penilaian. Penilai kini memproses penyertaan.',
         'login_required' => 'Sila daftar masuk untuk mengundi.',

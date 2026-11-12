@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => '无法撤销推荐。',
             'has_reply' => '无法删除有回复的讨论。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次数已达上限，请明天再试。',
@@ -43,12 +44,14 @@ return [
             'not_owner' => '你只能删除你自己的帖子。',
             'resolved' => '你不能删除已解决的讨论帖。',
             'system_generated' => '无法删除自动生成的帖子。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => '只有作者可以编辑。',
             'resolved' => '你不能编辑已解决讨论里的帖子。',
             'system_generated' => '无法编辑自动生成的帖子。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

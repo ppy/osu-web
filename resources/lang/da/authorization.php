@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Kan ikke fortryde hyping.',
             'has_reply' => 'Kan ikke slette en diskussion med svar',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Du kan kun slette dine egne opslag.',
             'resolved' => 'Du kan ikke slette et opslag fra en løst diskussion.',
             'system_generated' => 'Automatisk genererede oplsag kan ikke slettes.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
             'resolved' => 'Du kan ikke redigere et opslag fra en løst diskussion.',
             'system_generated' => 'Automatisk genererede opslag kan ikke redigeres.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

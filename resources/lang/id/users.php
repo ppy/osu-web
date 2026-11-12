@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'sebelumnya dikenal sebagai',
         'plays_with' => 'Bermain menggunakan :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Telah mengirimkan :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Peringkat',
             'rating' => 'Rating',
             'recent_history' => 'Riwayat Pertandingan Terkini',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Data tidak memadai untuk menampilkan statistik yang akurat. Cobalah untuk bermain lebih banyak!',
             'tier' => 'Tingkatan',
             'title' => 'Permainan Kilat',
             'wins' => 'Menang',
@@ -518,8 +525,8 @@ return [
             'global' => 'Peringkat global untuk :mode',
             'global_simple' => 'Peringkat Global',
             'highest' => 'Peringkat tertinggi: :rank pada :date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => 'Peringkat hanya ditampikan setelah memasuki rentang 1000 teratas',
+            'kudosu_simple' => 'Peringkat Kudosu',
         ],
         'score_processing' => [
             'title' => 'Algoritma Star Rating / PP yang baru saat ini sedang :link.',
@@ -550,9 +557,9 @@ return [
             'total_score' => 'Jumlah Skor',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap Graveyard',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Beatmap dengan Kontribusi Tingkat Kesulitan',
             'loved_beatmapset_count' => 'Beatmap Loved',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => 'Beatmap Ranked yang Dinominasikan',
             'pending_beatmapset_count' => 'Beatmap Pending',
             'ranked_beatmapset_count' => 'Beatmap Ranked',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => 'Semua',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'silakan mendaftarkan diri melalui klien permainan!',

@@ -4,7 +4,6 @@
 .mods-overflow-tooltip {
   .default-box-shadow();
   display: grid;
-  gap: 5px;
   background: hsl(var(--hsl-b5));
   padding: 10px 0;
   border-radius: @border-radius-large;
@@ -14,11 +13,17 @@
     max-height: 70vh;
     padding: 0 10px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 
+  // Extra container to add extra right spacing when overflow scrollbar is
+  // shown. Mainly for Firefox as it otherwise won't have any paddings.
   &__item {
     display: flex;
     align-items: center;
     gap: 5px;
+    padding-right: 5px;
   }
 }

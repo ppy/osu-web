@@ -106,7 +106,7 @@ return [
             '_' => 'colocações',
         ],
         'scores_controller' => [
-            '_' => 'desempenho',
+            '_' => 'performance',
         ],
         'seasons_controller' => [
             '_' => 'colocações',

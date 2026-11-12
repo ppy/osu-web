@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => '無法撤銷推薦。',
             'has_reply' => '無法刪除有回覆的討論',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
@@ -43,12 +44,14 @@ return [
             'not_owner' => '你只能刪除自己的貼文。',
             'resolved' => '你不能刪除已解決的討論串。',
             'system_generated' => '自動生成的貼文無法刪除。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => '只有發文作者才能編輯。',
             'resolved' => '你不能編輯已解決討論裡的貼文。',
             'system_generated' => '無法編輯自動回覆。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

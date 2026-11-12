@@ -42,6 +42,7 @@ return [
             'video' => 'ladda ner med video',
             'no_video' => 'ladda ner utan video',
             'direct' => 'öppna i osu!direct',
+            'lazer' => '',
         ],
     ],
 
@@ -99,6 +100,7 @@ return [
             'download' => [
                 '_' => 'Ladda ner',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'utan video',
                 'video' => 'med video',
             ],

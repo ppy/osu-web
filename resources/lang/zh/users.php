@@ -205,6 +205,13 @@ return [
         'previous_usernames' => '曾用名',
         'plays_with' => '用 :devices 游玩',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => '发表了 :link',
             'count' => ':count_delimited 条评论',
@@ -484,7 +491,7 @@ return [
             'rank' => '排名',
             'rating' => '等级分',
             'recent_history' => '最新比赛历史',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => '没有足够的数据来计算并展示准确的信息。参加更多对局吧！',
             'tier' => '段位',
             'title' => '排位模式',
             'wins' => '获胜次数',
@@ -518,8 +525,8 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => ':date 达成生涯最高排名 :rank',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => '排名仅在进入前 1000 名后显示',
+            'kudosu_simple' => 'Kudosu 排名',
         ],
         'score_processing' => [
             'title' => '新的难度星级 / PP 算法 :link 。',
@@ -550,9 +557,9 @@ return [
             'total_score' => '总分',
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => '客串制作的谱面',
             'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => '提名并上架 (Ranked) 的谱面',
             'pending_beatmapset_count' => '待定 (Pending) 谱面',
             'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => '所有',
         'online' => '在线',
         'offline' => '离线',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '请使用游戏客户端注册！',

@@ -18,6 +18,16 @@ return [
         'empty' => 'Walang pang nangyari... sa ngayon.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'tinanggal',
         'none_found' => 'Walang diskusyon na tumugma sa pamantayan na hinahanap.',

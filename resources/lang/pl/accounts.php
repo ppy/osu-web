@@ -129,6 +129,7 @@ return [
             '_' => 'domyślny sposób pobierania beatmap',
             'all' => 'z wideo, jeżeli jest ono dostępne',
             'direct' => 'otwórz w osu!direct',
+            'lazer' => '',
             'no_video' => 'bez wideo',
         ],
     ],

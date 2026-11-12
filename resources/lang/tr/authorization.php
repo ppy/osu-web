@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Verilen gaz geri alınamaz.',
             'has_reply' => 'Cevaplara sahip tartışmalar silinemez',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Yalnızca kendi gönderilerinizi silebilirsiniz.',
             'resolved' => 'Çözülmüş bir tartışmanın gönderisini silemezsiniz.',
             'system_generated' => 'Otomatik olarak oluşturulan gönderiler silinemez.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
             'resolved' => 'Çözülmüş bir tartışmanın gönderisini düzenleyemezsiniz.',
             'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

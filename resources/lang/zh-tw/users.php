@@ -205,6 +205,13 @@ return [
         'previous_usernames' => '曾用名為',
         'plays_with' => '慣用 :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => '發表了 :link',
             'count' => ':count_delimited 則留言|:count_delimited 則留言',
@@ -484,7 +491,7 @@ return [
             'rank' => '排名',
             'rating' => '等級分',
             'recent_history' => '最新對戰紀錄',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => '目前的資料不足以顯示準確的數據。多玩幾局！',
             'tier' => '階級',
             'title' => '排位模式',
             'wins' => '獲勝次數',
@@ -518,8 +525,8 @@ return [
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
             'highest' => '最高排名:rank於:date',
-            'kudosu_outside_top_1000' => '',
-            'kudosu_simple' => '',
+            'kudosu_outside_top_1000' => '只有在 1000 名以內才會顯示排名',
+            'kudosu_simple' => 'Kudosu 排名',
         ],
         'score_processing' => [
             'title' => '新的難度星級與 PP 演算法： :link。',
@@ -550,9 +557,9 @@ return [
             'total_score' => '總分',
             // modding stats
             'graveyard_beatmapset_count' => '已閒置的圖譜',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => '客串的圖譜',
             'loved_beatmapset_count' => '社群喜愛的圖譜',
-            'nominated_beatmapset_count' => '',
+            'nominated_beatmapset_count' => '提名過的已進榜圖譜',
             'pending_beatmapset_count' => '待處理的圖譜',
             'ranked_beatmapset_count' => '已進榜 & 批准的圖譜',
         ],
@@ -567,6 +574,12 @@ return [
         'all' => '全部',
         'online' => '線上',
         'offline' => '離線',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '請透過遊戲客戶端註冊!',

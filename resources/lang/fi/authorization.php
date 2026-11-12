@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Hurrausta ei voi peruuttaa.',
             'has_reply' => 'Keskustelua, jossa on vastauksia, ei voi poistaa',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => 'Olet saavuttanut päivän ehdollepanorajan, yritä uudelleen huomenna.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => 'Voit poistaa ainoastaan omia viestejäsi.',
             'resolved' => 'Et voi poistaa ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi poistaa.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => 'Vain lähettäjä voi muokata postausta.',
             'resolved' => 'Et voi muokata ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

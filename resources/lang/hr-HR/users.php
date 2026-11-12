@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'prethodno znan kao',
         'plays_with' => 'Igra sa :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Postavio :link',
             'count' => ':count_delimited komentar|:count_delimited komentari',
@@ -567,6 +574,12 @@ return [
         'all' => 'Svi',
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => '',

@@ -572,6 +572,9 @@ function log_error($exception, ?array $sentryTags = null): void
 
 function log_error_sentry(Throwable $exception, ?array $tags = null): ?string
 {
+    if ($exception instanceof App\Exceptions\SilencedException) {
+        return null;
+    }
     // Fallback in case error happening before config is initialised
     if (!($GLOBALS['cfg']['sentry']['dsn'] ?? false)) {
         return null;
@@ -1069,9 +1072,9 @@ function route_redirect($path, $target, string $method = 'get')
     return Route::$method($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
-function timeago($date)
+function timeago(\DateTimeInterface|string $date): string
 {
-    $formatted = json_time($date);
+    $formatted = is_string($date) ? $date : json_time($date);
 
     return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }

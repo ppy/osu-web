@@ -11,6 +11,7 @@ import CountdownTimer from 'components/countdown-timer';
 import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
 import MenuImages from 'components/menu-images';
+import Mods from 'components/mods';
 import QuickSearchButton from 'components/quick-search-button';
 import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingUserFilter from 'components/ranking-user-filter';
@@ -21,7 +22,7 @@ import TracklistTrack from 'components/tracklist-track';
 import { UserCard } from 'components/user-card';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
-import { WikiSearch } from 'components/wiki-search';
+import WikiSearch from 'components/wiki-search';
 import { observable } from 'mobx';
 import NotificationWidget from 'notification-widget/main';
 import core from 'osu-core-singleton';
@@ -91,6 +92,10 @@ core.reactTurbolinks.register('menu-images', () => (
   <MenuImages images={observable(parseJson('json-menu-images'))} />
 ));
 
+core.reactTurbolinks.register('mods', (container) => (
+  <Mods {...reqJson(container.dataset.mods)} />
+));
+
 core.reactTurbolinks.register('notification-widget', (container) => (
   <NotificationWidget {...reqJson(container.dataset.notificationWidget)} />
 ));
@@ -157,7 +162,7 @@ core.reactTurbolinks.register('user-cards', (container) => (
 ));
 
 core.reactTurbolinks.register('wiki-search', (container) => (
-  <WikiSearch locale={reqStr(container.dataset.locale)} />
+  <WikiSearch {...reqJson(container.dataset.props)} />
 ));
 
 core.reactTurbolinks.register('landing-news', () => (

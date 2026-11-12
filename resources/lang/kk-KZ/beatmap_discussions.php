@@ -18,6 +18,16 @@ return [
         'empty' => 'Ештеңе болған жоқ... әлі.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'жойылған',
         'none_found' => 'Бұл іздеу критерийлеріне сәйкес келетін пікірталастар табылмады.',

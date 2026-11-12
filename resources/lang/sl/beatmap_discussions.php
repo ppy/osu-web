@@ -18,6 +18,16 @@ return [
         'empty' => 'Nič se ni zgodilo ... zaenkrat.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'izbrisano',
         'none_found' => 'Nobena razprava ni bila najdena kljub željenim iskalnim kriterijem.',

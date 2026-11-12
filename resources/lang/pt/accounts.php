@@ -129,6 +129,7 @@ return [
             '_' => 'tipo de download predefinido do mapa',
             'all' => 'com vídeo, se disponível',
             'direct' => 'abrir no osu!direct',
+            'lazer' => '',
             'no_video' => 'sem vídeo',
         ],
     ],

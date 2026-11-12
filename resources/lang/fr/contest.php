@@ -30,6 +30,8 @@ return [
     'judge_results' => [
         '_' => 'Résultats du jugement',
         'creator' => 'créateur',
+        'hosts_only' => '',
+        'provisional' => '',
         'score' => 'Score',
         'score_std' => 'Score normalisé',
         'total_score' => 'score total',
@@ -37,6 +39,7 @@ return [
     ],
 
     'voting' => [
+        'host_link' => '',
         'judge_link' => 'Vous êtes juge de ce concours. Jugez les entrées ici !',
         'judged_notice' => 'Ce concours utilise le système de jugement, les juges s\'occupent actuellement des entrées.',
         'login_required' => 'Veuillez vous connecter pour voter.',

@@ -129,6 +129,7 @@ return [
             '_' => 'jenis unduhan beatmap bawaan',
             'all' => 'dengan video (apabila tersedia)',
             'direct' => 'buka di osu!direct',
+            'lazer' => '',
             'no_video' => 'tanpa video',
         ],
     ],
@@ -143,7 +144,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak berada dalam daftar temanmu',
+        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak ada dalam daftar temanmu',
         'friends_only_info' => 'pemblokiran ini juga berlaku bagi undangan multiplayer dan permintaan duel ranked play di osu!lazer',
         'hide_online' => 'sembunyikan status onlinemu',
         'hide_online_info' => 'pengaturan ini akan terhubung ke mode "tampil offline" di osu!lazer',

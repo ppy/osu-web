@@ -77,7 +77,7 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_reply' => 'receber notificações das respostas em discussões de beatmap que você está participando',
+        'beatmapset_discussion_reply' => 'receber notificações de respostas em discussões de beatmap que você está participando',
         'beatmapset_discussion_qualified_problem' => 'receber notificações para novos problemas em beatmaps qualificados dos seguintes modos',
         'beatmapset_disqualify' => 'receber notificações quando os beatmaps dos seguintes modos forem desqualificados',
         'comment_reply' => 'receber notificações de respostas aos seus comentários',
@@ -129,6 +129,7 @@ return [
             '_' => 'tipo de download padrão de beatmap',
             'all' => 'com vídeo se disponível',
             'direct' => 'abrir no osu!direct',
+            'lazer' => '',
             'no_video' => 'sem vídeo',
         ],
     ],

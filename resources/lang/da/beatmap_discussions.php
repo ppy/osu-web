@@ -18,6 +18,16 @@ return [
         'empty' => 'Der er ikke sket noget... endnu.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'slettet',
         'none_found' => 'Ingen diskussion der macher det søgekriterie var fundet.',

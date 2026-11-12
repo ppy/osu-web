@@ -205,6 +205,13 @@ return [
         'previous_usernames' => 'раніше був відомий як',
         'plays_with' => 'Грає з :devices',
 
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
+
         'comments_count' => [
             '_' => 'Опубліковано :link',
             'count' => ':count_delimited коментар|:count_delimited коментаря|:count_delimited коментарів',
@@ -484,7 +491,7 @@ return [
             'rank' => 'Ранг',
             'rating' => 'Рейтинг',
             'recent_history' => 'Остання історія матчів',
-            'recent_history_provisional' => '',
+            'recent_history_provisional' => 'Недостатньо даних для відображення точної статистики. Грайте більше ігор!',
             'tier' => 'Рівень',
             'title' => 'Швидка гра',
             'wins' => 'Перемоги',
@@ -550,7 +557,7 @@ return [
             'total_score' => 'Всього очок',
             // modding stats
             'graveyard_beatmapset_count' => 'Покинуті мапи',
-            'guest_beatmapset_count' => '',
+            'guest_beatmapset_count' => 'Мапи з гостьовими складностями',
             'loved_beatmapset_count' => 'Улюблені мапи',
             'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Мапи на розгляді',
@@ -567,6 +574,12 @@ return [
         'all' => 'Всі',
         'online' => 'В мережі',
         'offline' => 'Не в мережі',
+    ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
     ],
     'store' => [
         'from_client' => 'будь ласка, зареєструйтесь через ігровий клієнт!',

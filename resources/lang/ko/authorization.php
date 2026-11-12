@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => 'Hype한 것은 되돌릴 수 없습니다.',
             'has_reply' => '답글이 달린 토론은 삭제할 수 없습니다',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => '오늘은 더 이상 추천할 수 없습니다. 내일 다시 시도해주세요.',
@@ -43,12 +44,14 @@ return [
             'not_owner' => '자신의 게시글만 삭제할 수 있습니다.',
             'resolved' => '해결된 토론의 게시글은 삭제할 수 없습니다.',
             'system_generated' => '자동으로 생성된 글은 삭제할 수 없습니다.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => '본인이 쓴 글만 수정할 수 있습니다.',
             'resolved' => '해결된 토론의 게시글은 수정할 수 없습니다.',
             'system_generated' => '자동으로 생성된 글은 수정할 수 없습니다.',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 

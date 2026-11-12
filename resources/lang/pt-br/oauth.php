@@ -60,9 +60,9 @@ return [
         ],
 
         'secret' => [
-            'copy' => '',
-            'generate_new' => '',
-            'visible_once' => '',
+            'copy' => 'Certifique-se de copiar o valor antes de sair navegando por aí.',
+            'generate_new' => 'Redefinir segredo do cliente para gerar um novo.',
+            'visible_once' => 'O segredo do cliente só é visível após a criação inicial.',
         ],
     ],
 ];

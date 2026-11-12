@@ -41,7 +41,7 @@ return [
         ],
 
         'store' => [
-            'cart' => 'ostoskärry',
+            'cart' => 'ostoskori',
             'orders' => 'tilaushistoria',
             'products' => 'tuotteet',
         ],

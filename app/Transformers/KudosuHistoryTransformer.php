@@ -53,7 +53,7 @@ class KudosuHistoryTransformer extends TransformerAbstract
             'action' => $action,
             'amount' => $kudosuHistory->amount,
             'model' => $model,
-            'created_at' => json_time($kudosuHistory->date),
+            'created_at' => $kudosuHistory->getJsonTime('date'),
             'giver' => $giver ?? null,
             'post' => $post,
             'details' => $kudosuHistory->details,
