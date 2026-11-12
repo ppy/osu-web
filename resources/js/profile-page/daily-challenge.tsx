@@ -203,7 +203,7 @@ export default class DailyChallenge extends React.Component<Props> {
         onMouseOver={this.onMouseOver}
       >
         <div className='profile-detail-stats-big__icon'>
-          <div className='svg-icon svg-icon--check-circle' />
+          <div className='svg-icon svg-icon--daily-challenge' />
         </div>
         <div className='profile-detail-stats-big__title-container'>
           <div className='profile-detail-stats-big__label'>
