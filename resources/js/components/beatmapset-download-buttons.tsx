@@ -21,7 +21,7 @@ interface DownloadButtonOptions {
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapExtendedJson;
-  mode: "discussions" | "info";
+  mode: 'discussions' | 'info';
 }
 
 @observer
