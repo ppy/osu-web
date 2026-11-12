@@ -4,6 +4,7 @@
 import UserLinkList from 'beatmap-discussions/user-link-list';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
+import BeatmapsetDownloadButtons from 'components/beatmapset-download-buttons';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import DifficultyBadge from 'components/difficulty-badge';
@@ -19,7 +20,7 @@ import { downloadLimited, getArtist, getTitle, makeSearchQueryOption, toggleFavo
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
-import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
+import { wikiUrl } from 'utils/url';
 import BeatmapPicker from './beatmap-picker';
 import BeatmapsetMenu from './beatmapset-menu';
 import Controller from './controller';
@@ -38,13 +39,6 @@ function statusIcon(type: 'storyboard' | 'video') {
       <span className={iconClass} />
     </div>
   );
-}
-
-interface DownloadButtonOptions {
-  bottomTextKey?: string;
-  href: string;
-  icon?: string;
-  topTextKey?: string;
 }
 
 interface Props {
@@ -190,8 +184,11 @@ export default class Header extends React.Component<Props> {
               />
             }
 
-            {this.renderDownloadButtons()}
-            {this.renderLoginButton()}
+            <BeatmapsetDownloadButtons
+              beatmapset={this.controller.beatmapset}
+              currentBeatmap={this.controller.currentBeatmap}
+              mode='info'
+            />
 
             {!this.controller.beatmapset.is_scoreable && core.currentUser != null && core.currentUser.id !== this.controller.beatmapset.user_id &&
               <div className='beatmapset-header__more'>
@@ -209,20 +206,6 @@ export default class Header extends React.Component<Props> {
           <Stats controller={this.controller} />
         </div>
       </div>
-    );
-  }
-
-  private downloadButton({ bottomTextKey, href, icon = 'fas fa-download', topTextKey = '_' }: DownloadButtonOptions) {
-    return (
-      <BigButton
-        href={href}
-        icon={icon}
-        modifiers='beatmapset-header'
-        text={{
-          bottom: bottomTextKey == null ? undefined : trans(`beatmapsets.show.details.download.${bottomTextKey}`),
-          top: trans(`beatmapsets.show.details.download.${topTextKey}`),
-        }}
-      />
     );
   }
 
@@ -299,55 +282,6 @@ export default class Header extends React.Component<Props> {
           </span>
         )}
       </span>
-    );
-  }
-
-  private renderDownloadButtons() {
-    if (core.currentUser == null || this.controller.beatmapset.availability.download_disabled) return;
-
-    const legacyScoreOnly = core.userPreferences.get('legacy_score_only');
-
-    return (
-      <>
-        {this.controller.beatmapset.video ? (
-          <>
-            {this.downloadButton({
-              bottomTextKey: 'video',
-              href: route('beatmapsets.download', { beatmapset: this.controller.beatmapset.id }),
-            })}
-
-            {this.downloadButton({
-              bottomTextKey: 'no-video',
-              href: route('beatmapsets.download', { beatmapset: this.controller.beatmapset.id, noVideo: 1 }),
-            })}
-          </>
-        ) : (this.downloadButton({
-          href: route('beatmapsets.download', { beatmapset: this.controller.beatmapset.id }),
-        }))}
-
-        {this.downloadButton({
-          href: core.currentUser.is_supporter || !legacyScoreOnly
-            ? beatmapDownloadDirect(this.controller.currentBeatmap.id)
-            : route('support-the-game'),
-          topTextKey: legacyScoreOnly ? 'direct' : 'lazer',
-        })}
-      </>
-    );
-  }
-
-  private renderLoginButton() {
-    if (core.currentUser != null) return;
-
-    return (
-      <BigButton
-        extraClasses={['js-user-link']}
-        icon='fas fa-lock'
-        modifiers='beatmapset-header'
-        text={{
-          bottom: trans('beatmapsets.show.details.login_required.bottom'),
-          top: trans('beatmapsets.show.details.login_required.top'),
-        }}
-      />
     );
   }
 
