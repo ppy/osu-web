@@ -604,6 +604,7 @@ class UsersController extends Controller
      * - active_tournament_banner
      * - badges
      * - beatmap_playcounts_count
+     * - current_season_stats
      * - favourite_beatmapset_count
      * - follower_count
      * - graveyard_beatmapset_count

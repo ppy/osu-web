@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Img2x from 'components/img2x';
+import { rulesetNames, rulesetVariantIdToName } from 'interfaces/ruleset';
 import SeasonStatsJson from 'interfaces/season-stats-json';
 import { route } from 'laroute';
 import { autorun } from 'mobx';
@@ -15,6 +16,19 @@ function colourStyle(tier: string) {
   return {
     '--colour': `var(--level-tier-${tier})`,
   } as React.CSSProperties;
+}
+
+function divisionName(stats: SeasonStatsJson) {
+  if (stats.season.ruleset_id == null) {
+    return stats.division.name;
+  }
+
+  const variant = rulesetVariantIdToName[stats.season.variant_id ?? 0];
+  if (variant === '') {
+    return stats.division.name;
+  }
+
+  return `${stats.division.name} (${trans(`beatmaps.variant.${rulesetNames[stats.season.ruleset_id]}.${variant}`)})`;
 }
 
 interface Props {
@@ -39,7 +53,7 @@ const popup = (stats: SeasonStatsJson) => (
             src={stats.division.image_url}
           />
           <div className='season-stats-popup__name'>
-            {stats.division.name}
+            {divisionName(stats)}
           </div>
           <div className='season-stats-popup__threshold'>
             {trans('users.show.season_stats.division_top_percentage', {
@@ -124,7 +138,7 @@ export default class SeasonStats extends React.Component<Props> {
           src={this.props.stats.division.image_url}
         />
         <div className='season-stats__name'>
-          {this.props.stats.division.name}
+          {divisionName(this.props.stats)}
         </div>
       </div>
     );
@@ -148,7 +162,7 @@ export default class SeasonStats extends React.Component<Props> {
             className='profile-detail-stats-big__fancy-text'
             style={colourStyle(this.props.stats.division.colour_tier)}
           >
-            {this.props.stats.division.name}
+            {divisionName(this.props.stats)}
           </div>
         </div>
         <Img2x

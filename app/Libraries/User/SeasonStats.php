@@ -20,6 +20,29 @@ class SeasonStats
     ) {
     }
 
+    public static function currentFor(User $user, string $ruleset): ?array
+    {
+        $best = null;
+
+        foreach (Season::active()->forRuleset($ruleset)->get() as $season) {
+            $stats = (new static($user, $season))->get();
+            if ($stats !== null && ($best === null || static::isBetter($stats, $best))) {
+                $best = $stats;
+            }
+        }
+
+        return $best;
+    }
+
+    private static function isBetter(array $a, array $b): bool
+    {
+        if ($a['division']['threshold'] !== $b['division']['threshold']) {
+            return $a['division']['threshold'] < $b['division']['threshold'];
+        }
+
+        return $a['rank'] < $b['rank'];
+    }
+
     public function calculate(): ?array
     {
         $score = $this->season->userScores()

@@ -106,7 +106,7 @@ export class Main extends React.Component {
   private readonly handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
-    const type = ((event.currentTarget as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
+    const type = ((event.currentTarget).dataset.type ?? null) as NotificationTypeName;
     this.controller.navigateTo(type);
   };
 

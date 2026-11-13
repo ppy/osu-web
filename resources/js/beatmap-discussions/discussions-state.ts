@@ -25,7 +25,7 @@ const defaultFilterPraise = new Set<BeatmapsetStatus>(['approved', 'ranked']);
 const jsonId = 'json-discussions-state';
 
 function deletedUser(userId: number) {
-  const user: UserJson = structuredClone(deletedUserJson) as UserJson; // structuredClone copies the Readonly type but is actually mutable.
+  const user: UserJson = structuredClone(deletedUserJson); // structuredClone copies the Readonly type but is actually mutable.
   user.id = userId;
 
   return user;

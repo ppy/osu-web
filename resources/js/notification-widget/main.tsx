@@ -88,7 +88,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private readonly handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
+    const type = (event.currentTarget.dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
   };
 
