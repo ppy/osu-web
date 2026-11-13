@@ -465,8 +465,8 @@ class Room extends Model
                     $ratings = array_map($ratingFn, $playlistItemsForRange->all());
 
                     return [
-                        'max' => max($ratings),
-                        'min' => min($ratings),
+                        'max' => max($ratings) ?? 0,
+                        'min' => min($ratings) ?? 0,
                     ];
                 }
             }
@@ -480,13 +480,14 @@ class Room extends Model
 
         $range = Beatmap
             ::whereIn('beatmap_id', $playlistItemsForRange->pluck('beatmap_id'))
+            ->withTrashed()
             ->selectExpression('MAX(difficultyrating)', 'max_difficulty')
             ->selectExpression('MIN(difficultyrating)', 'min_difficulty')
             ->first();
 
         return [
-            'max' => $range->attributes['max_difficulty'],
-            'min' => $range->attributes['min_difficulty'],
+            'max' => $range->attributes['max_difficulty'] ?? 0,
+            'min' => $range->attributes['min_difficulty'] ?? 0,
         ];
     }
 
