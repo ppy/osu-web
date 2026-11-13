@@ -39,11 +39,7 @@ class Event extends Model
         ],
     ];
 
-    public ?array $details = null;
-    public $parsed = false;
-    public ?string $type = null;
-
-    public $patterns = [
+    private const PATTERNS = [
         'achievement' => "@^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" medal!$@",
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
         'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified|loved)\!$!",
@@ -58,6 +54,10 @@ class Event extends Model
         'userSupportGift' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has received the gift of osu\! supporter\!$!",
         'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
     ];
+
+    public ?array $details = null;
+    public $parsed = false;
+    public ?string $type = null;
 
     public $timestamps = false;
 
@@ -493,7 +493,7 @@ class Event extends Model
     public function parse()
     {
         if (!$this->parsed) {
-            foreach ($this->patterns as $name => $pattern) {
+            foreach (static::PATTERNS as $name => $pattern) {
                 if (preg_match($pattern, $this->text, $matches) !== 1) {
                     continue;
                 }
