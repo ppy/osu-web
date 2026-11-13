@@ -50,6 +50,18 @@
     flex: none;
     display: flex;
 
+    &--download {
+      display: grid;
+      gap: 10px;
+      grid-auto-columns: 1fr;
+      grid-auto-flow: column;
+      min-width: max-content;
+
+      @media @mobile {
+        grid-auto-flow: row;
+      }
+    }
+
     &--full {
       flex: 1;
     }

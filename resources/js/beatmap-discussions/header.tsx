@@ -5,8 +5,8 @@ import headerLinks from 'beatmapsets-show/header-links';
 import BeatmapBasicStats from 'components/beatmap-basic-stats';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
+import BeatmapsetDownloadButtons from 'components/beatmapset-download-buttons';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
-import BigButton from 'components/big-button';
 import HeaderV4 from 'components/header-v4';
 import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
@@ -115,12 +115,11 @@ export class Header extends React.Component<Props> {
           <div className={`${bn}__details`}>
             <Subscribe beatmapset={this.beatmapset} discussionsState={this.discussionsState} />
           </div>
-          <div className={`${bn}__details`}>
-            <BigButton
-              href={route('beatmapsets.show', { beatmapset: this.beatmapset.id })}
-              icon='fas fa-info'
-              modifiers='full'
-              text={trans('beatmaps.discussions.beatmap_information')}
+          <div className={`${bn}__details ${bn}__details--download`}>
+            <BeatmapsetDownloadButtons
+              beatmapset={this.beatmapset}
+              currentBeatmap={this.currentBeatmap}
+              mode='discussions'
             />
           </div>
         </div>
