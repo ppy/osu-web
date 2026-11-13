@@ -76,7 +76,7 @@ export default class UserPreferences {
         const preferences = JSON.parse(data) as unknown;
 
         if (preferences != null && typeof preferences === 'object') {
-          return preferences as Partial<UserPreferencesJson>;
+          return preferences;
         }
       }
     } catch {

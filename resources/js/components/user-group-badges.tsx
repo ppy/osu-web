@@ -21,13 +21,10 @@ export default function UserGroupBadges(props: Props) {
     wrapper,
   } = props;
 
-  let mainGroupWasSet = false;
-
   return (
     <>
-      {groups.map((group) => {
-        const className = short && mainGroupWasSet ? `${wrapper} u-hidden-narrow` : wrapper;
-        mainGroupWasSet = true;
+      {groups.map((group, index) => {
+        const className = short && index > 0 ? `${wrapper} u-hidden-narrow` : wrapper;
 
         return (
           <span key={group.identifier} className={className}>

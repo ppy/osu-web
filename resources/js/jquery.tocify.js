@@ -6,7 +6,7 @@
  * Licensed MIT */
 import 'jquery-ui/ui/widget';
 
-/* globals $, document, window */
+/* globals $ */
 var tocClassName = 'tocify';
 var tocFocusClassName = 'tocify-focus';
 var tocHoverClassName = 'tocify-hover';

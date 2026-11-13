@@ -59,6 +59,7 @@ export default function Main(props: Props) {
           }
 
           const initialExpand = first;
+          // eslint-disable-next-line react-hooks/immutability
           first = false;
 
           return (<MonthListing
