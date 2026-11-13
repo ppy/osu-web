@@ -33,17 +33,17 @@
     position: relative;
 
     &--daily-challenge-played {
-      box-shadow: 0 0 0 2px @osu-colour-lime-1;
+      border: 2px solid hsl(var(--hsl-lime-1));
 
       &::before {
         .fas();
         .center-content();
-        background-color: @osu-colour-lime-1;
+        background-color: hsl(var(--hsl-lime-1));
         border-radius: 50%;
-        color: @osu-colour-b6;
+        color: hsl(var(--hsl-b6));
         content: @fa-var-check;
         font-size: 8px; // icon size
-        height: 16px;
+        height: 2em;
         position: absolute;
         right: 0;
         top: 0;
