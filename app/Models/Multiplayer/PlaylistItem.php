@@ -127,6 +127,7 @@ class PlaylistItem extends Model
         $query->addSelect([
             'difficultyrating' => Beatmap
                 ::select('difficultyrating')
+                ->withTrashed()
                 ->whereColumn('beatmap_id', $this->qualifyColumn('beatmap_id')),
         ]);
     }
