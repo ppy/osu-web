@@ -421,7 +421,7 @@ class HomeController extends Controller
                 [
                     'type' => 'image_group',
                     'items' => [
-                        'yellow_fellow' => [
+                        'colour_galore' => [
                             'icons' => ['fas fa-fire'],
                         ],
                         'speedy_downloads' => [
