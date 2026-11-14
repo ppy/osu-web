@@ -10,7 +10,6 @@ use App\Libraries\SessionVerification;
 use App\Libraries\User\ModdingActivityHeatmap;
 use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
-use App\Models\Season;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 use Illuminate\Support\Arr;
@@ -265,13 +264,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCurrentSeasonStats(User $user): Primitive
     {
-        $season = Season::active()
-            ->where('ruleset_id', Beatmap::modeInt($this->mode))
-            ->first();
-
-        return $season === null
-            ? $this->primitive(null)
-            : $this->primitive((new SeasonStats($user, $season))->get());
+        return $this->primitive(SeasonStats::currentFor($user, $this->mode));
     }
 
     public function includeCurrentUserAttributes(User $user): Primitive

@@ -20,7 +20,7 @@ class SetLocaleApi extends SetLocale
             $locale = Auth::user()?->user_lang;
         }
 
-        $this->setLocale($locale ?? null, $request);
+        static::setLocale($locale ?? null, $request);
 
         return $next($request);
     }

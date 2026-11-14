@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\SetLocale;
 use App\Libraries\User\CountryChange;
 use App\Libraries\User\DatadogLoginAttempt;
 use App\Libraries\User\ForceReactivation;
@@ -106,9 +107,11 @@ class SessionsController extends Controller
 
             DatadogLoginAttempt::log(null);
             $this->login($user);
+            SetLocale::setLocaleWeb($request);
 
             return [
                 'csrf_token' => csrf_token(),
+                'current_locale' => \App::getLocale(),
                 'header' => view('layout._header_user')->render(),
                 'header_popup' => view('layout._popup_user')->render(),
                 'user' => json_item($user, new CurrentUserTransformer()),

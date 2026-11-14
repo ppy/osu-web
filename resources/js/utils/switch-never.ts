@@ -15,6 +15,6 @@ export function switchNever(_never: never) {
  */
 export class SwitchError extends Error {
   constructor(item: never) {
-    super(`unhandled switch value: ${JSON.stringify(item as unknown)}`);
+    super(`unhandled switch value: ${JSON.stringify(item)}`);
   }
 }
