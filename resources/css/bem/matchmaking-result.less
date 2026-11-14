@@ -6,7 +6,9 @@
   gap: 5px;
 
   &--provisional {
-    grid-template-columns: auto 1fr;
+    // allow vertical overflow to still be centered within parent element
+    display: flex;
+    min-height: 0;
     align-items: center;
     gap: 10px;
     padding: 0 5px;
@@ -36,6 +38,10 @@
         ),
         linear-gradient(to right, hsl(var(--bg-2-hsl), 0), hsl(var(--bg-2-hsl)));
     }
+  }
+
+  &__provisional-icon {
+    flex: none;
   }
 
   &__title {
