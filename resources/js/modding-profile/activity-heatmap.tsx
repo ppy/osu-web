@@ -16,8 +16,8 @@ const displayPriority = ['ranks', 'nominations', 'posts'] as const;
 type ActivityType = typeof displayPriority[number];
 
 const thresholds: Record<ActivityType, readonly [number, number]> = {
-  nominations: [1, 3],
-  posts: [1, 20],
+  nominations: [1, 2],
+  posts: [1, 10],
   ranks: [1, 2],
 };
 
