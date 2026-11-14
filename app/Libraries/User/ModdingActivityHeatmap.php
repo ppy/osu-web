@@ -24,6 +24,7 @@ class ModdingActivityHeatmap
     public function calculate(): array
     {
         [$start, $end] = $this->window();
+        $until = $end->addDay();
         $userId = $this->user->getKey();
 
         $posts = $this->countsByDate(
@@ -35,21 +36,21 @@ class ModdingActivityHeatmap
                     fn ($query) => $query->where('user_id', '<>', $userId),
                 ),
             $start,
-            $end,
+            $until,
         );
 
         $nominations = $this->countsByDate(
             BeatmapsetEvent::where('user_id', $userId)
                 ->where('type', BeatmapsetEvent::NOMINATE),
             $start,
-            $end,
+            $until,
         );
 
         $ranks = $this->countsByDate(
             BeatmapsetEvent::where('type', BeatmapsetEvent::RANK)
                 ->whereHas('beatmapset', fn ($query) => $query->where('user_id', $userId)),
             $start,
-            $end,
+            $until,
         );
 
         $daysByDate = [];
@@ -77,11 +78,11 @@ class ModdingActivityHeatmap
         );
     }
 
-    private function countsByDate(Builder $query, CarbonImmutable $start, CarbonImmutable $end): array
+    private function countsByDate(Builder $query, CarbonImmutable $start, CarbonImmutable $until): array
     {
         return $query
             ->where('created_at', '>=', $start)
-            ->where('created_at', '<', $end->addDay())
+            ->where('created_at', '<', $until)
             ->toBase()
             ->selectRaw('DATE(created_at) date, COUNT(*) count')
             ->groupBy('date')
