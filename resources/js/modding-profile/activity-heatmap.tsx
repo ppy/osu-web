@@ -3,6 +3,8 @@
 
 import { ModdingActivityHeatmapDayJson, ModdingActivityType } from 'interfaces/modding-activity-heatmap-json';
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -72,6 +74,16 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
   );
 }
 
+function filterDay(day: ModdingActivityHeatmapDayJson, filter: ModdingActivityType | null) {
+  if (filter == null) {
+    return day;
+  }
+
+  const count = day[filter];
+
+  return count == null ? undefined : { date: day.date, [filter]: count };
+}
+
 function legendTooltip(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
   const [dim, bright] = thresholds[type];
 
@@ -109,15 +121,24 @@ function swatch(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
   );
 }
 
+@observer
 export default class ActivityHeatmap extends React.PureComponent<Props> {
+  @observable private selectedType: ModdingActivityType | null = null;
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
+
   render() {
     const heatmap = this.props.user.modding_activity_heatmap;
+    const selectedType = this.selectedType;
     const start = moment.utc(heatmap.start_date);
     const end = moment.utc(heatmap.end_date);
     const lastDay = end.clone().isoWeekday(7);
     const weekCount = lastDay.diff(start, 'weeks') + 1;
     const months = monthLabels(start, weekCount);
-    const byDate = new Map(heatmap.days.map((day) => [day.date, day]));
+    const byDate = new Map(heatmap.days.map((day) => [day.date, filterDay(day, selectedType)]));
 
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--heatmap'>
@@ -132,25 +153,13 @@ export default class ActivityHeatmap extends React.PureComponent<Props> {
           </div>
 
           <div className={bn}>
-            <ul className={`${bn}__legend`}>
-              {displayPriority.map((type) => (
-                <li key={type} className={`${bn}__legend-item`}>
-                  <div className={`${bn}__legend-label`}>
-                    {trans(`users.show.stats.activity_heatmap.${type}`)}
-                  </div>
-                  <div className={`${bn}__legend-scale`}>
-                    <span>{trans('users.show.stats.activity_heatmap.less')}</span>
-                    {swatch(type, 'empty')}
-                    {swatch(type, 'dim')}
-                    {swatch(type, 'bright')}
-                    <span>{trans('users.show.stats.activity_heatmap.more')}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <div className={`${bn}__legend`}>
+              {displayPriority.map(this.renderLegendItem)}
+            </div>
 
             <div className={`${bn}__calendar`}>
               <div
+                key={selectedType ?? 'all'}
                 className={`${bn}__grid`}
                 style={{ '--weeks': weekCount } as React.CSSProperties}
               >
@@ -195,4 +204,33 @@ export default class ActivityHeatmap extends React.PureComponent<Props> {
       </div>
     );
   }
+
+  @action
+  private readonly onLegendClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const type = event.currentTarget.dataset.type as ModdingActivityType;
+    this.selectedType = this.selectedType === type ? null : type;
+  };
+
+  private readonly renderLegendItem = (type: ModdingActivityType) => (
+    <button
+      key={type}
+      className={classWithModifiers(`${bn}__legend-item`, {
+        dimmed: this.selectedType != null && this.selectedType !== type,
+      })}
+      data-type={type}
+      onClick={this.onLegendClick}
+      type='button'
+    >
+      <div className={`${bn}__legend-label`}>
+        {trans(`users.show.stats.activity_heatmap.${type}`)}
+      </div>
+      <div className={`${bn}__legend-scale`}>
+        <span>{trans('users.show.stats.activity_heatmap.less')}</span>
+        {swatch(type, 'empty')}
+        {swatch(type, 'dim')}
+        {swatch(type, 'bright')}
+        <span>{trans('users.show.stats.activity_heatmap.more')}</span>
+      </div>
+    </button>
+  );
 }
