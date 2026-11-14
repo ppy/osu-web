@@ -17,9 +17,7 @@ export default class Stats extends React.PureComponent<Props> {
       <div className='modding-profile-stats'>
         <Modding user={this.props.user} />
         <Beatmapsets user={this.props.user} />
-        <div className='modding-profile-stats__heatmap'>
-          <ActivityHeatmap heatmap={this.props.user.modding_activity_heatmap} />
-        </div>
+        <ActivityHeatmap heatmap={this.props.user.modding_activity_heatmap} />
       </div>
     );
   }
