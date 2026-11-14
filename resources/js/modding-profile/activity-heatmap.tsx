@@ -75,7 +75,7 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
       {types.map((type) => (
         <div key={type} className={`${bn}__tooltip-row`}>
           <span className={`${bn}__tooltip-label`}>
-            <span className={classWithModifiers(`${bn}__swatch`, [type, 'bright', 'tooltip'])} />
+            <span className={classWithModifiers(`${bn}__cell`, [type, 'bright', 'tooltip'])} />
             {trans(`users.show.stats.activity_heatmap.${type}`)}
           </span>
           <span className={`${bn}__tooltip-value`}>
@@ -129,7 +129,7 @@ function monthLabels(start: moment.Moment, weekCount: number) {
 function swatch(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
   return (
     <span
-      className={classWithModifiers(`${bn}__swatch`, level === 'empty' ? undefined : [type, level])}
+      className={classWithModifiers(`${bn}__cell`, level === 'empty' ? undefined : [type, level])}
       title={legendTooltip(type, level)}
     />
   );
