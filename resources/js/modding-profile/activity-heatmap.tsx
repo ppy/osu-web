@@ -15,8 +15,8 @@ const bn = 'modding-profile-heatmap';
 const displayPriority: readonly ModdingActivityType[] = ['ranks', 'nominations', 'posts'];
 
 const thresholds: Record<ModdingActivityType, readonly [number, number]> = {
-  nominations: [1, 2],
-  posts: [1, 10],
+  nominations: [1, 3],
+  posts: [1, 20],
   ranks: [1, 2],
 };
 
