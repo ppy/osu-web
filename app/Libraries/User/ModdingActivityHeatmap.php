@@ -52,21 +52,17 @@ class ModdingActivityHeatmap
             $end,
         );
 
-        $dates = array_keys($posts + $nominations + $ranks);
-        sort($dates);
-
-        $days = [];
-        foreach ($dates as $date) {
-            $days[] = [
-                'date' => $date,
-                'nominations' => (int) ($nominations[$date] ?? 0),
-                'posts' => (int) ($posts[$date] ?? 0),
-                'ranks' => (int) ($ranks[$date] ?? 0),
-            ];
+        $daysByDate = [];
+        foreach (['nominations' => $nominations, 'posts' => $posts, 'ranks' => $ranks] as $type => $counts) {
+            foreach ($counts as $date => $count) {
+                $daysByDate[$date] ??= ['date' => $date];
+                $daysByDate[$date][$type] = (int) $count;
+            }
         }
+        ksort($daysByDate);
 
         return [
-            'days' => $days,
+            'days' => array_values($daysByDate),
             'end_date' => json_date($end),
             'start_date' => json_date($start),
         ];

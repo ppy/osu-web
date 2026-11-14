@@ -1,12 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-export interface ModdingActivityHeatmapDayJson {
+export type ModdingActivityType = 'nominations' | 'posts' | 'ranks';
+
+export type ModdingActivityHeatmapDayJson = {
   date: string;
-  nominations: number;
-  posts: number;
-  ranks: number;
-}
+} & Partial<Record<ModdingActivityType, number>>;
 
 export default interface ModdingActivityHeatmapJson {
   days: ModdingActivityHeatmapDayJson[];

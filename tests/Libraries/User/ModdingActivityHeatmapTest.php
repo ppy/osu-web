@@ -65,8 +65,8 @@ class ModdingActivityHeatmapTest extends TestCase
 
         $this->assertNotNull($day);
         $this->assertSame(2, $day['nominations']);
-        $this->assertSame(0, $day['posts']);
-        $this->assertSame(0, $day['ranks']);
+        $this->assertArrayNotHasKey('posts', $day);
+        $this->assertArrayNotHasKey('ranks', $day);
     }
 
     public function testPosts(): void
@@ -107,6 +107,8 @@ class ModdingActivityHeatmapTest extends TestCase
 
         $this->assertNotNull($day);
         $this->assertSame(2, $day['posts']);
+        $this->assertArrayNotHasKey('nominations', $day);
+        $this->assertArrayNotHasKey('ranks', $day);
     }
 
     public function testPostsOutsideWindowAreOmitted(): void
@@ -148,6 +150,7 @@ class ModdingActivityHeatmapTest extends TestCase
         $this->assertNotNull($day);
         $this->assertSame(1, $day['ranks']);
         $this->assertSame(1, $day['nominations']);
+        $this->assertArrayNotHasKey('posts', $day);
     }
 
     private function dayAt(array $result, string $date): ?array
