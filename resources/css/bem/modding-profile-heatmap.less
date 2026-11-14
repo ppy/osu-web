@@ -71,9 +71,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
     font-size: @font-size--normal;
 
     @media @desktop {
@@ -83,9 +80,31 @@
   }
 
   &__legend-item {
+    .reset-input();
+    .default-border-radius();
+    .fade-element(@hover-transition-duration);
+    color: inherit;
+    cursor: pointer;
     display: grid;
     flex: 1 0 auto;
+    font: inherit;
     gap: 4px;
+    padding: 5px;
+    text-align: start;
+
+    &:hover,
+    &:focus-visible {
+      background-color: hsl(var(--hsl-b4));
+    }
+
+    &--dimmed {
+      opacity: 0.4;
+
+      &:hover,
+      &:focus-visible {
+        opacity: 1;
+      }
+    }
   }
 
   &__legend-label {
