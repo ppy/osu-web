@@ -5,24 +5,15 @@
   --empty: hsl(var(--hsl-b2));
   --cell-size: 18px;
   display: grid;
-  gap: 10px;
+  gap: 20px;
   min-width: 0;
 
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 0;
-
-    @media @desktop {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
+  @media @desktop {
+    grid-template-columns: auto 1fr;
+    align-items: center;
   }
 
   &__calendar {
-    flex: 1;
     min-width: 0;
     overflow-x: auto;
     // so overflow starts at the most recent week
@@ -76,18 +67,6 @@
     margin-left: auto;
   }
 
-  &__heading {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  &__help {
-    color: hsl(var(--hsl-l2));
-    font-size: 12px; // icon size
-    font-weight: normal;
-  }
-
   &__legend {
     display: grid;
     gap: 12px;
@@ -95,7 +74,6 @@
     margin: 0;
     padding: 0;
     font-size: @font-size--normal;
-    flex: none;
   }
 
   &__legend-item {
