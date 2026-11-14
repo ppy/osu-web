@@ -7,6 +7,7 @@ namespace App\Transformers;
 
 use App\Libraries\MorphMap;
 use App\Libraries\SessionVerification;
+use App\Libraries\User\ModdingActivityHeatmap;
 use App\Libraries\User\SeasonStats;
 use App\Models\Beatmap;
 use App\Models\Season;
@@ -103,6 +104,7 @@ class UserCompactTransformer extends TransformerAbstract
         'loved_beatmapset_count',
         'mapping_follower_count',
         'matchmaking_stats',
+        'modding_activity_heatmap',
         'monthly_playcounts',
         'nominated_beatmapset_count',
         'page',
@@ -417,6 +419,11 @@ class UserCompactTransformer extends TransformerAbstract
             ->get();
 
         return $this->collection($allStats, new MatchmakingUserStatsTransformer());
+    }
+
+    public function includeModdingActivityHeatmap(User $user)
+    {
+        return $this->primitive((new ModdingActivityHeatmap($user))->get());
     }
 
     public function includeMonthlyPlaycounts(User $user)
