@@ -3,6 +3,7 @@
 
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
 import * as React from 'react';
+import ActivityHeatmap from './activity-heatmap';
 import Beatmapsets from './beatmapsets';
 import Modding from './modding';
 
@@ -16,6 +17,7 @@ export default class Stats extends React.PureComponent<Props> {
       <div className='modding-profile-stats'>
         <Modding user={this.props.user} />
         <Beatmapsets user={this.props.user} />
+        <ActivityHeatmap user={this.props.user} />
       </div>
     );
   }
