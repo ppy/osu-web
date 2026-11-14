@@ -127,10 +127,6 @@ export default function ActivityHeatmap({ heatmap }: Props) {
           </div>
           <div className={`${bn}__heading`}>
             {trans('users.show.stats.activity_heatmap.title')}
-            <span
-              className={`${bn}__help fas fa-question-circle`}
-              title={trans('users.show.stats.activity_heatmap.help')}
-            />
           </div>
         </div>
 
