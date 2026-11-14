@@ -5,24 +5,28 @@
   .default-border-radius();
   .default-box-shadow();
 
-  --padding-h: 20px;
-  --padding-left-desktop: var(--padding-h);
-  --score-link-bg: transparent;
-  --shapes-display: none;
-  --shapes-size: 0;
-  background-color: @osu-colour-b2;
-  display: grid;
-  grid-template-columns: var(--shapes-size) 1fr;
+  --score-link-bg: hsl(var(--hsl-b2));
+  --zero-opacity: 0.4;
   position: relative;
+  z-index: 0;
+  background-color: var(--score-link-bg);
+  padding: 10px;
 
-  &:hover {
-    --score-link-bg: hsl(var(--hsl-b1));
-  }
+  display: grid;
+  grid-template-columns: auto auto auto auto auto 1fr auto;
+  grid-template-areas:
+    "team position name  name     name  name  name"
+    "team rank     name  name     name  name  name"
+    "team .        score accuracy combo combo combo"
+    "team .        stats stats    stats stats mods";
+  gap: 8px;
 
-  &--team {
-    --padding-left-desktop: 0;
-    --shapes-display: block;
-    --shapes-size: 10px;
+  @media @desktop {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-areas: unset;
+    gap: 0; // TODO: using "0 20px" here causes overflow in stats area in firefox
+    align-items: center;
   }
 
   @media @desktop {
@@ -40,11 +44,14 @@
     align-self: center;
   }
 
-  &__shapes {
-    width: auto; // follows grid
-    background-image: var(--bg);
+  &__team-indicator {
+    width: 10px;
+    height: 100%;
+    background-color: var(--team-color);
     background-size: cover;
-    display: var(--shapes-display);
+    display: block;
+    // escapes the grid and its 10px padding
+    position: absolute;
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
@@ -52,87 +59,111 @@
       background-size: contain;
       background-position: bottom left;
       background-repeat: no-repeat;
+      border-radius: @border-radius-large;
+      width: 15px;
+      position: relative;
+      grid-area: team;
     }
 
     &--blue {
-      --bg: url("~@images/layout/mp-history/shapes-team-blue.svg");
+      --team-color: @osu-colour-blue-2;
     }
 
     &--red {
-      --bg: url("~@images/layout/mp-history/shapes-team-red.svg");
+      --team-color: @osu-colour-red-2;
     }
   }
 
-  &__main {
-    padding: 10px 20px;
-    display: grid;
-    // for mods and rank element (in mobile), using order and grid-column combination
-    grid-template-columns: 1fr auto;
-    gap: 5px;
-    grid-column: 2 / -1;
-    position: relative;
-    pointer-events: none;
-
-    @media @desktop {
-      padding-left: var(--padding-left-desktop);
-      padding-right: var(--padding-h);
-      display: grid;
-      grid-template-columns: subgrid;
-      gap: 0; // TODO: using "0 20px" here causes overflow in stats area in firefox
-      align-items: center;
-    }
+  &:hover {
+    --score-link-bg: hsl(var(--hsl-b1));
+    --zero-opacity: 1;
   }
 
   &__info-box {
     display: flex;
-    grid-column: 1 / -1;
+    align-items: baseline;
+    flex-direction: column;
+    gap: 5px;
 
     @media @desktop {
-      padding: 0 10px; // TODO: replace with gap at __main if fixed in firefox
-      grid-column: initial;
+      align-items: initial;
+      flex-direction: row;
+      gap: 0;
+      padding: 0 5px; // TODO: replace with gap in .mp-history-player-score if fixed in firefox
     }
 
-    &--mods {
-      order: 1;
-      grid-column: 1 / 2;
+    &--position {
+      .fancy-text(var(--colour));
+      grid-area: position;
+      --colour: hsl(var(--hsl-c1)), hsl(var(--hsl-c1));
+
       @media @desktop {
-        order: 0;
-        grid-column: initial;
+        padding-left: 0; // TODO: replace with gap in .mp-history-player-score if fixed in firefox
       }
     }
 
-    &--rank {
-      order: 1;
-      grid-column: 2 / 3;
-      @media @desktop {
-        padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
-        order: 0;
-        grid-column: initial;
-      }
+    &--position-1 {
+      --colour: #ffd966, #ffb800;
+      font-weight: 700;
     }
 
-    &--stats {
-      flex-direction: row-reverse;
-      align-items: baseline;
-      gap: 2px;
+    &--position-2 {
+      --colour: #fff, #999;
+      font-weight: 700;
+    }
 
-      @media @desktop {
-        align-items: center;
-        display: grid;
-        grid-template-columns: subgrid;
-        grid-column: 3 / 6;
-        gap: 3px 0;
-      }
+    &--position-3 {
+      --colour: #ffa666, #f4900c;
+      font-weight: 700;
     }
 
     &--user {
+      grid-area: name;
       flex-direction: column;
       justify-content: center;
       gap: 5px;
       min-width: 0;
-      @media @desktop {
-        padding-left: 0; // TODO: replace with gap at __main if fixed in firefox
+
+      a {
+        z-index: 1;
       }
+    }
+
+    &--score {
+      grid-area: score;
+    }
+
+    &--accuracy {
+      grid-area: accuracy;
+    }
+
+    &--combo {
+      grid-area: combo;
+    }
+
+    &--stats {
+      grid-area: stats;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      flex: 1;
+      gap: 10px;
+
+      @media @desktop {
+        justify-content: flex-end;
+      }
+    }
+
+    &--mods {
+      grid-area: mods;
+
+      @media @desktop {
+        padding-right: 0; // TODO: replace with gap at __main if fixed in firefox
+      }
+    }
+
+    &--rank {
+      grid-area: rank;
     }
   }
 
@@ -147,31 +178,6 @@
     gap: 5px;
   }
 
-  &__stat-row {
-    display: flex;
-    justify-content: flex-end;
-    align-items: baseline;
-    flex-direction: column;
-    flex: 1;
-    gap: 3px;
-
-    @media @desktop {
-      flex-direction: row;
-      gap: 20px;
-      grid-column: 1 / -1;
-    }
-
-    &--first {
-      flex-direction: column-reverse;
-
-      @media @desktop {
-        display: grid;
-        grid-template-columns: subgrid;
-        gap: 40px;
-      }
-    }
-  }
-
   &__mods {
     --mod-height: @mod-height-normal;
     display: flex;
@@ -182,51 +188,55 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background-color: var(--score-link-bg);
   }
 
   &__stat {
     display: flex;
     align-items: baseline;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 5px;
 
-    &--small {
-      flex: none;
+    .hit-stat-colours({
+      color: hsl(@value);
+    });
+
+    @media @desktop {
+      gap: 0;
     }
   }
 
   &__stat-label {
     padding-right: 3px;
-    color: @osu-colour-c2;
 
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
+    line-height: 1;
   }
 
   &__stat-number {
-    font-weight: 700;
-    color: @osu-colour-c1;
     line-height: 1;
 
-    &--small {
-      font-size: 12px;
+    &--zero {
+      opacity: var(--zero-opacity);
     }
+  }
 
-    &--medium {
-      font-size: 14px;
-    }
+  &__value-label {
+    line-height: 1;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: hsl(var(--hsl-f1));
 
-    &--large {
-      font-size: 20px;
-      color: @osu-colour-pink-1;
-
-      @media @desktop {
-        font-size: 25px;
-      }
+    @media @desktop {
+      display: none;
     }
   }
 
   &__value {
+    line-height: 1;
+
     &--perfect {
       color: hsl(@beatmap-score--hsl-perfect);
     }
