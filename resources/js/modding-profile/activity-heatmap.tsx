@@ -28,6 +28,20 @@ interface Props {
   user: UserModdingProfileJson;
 }
 
+function cell(key: string, date: moment.Moment, day: ModdingActivityHeatmapDayJson | undefined) {
+  const tooltip = cellTooltip(date, day);
+
+  return (
+    <div
+      key={key}
+      className={classWithModifiers(`${bn}__cell`, cellModifier(day))}
+      data-html-title={tooltip}
+      data-tooltip-modifiers={tooltip == null ? undefined : 'extra-padding'}
+      title={tooltip == null ? undefined : ''}
+    />
+  );
+}
+
 function cellModifier(day: ModdingActivityHeatmapDayJson | undefined) {
   if (day == null) {
     return;
@@ -182,18 +196,7 @@ export default class ActivityHeatmap extends React.PureComponent<Props> {
                         return <div key={dateKey} />;
                       }
 
-                      const day = byDate.get(dateKey);
-                      const tooltip = cellTooltip(date, day);
-
-                      return (
-                        <div
-                          key={dateKey}
-                          className={classWithModifiers(`${bn}__cell`, cellModifier(day))}
-                          data-html-title={tooltip}
-                          data-tooltip-modifiers={tooltip == null ? undefined : 'extra-padding'}
-                          title={tooltip == null ? undefined : ''}
-                        />
-                      );
+                      return cell(dateKey, date, byDate.get(dateKey));
                     })}
                   </React.Fragment>
                 ))}
