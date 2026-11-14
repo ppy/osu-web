@@ -570,7 +570,7 @@ return [
                 'more' => 'More',
                 'nominations' => 'Nominations',
                 'posts' => 'Modding Activity',
-                'ranks' => 'Ranks',
+                'ranks' => 'Beatmap Ranks',
                 'threshold' => [
                     'bright' => ':min+',
                     'dim' => ':min-:max',
