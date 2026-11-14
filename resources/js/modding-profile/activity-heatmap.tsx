@@ -1,7 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ModdingActivityHeatmapJson, { ModdingActivityHeatmapDayJson } from 'interfaces/modding-activity-heatmap-json';
+import { ModdingActivityHeatmapDayJson, ModdingActivityType } from 'interfaces/modding-activity-heatmap-json';
+import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -11,11 +12,9 @@ import { trans } from 'utils/lang';
 
 const bn = 'modding-profile-heatmap';
 
-const displayPriority = ['ranks', 'nominations', 'posts'] as const;
+const displayPriority: readonly ModdingActivityType[] = ['ranks', 'nominations', 'posts'];
 
-type ActivityType = typeof displayPriority[number];
-
-const thresholds: Record<ActivityType, readonly [number, number]> = {
+const thresholds: Record<ModdingActivityType, readonly [number, number]> = {
   nominations: [1, 2],
   posts: [1, 10],
   ranks: [1, 2],
@@ -24,7 +23,7 @@ const thresholds: Record<ActivityType, readonly [number, number]> = {
 const weekdays = [1, 2, 3, 4, 5, 6, 7] as const;
 
 interface Props {
-  heatmap: ModdingActivityHeatmapJson;
+  user: UserModdingProfileJson;
 }
 
 function cellModifier(day: ModdingActivityHeatmapDayJson | undefined) {
@@ -34,7 +33,7 @@ function cellModifier(day: ModdingActivityHeatmapDayJson | undefined) {
 
   for (const type of displayPriority) {
     const [dim, bright] = thresholds[type];
-    const count = day[type];
+    const count = day[type] ?? 0;
 
     if (count >= bright) {
       return [type, 'bright'];
@@ -50,7 +49,7 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
     return;
   }
 
-  const types = displayPriority.filter((type) => day[type] > 0);
+  const types = displayPriority.filter((type) => (day[type] ?? 0) > 0);
   if (types.length === 0) {
     return;
   }
@@ -64,7 +63,7 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
             {trans(`users.show.stats.activity_heatmap.${type}`)}
           </span>
           <span className={`${bn}__tooltip-value`}>
-            {formatNumber(day[type])}
+            {formatNumber(day[type] ?? 0)}
           </span>
         </div>
       ))}
@@ -73,7 +72,7 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
   );
 }
 
-function legendTooltip(type: ActivityType, level: 'bright' | 'dim' | 'empty') {
+function legendTooltip(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
   const [dim, bright] = thresholds[type];
 
   if (level === 'dim' && dim === bright - 1) {
@@ -101,7 +100,7 @@ function monthLabels(start: moment.Moment, weekCount: number) {
   });
 }
 
-function swatch(type: ActivityType, level: 'bright' | 'dim' | 'empty') {
+function swatch(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
   return (
     <span
       className={classWithModifiers(`${bn}__swatch`, level === 'empty' ? undefined : [type, level])}
@@ -110,87 +109,90 @@ function swatch(type: ActivityType, level: 'bright' | 'dim' | 'empty') {
   );
 }
 
-export default function ActivityHeatmap({ heatmap }: Props) {
-  const start = moment.utc(heatmap.start_date);
-  const end = moment.utc(heatmap.end_date);
-  const lastDay = end.clone().isoWeekday(7);
-  const weekCount = lastDay.diff(start, 'weeks') + 1;
-  const months = monthLabels(start, weekCount);
-  const byDate = new Map(heatmap.days.map((day) => [day.date, day]));
+export default class ActivityHeatmap extends React.PureComponent<Props> {
+  render() {
+    const heatmap = this.props.user.modding_activity_heatmap;
+    const start = moment.utc(heatmap.start_date);
+    const end = moment.utc(heatmap.end_date);
+    const lastDay = end.clone().isoWeekday(7);
+    const weekCount = lastDay.diff(start, 'weeks') + 1;
+    const months = monthLabels(start, weekCount);
+    const byDate = new Map(heatmap.days.map((day) => [day.date, day]));
 
-  return (
-    <div className='profile-detail-stats-card profile-detail-stats-card--heatmap'>
-      <div className={bn}>
-        <div className='profile-detail-stats-card__title'>
-          <div className='profile-detail-stats-card__title-icon'>
-            <span className='svg-icon svg-icon--calendar' />
+    return (
+      <div className='profile-detail-stats-card profile-detail-stats-card--heatmap'>
+        <div className='profile-detail-stats-card__top'>
+          <div className='profile-detail-stats-card__title'>
+            <div className='profile-detail-stats-card__title-icon'>
+              <span className='svg-icon svg-icon--calendar' />
+            </div>
+            <div>
+              {trans('users.show.stats.activity_heatmap.title')}
+            </div>
           </div>
-          <div className={`${bn}__heading`}>
-            {trans('users.show.stats.activity_heatmap.title')}
-          </div>
-        </div>
 
-        <div className={`${bn}__body`}>
-          <ul className={`${bn}__legend`}>
-            {displayPriority.map((type) => (
-              <li key={type} className={`${bn}__legend-item`}>
-                <div className={`${bn}__legend-label`}>
-                  {trans(`users.show.stats.activity_heatmap.${type}`)}
-                </div>
-                <div className={`${bn}__legend-scale`}>
-                  <span>{trans('users.show.stats.activity_heatmap.less')}</span>
-                  {swatch(type, 'empty')}
-                  {swatch(type, 'dim')}
-                  {swatch(type, 'bright')}
-                  <span>{trans('users.show.stats.activity_heatmap.more')}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <div className={`${bn}__calendar`}>
-            <div
-              className={`${bn}__grid`}
-              style={{ '--weeks': weekCount } as React.CSSProperties}
-            >
-              <div />
-              {months.map((label, week) => (
-                <div key={week} className={`${bn}__month`}>
-                  {label}
-                </div>
-              ))}
-              {weekdays.map((weekday, row) => (
-                <React.Fragment key={weekday}>
-                  <div className={`${bn}__weekday`}>
-                    {moment.utc().isoWeekday(weekday).format('ddd')}
+          <div className={bn}>
+            <ul className={`${bn}__legend`}>
+              {displayPriority.map((type) => (
+                <li key={type} className={`${bn}__legend-item`}>
+                  <div className={`${bn}__legend-label`}>
+                    {trans(`users.show.stats.activity_heatmap.${type}`)}
                   </div>
-                  {Array.from({ length: weekCount }, (_, week) => {
-                    const date = start.clone().add(week * 7 + row, 'days');
-                    const dateKey = date.format('YYYY-MM-DD');
-
-                    if (date.isAfter(end, 'day')) {
-                      return <div key={dateKey} />;
-                    }
-
-                    const day = byDate.get(dateKey);
-                    const tooltip = cellTooltip(date, day);
-
-                    return (
-                      <div
-                        key={dateKey}
-                        className={classWithModifiers(`${bn}__cell`, cellModifier(day))}
-                        data-html-title={tooltip}
-                        data-tooltip-modifiers={tooltip == null ? undefined : 'extra-padding'}
-                        title={tooltip == null ? undefined : ''}
-                      />
-                    );
-                  })}
-                </React.Fragment>
+                  <div className={`${bn}__legend-scale`}>
+                    <span>{trans('users.show.stats.activity_heatmap.less')}</span>
+                    {swatch(type, 'empty')}
+                    {swatch(type, 'dim')}
+                    {swatch(type, 'bright')}
+                    <span>{trans('users.show.stats.activity_heatmap.more')}</span>
+                  </div>
+                </li>
               ))}
+            </ul>
+
+            <div className={`${bn}__calendar`}>
+              <div
+                className={`${bn}__grid`}
+                style={{ '--weeks': weekCount } as React.CSSProperties}
+              >
+                <div />
+                {months.map((label, week) => (
+                  <div key={week} className={`${bn}__month`}>
+                    {label}
+                  </div>
+                ))}
+                {weekdays.map((weekday, row) => (
+                  <React.Fragment key={weekday}>
+                    <div className={`${bn}__weekday`}>
+                      {moment.utc().isoWeekday(weekday).format('ddd')}
+                    </div>
+                    {Array.from({ length: weekCount }, (_, week) => {
+                      const date = start.clone().add(week * 7 + row, 'days');
+                      const dateKey = date.format('YYYY-MM-DD');
+
+                      if (date.isAfter(end, 'day')) {
+                        return <div key={dateKey} />;
+                      }
+
+                      const day = byDate.get(dateKey);
+                      const tooltip = cellTooltip(date, day);
+
+                      return (
+                        <div
+                          key={dateKey}
+                          className={classWithModifiers(`${bn}__cell`, cellModifier(day))}
+                          data-html-title={tooltip}
+                          data-tooltip-modifiers={tooltip == null ? undefined : 'extra-padding'}
+                          title={tooltip == null ? undefined : ''}
+                        />
+                      );
+                    })}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
