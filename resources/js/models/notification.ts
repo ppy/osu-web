@@ -4,7 +4,7 @@
 import NotificationJson from 'interfaces/notification-json';
 import { computed, makeObservable, observable } from 'mobx';
 import { Name } from 'models/notification-type';
-import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
+import { categoryFromName } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
@@ -29,10 +29,6 @@ export default class Notification implements NotificationReadable, NotificationD
 
   @computed get category() {
     return categoryFromName(this.name ?? '');
-  }
-
-  @computed get categoryGroupKey() {
-    return categoryGroupKey(this);
   }
 
   @computed get displayType() {

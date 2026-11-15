@@ -1,20 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Notification from 'models/notification';
-
-export function categoryGroupKey(item: Notification) {
-  if (item.objectId == null || item.name == null || item.category == null) {
-    return null;
-  }
-
-  if (item.name === 'user_achievement_unlock') {
-    return `achievement:${item.id}`;
-  }
-
-  return `${item.category}:${item.objectId}`;
-}
-
 export function categoryFromName(name: string) {
   return nameToCategory[name] ?? name;
 }
