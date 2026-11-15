@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use App\Transformers\SeasonalBackgroundTransformer;
+use App\Transformers\UserCompactTransformer;
 use Carbon\Carbon;
 use stdClass;
 
@@ -20,7 +21,11 @@ class SeasonalBackgroundsController extends Controller
             return response()->json(new stdClass());
         }
 
-        $backgrounds = $contest->userContestEntries()->where('show_in_client', true)->get();
+        $backgrounds = $contest
+            ->userContestEntries()
+            ->with(['user' => fn ($q) => $q->select(UserCompactTransformer::DEFAULT_SELECT_FIELDS)])
+            ->where('show_in_client', true)
+            ->get();
 
         return [
             'ends_at' => json_time(Carbon::parse($GLOBALS['cfg']['osu']['seasonal']['ends_at'])),
