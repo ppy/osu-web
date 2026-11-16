@@ -149,8 +149,11 @@ class UserNotification extends Model
     public function getAttribute($key)
     {
         return match ($key) {
+            'category',
             'delivery',
             'id',
+            'notifiable_id',
+            'notifiable_type',
             'notification_id',
             'user_id' => $this->getRawAttribute($key),
 
