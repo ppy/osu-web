@@ -496,6 +496,7 @@ return [
             'rank' => 'Rank',
             'rating' => 'Rating',
             'recent_history' => 'Latest Match History',
+            'recent_history_empty' => 'No plays yet!',
             'recent_history_provisional' => 'Not enough data to display accurate stats. Play more games!',
             'tier' => 'Tier',
             'title' => 'Ranked Play',

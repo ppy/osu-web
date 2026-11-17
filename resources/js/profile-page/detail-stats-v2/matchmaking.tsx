@@ -202,7 +202,10 @@ export default class Matchmaking extends React.PureComponent<Props> {
         <div className='matchmaking-result matchmaking-result--provisional'>
           <span className='fas fa-ghost' />
           <span>
-            {trans('users.show.matchmaking.recent_history_provisional')}
+            {this.stats.plays === 0
+              ? trans('users.show.matchmaking.recent_history_empty')
+              : trans('users.show.matchmaking.recent_history_provisional')
+            }
           </span>
         </div>
       );
