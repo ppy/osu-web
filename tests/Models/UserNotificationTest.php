@@ -21,13 +21,11 @@ class UserNotificationTest extends TestCase
         $notificationA = Notification::factory()->create();
         $notificationB = Notification::factory()->create();
 
-        $userNotificationA = UserNotification::factory()->create([
-            'notification_id' => $notificationA,
+        $userNotificationA = UserNotification::factory()->notification($notificationA)->create([
             'user_id' => $user,
         ]);
 
-        $userNotificationB = UserNotification::factory()->create([
-            'notification_id' => $notificationB,
+        $userNotificationB = UserNotification::factory()->notification($notificationB)->create([
             'user_id' => $user,
         ]);
 
@@ -64,18 +62,15 @@ class UserNotificationTest extends TestCase
             'notifiable_type' => $notificationA->notifiable_type,
         ]);
 
-        $userNotificationA = UserNotification::factory()->create([
-            'notification_id' => $notificationA,
+        $userNotificationA = UserNotification::factory()->notification($notificationA)->create([
             'user_id' => $user,
         ]);
 
-        $userNotificationB = UserNotification::factory()->create([
-            'notification_id' => $notificationB,
+        $userNotificationB = UserNotification::factory()->notification($notificationB)->create([
             'user_id' => $user,
         ]);
 
-        $userNotificationC = UserNotification::factory()->create([
-            'notification_id' => $notificationC,
+        $userNotificationC = UserNotification::factory()->notification($notificationC)->create([
             'user_id' => $user,
         ]);
 
@@ -114,18 +109,15 @@ class UserNotificationTest extends TestCase
             'notifiable_type' => 'news_post',
         ]);
 
-        $userNotificationA = UserNotification::factory()->create([
-            'notification_id' => $notificationA,
+        $userNotificationA = UserNotification::factory()->notification($notificationA)->create([
             'user_id' => $user,
         ]);
 
-        $userNotificationB = UserNotification::factory()->create([
-            'notification_id' => $notificationB,
+        $userNotificationB = UserNotification::factory()->notification($notificationB)->create([
             'user_id' => $user,
         ]);
 
-        $userNotificationC = UserNotification::factory()->create([
-            'notification_id' => $notificationC,
+        $userNotificationC = UserNotification::factory()->notification($notificationC)->create([
             'user_id' => $user,
         ]);
 
@@ -164,7 +156,10 @@ class UserNotificationTest extends TestCase
 
         for ($i = 0; $i < $max; $i++) {
             UserNotification::create([
+                'category' => 'ignored',
                 'delivery' => $i,
+                'notifiable_id' => 1,
+                'notifiable_type' => 'ignored',
                 'notification_id' => 1,
                 'user_id' => $i,
             ]);
