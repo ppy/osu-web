@@ -19,6 +19,8 @@ use Auth;
  */
 class ForumsController extends Controller
 {
+    private const TOPIC_COUNT_CACHE_DURATION = 600;
+
     public function __construct()
     {
         parent::__construct();
@@ -154,7 +156,16 @@ class ForumsController extends Controller
             ];
         }
 
-        $topics = $topics->paginate();
+        $topicCount = \Cache::remember(
+            implode(':', [
+                'forum_topic_count',
+                $forum->getKey(),
+                (int) $showDeleted,
+            ]),
+            static::TOPIC_COUNT_CACHE_DURATION,
+            fn () => $topics->count(),
+        );
+        $topics = $topics->paginate(total: $topicCount);
 
         $lastTopics = Forum::lastTopics($forum);
 
