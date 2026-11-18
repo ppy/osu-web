@@ -58,6 +58,7 @@
   }
 
   &__stripe {
+    .fade-element(@target: transform);
     position: absolute;
     width: 100%;
     display: block;
@@ -65,7 +66,6 @@
     left: 0;
     height: 5px;
     transform: translateY(5px) scaleY(0);
-    transition: transform 120ms ease-in-out;
     background-color: @osu-colour-h1;
 
     &--black {
