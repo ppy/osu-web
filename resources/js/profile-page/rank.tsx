@@ -13,7 +13,6 @@ import { trans } from 'utils/lang';
 interface Props {
   highest?: RankHighestJson | null;
   modifiers?: Modifiers;
-  plainValue?: boolean;
   stats: UserStatisticsJson;
   type: RankType;
 }
@@ -47,7 +46,7 @@ function globalTier(stats: UserStatisticsJson) {
                 : null;
 }
 
-export default function Rank({ highest, modifiers, plainValue, stats, type }: Props) {
+export default function Rank({ highest, modifiers, stats, type }: Props) {
   const key = `${type}_rank` as const;
   const rank = stats[key];
   const tooltip: string[] = [];
@@ -71,33 +70,30 @@ export default function Rank({ highest, modifiers, plainValue, stats, type }: Pr
     tooltip.push(`<div>${text}</div>`);
   }
 
-  let rankValue: React.ReactNode = rank == null
+  const rankValue = rank == null
     ? '-'
     : `#${formatNumber(rank)}`;
 
-  if (!plainValue) {
-    const tier = type === 'global' ? globalTier(stats) : null;
-    const tierVar = tier == null ? '' : `var(--level-tier-${tier})`;
-    rankValue = (
-      <div
-        className={classWithModifiers('rank-value', tier ?? 'base')}
-        data-html-title={tooltip.join('')}
-        data-tooltip-position='bottom left'
-        style={{
-          '--colour': tierVar,
-        } as React.CSSProperties}
-        title=''
-      >
-        {rankValue}
-      </div>
-    );
-  }
+  const tier = type === 'global' ? globalTier(stats) : null;
+  const tierVar = tier == null ? '' : `var(--level-tier-${tier})`;
 
   return (
     <ValueDisplay
       label={trans(`users.show.rank.${type}_simple`)}
       modifiers={mergeModifiers('rank', modifiers)}
-      value={rankValue}
+      value={
+        <div
+          className={classWithModifiers('rank-value', tier ?? 'base')}
+          data-html-title={tooltip.join('')}
+          data-tooltip-position='bottom left'
+          style={{
+            '--colour': tierVar,
+          } as React.CSSProperties}
+          title=''
+        >
+          {rankValue}
+        </div>
+      }
     />
   );
 }

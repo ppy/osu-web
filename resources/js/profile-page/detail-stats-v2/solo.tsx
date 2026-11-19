@@ -33,7 +33,7 @@ export default class Solo extends React.PureComponent<Props> {
           </div>
           <div className='profile-detail-stats-card__values'>
             <Rank highest={user.rank_highest} stats={user.statistics} type='global' />
-            <Rank modifiers='rank-small' plainValue stats={user.statistics} type='country' />
+            <Rank modifiers='rank-small' stats={user.statistics} type='country' />
           </div>
           <div className='profile-detail-stats-card__values profile-detail-stats-card__values--row'>
             <Pp stats={user.statistics} />
