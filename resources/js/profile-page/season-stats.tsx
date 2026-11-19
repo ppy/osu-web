@@ -8,7 +8,7 @@ import { route } from 'laroute';
 import { autorun } from 'mobx';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatRank } from 'utils/html';
 import { trans } from 'utils/lang';
 import { qtipPosition } from 'utils/qtip-helper';
 
@@ -41,7 +41,7 @@ const popup = (stats: SeasonStatsJson) => (
     <div className='season-stats-popup__content season-stats-popup__content--top'>
       <div className='season-stats-popup__main'>
         <div className='season-stats-popup__rank'>
-          #{formatNumber(stats.rank)}
+          {formatRank(stats.rank)}
         </div>
         <div
           className='season-stats-popup__line'

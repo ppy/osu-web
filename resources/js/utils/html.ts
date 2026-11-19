@@ -82,6 +82,10 @@ export function formatNumber(num: number, precision?: number, options?: Intl.Num
   return num.toLocaleString(locale ?? window.currentLocale, options);
 }
 
+export function formatRank(rank?: number | null) {
+  return rank == null ? '-' : `#${formatNumber(rank)}`;
+}
+
 export function formatStarRating(num: number) {
   return formatNumber(floor(num, 2), 2);
 }

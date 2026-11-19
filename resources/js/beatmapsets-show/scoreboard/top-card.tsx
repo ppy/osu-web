@@ -20,7 +20,7 @@ import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatRank } from 'utils/html';
 import { trans } from 'utils/lang';
 import { accuracy, displayMods, isPerfectCombo, calculateStatisticsFor, rank } from 'utils/score-helper';
 
@@ -47,7 +47,7 @@ export default class TopCard extends React.PureComponent<Props> {
         <div className='beatmap-score-top__wrapping-container beatmap-score-top__wrapping-container--left'>
           <div className='beatmap-score-top__position'>
             <div className='beatmap-score-top__position-number'>
-              {this.props.position != null ? `#${formatNumber(this.props.position)}` : '-'}
+              {formatRank(this.props.position)}
             </div>
             <div className={classWithModifiers('score-rank', 'tiny', rank(this.props.score))} />
           </div>

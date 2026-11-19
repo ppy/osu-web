@@ -13,7 +13,7 @@ import { getHighestRankStats, tier } from 'profile-page/matchmaking';
 import * as React from 'react';
 import { classWithModifiers, mergeModifiers } from 'utils/css';
 import { fail } from 'utils/fail';
-import { formatNumber, htmlElementOrNull } from 'utils/html';
+import { formatNumber, formatRank, htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import { getInt } from 'utils/math';
 import MatchmakingChart from './matchmaking-chart';
@@ -75,9 +75,9 @@ export default class Matchmaking extends React.PureComponent<Props> {
     const stats = this.stats;
 
     const provisional = stats.is_rating_provisional;
-    const [rankValue, tierData] = provisional || stats.rank === -1
-      ? ['-', null]
-      : [`#${formatNumber(stats.rank)}`, tier(stats)];
+    const [displayRank, tierData] = provisional
+      ? [null, null]
+      : [stats.rank, tier(stats)];
     const rankValueStyle = tierData == null
       ? undefined
       : {
@@ -118,7 +118,7 @@ export default class Matchmaking extends React.PureComponent<Props> {
                   className={classWithModifiers('rank-value', tierData?.colour ?? 'base')}
                   style={rankValueStyle}
                 >
-                  {rankValue}
+                  {formatRank(displayRank)}
                 </div>
               }
             />
