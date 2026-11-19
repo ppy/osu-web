@@ -37,9 +37,17 @@ trait FasterAttributes
                 return null;
             }
 
-            $value[10] = 'T';
+            // sorted by the most common
+            switch (strlen($value)) {
+                // datetime column ("2018-09-11 08:45:49")
+                case 19:
+                    $value[10] = 'T';
 
-            return "{$value}Z";
+                    return "{$value}Z";
+                // date column ("2009-10-31")
+                case 10:
+                    return "{$value}T00:00:00Z";
+            }
         }
 
         throw new \TypeError("not a datetime column: '{$key}'");
