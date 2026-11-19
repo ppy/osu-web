@@ -12,11 +12,11 @@ return [
     | included in your application responses and requests data will be available
     | at /__clockwork url.
     | When set to null, Clockwork behavior is controlled by app.debug setting.
-    | Default: null
+    | Default: false
     |
     */
 
-    'enable' => env('CLOCKWORK_ENABLE', null),
+    'enable' => get_bool(env('CLOCKWORK_ENABLE', false)),
 
     /*
     |--------------------------------------------------------------------------
