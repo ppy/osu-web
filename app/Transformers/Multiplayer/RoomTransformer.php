@@ -108,7 +108,7 @@ class RoomTransformer extends TransformerAbstract
     public function includePlaylist(Room $room)
     {
         return $this->collection(
-            $room->playlist,
+            $room->playlist->where('beatmap_id', '<>', 0),
             new PlaylistItemTransformer()
         );
     }

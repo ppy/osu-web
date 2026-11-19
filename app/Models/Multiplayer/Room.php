@@ -576,11 +576,12 @@ class Room extends Model
     public function findAndSetCurrentPlaylistItem(): ?PlaylistItem
     {
         return $this->memoize(__FUNCTION__, function () {
-            if ($this->playlist->count() === 0) {
+            $playlist = $this->playlist->where('beatmap_id', '<>', 0);
+            if ($playlist->count() === 0) {
                 $ret = null;
             } else {
                 if ($this->isRealtime()) {
-                    $groupedItems = $this->playlist->groupBy('expired');
+                    $groupedItems = $playlist->groupBy('expired');
 
                     // the key is casted to int
                     $ret = isset($groupedItems[0])
@@ -603,7 +604,7 @@ class Room extends Model
                                 : $prevItem;
                         });
                 } else {
-                    $ret = $this->playlist[0];
+                    $ret = $playlist[0];
                 }
             }
 
