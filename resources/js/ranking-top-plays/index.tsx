@@ -12,7 +12,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { getTitle } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatRank } from 'utils/html';
 import { trans } from 'utils/lang';
 import { displayMods, hasMenu } from 'utils/score-helper';
 
@@ -58,7 +58,7 @@ export default function RankingScores(props: Props) {
           />
           <div className='ranking-page-grid-item__content'>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus'>
-              #{formatNumber(i + props.first_score_rank)}
+              {formatRank(i + props.first_score_rank)}
             </div>
             <div className='ranking-page-grid-item__col ranking-page-grid-item__col--main'>
               <div className='ranking-page-table-main'>

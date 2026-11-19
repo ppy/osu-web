@@ -8,7 +8,7 @@ import { UserStatisticsRankedJson } from 'interfaces/user-statistics-json';
 import { last } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { formatNumber } from 'utils/html';
+import { formatRank } from 'utils/html';
 import { trans, transChoice } from 'utils/lang';
 
 interface Props {
@@ -35,7 +35,7 @@ function formatX(d: number) {
 }
 
 function formatY(d: number) {
-  return `<strong>${trans('users.show.rank.global_simple')}</strong> #${formatNumber(-d)}`;
+  return `<strong>${trans('users.show.rank.global_simple')}</strong> ${formatRank(-d)}`;
 }
 
 export default class RankChart extends React.Component<Props> {

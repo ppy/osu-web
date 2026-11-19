@@ -7,7 +7,7 @@ import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, mergeModifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
+import { formatRank } from 'utils/html';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -56,7 +56,7 @@ export default function Rank({ highest, modifiers, stats, type }: Props) {
     if (variantRank == null) continue;
 
     const name = trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
-    const value = `#${formatNumber(variantRank)}`;
+    const value = formatRank(variantRank);
 
     tooltip.push(`<div>${name}: ${value}</div>`);
   }
@@ -64,15 +64,11 @@ export default function Rank({ highest, modifiers, stats, type }: Props) {
   if (highest != null) {
     const text = trans('users.show.rank.highest', {
       date: moment(highest.updated_at).format('ll'),
-      rank: `#${formatNumber(highest.rank)}`,
+      rank: formatRank(highest.rank),
     });
 
     tooltip.push(`<div>${text}</div>`);
   }
-
-  const rankValue = rank == null
-    ? '-'
-    : `#${formatNumber(rank)}`;
 
   const tier = type === 'global' ? globalTier(stats) : null;
   const tierVar = tier == null ? '' : `var(--level-tier-${tier})`;
@@ -91,7 +87,7 @@ export default function Rank({ highest, modifiers, stats, type }: Props) {
           } as React.CSSProperties}
           title=''
         >
-          {rankValue}
+          {formatRank(rank)}
         </div>
       }
     />

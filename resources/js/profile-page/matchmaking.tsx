@@ -8,7 +8,7 @@ import { autorun } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatRank } from 'utils/html';
 import { trans } from 'utils/lang';
 import { qtipPosition } from 'utils/qtip-helper';
 import { ProfilePageMatchmakingStatsJson } from './extra-page-props';
@@ -71,7 +71,7 @@ function rankText(stats: null | ProfilePageMatchmakingStatsJson) {
           '--colour': `var(--level-tier-${tier(stats).colour})`,
         } as React.CSSProperties}
       >
-        #{formatNumber(stats.rank)}
+        {formatRank(stats.rank)}
       </span>
     );
 }

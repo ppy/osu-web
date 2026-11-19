@@ -5,7 +5,7 @@ import ValueDisplay from 'components/value-display';
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
+import { formatNumber, formatRank } from 'utils/html';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -65,7 +65,7 @@ export default class Modding extends React.PureComponent<Props> {
                   style={rankValueStyle}
                   title={rank == null ? trans('users.show.rank.kudosu_outside_top_1000') : undefined}
                 >
-                  {rank != null ? `#${formatNumber(rank)}` : '-'}
+                  {formatRank(rank)}
                 </div>
               }
             />

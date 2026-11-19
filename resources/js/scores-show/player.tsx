@@ -7,7 +7,7 @@ import { RoomSummary, ScoreJsonForShow } from 'interfaces/score-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
-import { formatNumber } from 'utils/html';
+import { formatRank } from 'utils/html';
 import { trans, transChoice } from 'utils/lang';
 import { displayMods } from 'utils/score-helper';
 
@@ -29,20 +29,12 @@ interface Props {
 }
 
 export default function Player(props: Props) {
-  let title: string;
-  let content: React.ReactNode;
-
-  if (
-    props.score.rank_global == null ||
-    props.score.rank_global === 0 ||
-    (props.score.type === 'solo_score' && (!props.score.ranked || !props.score.preserve))
-  ) {
-    title = trans('scores.status.no_rank');
-    content = '-';
-  } else {
-    title = '';
-    content = <>#{formatNumber(props.score.rank_global)}</>;
-  }
+  const [rank, title] =
+    props.score.rank_global == null
+    || props.score.rank_global === 0
+    || (props.score.type === 'solo_score' && (!props.score.ranked || !props.score.preserve))
+      ? [null, trans('scores.status.no_rank')]
+      : [props.score.rank_global, ''];
 
   return (
     <div className='score-player'>
@@ -91,7 +83,7 @@ export default function Player(props: Props) {
           {trans('scores.show.player.rank.global')}
         </div>
         <div className='score-player__rank score-player__rank--value'>
-          <span title={title}>{content}</span>
+          <span title={title}>{formatRank(rank)}</span>
         </div>
       </div>
     </div>
