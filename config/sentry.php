@@ -11,6 +11,11 @@ return [
     // When left empty or `null` the Laravel environment will be used
     'environment' => env('APP_SENTRY_ENVIRONMENT'),
 
+    'ignore_transactions' => [
+        '/__clockwork/{id}/{direction?}/{count?}',
+        'clockwork_support_laravel/clockwork_controller:get_data',
+    ],
+
     // Copied from [1] to prevent E_NOTICE and E_WARNING (and maybe others)
     // from either being reported twice or incorrectly reported after caught.
     // There's probably better set of types but it's easier to just copy whatever
