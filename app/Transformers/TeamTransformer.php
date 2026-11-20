@@ -81,15 +81,6 @@ class TeamTransformer extends TransformerAbstract
 
     public function includeStatistics(Team $team): Item
     {
-        if ($team->relationLoaded('statistics')) {
-            $statistics = $team->statistics;
-        }
-
-        if (!isset($statistics)) {
-            $statistics = $team->statistics()->firstOrNew(['ruleset_id' => $this->rulesetId]);
-            $team->setRelation('statistics', $statistics);
-        }
-
-        return $this->item($statistics, new TeamStatisticsTransformer());
+        return $this->item($team->statistics()->firstOrNew(['ruleset_id' => $this->rulesetId]), new TeamStatisticsTransformer());
     }
 }
