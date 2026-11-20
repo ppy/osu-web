@@ -18,7 +18,7 @@
 
   @media @desktop {
     padding: 15px @gutter-beatmapset-desktop 0;
-    grid-template-columns: 1fr 175px @beatmapset-float-box-width;
+    grid-template-columns: 1fr minmax(175px, min-content) @beatmapset-float-box-width;
   }
 
   &__box {
@@ -103,5 +103,11 @@
       );
       pointer-events: none;
     }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
   }
 }
