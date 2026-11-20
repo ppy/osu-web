@@ -572,8 +572,8 @@ return [
                 'posts' => 'Modding Activity',
                 'ranks' => 'Beatmap Ranks',
                 'threshold' => [
-                    'bright' => ':min+',
-                    'dim' => ':min-:max',
+                    'minimum' => ':min+',
+                    'range' => ':min-:max',
                 ],
                 'title' => 'Activity Heatmap',
             ],

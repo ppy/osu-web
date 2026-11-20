@@ -4,12 +4,16 @@
 .modding-profile-heatmap {
   --cell-size: 18px;
   display: grid;
-  gap: 20px;
+  gap: 10px;
+  align-items: start;
   min-width: 0;
 
   @media @desktop {
     grid-template-columns: auto 1fr;
-    align-items: center;
+    grid-template-areas:
+      'title calendar'
+      'legend calendar';
+    gap: 10px 20px;
   }
 
   &__calendar {
@@ -17,10 +21,16 @@
     overflow-x: auto;
     // so overflow starts at the most recent week
     direction: rtl;
+    margin: calc(var(--padding) / 2) 0;
+
+    @media @desktop {
+      grid-area: calendar;
+    }
   }
 
   &__cell {
     .default-border-radius();
+    position: relative;
     width: var(--cell-size);
     height: $width;
     background-color: hsl(var(--hsl-b2));
@@ -29,27 +39,16 @@
       --hsl: var(--hsl-lime-1);
     }
 
-    &--nominations {
-      --hsl: var(--hsl-purple-1);
-    }
-
-    &--ranks {
-      --hsl: var(--hsl-orange-1);
-    }
-
     &--bright {
       background-color: hsl(var(--hsl));
     }
 
     &--dim {
-      background-color: hsla(var(--hsl), 0.4);
+      background-color: hsla(var(--hsl), 0.5);
     }
 
-    &--tooltip {
-      display: inline-block;
-      width: 2px;
-      height: 10px;
-      border-radius: 10000px;
+    &--faint {
+      background-color: hsla(var(--hsl), 0.25);
     }
   }
 
@@ -64,55 +63,90 @@
   }
 
   &__legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      'label keys'
+      'scale keys';
+    gap: 4px 20px;
+    align-items: center;
     font-size: @font-size--normal;
 
+    @media @mobile {
+      margin-bottom: 10px;
+    }
+
     @media @desktop {
-      display: grid;
+      grid-area: legend;
       grid-template-columns: 1fr;
+      grid-template-areas:
+        'label'
+        'scale'
+        'keys';
+      gap: 4px;
     }
   }
 
-  &__legend-item {
-    .reset-input();
-    .default-border-radius();
-    .fade-element();
-    color: inherit;
-    cursor: pointer;
+  &__legend-key {
     display: grid;
-    flex: 1 0 auto;
-    font: inherit;
-    gap: 4px;
-    padding: 5px;
-    text-align: start;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: center;
+    font-weight: bold;
+    white-space: nowrap;
+  }
 
-    &:hover,
-    &:focus-visible {
-      background-color: hsl(var(--hsl-b4));
-    }
+  &__legend-keys {
+    display: grid;
+    grid-area: keys;
+    grid-template-columns: auto 1fr;
+    gap: 4px 5px;
+    align-items: center;
 
-    &--dimmed {
-      opacity: 0.4;
-
-      &:hover,
-      &:focus-visible {
-        opacity: 1;
-      }
+    @media @desktop {
+      margin-top: 8px;
     }
   }
 
   &__legend-label {
+    grid-area: label;
     font-weight: bold;
   }
 
   &__legend-scale {
     display: grid;
+    grid-area: scale;
     grid-template-columns: max-content repeat(3, var(--cell-size)) max-content;
     gap: 4px;
     align-items: center;
     color: hsl(var(--hsl-c2));
+  }
+
+  &__marker {
+    width: 6px;
+    height: $width;
+    border-radius: 10000px;
+    background-color: hsl(var(--hsl));
+
+    &--cell {
+      position: absolute;
+      bottom: 2px;
+      pointer-events: none;
+    }
+
+    &--nominations {
+      --hsl: var(--hsl-purple-1);
+      left: 2px;
+    }
+
+    &--posts {
+      --hsl: var(--hsl-lime-1);
+    }
+
+    &--ranks {
+      --hsl: var(--hsl-darkorange-1);
+      right: 2px;
+    }
   }
 
   &__month {
@@ -121,6 +155,12 @@
     white-space: nowrap;
     line-height: 1;
     padding-bottom: 4px;
+  }
+
+  &__title {
+    @media @desktop {
+      grid-area: title;
+    }
   }
 
   &__tooltip {
@@ -146,6 +186,11 @@
     grid-template-columns: 1fr auto;
     gap: 20px;
     align-items: center;
+  }
+
+  &__tooltip-value {
+    font-weight: bold;
+    white-space: nowrap;
   }
 
   &__weekday {

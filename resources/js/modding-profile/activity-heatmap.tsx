@@ -3,8 +3,6 @@
 
 import { ModdingActivityHeatmapDayJson, ModdingActivityType } from 'interfaces/modding-activity-heatmap-json';
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
-import { action, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -14,14 +12,13 @@ import { trans } from 'utils/lang';
 
 const bn = 'modding-profile-heatmap';
 
-const displayPriority: readonly ModdingActivityType[] = ['ranks', 'nominations', 'posts'];
-
-const thresholds: Record<ModdingActivityType, readonly [number, number]> = {
-  nominations: [1, 3],
-  posts: [1, 20],
-  ranks: [1, 2],
-};
-
+const markerTypes = ['ranks', 'nominations'] as const;
+const displayPriority: readonly ModdingActivityType[] = [...markerTypes, 'posts'];
+const postLevels = [
+  ['faint', 1],
+  ['dim', 10],
+  ['bright', 20],
+] as const;
 const weekdays = [1, 2, 3, 4, 5, 6, 7] as const;
 
 interface Props {
@@ -34,28 +31,25 @@ function cell(key: string, date: moment.Moment, day: ModdingActivityHeatmapDayJs
   return (
     <div
       key={key}
-      className={classWithModifiers(`${bn}__cell`, cellModifier(day))}
+      className={classWithModifiers(`${bn}__cell`, cellFill(day))}
       data-html-title={tooltip}
       data-tooltip-modifiers={tooltip == null ? undefined : 'extra-padding'}
       title={tooltip == null ? undefined : ''}
-    />
+    >
+      {markerTypes.map((type) => (day?.[type] ?? 0) > 0 && (
+        <span key={type} className={classWithModifiers(`${bn}__marker`, [type, 'cell'])} />
+      ))}
+    </div>
   );
 }
 
-function cellModifier(day: ModdingActivityHeatmapDayJson | undefined) {
-  if (day == null) {
-    return;
-  }
+function cellFill(day: ModdingActivityHeatmapDayJson | undefined) {
+  const posts = day?.posts ?? 0;
 
-  for (const type of displayPriority) {
-    const [dim, bright] = thresholds[type];
-    const count = day[type] ?? 0;
-
-    if (count >= bright) {
-      return [type, 'bright'];
-    }
-    if (count >= dim) {
-      return [type, 'dim'];
+  for (let i = postLevels.length - 1; i >= 0; i--) {
+    const [level, min] = postLevels[i];
+    if (posts >= min) {
+      return ['posts', level];
     }
   }
 }
@@ -75,7 +69,7 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
       {types.map((type) => (
         <div key={type} className={`${bn}__tooltip-row`}>
           <span className={`${bn}__tooltip-label`}>
-            <span className={classWithModifiers(`${bn}__cell`, [type, 'bright', 'tooltip'])} />
+            <span className={classWithModifiers(`${bn}__marker`, type)} />
             {trans(`users.show.stats.activity_heatmap.${type}`)}
           </span>
           <span className={`${bn}__tooltip-value`}>
@@ -88,30 +82,25 @@ function cellTooltip(date: moment.Moment, day: ModdingActivityHeatmapDayJson | u
   );
 }
 
-function filterDay(day: ModdingActivityHeatmapDayJson, filter: ModdingActivityType | null) {
-  if (filter == null) {
-    return day;
-  }
-
-  const count = day[filter];
-
-  return count == null ? undefined : { date: day.date, [filter]: count };
+function legendKey(type: typeof markerTypes[number]) {
+  return (
+    <span key={type} className={`${bn}__legend-key`}>
+      <span className={classWithModifiers(`${bn}__marker`, type)} />
+      {trans(`users.show.stats.activity_heatmap.${type}`)}
+    </span>
+  );
 }
 
-function legendTooltip(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
-  if (level === 'empty') {
-    return;
+function legendTooltip(min: number, next: number | undefined) {
+  if (next == null) {
+    return trans('users.show.stats.activity_heatmap.threshold.minimum', {
+      min: formatNumber(min),
+    });
   }
 
-  const [dim, bright] = thresholds[type];
-
-  if (level === 'dim' && dim === bright - 1) {
-    return formatNumber(dim);
-  }
-
-  return trans(`users.show.stats.activity_heatmap.threshold.${level}`, {
-    max: formatNumber(bright - 1),
-    min: formatNumber(level === 'bright' ? bright : dim),
+  return trans('users.show.stats.activity_heatmap.threshold.range', {
+    max: formatNumber(next - 1),
+    min: formatNumber(min),
   });
 }
 
@@ -130,54 +119,55 @@ function monthLabels(start: moment.Moment, weekCount: number) {
   });
 }
 
-function swatch(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
+function swatch([level, min]: typeof postLevels[number], i: number) {
   return (
     <span
-      className={classWithModifiers(`${bn}__cell`, level === 'empty' ? undefined : [type, level])}
-      title={legendTooltip(type, level)}
+      key={level}
+      className={classWithModifiers(`${bn}__cell`, ['posts', level])}
+      title={legendTooltip(min, postLevels[i + 1]?.[1])}
     />
   );
 }
 
-@observer
 export default class ActivityHeatmap extends React.PureComponent<Props> {
-  @observable private selectedType: ModdingActivityType | null = null;
-
-  constructor(props: Props) {
-    super(props);
-    makeObservable(this);
-  }
-
   render() {
     const heatmap = this.props.user.modding_activity_heatmap;
-    const selectedType = this.selectedType;
     const start = moment.utc(heatmap.start_date);
     const end = moment.utc(heatmap.end_date);
     const lastDay = end.clone().isoWeekday(7);
     const weekCount = lastDay.diff(start, 'weeks') + 1;
     const months = monthLabels(start, weekCount);
-    const byDate = new Map(heatmap.days.map((day) => [day.date, filterDay(day, selectedType)]));
+    const byDate = new Map(heatmap.days.map((day) => [day.date, day]));
 
     return (
       <div className='profile-detail-stats-card profile-detail-stats-card--heatmap'>
         <div className='profile-detail-stats-card__top'>
-          <div className='profile-detail-stats-card__title'>
-            <div className='profile-detail-stats-card__title-icon'>
-              <span className='svg-icon svg-icon--calendar' />
-            </div>
-            <div>
-              {trans('users.show.stats.activity_heatmap.title')}
-            </div>
-          </div>
-
           <div className={bn}>
+            <div className={`profile-detail-stats-card__title ${bn}__title`}>
+              <div className='profile-detail-stats-card__title-icon'>
+                <span className='svg-icon svg-icon--calendar' />
+              </div>
+              <div>
+                {trans('users.show.stats.activity_heatmap.title')}
+              </div>
+            </div>
+
             <div className={`${bn}__legend`}>
-              {displayPriority.map(this.renderLegendItem)}
+              <div className={`${bn}__legend-label`}>
+                {trans('users.show.stats.activity_heatmap.posts')}
+              </div>
+              <div className={`${bn}__legend-scale`}>
+                <span>{trans('users.show.stats.activity_heatmap.less')}</span>
+                {postLevels.map(swatch)}
+                <span>{trans('users.show.stats.activity_heatmap.more')}</span>
+              </div>
+              <div className={`${bn}__legend-keys`}>
+                {markerTypes.map(legendKey)}
+              </div>
             </div>
 
             <div className={`${bn}__calendar`}>
               <div
-                key={selectedType ?? 'all'}
                 className={`${bn}__grid`}
                 style={{ '--weeks': weekCount } as React.CSSProperties}
               >
@@ -211,33 +201,4 @@ export default class ActivityHeatmap extends React.PureComponent<Props> {
       </div>
     );
   }
-
-  @action
-  private readonly onLegendClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const type = event.currentTarget.dataset.type as ModdingActivityType;
-    this.selectedType = this.selectedType === type ? null : type;
-  };
-
-  private readonly renderLegendItem = (type: ModdingActivityType) => (
-    <button
-      key={type}
-      className={classWithModifiers(`${bn}__legend-item`, {
-        dimmed: this.selectedType != null && this.selectedType !== type,
-      })}
-      data-type={type}
-      onClick={this.onLegendClick}
-      type='button'
-    >
-      <div className={`${bn}__legend-label`}>
-        {trans(`users.show.stats.activity_heatmap.${type}`)}
-      </div>
-      <div className={`${bn}__legend-scale`}>
-        <span>{trans('users.show.stats.activity_heatmap.less')}</span>
-        {swatch(type, 'empty')}
-        {swatch(type, 'dim')}
-        {swatch(type, 'bright')}
-        <span>{trans('users.show.stats.activity_heatmap.more')}</span>
-      </div>
-    </button>
-  );
 }
