@@ -7,7 +7,10 @@
     @foreach ($beatmapsets as $beatmapset)
         <div
             class="js-react u-contents"
-            data-beatmapset-panel="{{ json_encode(['beatmapset' => json_item($beatmapset, new App\Transformers\BeatmapsetTransformer(), ['beatmaps'])]) }}"
+            data-beatmapset-panel="{{ json_encode([
+                'beatmapId' => $beatmapId ?? null,
+                'beatmapset' => json_item($beatmapset, new App\Transformers\BeatmapsetTransformer(), ['beatmaps']),
+            ]) }}"
             data-react="beatmapset-panel"
         >
             <div class="beatmapset-panel beatmapset-panel--size-normal"></div>
