@@ -32,8 +32,7 @@ class UpdateUserForumTopicFollowsTest extends TestCase
             'name' => Notification::FORUM_TOPIC_REPLY,
             'details' => [],
         ]);
-        UserNotification::create([
-            'notification_id' => $notification->getKey(),
+        UserNotification::factory()->notification($notification)->create([
             'user_id' => $user->getKey(),
             'created_at' => now()->subHours(1),
         ]);

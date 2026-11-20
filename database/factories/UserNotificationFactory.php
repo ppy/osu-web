@@ -23,4 +23,14 @@ class UserNotificationFactory extends Factory
             'user_id' => User::factory(),
         ];
     }
+
+    public function notification(Notification $notification): static
+    {
+        return $this->state([
+            'category' => $notification->category,
+            'notifiable_id' => $notification->notifiable_id,
+            'notifiable_type' => $notification->notifiable_type,
+            'notification_id' => $notification,
+        ]);
+    }
 }

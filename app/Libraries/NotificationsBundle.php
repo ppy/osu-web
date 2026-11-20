@@ -22,21 +22,18 @@ class NotificationsBundle
         return "{$objectType}-{$objectId}-{$category}";
     }
 
-    private $category;
+    private array $notificationIdsToFetch = [];
+    private ?string $category;
     private array $countByType;
-    private $cursorId;
-    private $objectId;
-    private $objectType;
-    private $stacks = [];
-    private $types = [];
-    private $unreadOnly;
-    private $user;
-    private Collection $userNotifications;
+    private ?int $cursorId;
+    private ?int $objectId;
+    private ?string $objectType;
+    private array $stacks = [];
+    private array $types = [];
+    private bool $unreadOnly;
 
-    public function __construct(User $user, array $request)
+    public function __construct(private User $user, array $request)
     {
-        $this->user = $user;
-        $this->userNotifications = new Collection();
         $this->unreadOnly = get_bool($request['unread'] ?? false);
         $this->cursorId = get_int($request['cursor']['id'] ?? null);
 
@@ -45,18 +42,17 @@ class NotificationsBundle
         $this->category = presence($request['category'] ?? null);
     }
 
-    public function toArray()
+    public function toArray(): array
     {
-        if ($this->objectId && $this->objectType && $this->category) {
+        if ($this->objectId !== null && $this->objectType !== null && $this->category !== null) {
             $this->fillStacks($this->objectType, $this->objectId, $this->category);
         } else {
             $this->fillTypes($this->objectType);
         }
 
-        $this->fillStackTotal();
-
+        $notifications = Notification::whereIn('id', $this->notificationIdsToFetch)->get();
         $response = [
-            'notifications' => json_collection($this->userNotifications->load('notification'), new NotificationTransformer()),
+            'notifications' => json_collection($notifications, new NotificationTransformer()),
             'stacks' => array_values($this->stacks),
             'timestamp' => json_time(now()),
             'types' => array_values($this->types),
@@ -69,7 +65,10 @@ class NotificationsBundle
         return $response;
     }
 
-    private function fillStacks(string $objectType, int $objectId, string $category)
+    /**
+     * Note: Prefetch stack size if filling multiple stacks.
+     */
+    private function fillStacks(string $objectType, int $objectId, string $category, ?int $stackSize = null): void
     {
         $key = static::stackKey($objectType, $objectId, $category);
         // skip multiple notification names mapped to the same category.
@@ -77,105 +76,103 @@ class NotificationsBundle
             return;
         }
 
-        $query = $this
-            ->user
+        $query = $this->user
             ->userNotifications()
             ->hasPushDelivery()
-            ->joinRelation('notification', function ($q) use ($category, $objectId, $objectType) {
-                $q
-                    ->where($q->qualifyColumn('notifiable_type'), $objectType)
-                    ->where($q->qualifyColumn('notifiable_id'), $objectId)
-                    ->whereIn($q->qualifyColumn('name'), Notification::namesInCategory($category))
-                    ->orderByDesc($q->qualifyColumn('created_at'))
-                    ->orderByDesc($q->qualifyColumn('id'));
-
-                if ($this->cursorId !== null) {
-                    $q->where($q->qualifyColumn('id'), '<', $this->cursorId);
-                }
-            })
-            ->limit(static::PER_STACK_LIMIT);
-
-        if ($this->unreadOnly) {
-            $query->where($query->qualifyColumn('is_read'), false);
-        }
-        $query->select($query->qualifyColumn('*'));
-
-        $stack = $query->get();
-
-        $json = $this->stackToJson($stack, $objectType, $objectId, $category);
-        if ($json !== null) {
-            $this->stacks[$key] = $json;
-            $this->userNotifications = $this->userNotifications->merge($stack);
-        }
-    }
-
-    private function fillStackTotal(): void
-    {
-        if (empty($this->stacks)) {
-            return;
-        }
-
-        $binds = [];
-        $bindValues = [];
-        foreach ($this->stacks as $key => $stackJson) {
-            foreach (Notification::namesInCategory($stackJson['category']) as $name) {
-                $bindValues[] = $stackJson['object_type'];
-                $bindValues[] = $stackJson['object_id'];
-                $bindValues[] = $name;
-                $binds[] = '(?, ?, ?)';
-            }
-        }
-
-        $notificationModel = new Notification();
-        $userNotificationModel = new UserNotification();
-
-        $groupColumns = [
-            'type' => $notificationModel->qualifyColumn('notifiable_type'),
-            'id' => $notificationModel->qualifyColumn('notifiable_id'),
-            'name' => $notificationModel->qualifyColumn('name'),
-        ];
-
-        $bindsString = implode(', ', $binds);
-        $whereString = "({$groupColumns['type']}, {$groupColumns['id']}, {$groupColumns['name']}) IN ({$bindsString})";
-
-        $query = $this
-            ->user
-            ->userNotifications()
-            ->hasPushDelivery()
-            ->join(
-                $notificationModel->getTable(),
-                $notificationModel->qualifyColumn('id'),
-                '=',
-                $userNotificationModel->qualifyColumn('notification_id')
-            )
-            ->selectRaw("
-                COUNT(*) as count,
-                {$groupColumns['type']},
-                {$groupColumns['id']},
-                {$groupColumns['name']}")
-            ->whereRaw($whereString, $bindValues)
-            ->groupBy(array_values($groupColumns));
+            ->where('notifiable_type', $objectType)
+            ->where('notifiable_id', $objectId)
+            ->where('category', $category);
 
         if ($this->unreadOnly) {
             $query->where('is_read', false);
         }
 
-        foreach ($query->get() as $row) {
-            $name = $row->getRawAttribute('name');
-            $category = Notification::NAME_TO_CATEGORY[$name] ?? $name;
-            $key = static::stackKey($row->getRawAttribute('notifiable_type'), $row->getRawAttribute('notifiable_id'), $category);
-            $this->stacks[$key]['total'] ??= 0;
-            $this->stacks[$key]['total'] += $row->getRawAttribute('count');
+        // use pre-fetched value; otherwise get count before applying cursor.
+        $total = $stackSize ?? $query->count();
+
+        $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
+
+        if ($this->cursorId !== null) {
+            $query->where('notification_id', '<', $this->cursorId);
         }
+
+        $notificationIds = $query->pluck('notification_id');
+        $last = $notificationIds->last();
+        if ($last === null) {
+            return;
+        }
+
+        array_push($this->notificationIdsToFetch, ...$notificationIds);
+
+        $cursor = $notificationIds->count() < static::PER_STACK_LIMIT ? null : [
+            'id' => $last,
+        ];
+
+        $this->stacks[$key] = [
+            'category' => $category,
+            'cursor' => $cursor,
+            'object_type' => $objectType,
+            'object_id' => $objectId,
+            'total' => $total,
+        ];
     }
 
-    private function fillTypes(?string $type = null)
+    private function fillTypes(?string $type = null): void
     {
         $heads = $this->getStackHeads($type);
 
-        $heads->each(function ($row) {
-            $this->fillStacks($row->notifiable_type, $row->notifiable_id, $row->category);
-        });
+        $batches = [];
+        $unionQuery = null;
+
+        foreach ($heads as $head) {
+            // everything less than the stack's pagination size can be batched together
+            // since no pagination or ordering is required for them.
+            $stackSize = $head->getRawAttribute('stack_size');
+            if ($stackSize <= static::PER_STACK_LIMIT) {
+                // collect notifiable_id together so they can be selected together instead of multiple unions.
+                // This is more for reducing queries sent; unions are still considered multiple queries.
+                $batchKey = "{$head->notifiable_type}-{$head->category}";
+                $batches[$batchKey][] = $head->notifiable_id;
+
+                $key = "{$head->notifiable_type}-{$head->notifiable_id}-{$head->category}";
+                $this->stacks[$key] = [
+                    'category' => $head->category,
+                    'cursor' => null,
+                    'object_type' => $head->notifiable_type,
+                    'object_id' => $head->notifiable_id,
+                    'total' => $stackSize,
+                ];
+            } else {
+                // TODO: it's possible to union query these as well; it just looks really bad reading the query.
+                $this->fillStacks($head->notifiable_type, $head->notifiable_id, $head->category, $stackSize);
+            }
+        }
+
+        foreach ($batches as $batchKey => $notifiableIds) {
+            [$notifiableType, $category] = explode('-', $batchKey, 2);
+            $query = $this->user
+                ->userNotifications()
+                ->hasPushDelivery()
+                ->where('notifiable_type', $notifiableType)
+                ->whereIn('notifiable_id', $notifiableIds)
+                ->where('category', $category)
+                ->select('notification_id');
+
+            if ($this->unreadOnly) {
+                $query->where('is_read', false);
+            }
+
+            if ($unionQuery === null) {
+                $unionQuery = $query;
+            } else {
+                $unionQuery->unionAll($query);
+            }
+        }
+
+        if ($unionQuery !== null) {
+            $notificationIds = $unionQuery->pluck('notification_id');
+            array_push($this->notificationIdsToFetch, ...$notificationIds);
+        }
 
         $last = $heads->last();
         $cursor = $last !== null ? ['id' => $last->getRawAttribute('max_id')] : null;
@@ -191,7 +188,7 @@ class NotificationsBundle
         }
     }
 
-    private function getTotalNotificationCount(?string $type = null)
+    private function getTotalNotificationCount(?string $type = null): int
     {
         if (!isset($this->countByType)) {
             $query = Notification ::whereHas('userNotifications', function ($q) {
@@ -218,31 +215,35 @@ class NotificationsBundle
             : $this->countByType[$type] ?? 0;
     }
 
-    private function getStackHeads(?string $type = null)
+    /**
+     * @return Collection<int, UserNotification>
+     */
+    private function getStackHeads(?string $type = null): Collection
     {
-        $heads = Notification::whereHas('userNotifications', function ($q) {
-            $q->hasPushDelivery()->where('user_id', $this->user->getKey());
-            if ($this->unreadOnly) {
-                $q->where('is_read', false);
-            }
-        })
-        ->groupBy('name', 'notifiable_type', 'notifiable_id')
-        ->orderBy('max_id', 'DESC')
-        ->select(DB::raw('MAX(id) as max_id'), 'name', 'notifiable_type', 'notifiable_id');
+        $query = $this->user
+            ->userNotifications()
+            ->hasPushDelivery()
+            ->groupBy('notifiable_type', 'notifiable_id', 'category')
+            ->orderBy('max_id', 'DESC')
+            ->select(DB::raw('MAX(notification_id) as max_id'), DB::raw('COUNT(*) as stack_size'), 'notifiable_type', 'notifiable_id', 'category');
+
+        if ($this->unreadOnly) {
+            $query->where('is_read', false);
+        }
 
         if ($type !== null) {
-            $heads->where('notifiable_type', $type);
+            $query->where('notifiable_type', $type);
         }
 
         // TODO: ignore cursor if params don't match
         if ($this->cursorId !== null) {
-            $heads->having('max_id', '<', $this->cursorId);
+            $query->having('max_id', '<', $this->cursorId);
         }
 
-        return $heads->limit(static::STACK_LIMIT)->get();
+        return $query->limit(static::STACK_LIMIT)->get();
     }
 
-    private function fillTypesWhenNull($cursor)
+    private function fillTypesWhenNull(?array $cursor): void
     {
         foreach (Notification::NOTIFIABLE_CLASSES as $class) {
             $type = MorphMap::getType($class);
@@ -254,28 +255,5 @@ class NotificationsBundle
                 'total' => $this->getTotalNotificationCount($type),
             ];
         }
-    }
-
-    private function stackToJson($stack, string $objectType, int $objectId, string $category)
-    {
-        $last = $stack->last();
-        if ($last === null) {
-            return;
-        }
-
-        $cursor = $stack->count() < static::PER_STACK_LIMIT ? null : [
-            'id' => $last->notification_id,
-        ];
-
-        return [
-            'category' => $category,
-            'cursor' => $cursor,
-            // TODO: deprecated. Actual value isn't used by osu-web and it's
-            // expensive to obtain at the point this function is called.
-            // Remove when not used by anything else.
-            'name' => Notification::namesInCategory($category)[0],
-            'object_type' => $objectType,
-            'object_id' => $objectId,
-        ];
     }
 }
