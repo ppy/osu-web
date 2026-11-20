@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .modding-profile-heatmap {
-  --empty: hsl(var(--hsl-b2));
   --cell-size: 18px;
   display: grid;
   gap: 20px;
@@ -21,11 +20,10 @@
   }
 
   &__cell {
-    --colour: var(--empty);
+    .default-border-radius();
     width: var(--cell-size);
     height: $width;
-    border-radius: 3px;
-    background-color: var(--colour);
+    background-color: hsl(var(--hsl-b2));
 
     &--posts {
       --hsl: var(--hsl-lime-1);
@@ -40,14 +38,15 @@
     }
 
     &--bright {
-      --colour: hsl(var(--hsl));
+      background-color: hsl(var(--hsl));
     }
 
     &--dim {
-      --colour: hsla(var(--hsl), 0.4);
+      background-color: hsla(var(--hsl), 0.4);
     }
 
     &--tooltip {
+      display: inline-block;
       width: 2px;
       height: 10px;
       border-radius: 10000px;
@@ -134,6 +133,12 @@
     color: hsl(var(--hsl-l1));
     margin-top: 5px;
     text-align: center;
+  }
+
+  &__tooltip-label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
   }
 
   &__tooltip-row {
