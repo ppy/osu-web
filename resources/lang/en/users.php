@@ -564,6 +564,19 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
+            // modding stats
+            'activity_heatmap' => [
+                'less' => 'Less',
+                'more' => 'More',
+                'nominations' => 'Nominations',
+                'posts' => 'Modding Activity',
+                'ranks' => 'Beatmap Ranks',
+                'threshold' => [
+                    'minimum' => ':min+',
+                    'range' => ':min-:max',
+                ],
+                'title' => 'Activity Heatmap',
+            ],
             // beatmap counts
             'approved_beatmapset_count' => 'Approved Beatmaps',
             'beatmaps_modded_count' => 'Total Beatmaps Modded',
