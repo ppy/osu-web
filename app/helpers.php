@@ -386,19 +386,23 @@ function datadog_increment(string $stat, array|string|null $tags = null, int $va
     );
 }
 
-function datadog_timing(callable $callable, $stat, ?array $tag = null)
+function datadog_timing(callable $callable, $stat, ?array $tag = null, ?array $uniqueTag = null)
 {
+    $sentryData = [...($tag ?? []), ...($uniqueTag ?? [])];
     $startTime = microtime(true);
 
-    $result = $callable();
+    $spanContext = \Sentry\Tracing\SpanContext
+        ::make()
+        ->setOp($stat)
+        ->setData($sentryData);
+
+    $result = \Sentry\trace($callable, $spanContext);
 
     $endTime = microtime(true);
 
     if (app('clockwork.support')->isEnabled()) {
         // spaces used so clockwork doesn't run across the whole screen.
-        $description = $stat
-                       .' '.($tag['type'] ?? null)
-                       .' '.($tag['index'] ?? null);
+        $description = implode(' ', [$stat, ...$sentryData]);
 
         $clockworkEvent = clock()->event($description);
         $clockworkEvent->start = $startTime;
@@ -1526,6 +1530,16 @@ function fast_imagesize_cache_put(string $url, ?string $logErrorId = null): ?arr
 }
 
 function imagesize(string $url, ?string $logErrorId = null): ?array
+{
+    return datadog_timing(
+        fn () => imagesize_exec($url, $logErrorId),
+        'imagesize',
+        [],
+        ['url' => $url, 'log_error_id' => $logErrorId],
+    );
+}
+
+function imagesize_exec(string $url, ?string $logErrorId = null): ?array
 {
     try {
         $data = (new GuzzleHttp\Client())->request('GET', $url, [
