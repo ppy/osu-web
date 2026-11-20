@@ -16,10 +16,12 @@ class WikiPageTransformer extends TransformerAbstract
             'layout' => $page->layout(),
             'locale' => $page->locale,
             'markdown' => $page->getMarkdown(),
+            'outdated_since_date' => json_time($page->outdatedSinceDate()),
             'path' => $page->path,
             'subtitle' => $page->subtitle(),
             'tags' => $page->tags(),
             'title' => $page->title(),
+            'updated_at' => json_time($page->updatedAt()),
         ];
     }
 }

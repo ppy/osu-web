@@ -229,7 +229,7 @@ class Page implements WikiObject
     public function esFetch()
     {
         $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
-            ->source(['markdown', 'page', 'page_text', 'indexed_at', 'version'])
+            ->source(['markdown', 'page', 'page_text', 'indexed_at', 'outdated_since_date', 'updated_at', 'version'])
             ->query([
                 'term' => [
                     '_id' => $this->pagePath(),
@@ -303,6 +303,13 @@ class Page implements WikiObject
     {
         return $this->isTranslation()
             && ($this->page['header']['outdated_translation'] ?? false);
+    }
+
+    public function outdatedSinceDate(): ?Carbon
+    {
+        $date = $this->source['outdated_since_date'] ?? null;
+
+        return $date !== null ? Carbon::parse($date) : null;
     }
 
     public function isStub(): bool
@@ -396,6 +403,8 @@ class Page implements WikiObject
             return $this;
         }
 
+        $lastCommitDate = OsuWiki::fetchLastCommitDate('wiki/'.$this->pagePath());
+
         $source = [
             'locale' => $this->locale,
             'page' => null,
@@ -405,11 +414,20 @@ class Page implements WikiObject
             'tags' => [],
             'title' => null,
             'indexed_at' => json_time(now()),
+            'outdated_since_date' => null,
+            'updated_at' => $lastCommitDate,
             'version' => static::VERSION,
         ];
 
         if (isset($content)) {
-            $layout = OsuMarkdown::parseYamlHeader($content)['header']['layout'] ?? null;
+            $parsedHeader = OsuMarkdown::parseYamlHeader($content)['header'];
+
+            $outdatedSinceHash = presence($parsedHeader['outdated_since'] ?? null);
+            if ($outdatedSinceHash !== null) {
+                $source['outdated_since_date'] = OsuWiki::fetchCommitDate($outdatedSinceHash);
+            }
+
+            $layout = $parsedHeader['layout'] ?? null;
             $layout = $this->layout($layout);
             $rendererClass = static::RENDERERS[$layout];
             $contentRenderer = new $rendererClass($this, $content);
@@ -456,6 +474,13 @@ class Page implements WikiObject
         }
 
         return $title;
+    }
+
+    public function updatedAt(): ?Carbon
+    {
+        $date = $this->source['updated_at'] ?? null;
+
+        return $date !== null ? Carbon::parse($date) : null;
     }
 
     private function log($action)

@@ -5,6 +5,12 @@
       "indexed_at": {
         "type": "date"
       },
+      "outdated_since_date": {
+        "type": "date"
+      },
+      "updated_at": {
+        "type": "date"
+      },
       "layout": {
         "type": "keyword"
       },
