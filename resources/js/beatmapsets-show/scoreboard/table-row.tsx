@@ -13,6 +13,7 @@ import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
+import moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
@@ -67,6 +68,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
   render() {
     const score = this.props.score;
     const scoreAccuracy = accuracy(score);
+    const isRecent = moment().diff(moment(score.ended_at), 'hour') < 24;
     const blockClass = classWithModifiers(`${bn}__body-row`,
       this.props.activated ? 'menu-active' : 'highlightable',
       {
@@ -151,7 +153,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </TdLink>
         }
 
-        <TdLink href={this.scoreUrl} modifiers='time'>
+        <TdLink href={this.scoreUrl} modifiers={mergeModifiers('time', { perfect: isRecent })}>
           <ScoreboardTime dateTime={score.ended_at} />
         </TdLink>
 
