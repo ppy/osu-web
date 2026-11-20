@@ -84,11 +84,22 @@ class ModdingActivityHeatmapTest extends TestCase
             'beatmap_discussion_id' => $discussion,
             'user_id' => $user,
         ]);
+        BeatmapDiscussion::factory()->review()->create([
+            'beatmapset_id' => $others,
+            'user_id' => $user,
+        ]);
 
         BeatmapDiscussion::factory()->general()->create([
             'beatmapset_id' => Beatmapset::factory()->owner($user)->pending(),
             'user_id' => $user,
         ]);
+
+        foreach (['hype', 'praise', 'mapper_note'] as $type) {
+            BeatmapDiscussion::factory()->general()->messageType($type)->create([
+                'beatmapset_id' => $others,
+                'user_id' => $user,
+            ]);
+        }
 
         BeatmapDiscussionPost::factory()->create([
             'beatmap_discussion_id' => $discussion,
@@ -106,7 +117,7 @@ class ModdingActivityHeatmapTest extends TestCase
         $day = $this->dayAt($this->heatmap($user), $today);
 
         $this->assertNotNull($day);
-        $this->assertSame(2, $day['posts']);
+        $this->assertSame(3, $day['posts']);
         $this->assertArrayNotHasKey('nominations', $day);
         $this->assertArrayNotHasKey('ranks', $day);
     }

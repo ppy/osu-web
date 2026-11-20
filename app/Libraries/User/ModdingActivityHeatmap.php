@@ -32,8 +32,13 @@ class ModdingActivityHeatmap
                 ->withoutSystem()
                 ->visible()
                 ->whereHas(
-                    'beatmapDiscussion.visibleBeatmapset',
-                    fn ($query) => $query->where('user_id', '<>', $userId),
+                    'beatmapDiscussion',
+                    fn ($query) => $query
+                        ->ofType(['suggestion', 'problem', 'review'])
+                        ->whereHas(
+                            'visibleBeatmapset',
+                            fn ($q) => $q->where('user_id', '<>', $userId),
+                        ),
                 ),
             $start,
             $until,
