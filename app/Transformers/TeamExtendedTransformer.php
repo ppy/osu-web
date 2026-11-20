@@ -11,11 +11,11 @@ use App\Models\Team;
 
 class TeamExtendedTransformer extends TeamTransformer
 {
-    protected array $defaultIncludes = [
+    const array SHOW_INCLUDES = [
         'empty_slots',
         'leader',
         'members',
-        'statistics',
+        'statistics.rank',
     ];
 
     public function transform(Team $team): array
