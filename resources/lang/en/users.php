@@ -574,7 +574,6 @@ return [
                 'threshold' => [
                     'bright' => ':min+',
                     'dim' => ':min-:max',
-                    'empty' => '0',
                 ],
                 'title' => 'Activity Heatmap',
             ],

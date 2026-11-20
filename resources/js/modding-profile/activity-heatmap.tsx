@@ -99,6 +99,10 @@ function filterDay(day: ModdingActivityHeatmapDayJson, filter: ModdingActivityTy
 }
 
 function legendTooltip(type: ModdingActivityType, level: 'bright' | 'dim' | 'empty') {
+  if (level === 'empty') {
+    return;
+  }
+
   const [dim, bright] = thresholds[type];
 
   if (level === 'dim' && dim === bright - 1) {
