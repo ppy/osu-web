@@ -203,6 +203,10 @@ class CommentsController extends Controller
 
         priv_check('CommentStore', $comment->commentable)->ensureCan();
 
+        if ($comment->parent !== null) {
+            priv_check('CommentReply', $comment->parent)->ensureCan();
+        }
+
         try {
             $comment->saveOrExplode();
         } catch (ModelNotSavedException $e) {
