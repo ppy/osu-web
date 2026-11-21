@@ -63,6 +63,8 @@ class ProfileCount
             'scoresBest' => $this->scoresBest($rulesetName),
             'scoresFirsts' => $this->scoresFirsts($rulesetName),
             'scoresPinned' => $this->scoresPinned($rulesetName),
+
+            'screenshots' => $this->user->screenshots()->count(),
         };
     }
 
