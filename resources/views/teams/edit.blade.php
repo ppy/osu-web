@@ -37,6 +37,54 @@
                 </h2>
 
                 <div class="team-settings">
+
+                    @php
+                        $daysRemainingRename = 0;
+
+                        if ($team->name_changed_at !== null) {
+                            $daysSinceLastRename = $team->name_changed_at->diffInDays(now());
+                            $daysRemainingRename = max(0, App\Models\Team::RENAME_COOLDOWN_DAYS - $daysSinceLastRename);
+                        }
+                    @endphp
+
+                    <div class="team-settings__item">
+                        <label class="input-container">
+                            <span class="input-container__label">
+                                {{ osu_trans('model_validation.team.attributes.name') }}
+                            </span>
+                            <input
+                                name="team[name]"
+                                class="input-text @if($daysRemainingRename > 0) input-text--disabled @endif"
+                                value="{{ $team->name }}"
+                                @disabled($daysRemainingRename > 0)
+                            />
+                        </label>
+                        @if ($daysRemainingRename > 0)
+                            <span class="team-settings__help">
+                                {{ osu_trans('teams.edit.settings.rename_cooldown_active', ['days' => round($daysRemainingRename, 0)]) }}
+                            </span>
+                        @else
+                            <span class="team-settings__help">
+                                {{ osu_trans('teams.edit.settings.rename_cooldown') }}
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="team-settings__item">
+                        <label class="input-container">
+                            <span class="input-container__label">
+                                {{ osu_trans('model_validation.team.attributes.short_name') }}
+                            </span>
+                            <input
+                                name="team[short_name]"
+                                class="input-text @if($daysRemainingRename > 0) input-text--disabled @endif"
+                                value="{{ $team->short_name }}"
+                                maxlength="{{ App\Models\Team::MAX_FIELD_LENGTHS['short_name'] }}"
+                                @disabled($daysRemainingRename > 0)
+                            />
+                        </label>
+                    </div>
+
                     <div class="team-settings__item">
                         <label class="input-container">
                             <span class="input-container__label">
