@@ -13,10 +13,14 @@ class SeasonDivisionTransformer extends TransformerAbstract
 {
     public function transform(SeasonDivision $division): array
     {
+        $imageUrl = $division->image_url;
+        $image2xUrl = retinaify($imageUrl);
+
         return [
             'colour_tier' => $division->colour_tier,
             'id' => $division->getKey(),
-            'image_url' => $division->image_url,
+            'image@2x_url' => $image2xUrl,
+            'image_url' => $imageUrl,
             'name' => $division->name,
             'threshold' => $division->threshold,
         ];
