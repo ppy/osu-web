@@ -1787,6 +1787,19 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/matchmaking-pools/{pool}/user-chart/{user}",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\MatchmakingPoolsController@userChart",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/beatmapsets/{beatmapset}/download",
         "methods": [
             "GET",
