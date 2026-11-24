@@ -188,7 +188,7 @@ export default class TopCard extends React.PureComponent<Props> {
               <div className='beatmap-score-top__stat-header'>
                 {trans('beatmapsets.show.scoreboard.headers.time')}
               </div>
-              <div className={`${classWithModifiers('beatmap-score-top__stat-value', 'smaller', { perfect: isRecent })} u-hover`}>
+              <div className={`${classWithModifiers('beatmap-score-top__stat-value', 'smaller', { recent: isRecent })} u-hover`}>
                 <ScoreboardTime dateTime={this.props.score.ended_at} />
               </div>
             </div>

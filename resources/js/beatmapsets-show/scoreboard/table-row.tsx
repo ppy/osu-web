@@ -153,7 +153,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           </TdLink>
         }
 
-        <TdLink href={this.scoreUrl} modifiers={mergeModifiers('time', { perfect: isRecent })}>
+        <TdLink href={this.scoreUrl} modifiers={mergeModifiers('time', { recent: isRecent })}>
           <ScoreboardTime dateTime={score.ended_at} />
         </TdLink>
 
