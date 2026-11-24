@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Libraries\BeatmapsetDiscussion\UserParam;
 use Carbon\Carbon;
 
 /**
@@ -96,17 +97,7 @@ class BeatmapsetEvent extends Model
         $extraParams['is_kudosu_moderator'] ??= false;
         $extraParams['is_moderator'] ??= false;
 
-        if ($searchByUser) {
-            $params['user'] = $rawParams['user'];
-            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
-            $user = User::lookup($params['user'], null, $findAll);
-
-            if ($user === null) {
-                $query->none();
-            } else {
-                $query->where('user_id', '=', $user->getKey());
-            }
-        }
+        UserParam::apply($query, $rawParams, $extraParams, $params);
 
         if (present($rawParams['beatmapset_id'] ?? null)) {
             $params['beatmapset_id'] = $rawParams['beatmapset_id'];

@@ -23,17 +23,14 @@ class ModdingHistoryController extends Controller
         $this->middleware(function ($request, $next) {
             $this->user = FindForProfilePage::find($request->route('user'));
 
-            $userId = $this->user->getKey();
-            $this->searchParams = [
-                ...\Request::query(),
-                'user' => $userId,
-            ];
+            $this->searchParams = $request->query();
 
             // This bit isn't needed when ModdingHistoryEventsBundle is used.
             $this->extraParams = [
-                'current_user_id' => $userId,
+                'current_user_id' => $this->user->getKey(),
                 'is_kudosu_moderator' => priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can(),
                 'is_moderator' => priv_check('BeatmapDiscussionModerate')->can(),
+                'user' => $this->user,
             ];
 
             return $next($request);
