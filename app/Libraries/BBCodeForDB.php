@@ -36,7 +36,7 @@ class BBCodeForDB
         static $mapping;
         $mapping ??= array_flip(static::EXTRA_ESCAPES);
 
-        return strtr($text, $mapping);
+        return html_entity_decode_better(strtr($text, $mapping));
     }
 
     public function __construct(?string $text = '')

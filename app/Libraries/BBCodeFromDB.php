@@ -116,7 +116,11 @@ class BBCodeFromDB
 
     public function parseColour($text)
     {
-        $text = preg_replace("#\[color=([^:]+):{$this->uid}\]#", "<span style='color:\\1'>", $text);
+        $text = preg_replace_callback(
+            "#\[color=([^:; ]+):{$this->uid}\]#",
+            fn ($m) => tag('span', ['style' => "color:{$m[1]}"], '', false),
+            $text,
+        );
         $text = str_replace("[/color:{$this->uid}]", '</span>', $text);
 
         return $text;
@@ -124,12 +128,19 @@ class BBCodeFromDB
 
     public function parseEmail($text)
     {
-        $text = preg_replace(
+        $text = preg_replace_callback(
             "#\[email:{$this->uid}\](.+?)\[/email:{$this->uid}\]#",
-            "<a rel='nofollow' href='mailto:\\1'>\\1</a>",
-            $text
+            fn ($m) => tag('a', [
+                'rel' => 'nofollow',
+                'href' => 'mailto:'.BBCodeForDB::extraUnescape($m[1]),
+            ], $m[1]),
+            $text,
         );
-        $text = preg_replace("#\[email=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='mailto:\\1'>", $text);
+        $text = preg_replace_callback(
+            "#\[email=([^\]]+):{$this->uid}\]#",
+            fn ($m) => tag('a', ['rel' => 'nofollow', 'href' => 'mailto:'.BBCodeForDB::extraUnescape($m[1])], '', false),
+            $text,
+        );
         $text = str_replace("[/email:{$this->uid}]", '</a>', $text);
 
         return $text;
@@ -148,7 +159,7 @@ class BBCodeFromDB
         return preg_replace_callback(
             '#(\[imagemap\].+?\[/imagemap\]\n?)#',
             function ($m) {
-                $unescaped = html_entity_decode_better(BBCodeForDB::extraUnescape($m[1]));
+                $unescaped = BBCodeForDB::extraUnescape($m[1]);
                 $parsed = preg_replace_callback(
                     '#^\[imagemap\]\n\s*(?<imageUrl>https?://.+)\n(?<links>(?:\s*(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\s*\[/imagemap\]\n?$#',
                     function ($map) {
@@ -357,8 +368,16 @@ class BBCodeFromDB
 
     public function parseUrl($text)
     {
-        $text = preg_replace("#\[url:{$this->uid}\](.+?)\[/url:{$this->uid}\]#", "<a rel='nofollow' href='\\1'>\\1</a>", $text);
-        $text = preg_replace("#\[url=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='\\1'>", $text);
+        $text = preg_replace_callback(
+            "#\[url:{$this->uid}\](.+?)\[/url:{$this->uid}\]#",
+            fn ($m) => tag('a', ['rel' => 'nofollow', 'href' => BBCodeForDB::extraUnescape($m[1])], $m[1]),
+            $text,
+        );
+        $text = preg_replace_callback(
+            "#\[url=([^\]]+):{$this->uid}\]#",
+            fn ($m) => tag('a', ['rel' => 'nofollow', 'href' => BBCodeForDB::extraUnescape($m[1])], '', false),
+            $text,
+        );
         $text = str_replace("[/url:{$this->uid}]", '</a>', $text);
 
         return $text;
