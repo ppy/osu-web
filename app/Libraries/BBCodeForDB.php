@@ -277,7 +277,7 @@ class BBCodeForDB
                 $tag = presence($tags[0][$i]);
                 $name = $tags['name'][$i];
                 $nameNormalized = mb_strtolower($name);
-                $id = presence($tags['id'][$i]);
+                $id = presence($tags['id'][$i]) ?? '';
 
                 $user = $usersBy['user_id'][$id] ?? $usersBy['username'][$nameNormalized] ?? $usersBy['username_clean'][$nameNormalized] ?? null;
 
