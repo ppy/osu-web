@@ -27,7 +27,7 @@ class UserSummary extends Model
 {
     use Memoizes;
 
-    const DEFAULT_YEAR = 2025;
+    const DEFAULT_YEAR = 2026;
 
     protected $casts = [
         'processed' => 'bool',
@@ -369,8 +369,8 @@ class UserSummary extends Model
     private function timeRange(): array
     {
         return $this->memoize(__FUNCTION__, fn () => [
-            CarbonImmutable::create($this->year),
-            CarbonImmutable::create($this->year)->endOfYear(),
+            CarbonImmutable::create($this->year - 1, 12),
+            CarbonImmutable::create($this->year, 11)->endOfMonth(),
         ]);
     }
 

@@ -25,10 +25,9 @@ class YearlyPlaycount extends Model
             fn () => max(1, static::where('year', $year)->count()),
         );
 
-        $yearString = substr((string) $year, 2, 2);
         $playcount = (int) UserMonthlyPlaycount
             ::where('user_id', $userId)
-            ->whereBetween('year_month', ["{$yearString}01", "{$yearString}12"])
+            ->whereBetween('year_month', static::makeRange($year))
             ->sum('playcount');
         $posFn = fn () => static::where('year', $year)->where('playcount', '>', $playcount)->count();
         $pos = $playcount < 10000
@@ -40,5 +39,24 @@ class YearlyPlaycount extends Model
             'pos' => $pos + 1,
             'top_percent' => $pos / $users,
         ];
+    }
+
+    public static function generate(int $year): void
+    {
+        $model = new static();
+        $table = $model->getTable();
+        $monthlyTable = new UserMonthlyPlaycount()->getTable();
+        $model->getConnection()->statement(<<<EOS
+            INSERT INTO {$table} (year, playcount)
+            SELECT {$year}, SUM(playcount) FROM {$monthlyTable} WHERE `year_month` BETWEEN ? AND ? GROUP by user_id
+            EOS, static::makeRange($year));
+    }
+
+    private static function makeRange(int $year): array
+    {
+        $year = (int) substr((string) $year, 2, 2);
+        $startYear = $year - 1;
+
+        return ["{$startYear}12", "{$year}11"];
     }
 }
