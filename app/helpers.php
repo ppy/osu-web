@@ -810,7 +810,7 @@ function strip_utf8_bom($input)
     return $input;
 }
 
-function tag($element, $attributes = [], $content = null)
+function tag($element, $attributes = [], $content = null, bool $closeTag = true)
 {
     $attributeString = '';
 
@@ -818,7 +818,10 @@ function tag($element, $attributes = [], $content = null)
         $attributeString .= ' '.$key.'="'.e($value).'"';
     }
 
-    return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
+    $content ??= '';
+    $tail = $closeTag ? "</{$element}>" : '';
+
+    return "<{$element}{$attributeString}>{$content}{$tail}";
 }
 
 // Handles case where crowdin fills in untranslated key with empty string.
