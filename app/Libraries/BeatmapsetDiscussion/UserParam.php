@@ -17,7 +17,7 @@ class UserParam
         if (($extraParams['user'] ?? null) instanceof User) {
             $user = $extraParams['user'];
             $params['user'] = $user->getKey();
-        } elseif (present($rawParams['user'] ?? null)) {
+        } elseif (present(get_string($rawParams['user'] ?? null))) {
             $params['user'] = $rawParams['user'];
             $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
             $user = User::lookup($params['user'], null, $findAll);
