@@ -189,6 +189,7 @@ class TeamsController extends Controller
                 $team,
                 new TeamExtendedTransformer()->setRulesetId($rulesetId),
                 [
+                    ...TeamExtendedTransformer::SHOW_INCLUDES,
                     ...prefix_strings('leader.', UserCompactTransformer::CARD_INCLUDES),
                     ...prefix_strings('members.', UserCompactTransformer::CARD_INCLUDES),
                 ],
