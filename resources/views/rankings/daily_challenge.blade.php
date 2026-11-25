@@ -166,7 +166,7 @@
         ])
     @endsection
     @section('scores')
-        <div class="ranking-page-grid">
+        <div class="ranking-page-grid ranking-page-grid--daily-challenge">
             <div class="ranking-page-grid-item ranking-page-grid-item--header">
                 <div class="ranking-page-grid-item__content">
                     <div class="ranking-page-grid-item__col"></div>
