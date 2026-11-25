@@ -18,7 +18,7 @@ class UserGenerateSummaries extends Command
 
     protected $signature = 'user:generate-summaries {--task=}';
 
-    protected $description = 'Synchronises forum post counts for all users.';
+    protected $description = 'Generate user summaries.';
 
     public function handle()
     {
