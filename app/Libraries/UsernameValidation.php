@@ -11,7 +11,7 @@ use App\Models\RankHighest;
 use App\Models\User;
 use App\Models\UserBadge;
 use App\Models\UsernameChangeHistory;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use DB;
 use Illuminate\Support\Collection;
 
@@ -34,12 +34,14 @@ class UsernameValidation
         return true;
     }
 
-    public static function validateAvailability(string $username): ValidationErrors
+    public static function validateAvailability(string $username, bool $newUser = false): ValidationErrors
     {
         $errors = new ValidationErrors('user');
 
-        if (($availableDate = User::checkWhenUsernameAvailable($username)) > Carbon::now()) {
-            $remaining = Carbon::now()->diff($availableDate, false);
+        $availableDate = User::checkWhenUsernameAvailable($username, $newUser);
+        $now = CarbonImmutable::now();
+        if ($availableDate > $now) {
+            $remaining = $now->diff($availableDate, false);
 
             if ($remaining->totalDays >= User::INACTIVE_DAYS) {
                 //no need to mention the inactivity period of the account is actively in use.
@@ -64,7 +66,7 @@ class UsernameValidation
         return $errors;
     }
 
-    public static function validateUsername($username)
+    public static function validateUsername(string $username): ValidationErrors
     {
         $errors = new ValidationErrors('user');
 
