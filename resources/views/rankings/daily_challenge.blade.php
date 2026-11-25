@@ -159,11 +159,7 @@
     @endsection
 @else
     @section('scores-header')
-        @include('rankings._beatmapsets', [
-            'beatmapId' => $playlist->beatmap_id,
-            'beatmapsets' => [$playlist->beatmap->beatmapset],
-            'modifiers' => 'daily-challenge',
-        ])
+        @include('rankings._beatmapsets', ['beatmapsets' => [$playlist->beatmap->beatmapset], 'modifiers' => 'daily-challenge'])
     @endsection
     @section('scores')
         <div class="ranking-page-grid ranking-page-grid--daily-challenge">

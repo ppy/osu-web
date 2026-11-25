@@ -30,7 +30,6 @@ export const beatmapsetCardSizes = ['normal', 'extra'] as const;
 export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
 
 export interface Props {
-  beatmapId?: number;
   beatmapset: BeatmapsetExtendedJson;
 }
 
@@ -248,11 +247,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   @computed
   private get url() {
-    const beatmap = this.props.beatmapset.beatmaps?.find((b) => b.id === this.props.beatmapId);
+    const beatmaps = this.props.beatmapset.beatmaps;
 
-    return beatmap == null
-      ? route('beatmapsets.show', { beatmapset: this.props.beatmapset.id })
-      : beatmapUrl(beatmap);
+    return beatmaps?.length === 1
+      ? beatmapUrl(beatmaps[0])
+      : route('beatmapsets.show', { beatmapset: this.props.beatmapset.id });
   }
 
   constructor(props: Props) {
