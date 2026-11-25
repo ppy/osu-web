@@ -18,6 +18,14 @@ use Tests\TestCase;
 
 class UsernameValidationTest extends TestCase
 {
+    public static function dataProviderForValidateAvailabilityWithInactiveUser(): array
+    {
+        return [
+            [true, false],
+            [false, true],
+        ];
+    }
+
     public function testValidateAvailabilityWhenNotInUse(): void
     {
         $this->assertTrue(UsernameValidation::validateAvailability('Free username')->isEmpty());
@@ -30,11 +38,12 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateAvailability($user->username)->isEmpty());
     }
 
-    public function testValidateAvailabilityWithInactiveUser(): void
+    #[DataProvider('dataProviderForValidateAvailabilityWithInactiveUser')]
+    public function testValidateAvailabilityWithInactiveUser(bool $newUser, bool $expectValid): void
     {
-        $user = User::factory()->create(['user_lastvisit' => Carbon::now()->subDecade()]);
+        $user = User::factory()->create(['user_lastvisit' => Carbon::now()->subdays(User::INACTIVE_DAYS)]);
 
-        $this->assertTrue(UsernameValidation::validateAvailability($user->username)->isEmpty());
+        $this->assertSame($expectValid, UsernameValidation::validateAvailability($user->username, $newUser)->isEmpty());
     }
 
     public function testValidateAvailabilityWithRecentlyUsedUsername(): void
