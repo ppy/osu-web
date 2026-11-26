@@ -77,6 +77,7 @@ class BeatmapsetEvent extends Model
 
         return new static([
             'beatmapset_id' => $beatmapsetId,
+            'beatmapset_discussion_id' => $discussionId ?? null,
             'user_id' => isset($user) ? $user->getKey() : null,
             'type' => $type,
             'comment' => array_merge([
