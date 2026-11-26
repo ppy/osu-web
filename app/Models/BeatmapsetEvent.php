@@ -75,9 +75,6 @@ class BeatmapsetEvent extends Model
             $beatmapsetId = $object->getKey();
         }
 
-        if (isset($discussionId)) {
-            $extraData['beatmap_discussion_id'] ??= $discussionId;
-        }
         if (isset($discussionPostId)) {
             $extraData['beatmap_discussion_post_id'] ??= $discussionPostId;
         }
@@ -323,7 +320,18 @@ class BeatmapsetEvent extends Model
 
     public function getCommentAttribute($value)
     {
-        return json_decode($value ?? '', true) ?? $value;
+        $json = json_decode($value ?? '', true);
+
+        if ($json === null) {
+            return $value;
+        }
+
+        $discussionId = $this->beatmapset_discussion_id;
+        if ($discussionId !== null) {
+            $json['beatmap_discussion_id'] = $discussionId;
+        }
+
+        return $json;
     }
 
     public function setCommentAttribute($value)

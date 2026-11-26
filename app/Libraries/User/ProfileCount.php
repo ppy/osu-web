@@ -124,7 +124,7 @@ class ProfileCount
         return $this->issuesResolved ??= BeatmapsetEvent::where('user_id', $this->user->getKey())
             ->where('type', BeatmapsetEvent::ISSUE_RESOLVE)
             ->distinct()
-            ->count('comment->beatmap_discussion_id');
+            ->count('beatmapset_discussion_id');
     }
 
     private function scoreReplayStats(): int
