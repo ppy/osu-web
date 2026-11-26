@@ -18,6 +18,73 @@ use Tests\TestCase;
 
 class UsernameValidationTest extends TestCase
 {
+    /**
+     * Data in order:
+     * - Beatmap or beatmapset state
+     * - Whether the username should be available
+     */
+    public static function dataProviderForUsernameAvailabilityWithBeatmapState(): array
+    {
+        return [
+            ['graveyard', true],
+            ['wip',       true],
+            ['pending',   true],
+            ['ranked',    false],
+            ['approved',  false],
+            ['qualified', false],
+            ['loved',     false],
+        ];
+    }
+
+    /**
+     * Data in order:
+     * - Username
+     * - Whether the username should be valid
+     */
+    public static function dataProviderForUsernameValidation(): array
+    {
+        return [
+            'alphabetic'                   => ['Username',         true],
+            'alphanumeric'                 => ['Username1000',     true],
+            'numeric'                      => ['1000',             true],
+            'space at beginning'           => [' Username',        false],
+            'space at end'                 => ['Username ',        false],
+            'space in middle'              => ['Username 1000',    true],
+            'too short'                    => ['aa',               false],
+            'shortest'                     => ['aaa',              true],
+            'too long'                     => ['aaaaaaaaaaaaaaaa', false],
+            'longest'                      => ['aaaaaaaaaaaaaaa',  true],
+            'two spaces in middle'         => ['Username  1000',   false],
+            'invalid special characters'   => ['Usern@me',         false],
+            'all valid special characters' => ['-[]_',             true],
+            'mixed space and underscore'   => ['Username_1 2',     false],
+        ];
+    }
+
+    /**
+     * Data in order:
+     * - Whether the user lookup should be done through username change history
+     * - Whether the user lookup should have its underscores replaced with spaces
+     * - Whether the user lookup should return the user
+     */
+    public static function dataProviderForUsersOfUsernameLookup(): array
+    {
+        return [
+            [true,  true,  false],
+            [true,  false, true],
+            [false, true,  true],
+            [false, false, true],
+        ];
+    }
+
+    public static function dataProviderForValidateAvailabilityWithInactiveUser(): array
+    {
+        return [
+            [true, false],
+            [false, true],
+        ];
+    }
+
     public function testValidateAvailabilityWhenNotInUse(): void
     {
         $this->assertTrue(UsernameValidation::validateAvailability('Free username')->isEmpty());
@@ -30,11 +97,12 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateAvailability($user->username)->isEmpty());
     }
 
-    public function testValidateAvailabilityWithInactiveUser(): void
+    #[DataProvider('dataProviderForValidateAvailabilityWithInactiveUser')]
+    public function testValidateAvailabilityWithInactiveUser(bool $newUser, bool $expectValid): void
     {
-        $user = User::factory()->create(['user_lastvisit' => Carbon::now()->subDecade()]);
+        $user = User::factory()->create(['user_lastvisit' => Carbon::now()->subdays(User::INACTIVE_DAYS)]);
 
-        $this->assertTrue(UsernameValidation::validateAvailability($user->username)->isEmpty());
+        $this->assertSame($expectValid, UsernameValidation::validateAvailability($user->username, $newUser)->isEmpty());
     }
 
     public function testValidateAvailabilityWithRecentlyUsedUsername(): void
@@ -56,7 +124,7 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateAvailability('Old username')->isEmpty());
     }
 
-    #[DataProvider('usernameValidationDataProvider')]
+    #[DataProvider('dataProviderForUsernameValidation')]
     public function testValidateUsername(string $username, bool $expectValid): void
     {
         $this->assertSame(
@@ -65,7 +133,7 @@ class UsernameValidationTest extends TestCase
         );
     }
 
-    #[DataProvider('usersOfUsernameLookupDataProvider')]
+    #[DataProvider('dataProviderForUsersOfUsernameLookup')]
     public function testValidateUsersOfUsername(
         bool $throughUsernameHistory,
         bool $underscoresReplaced,
@@ -134,7 +202,7 @@ class UsernameValidationTest extends TestCase
         $this->assertFalse(UsernameValidation::validateUsersOfUsername($user->username)->isEmpty());
     }
 
-    #[DataProvider('usernameAvailabilityWithBeatmapStateDataProvider')]
+    #[DataProvider('dataProviderForUsernameAvailabilityWithBeatmapState')]
     public function testValidateUsersOfUsernameHasBeatmapsets(string $state, bool $expectValid): void
     {
         $user = User
@@ -148,7 +216,7 @@ class UsernameValidationTest extends TestCase
         );
     }
 
-    #[DataProvider('usernameAvailabilityWithBeatmapStateDataProvider')]
+    #[DataProvider('dataProviderForUsernameAvailabilityWithBeatmapState')]
     public function testValidateUsersOfUsernameHasGuestBeatmaps(string $state, bool $expectValid): void
     {
         $user = User::factory()->create();
@@ -165,64 +233,5 @@ class UsernameValidationTest extends TestCase
             $expectValid,
             UsernameValidation::validateUsersOfUsername($user->username)->isEmpty(),
         );
-    }
-
-    /**
-     * Data in order:
-     * - Beatmap or beatmapset state
-     * - Whether the username should be available
-     */
-    public static function usernameAvailabilityWithBeatmapStateDataProvider(): array
-    {
-        return [
-            ['graveyard', true],
-            ['wip',       true],
-            ['pending',   true],
-            ['ranked',    false],
-            ['approved',  false],
-            ['qualified', false],
-            ['loved',     false],
-        ];
-    }
-
-    /**
-     * Data in order:
-     * - Username
-     * - Whether the username should be valid
-     */
-    public static function usernameValidationDataProvider(): array
-    {
-        return [
-            'alphabetic'                   => ['Username',         true],
-            'alphanumeric'                 => ['Username1000',     true],
-            'numeric'                      => ['1000',             true],
-            'space at beginning'           => [' Username',        false],
-            'space at end'                 => ['Username ',        false],
-            'space in middle'              => ['Username 1000',    true],
-            'too short'                    => ['aa',               false],
-            'shortest'                     => ['aaa',              true],
-            'too long'                     => ['aaaaaaaaaaaaaaaa', false],
-            'longest'                      => ['aaaaaaaaaaaaaaa',  true],
-            'two spaces in middle'         => ['Username  1000',   false],
-            'invalid special characters'   => ['Usern@me',         false],
-            'all valid special characters' => ['-[]_',             true],
-            'mixed space and underscore'   => ['Username_1 2',     false],
-        ];
-    }
-
-    /**
-     * Data in order:
-     * - Whether the user lookup should be done through username change history
-     * - Whether the user lookup should have its underscores replaced with spaces
-     * - Whether the user lookup should return the user
-     */
-    public static function usersOfUsernameLookupDataProvider(): array
-    {
-        return [
-            [true,  true,  false],
-            [true,  false, true],
-            [false, true,  true],
-            [false, false, true],
-        ];
     }
 }

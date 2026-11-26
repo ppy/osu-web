@@ -475,11 +475,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         )->first();
     }
 
-    public static function checkWhenUsernameAvailable($username): Carbon
+    public static function checkWhenUsernameAvailable(string $username, bool $newUser = false): Carbon
     {
+        $offsetDays = $newUser ? 1 : 0;
         $user = static::findByUsernameForInactive($username);
         if ($user !== null) {
-            return $user->getUsernameAvailableAt();
+            return $user->getUsernameAvailableAt()->addDays($offsetDays);
         }
 
         $lastUsage = UsernameChangeHistory::where('username_last', $username)
@@ -491,7 +492,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             return Carbon::now();
         }
 
-        return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
+        return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS + $offsetDays);
     }
 
     public function getUsernameAvailableAt(): Carbon

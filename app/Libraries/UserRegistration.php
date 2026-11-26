@@ -3,10 +3,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Libraries;
 
 use App\Exceptions\ValidationException;
 use App\Models\Count;
+use App\Models\Group;
 use App\Models\User;
 use Carbon\Carbon;
 use Datadog;
@@ -14,10 +17,10 @@ use Exception;
 
 class UserRegistration
 {
-    private $group;
-    private $user;
+    private Group $group;
+    private User $user;
 
-    public function __construct($params)
+    public function __construct(array $params)
     {
         $group = $params['group'] ?? 'default';
         unset($params['group']);
@@ -40,7 +43,7 @@ class UserRegistration
         }
 
         $this->assertValidation(UsernameValidation::validateUsername($this->user->username));
-        $this->assertValidation(UsernameValidation::validateAvailability($this->user->username));
+        $this->assertValidation(UsernameValidation::validateAvailability($this->user->username, true));
         $this->assertValidation(UsernameValidation::validateUsersOfUsername($this->user->username));
 
         if (!$this->user->isValid()) {
