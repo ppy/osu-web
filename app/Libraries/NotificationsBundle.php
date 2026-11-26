@@ -45,7 +45,7 @@ class NotificationsBundle
     public function toArray(): array
     {
         if ($this->objectId !== null && $this->objectType !== null && $this->category !== null) {
-            $this->fillStacks($this->objectType, $this->objectId, $this->category);
+            $this->fillStack($this->objectType, $this->objectId, $this->category);
         } else {
             $this->fillTypes($this->objectType);
         }
@@ -68,13 +68,9 @@ class NotificationsBundle
     /**
      * Note: Prefetch stack size if filling multiple stacks.
      */
-    private function fillStacks(string $objectType, int $objectId, string $category, ?int $stackSize = null): void
+    private function fillStack(string $objectType, int $objectId, string $category): void
     {
         $key = static::stackKey($objectType, $objectId, $category);
-        // skip multiple notification names mapped to the same category.
-        if (isset($this->stacks[$key])) {
-            return;
-        }
 
         $query = $this->user
             ->userNotifications()
@@ -87,10 +83,10 @@ class NotificationsBundle
             $query->where('is_read', false);
         }
 
-        // use pre-fetched value; otherwise get count before applying cursor.
-        $total = $stackSize ?? $query->count();
+        // get count before applying cursor.
+        $total = $query->count();
 
-        $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
+        $query->orderBy('notification_id', 'desc')->limit(static::PER_STACK_LIMIT);
 
         if ($this->cursorId !== null) {
             $query->where('notification_id', '<', $this->cursorId);
@@ -121,57 +117,29 @@ class NotificationsBundle
     {
         $heads = $this->getStackHeads($type);
 
-        $batches = [];
-        $unionQuery = null;
-
         foreach ($heads as $head) {
-            // everything less than the stack's pagination size can be batched together
-            // since no pagination or ordering is required for them.
+            $rawStr = $head->getRawAttribute('notification_ids');
+            $notificationIds = explode(',', $rawStr, static::PER_STACK_LIMIT + 1);
+            // last value might be truncated, so discard it. The extra item in the explode limit ensures we can blindly discard the last element.
+            if (strlen($rawStr) >= 1024) {
+                array_pop($notificationIds);
+            }
+            // handle the case if group_concat didn't get truncated but we still have more than the stack limit.
+            if (count($notificationIds) > 50) {
+                array_pop($notificationIds);
+            }
+
+            array_push($this->notificationIdsToFetch, ...array_map('intval', $notificationIds));
+
+            $key = "{$head->notifiable_type}-{$head->notifiable_id}-{$head->category}";
             $stackSize = $head->getRawAttribute('stack_size');
-            if ($stackSize <= static::PER_STACK_LIMIT) {
-                // collect notifiable_id together so they can be selected together instead of multiple unions.
-                // This is more for reducing queries sent; unions are still considered multiple queries.
-                $batchKey = "{$head->notifiable_type}-{$head->category}";
-                $batches[$batchKey][] = $head->notifiable_id;
-
-                $key = "{$head->notifiable_type}-{$head->notifiable_id}-{$head->category}";
-                $this->stacks[$key] = [
-                    'category' => $head->category,
-                    'cursor' => null,
-                    'object_type' => $head->notifiable_type,
-                    'object_id' => $head->notifiable_id,
-                    'total' => $stackSize,
-                ];
-            } else {
-                // TODO: it's possible to union query these as well; it just looks really bad reading the query.
-                $this->fillStacks($head->notifiable_type, $head->notifiable_id, $head->category, $stackSize);
-            }
-        }
-
-        foreach ($batches as $batchKey => $notifiableIds) {
-            [$notifiableType, $category] = explode('-', $batchKey, 2);
-            $query = $this->user
-                ->userNotifications()
-                ->hasPushDelivery()
-                ->where('notifiable_type', $notifiableType)
-                ->whereIn('notifiable_id', $notifiableIds)
-                ->where('category', $category)
-                ->select('notification_id');
-
-            if ($this->unreadOnly) {
-                $query->where('is_read', false);
-            }
-
-            if ($unionQuery === null) {
-                $unionQuery = $query;
-            } else {
-                $unionQuery->unionAll($query);
-            }
-        }
-
-        if ($unionQuery !== null) {
-            $notificationIds = $unionQuery->pluck('notification_id');
-            array_push($this->notificationIdsToFetch, ...$notificationIds);
+            $this->stacks[$key] = [
+                'category' => $head->category,
+                'cursor' => $stackSize > static::PER_STACK_LIMIT ? ['id' => end($notificationIds)] : null,
+                'object_type' => $head->notifiable_type,
+                'object_id' => $head->notifiable_id,
+                'total' => $stackSize,
+            ];
         }
 
         $last = $heads->last();
@@ -224,8 +192,15 @@ class NotificationsBundle
             ->userNotifications()
             ->hasPushDelivery()
             ->groupBy('notifiable_type', 'notifiable_id', 'category')
-            ->orderBy('max_id', 'DESC')
-            ->select(DB::raw('MAX(notification_id) as max_id'), DB::raw('COUNT(*) as stack_size'), 'notifiable_type', 'notifiable_id', 'category');
+            ->orderByDesc('max_id')
+            ->select(
+                DB::raw('MAX(notification_id) AS max_id'),
+                DB::raw("SUBSTRING_INDEX(GROUP_CONCAT(notification_id ORDER BY notification_id DESC), ',', 50) AS notification_ids"),
+                DB::raw('COUNT(*) AS stack_size'),
+                'notifiable_type',
+                'notifiable_id',
+                'category',
+            );
 
         if ($this->unreadOnly) {
             $query->where('is_read', false);
