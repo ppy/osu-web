@@ -27,6 +27,7 @@ import Historical from './historical';
 import Kudosu from './kudosu';
 import Medals from './medals';
 import RecentActivity from './recent-activity';
+import Screenshots from './screenshots';
 import TopScores from './top-scores';
 import UserPage from './user-page';
 
@@ -60,6 +61,7 @@ export default class Main extends React.Component<Props> {
     me: React.createRef(),
     medals: React.createRef(),
     recent_activity: React.createRef(),
+    screenshots: React.createRef(),
     top_ranks: React.createRef(),
   };
   private readonly pages = React.createRef<HTMLDivElement>();
@@ -264,6 +266,9 @@ export default class Main extends React.Component<Props> {
 
       case 'historical':
         return <Historical {...baseProps} />;
+
+      case 'screenshots':
+        return <Screenshots {...baseProps} />;
 
       case 'account_standing':
         return <AccountStanding {...baseProps} />;
