@@ -32,7 +32,7 @@ class ForumSeeder extends Seeder
             ->has(
                 Forum::factory()->state([
                     'forum_desc' => 'Suggest what you would like to see in osu!.',
-                    'forum_id' => $GLOBALS['cfg']['osu']['forum']['feature_forum_id'],
+                    'forum_id' => $GLOBALS['cfg']['osu']['forum']['feature_forum_ids'][0],
                     'forum_name' => 'Feature Requests',
                 ]),
                 'subforums',
