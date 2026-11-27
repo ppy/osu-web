@@ -26,6 +26,7 @@ use Tests\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     protected static iterable $beatmapsets = [];
+    protected array $defaultExpectedSort = ['approved_date', 'id'];
 
     abstract public static function dataProvider(): array;
 
@@ -74,12 +75,21 @@ abstract class TestCase extends BaseTestCase
     }
 
     #[DataProvider('dataProvider')]
-    public function testSearch(array $params, array $expected): void
+    public function testSearch(array $params, array $expected, ?array $expectedSort = null): void
     {
-        $this->assertEqualsCanonicalizing(
-            array_map(fn (int $index) => static::$beatmapsets[$index]->getKey(), $expected),
-            new BeatmapsetSearch(new BeatmapsetSearchRequestParams($params))->response()->ids()
-        );
+        $actualExpectedSort = $expectedSort ?? $this->defaultExpectedSort;
+        $expectedIds = array_map(fn (int $index) => (string) static::$beatmapsets[$index]->getKey(), $expected);
+        $search = new BeatmapsetSearch(new BeatmapsetSearchRequestParams($params));
+
+        $fields = array_map(fn ($sort) => $sort->field, $search->getParams()->sorts);
+        $this->assertSame($actualExpectedSort, $fields);
+
+        // don't test for order for relevancy ordering, see TitleFilterTest for more info.
+        if ($actualExpectedSort[0] === '_score') {
+            $this->assertEqualsCanonicalizing($expectedIds, $search->response()->ids());
+        } else {
+            $this->assertSame($expectedIds, $search->response()->ids());
+        }
     }
 
     protected function setUp(): void
