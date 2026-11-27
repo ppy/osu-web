@@ -16,33 +16,19 @@ class ArchiveForumTopics extends Command
     protected $description = 'Archive support related forum topics.';
     protected $signature = 'archive-forum-topics';
 
-    private static function archiveCompletedFeatureTopics(): void
+    private static function archiveCompletedIssueTopics(): void
     {
+        $map = $GLOBALS['cfg']['osu']['forum']['issue_forum_archive_map'];
+        $targets = Forum::whereIn('forum_id', array_values($map))->get()->keyBy('forum_id');
+
         $topics = Topic
-            ::where('forum_id', $GLOBALS['cfg']['osu']['forum']['feature_forum_id'])
+            ::whereIn('forum_id', array_keys($map))
             ->archivable()
             ->hasAnyTags(['resolved', 'added', 'duplicate', 'denied', 'invalid'])
             ->get();
-        $targetForum = Forum::findOrFail($GLOBALS['cfg']['osu']['forum']['feature_completed_forum_id']);
 
         foreach ($topics as $topic) {
-            $topic->moveTo($targetForum);
-        }
-    }
-
-    private static function archiveCompletedHelpTopics(): void
-    {
-        $topics = Topic
-            ::whereIn('forum_id', [
-                $GLOBALS['cfg']['osu']['forum']['help_forum_id'],
-                $GLOBALS['cfg']['osu']['forum']['help_confirmed_forum_id'],
-            ])->archivable()
-            ->hasAnyTags(['resolved', 'added', 'duplicate', 'denied', 'invalid'])
-            ->get();
-        $targetForum = Forum::findOrFail($GLOBALS['cfg']['osu']['forum']['help_archived_forum_id']);
-
-        foreach ($topics as $topic) {
-            $topic->moveTo($targetForum);
+            $topic->moveTo($targets[$map[$topic->forum_id]]);
         }
     }
 
@@ -69,11 +55,8 @@ class ArchiveForumTopics extends Command
         $this->info('Archiving old help forum topics');
         static::archiveOldHelpTopics();
 
-        $this->info('Archiving completed help forum topics');
-        static::archiveCompletedHelpTopics();
-
-        $this->info('Archiving completed featured request forum topics');
-        static::archiveCompletedFeatureTopics();
+        $this->info('Archiving completed issue topics');
+        static::archiveCompletedIssueTopics();
 
         $this->info('Done.');
     }
