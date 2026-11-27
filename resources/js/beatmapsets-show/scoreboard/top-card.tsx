@@ -15,6 +15,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import { rulesetNames } from 'interfaces/ruleset';
 import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
+import moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
@@ -36,6 +37,7 @@ export default class TopCard extends React.PureComponent<Props> {
     const ruleset = rulesetNames[this.props.score.ruleset_id];
     const scoreAccuracy = accuracy(this.props.score);
     const avatar = <UserAvatar user={this.props.score.user} />;
+    const isRecent = moment().diff(moment(this.props.score.ended_at), 'hour') < 24;
 
     return (
       <div className={classWithModifiers('beatmap-score-top', this.props.modifiers)}>
@@ -186,7 +188,7 @@ export default class TopCard extends React.PureComponent<Props> {
               <div className='beatmap-score-top__stat-header'>
                 {trans('beatmapsets.show.scoreboard.headers.time')}
               </div>
-              <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller u-hover'>
+              <div className={`${classWithModifiers('beatmap-score-top__stat-value', 'smaller', { recent: isRecent })} u-hover`}>
                 <ScoreboardTime dateTime={this.props.score.ended_at} />
               </div>
             </div>
