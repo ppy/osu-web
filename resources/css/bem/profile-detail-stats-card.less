@@ -23,6 +23,15 @@
     grid-template-rows: 1fr;
   }
 
+  &--heatmap {
+    grid-template-rows: auto;
+    min-width: 0;
+
+    @media @desktop {
+      grid-column: 1 / -1;
+    }
+  }
+
   &--modding {
     grid-template-rows: auto;
     align-content: start;
