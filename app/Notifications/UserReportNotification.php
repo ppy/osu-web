@@ -11,6 +11,7 @@ use GuzzleHttp\RequestOptions;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Channels\SlackWebhookChannel;
+use Illuminate\Notifications\Messages\SlackAttachmentField;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 
@@ -58,7 +59,10 @@ class UserReportNotification extends Notification implements ShouldQueue
 
                 $additionalInfo = $reportable?->reportableAdditionalInfo($notifiable);
                 if ($additionalInfo !== null) {
-                    $fields['Additional Info'] = $additionalInfo;
+                    $fields[] = new SlackAttachmentField()
+                        ->title('Additional Info')
+                        ->content($additionalInfo)
+                        ->long();
                 }
 
                 $attachment

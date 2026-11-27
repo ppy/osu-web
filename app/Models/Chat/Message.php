@@ -53,15 +53,22 @@ class Message extends Model implements ReportableInterface
             $query->where('message_id', '<=', $maxId);
         }
 
-        return $query
+        $messages = $query
             ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
             ->where('user_id', $userId)
             ->where('timestamp', '>', CarbonImmutable::now()->subDays(1))
             ->orderBy('timestamp', 'DESC')
             ->with('channel')
             ->limit(5)
-            ->get()
-            ->map(fn ($m) => "**<t:{$m->timestamp->timestamp}:R> {$m->channel->name}:**\n{$m->content}\n")
+            ->get();
+
+        $rooms = Room::findMany($messages->pluck('channel.room_id')->filter(fn ($id) => $id !== null))->keyBy('id');
+
+        return $messages
+            ->map(function ($m) use ($rooms) {
+                $nameAndType = self::getChannelNameAndType($m->channel, $rooms->get($m->channel->room_id));
+                return "**<t:{$m->timestamp->timestamp}:R>** {$nameAndType}:\n{$m->content}\n";
+            })
             ->reverse()
             ->join("\n");
     }
@@ -185,29 +192,35 @@ class Message extends Model implements ReportableInterface
 
         $channel = $this->channel;
         $room = $channel->room_id === null ? null : Room::find($channel->room_id);
-        $header = 'Reported in: ';
 
-        if ($channel->isPM()) {
-            $header .= 'pm';
-        // Matchmaking and daily challenge room names are predictable and contain information
-        // that is already communicated somewhere else in the embed (including but not limited
-        // to the room type handled below this if-else block), therefore we're not including them.
-        } elseif ($room !== null && !$room->isMatchmaking() && $room->category !== Room::DAILY_CHALLENGE_CATEGORY) {
-            $header .= $room->name.' [**'.$channel->name.'**]';
-        } else {
-            $header .= '**'.$channel->name.'**';
-        }
-
-        if (!$channel->isPM()) {
-            $header .= ' ('.($room !== null ? $room->getTypePretty() : strtolower($channel->type)).')';
-        }
-
-        return "{$header}\n\n{$history}";
+        return 'Reported in '.self::getChannelNameAndType($channel, $room).'\n\n'.$history;
     }
 
     public function trashed(): bool
     {
         return false;
+    }
+
+    private static function getChannelNameAndType(Channel $channel, ?Room $room): string
+    {
+        $value = '';
+
+        if ($channel->isPM()) {
+            $value .= 'pm';
+            // Matchmaking and daily challenge room names are predictable and contain information
+            // that is already communicated somewhere else in the embed (including but not limited
+            // to the room type handled below this if-else block), therefore we're not including them.
+        } elseif ($room !== null && !$room->isMatchmaking() && $room->category !== Room::DAILY_CHALLENGE_CATEGORY) {
+            $value .= $room->name.' [**'.$channel->name.'**]';
+        } else {
+            $value .= '**'.$channel->name.'**';
+        }
+
+        if (!$channel->isPM()) {
+            $value .= ' ('.($room?->getTypePretty() ?? strtolower($channel->type)).')';
+        }
+
+        return $value;
     }
 
     protected function newReportableExtraParams(): array
