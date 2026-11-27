@@ -133,12 +133,14 @@ class UserNotification extends Model
 
     public function scopeHasMailDelivery($query)
     {
-        return $query->where('delivery', '&', static::deliveryMask('mail'));
+        static $value = [static::deliveryMask('mail'), static::deliveryMask('mail') | static::deliveryMask('push')];
+        return $query->whereIn('delivery', $value);
     }
 
     public function scopeHasPushDelivery($query)
     {
-        return $query->where('delivery', '&', static::deliveryMask('push'));
+        static $value = [static::deliveryMask('push'), static::deliveryMask('mail') | static::deliveryMask('push')];
+        return $query->whereIn('delivery', $value);
     }
 
     public function user()
@@ -149,8 +151,11 @@ class UserNotification extends Model
     public function getAttribute($key)
     {
         return match ($key) {
+            'category',
             'delivery',
             'id',
+            'notifiable_id',
+            'notifiable_type',
             'notification_id',
             'user_id' => $this->getRawAttribute($key),
 
