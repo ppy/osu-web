@@ -263,6 +263,12 @@ return [
             'to_1_done' => 'Topic has been locked',
         ],
 
+        'new_posts' => [
+            'check' => 'Check for new posts',
+            'load' => 'Load new posts',
+            'polling_note' => 'New posts are checked for periodically in the background while on this page.',
+        ],
+
         'moderate_move' => [
             'title' => 'Move to another forum',
         ],
