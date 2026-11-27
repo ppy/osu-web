@@ -96,7 +96,7 @@ class ModdingHistoryEventsBundle
                 'events' => json_collection(
                     $this->getEvents(),
                     new BeatmapsetEventTransformer(),
-                    ['discussion.starting_post', 'beatmapset.user']
+                    ['discussion.starting_post', 'beatmapset']
                 ),
                 'reviewsConfig' => Review::config(),
                 'users' => json_collection(
@@ -247,7 +247,7 @@ class ModdingHistoryEventsBundle
             // beatmapset has global scopes with deleted_at and active but these are not indexed,
             // which makes whereHas('beatmapset') unusable.
             $events['query'] = $events['query']->with([
-                'beatmapset.user',
+                'beatmapset',
                 'beatmapDiscussion.beatmapset',
                 'beatmapDiscussion.startingPost',
             ]);

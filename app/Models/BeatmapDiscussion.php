@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Jobs\RefreshBeatmapsetUserKudosu;
+use App\Libraries\BeatmapsetDiscussion\UserParam;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -76,19 +77,7 @@ class BeatmapDiscussion extends Model
 
         [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
-        if (present($rawParams['user'] ?? null)) {
-            $params['user'] = $rawParams['user'];
-            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
-            $user = User::lookup($params['user'], null, $findAll);
-
-            if ($user === null) {
-                $query->none();
-            } else {
-                $query->where('user_id', '=', $user->getKey());
-            }
-        } else {
-            $params['user'] = null;
-        }
+        UserParam::apply($query, $rawParams, $extraParams, $params);
 
         if (isset($rawParams['sort'])) {
             $sort = explode('_', strtolower($rawParams['sort']));

@@ -20,13 +20,13 @@ class BeatmapsetEventsController extends Controller
     {
         $bundle = ModdingHistoryEventsBundle::forListing(null, \Request::all(), []);
         $jsonChunks = $bundle->toArray();
-        $paginator = $bundle->getPaginator();
-        $params = $bundle->getParams();
 
-        if (is_api_request()) {
-            return $jsonChunks;
-        } else {
-            return ext_view('beatmapset_events.index', compact('paginator', 'params', 'jsonChunks'));
-        }
+        return is_api_request()
+            ? $jsonChunks
+            : ext_view('beatmapset_events.index', [
+                'jsonChunks' => $jsonChunks,
+                'paginator' => $bundle->getPaginator(),
+                'params' => $bundle->getParams(),
+            ]);
     }
 }

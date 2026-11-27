@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\BeatmapsetDiscussion\UserParam;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
@@ -47,17 +48,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
         $extraParams['current_user_id'] ??= null;
         $extraParams['is_moderator'] ??= false;
 
-        if (isset($rawParams['user'])) {
-            $params['user'] = $rawParams['user'];
-            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
-            $user = User::lookup($params['user'], null, $findAll);
-
-            if ($user === null) {
-                $query->none();
-            } else {
-                $query->where('user_id', $user->getKey());
-            }
-        }
+        UserParam::apply($query, $rawParams, $extraParams, $params);
 
         $types = (new Set(get_arr($rawParams['types'] ?? null, 'get_string') ?? []))
             ->intersect(new Set(['first', 'reply', 'system']));
