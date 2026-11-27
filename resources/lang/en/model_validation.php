@@ -135,6 +135,7 @@ return [
         'invalid_characters' => 'This :attribute contains invalid characters.',
         'used' => 'This :attribute choice is already used.',
         'word_not_allowed' => 'This :attribute choice is not allowed.',
+        'cooldown' => 'This :attribute can only be changed once every 7 days. You can change it in :days days.',
 
         'attributes' => [
             'default_ruleset_id' => 'Default ruleset',
