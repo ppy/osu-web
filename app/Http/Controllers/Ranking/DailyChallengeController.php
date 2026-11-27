@@ -13,6 +13,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\Multiplayer\UserScoreAggregate;
 use Carbon\CarbonImmutable;
 use Carbon\Exceptions\InvalidFormatException;
+use Illuminate\Database\Eloquent\Collection;
 
 class DailyChallengeController extends Controller
 {
@@ -40,6 +41,7 @@ class DailyChallengeController extends Controller
             $userScore = null;
         } else {
             $playlist = $room->currentPlaylistItem;
+            $playlist->beatmap->beatmapset->setRelation('beatmaps', new Collection([$playlist->beatmap]));
 
             $scores = $playlist
                 ->highScores()

@@ -162,92 +162,95 @@
         @include('rankings._beatmapsets', ['beatmapsets' => [$playlist->beatmap->beatmapset], 'modifiers' => 'daily-challenge'])
     @endsection
     @section('scores')
-        <table class="ranking-page-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
-                    <th class="ranking-page-table__heading">
+        <div class="ranking-page-grid ranking-page-grid--daily-challenge">
+            <div class="ranking-page-grid-item ranking-page-grid-item--header">
+                <div class="ranking-page-grid-item__content">
+                    <div class="ranking-page-grid-item__col"></div>
+                    <div class="ranking-page-grid-item__col"></div>
+                    <div class="ranking-page-grid-item__col">
                         {{ osu_trans('beatmapsets.show.scoreboard.headers.combo') }}
-                    </th>
-                    <th class="ranking-page-table__heading">
+                    </div>
+                    <div class="ranking-page-grid-item__col">
                         {{ osu_trans('rankings.stat.accuracy') }}
-                    </th>
-                    <th class="ranking-page-table__heading">
+                    </div>
+                    <div class="ranking-page-grid-item__col">
                         {{ osu_trans('rankings.stat.play_count') }}
-                    </th>
-                    <th class="ranking-page-table__heading ranking-page-table__heading--focused">
+                    </div>
+                    <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number-focus">
                         {{ osu_trans('rankings.stat.total_score') }}
-                    </th>
-                    <th class="ranking-page-table__heading">
+                    </div>
+                    <div class="ranking-page-grid-item__col">
                         {{ osu_trans('beatmapsets.show.scoreboard.headers.rank') }}
-                    </th>
-                    <th class="ranking-page-table__heading">
+                    </div>
+                    <div class="ranking-page-grid-item__col">
                         {{ osu_trans('beatmapsets.show.scoreboard.headers.mods') }}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+                    </div>
+                </div>
+            </div>
+            @php
+                // -1 due to userScore being prepended
+                $firstItem = $scores->firstItem() - 1;
+            @endphp
+            @foreach ([$userScore, ...$scores] as $index => $agg)
+                @if ($agg === null)
+                    @continue
+                @endif
                 @php
-                    // -1 due to userScore being prepended
-                    $firstItem = $scores->firstItem() - 1;
+                    $score = $agg->score;
                 @endphp
-                @foreach ([$userScore, ...$scores] as $index => $agg)
-                    @if ($agg === null)
-                        @continue
-                    @endif
-                    @php
-                        $score = $agg->score;
-                    @endphp
-                    @if ($score === null)
-                        @continue
-                    @endif
-                    <tr class="{{ class_with_modifiers('ranking-page-table__row', ['inactive' => !$score->user->isActive()]) }}">
-                        <td class="ranking-page-table__column">
+                @if ($score === null)
+                    @continue
+                @endif
+                <div class="ranking-page-grid-item">
+                    <a
+                        class="ranking-page-grid-item__link-bg"
+                        href="{{ route('scores.show', ['score' => $score->getKey()]) }}"
+                    ></a>
+                    <div class="ranking-page-grid-item__content">
+                        <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number ranking-page-grid-item__col--number-focus">
                             #{{ i18n_number_format($loop->first
                                 ? $agg->userRank()
                                 : $firstItem + $index
                             ) }}
-                        </td>
-                        <td class="ranking-page-table__column ranking-page-table__column--main">
-                            @include('rankings._main_column', ['object' => $score->user])
-                        </td>
-                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                        </div>
+                        <div class="ranking-page-grid-item__col ranking-page-grid-item__col--main">
+                            <span class="u-contents u-hover">
+                                @include('rankings._main_column', ['object' => $score->user])
+                            </span>
+                        </div>
+                        <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number">
                             <span class="{{ class_with_modifiers(
-                                'ranking-page-table__value',
+                                'ranking-page-grid-item__value',
                                 ['perfect' => $score->is_perfect_combo],
                             ) }}">
                                 {{ i18n_number_format($score->max_combo) }}
                             </span>
-                        </td>
-                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                        </div>
+                        <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number">
                             <span class="{{ class_with_modifiers(
-                                'ranking-page-table__value',
+                                'ranking-page-grid-item__value',
                                 ['perfect' => $score->accuracy === 1.0],
                             ) }}">
                                 {{ format_percentage($score->accuracy) }}
                             </span>
-                        </td>
-                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                        </div>
+                        <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number">
                             {{ i18n_number_format($agg->attempts) }}
-                        </td>
-                        <td class="ranking-page-table__column">
+                        </div>
+                        <div class="ranking-page-grid-item__col">
                             {!! i18n_number_format($score->total_score) !!}
-                        </td>
-                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
+                        </div>
+                        <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number">
                             <div class="score-rank score-rank--daily-challenge score-rank--{{ $score->rank }}"></div>
-                        </td>
-                        <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                            @include('rankings._mods', ['mods' => $score->data->mods])
-                        </td>
-                    </tr>
-                    @if ($loop->first)
-                        <tr>
-                            <td colspan="7">&nbsp;</td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
+                        </div>
+                        <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number">
+                            <div class="u-hover">
+                                @include('rankings._mods', ['mods' => $score->data->mods])
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     @endsection
 @endif

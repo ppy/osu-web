@@ -23,7 +23,7 @@ import { getArtist, getTitle, showAudio, toggleFavourite } from 'utils/beatmapse
 import { classWithModifiers } from 'utils/css';
 import { formatNumber, formatNumberSuffixed } from 'utils/html';
 import { trans } from 'utils/lang';
-import { beatmapsetDownloadDirect } from 'utils/url';
+import { beatmapsetDownloadDirect, beatmapUrl } from 'utils/url';
 import BeatmapsPopup from './beatmaps-popup';
 
 export const beatmapsetCardSizes = ['normal', 'extra'] as const;
@@ -247,7 +247,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   @computed
   private get url() {
-    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id });
+    const beatmaps = this.props.beatmapset.beatmaps;
+
+    return beatmaps?.length === 1
+      ? beatmapUrl(beatmaps[0])
+      : route('beatmapsets.show', { beatmapset: this.props.beatmapset.id });
   }
 
   constructor(props: Props) {
