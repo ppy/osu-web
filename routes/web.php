@@ -640,6 +640,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::apiResource('tags', 'TagsController', ['only' => ['index']]);
 
         Route::post('screenshots', 'ScreenshotsController@store')->middleware('auth')->name('screenshots.store');
+
+        Route::get('matchmaking-pools/{pool}/user-chart/{user}', 'MatchmakingPoolsController@userChart')->name('matchmaking-pools.user-chart');
     });
 });
 
