@@ -87,6 +87,14 @@ Field      | Type                                  | Description
 beatmapset | [Event.Beatmapset](#event-beatmapset) | |
 user       | [Event.User](#event-user)             | Beatmapset owner.
 
+#### beatmapsetGraveyard
+
+When a beatmapset state is updated to graveyard.
+
+Field      | Type                                  | Description
+-----------|---------------------------------------|------------------
+beatmapset | [Event.Beatmapset](#event-beatmapset) | |
+
 #### beatmapsetUpdate
 
 When a beatmapset is updated.

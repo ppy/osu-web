@@ -9,6 +9,7 @@ return [
     'beatmapset_approve' => ':beatmapset by :user has been :approval!',
     'beatmapset_delete' => ':beatmapset has been deleted.',
     'beatmapset_revive' => ':beatmapset has been revived from eternal slumber by :user.',
+    'beatmapset_graveyard' => ':beatmapset has been sent to eternal slumber.',
     'beatmapset_update' => ':user has updated the beatmap ":beatmapset"',
     'beatmapset_upload' => ':user has submitted a new beatmap ":beatmapset"',
     'empty' => "This user hasn't done anything notable recently!",
