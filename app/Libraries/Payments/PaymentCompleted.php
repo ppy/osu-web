@@ -25,18 +25,18 @@ class PaymentCompleted
     {
         $connection = $this->order->getConnection();
 
-        $connection->afterCommit(
-            function () {
-                $this->sendPaymentCompletedMail();
+        $connection->transaction(function () use ($connection) {
+            $connection->afterCommit(
+                function () {
+                    $this->sendPaymentCompletedMail();
 
-                datadog_increment(
-                    'store.payments.completed',
-                    ['provider' => $this->payment?->provider ?? 'free'],
-                );
-            }
-        );
+                    datadog_increment(
+                        'store.payments.completed',
+                        ['provider' => $this->payment?->provider ?? 'free'],
+                    );
+                }
+            );
 
-        $connection->transaction(function () {
             // Using a unique constraint, so we don't need to lockSelf() first.
             $this->order->paid($this->payment);
 
