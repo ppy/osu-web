@@ -244,9 +244,12 @@ class Forum extends Model
     // feature forum shall have extra features like sorting and voting
     public function isFeatureForum()
     {
-        $id = $GLOBALS['cfg']['osu']['forum']['feature_forum_id'];
-
-        return $this->forum_id === $id || isset($this->forum_parents[$id]);
+        foreach ($GLOBALS['cfg']['osu']['forum']['feature_forum_ids'] as $id) {
+            if ($this->forum_id === $id || isset($this->forum_parents[$id])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function isHelpForum()
