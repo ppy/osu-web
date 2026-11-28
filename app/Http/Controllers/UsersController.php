@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 use romanzipp\Turnstile\Validator as TurnstileValidator;
 use Sentry\State\Scope;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @group Users
@@ -110,6 +111,14 @@ class UsersController extends Controller
         ]);
 
         parent::__construct();
+    }
+
+    private static function storeClientDisabledError()
+    {
+        return response([
+            'error' => osu_trans('users.store.from_web'),
+            'url' => route('users.create'),
+        ], 403);
     }
 
     public function create()
@@ -189,10 +198,7 @@ class UsersController extends Controller
     public function store()
     {
         if (!$GLOBALS['cfg']['osu']['user']['registration_mode']['client']) {
-            return response([
-                'error' => osu_trans('users.store.from_web'),
-                'url' => route('users.create'),
-            ], 403);
+            return static::storeClientDisabledError();
         }
 
         $request = \Request::instance();
@@ -201,7 +207,14 @@ class UsersController extends Controller
             return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        return $this->storeUser($request->all(), ClientCheck::parseToken($request));
+        try {
+            $clientTokenData = ClientCheck::parseToken($request);
+        } catch (HttpException $e) {
+            // this is mainly to handle requests coming from stable client
+            return static::storeClientDisabledError();
+        }
+
+        return $this->storeUser($request->all(), $clientTokenData);
     }
 
     public function storeWeb()
