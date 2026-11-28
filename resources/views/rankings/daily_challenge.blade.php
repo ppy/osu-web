@@ -244,8 +244,11 @@
                             <div class="score-rank score-rank--daily-challenge score-rank--{{ $score->rank }}"></div>
                         </div>
                         <div class="ranking-page-grid-item__col ranking-page-grid-item__col--number">
-                            <div class="u-hover">
-                                @include('rankings._mods', ['mods' => $score->data->mods])
+                            <div class="ranking-page-grid-item__icons u-hover">
+                                @include('rankings._mods', ['props' => [
+                                    'modifiers' => 'dynamic',
+                                    'mods' => $score->data->mods,
+                                ]])
                             </div>
                         </div>
                     </div>

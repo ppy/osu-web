@@ -93,7 +93,7 @@ core.reactTurbolinks.register('menu-images', () => (
 ));
 
 core.reactTurbolinks.register('mods', (container) => (
-  <Mods {...reqJson(container.dataset.mods)} />
+  <Mods {...reqJson(container.dataset.props)} />
 ));
 
 core.reactTurbolinks.register('notification-widget', (container) => (

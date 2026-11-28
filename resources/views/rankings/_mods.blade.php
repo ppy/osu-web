@@ -5,7 +5,7 @@
 
 <div
     class="js-react"
-    data-mods="{{ json_encode(['mods' => $mods]) }}"
+    data-props="{{ json_encode($props) }}"
     data-react="mods"
 >
 </div>
